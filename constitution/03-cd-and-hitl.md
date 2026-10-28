@@ -2,6 +2,22 @@
 
 SDLC target = **continuous deployment**. Mainline stays releasable. Gates prove safety without long freeze windows.
 
+**CI/CD is a first-class product of safe-harness**, not optional theater. Risk-tier CD path = core deliverable.
+
+## Trunk-based delivery (enterprise practice)
+
+**Trunk = `main`**. Short-lived feature branches → PR → `main`. No long-lived `release/*` Gitflow branches.
+
+| Practice | Rule |
+| --- | --- |
+| **Default branch** | `main` is trunk; always releasable |
+| **Feature branches** | Short-lived (`cursor/*`, `feature/*`); merge via PR |
+| **Releases** | Tag from `main` when ready; no separate release branches |
+| **Hotfixes** | Branch from tag → fix → merge to `main` → re-tag |
+| **PR ownership** | Kai / Delivery manage PRs (HITL / risk-tier still applies per O2) |
+
+No Gitflow. Trunk-based development with feature flags for incomplete work.
+
 ## Risk tiers
 
 | Tier | Behavior | Human requirement |
@@ -39,6 +55,23 @@ Default = decision packs + independence. Freeze is rare and named.
 | **Flags** | Prefer feature flags for incomplete work over long-lived freeze branches |
 | **Rollback** | First-class; rehearse path before high-risk deploys |
 | **HITL merge** | Humans merge; agents never self-merge |
+| **PR management** | Kai / Delivery own PR review / merge decisions (not agents) |
+
+## Wave 0 CI/CD path
+
+Wave 0 ships **thin CI skeleton** (`.github/workflows/wave0-checks.yml`) proving gates exist:
+- Structure validation (required paths)
+- Markdown sanity (link checks, syntax)
+- No deploy secrets / full risk-tier automation yet
+
+**Full risk-tier CD path = M6 first-class deliverable**, not optional. Includes:
+- Risk-tier gates (Low/Med/High automation)
+- Deploy pipelines (staging → prod)
+- Feature flag integration
+- Rollback automation
+- Merge queue mechanics
+
+Thin skeleton → full path is intentional scaffolding, not final state.
 
 ## Decision pack minimum
 

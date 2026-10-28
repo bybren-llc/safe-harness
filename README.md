@@ -13,6 +13,12 @@ Org: [`bybren-llc`](https://github.com/bybren-llc) · Reference only: [`safe-age
 | **(A) CD execute/deploy** | Delivery | Evidence → risk-tier gates → merge queue → flags/rollback |
 | **(B) Think/plan** | Studio | Multi-vault + non-code gates → handoff when knowledge becomes build |
 
+## CI/CD is first-class
+
+**CI/CD is a core product of safe-harness**, not optional theater. Trunk-based delivery to `main` (no Gitflow). Kai/Delivery manage PRs. Risk-tier CD path (Low/Med/High gates, deploy pipelines, merge queue, rollback) = M6 first-class deliverable. Wave 0 ships thin CI skeleton (`.github/workflows/`) proving gates exist; full risk-tier automation follows.
+
+See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for trunk-based workflow, risk tiers, and O2 high-risk defaults.
+
 ## Start here
 
 1. [`constitution/`](constitution/) — north star, seats, CD/HITL, privacy, Linear evidence, empiricism
