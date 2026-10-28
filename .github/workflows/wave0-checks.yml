@@ -58,7 +58,7 @@ jobs:
           
           broken_links=0
           
-          for md_file in $(find constitution roles adapters templates prove -name "*.md" 2>/dev/null); do
+          for md_file in $(find . -maxdepth 1 -name "*.md" -o -path "./constitution/*.md" -o -path "./roles/*.md" -o -path "./adapters/*/*.md" -o -path "./templates/*.md" -o -path "./prove/*.md" 2>/dev/null); do
             echo "Checking: $md_file"
             
             # Extract relative markdown links [text](path.md) or [text](path/)
@@ -101,8 +101,8 @@ jobs:
           issues=0
           
           for md_file in $(find . -name "*.md" -not -path "./.git/*" 2>/dev/null); do
-            # Check for unclosed code fences
-            fence_count=$(grep -c '^```' "$md_file" 2>/dev/null || echo 0)
+            # Check for unclosed code fences (Wave 0 uses simple parity count; does not detect nested fence-like content)
+            fence_count=$(grep -c '^```' "$md_file" 2>/dev/null || printf "0")
             if [[ $((fence_count % 2)) -ne 0 ]]; then
               echo "❌ Unclosed code fence in: $md_file"
               issues=$((issues + 1))

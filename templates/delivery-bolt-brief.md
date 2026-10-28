@@ -16,7 +16,7 @@
 | O2 items in scope? | pricing / refunds / auth / deploy CI / prod secrets / privacy-boundary / none |
 | RTE collapse | Allowed / Not allowed |
 | QAS actor | (required; never = implementer) |
-| SecEng actor | (required if High/O2; never = implementer) |
+| SecEng actor | (required if Med/High/O2; never = implementer) |
 
 ## Scope
 

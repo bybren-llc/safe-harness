@@ -25,7 +25,7 @@ Maps constitution → Cursor rules + Projects / Cloud Agents.
 ## Rules stub list (future `.cursor/rules` or Project rules)
 
 1. `dual-spine.mdc` — A vs B boundary  
-2. `hitl-o2.mdc` — high-risk list + tiers  
+2. `hitl-o2.mdc` — high-risk list + tiers; Cloud Agents never merge (HITL only)  
 3. `privacy-vaults.mdc` — personal never remote; NAS SoT  
 4. `evidence-linear.mdc` — SoR + portable IDs; no Linear Agents  
 5. `model-stack.mdc` — O4 tiers; ultracode not default  

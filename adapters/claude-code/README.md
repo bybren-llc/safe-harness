@@ -26,7 +26,7 @@ implementer.md
 qas.md
 seceng.md
 bsa-like.md
-rte.md           # collapsible flag in frontmatter
+rte-collapsible.md
 ```
 
 Each file must include: mission, spine, may-collapse, independence, model tier, stop rules — copy from `../../roles/`.
