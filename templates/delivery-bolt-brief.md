@@ -27,8 +27,8 @@
 | Linear issue | |
 | Exact-head SHA or PR | |
 | Evidence IDs | |
-| QAS status | pass / change-request / N/A |
-| SecEng status | pass / change-request / N/A |
+| QAS status | pass / change-request / N/A (Low tier only; rationale required) |
+| SecEng status | pass / change-request / N/A (Low tier only; rationale required) |
 | Risk tier + O2 details | |
 | Ask | approve / change-request / escalate |
 
