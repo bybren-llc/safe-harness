@@ -17,6 +17,20 @@
 | RTE collapse | Allowed / Not allowed |
 | QAS actor | (required; never = implementer) |
 | SecEng actor | (required if Med/High/O2; never = implementer) |
+| HITL approver | (required; High requires two distinct human approvers) |
+| POPM approver | (required for final approval) |
+
+## Decision pack (constitution/03 minimum)
+
+| Field | Value |
+| --- | --- |
+| Linear issue | |
+| Exact-head SHA or PR | |
+| Evidence IDs | |
+| QAS status | pass / change-request / N/A |
+| SecEng status | pass / change-request / N/A |
+| Risk tier + O2 details | |
+| Ask | approve / change-request / escalate |
 
 ## Scope
 
