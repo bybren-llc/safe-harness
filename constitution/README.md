@@ -1,7 +1,7 @@
 # Constitution — safe-harness
 
-**Status:** Wave 0 draft (Scott concurred 2026-10-28) · Kai owns · Delivery executes  
-**Org:** bybren-llc · **Slug:** `safe-harness` (locked 2026-10-28)  
+**Status:** Wave 0 active · Kai owns · Delivery executes  
+**Org:** bybren-llc · **Slug:** `safe-harness`  
 **Reference only:** `bybren-llc/safe-agentic-workflow` @ `dev` — never silent-rewrite SAW.
 
 SAW = **Safe Agentic Workflow** (everyday safe). Not SAFe the trademark. SAFe + AI-DLC remain the ownership/cadence spine.
@@ -18,17 +18,18 @@ SAW = **Safe Agentic Workflow** (everyday safe). Not SAFe the trademark. SAFe + 
 
 Adapters express the same constitution in runtime-native form:
 
-| Adapter | Path | Wave 0 priority |
+| Adapter | Path | Wave 0 status |
 | --- | --- | --- |
-| Claude Code | `../adapters/claude-code/` | First |
-| Cursor | `../adapters/cursor/` | First |
+| Claude Code | `../adapters/claude-code/` | Stub (docs only) |
+| Cursor | `../adapters/cursor/` | Stub (docs only) |
 | Others (Codex, local, Grok Bot) | Later | After prove |
+
+Wave 0 adapters are documentation stubs, not runnable harnesses yet.
 
 ## SAW `dev` as reference
 
-Copy patterns from SAW `dev` when they win comparisons. Do **not** rewrite SAW in place. New work lands in `bybren-llc/safe-harness` once slug is locked and Kai authorizes create.
+Copy patterns from SAW `dev` when they win comparisons. Do **not** rewrite SAW in place. New work lands in `bybren-llc/safe-harness`.
 
 ## Provenance
 
-- ADR pack concurred 2026-10-28 (C1–C8 / O1–O6 / E1–E3).
-- Box drafts only until repo create + Linear epics are authorized separately.
+ADR pack concurred 2026-10-28 (C1–C8 / O1–O6 / E1–E3).

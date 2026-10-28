@@ -9,13 +9,15 @@ Repo: `bybren-llc/safe-harness` (O1 locked).
 | Step | Target | Done? |
 | --- | --- | --- |
 | 1 | Empty `bybren-llc/safe-harness` exists + Cursor App access granted | ☑ |
-| 2 | Constitution + Claude Code + Cursor adapters landed in repo | ☐ |
+| 2 | Constitution + adapters (docs stubs) landed in repo | ☐ |
 | 3 | Bolt brief from `../templates/delivery-bolt-brief.md` filled | ☐ |
 | 4 | Linear issue: **human assignee** + optional agent delegate (no Linear Agents) | ☐ |
 | 5 | Low or Med tier preferred for first prove; avoid O2 unless intentional | ☐ |
 | 6 | Implement → QAS (separate) → RTE/collapse → HITL decision pack | ☐ |
 | 7 | Exact-head evidence + portable evidence_id posted | ☐ |
 | 8 | Report vs M1–M6 (at least M3, M4, M6 touched) | ☐ |
+
+**Note:** Wave 0 Claude Code and Cursor adapters are documentation stubs only, not runnable harnesses yet. Runnable integration comes after D-P1/D-P2 prove.
 
 ## D-P2 — One Studio brief (spine B → A)
 

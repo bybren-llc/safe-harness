@@ -1,5 +1,5 @@
-# Role defs (placeholders)
+# Role definitions (placeholder)
 
-Copy cards from `../../../roles/*.md` into Claude Code agent frontmatter when repo is created.
+When integrating safe-harness with Claude Code agents, copy role cards from `../../../roles/*.md` into agent frontmatter.
 
 Do not invent ultracode defaults. Do not enable Linear Agents.

@@ -62,7 +62,8 @@ jobs:
             echo "Checking: $md_file"
             
             # Extract relative markdown links [text](path.md) or [text](path/)
-            grep -oP '\]\(\K[^)]+(?=\))' "$md_file" 2>/dev/null | while read -r link; do
+            # Use process substitution to avoid subshell counter issue
+            while IFS= read -r link; do
               # Skip absolute URLs, anchors, and mailto
               if [[ "$link" =~ ^(https?://|#|mailto:) ]]; then
                 continue
@@ -80,7 +81,7 @@ jobs:
                 echo "  ❌ Broken link in $md_file: $link → $target_path"
                 broken_links=$((broken_links + 1))
               fi
-            done
+            done < <(grep -oP '\]\(\K[^)]+(?=\))' "$md_file" 2>/dev/null)
           done
           
           if [[ $broken_links -gt 0 ]]; then
