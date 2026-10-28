@@ -12,7 +12,7 @@ Maps constitution → Cursor rules + Projects / Cloud Agents.
 | SAFe + AI-DLC | Bolt checklist rule; human validate before construct on Med/High |
 | CD + HITL | PR template / rule: risk tier, O2 list, decision pack link |
 | Privacy | Rules: never commit personal vault; NAS SoT; Atlas forge OK |
-| Evidence + Linear | Rule: portable evidence_id + exact_head + human assignee |
+| Evidence + Linear | Rule: portable evidence payload (`evidence_id`, `runtime`, `exact_head`, `linear_issue`, `actor`, `gate`) + human assignee — see `constitution/05-evidence-and-linear.md` |
 | Model stack (O4) | Project model defaults per role card — **ultracode not default** |
 | Empiricism | Changelog of default changes only after HITL concur |
 
@@ -27,7 +27,7 @@ Maps constitution → Cursor rules + Projects / Cloud Agents.
 1. `dual-spine.mdc` — A vs B boundary  
 2. `hitl-o2.mdc` — high-risk list + tiers; Cloud Agents never merge (HITL only)  
 3. `privacy-vaults.mdc` — personal never remote; NAS SoT  
-4. `evidence-linear.mdc` — SoR + portable IDs; no Linear Agents  
+4. `evidence-linear.mdc` — SoR + portable evidence payload (evidence_id, runtime, exact_head, linear_issue, actor, gate); no Linear Agents  
 5. `model-stack.mdc` — O4 tiers; ultracode not default  
 6. `independence.mdc` — never collapse QAS/SecEng  
 

@@ -35,7 +35,7 @@ Each file must include: mission, spine, may-collapse, independence, model tier, 
 
 | Hook intent | Behavior |
 | --- | --- |
-| Pre-construct | Require business-context HITL note on Med/High / O2 |
+| Pre-construct | Require business-context HITL note on Med/High / O2 — **Wave 0 intentionally broader than strict Low-only; ensures HITL cannot be skipped** |
 | Pre-PR | Exact-head + evidence_id + Linear key present |
 | Merge attempt by agent | Deny — HITL only |
 | Personal-vault path | Deny |

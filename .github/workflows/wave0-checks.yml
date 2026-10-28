@@ -5,6 +5,9 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   structure-check:
     name: Structure & Docs Validation
@@ -58,12 +61,20 @@ jobs:
           
           broken_links=0
           
-          for md_file in $(find . -maxdepth 1 -name "*.md" -o -path "./constitution/*.md" -o -path "./roles/*.md" -o -path "./adapters/*/*.md" -o -path "./templates/*.md" -o -path "./prove/*.md" 2>/dev/null); do
+          # Discover markdown files: root level + recursive under key directories
+          md_files=$(find . -maxdepth 1 -name "*.md" 2>/dev/null)
+          md_files+=" "$(find constitution roles adapters templates prove -type f -name "*.md" 2>/dev/null)
+          
+          for md_file in $md_files; do
             echo "Checking: $md_file"
             
-            # Extract relative markdown links [text](path.md) or [text](path/)
+            # Extract inline markdown links [text](path.md) or [text](path/)
             # Use process substitution to avoid subshell counter issue
             while IFS= read -r link; do
+              # Strip optional titles like [x](path.md "title")
+              link="${link%% \"*}"
+              link="${link%% \'*}"
+              
               # Skip absolute URLs, anchors, and mailto
               if [[ "$link" =~ ^(https?://|#|mailto:) ]]; then
                 continue
@@ -82,6 +93,30 @@ jobs:
                 broken_links=$((broken_links + 1))
               fi
             done < <(grep -oP '\]\(\K[^)]+(?=\))' "$md_file" 2>/dev/null)
+            
+            # Extract reference-style link definitions [label]: path.md
+            while IFS= read -r refline; do
+              # Extract destination from [label]: destination or [label]: destination "title"
+              link=$(echo "$refline" | sed -E 's/^\[([^]]+)\]:[[:space:]]*([^[:space:]"]+).*/\2/')
+              
+              # Skip absolute URLs, anchors, and mailto
+              if [[ "$link" =~ ^(https?://|#|mailto:) ]]; then
+                continue
+              fi
+              
+              # Resolve relative to the markdown file's directory
+              dir=$(dirname "$md_file")
+              target="$dir/$link"
+              
+              # Strip anchor fragments
+              target_path="${target%%#*}"
+              
+              # Check if target exists (file or directory)
+              if [[ ! -e "$target_path" ]]; then
+                echo "  ❌ Broken reference-style link in $md_file: $link → $target_path"
+                broken_links=$((broken_links + 1))
+              fi
+            done < <(grep -P '^\[[^]]+\]:[[:space:]]+[^[:space:]]+' "$md_file" 2>/dev/null)
           done
           
           if [[ $broken_links -gt 0 ]]; then

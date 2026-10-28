@@ -10,7 +10,7 @@
 | Date (America/New_York) | |
 | Goal (ties to M1–M6) | |
 | Studio handoff ID | (if any) |
-| Human assignee | |
+| Human assignee | **(required)** |
 | Agent delegate | (optional; not Linear Agent product) |
 | Risk tier | Low / Med / High |
 | O2 items in scope? | pricing / refunds / auth / deploy CI / prod secrets / privacy-boundary / none |
@@ -31,7 +31,8 @@
 
 ## Gates
 
-- [ ] Business-context HITL (if Med/High/O2)
+- [ ] Human assignee identified before delivery starts
+- [ ] Business-context HITL (if Med/High/O2) — **Wave 0 intentionally broader than strict Low-only policy; ensures HITL cannot be skipped**
 - [ ] Implement → Ready for QAS
 - [ ] QAS independence
 - [ ] SecEng (if required)
