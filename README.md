@@ -18,15 +18,15 @@
 
 ## Glossary
 
-**HITL (Human In The Loop):** The final human approval before merging to main. HITL reviews the decision pack and evidence, then merges. At Low risk tier only, HITL can delegate merge authority to another human with a structured `hitl_delegate` record.
+**HITL (Human In The Loop):** The final approval before merging to main. Scott is HITL/POPM for safe-harness. HITL reviews the decision pack and evidence, then merges. At Low risk tier only, HITL can delegate merge authority to an agent seat (Kai) with a structured `hitl_delegate` record.
 
-**QAS (Quality Assurance & Security):** Independent review by a human who did not implement the change. QAS reviews code, tests, evidence, and decision packs at exact commit SHA. QAS is posted as COMMENT reviews (the reviewer account can't formally approve its own org's agent-authored PRs; the verdict lives in the review text).
+**QAS (Quality Assurance & Acceptance):** Independent review by a seat who did not implement the change. Kai is QAS today (an agent). QAS reviews code, tests, evidence, and decision packs at exact commit SHA. QAS is posted as COMMENT reviews (PRs are authored by the `cheddarfox` account, which is also the account Kai reviews through; GitHub does not let a PR's author APPROVE or REQUEST_CHANGES on their own PR, so the independent QAS verdict is recorded as a COMMENT review with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line).
 
-**RTE (Real-Time Environment / Runtime):** The live system where code runs (production, staging, local dev). "Ready for RTE" = approved to deploy.
+**RTE (Release Train Engineer):** In Round Table the Release · RTE seat: an independent final release gate under continuous deployment (no trains). Merge rights pending codification in the follow-up amendment.
 
-**O2 (Operational Overload):** High-risk items that default to High tier and require extra scrutiny: pricing, refunds, auth, deploy CI/workflows, prod secrets, privacy-boundary crosses. Delivery may propose downgrades; Kai decides in writing at QAS.
+**O2:** High-risk items from ADR decision O2 that default to High tier and require extra scrutiny: pricing, refunds, auth, deploy CI/workflows, prod secrets, privacy-boundary crosses. Delivery may propose downgrades; Kai decides in writing at QAS.
 
-**POPM (Product Owner / Product Manager):** The human role that owns product direction, requirements priority, and go/no-go decisions. In safe-harness, Scott fills this role for constitution changes.
+**POPM (Product Owner / Product Manager):** The role that owns product direction, requirements priority, and go/no-go decisions. In safe-harness, Scott is HITL/POPM for the whole repo.
 
 **Bolt:** A small, bounded work package with a decision pack, implementation, tests, and evidence. Named for speed and precision. Each bolt has a risk tier (Low/Med/High) and goes through structured gates.
 
@@ -42,8 +42,8 @@
 
 1. Open a GitHub Issue describing the change
 2. Add label for work type (`bolt`, `decision`, `requirement`)
-3. Add risk tier label (`risk:low`, `risk:med`, `risk:high`)
-4. For O2 items, add `O2:<item>` label
+3. Add risk tier label (`tier:low`, `tier:medium`, `tier:high`)
+4. For O2 items, add `o2:<item>` label (e.g., `o2:pricing`, `o2:deploy-ci`, `o2:secrets`)
 5. Assign or wait for an agent to pick it up
 
 ### (b) Agent picking up work
@@ -74,11 +74,11 @@
 3. **PR:** Open PR with `Requirements: REQ-<CMP>-NNN` line in body
 4. **CI:** Structure & Docs Validation + Requirements Trace Validation run
 5. **CodeRabbit:** Automated code review (required gate input)
-6. **QAS:** Independent human review at exact commit SHA (Kai), posted as COMMENT (reviewer account can't formally approve its own org's agent-authored PRs; verdict is in review text)
+6. **QAS:** Independent review at exact commit SHA (Kai), posted as COMMENT (PRs are authored by the `cheddarfox` account, which is also the account Kai reviews through; GitHub does not let a PR's author APPROVE or REQUEST_CHANGES on their own PR, so the independent QAS verdict is recorded as a COMMENT review with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line)
 7. **Decision pack:** If Medium or High tier, create decision pack with rationale, evidence, and risks
-8. **Merge:** HITL merges (Kai), or HITL-delegated at Low tier only with `hitl_delegate` record
+8. **Merge:** Merge rights belong only to Scott (HITL), Kai (GM, delegated authority, recorded as `hitl_delegate` at Low or written Scott concur at Med/High), and Release · RTE (pending codification in the follow-up amendment). No other agent merges, including Delivery and cloud agents
 
-**Key constraint:** Delivery never merges. QAS and merge are always separate humans (QAS ≠ merge actor).
+**Key constraint:** QAS independence means QAS is never the implementer. Nobody merges their own authored change. High/O2 still needs Scott's recorded concur.
 
 ```mermaid
 graph TD
@@ -89,9 +89,9 @@ graph TD
     E --> F[CodeRabbit Review]
     F --> G[QAS Review COMMENT]
     G --> H{Risk Tier?}
-    H -->|Low| I[HITL-delegated merge]
+    H -->|Low| I[Kai merge with hitl_delegate]
     H -->|Med/High| J[Decision Pack]
-    J --> K[HITL merge]
+    J --> K[Scott or Kai merge with Scott concur]
     I --> L[Merged to main]
     K --> L
 ```
@@ -109,7 +109,7 @@ graph TD
 | **Ops · CoS** | Operations & flow | Morning roll, concur queue, weekly trace/gap reviews, gate visibility | [`roles/ops-cos.md`](roles/ops-cos.md) |
 | **Librarian · Signals** | Knowledge & links | Link health, rot detection, vault citations, archive frozen maps | [`roles/librarian-signals.md`](roles/librarian-signals.md) |
 | **Scout · Story Media** | Research & media | Model selection, fit-band research, evidence sources, Confluence inputs | [`roles/scout-story-media.md`](roles/scout-story-media.md) |
-| **Specialists** | As needed | SecEng, legal, domain experts (not always-on) | Role card planned |
+| **Specialists** | As needed | SecEng ([`roles/seceng.md`](roles/seceng.md)), QAS ([`roles/qas.md`](roles/qas.md)), Implementer ([`roles/implementer.md`](roles/implementer.md)), BSA-like ([`roles/bsa-like.md`](roles/bsa-like.md)), RTE ([`roles/rte-collapsible.md`](roles/rte-collapsible.md) — legacy card, replaced in follow-up), Model Stack ([`roles/model-stack.md`](roles/model-stack.md)) | Scott: role card planned |
 
 ---
 
@@ -121,18 +121,19 @@ graph TD
 | [`roles/`](roles/) | Round Table seat definitions |
 | [`templates/`](templates/) | Brief and handoff templates (Bolt, Studio→Delivery) |
 | [`prove/`](prove/) | Evidence and bolt records (wave-0-retro.md, wave-1/) |
+| [`prove/d-p1/`](prove/d-p1/) | D-P1 bolt evidence (Wave 0) |
+| `prove/d-p2/` | (planned) D-P2 bolt evidence |
 | [`arch/`](arch/) | Component registry (ARC-<CMP>, components.yaml) |
 | [`requirements/`](requirements/) | REQ-<CMP>-NNN registry (REQ-TEMPLATE.yaml, README.md) |
 | [`trace/`](trace/) | Trace map (trace-map.yaml, schema.md, linear-saf-map.csv) |
 | [`intent.md`](intent.md) | Human-owned design intent (Scott only) |
 | [`spec.md`](spec.md) | Human-owned specification (Scott only) |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Contributing guide (personal-boundary rule, workflow, evidence) |
+| [`adapters/`](adapters/) | Runtime adapters (Claude Code, Cursor — doc stubs; Codex/local planned) |
 | [`.github/CODEOWNERS`](.github/CODEOWNERS) | Review gates (intent, spec, constitution, requirements, trace) |
 | [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) | Issue templates (bolt.yml, requirement.yml, decision.yml) |
 | [`.github/labels.yml`](.github/labels.yml) | Label definitions (work types, risk tiers, O2, exit states, gates) |
-| [`.github/workflows/`](.github/workflows/) | CI workflows (structure-docs.yml, trace-check.yml) |
-| `adapters/` | (planned) Runtime-specific adapters |
-| `prove/wave-1/D-P2/` | (planned) Future bolt |
+| [`.github/workflows/`](.github/workflows/) | CI workflows (wave0-checks.yml, trace-check.yml) |
 
 ---
 
@@ -223,7 +224,7 @@ Each evidence row includes:
 ## Contributing
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for:
-- Personal boundary rule (never include personal-vault content, story IP, or NAS-private facts in intent.md or spec.md)
+- Personal boundary rule (never include personal-vault content, story IP, or NAS-private facts in this repository)
 - Change flow (issue → branch → PR → CI → CodeRabbit → QAS → decision pack → merge)
 - Risk tiers and O2 high-risk items
 - Evidence schema and trace linkage

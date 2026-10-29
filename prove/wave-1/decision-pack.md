@@ -2,7 +2,7 @@
 
 **PR:** #6  
 **Branch:** cursor/wave-1-repo-sot-9236  
-**Exact-head:** 821d5f97e603b943c93f1fdb9def64d7cfb6ed74  
+**Exact-head:** final reviewed head recorded in Kai's QAS review and in the squash-merge body  
 **Status:** Adopted 2026-10-29 (Scott concur)
 
 **Owner:** Kai (coordinator)  
@@ -570,7 +570,7 @@ O2 item "Deploy CI / workflows" defaults to High tier. **Proposed downgrade to M
 
 | Role | Actor | Status | Rationale |
 | --- | --- | --- | --- |
-| **QAS** | Kai | APPROVE @ 821d5f97 (review 5701159887) | Independent review (≠ implementer); O2 decision: Medium confirmed (conditions met at f84ee52) |
+| **QAS** | Kai | APPROVE at final head (see merge body) | Independent review (≠ implementer); O2 decision: Medium confirmed (conditions met at f84ee52) |
 | **SecEng** | N/A | N/A | Medium tier (Kai's decision); no O2 secrets/auth/privacy mutations; read-only CI |
 
 ---
