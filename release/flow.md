@@ -53,7 +53,7 @@ Escalation path [main]: Delivery · Lead escalates "via Ops · CoS or Kai — no
 
 ### 2.1 "Ready for release check" packet (Delivery · Lead → RTE) [PENDING-CODIFY]
 
-Posted on the PR (or linked Linear issue) as soon as QAS has posted APPROVE on the current head. **The RTE check fires immediately on packet arrival.**
+Posted on the PR (or linked Linear issue) only once QAS APPROVE and SecEng clearance (or a Low-tier N/A with rationale) are both on the exact head. **The RTE check fires immediately on packet arrival.**
 
 - PR link + **head SHA** (exact-head — "Evidence and CI must refer to the exact commit/PR head under review", `constitution/03-cd-and-hitl.md`)
 - Linear issue key [LEGACY, non-authoritative; GitHub Issue/PR + exact head is the record, see constitution/05 and #26] (SoR; `constitution/05-evidence-and-linear.md`)

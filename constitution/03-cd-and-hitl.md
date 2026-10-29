@@ -90,7 +90,7 @@ Scott (HITL), 2026-10-29, verbatim:
 
 | Environment | Who may merge / promote | Gate |
 | --- | --- | --- |
-| **Dev or trunk** | Authorized agents (**Kai**, **Release · RTE**) | Required checks green + independent QAS APPROVE on the exact head; at Med/High/O2, RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason; Scott's recorded own-words concur for constitution/, High, and O2 |
+| **Dev or trunk** | Authorized agents (**Kai**, **Release · RTE**) | Required checks green + independent QAS APPROVE on the exact head; at Med/High/O2, RTE PASS on the exact head, or (for a merge by Kai or Scott only) a HOLD override from Kai or Scott recorded on the PR with its reason; an RTE merge always needs its own RTE PASS on the exact head at every tier including Low; Scott's recorded own-words concur for constitution/, High, and O2 |
 | **Staging** | Automatic promotion | Tests pass |
 | **Prod** | Human gate: Scott's recorded own-words concur | Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. |
 
@@ -112,7 +112,7 @@ Scott may merge any change at any tier and environment.
 
 1. **Scott (HITL)** — any change
 2. **Kai (GM)** — authorized trunk agent: checks green + independent QAS APPROVE on exact head; at Med/High/O2, RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason; Scott's recorded concur on `constitution/`, High, and O2
-3. **Release · RTE** — authorized trunk agent: checks green + Kai's independent QAS APPROVE on exact head; at Med/High/O2, RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason; Scott's recorded concur on `constitution/`, High, and O2; never its own authored change
+3. **Release · RTE** — authorized trunk agent: checks green + Kai's independent QAS APPROVE + its own RTE PASS on the exact head (every tier, including Low); Scott's recorded concur on `constitution/`, High, and O2; never its own authored change; never over a standing HOLD
 
 ### RTE placement
 
@@ -120,7 +120,7 @@ Release · RTE is **required** at Med, High, and O2. At Low it is an async check
 
 ### HOLD override
 
-Only **Kai** or **Scott** may override an RTE HOLD. The override must be explicit, with the **reason recorded on the PR**. An override never waives QAS or SecEng, never substitutes for a required human approval, never lets a non-permitted agent merge, and never lets RTE merge a change it authored. RTE cannot override its own HOLD by merging; a HOLD stands until cleared on a new head or overridden by Kai or Scott.
+Only **Kai** or **Scott** may override an RTE HOLD. The override must be explicit, with the **reason recorded on the PR**. An override never waives QAS or SecEng, never substitutes for a required human approval, never lets a non-permitted agent merge, and never lets RTE merge a change it authored. A HOLD override lets Kai or Scott merge, never RTE. RTE cannot override its own HOLD by merging; a HOLD stands until cleared on a new head or overridden by Kai or Scott.
 
 ### Human approval at High/O2
 
@@ -130,10 +130,11 @@ At High/O2, Scott's recorded own-words concur is **a** required human approval. 
 
 Open questions (do not resolve in this amendment):
 
-(a) **High-tier "two distinct humans"** (`constitution/03` tier table; README Key concepts): Scott is the only human today. Does High need two distinct humans when Scott is the only human, or does his recorded concur plus independent agent QAS satisfy it? Options live in the decision pack.
-(b) **RTE rights over deploy workflows and secrets** — OPEN. What rights Release · RTE has over deploy CI/workflows and prod secrets. No answer is written here.
-2. **`main` branch protection** — not configured yet. Enforcing who may merge in GitHub waits on Scott.
-3. **D1 `hitl_delegate`** — Low-tier delegated HITL record (`constitution/05`). Still awaiting Scott on whether it stays as written.
+1. **High-tier "two distinct humans"** (`constitution/03` tier table; README Key concepts): Scott is the only human today. Does High need two distinct humans when Scott is the only human, or does his recorded concur plus independent agent QAS satisfy it? Options live in the decision pack.
+2. **RTE rights over deploy workflows and secrets** — OPEN. What rights Release · RTE has over deploy CI/workflows and prod secrets. No answer is written here.
+3. **Merge scope by environment** — Confirm the environment-promotion template default (dev/trunk, staging, prod). No answer is written here.
+4. **`main` branch protection** — not configured yet. Enforcing who may merge in GitHub waits on Scott.
+5. **D1 `hitl_delegate`** — Low-tier delegated HITL record (`constitution/05`). Still awaiting Scott on whether it stays as written.
 
 ### Scott's earlier recorded delegation (2026-10-29 ET)
 
@@ -165,6 +166,6 @@ Thin skeleton → full path is intentional scaffolding, not final state.
 - Exact-head SHA / PR
 - Evidence IDs (portable — see `05-evidence-and-linear.md`)
 - Requirements addressed (REQ-<CMP>-NNN list)
-- QAS + SecEng status (Low: explicit N/A with rationale allowed; High/O2: never N/A and cannot be waived). This PR: SecEng (independent, non-author; cloud agent bc-ff5334e0): PASS at d8923a0. Findings 1-6 from e93e388 closed (content fixes through 6994b12). Later commits must be SecEng delta-confirmed as non-widening before merge; that confirmation is recorded in the QAS review on the merge head. Open question (b) unanswered.
+- QAS + SecEng status (Low: explicit N/A with rationale allowed; High/O2: never N/A and cannot be waived). This PR: SecEng (independent, non-author; cloud agent bc-ff5334e0): PASS at d8923a0. Findings 1-6 from e93e388 closed (content fixes through 6994b12). Later commits must be SecEng delta-confirmed as non-widening before merge; that confirmation is recorded in the QAS review on the merge head. Open question 2 unanswered.
 - Risk tier + O2 checklist (note if Kai downgraded any O2 item)
 - Ask: approve / change-request / escalate

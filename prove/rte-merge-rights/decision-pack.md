@@ -14,7 +14,7 @@
 
 Amend merge authority from a flat "agents never merge" rule to a **template default by risk tier and environment**, and make Release · RTE an independent (non-collapsible) final release gate under continuous deployment.
 
-**safe-harness** is a docs repo with only `main` (the trunk case). Authorized agents (Kai, Release · RTE) may execute a trunk merge once checks are green and an independent QAS APPROVE is on the exact head; an RTE merge needs Kai's independent QAS APPROVE. `constitution/`, High, and O2 changes still need Scott's recorded own-words concur. Delivery and cloud agents never merge. Nobody merges their own authored change. An agent merge never counts as human approval.
+**safe-harness** is a docs repo with only `main` (the trunk case). Authorized agents (Kai, Release · RTE) may execute a trunk merge once checks are green and an independent QAS APPROVE is on the exact head; an RTE merge needs Kai's independent QAS APPROVE and its own RTE PASS on the exact head (every tier, including Low). `constitution/`, High, and O2 changes still need Scott's recorded own-words concur. Delivery and cloud agents never merge. Nobody merges their own authored change. An agent merge never counts as human approval.
 
 Authority for the environment-promotion widening is Scott's verbatim 1:54 and 1:55 PM ET quotes below. No other source is cited.
 
@@ -49,11 +49,11 @@ Authority for the environment-promotion widening is Scott's verbatim 1:54 and 1:
 | Field | Value |
 | --- | --- |
 | GitHub Issue | #10 |
-| Exact-head SHA / PR | PR #22 head on `cursor/rte-merge-rights-amendment-b214` (refresh at QAS) |
-| Evidence IDs | Kai QAS review 5702808926; CodeRabbit review 5702671974 |
+| Exact-head SHA / PR | this commit (see PR #22 head) |
+| Evidence IDs | Kai QAS reviews 5704751563, 5705756785; CodeRabbit reviews 5704716565, 5704951097, 5705140642, 5705562652 |
 | Requirements | Closes #10 (no REQ-IDs in spec.md yet) |
-| QAS | CHANGES NEEDED at `bc94fe87` (review 5702808926); re-QAS required at new head |
-| SecEng | SecEng (independent, non-author; cloud agent bc-ff5334e0): PASS at d8923a0. Findings 1-6 from e93e388 closed (content fixes through 6994b12). High/O2 SecEng cannot be waived or N/A. Later commits must be SecEng delta-confirmed as non-widening before merge; that confirmation is recorded in the QAS review on the merge head. Open question (b) unanswered. |
+| QAS | CHANGES NEEDED at `0dcfcf9` (review 5705756785); prior CHANGES NEEDED 5704751563; re-QAS required at new head |
+| SecEng | SecEng (independent, non-author; cloud agent bc-ff5334e0): PASS at d8923a0. Findings 1-6 from e93e388 closed (content fixes through 6994b12). High/O2 SecEng cannot be waived or N/A. Later commits must be SecEng delta-confirmed as non-widening before merge; that confirmation is recorded in the QAS review on the merge head. Open question 2 unanswered. |
 | Risk tier + O2 | **High / O2 auth**. Merge authority = permissions. No downgrade. |
 | Ask | approve / change-request / escalate — **approve the template default; answer the open questions below in your own words** |
 
@@ -68,6 +68,7 @@ O2 checklist:
 - [ ] Pricing — N/A
 - [ ] Refunds — N/A
 - [x] **Auth — YES** (merge authority = who may merge)
+- [ ] Deploy CI / workflows — N/A in this PR (no workflow files changed); RTE's rights over deploy workflows and secrets stays open question 2
 - [ ] Prod secrets — N/A
 - [ ] Privacy-boundary — N/A
 
@@ -77,7 +78,7 @@ O2 checklist:
 
 | Environment | Who may merge / promote | Gate |
 | --- | --- | --- |
-| **Dev or trunk** | Authorized agents (**Kai**, **Release · RTE**) | Required checks green + independent QAS APPROVE on the exact head; at Med/High/O2, RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason; Scott's recorded own-words concur for constitution/, High, and O2 |
+| **Dev or trunk** | Authorized agents (**Kai**, **Release · RTE**) | Required checks green + independent QAS APPROVE on the exact head; at Med/High/O2, RTE PASS on the exact head, or (for a merge by Kai or Scott only) a HOLD override from Kai or Scott recorded on the PR with its reason; an RTE merge always needs its own RTE PASS on the exact head at every tier including Low; Scott's recorded own-words concur for constitution/, High, and O2 |
 | **Staging** | Automatic promotion | Tests pass |
 | **Prod** | Human gate: Scott's recorded own-words concur | Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. |
 
@@ -93,21 +94,23 @@ Each repo declares its own environments and tiers. safe-harness = trunk only; `c
 
 Do not resolve these in the amendment text. Answer in your own words on this PR.
 
+Numbering (old → new): (a) → 1; (b) → 2; merge scope (old pack ### 2) → 3; branch protection (old 03 item 2 / pack ### 3) plus CodeRabbit decision B → 4; D1 (old 03 item 3 / pack ### 4) → 5.
+
 ### 1. High-tier "two distinct humans"
 
 `constitution/03` risk-tier table and README Key concepts still say High = "Two distinct humans; agent ≠ human." Scott is the only human today.
 
-- **(a)** Keep the rule as written and block High merges until a second human exists.
-- **(b)** Scott's recorded concur + independent agent QAS (Kai) satisfies High.
-- **(c)** Other (name it): for example, Scott's recorded concur is one required human and a second named human must be added later.
+- Keep the rule as written and block High merges until a second human exists.
+- Scott's recorded concur + independent agent QAS (Kai) satisfies High.
+- Other (name it): for example, Scott's recorded concur is one required human and a second named human must be added later.
 
-This pack does **not** pick (a), (b), or (c). An agent merge never counts as a human approval regardless of the answer.
+This pack does **not** pick an option. An agent merge never counts as a human approval regardless of the answer.
 
-### (b) RTE rights over deploy workflows and secrets — OPEN
+### 2. RTE rights over deploy workflows and secrets — OPEN
 
 What rights Release · RTE has over deploy CI/workflows and prod secrets. No answer is written here.
 
-### 2. Merge scope by environment
+### 3. Merge scope by environment
 
 This amendment writes the environment-promotion template default (dev/trunk, staging, prod). Confirm:
 
@@ -117,13 +120,13 @@ This amendment writes the environment-promotion template default (dev/trunk, sta
 - Each adopting repo declares its own environments and tiers.
 - safe-harness `constitution/`, High, and O2 still need Scott's concur.
 
-### 3. `main` branch protection
+### 4. `main` branch protection
 
 No branch protection / required-reviewer / merge-restriction settings are recorded on `main` yet. Enforcing "who may merge" in GitHub waits on Scott.
 
-CodeRabbit (5704951097, 03:97) suggests keeping Kai and RTE merge authority non-operative until GitHub branch protection and actor mapping enforce it — open decision for Kai and Scott (branch protection is already flagged at 03:132); no answer here.
+CodeRabbit (5704951097, 03:97) suggests keeping Kai and RTE merge authority non-operative until GitHub branch protection and actor mapping enforce it — open decision for Kai and Scott (open question 4); no answer here.
 
-### 4. D1 `hitl_delegate`
+### 5. D1 `hitl_delegate`
 
 Low-tier delegated HITL record in `constitution/05` (`hitl_delegate`, exit `MERGED (HITL-delegated)`). Still awaiting Scott on whether it stays as written alongside the new trunk template default.
 

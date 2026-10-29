@@ -11,7 +11,7 @@
 
 ## Gate mechanics
 
-At Low, an annotated, non-blocking async RTE checklist is allowed, with no per-PR verdict required. At Med, High and O2, RTE PASS or HOLD is mandatory. RTE stays non-collapsible at Med+. Release · RTE runs a per-PR release check with an **RTE PASS** or **HOLD** verdict, time-boxed to **15 minutes or less** at Medium tier and lighter at Low tier. It fires as soon as Delivery sends its ready-for-release packet.
+At Low, an annotated, non-blocking async RTE checklist is allowed, with no per-PR verdict required. At Med, High and O2, RTE PASS or HOLD is mandatory. RTE stays non-collapsible at Med+. Release · RTE runs a per-PR release check with an **RTE PASS** or **HOLD** verdict, time-boxed to **15 minutes or less** at Medium tier and lighter at Low tier. It fires as soon as Delivery sends its ready-for-release packet, which goes out only once QAS APPROVE and SecEng clearance (or a Low-tier N/A with rationale) are both on the exact head.
 
 **RTE verifies evidence instead of re-reviewing code.** It checks that:
 - Kai's independent QAS APPROVE is present at exact head
@@ -37,9 +37,9 @@ On **trunk** (safe-harness is trunk-only), **Release · RTE MAY merge** once all
 **Release · RTE NEVER merges:**
 - Its own authored change (RTE does not author changes)
 - `constitution/`, High, and O2 changes without Scott's recorded own-words concur at exact head
-- A change while an RTE HOLD stands, unless Kai or Scott override with the reason on the PR
+- A change while an RTE HOLD stands (a Kai or Scott override lets Kai or Scott merge, never RTE)
 
-An RTE merge needs RTE PASS plus the required concur. A Kai merge at Med/High/O2 needs RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason. An RTE merge never counts as human approval. Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md).
+An RTE merge always needs its own RTE PASS on the exact head at every tier including Low, plus the required concur. A HOLD override lets Kai or Scott merge, never RTE. A Kai merge at Med/High/O2 needs RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason. An RTE merge never counts as human approval. Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md).
 
 Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. Safe-harness is trunk-only; trunk concur is `constitution/`, High, and O2.
 
