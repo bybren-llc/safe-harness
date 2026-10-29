@@ -10,13 +10,13 @@ Wave 0 delivered the initial prove cycle end-to-end:
 - **D-P1 bolt brief** merged via [PR #3](https://github.com/bybren-llc/safe-harness/pull/3) @ `acd9f389`
 - **D-P1 evidence** merged via [PR #4](https://github.com/bybren-llc/safe-harness/pull/4) @ `333edff8`
 
-All PRs passed Structure & Docs Validation, underwent CodeRabbit automated review, and received independent human QAS before merge.
+All PRs passed Structure & Docs Validation, underwent CodeRabbit automated review, and received independent QAS by Kai (non-implementer) before merge.
 
 ## 2. Cycle Time
 
 | PR | Opened (EDT) | Merged (EDT) | Duration | Commits | QAS Rounds | CodeRabbit Rounds |
 |----|-------------|-------------|----------|---------|------------|-------------------|
-| [#2](https://github.com/bybren-llc/safe-harness/pull/2) | 2026-10-28 15:12:22 | 2026-10-29 06:38:01 | ~15h 26m | 7 | 1 (APPROVE @ `fb74ba5`) | 3 reviews |
+| [#2](https://github.com/bybren-llc/safe-harness/pull/2) | 2026-10-28 15:12:22 | 2026-10-29 06:38:01 | ~15h 26m | 7 | 1 (APPROVE @ `fb74ba5`) | 2 reviews |
 | [#3](https://github.com/bybren-llc/safe-harness/pull/3) | 2026-10-29 06:43:56 | 2026-10-29 07:54:42 | ~1h 11m (71 min) | 2 | 2 (CHANGES @ `0952071`, APPROVE @ `41b969f`) | 2 reviews |
 | [#4](https://github.com/bybren-llc/safe-harness/pull/4) | 2026-10-29 07:58:13 | 2026-10-29 08:56:31 | ~58 min | 2 | 2 (CHANGES @ `2c3a821`, APPROVE @ `067053f`) | 1 review |
 
@@ -25,19 +25,18 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 - PR #3 timestamps: https://github.com/bybren-llc/safe-harness/pull/3, merge SHA `acd9f389bc1f54ab79dbfa1e9732a80c957a10d0`
 - PR #4 timestamps: https://github.com/bybren-llc/safe-harness/pull/4, merge SHA `333edff8`
 
-**Notes on QAS rounds:** Kai posted verdicts as COMMENTED reviews with "APPROVE" or "CHANGES NEEDED" in the review body because GitHub blocks the author account from using REQUEST_CHANGES or APPROVE review states.
+**Notes on QAS rounds:** QAS verdicts were posted as COMMENTED reviews with "APPROVE" or "CHANGES NEEDED" in the review body because reviews came from the PR-authoring GitHub account (`cheddarfox`), which GitHub blocks from using REQUEST_CHANGES or APPROVE review states.
 
 ## 3. CodeRabbit vs QAS Catches
 
 ### PR #2 — Constitution + thin CI
 
-**CodeRabbit findings (3 reviews, 8 actionable + 1 nitpick):**
-- [Review 1 @ `ed1dc32`](https://github.com/bybren-llc/safe-harness/pull/2#pullrequestreview-295bf6c0): 8 actionable (Major: workflow link-check, fence validation, evidence payload, HITL gates, brief decision-pack fields, SecEng requirements, pre-construct HITL scope)
-- [Review 2 @ `d629a92`](https://github.com/bybren-llc/safe-harness/pull/2#pullrequestreview-41011def): 1 Major (QAS/SecEng N/A constraint to Low tier with rationale)
-- [Review 3 @ `fb74ba5`](https://github.com/bybren-llc/safe-harness/pull/2#pullrequestreview-bda56306): 0 actionable, noted thin-CI limitations as decision-pack (M6)
+**CodeRabbit findings (2 reviews, 9 actionable + 1 nitpick):**
+- [Review 1 @ `ed1dc32`](https://github.com/bybren-llc/safe-harness/pull/2#pullrequestreview-5688373795): 8 actionable + 1 nitpick (Major: workflow link-check, fence validation, evidence payload, HITL gates, brief decision-pack fields, SecEng requirements, pre-construct HITL scope)
+- [Review 2 @ `d629a92`](https://github.com/bybren-llc/safe-harness/pull/2#pullrequestreview-5689145897): 1 Major (QAS/SecEng N/A constraint to Low tier with rationale)
 
 **Kai QAS findings:**
-- [QAS @ `fb74ba5`](https://github.com/bybren-llc/safe-harness/pull/2#pullrequestreview-295bf6c0): APPROVE; verified CR Major fix (QAS/SecEng N/A rows), downgraded risk tier High→Low with written rationale (read-only non-deploy CI), SecEng N/A justified
+- [QAS APPROVE @ `fb74ba5`](https://github.com/bybren-llc/safe-harness/pull/2#pullrequestreview-5696343738): Verified CR Major fix (QAS/SecEng N/A rows), downgraded risk tier High→Low with written rationale (read-only non-deploy CI), SecEng N/A justified; noted thin-CI limitations as decision-pack for M5 follow-on
 
 **Classification:**
 - **Overlap:** QAS/SecEng N/A constraint (CR Major, QAS verified fix)
@@ -49,12 +48,12 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 ### PR #3 — D-P1 Bolt Brief
 
 **CodeRabbit findings (2 reviews):**
-- [Review 1 @ `0952071`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-82c3d09f): 1 Major (evidence placeholders, actor field, exact_head mismatch)
-- [Review 2 @ `41b969f`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-b6bd8b37): 1 Minor outside-diff (M3 "used" vs "named" gate wording)
+- [Review 1 @ `0952071`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5696472789): 1 Major (evidence placeholders, actor field, exact_head mismatch)
+- [Review 2 @ `41b969f`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5696882028): 1 Minor outside-diff (M3 "used" vs "named" gate wording)
 
 **Kai QAS findings:**
-- [QAS CHANGES NEEDED @ `0952071`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-295bf6c0): CR Major accepted + 3 additional (exact-head should be PR not SHA, merge gate wording contradiction, model plan placeholder)
-- [QAS APPROVE @ `41b969f`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-b6bd8b37): All must-fixes verified; CR Minor carried to D-P1 follow-on as non-blocking
+- [QAS CHANGES NEEDED @ `0952071`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5696808123): CR Major accepted + 3 additional (exact-head should be PR not SHA, merge gate wording contradiction, model plan placeholder)
+- [QAS APPROVE @ `41b969f`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5697239991): All must-fixes verified; CR Minor carried to D-P1 follow-on as non-blocking
 
 **Classification:**
 - **Overlap:** Evidence placeholders and actor/exact_head issues (CR Major, QAS expanded scope)
@@ -66,11 +65,11 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 ### PR #4 — D-P1 Evidence + Measure
 
 **CodeRabbit findings (1 review):**
-- [Review 1 @ `2c3a821`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-295bf6c0): 4 actionable (Major: exit-state label must stay `MERGED (HITL only)` verbatim per constitution/05; HITL gates need delegation annotation with durable link; runtime column should be `grok-bot` not `cursor` for Kai's rows; README step 6 needs bolt-brief link)
+- [Review 1 @ `2c3a821`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697391802): 4 actionable (Major: exit-state label must stay `MERGED (HITL only)` verbatim per constitution/05; HITL gates need delegation annotation with durable link; runtime column should be `grok-bot` not `cursor` for Kai's rows; README step 6 needs bolt-brief link)
 
 **Kai QAS findings:**
-- [QAS CHANGES NEEDED @ `2c3a821`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-295bf6c0): All 4 CR findings accepted as valid; #1 (exit state) overrides SAF-4 AC #3 which was wrong
-- [QAS APPROVE @ `067053f`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-295bf6c0): All must-fixes verified; decision-pack D1 carried as non-blocking
+- [QAS CHANGES NEEDED @ `2c3a821`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697573204): All 4 CR findings accepted as valid; #1 (exit state) overrides SAF-4 AC #3 which was wrong
+- [QAS APPROVE @ `067053f`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5698021770): All must-fixes verified; decision-pack D1 carried as non-blocking
 
 **Classification:**
 - **Overlap:** All 4 findings (CR caught, QAS triaged and accepted)
@@ -85,25 +84,25 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 **Timeline:** PR #2 opened 2026-10-28 15:12:22 EDT, merged 2026-10-29 06:38:01 EDT (~15h 26m).  
 **Cause (per Delivery log):** A handoff ping to wake the reviewer didn't fire or was missed overnight, delaying the final QAS round.  
 **Fix:** Priority pings established for Wave 1 handoffs.  
-**Evidence:** PR #2 had 7 commits and 3 CodeRabbit reviews spanning the overnight period; the final QAS APPROVE @ `fb74ba5` came morning of Oct 29.
+**Evidence:** PR #2 had 7 commits and 2 CodeRabbit reviews spanning the overnight period; the final QAS APPROVE @ `fb74ba5` came morning of Oct 29.
 
 ### PR-event routine didn't fire for PR #4's first head
 **Timeline:** PR #4 created 07:58:13 EDT; CodeRabbit review posted 12:07:20 UTC (08:07:20 EDT) for commit `2c3a821`.  
 **Cause (per Delivery log):** An event-driven automation that should have triggered on CodeRabbit completion for PR #4's first head didn't fire as expected.  
 **Impact:** Minor delay; workflow continued manually.  
-**Evidence:** [CodeRabbit review timestamp](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-295bf6c0) vs PR creation timestamp show ~9-minute gap, but Kai QAS at 12:19:56 UTC (08:19:56 EDT) indicates the routine gap was brief.
+**Evidence:** [CodeRabbit review timestamp](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697391802) vs PR creation timestamp show ~9-minute gap, but Kai QAS at 12:19:56 UTC (08:19:56 EDT) indicates the routine gap was brief.
 
 ### Author-account review limitation
-**Impact:** Kai (PR author on all three) could not use GitHub's REQUEST_CHANGES or APPROVE review states, forcing COMMENTED reviews with verdict in body text.  
+**Impact:** QAS reviews were posted from the PR-authoring GitHub account (`cheddarfox`), which GitHub blocks from using REQUEST_CHANGES or APPROVE review states, forcing COMMENTED reviews with verdict in body text.  
 **Workaround:** Each QAS review explicitly stated "treat as CHANGES NEEDED" or "treat as APPROVE."  
 **Visibility:** All QAS verdicts were clear and auditable; no ambiguity in merge decisions.  
-**Evidence:** [PR #3 QAS @ `0952071`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-295bf6c0), [PR #4 QAS @ `2c3a821`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-295bf6c0)
+**Evidence:** [PR #3 QAS CHANGES @ `0952071`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5696808123), [PR #4 QAS CHANGES @ `2c3a821`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697573204)
 
 ### Brief wording vs constitution/05 exit states (PR #4)
 **Issue:** SAF-4 acceptance criteria asked to relabel the exit state from `MERGED (HITL only)` to an alternate phrasing. QAS rejected this in PR #4: prove docs cannot redefine constitution/05 labels.  
-**Resolution:** CodeRabbit Major finding accepted; exit-state label restored verbatim; delegation recorded as evidence per [Linear SAF-1 comment `54d37e98`](https://linear.app/cheddarfox/issue/SAF-1/).  
+**Resolution:** CodeRabbit Major finding accepted; exit-state label restored verbatim; delegation recorded as evidence per [Linear SAF-1 comment `54d37e98`](https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98).  
 **Decision pack:** Carried as D1 — should constitution/05 gain a governed amendment for delegated-HITL merge at Low tier?  
-**Evidence:** [PR #4 CodeRabbit review](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-295bf6c0), [QAS CHANGES NEEDED @ `2c3a821`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-295bf6c0)
+**Evidence:** [PR #4 CodeRabbit review](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697391802), [QAS CHANGES NEEDED @ `2c3a821`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697573204)
 
 ## 5. M1–M6 Status
 
@@ -113,7 +112,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 | **M2** (Multi-runtime prove) | Partially exercised | Cursor CloudAgent (bc-2002b87a…) + Grok Bot (Kai QAS, runtime=grok-bot) verified; no Claude Code or other runtimes in Wave 0 |
 | **M3** (Bolt + UoWs + gates named & used) | Met | [D-P1 bolt brief](d-p1/bolt-brief.md) names bolt SAF-3, 4 UoWs, 8 gates; business-context HITL gate marked N/A at Low tier (named, not used per Low-tier exception); all other gates exercised |
 | **M4** (Seat map) | Met | Scott=HITL/POPM, Kai=GM/QAS/merge, Delivery·Lead=implement/PR owner; documented in [bolt brief](d-p1/bolt-brief.md#header) and exercised across PRs #2–#4 |
-| **M5** (Forge sync + CI/CD paths) | Partially exercised | GitHub forge sync verified (PRs #2–#4); thin CI (Structure & Docs Validation) green; full CD path (deploy gates, merge queues, rollback) deferred to M6 follow-on |
+| **M5** (Forge sync + CI/CD paths) | Partially exercised | GitHub forge sync verified (PRs #2–#4); thin CI (Structure & Docs Validation) green; full CD path (deploy gates, merge queues, rollback) deferred to M5 follow-on (Wave 1 proposal 6) |
 | **M6** (QAS → HITL → merge velocity) | Met | PR #3 cycle 71 min, PR #4 cycle 58 min (evidence → QAS → HITL decision pack → merge); thin CI green on all PRs; no train freeze; [PR #3](https://github.com/bybren-llc/safe-harness/pull/3) + [PR #4](https://github.com/bybren-llc/safe-harness/pull/4) timestamps verify |
 
 **Baseline (from [d-p1/bolt-brief.md](d-p1/bolt-brief.md#measure)):**
@@ -132,7 +131,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 
 5. **Multi-runtime coverage:** Expand M2 by proving Claude Code adapter or another runtime alongside Cursor CloudAgent in Wave 1. (Tied to: M2 partially exercised.)
 
-6. **Thin-CI → full-CI evolution:** Add workflow checks that Wave 0 deferred (CommonMark-aware link parser, recursive file discovery, fence-state tracking) as M6 follow-on work. (Tied to: M5, PR #2 CodeRabbit findings deferred as decision-pack.)
+6. **Thin-CI → full-CI evolution:** Add workflow checks that Wave 0 deferred (CommonMark-aware link parser, recursive file discovery, fence-state tracking) as M5 follow-on work. (Tied to: M5 partially exercised, PR #2 CodeRabbit findings deferred as decision-pack.)
 
 ## 7. Decision Pack D1 for Scott (HITL)
 
@@ -140,23 +139,26 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 
 **Context:**
 - **Current practice:** Scott Graham issued standing Wave 0 merge authorization (2026-10-28) allowing Kai to merge Low-tier PRs after CodeRabbit complete + independent QAS APPROVE + green checks. HITL remains required for Deploy and High/O2 work.
-- **Evidence location:** Delegation recorded in [Linear SAF-1 comment `54d37e98`](https://linear.app/cheddarfox/issue/SAF-1/), referenced from [prove/d-p1/bolt-brief.md](d-p1/bolt-brief.md) HITL gates and merge evidence rows.
+- **Evidence location:** Delegation recorded in [Linear SAF-1 comment `54d37e98`](https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98), referenced from [prove/d-p1/bolt-brief.md](d-p1/bolt-brief.md) HITL gates and merge evidence rows.
 - **Exit-state label:** Stays verbatim `MERGED (HITL only)` per constitution/05; prove docs cannot redefine canonical labels.
 
 **Options:**
 
-**A. Amend constitution/05 with `hitl_delegate` field**
-- Add `hitl_delegate` (string, optional) to portable evidence schema
-- Scope: Low tier only; require `hitl_delegate` to name the delegating HITL actor + authorization record link
-- Exit state gains governed alternate: `MERGED (HITL)` when `hitl_delegate` is present, `MERGED (HITL only)` when HITL direct
-- **Pros:** Machine-readable delegation; no prose ambiguity; preserves HITL authority while enabling velocity at Low tier
+**A. Amend constitution/05 with structured `hitl_delegate` field**
+- Add `hitl_delegate` (structured object, optional) to portable evidence schema with fields:
+  - `delegating_actor` (string): the HITL actor who granted delegation (e.g. "Scott Graham")
+  - `delegate_actor` (string): the actor authorized to merge (e.g. "Kai")
+  - `authorization_url` (string): durable link to the authorization record
+  - `scope` (string): delegation scope (e.g. "low" for Low-tier only)
+- Exit state gains governed label: `MERGED (HITL-delegated)` when `hitl_delegate` is present; `MERGED (HITL only)` remains unchanged for direct HITL merge
+- **Pros:** Machine-readable delegation; no prose ambiguity; preserves HITL authority while enabling velocity at Low tier; distinct exit labels clarify direct vs delegated
 - **Cons:** Requires constitution amendment (governed change); adds schema complexity
 
 **B. Keep evidence-only convention**
-- No schema change; delegation continues to be recorded as evidence prose (actor + gate annotations)
+- No schema change; delegation continues to be recorded as prose-only evidence (actor + gate annotations)
 - Exit state stays `MERGED (HITL only)` in all cases
 - **Pros:** No constitution change; simpler schema; current practice already works
-- **Cons:** Delegation is prose-only, not machine-readable; exit-state label ambiguous (doesn't distinguish direct vs delegated)
+- **Cons:** Delegation is prose-only, not machine-readable; exit-state label doesn't distinguish direct vs delegated
 
 **C. Drop delegation; Scott merges everything**
 - All merges wait for Scott's explicit HITL approval, regardless of tier
@@ -174,10 +176,10 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 **Risks:**
 - **Governance complexity:** Adding a constitution field requires Scott's explicit concur and versioning discipline
 - **Abuse potential:** Delegated actor must remain independent (current: Kai as GM/QAS, not implementer); delegation scope must stay narrow (Low tier only)
-- **Audit trail:** Requires durable authorization record (current: Linear SAF-1 comment); must not expire or become unresolvable
+- **Audit trail:** Requires durable authorization record (current: [Linear SAF-1 comment `54d37e98`](https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98)); must not expire or become unresolvable
 
 **What would change if approved:**
-- `constitution/05-evidence-and-linear.md`: Add `hitl_delegate` field to evidence schema (§ Evidence Format), document scope/constraints (Low tier, named HITL actor, authorization link required), add governed exit state `MERGED (HITL)` with delegation semantics
+- `constitution/05-evidence-and-linear.md`: Add structured `hitl_delegate` field (delegating_actor, delegate_actor, authorization_url, scope) to evidence schema (§ Evidence Format), document scope/constraints (Low tier only), add governed exit state `MERGED (HITL-delegated)` with delegation semantics; keep `MERGED (HITL only)` unchanged for direct HITL merge
 - `templates/delivery-bolt-brief.md`: Add `hitl_delegate` field to Evidence table, update HITL gate wording to permit delegation at Low tier with authorization annotation
 - `prove/d-p1/bolt-brief.md` (as example): Retroactively document `hitl_delegate` field in evidence rows where Kai merged under Scott's standing auth
 - `.github/workflows/`: Optionally add CI check to enforce delegation rules (e.g. reject PR merge if `hitl_delegate` field present but no authorization link, or if tier > Low)
