@@ -53,7 +53,7 @@ Authority for the environment-promotion widening is Scott's verbatim 1:54 and 1:
 | Evidence IDs | Kai QAS review 5702808926; CodeRabbit review 5702671974 |
 | Requirements | Closes #10 (no REQ-IDs in spec.md yet) |
 | QAS | CHANGES NEEDED at `bc94fe87` (review 5702808926); re-QAS required at new head |
-| SecEng | SecEng (independent, non-author; cloud agent bc-ff5334e0): PASS at d8923a0. Findings 1-6 from e93e388 closed (content fixes through 6994b12; this head records that SHA). No new findings. Open question (b) unanswered. |
+| SecEng | SecEng (independent, non-author; cloud agent bc-ff5334e0): PASS at d8923a0. Findings 1-6 from e93e388 closed (content fixes through 6994b12). High/O2 SecEng cannot be waived or N/A. Later commits must be SecEng delta-confirmed as non-widening before merge; that confirmation is recorded in the QAS review on the merge head. Open question (b) unanswered. |
 | Risk tier + O2 | **High / O2 auth**. Merge authority = permissions. No downgrade. |
 | Ask | approve / change-request / escalate — **approve the template default; answer the open questions below in your own words** |
 
@@ -77,7 +77,7 @@ O2 checklist:
 
 | Environment | Who may merge / promote | Gate |
 | --- | --- | --- |
-| **Dev or trunk** | Authorized agents (Kai, Release · RTE) | Checks green + independent QAS APPROVE on exact head; Scott's recorded own-words concur for constitution/, High, and O2 |
+| **Dev or trunk** | Authorized agents (**Kai**, **Release · RTE**) | Required checks green + independent QAS APPROVE on the exact head; at Med/High/O2, RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason; Scott's recorded own-words concur for constitution/, High, and O2 |
 | **Staging** | Automatic promotion | Tests pass |
 | **Prod** | Human gate: Scott's recorded own-words concur | Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. |
 
@@ -121,6 +121,8 @@ This amendment writes the environment-promotion template default (dev/trunk, sta
 
 No branch protection / required-reviewer / merge-restriction settings are recorded on `main` yet. Enforcing "who may merge" in GitHub waits on Scott.
 
+CodeRabbit (5704951097, 03:97) suggests keeping Kai and RTE merge authority non-operative until GitHub branch protection and actor mapping enforce it — open decision for Kai and Scott (branch protection is already flagged at 03:132); no answer here.
+
 ### 4. D1 `hitl_delegate`
 
 Low-tier delegated HITL record in `constitution/05` (`hitl_delegate`, exit `MERGED (HITL-delegated)`). Still awaiting Scott on whether it stays as written alongside the new trunk template default.
@@ -148,7 +150,7 @@ Tag automation (`vYYYY.MM.DD-<shortsha>`, one per merge) and GitHub Release publ
 
 ## SecEng findings-to-fix map
 
-Independent SecEng (cloud agent bc-ff5334e0), PASS at `d8923a0`. Findings 1-6 from `e93e388` closed. No new findings.
+Independent SecEng (cloud agent bc-ff5334e0), PASS at `d8923a0`. Findings 1-6 from `e93e388` closed. Later commits must be SecEng delta-confirmed as non-widening before merge; that confirmation is recorded in the QAS review on the merge head.
 
 | # | Severity | Finding | Status at d8923a0 |
 | --- | --- | --- | --- |
@@ -164,6 +166,7 @@ Independent SecEng (cloud agent bc-ff5334e0), PASS at `d8923a0`. Findings 1-6 fr
 **Do not merge until:**
 
 - [x] SecEng PASS at d8923a0
+- [ ] SecEng delta-confirmed as non-widening on the merge head (recorded in the QAS review)
 - [ ] Kai's independent QAS APPROVE on the final head
 - [ ] Scott's recorded own-words concur (High/O2/constitution/)
 - [ ] Scott answers the open questions (or explicitly defers them)

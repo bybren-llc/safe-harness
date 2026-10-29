@@ -90,7 +90,7 @@ Scott (HITL), 2026-10-29, verbatim:
 
 | Environment | Who may merge / promote | Gate |
 | --- | --- | --- |
-| **Dev or trunk** | Authorized agents (**Kai**, **Release · RTE**) | Required checks green + independent QAS APPROVE on the exact head; Scott's recorded own-words concur for constitution/, High, and O2 |
+| **Dev or trunk** | Authorized agents (**Kai**, **Release · RTE**) | Required checks green + independent QAS APPROVE on the exact head; at Med/High/O2, RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason; Scott's recorded own-words concur for constitution/, High, and O2 |
 | **Staging** | Automatic promotion | Tests pass |
 | **Prod** | Human gate: Scott's recorded own-words concur | Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. |
 
@@ -112,7 +112,7 @@ Scott may merge any change at any tier and environment.
 
 1. **Scott (HITL)** — any change
 2. **Kai (GM)** — authorized trunk agent: checks green + independent QAS APPROVE on exact head; at Med/High/O2, RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason; Scott's recorded concur on `constitution/`, High, and O2
-3. **Release · RTE** — authorized trunk agent: checks green + Kai's independent QAS APPROVE + its own RTE PASS on exact head; Scott's recorded concur on `constitution/`, High, and O2; never its own authored change
+3. **Release · RTE** — authorized trunk agent: checks green + Kai's independent QAS APPROVE on exact head; at Med/High/O2, RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason; Scott's recorded concur on `constitution/`, High, and O2; never its own authored change
 
 ### RTE placement
 
@@ -165,6 +165,6 @@ Thin skeleton → full path is intentional scaffolding, not final state.
 - Exact-head SHA / PR
 - Evidence IDs (portable — see `05-evidence-and-linear.md`)
 - Requirements addressed (REQ-<CMP>-NNN list)
-- QAS + SecEng status (Low: explicit N/A with rationale allowed; High/O2: never N/A). This PR: SecEng (independent, non-author; cloud agent bc-ff5334e0): PASS at d8923a0. Findings 1-6 from e93e388 closed (content fixes through 6994b12; this head records that SHA). No new findings. Open question (b) unanswered.
+- QAS + SecEng status (Low: explicit N/A with rationale allowed; High/O2: never N/A and cannot be waived). This PR: SecEng (independent, non-author; cloud agent bc-ff5334e0): PASS at d8923a0. Findings 1-6 from e93e388 closed (content fixes through 6994b12). Later commits must be SecEng delta-confirmed as non-widening before merge; that confirmation is recorded in the QAS review on the merge head. Open question (b) unanswered.
 - Risk tier + O2 checklist (note if Kai downgraded any O2 item)
 - Ask: approve / change-request / escalate

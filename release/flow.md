@@ -56,11 +56,11 @@ Escalation path [main]: Delivery · Lead escalates "via Ops · CoS or Kai — no
 Posted on the PR (or linked Linear issue) as soon as QAS has posted APPROVE on the current head. **The RTE check fires immediately on packet arrival.**
 
 - PR link + **head SHA** (exact-head — "Evidence and CI must refer to the exact commit/PR head under review", `constitution/03-cd-and-hitl.md`)
-- Linear issue key (SoR; `constitution/05-evidence-and-linear.md`)
+- Linear issue key [LEGACY, non-authoritative; GitHub Issue/PR + exact head is the record, see constitution/05 and #26] (SoR; `constitution/05-evidence-and-linear.md`)
 - Risk tier (Low / Med / High) + O2 checklist
 - Gate checklist (§4) with a link per row
 - Decision pack link (`templates/delivery-bolt-brief.md` → "Decision pack (constitution/03 minimum)")
-- Portable evidence rows (`evidence_id`, `runtime`, `exact_head`, `linear_issue`, `actor`, `gate`)
+- Portable evidence rows (`evidence_id`, `runtime`, `exact_head`, `linear_issue` [LEGACY, non-authoritative; GitHub Issue/PR + exact head is the record, see constitution/05 and #26], `actor`, `gate`)
 - `Requirements:` line / REQ IDs (see G5)
 
 If the head SHA moves after the packet is sent, the packet and any RTE PASS are void; Delivery re-sends against the new head (exact-head rule).
