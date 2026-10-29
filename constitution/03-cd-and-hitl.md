@@ -73,8 +73,42 @@ Default = decision packs + independence. Freeze is rare and named.
 | **Merge queue** | Prefer queue over freeze; policy input from SAW Dark Factory merge-queue docs (tmux not required) |
 | **Flags** | Prefer feature flags for incomplete work over long-lived freeze branches |
 | **Rollback** | First-class; rehearse path before high-risk deploys |
-| **HITL merge** | Humans merge; agents never self-merge |
+| **Merge authority** | Merge authority belongs only to Scott (HITL), Kai (GM, delegated authority, recorded as `hitl_delegate` at Low or written Scott concur at Med/High), and Release · RTE (under conditions below). No other agent merges, including Delivery and cloud agents. Nobody merges their own authored change. |
 | **PR management** | Kai / Delivery own PR review / merge decisions (not agents) |
+
+## Merge authority (amendment effective 2026-10-29)
+
+Merge authority belongs only to:
+
+1. **Scott (HITL)** — may merge any change at any risk tier
+2. **Kai (GM, delegated)** — may merge with:
+   - `hitl_delegate` record at Low tier, OR
+   - Written Scott concurrence at Medium/High tier
+3. **Release · RTE** — may merge when ALL of the following conditions are met:
+   - Kai's QAS APPROVE is present at exact head
+   - RTE's own RTE PASS is present at exact head
+   - Scott's recorded concur is present wherever the constitution requires it (Medium/High risk tier, or any constitution/ change)
+
+**Release · RTE NEVER merges:**
+- Its own authored change (RTE does not author changes)
+- High/O2 changes without Scott's recorded own-words concur at exact head
+- Constitution/ changes without Scott's recorded own-words concur at exact head
+
+**No other agent merges**, including Delivery and cloud agents. **Nobody merges their own authored change.**
+
+### Human approval at High/O2
+
+At High/O2 tier, Scott's recorded own-words concur satisfies the human requirement. An agent merge (by Kai or Release · RTE under delegated authority) never counts as a human approval; the human approval is Scott's recorded concur, not the act of merging.
+
+### Scott's recorded delegation (2026-10-29 ET)
+
+Scott's verbatim statements establishing Release · RTE merge authority:
+
+> **2026-10-29 1:05 PM ET:** "No agents that are working for us can't merge, but you and I release train engineer can"
+
+> **2026-10-29 1:50 PM ET:** "RTE can go if you approve"
+
+This amendment takes effect when it merges to main.
 
 ## Wave 0 CI/CD path
 

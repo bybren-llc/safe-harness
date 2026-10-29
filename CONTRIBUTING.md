@@ -51,9 +51,9 @@ Agents may open PRs touching these files but **must not merge them**. Use the `n
 7. **CodeRabbit:** Automated code review (required gate input)
 8. **QAS:** Independent review at exact commit SHA (Kai), posted as COMMENT review (PRs are authored by the `cheddarfox` account, which is also the account Kai reviews through; GitHub does not let a PR's author APPROVE or REQUEST_CHANGES on their own PR, so the independent QAS verdict is recorded as a COMMENT review with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line)
 9. **Decision pack:** If Medium or High tier, create decision pack with rationale, evidence, and risks
-10. **Merge:** Merge rights belong only to Scott (HITL), Kai (GM, delegated authority, recorded as `hitl_delegate` at Low or written Scott concur at Med/High), and Release · RTE (pending codification in the follow-up amendment). No other agent merges, including Delivery and cloud agents
+10. **Merge:** Merge rights belong only to Scott (HITL), Kai (GM, delegated authority, recorded as `hitl_delegate` at Low or written Scott concur at Med/High), and Release · RTE (see [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md)). No other agent merges, including Delivery and cloud agents
 
-**Key constraint:** QAS independence means QAS is never the implementer. Nobody merges their own authored change. High/O2 still needs Scott's recorded concur.
+**Key constraint:** QAS independence means QAS is never the implementer. Nobody merges their own authored change. High/O2 still needs Scott's recorded concur. See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for full merge authority rules.
 
 ---
 

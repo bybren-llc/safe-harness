@@ -22,7 +22,7 @@ Peer model. Stop-the-line is real. Ownership through named exit states.
 | **QAS** | Independence gate before HITL | **Never collapse** |
 | **SecEng** | Security / privacy-boundary / secrets | **Never collapse**; negative authority (block, don’t build) |
 | **BSA-like** | AC / DoD / acceptance shaping | On demand when handoff lacks AC |
-| **RTE** | PR shepherd | **Collapsible** when simple / single-agent / fast iteration; never merges (HITL merges) |
+| **RTE** | Release gate | **Independent gate**; may merge under conditions in constitution/03 (QAS APPROVE + RTE PASS at exact head + Scott concur where required) |
 
 ## Drop always-on 11 bots
 

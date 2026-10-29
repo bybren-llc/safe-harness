@@ -26,7 +26,7 @@ implementer.md
 qas.md
 seceng.md
 bsa-like.md
-rte-collapsible.md
+release-rte.md
 ```
 
 Each file must include: mission, spine, may-collapse, independence, model tier, stop rules — copy from `../../roles/`.
