@@ -25,8 +25,8 @@
 | Field | Value |
 | --- | --- |
 | Linear issue | https://linear.app/cheddarfox/issue/SAF-3/prove-d-p1-one-delivery-bolt-spine-a-record-d-p1-bolt-brief-evidence |
-| Exact-head SHA or PR | TBD at exact head (PR #<n>) |
-| Evidence IDs | TBD — see Evidence table |
+| Exact-head SHA or PR | PR #3 |
+| Evidence IDs | bc-2002b87a-8540-5b26-adcd-81a17f554bdb |
 | QAS status | pending (Kai re-QAS on exact head) |
 | SecEng status | N/A (Low tier only; rationale: docs-only, no O2 items, no workflows/secrets touched) |
 | Risk tier + O2 details | Low; O2 checklist — pricing ☐ refunds ☐ auth ☐ deploy CI/workflows ☐ prod secrets ☐ privacy-boundary ☐ (none) |
@@ -55,7 +55,7 @@
 - [ ] SecEng (if required) — N/A (Low; rationale above)
 - [ ] RTE or collapsed-RTE annotated
 - [ ] HITL decision pack (exact-head)
-- [ ] MERGED by human
+- [ ] MERGED (Kai under Scott's standing Wave 0 auth; Low tier)
 
 ## Model plan (O4)
 
@@ -63,7 +63,7 @@
 | --- | --- | --- |
 | Orchestration | Orchestrator | Fable 5.1+ |
 | Implement | Heavy | Sonnet 5.5 / Opus 5.5 |
-| QAS | Light/Heavy | Haiku 5.5 / … |
+| QAS | Light/Heavy | Haiku 5.5 / Sonnet 5.5 |
 | SecEng | Heavy | Opus 5.5 preferred on O2 |
 
 The implementing seat is the Cursor CloudAgent.
@@ -74,7 +74,7 @@ Ultracode: **not default**.
 
 | evidence_id | runtime | exact_head | linear_issue | actor | gate |
 | --- | --- | --- | --- | --- | --- |
-| bc-2002b87a-8540-5b26-adcd-81a17f554bdb | cursor | see PR head | SAF-3 | bc-2002b87a-8540-5b26-adcd-81a17f554bdb | Implement → Ready for QAS |
+| bc-2002b87a-8540-5b26-adcd-81a17f554bdb | cursor | PR #3 | SAF-3 | Delivery · Lead (Grok Bot) via Cursor CloudAgent | Implement → Ready for QAS |
 | TBD | cursor | TBD | SAF-3 | Kai | QAS independence |
 | TBD | cursor | TBD | SAF-3 | Scott Graham | HITL decision pack |
 
