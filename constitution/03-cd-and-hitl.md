@@ -94,7 +94,7 @@ Scott (HITL), 2026-10-29, verbatim:
 | **Staging** | Automatic promotion | Tests pass |
 | **Prod** | Human gate: Scott's recorded own-words concur | Only for prod-risk items: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. |
 
-**safe-harness** is a docs repo with only `main`. It is the **trunk** case under Dev or trunk. Its `constitution/` and O2 changes still need Scott's recorded own-words concur.
+**safe-harness** is a docs repo with only `main`. It is the **trunk** case under Dev or trunk. Its `constitution/`, High, and O2 changes still need Scott's recorded own-words concur.
 
 Scott may merge any change at any tier and environment.
 
@@ -108,8 +108,8 @@ Scott may merge any change at any tier and environment.
 ### Who may execute a trunk merge (safe-harness)
 
 1. **Scott (HITL)** — any change
-2. **Kai (GM)** — authorized trunk agent: checks green + independent QAS APPROVE on exact head; Scott's recorded concur on `constitution/` and O2
-3. **Release · RTE** — authorized trunk agent: checks green + independent QAS APPROVE + its own RTE PASS on exact head; Scott's recorded concur on `constitution/` and O2; never its own authored change
+2. **Kai (GM)** — authorized trunk agent: checks green + independent QAS APPROVE on exact head; Scott's recorded concur on `constitution/`, High, and O2
+3. **Release · RTE** — authorized trunk agent: checks green + Kai's independent QAS APPROVE + its own RTE PASS on exact head; Scott's recorded concur on `constitution/`, High, and O2; never its own authored change
 
 ### RTE placement
 

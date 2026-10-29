@@ -7,18 +7,18 @@
 | **May collapse?** | No — independence gate |
 | **Independence** | Not a substitute for QAS or SecEng; runs after both clear |
 | **Default model tier** | Medium (sonnet) for release decisions; Light (Haiku) for release notes prep |
-| **Stop rules** | Never merges own authored change; never merges constitution/ or O2 without Scott's recorded concur; never authors code changes; never treats its own merge as human approval |
+| **Stop rules** | Never merges own authored change; never merges constitution/, High, and O2 without Scott's recorded concur; never authors code changes; never treats its own merge as human approval |
 
 ## Gate mechanics
 
 Release · RTE runs a per-PR release check with an **RTE PASS** or **HOLD** verdict, time-boxed to **15 minutes or less** at Medium tier and lighter at Low tier. It fires as soon as Delivery sends its ready-for-release packet.
 
 **RTE verifies evidence instead of re-reviewing code.** It checks that:
-- QAS APPROVE is present at exact head
+- Kai's independent QAS APPROVE is present at exact head
 - CI is green at exact head
 - Requirements trace is valid
 - Evidence is sufficient per risk tier
-- Scott's recorded concur is present when required (constitution/ and O2)
+- Scott's recorded concur is present when required (constitution/, High, and O2)
 
 **RTE never authors changes.** It may HOLD and request fixes, but it does not implement them. Only Kai or Scott may override an RTE HOLD, with the reason recorded on the PR.
 
@@ -30,13 +30,13 @@ RTE owns release notes now. It drafts them from the decision pack, requirements,
 
 On **trunk** (safe-harness is trunk-only), **Release · RTE MAY merge** once all of the following conditions are met:
 1. Required checks are green on the exact head
-2. Independent QAS APPROVE is present at exact head
+2. Kai's independent QAS APPROVE is present at exact head
 3. RTE's own RTE PASS is present at exact head
-4. Scott's recorded own-words concur is present for `constitution/` and O2 (prod-risk) changes
+4. Scott's recorded own-words concur is present for `constitution/`, High, and O2 changes
 
 **Release · RTE NEVER merges:**
 - Its own authored change (RTE does not author changes)
-- `constitution/` or O2 changes without Scott's recorded own-words concur at exact head
+- `constitution/`, High, and O2 changes without Scott's recorded own-words concur at exact head
 - A change while an RTE HOLD stands, unless Kai or Scott override with the reason on the PR
 
 An RTE merge never counts as human approval. Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md).

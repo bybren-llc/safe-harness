@@ -14,7 +14,7 @@
 
 Amend merge authority from a flat "agents never merge" rule to a **template default by risk tier and environment**, and make Release · RTE an independent (non-collapsible) final release gate under continuous deployment.
 
-**safe-harness** is a docs repo with only `main` (the trunk case). Authorized agents (Kai, Release · RTE) may execute a trunk merge once checks are green and an independent QAS APPROVE is on the exact head. `constitution/` and O2 changes still need Scott's recorded own-words concur. Delivery and cloud agents never merge. Nobody merges their own authored change. An agent merge never counts as human approval.
+**safe-harness** is a docs repo with only `main` (the trunk case). Authorized agents (Kai, Release · RTE) may execute a trunk merge once checks are green and an independent QAS APPROVE is on the exact head; an RTE merge needs Kai's independent QAS APPROVE. `constitution/`, High, and O2 changes still need Scott's recorded own-words concur. Delivery and cloud agents never merge. Nobody merges their own authored change. An agent merge never counts as human approval.
 
 Authority for the environment-promotion widening is Scott's verbatim 1:54 and 1:55 PM ET quotes below. No other source is cited.
 
@@ -81,7 +81,7 @@ O2 checklist:
 | **Staging** | Automatic promotion | Tests pass |
 | **Prod** | Human gate: Scott's recorded own-words concur | Prod-risk only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. |
 
-Each repo declares its own environments and tiers. safe-harness = trunk only; `constitution/` and O2 still need Scott's concur.
+Each repo declares its own environments and tiers. safe-harness = trunk only; `constitution/`, High, and O2 still need Scott's concur.
 
 **Invariants:** QAS is never the implementer; nobody merges their own authored change; an agent merge never counts as human approval; Delivery and cloud agents never merge.
 
@@ -113,7 +113,7 @@ This amendment writes the environment-promotion template default (dev/trunk, sta
 - Staging: automatic promotion when tests pass.
 - Prod: Scott's recorded own-words concur only for prod-risk / O2 items, plus a deploy freeze during demos.
 - Each adopting repo declares its own environments and tiers.
-- safe-harness `constitution/` and O2 still need Scott's concur.
+- safe-harness `constitution/`, High, and O2 still need Scott's concur.
 
 ### 3. `main` branch protection
 
