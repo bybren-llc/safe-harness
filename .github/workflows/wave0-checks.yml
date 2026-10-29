@@ -1,0 +1,161 @@
+name: Wave 0 Sanity Checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  structure-check:
+    name: Structure & Docs Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Validate required structure
+        run: |
+          echo "Checking required Wave 0 paths exist..."
+          
+          required_paths=(
+            "constitution/README.md"
+            "constitution/00-north-star.md"
+            "constitution/01-round-table.md"
+            "constitution/02-safe-ai-dlc.md"
+            "constitution/03-cd-and-hitl.md"
+            "constitution/04-privacy-and-vaults.md"
+            "constitution/05-evidence-and-linear.md"
+            "constitution/06-empiricism.md"
+            "roles/model-stack.md"
+            "adapters/claude-code/README.md"
+            "adapters/cursor/README.md"
+            "prove/README.md"
+          )
+          
+          missing=()
+          for path in "${required_paths[@]}"; do
+            if [[ ! -f "$path" ]]; then
+              missing+=("$path")
+              echo "❌ Missing: $path"
+            else
+              echo "✅ Found: $path"
+            fi
+          done
+          
+          if [[ ${#missing[@]} -gt 0 ]]; then
+            echo ""
+            echo "ERROR: ${#missing[@]} required path(s) missing"
+            exit 1
+          fi
+          
+          echo ""
+          echo "✅ All required paths present"
+      
+      - name: Check markdown relative links
+        run: |
+          echo "Checking markdown files for broken relative links..."
+          
+          broken_links=0
+          
+          # Discover markdown files: root level + recursive under key directories
+          md_files=$(find . -maxdepth 1 -name "*.md" 2>/dev/null)
+          md_files+=" "$(find constitution roles adapters templates prove -type f -name "*.md" 2>/dev/null)
+          
+          for md_file in $md_files; do
+            echo "Checking: $md_file"
+            
+            # Extract inline markdown links [text](path.md) or [text](path/)
+            # Use process substitution to avoid subshell counter issue
+            while IFS= read -r link; do
+              # Strip optional titles like [x](path.md "title")
+              link="${link%% \"*}"
+              link="${link%% \'*}"
+              
+              # Skip absolute URLs, anchors, and mailto
+              if [[ "$link" =~ ^(https?://|#|mailto:) ]]; then
+                continue
+              fi
+              
+              # Resolve relative to the markdown file's directory
+              dir=$(dirname "$md_file")
+              target="$dir/$link"
+              
+              # Strip anchor fragments
+              target_path="${target%%#*}"
+              
+              # Check if target exists (file or directory)
+              if [[ ! -e "$target_path" ]]; then
+                echo "  ❌ Broken link in $md_file: $link → $target_path"
+                broken_links=$((broken_links + 1))
+              fi
+            done < <(grep -oP '\]\(\K[^)]+(?=\))' "$md_file" 2>/dev/null)
+            
+            # Extract reference-style link definitions [label]: path.md
+            while IFS= read -r refline; do
+              # Extract destination from [label]: destination or [label]: destination "title"
+              link=$(echo "$refline" | sed -E 's/^\[([^]]+)\]:[[:space:]]*([^[:space:]"]+).*/\2/')
+              
+              # Skip absolute URLs, anchors, and mailto
+              if [[ "$link" =~ ^(https?://|#|mailto:) ]]; then
+                continue
+              fi
+              
+              # Resolve relative to the markdown file's directory
+              dir=$(dirname "$md_file")
+              target="$dir/$link"
+              
+              # Strip anchor fragments
+              target_path="${target%%#*}"
+              
+              # Check if target exists (file or directory)
+              if [[ ! -e "$target_path" ]]; then
+                echo "  ❌ Broken reference-style link in $md_file: $link → $target_path"
+                broken_links=$((broken_links + 1))
+              fi
+            done < <(grep -P '^\[[^]]+\]:[[:space:]]+[^[:space:]]+' "$md_file" 2>/dev/null)
+          done
+          
+          if [[ $broken_links -gt 0 ]]; then
+            echo ""
+            echo "ERROR: Found $broken_links broken relative link(s)"
+            exit 1
+          fi
+          
+          echo ""
+          echo "✅ No broken relative links detected"
+      
+      - name: Validate markdown syntax
+        run: |
+          echo "Basic markdown syntax validation..."
+          
+          # Check for common markdown issues
+          issues=0
+          
+          for md_file in $(find . -name "*.md" -not -path "./.git/*" 2>/dev/null); do
+            # Check for unclosed code fences (Wave 0 uses simple parity count; does not detect nested fence-like content)
+            fence_count=$(grep -c '^```' "$md_file" 2>/dev/null || printf "0")
+            if [[ $((fence_count % 2)) -ne 0 ]]; then
+              echo "❌ Unclosed code fence in: $md_file"
+              issues=$((issues + 1))
+            fi
+          done
+          
+          if [[ $issues -gt 0 ]]; then
+            echo ""
+            echo "ERROR: Found $issues markdown syntax issue(s)"
+            exit 1
+          fi
+          
+          echo "✅ Basic markdown syntax valid"
+      
+      - name: Summary
+        if: success()
+        run: |
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅ Wave 0 sanity checks passed"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
