@@ -36,7 +36,7 @@ The following files require @cheddarfox review and approval before merge:
 
 **Ownership distinction:** Humans own and accept only design (intent.md + spec.md). Agents own and author everything else (plan, issues, code, tests, PRs, evidence, requirements, trace, constitution changes). CODEOWNERS enforces human review gates before merge.
 
-Agents may open PRs touching these files but **must not merge them**. Use the `needs-scott-concur` label on PRs awaiting Scott's review.
+Agents may open PRs touching these files but **must not merge them**, except Kai or Release · RTE may merge `constitution/` changes only under the conditions in [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md), including Scott's recorded own-words concurrence at exact head. Use the `needs-scott-concur` label on PRs awaiting Scott's review.
 
 ---
 

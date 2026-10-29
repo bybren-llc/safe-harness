@@ -24,7 +24,7 @@ Release · RTE runs a per-PR release check with an **RTE PASS** or **HOLD** verd
 
 ## Release notes
 
-RTE owns release notes and the tag + GitHub Release after merge. It drafts release notes from the decision pack, requirements, and evidence, then publishes them as part of the GitHub Release when the PR merges.
+RTE owns release notes now. It drafts them from the decision pack, requirements, and evidence. Tag format is `vYYYY.MM.DD-<shortsha>` (date in America/New_York, 7-char merge SHA). Tag and GitHub Release publication are future ownership pending their own O2 PR (deploy CI / workflows).
 
 ## Merge authority
 

@@ -96,9 +96,19 @@ Merge authority belongs only to:
 
 **No other agent merges**, including Delivery and cloud agents. **Nobody merges their own authored change.**
 
+### RTE placement
+
+Release · RTE is **required** at Med, High, and O2. At Low it is an async checklist (not blocking if the path is annotated). RTE PASS runs **in parallel** with Scott's concur where concur is required.
+
+### HOLD override
+
+Only **Kai** or **Scott** may override an RTE HOLD. The override must be explicit, with the **reason recorded on the PR**. An override never waives QAS or SecEng, never substitutes for a required human approval, never lets a non-permitted agent merge, and never lets RTE merge a change it authored. RTE cannot override its own HOLD by merging; a HOLD stands until cleared on a new head or overridden by Kai or Scott.
+
 ### Human approval at High/O2
 
-At High/O2 tier, Scott's recorded own-words concur satisfies the human requirement. An agent merge (by Kai or Release · RTE under delegated authority) never counts as a human approval; the human approval is Scott's recorded concur, not the act of merging.
+At High/O2, Scott's recorded own-words concur is **a** required human approval. An agent merge (by Kai or Release · RTE) never counts as a human approval.
+
+**OPEN QUESTION for Scott — Needs Scott concur:** how the High-tier "Two distinct humans; agent ≠ human" rule (tier table above) is met when Scott is the only human today. This section does not resolve that question. Options live in the decision pack.
 
 ### Scott's recorded delegation (2026-10-29 ET)
 
