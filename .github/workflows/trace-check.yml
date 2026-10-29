@@ -36,18 +36,19 @@ jobs:
           echo ""
           
           # Bootstrap rule: check if spec.md has REQ IDs
+          # Blocking activation gate: also requires trace/.blocking marker (added by follow-up validations PR)
           # If not, run warn-only (non-blocking)
           # If yes, run blocking (fail on violations)
           
           BLOCKING_MODE=false
           
-          if [[ -f "spec.md" ]]; then
-            if grep -qE "REQ-[A-Z]{3}-[0-9]{3}" spec.md; then
-              echo "✓ spec.md contains REQ IDs — trace-check is BLOCKING"
-              BLOCKING_MODE=true
-            else
-              echo "⚠ spec.md exists but has no REQ IDs — trace-check is WARN-ONLY"
-            fi
+          if [[ -f "spec.md" ]] && grep -qE "REQ-[A-Z]{3}-[0-9]{3}" spec.md && [[ -f "trace/.blocking" ]]; then
+            echo "✓ spec.md contains REQ IDs AND trace/.blocking exists — trace-check is BLOCKING"
+            BLOCKING_MODE=true
+          elif [[ -f "spec.md" ]] && grep -qE "REQ-[A-Z]{3}-[0-9]{3}" spec.md; then
+            echo "⚠ Bootstrap mode: spec.md has REQ IDs but trace/.blocking missing — trace-check is WARN-ONLY"
+          elif [[ -f "spec.md" ]]; then
+            echo "⚠ Bootstrap mode: spec.md exists but has no REQ IDs — trace-check is WARN-ONLY"
           else
             echo "⚠ spec.md not found — trace-check is WARN-ONLY"
           fi

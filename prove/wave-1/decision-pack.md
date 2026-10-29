@@ -511,11 +511,11 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 
 **Context:** Today, removing REQ IDs from `spec.md` would drop trace-check back to warn-only (bootstrap rule). This could allow requirements to be silently removed.
 
-**Blocking activation precondition:** Trace-check becomes blocking only after the first `spec.md` with REQ IDs lands **AND** after the follow-up validations (constitution/05:133-138) are implemented and merged. Until both conditions are met, trace-check remains warn-only. This precondition applies regardless of sticky-blocking mechanism, pending Kai and Scott concurrence.
+**Blocking activation gate:** Trace-check becomes blocking only after the first `spec.md` with REQ IDs lands **AND** the CODEOWNED marker file `trace/.blocking` exists. The follow-up validations PR (first GitHub Issue in migration Phase 1) adds the marker after implementing the additional validations from constitution/05:136-141. Until both conditions are met, trace-check remains warn-only.
 
-**Proposal:** Enable sticky blocking mode via one or both mechanisms:
-1. Turn on "require code owner review" on `main` branch protection (GitHub setting)
-2. Add a CODEOWNED `trace/.blocking` marker file in a follow-up
+**Proposal:** Enable sticky blocking mode via:
+1. **Blocking activation marker:** `trace/.blocking` (CODEOWNED to @cheddarfox) — required for trace-check to become blocking; also provides defense against removing REQ IDs from spec.md
+2. **Branch protection (optional):** Turn on "require code owner review" on `main` branch protection (GitHub setting) — additional defense in depth
 
 **Current mitigation:** `spec.md` is CODEOWNED (@cheddarfox), so Scott must approve any changes. This works *only if* branch protection requires code-owner review.
 
@@ -523,13 +523,7 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 
 **Additional context:** External link-check stays separate and non-blocking (Librarian's spec + weekly routine after merge).
 
-**Options:**
-1. **[RECOMMENDED]** Enable "require code owner review" on `main` + add `trace/.blocking` marker in follow-up (defense in depth)
-2. Enable "require code owner review" on `main` only (relies on GitHub branch protection)
-3. Add `trace/.blocking` marker only (relies on CODEOWNERS without branch protection)
-4. Status quo (accept that removing REQ IDs returns to warn-only)
-
-**Recommendation:** Option 1. Both mechanisms together provide defense in depth.
+**Recommendation:** `trace/.blocking` marker (required for blocking activation) + optional branch protection for defense in depth.
 
 **Risks:**
 - Branch protection may slow down Low-tier merges
@@ -720,9 +714,9 @@ If critical issues arise post-merge:
 
 ---
 
-## Appendix A: Team concur record (verbatim)
+## Appendix A: Team concur record (extracted)
 
-Extracted from each seat's SendToAgent message to Kai, 2026-10-29. Kai is coordinator, not a seat. Scott's concur is separate and PENDING; his 9:48 "make the change now if we all concur" is not that concur.
+Extracted from each seat's SendToAgent message to Kai, 2026-10-29. Some passages are omitted (marked […]). Kai's context notes are added (marked). Kai is coordinator, not a seat. Scott's concur is separate and PENDING; his 9:48 "make the change now if we all concur" is not that concur.
 
 ### Studio · Lead — 09:48 ET, call id toolu_017ZNtEo19N3873edkiGrWPG
 

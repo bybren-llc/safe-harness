@@ -15,8 +15,8 @@
 ### Human vs. agent ownership split
 
 **Humans own and accept only design (intent + spec):**
-- `intent.md` — Humans (Scott / Kai) own and accept; agents may propose edits but **never merge**
-- `spec.md` — Humans (Scott / Kai) own and accept; agents may propose edits but **never merge**
+- `intent.md` — Scott owns and accepts; agents may propose edits but **never merge**
+- `spec.md` — Scott owns and accepts; agents may propose edits but **never merge**
 
 **Agents own everything else end-to-end:**
 - Plan, GitHub Issues, code, tests, PRs, evidence
@@ -129,9 +129,9 @@ The `.github/workflows/trace-check.yml` CI workflow validates:
 
 **Bootstrap rule (Wave 1):** Trace-check runs **warn-only** (non-blocking) until the first `spec.md` with REQ IDs lands, then becomes **blocking** (fail on violations). This allows Wave 1 to land without failing its own gate.
 
-**Blocking activation precondition:** Trace-check becomes blocking only after the first `spec.md` with REQ IDs lands **AND** after the follow-up validations below are implemented and merged. Until both conditions are met, trace-check remains warn-only.
+**Blocking activation gate:** Trace-check becomes blocking only after the first `spec.md` with REQ IDs lands **AND** the CODEOWNED marker file `trace/.blocking` exists. The follow-up validations PR (first GitHub Issue in migration Phase 1) adds the marker after implementing the additional validations below. Until both conditions are met, trace-check remains warn-only.
 
-**Additional validations (required before blocking activation; follow-up issue TBD):**
+**Additional validations (required before blocking activation; see migration Phase 1):**
 - Spec REQ ↔ trace-map reconciliation
 - Empty trace map in blocking mode enforcement
 - `requirements/*.yaml` registry validation

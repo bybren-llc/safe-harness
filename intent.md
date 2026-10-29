@@ -1,6 +1,6 @@
 # Intent — safe-harness
 
-**Ownership:** HUMAN-OWNED (Scott / Kai)  
+**Ownership:** HUMAN-OWNED (Scott only)  
 **Status:** Draft  
 **Last updated:** 2026-10-29
 

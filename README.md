@@ -105,7 +105,7 @@ Each evidence row includes:
 ## Human vs. agent ownership (Wave 1)
 
 **Humans own and accept only design:**
-- `intent.md`, `spec.md` — Humans (Scott / Kai) own and accept; agents may propose but **never merge**
+- `intent.md`, `spec.md` — Scott owns and accepts; agents may propose but **never merge**
 
 **Agents own everything else end-to-end:**
 - Plan, GitHub Issues, code, tests, PRs, evidence

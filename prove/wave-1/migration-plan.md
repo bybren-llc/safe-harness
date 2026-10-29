@@ -47,6 +47,7 @@ SAF-5,https://linear.app/cheddarfox/issue/SAF-5/...,TBD,Wave 0 retro,Active
 - [ ] Wave 1 PR merged to main
 - [ ] GitHub Issue templates available (`.github/ISSUE_TEMPLATE/`)
 - [ ] Labels created from `.github/labels.yml` (manual or automation)
+- [ ] First GitHub Issue created: "Trace-check blocking validations" (implements additional validations from constitution/05:136-141, adds `trace/.blocking` marker)
 - [ ] Trace-check CI operational (bootstrap mode)
 
 **Duration:** Immediate (gated on Scott concurrence)

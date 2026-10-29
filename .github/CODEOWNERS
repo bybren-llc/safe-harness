@@ -15,5 +15,6 @@
 /requirements/          @cheddarfox
 /constitution/          @cheddarfox
 /trace/                 @cheddarfox
+/trace/.blocking        @cheddarfox
 /.github/CODEOWNERS     @cheddarfox
 /.github/workflows/     @cheddarfox
