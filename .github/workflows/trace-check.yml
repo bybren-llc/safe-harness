@@ -215,6 +215,12 @@ jobs:
                   echo "  ❌ Dropping REQ from intent.md requires Scott's sign-off (decided_by must be exactly 'Scott Graham')"
                   ERRORS=$((ERRORS + 1))
                 fi
+                
+                # Require sign-off link in rationale
+                if [[ ! "$RATIONALE" =~ https?:// ]]; then
+                  echo "  ❌ Dropping REQ from intent.md requires sign-off link in rationale"
+                  ERRORS=$((ERRORS + 1))
+                fi
               fi
             fi
             

@@ -129,6 +129,8 @@ The `.github/workflows/trace-check.yml` CI workflow validates:
 
 **Bootstrap rule (Wave 1):** Trace-check runs **warn-only** (non-blocking) until the first `spec.md` with REQ IDs lands, then becomes **blocking** (fail on violations). This allows Wave 1 to land without failing its own gate.
 
+**Blocking activation precondition:** Trace-check becomes blocking only after the first `spec.md` with REQ IDs lands **AND** after the follow-up validations below are implemented and merged. Until both conditions are met, trace-check remains warn-only.
+
 **Additional validations (required before blocking activation; follow-up issue TBD):**
 - Spec REQ ↔ trace-map reconciliation
 - Empty trace map in blocking mode enforcement

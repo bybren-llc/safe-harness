@@ -511,6 +511,8 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 
 **Context:** Today, removing REQ IDs from `spec.md` would drop trace-check back to warn-only (bootstrap rule). This could allow requirements to be silently removed.
 
+**Blocking activation precondition:** Trace-check becomes blocking only after the first `spec.md` with REQ IDs lands **AND** after the follow-up validations (constitution/05:133-138) are implemented and merged. Until both conditions are met, trace-check remains warn-only. This precondition applies regardless of sticky-blocking mechanism, pending Kai and Scott concurrence.
+
 **Proposal:** Enable sticky blocking mode via one or both mechanisms:
 1. Turn on "require code owner review" on `main` branch protection (GitHub setting)
 2. Add a CODEOWNED `trace/.blocking` marker file in a follow-up
@@ -637,7 +639,7 @@ Expected requirements:
 ## Risk summary
 
 **High risks:**
-1. Constitution changes without team alignment → **Mitigated:** Team concur record (Studio, Scout, Librarian, Ops, Delivery) above
+1. Constitution changes without team alignment → **In progress:** Team concurred (Studio, Scout, Librarian, Ops, Delivery) above; Scott's concurrence PENDING
 2. CI false positives blocking work → **Mitigated:** Bootstrap rule (warn-only), read-only permissions
 3. Evidence migration gaps or lost context → **Mitigated:** Linear preserved indefinitely, mapping table, phased migration
 4. Personal-vault leaks to repo → **Mitigated:** Personal-boundary rule in CONTRIBUTING.md + intent/spec preambles
