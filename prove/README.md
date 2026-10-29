@@ -4,6 +4,8 @@
 
 Repo: `bybren-llc/safe-harness` (O1 locked).
 
+**Wave 0 retrospective:** [wave-0-retro.md](wave-0-retro.md)
+
 ## D-P1 — One Delivery bolt (spine A)
 
 | Step | Target | Done? |
