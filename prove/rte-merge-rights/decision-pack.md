@@ -53,7 +53,7 @@ Authority for the environment-promotion widening is Scott's verbatim 1:54 and 1:
 | Evidence IDs | Kai QAS review 5702808926; CodeRabbit review 5702671974 |
 | Requirements | Closes #10 (no REQ-IDs in spec.md yet) |
 | QAS | CHANGES NEEDED at `bc94fe87` (review 5702808926); re-QAS required at new head |
-| SecEng | PENDING: independent SecEng pass at exact head (or explicit SecEng waiver in Scott's concur ask) |
+| SecEng | SecEng (independent, non-author; cloud agent bc-ff5334e0): PASS WITH CONDITIONS at e93e388 (Med findings 1-4, Low 5-6, no Critical or High). Conditions addressed at TIPSHA, and SecEng re-verification is pending. |
 | Risk tier + O2 | **High / O2 auth**. Merge authority = permissions. No downgrade. |
 | Ask | approve / change-request / escalate — **approve the template default; answer the open questions below in your own words** |
 
@@ -146,12 +146,25 @@ Tag automation (`vYYYY.MM.DD-<shortsha>`, one per merge) and GitHub Release publ
 
 ---
 
+## SecEng findings-to-fix map
+
+Independent SecEng (cloud agent bc-ff5334e0), PASS WITH CONDITIONS at `e93e388`. No Critical or High.
+
+| # | Severity | Finding | Fix |
+| --- | --- | --- | --- |
+| 1 | Med | Dev/trunk Gate listed only checks + QAS | Template-default Gate cell + footnote in `constitution/03` and this pack |
+| 2 | Med | Kai trunk-merge conditions omitted RTE at Med+ | Kai list in `constitution/03`; README mermaid Kai edge; README and CONTRIBUTING merge bullets; `roles/release-rte.md` |
+| 3 | Med | CODEOWNERS-gated paths other than constitution/ | Invariant in `constitution/03`; one-line caveat on README and CONTRIBUTING merge bullets |
+| 4 | Med | flow.md precedence carve-out, policy claim, binding Kai calls, present-tense tag/Release, G4 standing delegation, unmarked superseded lines | `release/flow.md` (still PROPOSED / non-binding; open question (b) unanswered) |
+| 5 | Low | README mermaid Kai edge | Same as #2 |
+| 6 | Low | Bolt-brief RTE collapse / MERGED by human | `templates/delivery-bolt-brief.md` |
+
 ## MERGE HOLD
 
 **Do not merge until:**
 
 - [ ] Scott's own-words concur on this decision pack at the exact head
-- [ ] Independent SecEng pass at exact head, or explicit SecEng waiver in Scott's concur ask
+- [ ] SecEng re-verification at the new exact head (PASS WITH CONDITIONS at e93e388; conditions addressed, final PASS not claimed)
 - [ ] Scott answers the open questions (or explicitly defers them)
 - [ ] Kai re-QAS APPROVE at the new exact head
 - [ ] CodeRabbit findings on the new head triaged
