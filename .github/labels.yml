@@ -3,6 +3,9 @@
 # Documentation-only. Do not create these labels via API during Wave 1.
 # Manual creation or automation comes after Scott concurrence.
 #
+# Milestones: One milestone per wave (e.g., "Wave 1", "Wave 2").
+# Document milestones; create them manually or via approved automation.
+#
 # Label scheme:
 #   bolt             - Bolt/UoW work items (spine A)
 #   tier:low         - Risk tier: Low
