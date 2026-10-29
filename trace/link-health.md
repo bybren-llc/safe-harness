@@ -79,6 +79,7 @@ Every target gets one verdict per scan:
 | `moved` | Resolves, but to a different canonical location (renamed file, transferred issue/repo, permanent redirect to a different path) |
 | `stale` | Resolves, but is no longer the right target (closed-as-not-planned issue cited as live work, a branch URL whose path no longer exists at HEAD but does at an old SHA) |
 | `broken` | Does not resolve (404 / 410 / DNS failure / repeated 5xx / object missing) |
+| `transient` | Temporary: in-scan retries exhausted after `Retry-After` / rate-limit or a similar short-lived condition (see §4.2). Not rot. Does not increment failure state. Counted in the weekly summary. Opens no issue unless the same result repeats under the flake rule (§4.5). |
 | `auth-unknown` | Private target the scanner cannot see; not counted as rot (see §4.4) |
 | `skipped` | Placeholder, example host, or excluded by rule |
 
@@ -115,6 +116,7 @@ Resolved through the GitHub API (connector), never by unauthenticated HTTP, beca
 ### 4.5 Flake tolerance
 
 - A target is **failing** in a scan only if all in-scan retries fail.
+- A `transient` verdict does not increment failure state. It is counted in the weekly summary and opens no issue unless the same target is `transient` (or otherwise failing) in two consecutive scans under this rule.
 - A target is **reported** only after it is failing in **two consecutive scans**. To avoid a one-week delay, a first-time failure triggers a **confirm re-check about 24 hours later**; that re-check counts as the second scan.
 - Exception: `broken` verdicts on permanent references (SHA-pinned blobs, commits, deleted issues confirmed via API) are deterministic and may be reported after the confirm re-check even if the network was degraded.
 - A reported target that passes **two consecutive scans** is marked recovered (§6.1).
@@ -161,7 +163,10 @@ Each scan finds `SAF-[0-9]+` (bare, bracketed, or in a Linear URL) in this repo,
 
 - **Key:** normalised target (lower-case host, strip default ports, trailing slash, tracking query params, and fragment for external URLs) → `fingerprint = first 12 hex of sha256(normalised target)`.
 - **Title:** `[link-rot] <verdict>: <short target>`; body line 1: `link-rot-fingerprint: <fingerprint>`.
-- **Body:** target, verdict, first-seen and last-seen dates (ET), HTTP/API evidence (status chain, final URL, or API response summary), every source location (`path:line` at the scanned SHA, as a permalink), and a proposed fix or `UNKNOWN`.
+- **Body:** target, verdict, first-seen and last-seen dates (ET), HTTP/API evidence (status chain, final URL, or API response summary), every source location, and a proposed fix or `UNKNOWN`. Locators by source type:
+  - In-repo file: `path:line` at the scanned safe-harness SHA (permalink to that SHA).
+  - Issue or PR body: the issue or PR permalink plus the body line, or the comment permalink when the citation is in a comment.
+  - Atlas citation: the Atlas permalink at its commit SHA.
 - **Dedupe:** before opening, search open issues for the fingerprint. If found, append new source locations or a verdict change as one comment; never open a second issue. If a closed issue matches and the target is failing again, reopen-by-reference: open a new issue that links the old one.
 - **Recovery:** when a reported target passes two consecutive scans, comment "recovered" with evidence. Closing is done by the fix PR (`Fixes #N`) or a human; the Librarian does not close issues it cannot tie to a merged fix.
 - **Label:** `link-rot`. It is not yet in [`../.github/labels.yml`](../.github/labels.yml); this PR adds it as documentation only. Per labels.yml, labels are not created by API during Wave 1, so until a human creates it the title prefix `[link-rot]` is the dedupe and search key.
@@ -178,7 +183,7 @@ Each scan finds `SAF-[0-9]+` (bare, bracketed, or in a Linear URL) in this repo,
 Posted as one comment per week on a single long-lived tracking issue ("Link health — weekly summary"), and relayed to Scott in the Librarian's chat:
 
 - scan SHA, start/end time (ET), targets checked per class (L1–L8)
-- new reports, still-failing, recovered, queued, `auth-unknown`, `pending-map`
+- new reports, still-failing, recovered, queued, `auth-unknown`, `pending-map`, `transient`
 - fix PRs opened and their state
 - SAF map status (unfrozen / frozen + checksum OK)
 - anything needing a human decision

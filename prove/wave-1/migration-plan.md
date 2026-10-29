@@ -24,17 +24,16 @@ This plan transitions safe-harness from Linear to GitHub Issues while preserving
 
 **Frozen mapping table:** `trace/linear-saf-map.csv`
 
-This CSV will be populated before Linear retirement with actual mappings. Canonical columns match `trace/schema.md` and `trace/linear-saf-map.csv` (6 columns, including `pr`):
+This CSV will be populated before Linear retirement with actual mappings. Canonical columns match `trace/schema.md` and `trace/linear-saf-map.csv` (6 columns, including `pr`). `trace/linear-saf-map.csv` stays header-only until the migration.
+
+Illustrative example only (placeholder values; not real mappings — do not copy into the CSV):
 
 ```csv
 saf_id,linear_url,github_issue,pr,title,status
-SAF-1,https://linear.app/cheddarfox/issue/SAF-1/...,#1,#2,ADR pack concur,Archived
-SAF-3,https://linear.app/cheddarfox/issue/SAF-3/...,#3,#3,D-P1 delivery bolt,Archived
-SAF-4,https://linear.app/cheddarfox/issue/SAF-4/...,#4,TBD,D-P1 evidence + measure,Archived
-SAF-5,https://linear.app/cheddarfox/issue/SAF-5/...,TBD,TBD,Wave 0 retro,Active
+SAF-N,<linear-url>,#<issue>,#<pr>,<title>,<status>
 ```
 
-**During Wave 1:** The mapping table header exists but has no fake issue numbers. Populate it during migration execution (after Scott concurrence).
+**During Wave 1:** The mapping table is header-only. Populate it during migration execution (after Scott concurrence).
 
 ---
 
