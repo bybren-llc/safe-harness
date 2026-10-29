@@ -150,9 +150,9 @@ Both share Round Table principles, exit states, and ownership. They differ in ga
 
 ### Risk tiers
 
-- **Low**: Auto when green (tests + evidence met); human assignee still named; HITL-delegated merge allowed
-- **Med**: One human decision pack; HITL merge
-- **High**: Two distinct humans; agent ≠ human; HITL merge
+- **Low**: Auto when green (tests + evidence met); human assignee still named; trunk merge by Kai or RTE after QAS APPROVE
+- **Med**: One human decision pack; trunk merge by Kai or RTE after QAS APPROVE (and RTE PASS)
+- **High**: Two distinct humans; agent ≠ human (how this is met is open for Scott). Scott's recorded concur is a required human approval; merge execution may be Scott, Kai, or RTE.
 
 **O2 high-risk items default to High** unless downgraded in writing at QAS. Delivery may propose a downgrade rationale; Kai decides at QAS: pricing, refunds, auth, deploy CI/workflows, prod secrets, privacy-boundary crosses.
 
