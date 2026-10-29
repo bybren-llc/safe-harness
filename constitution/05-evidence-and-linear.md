@@ -32,7 +32,7 @@
 - `constitution/` (agent-authored constitution changes need human review)
 - `trace/` (agent-authored trace map needs human review)
 
-Agents may open PRs touching these files but must not merge them. Use the `needs-scott-concur` label on PRs awaiting Scott's review.
+Agents may open PRs touching these files but must not merge them, except Kai or Release · RTE may merge `constitution/` changes only under the conditions in `constitution/03-cd-and-hitl.md`, including Scott's recorded own-words concurrence at exact head. Use the `needs-scott-concur` label on PRs awaiting Scott's review.
 
 **Distinction:** Humans own design (accept/reject intent and spec content). Agents own execution (author requirements, trace, constitution changes, code, tests), but CODEOWNERS enforces human review gates before merge.
 

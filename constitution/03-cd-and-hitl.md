@@ -16,7 +16,7 @@ SDLC target = **continuous deployment**. Mainline stays releasable. Gates prove 
 | **Feature branches** | Short-lived `<issue#>-slug` (e.g., `42-add-trace-check`); merge via PR |
 | **Releases** | Tag from `main` when ready; no separate release branches |
 | **Hotfixes** | Branch from tag → fix → merge to `main` → re-tag |
-| **PR ownership** | Kai / Delivery manage PRs (HITL / risk-tier still applies per O2) |
+| **PR ownership** | Kai / Delivery manage PR prep and fixes; Delivery never merges (merge execution follows merge authority below) |
 
 No Gitflow. Trunk-based development with feature flags for incomplete work.
 
@@ -73,28 +73,43 @@ Default = decision packs + independence. Freeze is rare and named.
 | **Merge queue** | Prefer queue over freeze; policy input from SAW Dark Factory merge-queue docs (tmux not required) |
 | **Flags** | Prefer feature flags for incomplete work over long-lived freeze branches |
 | **Rollback** | First-class; rehearse path before high-risk deploys |
-| **Merge authority** | Merge authority belongs only to Scott (HITL), Kai (GM, delegated authority, recorded as `hitl_delegate` at Low or written Scott concur at Med/High), and Release · RTE (under conditions below). No other agent merges, including Delivery and cloud agents. Nobody merges their own authored change. |
-| **PR management** | Kai / Delivery own PR review / merge decisions (not agents) |
+| **Merge authority** | Template default by risk tier and environment (below). Delivery and cloud agents never merge. Nobody merges their own authored change. An agent merge never counts as human approval. |
+| **PR management** | Kai / Delivery own PR prep and fixes. Delivery never merges. Merge execution follows the merge-authority template default. |
 
-## Merge authority (amendment effective 2026-10-29)
+## Merge authority (template default — amendment 2026-10-29)
 
-Merge authority belongs only to:
+Merge authority is set by **risk tier and environment**, written here as a **TEMPLATE DEFAULT**. Each adopting repo declares its own environments and tiers (README or a constitution section). Environment-promotion model source: [teapawt.net/unicodef1wn/article/2112574886421901822](https://teapawt.net/unicodef1wn/article/2112574886421901822).
 
-1. **Scott (HITL)** — may merge any change at any risk tier
-2. **Kai (GM, delegated)** — may merge with:
-   - `hitl_delegate` record at Low tier, OR
-   - Written Scott concurrence at Medium/High tier
-3. **Release · RTE** — may merge when ALL of the following conditions are met:
-   - Kai's QAS APPROVE is present at exact head
-   - RTE's own RTE PASS is present at exact head
-   - Scott's recorded concur is present wherever the constitution requires it (Medium/High risk tier, or any constitution/ change)
+Scott (HITL), 2026-10-29, verbatim:
 
-**Release · RTE NEVER merges:**
-- Its own authored change (RTE does not author changes)
-- High/O2 changes without Scott's recorded own-words concur at exact head
-- Constitution/ changes without Scott's recorded own-words concur at exact head
+> **1:54 PM ET:** "we're definitely gonna be able to lend me agents merge man for sure especially in development ... let's imagine if we had a dev staging and PROD we would be able to handle things and testing throughout each"
 
-**No other agent merges**, including Delivery and cloud agents. **Nobody merges their own authored change.**
+> **1:55 PM ET:** "we're trying to get things set up so that others can take our work and be able to run with it and take that template and use it so we don't wanna put these kind of restrictions that don't really make sense when we're trying to make things go faster by managing expectations through design and specifications"
+
+### Template default by environment
+
+| Environment | Who may merge / promote | Gate |
+| --- | --- | --- |
+| **Dev or trunk** | Authorized agents (**Kai**, **Release · RTE**) | Required checks green + independent QAS APPROVE on the exact head |
+| **Staging** | Automatic promotion | Tests pass |
+| **Prod** | Human gate: Scott's recorded own-words concur | Only for prod-risk items: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. |
+
+**safe-harness** is a docs repo with only `main`. It is the **trunk** case under Dev or trunk. Its `constitution/` and O2 changes still need Scott's recorded own-words concur.
+
+Scott may merge any change at any tier and environment.
+
+### Invariants (do not collapse)
+
+- QAS is never the implementer.
+- Nobody merges their own authored change.
+- An agent merge never counts as human approval.
+- Delivery and cloud agents never merge.
+
+### Who may execute a trunk merge (safe-harness)
+
+1. **Scott (HITL)** — any change
+2. **Kai (GM)** — authorized trunk agent: checks green + independent QAS APPROVE on exact head; Scott's recorded concur on `constitution/` and O2
+3. **Release · RTE** — authorized trunk agent: checks green + independent QAS APPROVE + its own RTE PASS on exact head; Scott's recorded concur on `constitution/` and O2; never its own authored change
 
 ### RTE placement
 
@@ -108,17 +123,21 @@ Only **Kai** or **Scott** may override an RTE HOLD. The override must be explici
 
 At High/O2, Scott's recorded own-words concur is **a** required human approval. An agent merge (by Kai or Release · RTE) never counts as a human approval.
 
-**OPEN QUESTION for Scott — Needs Scott concur:** how the High-tier "Two distinct humans; agent ≠ human" rule (tier table above) is met when Scott is the only human today. This section does not resolve that question. Options live in the decision pack.
+### Needs Scott concur
 
-### Scott's recorded delegation (2026-10-29 ET)
+Open questions (do not resolve in this amendment):
 
-Scott's verbatim statements establishing Release · RTE merge authority:
+1. **High-tier "two distinct humans"** (`constitution/03` tier table; README Key concepts): Scott is the only human today. Does High need two distinct humans when Scott is the only human, or does his recorded concur plus independent agent QAS satisfy it? Options live in the decision pack.
+2. **`main` branch protection** — not configured yet. Enforcing who may merge in GitHub waits on Scott.
+3. **D1 `hitl_delegate`** — Low-tier delegated HITL record (`constitution/05`). Still awaiting Scott on whether it stays as written.
 
-> **2026-10-29 1:05 PM ET:** "No agents that are working for us can't merge, but you and I release train engineer can"
+### Scott's earlier recorded delegation (2026-10-29 ET)
 
-> **2026-10-29 1:50 PM ET:** "RTE can go if you approve"
+> **1:05 PM ET:** "No agents that are working for us can't merge, but you and I release train engineer can"
 
-This amendment takes effect when it merges to main.
+> **1:50 PM ET:** "RTE can go if you approve"
+
+The 1:54 / 1:55 quotes above replace the flat "agents never merge" rule with this template default. This amendment takes effect when it merges to main.
 
 ## Wave 0 CI/CD path
 

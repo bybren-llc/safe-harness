@@ -7,7 +7,7 @@
 | **May collapse?** | No — independence gate |
 | **Independence** | Not a substitute for QAS or SecEng; runs after both clear |
 | **Default model tier** | Medium (sonnet) for release decisions; Light (Haiku) for release notes prep |
-| **Stop rules** | Never merges own authored change; never merges High/O2 or constitution/ without Scott's recorded concur; never authors code changes |
+| **Stop rules** | Never merges own authored change; never merges constitution/ or O2 without Scott's recorded concur; never authors code changes; never treats its own merge as human approval |
 
 ## Gate mechanics
 
@@ -28,15 +28,18 @@ RTE owns release notes now. It drafts them from the decision pack, requirements,
 
 ## Merge authority
 
-**Release · RTE MAY merge** once all of the following conditions are met:
-1. Kai's QAS APPROVE is present at exact head
-2. RTE's own RTE PASS is present at exact head
-3. Scott's recorded concur is present wherever the constitution requires it (Medium/High risk tier, or any constitution/ change)
+On **trunk** (safe-harness is trunk-only), **Release · RTE MAY merge** once all of the following conditions are met:
+1. Required checks are green on the exact head
+2. Independent QAS APPROVE is present at exact head
+3. RTE's own RTE PASS is present at exact head
+4. Scott's recorded own-words concur is present for `constitution/` and O2 (prod-risk) changes
 
 **Release · RTE NEVER merges:**
 - Its own authored change (RTE does not author changes)
-- High/O2 changes without Scott's recorded own-words concur at exact head
-- Constitution/ changes without Scott's recorded own-words concur at exact head
+- `constitution/` or O2 changes without Scott's recorded own-words concur at exact head
+- A change while an RTE HOLD stands, unless Kai or Scott override with the reason on the PR
+
+An RTE merge never counts as human approval. Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md).
 
 **Release · RTE MAY BLOCK** any change for insufficient evidence, missing concur, or release readiness concerns.
 

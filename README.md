@@ -18,11 +18,11 @@
 
 ## Glossary
 
-**HITL (Human In The Loop):** The final approval before merging to main. Scott is HITL/POPM for safe-harness. HITL reviews the decision pack and evidence, then merges. At Low risk tier only, HITL can delegate merge authority to an agent seat (Kai) with a structured `hitl_delegate` record.
+**HITL (Human In The Loop):** Scott is HITL/POPM for safe-harness. HITL is the **human approval** gate (decision pack + recorded own-words concur), not always the person who clicks merge. Merge **execution** on trunk may be Scott, Kai, or Release · RTE per [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md). An agent merge never counts as human approval.
 
 **QAS (Quality Assurance & Acceptance):** Independent review by a seat who did not implement the change. Kai is QAS today (an agent). QAS reviews code, tests, evidence, and decision packs at exact commit SHA. QAS is posted as COMMENT reviews (PRs are authored by the `cheddarfox` account, which is also the account Kai reviews through; GitHub does not let a PR's author APPROVE or REQUEST_CHANGES on their own PR, so the independent QAS verdict is recorded as a COMMENT review with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line).
 
-**RTE (Release Train Engineer):** In Round Table the Release · RTE seat: an independent final release gate under continuous deployment (no trains). It runs a per-PR release check with an RTE PASS or HOLD verdict. It owns release notes now; tag format is documented, and tag + GitHub Release publication is future ownership pending its own O2 PR. It may merge once Kai's QAS APPROVE and its own RTE PASS are both on the exact head, and Scott's recorded concur is present wherever the constitution requires it. See [`roles/release-rte.md`](roles/release-rte.md) and [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md).
+**RTE (Release Train Engineer):** In Round Table the Release · RTE seat: an independent final release gate under continuous deployment (no trains). It runs a per-PR release check with an RTE PASS or HOLD verdict. It owns release notes now; tag format is documented, and tag + GitHub Release publication is future ownership pending its own O2 PR. On trunk it may merge once checks are green and an independent QAS APPROVE plus its own RTE PASS are on the exact head; Scott's recorded concur is required for constitution/ and O2. An RTE merge never counts as human approval. See [`roles/release-rte.md`](roles/release-rte.md) and [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md).
 
 **O2:** High-risk items from ADR decision O2 that default to High tier and require extra scrutiny: pricing, refunds, auth, deploy CI/workflows, prod secrets, privacy-boundary crosses. Delivery may propose downgrades; Kai decides in writing at QAS.
 
@@ -54,7 +54,7 @@
 4. Open PR with `Requirements: REQ-<CMP>-NNN` line in body
 5. Wait for CI (Structure & Docs, Trace), CodeRabbit, and QAS
 6. If Medium/High, create decision pack
-7. Request HITL merge (or HITL-delegated at Low tier)
+7. Request merge: Kai or Release · RTE on trunk after QAS APPROVE (and RTE PASS); Scott's recorded concur on constitution/ and O2
 
 ### (c) What needs Scott
 
@@ -76,24 +76,25 @@
 5. **CodeRabbit:** Automated code review (required gate input)
 6. **QAS:** Independent review at exact commit SHA (Kai), posted as COMMENT (PRs are authored by the `cheddarfox` account, which is also the account Kai reviews through; GitHub does not let a PR's author APPROVE or REQUEST_CHANGES on their own PR, so the independent QAS verdict is recorded as a COMMENT review with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line)
 7. **Decision pack:** If Medium or High tier, create decision pack with rationale, evidence, and risks
-8. **Merge:** Merge rights belong only to Scott (HITL), Kai (GM, delegated authority, recorded as `hitl_delegate` at Low or written Scott concur at Med/High), and Release · RTE (see [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md)). No other agent merges, including Delivery and cloud agents
+8. **Merge:** Human approval (Scott's recorded concur) is distinct from merge execution. On trunk, authorized agents (Kai, Release · RTE) may execute the merge once checks are green and an independent QAS APPROVE is on the exact head; RTE also needs its own PASS. Scott's recorded own-words concur is required for constitution/ and O2. Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md).
 
-**Key constraint:** QAS independence means QAS is never the implementer. Nobody merges their own authored change. High/O2 still needs Scott's recorded concur. See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for full merge authority rules.
+**Key constraint:** QAS independence means QAS is never the implementer. Nobody merges their own authored change. An agent merge never counts as human approval. High/O2 still needs Scott's recorded concur as a required human approval (whether that plus independent agent QAS satisfies "two distinct humans" is open for Scott). See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for the template default.
 
 ```mermaid
 graph TD
     A[Issue Created] --> B[Branch: issue#-slug]
     B --> C[Implement + Test]
     C --> D[Open PR]
-    D --> E[CI: Structure & Trace]
+    D --> E[CI: Structure and Trace]
     E --> F[CodeRabbit Review]
-    F --> G[QAS Review COMMENT]
-    G --> H{Risk Tier?}
-    H -->|Low| I[Kai merge with hitl_delegate]
-    H -->|Med/High| J[Decision Pack]
-    J --> K[Scott or Kai merge with Scott concur]
-    I --> L[Merged to main]
-    K --> L
+    F --> G[Independent QAS APPROVE]
+    G --> H[RTE PASS on exact head]
+    H --> I{Scott concur required?}
+    I -->|No: trunk, not constitution or O2| J[Kai or RTE executes merge]
+    I -->|Yes: constitution or O2 or prod-risk| K[Scott recorded human approval]
+    K --> L[Scott or Kai or RTE executes merge]
+    J --> M[Merged to main]
+    L --> M
 ```
 
 ---
@@ -120,6 +121,7 @@ graph TD
 | [`constitution/`](constitution/) | Governance framework (risk tiers, gates, ownership, evidence) |
 | [`roles/`](roles/) | Round Table seat definitions |
 | [`templates/`](templates/) | Brief and handoff templates (Bolt, Studio→Delivery) |
+| [`release/`](release/) | Continuous-deployment release flow ([`release/flow.md`](release/flow.md)) |
 | [`prove/`](prove/) | Evidence and bolt records (wave-0-retro.md, wave-1/) |
 | [`prove/d-p1/`](prove/d-p1/) | D-P1 bolt evidence (Wave 0) |
 | `prove/d-p2/` | (planned) D-P2 bolt evidence |
