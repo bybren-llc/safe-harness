@@ -90,9 +90,11 @@ Scott (HITL), 2026-10-29, verbatim:
 
 | Environment | Who may merge / promote | Gate |
 | --- | --- | --- |
-| **Dev or trunk** | Authorized agents (**Kai**, **Release · RTE**) | Required checks green + independent QAS APPROVE on the exact head |
+| **Dev or trunk** | Authorized agents (**Kai**, **Release · RTE**) | Required checks green + independent QAS APPROVE on the exact head; Scott's recorded own-words concur for constitution/, High, and O2 [^trunk-gate] |
 | **Staging** | Automatic promotion | Tests pass |
 | **Prod** | Human gate: Scott's recorded own-words concur | Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. |
+
+[^trunk-gate]: This Gate cell applies to template adopters as well as safe-harness.
 
 **safe-harness** is a docs repo with only `main`. It is the **trunk** case under Dev or trunk. Its `constitution/`, High, and O2 changes still need Scott's recorded own-words concur.
 
@@ -104,11 +106,12 @@ Scott may merge any change at any tier and environment.
 - Nobody merges their own authored change.
 - An agent merge never counts as human approval.
 - Delivery and cloud agents never merge.
+- CODEOWNERS-gated paths other than `constitution/` (`intent.md`, `spec.md`, `requirements/`, `trace/`) stay **agents must not merge** (Scott/CODEOWNERS only), matching `constitution/05` and `CONTRIBUTING.md`.
 
 ### Who may execute a trunk merge (safe-harness)
 
 1. **Scott (HITL)** — any change
-2. **Kai (GM)** — authorized trunk agent: checks green + independent QAS APPROVE on exact head; Scott's recorded concur on `constitution/`, High, and O2
+2. **Kai (GM)** — authorized trunk agent: checks green + independent QAS APPROVE on exact head; at Med/High/O2, RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason; Scott's recorded concur on `constitution/`, High, and O2
 3. **Release · RTE** — authorized trunk agent: checks green + Kai's independent QAS APPROVE + its own RTE PASS on exact head; Scott's recorded concur on `constitution/`, High, and O2; never its own authored change
 
 ### RTE placement

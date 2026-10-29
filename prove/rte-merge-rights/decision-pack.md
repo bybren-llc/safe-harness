@@ -77,9 +77,11 @@ O2 checklist:
 
 | Environment | Who may merge / promote | Gate |
 | --- | --- | --- |
-| **Dev or trunk** | Authorized agents (Kai, Release · RTE) | Checks green + independent QAS APPROVE on exact head |
+| **Dev or trunk** | Authorized agents (Kai, Release · RTE) | Checks green + independent QAS APPROVE on exact head; Scott's recorded own-words concur for constitution/, High, and O2 [^trunk-gate] |
 | **Staging** | Automatic promotion | Tests pass |
 | **Prod** | Human gate: Scott's recorded own-words concur | Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. |
+
+[^trunk-gate]: This Gate cell applies to template adopters as well as safe-harness.
 
 Each repo declares its own environments and tiers. safe-harness = trunk only; `constitution/`, High, and O2 still need Scott's concur.
 
