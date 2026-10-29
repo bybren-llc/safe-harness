@@ -11,10 +11,10 @@ Label key used in this file:
 - **[main]** — already stated on `main`; quoted or paraphrased, path given.
 - **[PENDING-CODIFY]** — RTE operating model from the RTE brief / Scott's direction (2026-10-29, relayed by Kai); must land via the RTE role card + `constitution/03` amendment (with Scott concur) before it is binding.
 - **Decided — Scott 2026-10-29; effective on amendment merge** (relayed via Kai, 1:50 PM ET: "RTE can go if you approve") — Scott's merge rule; shortened inline as **Decided — Scott 2026-10-29 · merge rule**. **Not in force until** the follow-up PR (RTE role card + `constitution/03` amendment) merges; until then RTE takes no gate actions and never merges, and the repo text on `main` governs (§9).
-- **Decided — Kai 2026-10-29** — operational call by Kai (GM & lead ARCHitect) on 2026-10-29; binding for this draft, does not amend `constitution/`.
+- **Decided — Kai 2026-10-29** — operational call by Kai (GM & lead ARCHitect) on 2026-10-29; recorded for this draft, does not amend `constitution/`.
 - **`PROPOSED — needs Kai/Scott concur`** — not specified anywhere in the repo and not yet decided; a default suggested here.
 
-> Precedence: if anything here conflicts with `constitution/`, the constitution wins — **except** the merge rule marked **Decided — Scott 2026-10-29 · merge rule**, which Scott (HITL / POPM, "Final merge authority", `constitution/01-round-table.md`) has decided and which takes effect when the follow-up amendment merges (§9). This file does not otherwise amend policy; it operationalizes it.
+> Precedence: if anything here conflicts with `constitution/`, the constitution wins. `constitution/03` always governs merge authority. This file does not amend policy; it operationalizes it.
 
 **Superseded sections:** §3, §5, §7, §8 and §9 are superseded by this amendment (`constitution/03`, `constitution/05`, `roles/release-rte.md`) wherever they differ. They are not reconciled in this PR. A follow-up issue will cover HITL-only MERGED, collapsible-at-Low, tag/Release publication, and Linear as the record.
 
@@ -33,13 +33,13 @@ This is what `main` already asks for [main]:
 
 **What "deploy" means for `safe-harness`:** it is a docs/policy repo with no runtime deployment target (Wave 0 CI is a thin skeleton with "No deploy secrets", `constitution/03-cd-and-hitl.md`). **Deploy = the tag + GitHub Release** created from `main` for that merge. [main] for "tag from `main`"; the tag-as-deploy framing is [PENDING-CODIFY].
 
-Ops · CoS reads this file plus the live queue for the morning roll (§8). This file is the policy; the queue is the state.
+Ops · CoS reads this file plus the live queue for the morning roll (§8). `constitution/03` is the policy; this file is the operating draft; the queue is the state.
 
 ## 2. Who owns what
 
 | Seat | Owns (for this file's purposes) | Source |
 | --- | --- | --- |
-| **Release · RTE** | **Release flow** (the per-PR release check, RTE PASS/HOLD, tag + release after merge) and **release notes** (one per merge). **May merge** once Kai's QAS APPROVE and its own RTE PASS are on the exact head and Scott's concur is recorded wherever the constitution requires it; never its own change; never High/O2 or `constitution/` changes without Scott's recorded concur **Decided — Scott 2026-10-29 · merge rule** | [main] mission "PR shepherd — exact-head, evidence attached, queue-ready; never merges" (`roles/release-rte.md`); release-flow + release-notes ownership is [PENDING-CODIFY] |
+| **Release · RTE** | **Release flow** (the per-PR release check, RTE PASS/HOLD) and **release notes** (one per merge). Tag and GitHub Release publication is deferred to a future O2 PR (matching `roles/release-rte.md`). **May merge** once Kai's QAS APPROVE and its own RTE PASS are on the exact head and Scott's concur is recorded wherever the constitution requires it; never its own change; never High/O2 or `constitution/` changes without Scott's recorded concur **Decided — Scott 2026-10-29 · merge rule** | [main] `roles/release-rte.md`; release-flow + release-notes ownership is [PENDING-CODIFY] |
 | **Ops · CoS** | Morning roll of the live queue; the Monday weekly trace/flow aggregate (Ops-owned; not defined here); Scott concurrence queue; org chart; escalations | [main] "Escalation path; coordination" (`constitution/01-round-table.md`); the rest [PENDING-CODIFY] |
 | **Delivery · Lead** | Bolt execution; fix routing; CodeRabbit triage; evidence and decision-pack authoring; sends RTE the **ready for release check** packet | [main] owns spine (A) delivery: Bolts, CD health (M6), adapters, prove D-P1 (paraphrase of `roles/delivery-lead.md` mission); packet handoff [PENDING-CODIFY] |
 | **QAS** | Independence gate; "evidence sufficiency before RTE/HITL"; **never collapse** | [main] `roles/qas.md`, `constitution/02-safe-ai-dlc.md` |
@@ -74,11 +74,11 @@ Implement → Ready for QAS
           → ┌ RTE PASS (release check)                 ┐  in parallel
             └ Scott concur (HITL decision pack), where required ┘
           → Ready for HITL (both present)
-          → Merger = Kai, or Release · RTE, or Scott → MERGED (HITL only)
+          → Merger = Kai, or Release · RTE, or Scott → MERGED (HITL only)  [SUPERSEDED, see constitution/03 and #26]
             (RTE merge only with Kai's QAS APPROVE + its own PASS on the exact head
              + Scott's concur wherever required; never its own change;
              never High/O2 or constitution/ changes without Scott's recorded concur)
-          → RTE tags the merge commit + publishes the GitHub Release (= deploy)
+          → RTE tags the merge commit + publishes the GitHub Release (= deploy)  [SUPERSEDED, see constitution/03 and #26]
 ```
 
 - Canonical exit-state labels are verbatim from `constitution/05-evidence-and-linear.md`: "Ready for QAS", "Approved for RTE (or collapsed-RTE path annotated)", "Ready for HITL", "MERGED (HITL only)". Do not rename them here (`prove/wave-0-retro.md` §4: prove docs cannot redefine constitution/05 labels).
@@ -98,7 +98,7 @@ RTE checks each row against the **exact head SHA** in the packet. Any unchecked 
 | G1 | **QAS verdict** | Kai's independent review exists on the exact head with "APPROVE" in the body (posted as a GitHub **COMMENT** review — author-account limitation means APPROVE/REQUEST_CHANGES states are unavailable); QAS actor ≠ implementer, detectable in Linear | [main] `prove/wave-0-retro.md` §2, §4; `roles/qas.md`; `constitution/05-evidence-and-linear.md` "Independence detectable" |
 | G2 | **CodeRabbit** | Review complete on the exact head; every actionable finding triaged **Fix / Accept / Waive** with a one-line reason; Fix items verified fixed on head | CodeRabbit use [main] `prove/wave-0-retro.md` §3; Fix/Accept/Waive taxonomy [PENDING-CODIFY] |
 | G3 | **CI green** | `Structure & Docs Validation` (`.github/workflows/wave0-checks.yml`, workflow "Wave 0 Sanity Checks") green on exact head | [main] `.github/workflows/wave0-checks.yml`; `constitution/03-cd-and-hitl.md` "Wave 0 CI/CD path" |
-| G4 | **Decision pack + HITL record** | Decision pack has the constitution/03 minimum (Linear issue, exact-head SHA/PR, evidence IDs, QAS + SecEng status or Low-tier N/A with rationale, risk tier + O2 checklist, Ask). HITL record present: Scott's concur **or** the standing delegation link (today: Linear SAF-1 comment `54d37e98`), recorded per `hitl_delegate` if D1 Option A lands | [main] `constitution/03-cd-and-hitl.md` "Decision pack minimum"; `templates/delivery-bolt-brief.md`; `hitl_delegate` is **proposed only** (`prove/wave-0-retro.md` §6–7, D1 awaiting Scott) |
+| G4 | **Decision pack + HITL record** | Decision pack has the constitution/03 minimum (Linear issue, exact-head SHA/PR, evidence IDs, QAS + SecEng status or Low-tier N/A with rationale, risk tier + O2 checklist, Ask). HITL record present: Scott's recorded concur, **or** (Low/D1 only) the standing delegation link (Linear SAF-1 comment `54d37e98`, recorded per `hitl_delegate` if D1 Option A lands). High/O2/`constitution/` need Scott's recorded concur; the SAF-1 standing delegation does not cover them | [main] `constitution/03-cd-and-hitl.md` "Decision pack minimum"; `templates/delivery-bolt-brief.md`; `hitl_delegate` is **proposed only** (`prove/wave-0-retro.md` §6–7, D1 awaiting Scott) |
 | G5 | **Trace** | PR body has a `Requirements:` line listing REQ IDs, and the Linear issue key | [PENDING-CODIFY] — no `Requirements:` line or REQ ID scheme exists on `main` |
 | G6 | **Risk tier correct** | Tier matches the O2 list (pricing, refunds, auth, deploy CI / workflows, prod secrets, privacy-boundary crosses = **High** unless Scott/Kai downgrade **in writing**); SecEng actor present if Med/High/O2 | [main] `constitution/03-cd-and-hitl.md` "O2 high-risk default"; `templates/delivery-bolt-brief.md` header |
 | G7 | **Docs match structure** | `README.md` and repo structure match what docs describe (no stale paths, required paths present, relative links resolve) | Partly automated [main] by `wave0-checks.yml` (required paths + relative links); human check [PENDING-CODIFY] |
@@ -154,7 +154,7 @@ Nothing on `main` defines a tag scheme or release-notes format. [main] only: "Ta
   - Risk tier (+ O2 items / written downgrade link if any)
   - Linear issue key + REQ IDs (`Requirements:` line)
   - Links: QAS APPROVE review, RTE PASS comment, HITL record (Scott concur or `hitl_delegate` / standing-auth link), and any override reason
-- RTE publishes the GitHub Release within **≤5 min of merge**. **Decided — Kai 2026-10-29**
+- ~~RTE publishes the GitHub Release within **≤5 min of merge**. **Decided — Kai 2026-10-29**~~ [SUPERSEDED, see constitution/03 and #26]
 
 ## 8. Morning roll and stall rule
 
