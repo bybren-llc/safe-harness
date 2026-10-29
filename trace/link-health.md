@@ -53,8 +53,8 @@ These need only the checkout, so they can block without flake risk.
 | Check | Rule | Fails when |
 | --- | --- | --- |
 | B1 coverage | Extend the L1 scan to every tracked `*.md` (adds `trace/`, `requirements/`, `arch/`, `.github/`, any new `docs/`) | A relative target does not exist |
-| B2 anchors | For L2 links into in-repo markdown other than `spec.md` and `intent.md`, the fragment must match a heading slug (GitHub slug rules) or an explicit HTML anchor in the target | Fragment not found |
-| B3 REQ sources | Each REQ `source:` (`spec.md#…` / `intent.md#…`) must resolve via the weekly scan and the B3 trace-check follow-up, not B2. Those fragments never fail the Wave 0 / B2 PR check | Anchor missing |
+| B2 anchors | For L2 links into in-repo markdown, the fragment must match a heading slug (GitHub slug rules) or an explicit HTML anchor in the target. Non-REQ fragment links into `spec.md` and `intent.md` stay in B2 and can block a PR. REQ `source:` anchors on those files are excluded from B2 | Fragment not found |
+| B3 REQ sources | Each REQ `source:` (`spec.md#…` / `intent.md#…`) must resolve via the weekly scan and the B3 trace-check follow-up, not B2 | Anchor missing |
 | B4 REQ references | Every `REQ-[A-Z]{3}-[0-9]{3}` mentioned in tracked files exists in `trace/trace-map.yaml` or `requirements/REQ-*.yaml`, in any state | Unknown REQ ID |
 | B5 SAF map integrity | Once the map is frozen (§5), `trace/linear-saf-map.csv` must match its recorded checksum | Checksum mismatch |
 

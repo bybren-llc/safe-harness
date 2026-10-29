@@ -150,9 +150,10 @@ If critical issues arise during cutover:
 
 ## Success criteria
 
-Migration is complete when:
+The Phase 3 **Done when** list is authoritative. Migration is complete when those items are done, including:
 - [ ] All active safe-harness work tracked in GitHub Issues
 - [ ] `trace/linear-saf-map.csv` committed with complete mappings
+- [ ] Librarian's SAF-map freeze PR merged (row validation, `trace/linear-saf-map.sha256`, Frozen note in `schema.md`, and B5 or the equivalent manual check passing)
 - [ ] Team trained and using GitHub conventions
 - [ ] Trace-check CI operational and green
 - [ ] Linear archive accessible and evidence URLs resolve
