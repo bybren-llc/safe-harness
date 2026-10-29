@@ -108,16 +108,16 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 
 | Metric | Status | Evidence |
 |--------|--------|----------|
-| **M1** (Studio → Delivery handoff) | Unexercised | D-P2 (Studio brief, spine B) not yet executed; D-P1 was spine A only |
-| **M2** (Multi-runtime prove) | Partially exercised | Cursor CloudAgent (bc-2002b87a…) + Grok Bot (Kai QAS, runtime=grok-bot) verified; no Claude Code or other runtimes in Wave 0 |
-| **M3** (Bolt + UoWs + gates named & used) | Met | [D-P1 bolt brief](d-p1/bolt-brief.md) names bolt SAF-3, 4 UoWs, 8 gates; business-context HITL gate marked N/A at Low tier (named, not used per Low-tier exception); all other gates exercised |
-| **M4** (Seat map) | Met | Scott=HITL/POPM, Kai=GM/QAS/merge, Delivery·Lead=implement/PR owner; documented in [bolt brief](d-p1/bolt-brief.md#header) and exercised across PRs #2–#4 |
-| **M5** (Forge sync + CI/CD paths) | Partially exercised | GitHub forge sync verified (PRs #2–#4); thin CI (Structure & Docs Validation) green; full CD path (deploy gates, merge queues, rollback) deferred to M5 follow-on (Wave 1 proposal 6) |
-| **M6** (QAS → HITL → merge velocity) | Met | PR #3 cycle 71 min, PR #4 cycle 58 min (evidence → QAS → HITL decision pack → merge); thin CI green on all PRs; no train freeze; [PR #3](https://github.com/bybren-llc/safe-harness/pull/3) + [PR #4](https://github.com/bybren-llc/safe-harness/pull/4) timestamps verify |
+| **M1** (Multi-runtime template ships) | Unexercised | No template shipped; Wave 0 delivered constitution docs and prove baseline only. Pass signal: one template path works for Claude Code, Codex, Cursor, local, Grok Bot |
+| **M2** (tmux not required) | Unexercised | Not tested in Wave 0; no tmux ceremony documented but happy-path team run without Dark Factory/tmux not explicitly proven. Pass signal: happy-path team run without Dark Factory/tmux; tmux optional accelerator |
+| **M3** (SAFe + AI-DLC spine retained) | Met | [D-P1 bolt brief](d-p1/bolt-brief.md) names and teaches: Bolts (SAF-3), Units of Work (4 UoWs), business-context HITL gate (named at Low tier, N/A per Low-tier exception); exercised across PRs #2–#4. Pass signal: Bolts / Units of Work / Mob Elaboration / human business-context gate named and taught |
+| **M4** (Round Table seats map) | Met | Explicit map documented in [bolt brief](d-p1/bolt-brief.md#header) and exercised: Scott=HITL/POPM, Kai=GM/QAS/merge, Delivery·Lead=implement/PR owner; matches Round Table ↔ harness seats. Pass signal: explicit map Scott / Kai / Ops / Delivery / Studio / Librarian / Scout + SAW roles ↔ harness seats |
+| **M5** (Time-to-first owned ticket) | Partially exercised | SAF-3 and SAF-4 picked up and owned end-to-end by Delivery·Lead (CloudAgent delegate) under exit states; no target SLA defined or measured for "time-to-first". Pass signal: new seat picks up and owns a ticket end-to-end under exit states within target SLA |
+| **M6** (Deploy/release flow health) | Met | Spine A: evidence → independence (Kai QAS ≠ implementer) → HITL decision pack → CD green (Structure & Docs Validation) without freezing train. PR #3 cycle 71 min, PR #4 cycle 58 min; all [PRs #2](https://github.com/bybren-llc/safe-harness/pull/2)–[#4](https://github.com/bybren-llc/safe-harness/pull/4) merged continuously. Pass signal: Spine (A): evidence → independence → HITL decision pack → CD green without freezing the train |
 
 **Baseline (from [d-p1/bolt-brief.md](d-p1/bolt-brief.md#measure)):**
-- M1, M2, M5 explicitly noted as "not exercised in D-P1" or partial
-- M3, M4, M6 targeted and delivered
+- M1, M2 explicitly noted as "not exercised in D-P1"
+- M3, M4, M6 targeted and delivered; M5 partially exercised (no target SLA)
 
 ## 6. Wave 1 Proposals
 
@@ -125,13 +125,13 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 
 2. **HITL delegation evidence field:** Propose `hitl_delegate` evidence field for Low-tier delegated-HITL merge, so delegation is machine-readable in constitution/05 evidence schema instead of prose-only. Requires governed amendment (see D1 below). (Tied to: PR #4 governance finding, decision-pack D1.)
 
-3. **D-P2 Studio run:** Execute D-P2 (Studio brief, spine B → A handoff) to fully exercise M1 and the dual-spine model. (Tied to: M1 unexercised.)
+3. **Multi-runtime template:** Ship one template path that works for Claude Code, Codex, Cursor, local, and Grok Bot to fully exercise M1. (Tied to: M1 unexercised.)
 
-4. **Cycle-time target:** Establish a cycle-time SLO for Low-tier PRs (e.g. < 2 hours from open to merge for docs-only changes) to measure M6 velocity objectively. PR #3 (71 min) and PR #4 (58 min) set a baseline. (Tied to: M6 measurement.)
+4. **tmux-optional prove:** Document and prove happy-path team run without Dark Factory/tmux to exercise M2. (Tied to: M2 unexercised.)
 
-5. **Multi-runtime coverage:** Expand M2 by proving Claude Code adapter or another runtime alongside Cursor CloudAgent in Wave 1. (Tied to: M2 partially exercised.)
+5. **Time-to-first-ticket SLA:** Define target SLA for M5 and measure a new seat picking up and owning a ticket end-to-end under exit states. (Tied to: M5 partially exercised; no target SLA defined in Wave 0.)
 
-6. **Thin-CI → full-CI evolution:** Add workflow checks that Wave 0 deferred (CommonMark-aware link parser, recursive file discovery, fence-state tracking) as M5 follow-on work. (Tied to: M5 partially exercised, PR #2 CodeRabbit findings deferred as decision-pack.)
+6. **CI/CD hardening:** Add workflow checks that Wave 0 deferred (CommonMark-aware link parser, recursive file discovery, fence-state tracking) to strengthen M6 CD green signal. (Tied to: M6 met with thin CI; PR #2 CodeRabbit findings deferred as decision-pack.)
 
 ## 7. Decision Pack D1 for Scott (HITL)
 
