@@ -22,6 +22,7 @@
 #   gate:measure     - Gate: Measure
 #   o2:*             - O2 high-risk items
 #   exit:*           - Exit states
+#   link-rot         - Broken or stale link (Librarian scan)
 
 labels:
   # Work item types
@@ -124,3 +125,8 @@ labels:
   - name: "gate:measure"
     color: "5319e7"
     description: "Gate: Measure (outcomes vs. metrics)"
+
+  # Link health (Librarian · Signals)
+  - name: link-rot
+    color: "e99695"
+    description: "Broken or stale link found by the Librarian link-health scan"
