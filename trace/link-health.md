@@ -32,7 +32,7 @@ Principles (from the Librarian concur, Wave 1):
 | L5 | Other private GitHub targets | blob/tree URLs into `bybren-llc/*` at a branch or SHA, commit URLs | Weekly scan (GitHub connector) |
 | L6 | WTFB Atlas links, both directions | safe-harness → `bybren-llc/wtfb-atlas` paths / concept IDs; Atlas citations (`source_url`) → safe-harness | Weekly scan (GitHub connector) |
 | L7 | External URLs | vendor docs, papers, `https://` anything not covered above | Weekly scan (HTTP) |
-| L8 | Linear SAF references | `SAF-n`, `[SAF-n]`, `linear.app/cheddarfox/issue/SAF-n/...` | Weekly scan, resolved through [`linear-saf-map.csv`](linear-saf-map.csv) |
+| L8 | Linear SAF references | `SAF-n`, `[SAF-n]`, `linear.app/cheddarfox/issue/SAF-n/...` | Weekly scan, resolved through the active map (§5.2) |
 
 Out of scope: personal vault and NAS-private targets. They must never appear in this repo ([`../constitution/04-privacy-and-vaults.md`](../constitution/04-privacy-and-vaults.md), [`../CONTRIBUTING.md`](../CONTRIBUTING.md)). If the scan ever finds one, it is reported as a **privacy finding** to Kai and Scott directly, not as a public `link-rot` issue, and the issue body never quotes the target.
 
@@ -54,9 +54,9 @@ These need only the checkout, so they can block without flake risk.
 | --- | --- | --- |
 | B1 coverage | Extend the L1 scan to every tracked `*.md` (adds `trace/`, `requirements/`, `arch/`, `.github/`, any new `docs/`) | A relative target does not exist |
 | B2 anchors | For L2 links into in-repo markdown, the fragment must match a heading slug (GitHub slug rules) or an explicit HTML anchor in the target. Non-REQ fragment links into `spec.md` and `intent.md` stay in B2 and can block a PR. REQ `source:` anchors on those files are excluded from B2 | Fragment not found |
-| B3 REQ sources | Each REQ `source:` (`spec.md#…` / `intent.md#…`) must resolve via the weekly scan and the B3 trace-check follow-up, not B2 | Anchor missing |
+| B3 REQ sources | Each REQ `source:` (`spec.md#…` / `intent.md#…`) must resolve through both checks. The B3 trace-check follow-up is authoritative for blocking; the weekly scan is advisory only. Not B2 | Anchor missing |
 | B4 REQ references | Every `REQ-[A-Z]{3}-[0-9]{3}` mentioned in tracked files exists in `trace/trace-map.yaml` or `requirements/REQ-*.yaml`, in any state | Unknown REQ ID |
-| B5 SAF map integrity | Once the map is frozen (§5), `trace/linear-saf-map.csv` must match its recorded checksum | Checksum mismatch |
+| B5 SAF map integrity | Once the map is frozen (§5), the active map (§5.2) must match its recorded checksum | Checksum mismatch |
 
 B3 and B4 belong to the trace-check blocking-activation follow-up (constitution/05 "Additional validations") and should be built there, not duplicated. B1, B2 and B5 extend the Wave 0 link step. None of B1–B5 makes a network call.
 
@@ -78,15 +78,15 @@ Every target gets one verdict per scan:
 | `redirect-ok` | Resolves after redirects to an equivalent target; recorded so the source can be updated |
 | `moved` | Resolves, but to a different canonical location (renamed file, transferred issue/repo, permanent redirect to a different path) |
 | `stale` | Resolves, but is no longer the right target (closed-as-not-planned issue cited as live work, a branch URL whose path no longer exists at HEAD but does at an old SHA) |
-| `broken` | Does not resolve (404 / 410 / DNS failure / repeated 5xx / object missing) |
-| `transient` | Temporary: in-scan retries exhausted after `Retry-After` / rate-limit or a similar short-lived condition (see §4.2). Not rot. Does not increment failure state. Counted in the weekly summary. Opens no issue unless the same result repeats under the flake rule (§4.5). |
+| `broken` | Does not resolve (404 / 410 / DNS failure / repeated 5xx not classified as `transient` / object missing) |
+| `transient` | Temporary: in-scan retries exhausted after `Retry-After` / rate-limit or a similar short-lived condition (see §4.2). Not rot. Does not increment failure state and never opens a `link-rot` issue. Counted only in the weekly summary. |
 | `auth-unknown` | Private target the scanner cannot see; not counted as rot (see §4.4) |
 | `skipped` | Placeholder, example host, or excluded by rule |
 
 ### 4.2 HTTP (L7)
 
 - `HEAD` first; fall back to `GET` (range `bytes=0-0`) on 403/405/501 because many sites reject `HEAD`.
-- Timeout 15 s, 3 attempts per scan with backoff (2 s, 8 s, 30 s). Honour `Retry-After` on 429/503 up to 120 s; past that, verdict for this scan is `transient`.
+- Timeout 15 s, 3 attempts per scan with backoff (2 s, 8 s, 30 s). Honour `Retry-After` on 429/503 up to 120 s. If a 429/503 has `Retry-After` greater than 120 s, the verdict for this scan is `transient`, which takes precedence over the repeated-5xx `broken` rule.
 - Up to 10 redirects. `301`/`308` to a different path → `moved` (propose an update). `302`/`303`/`307` → `redirect-ok` unless the final page is a login or a generic home page (soft-404), which is `broken`.
 - Soft-404 heuristic: final status 200 but the page `<title>` or first heading matches "not found / page doesn't exist", or the final URL is the site root when the source was a deep link.
 - `4xx` other than 401/403/429 → `broken`. `401`/`403` → `auth-unknown` for known-private hosts (Linear, Confluence, GitHub private), else `broken` after the flake rule.
@@ -115,9 +115,9 @@ Resolved through the GitHub API (connector), never by unauthenticated HTTP, beca
 
 ### 4.5 Flake tolerance
 
-- A target is **failing** in a scan only if all in-scan retries fail.
-- A `transient` verdict does not increment failure state. It is counted in the weekly summary and opens no issue unless the same target is `transient` (or otherwise failing) in two consecutive scans under this rule.
-- A target is **reported** only after it is failing in **two consecutive scans**. To avoid a one-week delay, a first-time failure triggers a **confirm re-check about 24 hours later**; that re-check counts as the second scan.
+- A target is **failing** in a scan only if its verdict is `broken`, `moved`, or `stale` after all in-scan retries.
+- A `transient` verdict does not increment failure state and never opens a `link-rot` issue. It appears only in the weekly summary.
+- A target with a failing verdict (`broken` / `moved` / `stale`) is **reported** only after it is failing in **two consecutive scans**. To avoid a one-week delay, a first-time failure triggers a **confirm re-check about 24 hours later**; that re-check counts as the second scan.
 - Exception: `broken` verdicts on permanent references (SHA-pinned blobs, commits, deleted issues confirmed via API) are deterministic and may be reported after the confirm re-check even if the network was degraded.
 - A reported target that passes **two consecutive scans** is marked recovered (§6.1).
 - Scan state (last verdicts and failure counts) lives in the Librarian's box-local state file, not in the repo. Losing it only resets counters; it can never cause a false report.
@@ -138,7 +138,9 @@ When Delivery's cutover commit lands the complete map, the Librarian opens one P
 2. Adds a "Frozen" note to [`schema.md`](schema.md) under "Linear SAF to GitHub Issue mapping": read-only, no edits after freeze; corrections are a new superseding file reviewed by Scott, never an in-place edit.
 3. Validates every row before freezing: `saf_id` unique and `SAF-[0-9]+`; `linear_url` resolves (Linear connector); `github_issue` and `pr` exist via the API; `status` = `Archived`. Failures block the freeze PR itself, not other merges.
 
-After freeze, B5 (§3.1) enforces the checksum in CI. Any later change to the CSV is a CODEOWNED, human-reviewed PR that also updates the checksum file, so drift is always visible.
+After freeze, `trace/linear-saf-map.csv` is immutable. In-place edits are not permitted. Corrections are a new superseding file `trace/linear-saf-map.vN.csv` (N = 1, 2, 3, …) with a matching `trace/linear-saf-map.vN.sha256`, CODEOWNED and reviewed by Scott.
+
+**Active map (deterministic):** the `trace/linear-saf-map.vN.csv` with the highest N, if any exist; otherwise `trace/linear-saf-map.csv`. B5 and the weekly scan checksum and resolve against that file only.
 
 ### 5.3 Resolving SAF references
 
@@ -255,7 +257,7 @@ evidence:
 **Inputs**
 
 - `bybren-llc/safe-harness` at `main` HEAD (recursive tree + file contents via the GitHub connector), open issues and PRs
-- `trace/trace-map.yaml`, `requirements/REQ-*.yaml`, `arch/components.yaml`, `trace/linear-saf-map.csv` (+ `.sha256` once frozen)
+- `trace/trace-map.yaml`, `requirements/REQ-*.yaml`, `arch/components.yaml`, the active SAF map per §5.2 (+ its `.sha256` once frozen)
 - `bybren-llc/wtfb-atlas` at `main` HEAD (tree, manifest, files citing safe-harness)
 - Box-local scan state from the previous run
 - Open issues titled `[link-rot]` (for dedupe)
@@ -268,7 +270,7 @@ evidence:
 4. L4–L6: resolve through the GitHub connector per §4.3.
 5. L7: HTTP per §4.2.
 6. L8: resolve SAF references through the map (§5.3); `pending-map` while unfrozen.
-7. If frozen: recompute the CSV checksum and compare.
+7. If frozen: select the active map per §5.2, recompute its checksum, and compare.
 8. Apply the flake rule (§4.5); schedule the confirm re-check for first-time failures.
 9. For targets failing twice: dedupe by fingerprint, then open or update `link-rot` issues (cap 10).
 10. For recovered targets: comment "recovered".
