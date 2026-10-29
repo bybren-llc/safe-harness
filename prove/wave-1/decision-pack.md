@@ -19,7 +19,7 @@ Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub b
 1. constitution/05 amendment (repo as SoR, human/agent ownership split, trace enforcement)
 2. constitution/03 amendment (GitHub conventions replace Linear)
 3. Requirements tracing framework (REQ-<CMP>-NNN, trace map, trace-check CI)
-4. CODEOWNERS for human-owned files (intent, spec, constitution, requirements, trace)
+4. CODEOWNERS: intent/spec human-owned (Scott only); requirements, trace and constitution are agent-authored behind a @cheddarfox review gate
 5. GitHub Issue templates and label scheme
 6. Migration plan (Linear → GitHub)
 
@@ -33,13 +33,13 @@ Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub b
 
 | Seat | Concur Status | Conditions (verbatim) | Link/Timestamp | Satisfied in PR |
 | --- | --- | --- | --- | --- |
-| **Studio** | Verbatim pending | (relayed via Kai, 2026-10-29 ~9:49 AM ET) | N/A | TBD |
-| **Scout** | Verbatim pending | (relayed via Kai, 2026-10-29 ~9:49 AM ET) | N/A | TBD |
-| **Librarian** | Verbatim pending | (relayed via Kai, 2026-10-29 ~9:49 AM ET) | N/A | TBD |
-| **Ops** | Verbatim pending | (relayed via Kai, 2026-10-29 ~9:49 AM ET) | N/A | TBD |
-| **Delivery** | Verbatim pending | (relayed via Kai, 2026-10-29 ~9:49 AM ET) | N/A | TBD |
+| **Studio** | Concurred (relayed via Kai, 2026-10-29 ~9:49 AM ET) | Verbatim pending from Kai | N/A | TBD |
+| **Scout** | Concurred (relayed via Kai, 2026-10-29 ~9:49 AM ET) | Verbatim pending from Kai | N/A | TBD |
+| **Librarian** | Concurred (relayed via Kai, 2026-10-29 ~9:49 AM ET) | Verbatim pending from Kai | N/A | TBD |
+| **Ops** | Concurred (relayed via Kai, 2026-10-29 ~9:49 AM ET) | Verbatim pending from Kai | N/A | TBD |
+| **Delivery** | Concurred (relayed via Kai, 2026-10-29 ~9:49 AM ET) | Delivery's conditions as sent to Kai, ~9:49 AM ET (summary):<br>(1) Scott concurs on the pack in his own words before the constitution merge<br>(2) CODEOWNERS on intent/spec<br>(3) trace-check bootstrap rule, warn-only until the first spec with REQs<br>(4) independence rules unchanged, and HITL delegation stays Low tier only<br>(5) migration archives Linear, doesn't delete it, and keeps SAF URLs resolvable via linear-saf-map.csv<br>(6) the O2 downgrade is Kai's or Scott's written call | ~9:49 AM ET | (1) decision-pack.md:697-709 (Ask section)<br>(2) .github/CODEOWNERS:7-9<br>(3) .github/workflows/trace-check.yml:39-40, constitution/05:127-129<br>(4) constitution/05:97-108 (D1), constitution/03:61-70 (independence)<br>(5) prove/wave-1/migration-plan.md:105-109, trace/linear-saf-map.csv:1<br>(6) decision-pack.md:571-574, :659-662 |
 
-**Team concur conditions not yet sourced:** Waiting for each seat's conditions to be provided with verifiable links or timestamps. Once received, this table will be updated with verbatim text and file:line references showing where each condition is satisfied in this PR.
+**Verbatim conditions pending:** Studio, Scout, Librarian, and Ops conditions to be provided by Kai with verifiable source text.
 
 ---
 
@@ -79,7 +79,7 @@ All constitution changes are marked **"Proposed, pending Scott concurrence"** an
 
 **Proposal:**
 
-**Humans own and accept only design (intent + spec):**
+**Humans (Scott only) own and accept only intent.md and spec.md:**
 - `intent.md`, `spec.md` — Scott owns and accepts; agents may propose edits but **never merge**
 
 **Agents own everything else end-to-end:**
@@ -301,7 +301,7 @@ hitl_delegate:
 
 ### Decision 10: Templates (intent, spec, trace schema, M1–M6 pointer)
 
-**Context:** Provide structured templates for human-owned design docs and trace map.
+**Context:** Provide structured templates for intent.md, spec.md (human-owned: Scott only), and trace map (agent-authored).
 
 **Proposal:** Create:
 - intent.md (with research appendix: fit band, license, footprint, sources, UNKNOWN markers)
@@ -611,7 +611,7 @@ Expected requirements:
 - trace/trace-map.yaml (stub)
 - trace/linear-saf-map.csv (header-only stub)
 
-**Human-owned design templates:**
+**Human-owned templates (Scott only):**
 - intent.md (skeleton with personal-boundary rule, research appendix)
 - spec.md (skeleton with personal-boundary rule, M1–M6 pointer)
 
@@ -668,7 +668,7 @@ If critical issues arise post-merge:
 
 **Scott:** Please review and concur on:
 1. Repository as sole source of truth (Linear → GitHub)
-2. Human vs. agent ownership split (Scott owns design only: intent + spec; agents own and author everything else with CODEOWNERS review gates)
+2. Human vs. agent ownership split (Scott only owns and accepts intent.md and spec.md; agents own and author everything else with CODEOWNERS review gates)
 3. Requirements tracing framework (REQ-<CMP>-NNN, trace states, trace-check CI)
 4. D1 delegated-HITL at Low tier
 5. All constitution/03 and constitution/05 amendments
