@@ -13,9 +13,9 @@ Repo: `bybren-llc/safe-harness` (O1 locked).
 | 3 | Bolt brief from `../templates/delivery-bolt-brief.md` filled — [`d-p1/bolt-brief.md`](d-p1/bolt-brief.md) | ☑ |
 | 4 | Linear issue: **human assignee** + optional agent delegate (no Linear Agents) — SAF-3 | ☑ |
 | 5 | Low or Med tier preferred for first prove; avoid O2 unless intentional — Low | ☑ |
-| 6 | Business-context HITL **before construct** (if Med/High/O2) → Implement → QAS (separate) → SecEng (if required) → RTE/collapse → HITL decision pack | ☐ |
-| 7 | Exact-head evidence + portable evidence_id posted | ☐ |
-| 8 | Report vs M1–M6 (at least M3, M4, M6 touched) | ☐ |
+| 6 | Business-context HITL **before construct** (if Med/High/O2) → Implement → QAS (separate) → SecEng (if required) → RTE/collapse → HITL decision pack | ☑ — Low: business-context HITL N/A; QAS 2 rounds; RTE collapsed; MERGED by Kai (standing auth) — [`d-p1/bolt-brief.md#gates`](d-p1/bolt-brief.md#gates) |
+| 7 | Exact-head evidence + portable evidence_id posted | ☑ — see [`d-p1/bolt-brief.md`](d-p1/bolt-brief.md) Evidence |
+| 8 | Report vs M1–M6 (at least M3, M4, M6 touched) | ☑ — M3, M4, M6 in bolt brief Measure |
 
 **Note:** Wave 0 Claude Code and Cursor adapters are documentation stubs only, not runnable harnesses yet. Runnable integration comes after D-P1/D-P2 prove.
 
