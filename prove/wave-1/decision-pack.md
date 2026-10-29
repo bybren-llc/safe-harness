@@ -7,7 +7,7 @@
 
 **Owner:** Kai (coordinator)  
 **Delivery:** Cursor CloudAgent  
-**Tier:** Medium (O2: deploy CI / workflows touched)
+**Tier:** Proposed Medium (O2: deploy CI / workflows touched; downgrade decision pending Kai at QAS)
 
 ---
 
@@ -62,20 +62,27 @@ All constitution changes are marked **"Proposed, pending Scott concurrence"** an
 **Context:** Define clear boundaries for human-owned design vs. agent-owned execution.
 
 **Proposal:**
-| Artifact | Owner | Agent role |
-| --- | --- | --- |
-| intent.md, spec.md | Humans (Scott / Kai) | May propose; **never merge** |
-| constitution/ | Humans (Scott / Kai) | May propose; **never merge** |
-| requirements/ registry | Humans | May propose; **never merge** |
-| Everything else | Agents | Own end-to-end |
 
-**CODEOWNERS enforcement:** Requires @cheddarfox review for:
-- intent.md, intent/, spec.md
-- requirements/ (any REQ-ID add/change/removal)
-- constitution/
-- trace/
+**Humans own and accept only design (intent + spec):**
+- `intent.md`, `spec.md` — Humans (Scott / Kai) own and accept; agents may propose edits but **never merge**
+
+**Agents own everything else end-to-end:**
+- Plan, GitHub Issues, code, tests, PRs, evidence
+- **Requirements registry** (`requirements/`) — agents author; human-reviewed PR required
+- **Trace map** (`trace/`) — agents author; human-reviewed PR required
+- **Constitution changes** — agents author; human-reviewed PR required
+
+**CODEOWNERS = review gate, not ownership:**
+
+`.github/CODEOWNERS` requires @cheddarfox review for:
+- `intent.md`, `intent/`, `spec.md` (human-owned design)
+- `requirements/` (agent-authored, human review required)
+- `constitution/` (agent-authored, human review required)
+- `trace/` (agent-authored, human review required)
 
 **Studio write path:** Studio drafts intent.md + spec.md → Delivery commits in PR → Scott approves via CODEOWNERS.
+
+**Distinction:** Humans own design (accept/reject intent and spec content). Agents own execution (author requirements, trace, constitution changes, code, tests), but CODEOWNERS enforces human review gates before merge.
 
 **Risks:**
 - Potential bottleneck on human reviews
@@ -453,6 +460,34 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 
 ---
 
+### Decision 18: Rename constitution/05-evidence-and-linear.md (follow-up)
+
+**Context:** constitution/05 filename still references "linear" despite Wave 1 moving to GitHub-only. Renaming in this PR would break existing links in Wave 0 documentation.
+
+**Proposal:** Propose rename as a follow-up PR after Wave 1 lands:
+- Current: `constitution/05-evidence-and-linear.md`
+- Proposed: `constitution/05-evidence-and-trace.md` or `constitution/05-source-of-truth.md`
+
+**Why not in Wave 1:**
+- Breaking change for existing links in prove/d-p1/bolt-brief.md and other Wave 0 docs
+- Filename change is cosmetic; content update is substantive
+- Cleaner to land content change first, then rename
+
+**Recommendation:** Approve the follow-up rename principle; exact new filename TBD (Kai decides).
+
+**Risks:**
+- Filename remains misaligned with content temporarily
+- Link rot if rename not coordinated
+
+**Mitigations:**
+- Follow-up PR updates all internal links atomically
+- Git preserves file history across rename
+- Search for "05-evidence-and-linear" confirms all references updated
+
+**Status:** Awaiting Scott concurrence (team concur: all five seats)
+
+---
+
 ## O2 high-risk checklist (constitution/03)
 
 This PR touches **Deploy CI / workflows** (O2 item):
@@ -463,9 +498,9 @@ This PR touches **Deploy CI / workflows** (O2 item):
 - [x] Prod secrets — N/A
 - [x] Privacy-boundary crosses — N/A (personal-boundary rule added as safeguard)
 
-**Downgrade rationale (Kai's written decision at QAS):**
+**Downgrade rationale (proposed by Delivery; downgrade decision pending Kai in writing at QAS):**
 
-O2 item "Deploy CI / workflows" defaults to High tier. **Downgrade to Medium** is justified:
+O2 item "Deploy CI / workflows" defaults to High tier. **Proposed downgrade to Medium** is justified by:
 
 1. **Read-only CI**: trace-check has `permissions: contents: read` only; no write, deploy, or secret access
 2. **Bootstrap rule**: Runs warn-only until first spec.md lands; cannot block this PR's own merge
@@ -473,7 +508,9 @@ O2 item "Deploy CI / workflows" defaults to High tier. **Downgrade to Medium** i
 4. **Rollback path**: Revert PR or disable workflow via GitHub UI if issues arise
 5. **Independent QAS**: Kai reviews as separate actor (≠ implementer)
 
-**Kai's decision:** Medium tier acceptable. One human decision pack (this document) + QAS independence sufficient. SecEng N/A (no secrets, no deploy mutations, no auth changes).
+**Delivery's recommendation:** Medium tier acceptable. One human decision pack (this document) + QAS independence sufficient. SecEng N/A (no secrets, no deploy mutations, no auth changes).
+
+**Kai's downgrade decision:** Pending at QAS (Kai decides in writing whether to accept proposed Medium tier or require High tier with two humans).
 
 ---
 
@@ -481,8 +518,8 @@ O2 item "Deploy CI / workflows" defaults to High tier. **Downgrade to Medium** i
 
 | Role | Actor | Status | Rationale |
 | --- | --- | --- | --- |
-| **QAS** | Kai | TBD | Independent review (≠ implementer) at exact-head |
-| **SecEng** | N/A | N/A | Medium tier; no O2 secrets/auth/privacy mutations; read-only CI; downgrade rationale above |
+| **QAS** | Kai | TBD | Independent review (≠ implementer) at exact-head; decides O2 downgrade (proposed Medium, pending Kai decision) |
+| **SecEng** | N/A | N/A | Proposed Medium tier; no O2 secrets/auth/privacy mutations; read-only CI; downgrade rationale above (if Kai approves Medium) |
 
 ---
 
@@ -578,18 +615,20 @@ If critical issues arise post-merge:
 
 **Scott:** Please review and concur on:
 1. Repository as sole source of truth (Linear → GitHub)
-2. Human vs. agent ownership split (CODEOWNERS for intent, spec, constitution, requirements, trace)
+2. Human vs. agent ownership split (humans own design only: intent + spec; agents own and author everything else with CODEOWNERS review gates)
 3. Requirements tracing framework (REQ-<CMP>-NNN, trace states, trace-check CI)
 4. D1 delegated-HITL at Low tier
 5. All constitution/03 and constitution/05 amendments
-6. O2 downgrade rationale (deploy CI: High → Medium)
+6. O2 downgrade proposal (deploy CI: proposed Medium, pending Kai decision at QAS)
 7. Migration plan scope and timing (cutover date TBD)
+8. Follow-up rename of constitution/05-evidence-and-linear.md (Decision 18)
 
 **Kai:** After Scott concurs:
 1. QAS independence review at exact-head
-2. Merge decision (HITL)
-3. Set Linear cutover date
-4. Coordinate team training on GitHub conventions
+2. O2 downgrade decision in writing (proposed Medium tier; Kai accepts or requires High)
+3. Merge decision (HITL)
+4. Set Linear cutover date
+5. Coordinate team training on GitHub conventions
 
 ---
 

@@ -20,12 +20,13 @@ No Gitflow. Trunk-based development with feature flags for incomplete work.
 
 ### GitHub conventions (Wave 1)
 
-**Branch naming:** `<issue#>-slug` (replaces `SAF-N-slug` Linear convention)
+**Branch naming:** `<issue#>-slug` (e.g., `42-add-trace-check`) — replaces `SAF-N-slug` Linear convention
 
 **Commit conventions:**
-- Prefix: `[wave-1]` (no Linear SAF tags; Linear is retired for safe-harness)
+- Subject: Reference the issue number (e.g., `Add trace-check CI (#42)`) or natural subject with issue context
 - Trailer: `Refs #N` — references GitHub Issue
 - Trailer: `Req: REQ-<CMP>-NNN` — satisfies requirement (trace linkage)
+- No Linear SAF tags (Linear is retired for safe-harness)
 
 **PR body:** Include `Requirements: REQ-<CMP>-NNN, REQ-<CMP>-MMM` line listing all requirements addressed.
 
@@ -39,9 +40,9 @@ No Gitflow. Trunk-based development with feature flags for incomplete work.
 | **Med** | One human decision pack | Approve / change-request on that unit only |
 | **High** | Two humans | Two distinct humans; agent ≠ human |
 
-## O2 high-risk default (always High unless Kai downgrades in writing at QAS)
+## O2 high-risk default (always High unless downgraded in writing at QAS)
 
-**Downgrade authority:** Kai may downgrade O2 items from High to Med/Low in writing at QAS, with rationale recorded in the decision pack or QAS verdict.
+**Downgrade authority:** Kai may downgrade O2 items from High to Med/Low in writing at QAS, with rationale recorded in the decision pack or QAS verdict. Delivery may propose a downgrade rationale in the decision pack; Kai decides at QAS.
 
 O2 items (default High):
 - Pricing

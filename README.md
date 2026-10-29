@@ -68,7 +68,7 @@ Both share Round Table principles, exit states, and ownership. They differ in ga
 - **Med**: One human decision pack
 - **High**: Two distinct humans; agent ≠ human
 
-**O2 high-risk items default to High** unless Kai downgrades in writing at QAS: pricing, refunds, auth, deploy CI/workflows, prod secrets, privacy-boundary crosses.
+**O2 high-risk items default to High** unless downgraded in writing at QAS. Delivery may propose a downgrade rationale; Kai decides at QAS: pricing, refunds, auth, deploy CI/workflows, prod secrets, privacy-boundary crosses.
 
 ### Exit states
 
@@ -104,15 +104,16 @@ Each evidence row includes:
 
 ## Human vs. agent ownership (Wave 1)
 
-| Artifact | Owner | Agent role |
-| --- | --- | --- |
-| **intent.md, spec.md** | Humans (Scott / Kai) | May propose; **never merge** |
-| **constitution/** | Humans (Scott / Kai) | May propose; **never merge** |
-| **requirements/** | Humans (REQ registry) | May propose; **never merge** |
-| **trace/** | Humans (trace map) | May propose; **never merge** |
-| **Everything else** | Agents (end-to-end) | Plan, issues, code, tests, PRs, evidence |
+**Humans own and accept only design:**
+- `intent.md`, `spec.md` — Humans (Scott / Kai) own and accept; agents may propose but **never merge**
 
-**CODEOWNERS:** `.github/CODEOWNERS` enforces @cheddarfox review for human-owned files.
+**Agents own everything else end-to-end:**
+- Plan, GitHub Issues, code, tests, PRs, evidence
+- **Requirements registry** (`requirements/`) — agents author; human-reviewed PR required
+- **Trace map** (`trace/`) — agents author; human-reviewed PR required
+- **Constitution changes** — agents author; human-reviewed PR required
+
+**CODEOWNERS = review gate, not ownership:** `.github/CODEOWNERS` enforces @cheddarfox review for intent, spec, constitution, requirements, and trace. Agents author requirements, trace, and constitution changes; humans review and approve before merge.
 
 ---
 
@@ -121,9 +122,10 @@ Each evidence row includes:
 **Branch naming:** `<issue#>-slug` (e.g., `42-add-trace-check`)
 
 **Commit conventions:**
-- Prefix: `[wave-1]` (no Linear SAF tags; Linear retired for safe-harness)
+- Subject: Reference the issue number (e.g., `Add trace-check CI (#42)`) or natural subject
 - Trailer: `Refs #N` — references GitHub Issue
 - Trailer: `Req: REQ-<CMP>-NNN` — satisfies requirement
+- No Linear SAF tags (Linear retired for safe-harness)
 
 **PR body:** `Requirements: REQ-<CMP>-NNN, ...` line
 

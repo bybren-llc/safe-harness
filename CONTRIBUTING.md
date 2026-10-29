@@ -30,9 +30,11 @@ Agents and humans: when referencing NAS, personal vault, or private context, **d
 The following files require @cheddarfox review and approval before merge:
 - `intent.md` and `intent/` — human-owned design intent
 - `spec.md` — human-owned specification
-- `requirements/` — REQ-<CMP>-NNN registry
-- `constitution/` — governance framework
-- `trace/` — trace map and state tracking
+- `requirements/` — agent-authored REQ-<CMP>-NNN registry (human review gate)
+- `constitution/` — agent-authored governance changes (human review gate)
+- `trace/` — agent-authored trace map (human review gate)
+
+**Ownership distinction:** Humans own and accept only design (intent.md + spec.md). Agents own and author everything else (plan, issues, code, tests, PRs, evidence, requirements, trace, constitution changes). CODEOWNERS enforces human review gates before merge.
 
 Agents may open PRs touching these files but **must not merge them**. Use the `needs-scott-concur` label on PRs awaiting Scott's review.
 
@@ -43,9 +45,10 @@ Agents may open PRs touching these files but **must not merge them**. Use the `n
 1. **Issues**: Use GitHub Issues with structured templates (`.github/ISSUE_TEMPLATE/`)
 2. **Branches**: `<issue#>-slug` (e.g., `42-add-trace-check`)
 3. **Commits**: 
-   - Prefix: `[wave-1]` (no Linear SAF tags; Linear is retired for this repo)
+   - Subject: Reference the issue number (e.g., `Add trace-check CI (#42)`) or natural subject
    - Trailer: `Refs #N` (references issue)
    - Trailer: `Req: REQ-<CMP>-NNN` (satisfies requirement)
+   - No Linear SAF tags (Linear is retired for this repo)
 4. **PRs**: Include `Requirements: REQ-<CMP>-NNN, REQ-<CMP>-MMM` line in body
 5. **Review**: Follow constitution/03 (risk tiers, QAS independence, HITL gates)
 
@@ -55,7 +58,7 @@ Agents may open PRs touching these files but **must not merge them**. Use the `n
 
 See constitution/03 for Low / Med / High risk tiers and O2 high-risk defaults.
 
-**O2 items default to High** unless Kai downgrades in writing at QAS:
+**O2 items default to High** unless downgraded in writing at QAS. Delivery may propose a downgrade rationale in the decision pack; Kai decides at QAS:
 - Pricing, refunds, auth
 - Deploy CI / workflows
 - Prod secrets
@@ -78,13 +81,16 @@ Portable evidence (constitution/05) must include:
 
 ## Human vs. agent ownership (constitution/05)
 
-| Artifact | Owner | Agent role |
-| --- | --- | --- |
-| intent.md, spec.md | Humans | May propose; **never merge** |
-| constitution/ | Humans | May propose; **never merge** |
-| Everything else | Agents | Own end-to-end |
+**Humans own and accept only design:**
+- `intent.md`, `spec.md` — Humans (Scott / Kai) own and accept; agents may propose but **never merge**
 
-Agents own: plan, GitHub Issues, code, tests, PRs, evidence.
+**Agents own everything else end-to-end:**
+- Plan, GitHub Issues, code, tests, PRs, evidence
+- Requirements registry (`requirements/`) — agents author; human-reviewed PR required (CODEOWNERS)
+- Trace map (`trace/`) — agents author; human-reviewed PR required (CODEOWNERS)
+- Constitution changes — agents author; human-reviewed PR required (CODEOWNERS)
+
+**CODEOWNERS = review gate, not ownership.** Agents author requirements, trace, and constitution changes; humans review and approve before merge.
 
 ---
 

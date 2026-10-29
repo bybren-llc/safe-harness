@@ -14,24 +14,27 @@
 
 ### Human vs. agent ownership split
 
-| Artifact | Owner | Agent role |
-| --- | --- | --- |
-| **intent.md** | Humans (Scott / Kai) | May propose edits; **never merge** |
-| **spec.md** | Humans (Scott / Kai) | May propose edits; **never merge** |
-| **constitution/** | Humans (Scott / Kai) | May propose edits; **never merge** |
-| **requirements/** | Humans (REQ registry) | May propose; **never merge** (any REQ add/change/removal needs human review) |
-| **trace/** | Humans (trace map) | May propose; **never merge** |
-| **Everything else** | Agents (end-to-end) | Plan, issues, code, tests, PRs, evidence |
+**Humans own and accept only design (intent + spec):**
+- `intent.md` — Humans (Scott / Kai) own and accept; agents may propose edits but **never merge**
+- `spec.md` — Humans (Scott / Kai) own and accept; agents may propose edits but **never merge**
 
-Agents own: plan, GitHub Issues, code, tests, PRs, and evidence collection. Humans own design (intent + spec), governance (constitution), and requirements registry.
+**Agents own everything else end-to-end:**
+- Plan, GitHub Issues, code, tests, PRs, evidence
+- **Requirements registry** (`requirements/`) — agents author; human-reviewed PR required
+- **Trace map** (`trace/`) — agents author; human-reviewed PR required
+- **Constitution changes** — agents author; human-reviewed PR required
 
-**CODEOWNERS enforcement:** `.github/CODEOWNERS` requires @cheddarfox review for:
-- `intent.md`, `intent/`, `spec.md`
-- `requirements/` (any REQ-ID add/change/removal)
-- `constitution/`
-- `trace/` (trace map)
+**CODEOWNERS review gates** (not ownership):
+
+`.github/CODEOWNERS` requires @cheddarfox review for:
+- `intent.md`, `intent/`, `spec.md` (human-owned design)
+- `requirements/` (agent-authored, any REQ-ID add/change/removal needs human review)
+- `constitution/` (agent-authored constitution changes need human review)
+- `trace/` (agent-authored trace map needs human review)
 
 Agents may open PRs touching these files but must not merge them. Use the `needs-scott-concur` label on PRs awaiting Scott's review.
+
+**Distinction:** Humans own design (accept/reject intent and spec content). Agents own execution (author requirements, trace, constitution changes, code, tests), but CODEOWNERS enforces human review gates before merge.
 
 ### Studio's write path
 
