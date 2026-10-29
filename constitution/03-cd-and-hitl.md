@@ -162,6 +162,6 @@ Thin skeleton → full path is intentional scaffolding, not final state.
 - Exact-head SHA / PR
 - Evidence IDs (portable — see `05-evidence-and-linear.md`)
 - Requirements addressed (REQ-<CMP>-NNN list)
-- QAS + SecEng status (or explicit N/A with rationale for low tier only)
+- QAS + SecEng status (Low: explicit N/A with rationale allowed; High/O2: PENDING: independent SecEng pass — never N/A)
 - Risk tier + O2 checklist (note if Kai downgraded any O2 item)
 - Ask: approve / change-request / escalate

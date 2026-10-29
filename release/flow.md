@@ -1,6 +1,7 @@
 # Release flow (continuous deployment)
 
-**Status:** DRAFT — not on `main`. **Path: `release/flow.md`** — Decided — Kai 2026-10-29.
+**Status:** PROPOSED — needs Scott concur. Non-binding; constitution/03, constitution/05 and roles/release-rte.md govern wherever this file differs.
+**Path:** `release/flow.md`
 **Scope:** spine (A) delivery in `bybren-llc/safe-harness`.
 **Owner:** RTE (once codified) · **Reader of record:** Ops · CoS (morning roll = read of the live queue)
 **Time zone:** America/New_York (all times ET)
@@ -14,6 +15,8 @@ Label key used in this file:
 - **`PROPOSED — needs Kai/Scott concur`** — not specified anywhere in the repo and not yet decided; a default suggested here.
 
 > Precedence: if anything here conflicts with `constitution/`, the constitution wins — **except** the merge rule marked **Decided — Scott 2026-10-29 · merge rule**, which Scott (HITL / POPM, "Final merge authority", `constitution/01-round-table.md`) has decided and which takes effect when the follow-up amendment merges (§9). This file does not otherwise amend policy; it operationalizes it.
+
+**Superseded sections:** §3, §5, §7, §8 and §9 are superseded by this amendment (`constitution/03`, `constitution/05`, `roles/release-rte.md`) wherever they differ. They are not reconciled in this PR. A follow-up issue will cover HITL-only MERGED, collapsible-at-Low, tag/Release publication, and Linear as the record.
 
 ---
 
@@ -82,7 +85,7 @@ Implement → Ready for QAS
 - "Where required" for Scott's concur: Med = one human decision pack; High = two distinct humans; Low = auto when green, today under Scott's standing Wave 0 merge authorization (Linear SAF-1 comment `54d37e98`, `prove/wave-0-retro.md` §7). [main] `constitution/03-cd-and-hitl.md` risk tiers.
 - **Merger** **Decided — Scott 2026-10-29 · merge rule**: Kai, Release · RTE, or Scott — no other agent. RTE merge conditions: (a) Kai's QAS APPROVE on the exact head, (b) RTE's own PASS on that same head, (c) Scott's concur recorded wherever the constitution requires it, (d) RTE did not author the change, (e) High/O2 and any `constitution/` change only with Scott's recorded concur ([main] grounding for (e): constitution updates require HITL concur — `constitution/06-empiricism.md` step 6, `roles/model-stack.md` stop rules). Merge protection on `main` is not yet configured — branch protection is **pending Scott** (§9).
 - [main] "Humans merge; agents never self-merge" and RTE "never merges" (`constitution/03-cd-and-hitl.md`, `roles/release-rte.md`). Kai "does not merge own Delivery PRs as HITL" (`roles/kai-gm-architect.md`). These [main] lines still conflict with the merge rule above; the follow-up amendment must update them — see §9.
-- **High tier:** "Two distinct humans; agent ≠ human" (`constitution/03-cd-and-hitl.md`) — RTE PASS does not count as one of the two. **Open question for Scott** (§9): how "two distinct humans" is met. **Draft ruling — Kai 2026-10-29 (needs Scott):** an agent merge never counts as a human approval; Scott's recorded concur meets the human requirement at High/O2.
+- **High tier:** "Two distinct humans; agent ≠ human" (`constitution/03-cd-and-hitl.md`) — RTE PASS does not count as one of the two. **Open question for Scott** (§9): how "two distinct humans" is met.
 - Tagging is not merging: RTE creates the tag/Release on the merge commit after `MERGED (HITL only)`; a tag never substitutes for any gate. Tagging/release automation counts as **deploy CI / workflows → O2 → High** (`constitution/03-cd-and-hitl.md` O2 list). **Decided — Kai 2026-10-29**
 - Note: `constitution/01-round-table.md` writes the flow sequentially (`… → RTE/collapsed PR → Ready for HITL → HITL MERGED`). Running RTE PASS **in parallel** with Scott's concur must be stated in the `constitution/03` amendment so it does not read as a deviation.
 
@@ -122,7 +125,7 @@ Targets are RTE's own clock. Human steps (Scott's concur, second human at High) 
 | --- | --- | --- |
 | **Low** (incl. HITL-delegated) | Kai, Release · RTE, or Scott | Kai's QAS APPROVE + RTE PASS on exact head; HITL record = standing delegation link (Linear SAF-1 comment `54d37e98`) or `hitl_delegate` if D1 lands; RTE not the author |
 | **Med** | Kai, Release · RTE, or Scott | Kai's QAS APPROVE + RTE PASS on exact head + Scott's decision-pack concur recorded; RTE not the author |
-| **High** | Kai, Release · RTE, or Scott | As Med, plus **Scott's recorded concur** (required). How the two-distinct-humans gate is met is open for Scott; Kai's draft ruling: an agent merge never counts as a human approval, and Scott's recorded concur meets the human requirement |
+| **High** | Kai, Release · RTE, or Scott | As Med, plus **Scott's recorded concur** (required). How the two-distinct-humans gate is met is open for Scott |
 | **O2** | Kai, Release · RTE, or Scott | As High (O2 = High unless Scott/Kai downgrade in writing) |
 
 Any PR touching `constitution/` needs Scott's recorded concur before an RTE merge, at any tier **Decided — Scott 2026-10-29 · merge rule**.
@@ -198,7 +201,6 @@ The weekly look back is **Ops · CoS's Monday aggregate** (Ops-owned; this file 
 > - `constitution/01-round-table.md` and `constitution/02-safe-ai-dlc.md`: RTE "never merges".
 >
 > **Open question for Scott — High tier "two distinct humans":** how is it met when the merger may be an agent?
-> **Draft ruling — Kai 2026-10-29 (needs Scott):** an agent merge never counts as a human approval; Scott's recorded concur meets the human requirement at High/O2.
 > The amendment should record Scott's answer and reword the [main] lines above to match.
 
 > **Branch protection on `main` — pending Scott.** No branch protection / required-reviewer / merge-restriction settings are recorded on `main` yet. Enforcing "only Scott, Kai, Release · RTE merge" in GitHub (and that tagging/release automation is O2/High, Decided — Kai 2026-10-29) waits on Scott.
