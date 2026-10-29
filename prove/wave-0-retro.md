@@ -36,7 +36,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 - [Review 2 @ `d629a92`](https://github.com/bybren-llc/safe-harness/pull/2#pullrequestreview-5689145897): 1 Major (QAS/SecEng N/A constraint to Low tier with rationale)
 
 **Kai QAS findings:**
-- [QAS APPROVE @ `fb74ba5`](https://github.com/bybren-llc/safe-harness/pull/2#pullrequestreview-5696343738): Verified CR Major fix (QAS/SecEng N/A rows), downgraded risk tier High→Low with written rationale (read-only non-deploy CI), SecEng N/A justified; noted thin-CI limitations as decision-pack for M5 follow-on
+- [QAS APPROVE @ `fb74ba5`](https://github.com/bybren-llc/safe-harness/pull/2#pullrequestreview-5696343738): Verified CR Major fix (QAS/SecEng N/A rows), downgraded risk tier High→Low with written rationale (read-only non-deploy CI), SecEng N/A justified; noted thin-CI limitations as decision-pack for follow-on work
 
 **Classification:**
 - **Overlap:** QAS/SecEng N/A constraint (CR Major, QAS verified fix)
@@ -131,7 +131,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 
 5. **Time-to-first-ticket SLA:** Define target SLA for M5 and measure a new seat picking up and owning a ticket end-to-end under exit states. (Tied to: M5 partially exercised; no target SLA defined in Wave 0.)
 
-6. **CI/CD hardening:** Add workflow checks that Wave 0 deferred (CommonMark-aware link parser, recursive file discovery, fence-state tracking) to strengthen M6 CD green signal. (Tied to: M6 met with thin CI; PR #2 CodeRabbit findings deferred as decision-pack.)
+6. **CI/CD hardening:** Add workflow checks for thin-CI limitations identified in PR #2 (CommonMark-aware link parser, recursive file discovery, fence-state tracking) to strengthen M6 CD green signal. (Tied to: M6 met with thin CI; PR #2 thin-CI limitations deferred as follow-on work.)
 
 ## 7. Decision Pack D1 for Scott (HITL)
 
