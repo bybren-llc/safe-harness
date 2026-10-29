@@ -122,7 +122,7 @@ graph TD
 | [`roles/`](roles/) | Round Table seat definitions |
 | [`templates/`](templates/) | Brief and handoff templates (Bolt, Studio→Delivery) |
 | [`release/`](release/) | Continuous-deployment release flow ([`release/flow.md`](release/flow.md)) |
-| [`prove/`](prove/) | Evidence and bolt records (wave-0-retro.md, wave-1/) |
+| [`prove/`](prove/) | Evidence and bolt records (wave-0-retro.md, wave-1/, [rte-merge-rights/decision-pack.md](prove/rte-merge-rights/decision-pack.md)) |
 | [`prove/d-p1/`](prove/d-p1/) | D-P1 bolt evidence (Wave 0) |
 | `prove/d-p2/` | (planned) D-P2 bolt evidence |
 | [`arch/`](arch/) | Component registry (ARC-<CMP>, components.yaml) |
@@ -175,10 +175,11 @@ Until both conditions are met, trace-check warns but does not block merges. The 
 ### Exit states
 
 1. Ready for QAS
-2. Approved for RTE (or collapsed-RTE annotated)
+2. Approved for RTE
 3. Ready for HITL
-4. MERGED (HITL only)
+4. MERGED (HITL only) — Scott executed
 5. MERGED (HITL-delegated) — Low tier only, with `hitl_delegate` record
+6. MERGED (delegated Kai/RTE) — Kai or Release · RTE executed; record executor + exact-head gates
 
 ### Evidence (portable)
 

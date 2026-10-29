@@ -98,11 +98,15 @@ labels:
   
   - name: "exit:merged"
     color: "0e8a16"
-    description: "Exit state: MERGED (HITL only)"
+    description: "Exit state: MERGED (HITL only) — Scott executed. Repo label sync is a post-merge step."
   
   - name: "exit:merged-delegated"
     color: "0e8a16"
     description: "Exit state: MERGED (HITL-delegated, Low tier only)"
+
+  - name: "exit:merged-rte"
+    color: "0e8a16"
+    description: "Exit state: MERGED (delegated Kai/RTE) — Kai or Release · RTE executed under constitution/03"
 
   # Gate labels (wave workflow stages)
   - name: "gate:rnd"

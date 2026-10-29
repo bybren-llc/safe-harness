@@ -32,6 +32,8 @@ Wave 0 roster = standing seats above + specialists when the Bolt needs them. Do 
 
 Everyone **owns** work through exit states, e.g.:
 
-`implementer → Ready for QAS → QAS → Approved for RTE → RTE PASS (in parallel with Scott concur where required) → Ready for HITL → MERGED (executor recorded: HITL or delegated Kai/RTE)`
+`implementer → Ready for QAS → QAS → Approved for RTE → RTE PASS (in parallel with Scott concur where required) → Ready for HITL → MERGED (HITL only | HITL-delegated | delegated Kai/RTE)`
+
+Canonical merged states live in `05-evidence-and-linear.md`. Record who executed the merge. RTE-executed merges use **MERGED (delegated Kai/RTE)**, not HITL MERGED.
 
 Agent ≠ human. Agents may be **delegates**; humans remain **assignees** in Linear (see `05-evidence-and-linear.md`).

@@ -18,9 +18,9 @@ Release · RTE runs a per-PR release check with an **RTE PASS** or **HOLD** verd
 - CI is green at exact head
 - Requirements trace is valid
 - Evidence is sufficient per risk tier
-- Scott's recorded concur is present when required (Medium/High/O2 or constitution/)
+- Scott's recorded concur is present when required (constitution/ and O2)
 
-**RTE never authors changes.** It may HOLD and request fixes, but it does not implement them.
+**RTE never authors changes.** It may HOLD and request fixes, but it does not implement them. Only Kai or Scott may override an RTE HOLD, with the reason recorded on the PR.
 
 ## Release notes
 
