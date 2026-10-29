@@ -1,5 +1,7 @@
 # 03 — Continuous Deployment & HITL
 
+**Status:** Adopted 2026-10-29 (Scott concur)
+
 SDLC target = **continuous deployment**. Mainline stays releasable. Gates prove safety without long freeze windows.
 
 **CI/CD is a first-class product of safe-harness**, not optional theater. Risk-tier CD path = core deliverable.

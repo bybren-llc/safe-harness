@@ -1,13 +1,13 @@
 # Decision Pack — Wave 1: Repo-only Source of Truth
 
-**PR:** TBD (to be set after PR creation)  
-**Branch:** wave-1-repo-sot  
-**Exact-head:** TBD (to be set after commit)  
-**Status:** Awaiting Scott concurrence
+**PR:** #6  
+**Branch:** cursor/wave-1-repo-sot-9236  
+**Exact-head:** 821d5f97e603b943c93f1fdb9def64d7cfb6ed74  
+**Status:** Adopted 2026-10-29 (Scott concur)
 
 **Owner:** Kai (coordinator)  
 **Delivery:** Cursor CloudAgent  
-**Tier:** Proposed Medium (O2: deploy CI / workflows touched; downgrade decision pending Kai at QAS)
+**Tier:** Medium (Kai confirmed; conditions met at f84ee52)
 
 ---
 
@@ -38,6 +38,7 @@ Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub b
 | **Librarian** | CONCUR, 5 conditions | Librarian → Kai SendToAgent, 2026-10-29 09:48 ET, call id toolu_01KkZrQJMBSc9vwPuPbSVbUN | 5 conditions (see Appendix A) | (1) trace/linear-saf-map.csv:1<br>(2) constitution/05:47-51, trace/schema.md:1-120<br>(3) Role defined; link-rot routine is follow-up<br>(4) constitution/05:130-135, trace/schema.md:90<br>(5) .github/CODEOWNERS:1-21 |
 | **Ops** | CONCUR, non-blocking concerns | Ops → Kai SendToAgent, 2026-10-29 09:48 ET, call id toolu_01Nsyi3W84uuopDQ92ATa2tz | 4 concerns (see Appendix A) | (A) Not applicable (Wave 0 closed 8:56 AM ET)<br>(B) .github/labels.yml:3-9,17-33<br>(C) .github/labels.yml:35-36<br>(D) Definitions provided; routine is follow-up after merge |
 | **Delivery** | concurs, six concerns | Delivery → Kai SendToAgent, 2026-10-29 ~09:49 ET, call id toolu_01519wT2WywojX49gq13NFv5 | 6 concerns (see Appendix A) | (1) decision-pack.md:697-709<br>(2) .github/CODEOWNERS:7-9<br>(3) .github/workflows/trace-check.yml:39-40, constitution/05:127-129<br>(4) constitution/05:97-108, constitution/03:61-70<br>(5) prove/wave-1/migration-plan.md:105-109, trace/linear-saf-map.csv:1<br>(6) decision-pack.md:571-574,:659-662 |
+| **Scott** | CONCUR, conditional | Scott → Kai chat, 2026-10-29 12:44 PM ET and 12:46 PM ET | Conditional concur; condition = README/structure fixes in this commit (see Appendix A) | Satisfied in commit (item 7 below) |
 
 **Open questions from seats (follow-up):**
 - Scout 1: Where evidence lives (repo vs Atlas sources/)
@@ -45,9 +46,9 @@ Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub b
 
 ---
 
-## Constitution changes (requires Scott concurrence)
+## Constitution changes
 
-All constitution changes are marked **"Proposed, pending Scott concurrence"** and effective only after Scott's explicit approval.
+All constitution changes below were **adopted 2026-10-29** following Scott's concurrence (conditional: README/structure fixes in final commit).
 
 ### Decision 1: Repository as sole source of truth
 
@@ -569,8 +570,8 @@ O2 item "Deploy CI / workflows" defaults to High tier. **Proposed downgrade to M
 
 | Role | Actor | Status | Rationale |
 | --- | --- | --- | --- |
-| **QAS** | Kai | CHANGES NEEDED @ 8bc26e0e (review 5699823929) | Independent review (≠ implementer); O2 decision: Medium accepted conditional on fixes #3 and #4 landing |
-| **SecEng** | N/A | N/A | Medium tier (Kai's decision); no O2 secrets/auth/privacy mutations; read-only CI; downgrade rationale above |
+| **QAS** | Kai | APPROVE @ 821d5f97 (review 5701159887) | Independent review (≠ implementer); O2 decision: Medium confirmed (conditions met at f84ee52) |
+| **SecEng** | N/A | N/A | Medium tier (Kai's decision); no O2 secrets/auth/privacy mutations; read-only CI |
 
 ---
 
@@ -774,3 +775,11 @@ Extracted from each seat's SendToAgent message to Kai, 2026-10-29. Some passages
 > 5. Migration: PRs #3–#5 cite Linear comment URLs as evidence_ids. The migration has to keep those URLs resolvable, so archive Linear rather than delete it, and map SAF-n to issue #n.
 > 6. The trace-check CI is O2. I'll include the checklist and a written downgrade, but the downgrade itself is your call or Scott's, not mine.
 > The draft PR is being built now on branch wave-1-repo-sot and includes Scott's 9:46 ownership split. I'll priority-ping you with the link as soon as it opens. I won't migrate SAF or touch Linear until you confirm team concur.
+
+### Scott — 12:44 PM ET and 12:46 PM ET, Kai chat 2026-10-29
+
+> We only have main right?  I'm hoping our commits and PRs have good best practices according to the new way we learned. If so I think you can check yes if it is a repo like this one where we can not really break anything and there is no real test except to Make sure we have proper README docs and info for humans to understand how this works. Otherwise own it
+
+> I think we could see from the projects that our main README should definitely be great and our structure of our repo should match what we espouse
+
+**Conditional concur:** Scott concurs provided the README is great for humans and the repo structure matches what we espouse. Condition satisfied in final commit (README rewrite + structure fixes, items 1-7 below).

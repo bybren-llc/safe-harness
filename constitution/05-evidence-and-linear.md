@@ -1,8 +1,8 @@
 # 05 — Evidence & Source of Truth
 
-**Status:** Proposed amendment (Wave 1) — pending Scott concurrence  
+**Status:** Adopted 2026-10-29 (Scott concur)  
 **Supersedes:** Wave 0 version (Linear as SoR)  
-**Effective:** TBD (after Scott concur + merge)
+**Effective:** 2026-10-29
 
 ---
 
@@ -129,7 +129,7 @@ The `.github/workflows/trace-check.yml` CI workflow validates:
 
 **Bootstrap rule (Wave 1):** Trace-check runs **warn-only** (non-blocking) until the first `spec.md` with REQ IDs lands, then becomes **blocking** (fail on violations). This allows Wave 1 to land without failing its own gate.
 
-**Blocking activation gate:** Trace-check becomes blocking only after the first `spec.md` with REQ IDs lands **AND** the CODEOWNED marker file `trace/.blocking` exists. The follow-up validations PR (first GitHub Issue in migration Phase 1) adds the marker after implementing the additional validations below. Until both conditions are met, trace-check remains warn-only.
+**Blocking activation gate:** Trace-check becomes blocking only after the first `spec.md` with REQ IDs lands **AND** a code-owner-reviewed PR adds the marker file `trace/.blocking`. The follow-up validations PR (first GitHub Issue in migration Phase 1) adds the marker after implementing the additional validations below. Until both conditions are met, trace-check remains warn-only.
 
 **Additional validations (required before blocking activation; see migration Phase 1):**
 - Spec REQ ↔ trace-map reconciliation

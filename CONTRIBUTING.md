@@ -40,17 +40,20 @@ Agents may open PRs touching these files but **must not merge them**. Use the `n
 
 ---
 
-## Workflow
+## How a change flows
 
-1. **Issues**: Use GitHub Issues with structured templates (`.github/ISSUE_TEMPLATE/`)
-2. **Branches**: `<issue#>-slug` (e.g., `42-add-trace-check`)
-3. **Commits**: 
-   - Subject: Reference the issue number (e.g., `Add trace-check CI (#42)`) or natural subject
-   - Trailer: `Refs #N` (references issue)
-   - Trailer: `Req: REQ-<CMP>-NNN` (satisfies requirement)
-   - No Linear SAF tags (Linear is retired for this repo)
-4. **PRs**: Include `Requirements: REQ-<CMP>-NNN, REQ-<CMP>-MMM` line in body
-5. **Review**: Follow constitution/03 (risk tiers, QAS independence, HITL gates)
+1. **Issue:** Create GitHub Issue with work type, risk tier, and O2 labels
+2. **Branch:** Create branch `<issue#>-slug` off main (e.g., `42-add-trace-check`)
+3. **Implement:** Write code, tests, gather evidence
+4. **Commit:** Use `Refs #N` and `Req: REQ-<CMP>-NNN` trailers (no Linear SAF tags)
+5. **PR:** Open PR with `Requirements: REQ-<CMP>-NNN` line in body
+6. **CI:** Structure & Docs Validation + Requirements Trace Validation run automatically
+7. **CodeRabbit:** Automated code review (required gate input)
+8. **QAS:** Independent human review at exact commit SHA (Kai), posted as COMMENT review (reviewer account can't formally approve its own org's agent-authored PRs; verdict is in review text)
+9. **Decision pack:** If Medium or High tier, create decision pack with rationale, evidence, and risks
+10. **Merge:** HITL merges (Kai), or HITL-delegated at Low tier only with `hitl_delegate` record
+
+**Key constraint:** Delivery never merges. QAS and merge are always separate humans (QAS ≠ merge actor).
 
 ---
 

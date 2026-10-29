@@ -102,7 +102,7 @@ Populate the actual mapping before Linear closeout (migration-plan.md Phase 2).
 
 ## Trace-check CI enforcement
 
-**Bootstrap rule (Wave 1):** Runs **warn-only** until the first `spec.md` with REQ IDs lands, then becomes **blocking**.
+**Bootstrap rule (Wave 1):** Runs **warn-only** until the first `spec.md` with REQ IDs lands **AND** a code-owner-reviewed PR adds the marker file `trace/.blocking`. Until both conditions are met, trace-check warns but does not block merges.
 
 Once blocking, CI fails when:
 1. Any requirement in state **Missing**
