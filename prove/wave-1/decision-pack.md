@@ -27,6 +27,22 @@ Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub b
 
 ---
 
+## Team concur record
+
+**Note:** Scott's concurrence is separate and PENDING (see ## Ask section). Kai is coordinator, not a seat.
+
+| Seat | Concur Status | Conditions (verbatim) | Link/Timestamp | Satisfied in PR |
+| --- | --- | --- | --- | --- |
+| **Studio** | Verbatim pending | (relayed via Kai, 2026-10-29 ~9:49 AM ET) | N/A | TBD |
+| **Scout** | Verbatim pending | (relayed via Kai, 2026-10-29 ~9:49 AM ET) | N/A | TBD |
+| **Librarian** | Verbatim pending | (relayed via Kai, 2026-10-29 ~9:49 AM ET) | N/A | TBD |
+| **Ops** | Verbatim pending | (relayed via Kai, 2026-10-29 ~9:49 AM ET) | N/A | TBD |
+| **Delivery** | Verbatim pending | (relayed via Kai, 2026-10-29 ~9:49 AM ET) | N/A | TBD |
+
+**Team concur conditions not yet sourced:** Waiting for each seat's conditions to be provided with verifiable links or timestamps. Once received, this table will be updated with verbatim text and file:line references showing where each condition is satisfied in this PR.
+
+---
+
 ## Constitution changes (requires Scott concurrence)
 
 All constitution changes are marked **"Proposed, pending Scott concurrence"** and effective only after Scott's explicit approval.
@@ -64,13 +80,14 @@ All constitution changes are marked **"Proposed, pending Scott concurrence"** an
 **Proposal:**
 
 **Humans own and accept only design (intent + spec):**
-- `intent.md`, `spec.md` — Humans (Scott / Kai) own and accept; agents may propose edits but **never merge**
+- `intent.md`, `spec.md` — Scott owns and accepts; agents may propose edits but **never merge**
 
 **Agents own everything else end-to-end:**
 - Plan, GitHub Issues, code, tests, PRs, evidence
-- **Requirements registry** (`requirements/`) — agents author; human-reviewed PR required
-- **Trace map** (`trace/`) — agents author; human-reviewed PR required
-- **Constitution changes** — agents author; human-reviewed PR required
+- **Requirements registry** (`requirements/`) — agents author; human-reviewed PR required (CODEOWNERS: @cheddarfox)
+- **Trace map** (`trace/`) — agents author; human-reviewed PR required (CODEOWNERS: @cheddarfox)
+- **Constitution changes** — agents author; human-reviewed PR required (CODEOWNERS: @cheddarfox)
+- **Workflows and CODEOWNERS** — agents author; human-reviewed PR required (CODEOWNERS: @cheddarfox)
 
 **CODEOWNERS = review gate, not ownership:**
 
@@ -93,7 +110,7 @@ All constitution changes are marked **"Proposed, pending Scott concurrence"** an
 - Agents propose edits; humans approve quickly
 - Most work (code, tests, PRs) remains agent-owned
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -125,7 +142,7 @@ All constitution changes are marked **"Proposed, pending Scott concurrence"** an
 - Bootstrap rule (warn-only until first spec lands)
 - Clear schema and examples
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -147,7 +164,7 @@ Wave 1: `issue` (GitHub `#N`) + `req_ids` (list of REQ-<CMP>-NNN)
 - Clear migration path in trace/schema.md
 - Examples in prove/wave-1/
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -179,7 +196,7 @@ hitl_delegate:
 - Structured record with authorization URL
 - Distinct exit label (differentiated from HITL only)
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -202,7 +219,7 @@ hitl_delegate:
 - Examples in prove/wave-1/
 - Migration plan includes team training
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -226,7 +243,7 @@ hitl_delegate:
 - Examples in CONTRIBUTING.md
 - QAS checks for violations
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -252,7 +269,7 @@ hitl_delegate:
 - Trace-check CI enforces required fields
 - Template examples in trace/schema.md
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -278,7 +295,7 @@ hitl_delegate:
 - Marked "pending Kai approval" for review
 - Extensible (add components as needed)
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -301,7 +318,7 @@ hitl_delegate:
 - Examples in comments
 - Iterative refinement post-Wave 1
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -328,7 +345,7 @@ hitl_delegate:
 - Linear preserved indefinitely
 - Team training on GitHub conventions
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -352,7 +369,7 @@ hitl_delegate:
 - Non-blocking external checks catch link rot separately
 - Explicit transition from warn-only → blocking
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -371,7 +388,7 @@ hitl_delegate:
 - Repo is accessible to authorized team
 - Vaults reference by concept + link, no duplication
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -390,7 +407,7 @@ hitl_delegate:
 - Document only during Wave 1
 - Automation post-concurrence
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -414,7 +431,7 @@ hitl_delegate:
 - Label documented in `.github/labels.yml`
 - Clear workflow in CONTRIBUTING.md
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -437,7 +454,7 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 - Gate turnaround tracked separately
 - Empirical comparison (constitution/06)
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -456,7 +473,7 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 - Extensible format (YAML supports large files)
 - Documented in trace/schema.md
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -484,7 +501,43 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 - Git preserves file history across rename
 - Search for "05-evidence-and-linear" confirms all references updated
 
-**Status:** Awaiting Scott concurrence (team concur: all five seats)
+**Status:** Awaiting Scott concurrence (see Team concur record above)
+
+---
+
+### Decision 19: Sticky blocking mode for trace-check
+
+**Context:** Today, removing REQ IDs from `spec.md` would drop trace-check back to warn-only (bootstrap rule). This could allow requirements to be silently removed.
+
+**Proposal:** Enable sticky blocking mode via one or both mechanisms:
+1. Turn on "require code owner review" on `main` branch protection (GitHub setting)
+2. Add a CODEOWNED `trace/.blocking` marker file in a follow-up
+
+**Current mitigation:** `spec.md` is CODEOWNED (@cheddarfox), so Scott must approve any changes. This works *only if* branch protection requires code-owner review.
+
+**Known limitation:** The authoring account (`cheddarfox`) cannot satisfy CODEOWNERS on its own PRs; Kai posts COMMENT reviews for that reason. This limits the effectiveness of CODEOWNERS as a gate without branch protection enabled.
+
+**Additional context:** External link-check stays separate and non-blocking (Librarian's spec + weekly routine after merge).
+
+**Options:**
+1. **[RECOMMENDED]** Enable "require code owner review" on `main` + add `trace/.blocking` marker in follow-up (defense in depth)
+2. Enable "require code owner review" on `main` only (relies on GitHub branch protection)
+3. Add `trace/.blocking` marker only (relies on CODEOWNERS without branch protection)
+4. Status quo (accept that removing REQ IDs returns to warn-only)
+
+**Recommendation:** Option 1. Both mechanisms together provide defense in depth.
+
+**Risks:**
+- Branch protection may slow down Low-tier merges
+- `trace/.blocking` adds a file dependency
+- Known limitation: authoring account cannot self-satisfy CODEOWNERS
+
+**Mitigations:**
+- HITL delegation (D1) already addresses Low-tier velocity
+- `trace/.blocking` is simple and explicit
+- Branch protection + external reviews handle authoring-account limitation
+
+**Status:** Awaiting Scott concurrence (see Team concur record above)
 
 ---
 
@@ -510,7 +563,7 @@ O2 item "Deploy CI / workflows" defaults to High tier. **Proposed downgrade to M
 
 **Delivery's recommendation:** Medium tier acceptable. One human decision pack (this document) + QAS independence sufficient. SecEng N/A (no secrets, no deploy mutations, no auth changes).
 
-**Kai's downgrade decision:** Pending at QAS (Kai decides in writing whether to accept proposed Medium tier or require High tier with two humans).
+**Kai's downgrade decision (written, PR #6 review 5699823929):** **Medium accepted, conditional.** `trace-check.yml` is read-only (`contents: read`), runs on `pull_request` not `pull_request_target`, has no secrets, does no deploys, makes no writes, and is warn-only until the first REQ-bearing `spec.md`. Rollback is a revert. **Conditions:** fixes #3 (`.github/CODEOWNERS` and `.github/workflows/` covered by CODEOWNERS) and #4 (no unpinned `latest` binary download) land on the next tip. If they don't land, the tier stays **High**. Medium still needs Scott's own concur, because this PR amends the constitution.
 
 ---
 
@@ -518,8 +571,8 @@ O2 item "Deploy CI / workflows" defaults to High tier. **Proposed downgrade to M
 
 | Role | Actor | Status | Rationale |
 | --- | --- | --- | --- |
-| **QAS** | Kai | TBD | Independent review (≠ implementer) at exact-head; decides O2 downgrade (proposed Medium, pending Kai decision) |
-| **SecEng** | N/A | N/A | Proposed Medium tier; no O2 secrets/auth/privacy mutations; read-only CI; downgrade rationale above (if Kai approves Medium) |
+| **QAS** | Kai | CHANGES NEEDED @ 8bc26e0e (review 5699823929) | Independent review (≠ implementer); O2 decision: Medium accepted conditional on fixes #3 and #4 landing |
+| **SecEng** | N/A | N/A | Medium tier (Kai's decision); no O2 secrets/auth/privacy mutations; read-only CI; downgrade rationale above |
 
 ---
 
@@ -582,7 +635,7 @@ Expected requirements:
 ## Risk summary
 
 **High risks:**
-1. Constitution changes without team alignment → **Mitigated:** Team concur recorded (all five seats)
+1. Constitution changes without team alignment → **Mitigated:** Team concur record (Studio, Scout, Librarian, Ops, Delivery) above
 2. CI false positives blocking work → **Mitigated:** Bootstrap rule (warn-only), read-only permissions
 3. Evidence migration gaps or lost context → **Mitigated:** Linear preserved indefinitely, mapping table, phased migration
 4. Personal-vault leaks to repo → **Mitigated:** Personal-boundary rule in CONTRIBUTING.md + intent/spec preambles
@@ -615,20 +668,22 @@ If critical issues arise post-merge:
 
 **Scott:** Please review and concur on:
 1. Repository as sole source of truth (Linear → GitHub)
-2. Human vs. agent ownership split (humans own design only: intent + spec; agents own and author everything else with CODEOWNERS review gates)
+2. Human vs. agent ownership split (Scott owns design only: intent + spec; agents own and author everything else with CODEOWNERS review gates)
 3. Requirements tracing framework (REQ-<CMP>-NNN, trace states, trace-check CI)
 4. D1 delegated-HITL at Low tier
 5. All constitution/03 and constitution/05 amendments
-6. O2 downgrade proposal (deploy CI: proposed Medium, pending Kai decision at QAS)
+6. O2 downgrade: Kai's decision recorded — Medium accepted conditional on fixes #3 and #4
 7. Migration plan scope and timing (cutover date TBD)
 8. Follow-up rename of constitution/05-evidence-and-linear.md (Decision 18)
+9. Sticky blocking mode: enable "require code owner review" on `main` and/or add `trace/.blocking` marker (Decision 19)
 
-**Kai:** After Scott concurs:
-1. QAS independence review at exact-head
-2. O2 downgrade decision in writing (proposed Medium tier; Kai accepts or requires High)
-3. Merge decision (HITL)
-4. Set Linear cutover date
-5. Coordinate team training on GitHub conventions
+**Kai:** After Scott concurs and fixes land:
+1. QAS re-review at new exact-head (after fixes #1-12 from review 5699823929)
+2. Merge decision (HITL)
+3. Set Linear cutover date
+4. Coordinate team training on GitHub conventions
+
+**Note:** Kai's O2 downgrade decision already recorded above (Medium accepted conditional).
 
 ---
 
@@ -637,6 +692,8 @@ If critical issues arise post-merge:
 **Do not merge until:**
 - [ ] Scott concurs on all constitution changes (recorded in this decision pack or PR comments)
 - [ ] Kai completes QAS independence review (exact-head, separate actor ≠ implementer)
+- [ ] Kai's written O2 tier decision recorded: **Medium accepted on condition that CODEOWNERS (#3: `.github/CODEOWNERS` and `.github/workflows/` covered) and the yq pin (#4: no unpinned `latest` binary download) land; otherwise it stays High** (Kai, PR #6 review 5699823929)
+- [ ] If High tier: two distinct human approvals required
 - [ ] CodeRabbit review complete (if applicable)
 - [ ] trace-check CI green (bootstrap mode: warn-only expected)
 - [ ] Wave 0 checks green (structure validation, markdown links)

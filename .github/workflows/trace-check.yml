@@ -17,11 +17,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      - name: Install dependencies
+      - name: Verify yq available
         run: |
-          # Install yq for YAML parsing
-          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
-          sudo chmod +x /usr/local/bin/yq
+          # Use runner's preinstalled yq
+          if ! command -v yq &> /dev/null; then
+            echo "❌ yq not found on runner"
+            exit 1
+          fi
+          echo "✓ yq found: $(which yq)"
+          yq --version
       
       - name: Validate trace map
         id: validate
@@ -134,6 +138,17 @@ jobs:
               HAS_EVIDENCE=false
               
               for j in $(seq 0 $((EVIDENCE_COUNT - 1))); do
+                # Validate evidence row has required fields
+                EV_ID=$(yq eval ".evidence[$j].evidence_id" trace/trace-map.yaml)
+                EV_HEAD=$(yq eval ".evidence[$j].exact_head" trace/trace-map.yaml)
+                EV_ACTOR=$(yq eval ".evidence[$j].actor" trace/trace-map.yaml)
+                EV_GATE=$(yq eval ".evidence[$j].gate" trace/trace-map.yaml)
+                
+                if [[ "$EV_ID" == "null" || "$EV_HEAD" == "null" || "$EV_ACTOR" == "null" || "$EV_GATE" == "null" ]]; then
+                  echo "  ⚠ Evidence row $j missing required fields (evidence_id, exact_head, actor, gate); skipping"
+                  continue
+                fi
+                
                 REQ_IDS=$(yq eval ".evidence[$j].req_ids[]" trace/trace-map.yaml 2>/dev/null)
                 if echo "$REQ_IDS" | grep -q "^${REQ_ID}$"; then
                   HAS_EVIDENCE=true
@@ -196,8 +211,8 @@ jobs:
               
               # Check if source is intent.md and requires Scott sign-off
               if [[ "$SOURCE" =~ ^intent\.md# ]]; then
-                if [[ "$DECIDED_BY" != "Scott Graham" && "$DECIDED_BY" != "Scott + Kai" ]]; then
-                  echo "  ❌ Dropping REQ from intent.md requires Scott's sign-off (decided_by must be 'Scott Graham' or 'Scott + Kai')"
+                if [[ "$DECIDED_BY" != "Scott Graham" ]]; then
+                  echo "  ❌ Dropping REQ from intent.md requires Scott's sign-off (decided_by must be exactly 'Scott Graham')"
                   ERRORS=$((ERRORS + 1))
                 fi
               fi

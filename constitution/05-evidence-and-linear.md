@@ -124,9 +124,18 @@ The `.github/workflows/trace-check.yml` CI workflow validates:
 2. No requirements in state **Missing** (CI fails)
 3. **Deferred** and **Dropped** requirements have: `rationale`, `decided_by`, `decided_at`
 4. **Deferred** requirements have: `defer_to`
-5. Requirements with `source: intent.md#*` that are Dropped must have `decided_by: Scott Graham`
+5. Requirements with `source: intent.md#*` that are Dropped must have `decided_by: Scott Graham` (exactly)
+6. Evidence rows must have required fields: `evidence_id`, `exact_head`, `actor`, `gate`
 
 **Bootstrap rule (Wave 1):** Trace-check runs **warn-only** (non-blocking) until the first `spec.md` with REQ IDs lands, then becomes **blocking** (fail on violations). This allows Wave 1 to land without failing its own gate.
+
+**Additional validations (required before blocking activation; follow-up issue TBD):**
+- Spec REQ ↔ trace-map reconciliation
+- Empty trace map in blocking mode enforcement
+- `requirements/*.yaml` registry validation
+- Issue + PR `Requirements:` linkage enforcement
+- Evidence rows from bolt briefs/decision packs
+- Source-anchor validation (intent.md or spec.md anchors exist)
 
 ### CI scope
 

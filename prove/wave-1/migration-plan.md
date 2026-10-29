@@ -46,7 +46,7 @@ SAF-5,https://linear.app/cheddarfox/issue/SAF-5/...,TBD,Wave 0 retro,Active
 - [ ] Scott concurs on constitution/05 amendment
 - [ ] Wave 1 PR merged to main
 - [ ] GitHub Issue templates available (`.github/ISSUE_TEMPLATE/`)
-- [ ] Labels documented (`.github/labels.yml`)
+- [ ] Labels created from `.github/labels.yml` (manual or automation)
 - [ ] Trace-check CI operational (bootstrap mode)
 
 **Duration:** Immediate (gated on Scott concurrence)
@@ -72,8 +72,8 @@ SAF-5,https://linear.app/cheddarfox/issue/SAF-5/...,TBD,Wave 0 retro,Active
 **Cutover date:** TBD (Kai sets after Scott concurrence)
 
 **Cutover actions:**
-1. Freeze Linear writes (safe-harness team stops creating/updating Linear issues)
-2. Mark Linear workspace read-only for safe-harness
+1. Freeze Linear writes (SAF team stops creating/updating Linear issues for safe-harness; STO and other teams untouched)
+2. Mark SAF team read-only in Linear workspace for safe-harness scope
 3. Commit final `trace/linear-saf-map.csv` to main
 4. Switch default work tracking to GitHub Issues
 5. Update documentation to reference GitHub as SoR
@@ -128,12 +128,13 @@ Both are valid; tooling will handle both formats during transition.
 
 If critical issues arise during cutover:
 
-1. Reopen Linear writes for safe-harness
-2. Continue using Linear as temporary SoR
-3. Investigate and resolve GitHub Issues workflow blockers
-4. Retry cutover after fixes validated
+1. Reopen Linear writes for SAF team (safe-harness scope only)
+2. Reconcile any GitHub-only work created during cutover attempt (copy context to Linear or document in Linear comments)
+3. Continue using Linear as temporary SoR
+4. Investigate and resolve GitHub Issues workflow blockers
+5. Retry cutover after fixes validated
 
-**No data loss:** Linear history always preserved; GitHub Issues are additive.
+**No data loss:** Linear history always preserved; GitHub Issues are additive. Reconcile step ensures no work is orphaned.
 
 ---
 

@@ -26,7 +26,7 @@ No Gitflow. Trunk-based development with feature flags for incomplete work.
 - Subject: Reference the issue number (e.g., `Add trace-check CI (#42)`) or natural subject with issue context
 - Trailer: `Refs #N` — references GitHub Issue
 - Trailer: `Req: REQ-<CMP>-NNN` — satisfies requirement (trace linkage)
-- No Linear SAF tags (Linear is retired for safe-harness)
+- Linear conventions (SAF-N branches, [SAF-N] prefixes) remain valid until cutover; GitHub conventions take over at cutover date
 
 **PR body:** Include `Requirements: REQ-<CMP>-NNN, REQ-<CMP>-MMM` line listing all requirements addressed.
 
