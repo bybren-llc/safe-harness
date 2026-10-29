@@ -163,15 +163,15 @@ Each scan finds `SAF-[0-9]+` (bare, bracketed, or in a Linear URL) in this repo,
 
 - **Key:** normalised target (lower-case host, strip default ports, trailing slash, tracking query params, and fragment for external URLs) → `fingerprint = first 12 hex of sha256(normalised target)`.
 - **Private vs public:** A target is **private** when the target repo is non-public, or the citation is an Atlas or vault citation. All other targets (public HTTP, public GitHub) are **public**. Personal-vault and NAS-private paths must never appear in an issue; they are a privacy finding to Kai and Scott only (§2) and are never quoted.
-- **Title:** public targets use `[link-rot] <verdict>: <short target>`; private GitHub or Atlas targets use `[link-rot] <verdict>: <target class>` (`private-github`, `atlas`, or `vault-citation`) — never the raw target. Body line 1 is always `link-rot-fingerprint: <fingerprint>`.
+- **Title:** public targets use `[link-rot] <verdict>: <short target>`; private GitHub, Atlas, or vault-citation targets use `[link-rot] <verdict>: <target class>` (`private-github`, `atlas`, or `vault-citation`) — never the raw target. Body line 1 is always `link-rot-fingerprint: <fingerprint>`.
 - **Body (public):** target, verdict, first-seen and last-seen dates (ET), HTTP/API evidence (status chain, final URL, or API response summary), every source location, and a proposed fix or `UNKNOWN`. Locators by source type:
   - In-repo file: `path:line` at the scanned safe-harness SHA (permalink to that SHA).
   - Issue or PR body: the issue or PR permalink plus the body line, or the comment permalink when the citation is in a comment.
   - Atlas citation (chat only; Atlas is private): the Atlas permalink at its commit SHA.
-- **Body (private GitHub or Atlas):** fingerprint, target class, verdict, first-seen and last-seen dates (ET), and the source repo name only. Omit the raw target, private URLs, API details, and private citation locators; send those to Librarian · Signals' chat.
+- **Body (private GitHub, Atlas, or vault citation):** fingerprint, target class, verdict, first-seen and last-seen dates (ET), and the source repo name only. Omit the raw target, private URLs, API details, and private citation locators; send those to Librarian · Signals' chat. Personal-vault paths never appear in an issue.
 - **Dedupe:** before opening, search open issues for the fingerprint. If found, append new source locations or a verdict change as one comment (public targets) or a redacted class/date update (private targets); never open a second issue. If a closed issue matches and the target is failing again, reopen-by-reference: open a new issue that links the old one.
 - **Recovery:** when a reported target passes two consecutive scans, comment "recovered" with evidence. Closing is done by the fix PR (`Fixes #N`) or a human; the Librarian does not close issues it cannot tie to a merged fix.
-- **Label:** `link-rot`. It is not yet in [`../.github/labels.yml`](../.github/labels.yml); this PR adds it as documentation only. Per labels.yml, labels are not created by API during Wave 1, so until a human creates it the title prefix `[link-rot]` is the dedupe and search key.
+- **Label:** `link-rot`. It is documented in [`../.github/labels.yml`](../.github/labels.yml) but is not created through the API during Wave 1. Until a human creates it, the title prefix `[link-rot]` is the dedupe and search key.
 - **Volume cap:** at most 10 new issues per scan; the rest go in the weekly summary as "queued", oldest-failing first.
 
 ### 6.2 Fix PRs
