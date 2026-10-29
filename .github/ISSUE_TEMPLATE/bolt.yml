@@ -1,0 +1,112 @@
+name: Bolt / Unit of Work
+description: Delivery work item on spine A (CD execute/deploy)
+title: "[Bolt] "
+labels: ["bolt"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Bolt / Unit of Work (Spine A)
+        
+        Use this template for Delivery work items following constitution/02 (Safe AI-DLC) and constitution/03 (CD & HITL).
+
+  - type: input
+    id: human_assignee
+    attributes:
+      label: Human Assignee
+      description: Round Table seat (must be human per constitution)
+      placeholder: "Scott Graham / Kai"
+    validations:
+      required: true
+
+  - type: input
+    id: agent_delegate
+    attributes:
+      label: Agent Delegate
+      description: Optional agent working under human assignee
+      placeholder: "Delivery · Lead (Cursor CloudAgent)"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: risk_tier
+    attributes:
+      label: Risk Tier
+      description: Low / Med / High (see constitution/03)
+      options:
+        - Low
+        - Medium
+        - High
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: o2_items
+    attributes:
+      label: O2 High-Risk Items
+      description: Check all that apply (see constitution/03 — O2 defaults to High unless downgraded in writing)
+      options:
+        - label: Pricing
+        - label: Refunds
+        - label: Auth
+        - label: Deploy CI / workflows
+        - label: Prod secrets
+        - label: Privacy-boundary crosses
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What does this bolt accomplish? (Tie to M1–M6 from constitution/00)
+      placeholder: "Prove D-P2: Studio→Delivery handoff on spine B → A (M3, M4)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What's in and out of scope?
+      placeholder: |
+        In: templates/studio-to-delivery-handoff.md filled
+        Out: runnable adapters, Linear writes
+    validations:
+      required: true
+
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Requirements
+      description: REQ-<CMP>-NNN IDs this bolt addresses (comma-separated)
+      placeholder: "REQ-TPL-001, REQ-PRV-002"
+    validations:
+      required: false
+
+  - type: textarea
+    id: gates
+    attributes:
+      label: Gates
+      description: List gate sequence (Business-context HITL → QAS → SecEng → RTE → HITL)
+      value: |
+        - [ ] Human assignee identified
+        - [ ] Business-context HITL (if Med/High/O2)
+        - [ ] Implement → Ready for QAS
+        - [ ] QAS independence
+        - [ ] SecEng (if required)
+        - [ ] RTE or collapsed-RTE annotated
+        - [ ] HITL decision pack (exact-head)
+        - [ ] MERGED
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Portable evidence IDs (see constitution/05)
+      placeholder: |
+        | evidence_id | runtime | exact_head | issue | actor | gate | req_ids |
+        | --- | --- | --- | --- | --- | --- | --- |
+        | bc-abc123... | cursor | abc123 | #42 | Delivery Lead | Ready for QAS | REQ-CON-001 |
+    validations:
+      required: false

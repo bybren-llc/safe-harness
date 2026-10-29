@@ -1,0 +1,34 @@
+# Trace Map — safe-harness
+#
+# Canonical requirement state tracking and evidence linkage.
+# Path: trace/trace-map.yaml (fixed)
+# Schema: trace/schema.md
+# Enforced by: .github/workflows/trace-check.yml
+#
+# Bootstrap rule (Wave 1): CI runs warn-only until first spec.md with REQ IDs lands,
+# then becomes blocking. See constitution/05 for details.
+
+requirements: []
+  # Example (remove when adding real requirements):
+  # - id: REQ-CON-001
+  #   component: ARC-CON
+  #   state: Placed
+  #   title: Repository as sole source of truth
+  #   source: spec.md#source-of-truth
+  #   exit_criterion: |
+  #     CI trace-check workflow passes on a PR with 3+ Placed requirements
+  #   metric: M6
+  #   description: |
+  #     The GitHub repository must be the sole source of truth for intent,
+  #     spec, plan, requirements, trace map, review findings, and evidence.
+
+evidence: []
+  # Example (remove when adding real evidence):
+  # - evidence_id: bc-2002b87a-8540-5b26-adcd-81a17f554bdb
+  #   runtime: cursor
+  #   exact_head: 41b969f4ff5bc41f6ebc79ec6492cf1855be67de
+  #   issue: "#5"
+  #   actor: Delivery · Lead
+  #   gate: Implement → Ready for QAS
+  #   req_ids:
+  #     - REQ-CON-001

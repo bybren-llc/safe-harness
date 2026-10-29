@@ -1,20 +1,102 @@
-# 05 — Evidence & Linear
+# 05 — Evidence & Source of Truth
 
-## Linear = System of Record (Wave 0)
+**Status:** Proposed amendment (Wave 1) — pending Scott concurrence  
+**Supersedes:** Wave 0 version (Linear as SoR)  
+**Effective:** TBD (after Scott concur + merge)
 
-- Tickets hold ownership, exit state, and evidence links.
-- **Human assignee** + **agent delegate** (O6).
-- **Linear Agents OUT of Wave 0** — do not enable/configure Linear Agents for this wave.
+---
+
+## AMENDMENT: Repository as sole source of truth
+
+**Decision (2026-10-29):** The GitHub repository is the **sole source of truth** for intent, spec, plan, requirements, trace map, review findings, and evidence. Work tracking moves to GitHub Issues. Linear archive remains read-only.
+
+**Evidence canonical in repo:** Evidence for safe-harness is canonical in this repository. Vaults (personal, NAS) and Atlas cite evidence by link without duplicating it. Never copy repo evidence into private vaults.
+
+### Human vs. agent ownership split
+
+| Artifact | Owner | Agent role |
+| --- | --- | --- |
+| **intent.md** | Humans (Scott / Kai) | May propose edits; **never merge** |
+| **spec.md** | Humans (Scott / Kai) | May propose edits; **never merge** |
+| **constitution/** | Humans (Scott / Kai) | May propose edits; **never merge** |
+| **requirements/** | Humans (REQ registry) | May propose; **never merge** (any REQ add/change/removal needs human review) |
+| **trace/** | Humans (trace map) | May propose; **never merge** |
+| **Everything else** | Agents (end-to-end) | Plan, issues, code, tests, PRs, evidence |
+
+Agents own: plan, GitHub Issues, code, tests, PRs, and evidence collection. Humans own design (intent + spec), governance (constitution), and requirements registry.
+
+**CODEOWNERS enforcement:** `.github/CODEOWNERS` requires @cheddarfox review for:
+- `intent.md`, `intent/`, `spec.md`
+- `requirements/` (any REQ-ID add/change/removal)
+- `constitution/`
+- `trace/` (trace map)
+
+Agents may open PRs touching these files but must not merge them. Use the `needs-scott-concur` label on PRs awaiting Scott's review.
+
+### Studio's write path
+
+Studio drafts `intent.md` and `spec.md` and hands them to Delivery. Delivery commits them in a PR. Scott approves via CODEOWNERS before merge.
+
+### GitHub Issues for work tracking
+
+Work items use GitHub Issues with structured templates:
+- **Bolt / Unit of Work** (spine A: Delivery)
+- **Requirement** (REQ-<CMP>-NNN state changes)
+- **Decision** (Scott/Kai concurrence requests)
+
+Branch naming: `<issue#>-slug` (e.g., `42-add-trace-check`)  
+Commit trailers: `Refs #N` (references issue) + `Req: REQ-<CMP>-NNN` (satisfies requirement)  
+PR body: `Requirements: REQ-<CMP>-NNN, REQ-<CMP>-MMM` line
+
+Labels (documented in `.github/labels.yml`):
+- Work types: `bolt`, `requirement`, `decision`, `needs-concur`, `needs-scott-concur`
+- Risk tiers: `tier:low`, `tier:medium`, `tier:high`
+- O2 items: `o2:pricing`, `o2:refunds`, `o2:auth`, `o2:deploy-ci`, `o2:secrets`, `o2:privacy`
+- Exit states: `exit:qas`, `exit:rte`, `exit:hitl`, `exit:merged`, `exit:merged-delegated`
+- Gates: `gate:rnd`, `gate:plan`, `gate:concur`, `gate:execute`, `gate:measure`
+
+**GitHub milestones:** One milestone per wave (e.g., "Wave 1", "Wave 2"). Document milestones; create them manually or via approved automation.
+
+---
+
+## Requirements = definition of success
+
+**Requirements** are REQ-<CMP>-NNN IDs derived from `spec.md`. Each requirement has:
+- `source`: spec.md#anchor (or intent.md#anchor)
+- `exit_criterion`: Concrete pass/fail condition
+- `metric`: M1–M6 tie (from constitution/00) or named metric
+
+See `requirements/README.md` for trace states (Placed / Deferred / Dropped / Missing) and format.
+
+**Trace map path:** `trace/trace-map.yaml` (fixed). Schema: `trace/schema.md`.
+
+### Deferred and Dropped requirements
+
+**Deferred** requirements must include:
+- `rationale`: Why deferred and conditions for revisiting
+- `decided_by`: Decision owner (Scott, Kai, or "Scott + Kai")
+- `decided_at`: ISO 8601 date (YYYY-MM-DD)
+- `defer_to`: Target date or milestone reference (e.g., "2026-11-15" or "Wave 2")
+
+**Dropped** requirements must include:
+- `rationale`: Why permanently removed
+- `decided_by`: Decision owner
+- `decided_at`: ISO 8601 date
+
+**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires Scott's sign-off. Record as `decided_by: Scott Graham` plus a link in `rationale`.
+
+**Deferred dates:** `defer_to` and `decided_at` live in the trace map entry only, never in GitHub Issue fields.
+
+---
 
 ## Evidence before HITL
 
-Evidence lands in Linear before Ready for Review / HITL decision pack. Preserve SAW spirit:
-
+Evidence lands before Ready for Review / HITL decision pack. Preserve SAW spirit:
 - Evidence over assertion
 - Bolt exits on evidence, not a date
 - Four always-on evidence types + conditional (UI / RLS / perf / `#EXPORT_CRITICAL`) — map per Bolt
 
-## Portable evidence IDs
+## Portable evidence IDs (updated schema)
 
 Do not rely on Claude-only session IDs. Each runtime posts a portable ID:
 
@@ -23,13 +105,49 @@ Do not rely on Claude-only session IDs. Each runtime posts a portable ID:
 | `evidence_id` | Runtime-native unique ID (session, run, cloud agent id, local run uuid) |
 | `runtime` | `claude-code` \| `cursor` \| `codex` \| `local` \| `grok-bot` \| … |
 | `exact_head` | Commit SHA or PR head |
-| `linear_issue` | Issue key |
+| `issue` | GitHub Issue reference `#N` (replaces `linear_issue`) |
 | `actor` | Agent id or human handle |
 | `gate` | Which gate this evidence satisfies |
+| `req_ids` | List of REQ-<CMP>-NNN IDs this evidence addresses |
+
+**Breaking change from Wave 0:** `linear_issue` → `issue` (GitHub Issue reference). Evidence rows must include `req_ids` list.
+
+---
+
+## Trace enforcement
+
+The `.github/workflows/trace-check.yml` CI workflow validates:
+1. Every **Placed** requirement has at least one evidence row with its ID in `req_ids`
+2. No requirements in state **Missing** (CI fails)
+3. **Deferred** and **Dropped** requirements have: `rationale`, `decided_by`, `decided_at`
+4. **Deferred** requirements have: `defer_to`
+5. Requirements with `source: intent.md#*` that are Dropped must have `decided_by: Scott Graham`
+
+**Bootstrap rule (Wave 1):** Trace-check runs **warn-only** (non-blocking) until the first `spec.md` with REQ IDs lands, then becomes **blocking** (fail on violations). This allows Wave 1 to land without failing its own gate.
+
+### CI scope
+
+**Blocking trace-check** (`.github/workflows/trace-check.yml`) covers repo-internal gaps only:
+- REQ with no ARC component (from `arch/components.yaml`)
+- REQ with no GitHub Issue reference
+- PR with no REQ linkage (when required)
+- Missing or unevidenced REQs
+- Deferred/Dropped missing required fields
+
+**Non-blocking scheduled check** (separate workflow, read-only):
+- Cross-system link validation (Linear archive, external URLs)
+- spec.md anchor existence validation
+- Evidence URL reachability
+
+External link checks remain non-blocking to avoid failing builds on transient network issues.
+
+---
 
 ## Independence detectable
 
-QAS and SecEng actors must be distinguishable from implementer in Linear (assignee/delegate labels or explicit fields). Prose-only “we were careful” is insufficient for High tier.
+QAS and SecEng actors must be distinguishable from implementer in GitHub (assignee/reviewer labels or explicit fields). Prose-only "we were careful" is insufficient for High tier.
+
+---
 
 ## Exit states (canonical names)
 
@@ -38,8 +156,54 @@ Use consistent labels across runtimes:
 1. Ready for QAS  
 2. Approved for RTE (or collapsed-RTE path annotated)  
 3. Ready for HITL  
-4. MERGED (HITL only)
+4. **MERGED (HITL only)** — two humans (High tier) or explicit human approval
+5. **MERGED (HITL-delegated)** — Low tier only; delegated HITL (D1)
 
-## Wave 0 Linear writes
+### D1: Delegated HITL (Low tier only)
 
-Research epics may open only when Kai/Scott authorize. This constitution draft does **not** create issues by itself.
+At **Low tier** only, HITL may be delegated with a structured `hitl_delegate` record:
+
+```yaml
+hitl_delegate:
+  delegating_actor: Scott Graham
+  delegate_actor: Kai
+  authorization_url: https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98
+  scope: low  # Must be "low" only
+```
+
+Exit label: `MERGED (HITL-delegated)` (distinct from `MERGED (HITL only)`).
+
+**Restrictions:**
+- **Low tier only** — delegated HITL not allowed at Med/High
+- Delegation must be explicit, recorded, and scoped
+- Delegate may not further delegate
+
+---
+
+## Cycle time (metrics)
+
+**Primary measure:** First PR opened to merge (PR lifecycle)  
+**Secondary measure:** Issue opened to closed (issue lifecycle)
+
+Report cycle time per Bolt in prove/ records. Track blocking gates separately (QAS turnaround, HITL turnaround).
+
+---
+
+## Linear archive (Wave 1 migration)
+
+Linear issues SAF-1 through SAF-5 remain accessible as read-only archive. **Never delete Linear history.** Every existing Linear evidence URL must remain resolvable.
+
+Migration plan (`prove/wave-1/migration-plan.md`) includes:
+- SAF-n to GitHub Issue mapping table (`trace/linear-saf-map.csv`)
+- Evidence URL preservation strategy (Linear URLs remain valid; cite them by link)
+- Archive access instructions
+- Cutover date: TBD (set after Scott concurrence)
+- Scope: safe-harness only (other Linear teams like STO are untouched)
+
+**Delivery owns migration and closeout.** Kai coordinates with Scott on cutover timing.
+
+---
+
+## Wave 1 GitHub writes
+
+After Scott concurrence on this amendment, agents may create GitHub Issues using the structured templates. Constitution changes require explicit Scott concur before merge.

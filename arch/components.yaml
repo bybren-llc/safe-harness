@@ -1,0 +1,58 @@
+# Component Registry — safe-harness
+#
+# **Status:** Pending Kai approval (Wave 1 seed)
+#
+# Each component receives an ARC-<CMP> identifier for requirements tracing.
+# Components represent the logical architecture of the safe-harness system.
+#
+# Format:
+#   - id: ARC-<CMP>         # Three-letter component code (uppercase)
+#     name: Component Name
+#     description: Brief description
+#     paths:                 # Filesystem paths this component owns (optional)
+#       - path/to/component
+
+components:
+  - id: ARC-CON
+    name: Constitution
+    description: Governance framework, risk tiers, ownership model, and CD/HITL gates
+    paths:
+      - constitution/
+
+  - id: ARC-ADP
+    name: Adapters
+    description: Runtime-specific adapters (Claude Code, Cursor, Codex, local)
+    paths:
+      - adapters/
+
+  - id: ARC-ROL
+    name: Roles
+    description: Round Table seat definitions and responsibilities
+    paths:
+      - roles/
+
+  - id: ARC-TPL
+    name: Templates
+    description: Brief and handoff templates for Bolts and Studio→Delivery flow
+    paths:
+      - templates/
+
+  - id: ARC-PRV
+    name: Prove
+    description: Evidence and bolt records demonstrating constitution compliance
+    paths:
+      - prove/
+
+  - id: ARC-TRC
+    name: Trace
+    description: Requirements registry, trace state management, and evidence linking
+    paths:
+      - requirements/
+      - arch/
+      - trace/
+
+  - id: ARC-WFL
+    name: Workflows
+    description: CI/CD automation, checks, and gates
+    paths:
+      - .github/workflows/

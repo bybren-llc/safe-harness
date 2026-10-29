@@ -1,37 +1,174 @@
 # safe-harness
 
-**SAW harness** — Safe Agentic Workflow multi-runtime work template (Wave 0).
+**Org:** bybren-llc  
+**Owner:** Kai · GM & lead ARCHitect  
+**Status:** Wave 0 active → Wave 1 proposed
 
-Everyday **safe**, not SAFe the trademark. SAFe + AI-DLC remain the ownership/cadence spine.
+Safe Agentic Workflow harness for everyday safe AI-assisted development. Dual-spine (CD execute/deploy + think/plan), trunk-based delivery, risk-tiered gates, and evidence-first practices.
 
-Org: [`bybren-llc`](https://github.com/bybren-llc) · Reference only: [`safe-agentic-workflow`](https://github.com/bybren-llc/safe-agentic-workflow/tree/dev) `@dev` (do not silent-rewrite).
+**Not SAFe™ the trademark.** SAFe + AI-DLC = ownership/cadence spine.
 
-## Dual spine
+---
 
-| Spine | Owns | Optimizes |
+## Quick start
+
+1. Read [`constitution/README.md`](constitution/README.md) — governance framework
+2. Review [`constitution/00-north-star.md`](constitution/00-north-star.md) — dual spine, M1–M6 metrics
+3. Map seats in [`constitution/01-round-table.md`](constitution/01-round-table.md)
+4. Follow gates in [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) (risk tiers, O2 high-risk)
+5. Track evidence per [`constitution/05-evidence-and-linear.md`](constitution/05-evidence-and-linear.md)
+
+**Wave 1 (proposed):** Repository as sole source of truth. See [`prove/wave-1/decision-pack.md`](prove/wave-1/decision-pack.md) for constitution amendments pending Scott concurrence.
+
+---
+
+## Structure
+
+| Path | Purpose |
+| --- | --- |
+| [`constitution/`](constitution/) | Governance framework (risk tiers, gates, ownership, evidence) |
+| [`roles/`](roles/) | Round Table seat definitions |
+| [`adapters/`](adapters/) | Runtime-specific adapters (Claude Code, Cursor, Codex, local) |
+| [`templates/`](templates/) | Brief and handoff templates (Bolt, Studio→Delivery) |
+| [`prove/`](prove/) | Evidence and bolt records (D-P1, D-P2, etc.) |
+| [`arch/`](arch/) | Component registry (ARC-<CMP>) — Wave 1 |
+| [`requirements/`](requirements/) | REQ-<CMP>-NNN registry — Wave 1 |
+| [`trace/`](trace/) | Trace map (state tracking, evidence linkage) — Wave 1 |
+| [`intent.md`](intent.md) | Human-owned design intent — Wave 1 |
+| [`spec.md`](spec.md) | Human-owned specification — Wave 1 |
+| [`.github/workflows/`](.github/workflows/) | CI/CD automation (Wave 0: thin skeleton; Wave 1: trace-check) |
+
+---
+
+## Wave 1 additions (proposed)
+
+**Pending Scott concurrence:**
+- Repository as sole source of truth (GitHub repo; Linear archived)
+- Human/agent ownership split (CODEOWNERS for intent, spec, constitution, requirements, trace)
+- Requirements tracing (REQ-<CMP>-NNN, trace states, trace-check CI)
+- GitHub Issue templates (bolt, requirement, decision)
+- Migration plan (Linear → GitHub, evidence preservation)
+
+See [`prove/wave-1/decision-pack.md`](prove/wave-1/decision-pack.md) for full details.
+
+---
+
+## Key concepts
+
+### Dual spine (peer)
+
+- **(A) CD execute/deploy** — Delivery lane, spine A, forge/CI-native
+- **(B) Think/plan** — Studio lane, spine B, multi-vault knowledge
+
+Both share Round Table principles, exit states, and ownership. They differ in gates and storage.
+
+### Risk tiers
+
+- **Low**: Auto when green (tests + evidence met); human assignee still named
+- **Med**: One human decision pack
+- **High**: Two distinct humans; agent ≠ human
+
+**O2 high-risk items default to High** unless Kai downgrades in writing at QAS: pricing, refunds, auth, deploy CI/workflows, prod secrets, privacy-boundary crosses.
+
+### Exit states
+
+1. Ready for QAS
+2. Approved for RTE (or collapsed-RTE annotated)
+3. Ready for HITL
+4. MERGED (HITL only) — Wave 0
+5. MERGED (HITL-delegated) — Wave 1: Low tier only
+
+### Evidence (portable)
+
+Each evidence row includes:
+- `evidence_id` (runtime-native unique ID)
+- `runtime` (cursor / claude-code / grok-bot / etc.)
+- `exact_head` (commit SHA or PR head)
+- `issue` (GitHub Issue `#N` — Wave 1; `linear_issue` Wave 0)
+- `actor` (agent or human handle)
+- `gate` (which gate this evidence satisfies)
+- `req_ids` (REQ-<CMP>-NNN list — Wave 1)
+
+### Requirements (Wave 1)
+
+**Requirements = definition of success.** Each REQ-<CMP>-NNN has:
+- `source`: spec.md#anchor or intent.md#anchor
+- `exit_criterion`: Concrete pass/fail condition
+- `metric`: M1–M6 tie or custom metric name
+
+**Trace map:** [`trace/trace-map.yaml`](trace/trace-map.yaml) (fixed path)  
+**Trace states:** Placed / Deferred / Dropped / Missing  
+**Trace-check CI:** `.github/workflows/trace-check.yml` (bootstrap: warn-only until first spec lands)
+
+---
+
+## Human vs. agent ownership (Wave 1)
+
+| Artifact | Owner | Agent role |
 | --- | --- | --- |
-| **(A) CD execute/deploy** | Delivery | Evidence → risk-tier gates → merge queue → flags/rollback |
-| **(B) Think/plan** | Studio | Multi-vault + non-code gates → handoff when knowledge becomes build |
+| **intent.md, spec.md** | Humans (Scott / Kai) | May propose; **never merge** |
+| **constitution/** | Humans (Scott / Kai) | May propose; **never merge** |
+| **requirements/** | Humans (REQ registry) | May propose; **never merge** |
+| **trace/** | Humans (trace map) | May propose; **never merge** |
+| **Everything else** | Agents (end-to-end) | Plan, issues, code, tests, PRs, evidence |
 
-## CI/CD is first-class
+**CODEOWNERS:** `.github/CODEOWNERS` enforces @cheddarfox review for human-owned files.
 
-**CI/CD is a core product of safe-harness**, not optional theater. Trunk-based delivery to `main` (no Gitflow). Kai/Delivery manage PRs. Risk-tier CD path (Low/Med/High gates, deploy pipelines, merge queue, rollback) = M6 first-class deliverable. Wave 0 ships thin CI skeleton (`.github/workflows/`) proving gates exist; full risk-tier automation follows.
+---
 
-See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for trunk-based workflow, risk tiers, and O2 high-risk defaults.
+## GitHub conventions (Wave 1)
 
-## Start here
+**Branch naming:** `<issue#>-slug` (e.g., `42-add-trace-check`)
 
-1. [`constitution/`](constitution/) — north star, seats, CD/HITL, privacy, Linear evidence, empiricism
-2. [`roles/`](roles/) + [`roles/model-stack.md`](roles/model-stack.md) — seat cards + Fable/Opus/Sonnet/Haiku defaults (ultracode not default)
-3. Adapters first: [`adapters/claude-code/`](adapters/claude-code/) · [`adapters/cursor/`](adapters/cursor/)
-4. Prove scaffolds: [`prove/`](prove/) · handoff templates in [`templates/`](templates/)
+**Commit conventions:**
+- Prefix: `[wave-1]` (no Linear SAF tags; Linear retired for safe-harness)
+- Trailer: `Refs #N` — references GitHub Issue
+- Trailer: `Req: REQ-<CMP>-NNN` — satisfies requirement
 
-## Value metrics (M1–M6)
+**PR body:** `Requirements: REQ-<CMP>-NNN, ...` line
 
-Multi-runtime template ships · tmux not required · SAFe+AI-DLC retained · Round Table seats map · time-to-first owned ticket · deploy/release flow health.
+**Labels:** See `.github/labels.yml` (work types, risk tiers, O2 items, exit states, gate labels)
 
-## Privacy (non-negotiable)
+---
 
-Personal vault never remote/GitHub · NAS is SoT for work data · Atlas = forge/business IP · Story IP = NAS pins.
+## Contributing
 
-Kai owns Wave 0 · Delivery executes · Scott HITL/POPM.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for:
+- Personal boundary rule (never include personal-vault content, story IP, or NAS-private facts)
+- GitHub workflow (issues, branches, commits, PRs)
+- Risk tiers and O2 high-risk items
+- Evidence schema and trace linkage
+
+---
+
+## Metrics (M1–M6)
+
+See [`constitution/00-north-star.md`](constitution/00-north-star.md):
+
+- **M1**: Multi-runtime template ships
+- **M2**: tmux not required
+- **M3**: SAFe + AI-DLC spine retained
+- **M4**: Round Table seats map
+- **M5**: Time-to-first owned ticket
+- **M6**: Deploy/release flow health
+
+---
+
+## Status
+
+- **Wave 0:** ✅ Complete (constitution, thin CI, D-P1 prove)
+- **Wave 1:** 🟡 Proposed (repo-only SoR, tracing, GitHub conventions) — awaiting Scott concurrence
+
+See [`prove/README.md`](prove/README.md) for wave checklist and [`prove/wave-1/decision-pack.md`](prove/wave-1/decision-pack.md) for Scott's decision asks.
+
+---
+
+## Reference
+
+- **SAW:** `bybren-llc/safe-agentic-workflow` @ `dev` (reference only; never silent-rewrite)
+- **Linear archive:** SAF-1 through SAF-5 (read-only after Wave 1 cutover)
+- **Mapping table:** [`trace/linear-saf-map.csv`](trace/linear-saf-map.csv) (populated before cutover)
+
+---
+
+**Provenance:** ADR pack concurred 2026-10-28 (C1–C8 / O1–O6 / E1–E3).

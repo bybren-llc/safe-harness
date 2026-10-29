@@ -1,0 +1,40 @@
+# Requirement Template
+#
+# Copy this template to create new requirements: REQ-<CMP>-NNN.yaml
+# Component codes (CMP) are defined in arch/components.yaml
+
+id: REQ-XXX-NNN
+component: ARC-XXX
+state: Placed  # Placed | Deferred | Dropped | Missing
+title: Brief requirement title
+
+# Source reference in human-owned design docs
+source: spec.md#anchor-name  # or intent.md#anchor-name
+
+# Concrete exit criterion (testable pass/fail condition)
+exit_criterion: |
+  Specific, measurable condition that defines requirement satisfaction.
+  Example: "CI trace-check workflow passes on a PR with 3+ Placed requirements"
+
+# Metric tie to constitution/00 M1-M6 or named metric
+metric: M6  # M1 | M2 | M3 | M4 | M5 | M6 | custom-metric-name
+
+# Full requirement description
+description: |
+  Detailed requirement specification.
+  
+  Multiple paragraphs allowed.
+
+# Optional: required for Deferred/Dropped states
+# rationale: |
+#   Why this requirement is deferred or dropped.
+#   For Deferred: include when to revisit.
+
+# Optional: dependencies on other requirements
+# dependencies:
+#   - REQ-XXX-001
+#   - REQ-YYY-002
+
+# Optional: additional context
+# notes: |
+#   Any additional notes or clarifications.

@@ -11,12 +11,25 @@ SDLC target = **continuous deployment**. Mainline stays releasable. Gates prove 
 | Practice | Rule |
 | --- | --- |
 | **Default branch** | `main` is trunk; always releasable |
-| **Feature branches** | Short-lived (`cursor/*`, `feature/*`); merge via PR |
+| **Feature branches** | Short-lived `<issue#>-slug` (e.g., `42-add-trace-check`); merge via PR |
 | **Releases** | Tag from `main` when ready; no separate release branches |
 | **Hotfixes** | Branch from tag → fix → merge to `main` → re-tag |
 | **PR ownership** | Kai / Delivery manage PRs (HITL / risk-tier still applies per O2) |
 
 No Gitflow. Trunk-based development with feature flags for incomplete work.
+
+### GitHub conventions (Wave 1)
+
+**Branch naming:** `<issue#>-slug` (replaces `SAF-N-slug` Linear convention)
+
+**Commit conventions:**
+- Prefix: `[wave-1]` (no Linear SAF tags; Linear is retired for safe-harness)
+- Trailer: `Refs #N` — references GitHub Issue
+- Trailer: `Req: REQ-<CMP>-NNN` — satisfies requirement (trace linkage)
+
+**PR body:** Include `Requirements: REQ-<CMP>-NNN, REQ-<CMP>-MMM` line listing all requirements addressed.
+
+**Labels:** See `.github/labels.yml` for work types, risk tiers, O2 items, exit states, and gate labels.
 
 ## Risk tiers
 
@@ -26,8 +39,11 @@ No Gitflow. Trunk-based development with feature flags for incomplete work.
 | **Med** | One human decision pack | Approve / change-request on that unit only |
 | **High** | Two humans | Two distinct humans; agent ≠ human |
 
-## O2 high-risk default (always High unless Scott/Kai downgrade in writing)
+## O2 high-risk default (always High unless Kai downgrades in writing at QAS)
 
+**Downgrade authority:** Kai may downgrade O2 items from High to Med/Low in writing at QAS, with rationale recorded in the decision pack or QAS verdict.
+
+O2 items (default High):
 - Pricing
 - Refunds
 - Auth
@@ -75,9 +91,10 @@ Thin skeleton → full path is intentional scaffolding, not final state.
 
 ## Decision pack minimum
 
-- Link to Linear issue (SoR)
+- Link to GitHub Issue (SoR)
 - Exact-head SHA / PR
 - Evidence IDs (portable — see `05-evidence-and-linear.md`)
+- Requirements addressed (REQ-<CMP>-NNN list)
 - QAS + SecEng status (or explicit N/A with rationale for low tier only)
-- Risk tier + O2 checklist
+- Risk tier + O2 checklist (note if Kai downgraded any O2 item)
 - Ask: approve / change-request / escalate

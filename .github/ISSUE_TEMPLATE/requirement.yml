@@ -1,0 +1,100 @@
+name: Requirement
+description: Track a requirement needing definition or state change
+title: "[REQ] "
+labels: ["requirement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Requirement Tracking
+        
+        Use this template to track requirements that need:
+        - Definition (state: Missing → Placed)
+        - State changes (Placed → Deferred / Dropped)
+        - Evidence linkage updates
+
+  - type: input
+    id: req_id
+    attributes:
+      label: Requirement ID
+      description: REQ-<CMP>-NNN from requirements/ directory
+      placeholder: "REQ-CON-001"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: ARC-<CMP> from arch/components.yaml
+      options:
+        - ARC-CON (Constitution)
+        - ARC-ADP (Adapters)
+        - ARC-ROL (Roles)
+        - ARC-TPL (Templates)
+        - ARC-PRV (Prove)
+        - ARC-TRC (Trace)
+        - ARC-WFL (Workflows)
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: current_state
+    attributes:
+      label: Current State
+      description: Current requirement state
+      options:
+        - Missing
+        - Placed
+        - Deferred
+        - Dropped
+    validations:
+      required: true
+
+  - type: dropdown
+    id: target_state
+    attributes:
+      label: Target State
+      description: Desired requirement state
+      options:
+        - Placed
+        - Deferred
+        - Dropped
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why this state change? (Required for Deferred/Dropped)
+      placeholder: "Deferring to Wave 2 after M6 CD path proves out"
+    validations:
+      required: false
+
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: spec.md or intent.md anchor
+      placeholder: "spec.md#cd-gates"
+    validations:
+      required: false
+
+  - type: input
+    id: metric
+    attributes:
+      label: Metric Tie
+      description: M1–M6 or custom metric name
+      placeholder: "M6"
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Requirement Description
+      description: Full requirement text
+    validations:
+      required: false

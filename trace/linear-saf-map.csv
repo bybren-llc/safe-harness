@@ -1,0 +1,9 @@
+saf_id,linear_url,github_issue,title,status
+# Linear SAF to GitHub Issue mapping (frozen at Linear retirement)
+#
+# This file will be populated before Linear closeout with actual mappings.
+# Do not add fake issue numbers during Wave 1.
+#
+# Example (remove when populating):
+# SAF-1,https://linear.app/cheddarfox/issue/SAF-1/...,#1,ADR pack concur,Archived
+# SAF-3,https://linear.app/cheddarfox/issue/SAF-3/...,#3,D-P1 delivery bolt,Archived

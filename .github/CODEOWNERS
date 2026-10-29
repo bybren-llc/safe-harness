@@ -1,0 +1,20 @@
+# CODEOWNERS — safe-harness
+#
+# Human-owned design docs, requirements, and constitution require @cheddarfox review.
+# Agents may propose edits but never merge these files (constitution/05).
+#
+# Any REQ-ID add, change, or removal needs a human-reviewed PR.
+
+# Human-owned design (intent + spec)
+/intent.md              @cheddarfox
+/intent/                @cheddarfox
+/spec.md                @cheddarfox
+
+# Requirements registry (REQ-<CMP>-NNN)
+/requirements/          @cheddarfox
+
+# Constitution (governance framework)
+/constitution/          @cheddarfox
+
+# Trace map (REQ state tracking)
+/trace/                 @cheddarfox
