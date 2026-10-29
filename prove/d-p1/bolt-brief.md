@@ -56,8 +56,8 @@
 - [x] QAS independence
 - [ ] SecEng (if required) — N/A (Low; rationale above)
 - [x] RTE or collapsed-RTE annotated (collapsed into implementer per RTE collapse=Allowed)
-- [x] HITL decision pack (exact-head) (Low tier: Kai under Scott's standing auth, no Scott pack needed)
-- [x] MERGED (Kai under Scott's standing Wave 0 auth; Low tier)
+- [x] HITL decision pack (exact-head) — HITL delegated: Scott Graham standing Wave 0 merge authorization (2026-10-28), exercised by Kai at Low tier — [record](https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98)
+- [x] MERGED — HITL delegated: Scott Graham standing Wave 0 merge authorization (2026-10-28), exercised by Kai at Low tier — [record](https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98)
 
 ## Model plan (O4)
 
@@ -77,9 +77,9 @@ Ultracode: **not default**.
 | evidence_id | runtime | exact_head | linear_issue | actor | gate |
 | --- | --- | --- | --- | --- | --- |
 | bc-2002b87a-8540-5b26-adcd-81a17f554bdb | cursor | 41b969f4ff5bc41f6ebc79ec6492cf1855be67de | SAF-3 | Delivery · Lead (Grok Bot) via Cursor CloudAgent | Implement → Ready for QAS |
-| pullrequestreview-5696808123 | cursor | 0952071dda964b25e1a080bc1940705f0ff719af | SAF-3 | Kai · GM & lead ARCHitect | QAS independence (CHANGES NEEDED) |
-| pullrequestreview-5697239991 | cursor | 41b969f4ff5bc41f6ebc79ec6492cf1855be67de | SAF-3 | Kai · GM & lead ARCHitect | QAS independence (APPROVE) |
-| merge-acd9f389bc1f54ab79dbfa1e9732a80c957a10d0 | cursor | 41b969f4ff5bc41f6ebc79ec6492cf1855be67de | SAF-3 | Kai · GM & lead ARCHitect under Scott's standing Wave 0 auth | MERGED |
+| https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5696808123 | grok-bot | 0952071dda964b25e1a080bc1940705f0ff719af | SAF-3 | Kai · GM & lead ARCHitect | QAS independence (CHANGES NEEDED) |
+| https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5697239991 | grok-bot | 41b969f4ff5bc41f6ebc79ec6492cf1855be67de | SAF-3 | Kai · GM & lead ARCHitect | QAS independence (APPROVE) |
+| https://github.com/bybren-llc/safe-harness/commit/acd9f389bc1f54ab79dbfa1e9732a80c957a10d0 | grok-bot | 41b969f4ff5bc41f6ebc79ec6492cf1855be67de | SAF-3 | Kai · GM & lead ARCHitect | MERGED |
 
 ## Measure
 
@@ -92,4 +92,4 @@ Report outcomes vs M1–M6 at Bolt exit.
 - **M5**: not exercised in D-P1
 - **M6**: 2 QAS rounds, opened 2026-10-29T10:43:56Z (06:43:56 EDT) and merged 2026-10-29T11:54:42Z (07:54:42 EDT) — about 70 minutes opened to merged (source: GitHub API `gh pr view 3 --json createdAt,mergedAt`); thin CI green on both heads (Structure & Docs Validation, CodeRabbit); the train never froze
 
-**Exit states (constitution/05)**: Ready for QAS → Approved for RTE (collapsed-RTE annotated) → Ready for HITL → MERGED (HITL, or Kai under Scott's standing Wave 0 auth at Low tier)
+**Exit states (constitution/05)**: Ready for QAS → Approved for RTE (collapsed-RTE annotated) → Ready for HITL → MERGED (HITL only)
