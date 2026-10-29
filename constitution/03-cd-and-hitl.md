@@ -92,7 +92,7 @@ Scott (HITL), 2026-10-29, verbatim:
 | --- | --- | --- |
 | **Dev or trunk** | Authorized agents (**Kai**, **Release · RTE**) | Required checks green + independent QAS APPROVE on the exact head |
 | **Staging** | Automatic promotion | Tests pass |
-| **Prod** | Human gate: Scott's recorded own-words concur | Only for prod-risk items: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. |
+| **Prod** | Human gate: Scott's recorded own-words concur | Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. |
 
 **safe-harness** is a docs repo with only `main`. It is the **trunk** case under Dev or trunk. Its `constitution/`, High, and O2 changes still need Scott's recorded own-words concur.
 
@@ -113,7 +113,7 @@ Scott may merge any change at any tier and environment.
 
 ### RTE placement
 
-Release · RTE is **required** at Med, High, and O2. At Low it is an async checklist (not blocking if the path is annotated). RTE PASS runs **in parallel** with Scott's concur where concur is required.
+Release · RTE is **required** at Med, High, and O2. At Low it is an async checklist (not blocking if the path is annotated). RTE PASS runs **in parallel** with Scott's concur where concur is required. An RTE merge needs RTE PASS plus the required concur.
 
 ### HOLD override
 

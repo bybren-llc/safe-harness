@@ -39,7 +39,9 @@ On **trunk** (safe-harness is trunk-only), **Release · RTE MAY merge** once all
 - `constitution/`, High, and O2 changes without Scott's recorded own-words concur at exact head
 - A change while an RTE HOLD stands, unless Kai or Scott override with the reason on the PR
 
-An RTE merge never counts as human approval. Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md).
+An RTE merge needs RTE PASS plus the required concur. An RTE merge never counts as human approval. Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md).
+
+Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. Safe-harness is trunk-only; trunk concur is `constitution/`, High, and O2.
 
 **Release · RTE MAY BLOCK** any change for insufficient evidence, missing concur, or release readiness concerns.
 

@@ -87,15 +87,21 @@ graph TD
     C --> D[Open PR]
     D --> E[CI: Structure and Trace]
     E --> F[CodeRabbit Review]
-    F --> G[Independent QAS APPROVE]
-    G --> H[RTE PASS on exact head]
-    H --> I{Scott concur required?}
-    I -->|No: trunk, not constitution or O2| J[Kai or RTE executes merge]
-    I -->|Yes: constitution or O2 or prod-risk| K[Scott recorded human approval]
-    K --> L[Scott or Kai or RTE executes merge]
-    J --> M[Merged to main]
+    F --> G[Kai independent QAS APPROVE]
+    G --> H[RTE PASS]
+    G --> I[Scott concur when required]
+    H --> J{Merge execution}
+    I --> J
+    J -->|Kai: QAS APPROVE| K[Kai executes merge]
+    J -->|RTE: Kai QAS APPROVE plus RTE PASS plus required concur| L[RTE executes merge]
+    J -->|Scott| S[Scott executes merge]
+    K --> M[Merged to main]
     L --> M
+    S --> M
+    M --> P[Prod promotion: Scott concur on prod-risk]
 ```
+
+Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. Safe-harness is trunk-only; trunk concur is `constitution/`, High, and O2.
 
 ---
 
@@ -150,9 +156,9 @@ Both share Round Table principles, exit states, and ownership. They differ in ga
 
 ### Risk tiers
 
-- **Low**: Auto when green (tests + evidence met); human assignee still named; trunk merge by Kai or RTE after QAS APPROVE
-- **Med**: One human decision pack; trunk merge by Kai or RTE after QAS APPROVE (and RTE PASS)
-- **High**: Two distinct humans; agent ≠ human (how this is met is open for Scott). Scott's recorded concur is a required human approval; merge execution may be Scott, Kai, or RTE.
+- **Low**: Auto when green (tests + evidence met); human assignee still named; trunk merge by Kai after QAS APPROVE; RTE merge also needs RTE PASS
+- **Med**: One human decision pack; trunk merge by Kai after QAS APPROVE; RTE merge also needs RTE PASS
+- **High**: Two distinct humans; agent ≠ human (how this is met is open for Scott). Scott's recorded concur is a required human approval; RTE merge needs RTE PASS plus the required concur; merge execution may be Scott, Kai, or RTE.
 
 **O2 high-risk items default to High** unless downgraded in writing at QAS. Delivery may propose a downgrade rationale; Kai decides at QAS: pricing, refunds, auth, deploy CI/workflows, prod secrets, privacy-boundary crosses.
 

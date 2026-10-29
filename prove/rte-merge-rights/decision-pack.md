@@ -79,7 +79,7 @@ O2 checklist:
 | --- | --- | --- |
 | **Dev or trunk** | Authorized agents (Kai, Release · RTE) | Checks green + independent QAS APPROVE on exact head |
 | **Staging** | Automatic promotion | Tests pass |
-| **Prod** | Human gate: Scott's recorded own-words concur | Prod-risk only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. |
+| **Prod** | Human gate: Scott's recorded own-words concur | Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. |
 
 Each repo declares its own environments and tiers. safe-harness = trunk only; `constitution/`, High, and O2 still need Scott's concur.
 
@@ -149,6 +149,7 @@ Tag automation (`vYYYY.MM.DD-<shortsha>`, one per merge) and GitHub Release publ
 **Do not merge until:**
 
 - [ ] Scott's own-words concur on this decision pack at the exact head
+- [ ] Independent SecEng pass at exact head, or explicit SecEng waiver in Scott's concur ask
 - [ ] Scott answers the open questions (or explicitly defers them)
 - [ ] Kai re-QAS APPROVE at the new exact head
 - [ ] CodeRabbit findings on the new head triaged
