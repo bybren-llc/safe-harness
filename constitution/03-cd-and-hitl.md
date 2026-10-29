@@ -78,7 +78,7 @@ Default = decision packs + independence. Freeze is rare and named.
 
 ## Merge authority (template default — amendment 2026-10-29)
 
-Merge authority is set by **risk tier and environment**, written here as a **TEMPLATE DEFAULT**. Each adopting repo declares its own environments and tiers (README or a constitution section). Environment-promotion model source: [teapawt.net/unicodef1wn/article/2112574886421901822](https://teapawt.net/unicodef1wn/article/2112574886421901822).
+Merge authority is set by **risk tier and environment**, written here as a **TEMPLATE DEFAULT**. Each adopting repo declares its own environments and tiers (README or a constitution section). Authority for this widening is Scott's verbatim 1:54 and 1:55 PM ET quotes below. No other source is cited.
 
 Scott (HITL), 2026-10-29, verbatim:
 
@@ -127,7 +127,8 @@ At High/O2, Scott's recorded own-words concur is **a** required human approval. 
 
 Open questions (do not resolve in this amendment):
 
-1. **High-tier "two distinct humans"** (`constitution/03` tier table; README Key concepts): Scott is the only human today. Does High need two distinct humans when Scott is the only human, or does his recorded concur plus independent agent QAS satisfy it? Options live in the decision pack.
+(a) **High-tier "two distinct humans"** (`constitution/03` tier table; README Key concepts): Scott is the only human today. Does High need two distinct humans when Scott is the only human, or does his recorded concur plus independent agent QAS satisfy it? Options live in the decision pack.
+(b) **RTE rights over deploy workflows and secrets** — OPEN. What rights Release · RTE has over deploy CI/workflows and prod secrets. No answer is written here.
 2. **`main` branch protection** — not configured yet. Enforcing who may merge in GitHub waits on Scott.
 3. **D1 `hitl_delegate`** — Low-tier delegated HITL record (`constitution/05`). Still awaiting Scott on whether it stays as written.
 

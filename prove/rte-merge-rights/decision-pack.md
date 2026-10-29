@@ -16,7 +16,7 @@ Amend merge authority from a flat "agents never merge" rule to a **template defa
 
 **safe-harness** is a docs repo with only `main` (the trunk case). Authorized agents (Kai, Release · RTE) may execute a trunk merge once checks are green and an independent QAS APPROVE is on the exact head. `constitution/` and O2 changes still need Scott's recorded own-words concur. Delivery and cloud agents never merge. Nobody merges their own authored change. An agent merge never counts as human approval.
 
-Environment-promotion model source: [teapawt.net/unicodef1wn/article/2112574886421901822](https://teapawt.net/unicodef1wn/article/2112574886421901822).
+Authority for the environment-promotion widening is Scott's verbatim 1:54 and 1:55 PM ET quotes below. No other source is cited.
 
 ---
 
@@ -68,7 +68,6 @@ O2 checklist:
 - [ ] Pricing — N/A
 - [ ] Refunds — N/A
 - [x] **Auth — YES** (merge authority = who may merge)
-- [ ] Deploy CI / workflows — N/A (tag/Release automation is out of scope; its own O2 PR)
 - [ ] Prod secrets — N/A
 - [ ] Privacy-boundary — N/A
 
@@ -101,6 +100,10 @@ Do not resolve these in the amendment text. Answer in your own words on this PR.
 - **(c)** Other (name it): for example, Scott's recorded concur is one required human and a second named human must be added later.
 
 This pack does **not** pick (a), (b), or (c). An agent merge never counts as a human approval regardless of the answer.
+
+### (b) RTE rights over deploy workflows and secrets — OPEN
+
+What rights Release · RTE has over deploy CI/workflows and prod secrets. No answer is written here.
 
 ### 2. Merge scope by environment
 
