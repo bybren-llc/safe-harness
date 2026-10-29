@@ -83,6 +83,7 @@ SAF-N,<linear-url>,#<issue>,#<pr>,<title>,<status>
 - [ ] All active work migrated to GitHub Issues
 - [ ] Team using GitHub Issues for new work
 - [ ] trace/linear-saf-map.csv committed and complete
+- [ ] Librarian's SAF-map freeze PR merged (row validation, `trace/linear-saf-map.sha256`, Frozen note in `schema.md`, and B5 or the equivalent manual check passing)
 
 ### Phase 4: Archive maintenance
 
