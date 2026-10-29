@@ -1,0 +1,126 @@
+# GitHub Labels — safe-harness
+#
+# Documentation-only. Do not create these labels via API during Wave 1.
+# Manual creation or automation comes after Scott concurrence.
+#
+# Milestones: One milestone per wave (e.g., "Wave 1", "Wave 2").
+# Document milestones; create them manually or via approved automation.
+#
+# Label scheme:
+#   bolt             - Bolt/UoW work items (spine A)
+#   tier:low         - Risk tier: Low
+#   tier:medium      - Risk tier: Medium
+#   tier:high        - Risk tier: High
+#   requirement      - Requirement definition or state change
+#   decision         - Decision requiring Scott/Kai concurrence
+#   needs-concur     - Awaiting explicit concurrence (general)
+#   needs-scott-concur - Awaiting Scott concurrence (intent/spec/constitution PRs)
+#   gate:rnd         - Gate: Research & Discover
+#   gate:plan        - Gate: Plan
+#   gate:concur      - Gate: Concurrence
+#   gate:execute     - Gate: Execute
+#   gate:measure     - Gate: Measure
+#   o2:*             - O2 high-risk items
+#   exit:*           - Exit states
+
+labels:
+  # Work item types
+  - name: bolt
+    color: "0e8a16"
+    description: "Bolt / Unit of Work (spine A: Delivery)"
+  
+  - name: requirement
+    color: "1d76db"
+    description: "Requirement definition or state change"
+  
+  - name: decision
+    color: "d93f0b"
+    description: "Decision requiring explicit concurrence"
+  
+  - name: needs-concur
+    color: "fbca04"
+    description: "Awaiting Scott/Kai concurrence"
+
+  - name: needs-scott-concur
+    color: "d93f0b"
+    description: "Awaiting Scott concurrence (required for intent/spec/constitution PRs)"
+
+  # Risk tiers
+  - name: "tier:low"
+    color: "c2e0c6"
+    description: "Risk tier: Low (auto-merge when green)"
+  
+  - name: "tier:medium"
+    color: "f9d0c4"
+    description: "Risk tier: Medium (one human decision pack)"
+  
+  - name: "tier:high"
+    color: "d73a4a"
+    description: "Risk tier: High (two distinct humans)"
+
+  # O2 high-risk items (default High unless downgraded)
+  - name: "o2:pricing"
+    color: "b60205"
+    description: "O2 high-risk: pricing"
+  
+  - name: "o2:refunds"
+    color: "b60205"
+    description: "O2 high-risk: refunds"
+  
+  - name: "o2:auth"
+    color: "b60205"
+    description: "O2 high-risk: auth"
+  
+  - name: "o2:deploy-ci"
+    color: "b60205"
+    description: "O2 high-risk: deploy CI/workflows"
+  
+  - name: "o2:secrets"
+    color: "b60205"
+    description: "O2 high-risk: prod secrets"
+  
+  - name: "o2:privacy"
+    color: "b60205"
+    description: "O2 high-risk: privacy-boundary crosses"
+
+  # Exit states
+  - name: "exit:qas"
+    color: "5319e7"
+    description: "Exit state: Ready for QAS"
+  
+  - name: "exit:rte"
+    color: "5319e7"
+    description: "Exit state: Approved for RTE"
+  
+  - name: "exit:hitl"
+    color: "5319e7"
+    description: "Exit state: Ready for HITL"
+  
+  - name: "exit:merged"
+    color: "0e8a16"
+    description: "Exit state: MERGED (HITL only)"
+  
+  - name: "exit:merged-delegated"
+    color: "0e8a16"
+    description: "Exit state: MERGED (HITL-delegated, Low tier only)"
+
+  # Gate labels (wave workflow stages)
+  - name: "gate:rnd"
+    color: "bfd4f2"
+    description: "Gate: Research & Discover"
+  
+  - name: "gate:plan"
+    color: "bfd4f2"
+    description: "Gate: Plan"
+  
+  - name: "gate:concur"
+    color: "fbca04"
+    description: "Gate: Concurrence (awaiting approval)"
+  
+  - name: "gate:execute"
+    color: "0e8a16"
+    description: "Gate: Execute (implementation)"
+  
+  - name: "gate:measure"
+    color: "5319e7"
+    description: "Gate: Measure (outcomes vs. metrics)"

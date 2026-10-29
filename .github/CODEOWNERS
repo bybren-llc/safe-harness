@@ -1,0 +1,20 @@
+# CODEOWNERS — safe-harness
+#
+# Human-owned: intent.md and spec.md (Scott owns and accepts design).
+# Agent-authored with @cheddarfox review gate: requirements, trace, constitution, workflows, CODEOWNERS.
+# Agents may propose edits but never merge these files (constitution/05).
+#
+# Any REQ-ID add, change, or removal needs a human-reviewed PR.
+
+# Human-owned design (intent + spec)
+/intent.md              @cheddarfox
+/intent/                @cheddarfox
+/spec.md                @cheddarfox
+
+# Agent-authored with review gate
+/requirements/          @cheddarfox
+/constitution/          @cheddarfox
+/trace/                 @cheddarfox
+/trace/.blocking        @cheddarfox
+/.github/CODEOWNERS     @cheddarfox
+/.github/workflows/     @cheddarfox

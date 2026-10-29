@@ -1,0 +1,271 @@
+name: Trace Check (Bootstrap)
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  trace-validation:
+    name: Requirements Trace Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Verify yq available
+        run: |
+          # Use runner's preinstalled yq
+          if ! command -v yq &> /dev/null; then
+            echo "❌ yq not found on runner"
+            exit 1
+          fi
+          echo "✓ yq found: $(which yq)"
+          yq --version
+      
+      - name: Validate trace map
+        id: validate
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Requirements Trace Validation (Bootstrap)"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+          
+          # Bootstrap rule: check if spec.md has REQ IDs
+          # Blocking activation gate: also requires trace/.blocking marker (added by follow-up validations PR)
+          # If not, run warn-only (non-blocking)
+          # If yes, run blocking (fail on violations)
+          
+          BLOCKING_MODE=false
+          
+          if [[ -f "spec.md" ]] && grep -qE "REQ-[A-Z]{3}-[0-9]{3}" spec.md && [[ -f "trace/.blocking" ]]; then
+            echo "✓ spec.md contains REQ IDs AND trace/.blocking exists — trace-check is BLOCKING"
+            BLOCKING_MODE=true
+          elif [[ -f "spec.md" ]] && grep -qE "REQ-[A-Z]{3}-[0-9]{3}" spec.md; then
+            echo "⚠ Bootstrap mode: spec.md has REQ IDs but trace/.blocking missing — trace-check is WARN-ONLY"
+          elif [[ -f "spec.md" ]]; then
+            echo "⚠ Bootstrap mode: spec.md exists but has no REQ IDs — trace-check is WARN-ONLY"
+          else
+            echo "⚠ spec.md not found — trace-check is WARN-ONLY"
+          fi
+          
+          echo ""
+          echo "Checking trace map: trace/trace-map.yaml"
+          echo ""
+          
+          if [[ ! -f "trace/trace-map.yaml" ]]; then
+            echo "❌ trace/trace-map.yaml not found"
+            if [[ "$BLOCKING_MODE" == "true" ]]; then
+              exit 1
+            else
+              echo "⚠ WARN-ONLY: continuing (bootstrap mode)"
+              exit 0
+            fi
+          fi
+          
+          # Validate YAML syntax
+          if ! yq eval '.' trace/trace-map.yaml > /dev/null 2>&1; then
+            echo "❌ trace/trace-map.yaml has invalid YAML syntax"
+            if [[ "$BLOCKING_MODE" == "true" ]]; then
+              exit 1
+            else
+              echo "⚠ WARN-ONLY: continuing (bootstrap mode)"
+              exit 0
+            fi
+          fi
+          
+          echo "✓ trace/trace-map.yaml is valid YAML"
+          echo ""
+          
+          # Extract requirements
+          REQ_COUNT=$(yq eval '.requirements | length' trace/trace-map.yaml)
+          echo "Found $REQ_COUNT requirements"
+          echo ""
+          
+          if [[ "$REQ_COUNT" -eq 0 ]]; then
+            echo "⚠ No requirements defined yet — validation complete"
+            exit 0
+          fi
+          
+          ERRORS=0
+          WARNINGS=0
+          
+          # Check each requirement
+          for i in $(seq 0 $((REQ_COUNT - 1))); do
+            REQ_ID=$(yq eval ".requirements[$i].id" trace/trace-map.yaml)
+            REQ_STATE=$(yq eval ".requirements[$i].state" trace/trace-map.yaml)
+            REQ_COMPONENT=$(yq eval ".requirements[$i].component" trace/trace-map.yaml)
+            
+            echo "Checking $REQ_ID (state: $REQ_STATE, component: $REQ_COMPONENT)"
+            
+            # Check state is valid
+            if [[ "$REQ_STATE" != "Placed" && "$REQ_STATE" != "Deferred" && "$REQ_STATE" != "Dropped" && "$REQ_STATE" != "Missing" ]]; then
+              echo "  ❌ Invalid state: $REQ_STATE (must be Placed/Deferred/Dropped/Missing)"
+              ERRORS=$((ERRORS + 1))
+            fi
+            
+            # Fail on Missing state
+            if [[ "$REQ_STATE" == "Missing" ]]; then
+              echo "  ❌ Requirement in Missing state (must be defined)"
+              ERRORS=$((ERRORS + 1))
+            fi
+            
+            # Check Placed requirements
+            if [[ "$REQ_STATE" == "Placed" ]]; then
+              # Check required fields
+              SOURCE=$(yq eval ".requirements[$i].source" trace/trace-map.yaml)
+              EXIT_CRIT=$(yq eval ".requirements[$i].exit_criterion" trace/trace-map.yaml)
+              METRIC=$(yq eval ".requirements[$i].metric" trace/trace-map.yaml)
+              
+              if [[ "$SOURCE" == "null" ]]; then
+                echo "  ❌ Missing required field: source"
+                ERRORS=$((ERRORS + 1))
+              fi
+              if [[ "$EXIT_CRIT" == "null" ]]; then
+                echo "  ❌ Missing required field: exit_criterion"
+                ERRORS=$((ERRORS + 1))
+              fi
+              if [[ "$METRIC" == "null" ]]; then
+                echo "  ❌ Missing required field: metric"
+                ERRORS=$((ERRORS + 1))
+              fi
+              
+              # Check for evidence linkage
+              EVIDENCE_COUNT=$(yq eval ".evidence | length" trace/trace-map.yaml)
+              HAS_EVIDENCE=false
+              
+              for j in $(seq 0 $((EVIDENCE_COUNT - 1))); do
+                # Validate evidence row has required fields
+                EV_ID=$(yq eval ".evidence[$j].evidence_id" trace/trace-map.yaml)
+                EV_HEAD=$(yq eval ".evidence[$j].exact_head" trace/trace-map.yaml)
+                EV_ACTOR=$(yq eval ".evidence[$j].actor" trace/trace-map.yaml)
+                EV_GATE=$(yq eval ".evidence[$j].gate" trace/trace-map.yaml)
+                
+                if [[ "$EV_ID" == "null" || "$EV_HEAD" == "null" || "$EV_ACTOR" == "null" || "$EV_GATE" == "null" ]]; then
+                  echo "  ⚠ Evidence row $j missing required fields (evidence_id, exact_head, actor, gate); skipping"
+                  continue
+                fi
+                
+                REQ_IDS=$(yq eval ".evidence[$j].req_ids[]" trace/trace-map.yaml 2>/dev/null)
+                if echo "$REQ_IDS" | grep -q "^${REQ_ID}$"; then
+                  HAS_EVIDENCE=true
+                  break
+                fi
+              done
+              
+              if [[ "$HAS_EVIDENCE" == "false" ]]; then
+                echo "  ❌ No evidence row references $REQ_ID via req_ids"
+                ERRORS=$((ERRORS + 1))
+              else
+                echo "  ✓ Evidence linked"
+              fi
+            fi
+            
+            # Check Deferred requirements
+            if [[ "$REQ_STATE" == "Deferred" ]]; then
+              RATIONALE=$(yq eval ".requirements[$i].rationale" trace/trace-map.yaml)
+              DECIDED_BY=$(yq eval ".requirements[$i].decided_by" trace/trace-map.yaml)
+              DECIDED_AT=$(yq eval ".requirements[$i].decided_at" trace/trace-map.yaml)
+              DEFER_TO=$(yq eval ".requirements[$i].defer_to" trace/trace-map.yaml)
+              
+              if [[ "$RATIONALE" == "null" ]]; then
+                echo "  ❌ Missing required field: rationale"
+                ERRORS=$((ERRORS + 1))
+              fi
+              if [[ "$DECIDED_BY" == "null" ]]; then
+                echo "  ❌ Missing required field: decided_by"
+                ERRORS=$((ERRORS + 1))
+              fi
+              if [[ "$DECIDED_AT" == "null" ]]; then
+                echo "  ❌ Missing required field: decided_at"
+                ERRORS=$((ERRORS + 1))
+              fi
+              if [[ "$DEFER_TO" == "null" ]]; then
+                echo "  ❌ Missing required field: defer_to"
+                ERRORS=$((ERRORS + 1))
+              fi
+            fi
+            
+            # Check Dropped requirements
+            if [[ "$REQ_STATE" == "Dropped" ]]; then
+              RATIONALE=$(yq eval ".requirements[$i].rationale" trace/trace-map.yaml)
+              DECIDED_BY=$(yq eval ".requirements[$i].decided_by" trace/trace-map.yaml)
+              DECIDED_AT=$(yq eval ".requirements[$i].decided_at" trace/trace-map.yaml)
+              SOURCE=$(yq eval ".requirements[$i].source" trace/trace-map.yaml)
+              
+              if [[ "$RATIONALE" == "null" ]]; then
+                echo "  ❌ Missing required field: rationale"
+                ERRORS=$((ERRORS + 1))
+              fi
+              if [[ "$DECIDED_BY" == "null" ]]; then
+                echo "  ❌ Missing required field: decided_by"
+                ERRORS=$((ERRORS + 1))
+              fi
+              if [[ "$DECIDED_AT" == "null" ]]; then
+                echo "  ❌ Missing required field: decided_at"
+                ERRORS=$((ERRORS + 1))
+              fi
+              
+              # Check if source is intent.md and requires Scott sign-off
+              if [[ "$SOURCE" =~ ^intent\.md# ]]; then
+                if [[ "$DECIDED_BY" != "Scott Graham" ]]; then
+                  echo "  ❌ Dropping REQ from intent.md requires Scott's sign-off (decided_by must be exactly 'Scott Graham')"
+                  ERRORS=$((ERRORS + 1))
+                fi
+                
+                # Require sign-off link in rationale
+                if [[ ! "$RATIONALE" =~ https?:// ]]; then
+                  echo "  ❌ Dropping REQ from intent.md requires sign-off link in rationale"
+                  ERRORS=$((ERRORS + 1))
+                fi
+              fi
+            fi
+            
+            # Check component exists in arch/components.yaml
+            if [[ -f "arch/components.yaml" ]]; then
+              if ! yq eval '.components[].id' arch/components.yaml | grep -q "^${REQ_COMPONENT}$"; then
+                echo "  ❌ Component $REQ_COMPONENT not found in arch/components.yaml"
+                ERRORS=$((ERRORS + 1))
+              fi
+            else
+              echo "  ⚠ arch/components.yaml not found — cannot validate component"
+              WARNINGS=$((WARNINGS + 1))
+            fi
+            
+            echo ""
+          done
+          
+          # Summary
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Validation Summary"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Requirements checked: $REQ_COUNT"
+          echo "Errors: $ERRORS"
+          echo "Warnings: $WARNINGS"
+          echo ""
+          
+          if [[ "$ERRORS" -gt 0 ]]; then
+            if [[ "$BLOCKING_MODE" == "true" ]]; then
+              echo "❌ BLOCKING MODE: Trace check failed"
+              exit 1
+            else
+              echo "⚠ WARN-ONLY MODE (bootstrap): Errors detected but not blocking"
+              echo "Trace check will become blocking after first spec.md with REQ IDs lands"
+              exit 0
+            fi
+          else
+            echo "✅ Trace check passed"
+            exit 0
+          fi
+      
+      - name: Summary
+        if: success()
+        run: |
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅ Requirements trace validation passed"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

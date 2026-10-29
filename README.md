@@ -1,37 +1,265 @@
 # safe-harness
 
-**SAW harness** — Safe Agentic Workflow multi-runtime work template (Wave 0).
+**Org:** bybren-llc  
+**Owner:** Kai · GM & lead ARCHitect  
+**Status:** Wave 1 adopted 2026-10-29 (Scott concur)
 
-Everyday **safe**, not SAFe the trademark. SAFe + AI-DLC remain the ownership/cadence spine.
+---
 
-Org: [`bybren-llc`](https://github.com/bybren-llc) · Reference only: [`safe-agentic-workflow`](https://github.com/bybren-llc/safe-agentic-workflow/tree/dev) `@dev` (do not silent-rewrite).
+## What is safe-harness?
 
-## Dual spine
+**Safe-harness** is an AI-native software development lifecycle (SDLC) framework for everyday, safe AI-assisted development. It's designed for small teams building software with AI agents as primary contributors, where humans set direction and maintain safety gates while agents execute the work.
 
-| Spine | Owns | Optimizes |
-| --- | --- | --- |
-| **(A) CD execute/deploy** | Delivery | Evidence → risk-tier gates → merge queue → flags/rollback |
-| **(B) Think/plan** | Studio | Multi-vault + non-code gates → handoff when knowledge becomes build |
+**Who it's for:** Engineering teams (1-10 people) working with AI coding agents (Cursor, Claude, Grok, etc.) who need structured governance, clear ownership boundaries, and evidence-based decision making.
 
-## CI/CD is first-class
+**What problem it solves:** AI agents can write code faster than humans can review it. Without structure, this creates risk: requirements drift, undocumented decisions, unclear ownership, and merge chaos. Safe-harness provides the minimum viable governance to keep AI-assisted development safe, traceable, and human-controlled.
 
-**CI/CD is a core product of safe-harness**, not optional theater. Trunk-based delivery to `main` (no Gitflow). Kai/Delivery manage PRs. Risk-tier CD path (Low/Med/High gates, deploy pipelines, merge queue, rollback) = M6 first-class deliverable. Wave 0 ships thin CI skeleton (`.github/workflows/`) proving gates exist; full risk-tier automation follows.
+---
 
-See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for trunk-based workflow, risk tiers, and O2 high-risk defaults.
+## Glossary
 
-## Start here
+**HITL (Human In The Loop):** The final approval before merging to main. Scott is HITL/POPM for safe-harness. HITL reviews the decision pack and evidence, then merges. At Low risk tier only, HITL can delegate merge authority to an agent seat (Kai) with a structured `hitl_delegate` record.
 
-1. [`constitution/`](constitution/) — north star, seats, CD/HITL, privacy, Linear evidence, empiricism
-2. [`roles/`](roles/) + [`roles/model-stack.md`](roles/model-stack.md) — seat cards + Fable/Opus/Sonnet/Haiku defaults (ultracode not default)
-3. Adapters first: [`adapters/claude-code/`](adapters/claude-code/) · [`adapters/cursor/`](adapters/cursor/)
-4. Prove scaffolds: [`prove/`](prove/) · handoff templates in [`templates/`](templates/)
+**QAS (Quality Assurance & Acceptance):** Independent review by a seat who did not implement the change. Kai is QAS today (an agent). QAS reviews code, tests, evidence, and decision packs at exact commit SHA. QAS is posted as COMMENT reviews (PRs are authored by the `cheddarfox` account, which is also the account Kai reviews through; GitHub does not let a PR's author APPROVE or REQUEST_CHANGES on their own PR, so the independent QAS verdict is recorded as a COMMENT review with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line).
 
-## Value metrics (M1–M6)
+**RTE (Release Train Engineer):** In Round Table the Release · RTE seat: an independent final release gate under continuous deployment (no trains). Merge rights pending codification in the follow-up amendment.
 
-Multi-runtime template ships · tmux not required · SAFe+AI-DLC retained · Round Table seats map · time-to-first owned ticket · deploy/release flow health.
+**O2:** High-risk items from ADR decision O2 that default to High tier and require extra scrutiny: pricing, refunds, auth, deploy CI/workflows, prod secrets, privacy-boundary crosses. Delivery may propose downgrades; Kai decides in writing at QAS.
 
-## Privacy (non-negotiable)
+**POPM (Product Owner / Product Manager):** The role that owns product direction, requirements priority, and go/no-go decisions. In safe-harness, Scott is HITL/POPM for the whole repo.
 
-Personal vault never remote/GitHub · NAS is SoT for work data · Atlas = forge/business IP · Story IP = NAS pins.
+**Bolt:** A small, bounded work package with a decision pack, implementation, tests, and evidence. Named for speed and precision. Each bolt has a risk tier (Low/Med/High) and goes through structured gates.
 
-Kai owns Wave 0 · Delivery executes · Scott HITL/POPM.
+**Spine:** One of two parallel workflows. Spine A (Delivery) = CD execute/deploy, forge-native. Spine B (Studio) = think/plan, multi-vault knowledge work. Both share ownership principles and exit states.
+
+**AI-DLC (AI Development Lifecycle):** The agent-first counterpart to traditional SDLC. Humans own intent and design; agents own plan-to-evidence execution. Ownership spine: humans set direction, agents execute, humans approve.
+
+---
+
+## Quickstart
+
+### (a) Propose a change
+
+1. Open a GitHub Issue describing the change
+2. Add label for work type (`bolt`, `decision`, `requirement`)
+3. Add risk tier label (`tier:low`, `tier:medium`, `tier:high`)
+4. For O2 items, add `o2:<item>` label (e.g., `o2:pricing`, `o2:deploy-ci`, `o2:secrets`)
+5. Assign or wait for an agent to pick it up
+
+### (b) Agent picking up work
+
+1. Create branch: `<issue#>-slug` (e.g., `42-add-auth-check`)
+2. Implement, test, gather evidence
+3. Commit with trailers: `Refs #42` and `Req: REQ-<CMP>-NNN`
+4. Open PR with `Requirements: REQ-<CMP>-NNN` line in body
+5. Wait for CI (Structure & Docs, Trace), CodeRabbit, and QAS
+6. If Medium/High, create decision pack
+7. Request HITL merge (or HITL-delegated at Low tier)
+
+### (c) What needs Scott
+
+- Constitution amendments (requires Scott concurrence)
+- High and O2 items (require Scott as one of two humans)
+- Intent or spec changes (Scott owns and must approve via CODEOWNERS)
+- Dropping a requirement from `intent.md` (requires Scott sign-off)
+
+**Note:** GitHub conventions (`<issue#>-slug` branches, `Refs #N`, `Req:` trailers) apply from Linear cutover. Wave 0 used `SAF-n` branch and `[SAF-n]` commit prefix format.
+
+---
+
+## How a change flows
+
+1. **Issue:** Create GitHub Issue with work type, risk tier, and O2 labels
+2. **Branch:** Create branch `<issue#>-slug` off main
+3. **PR:** Open PR with `Requirements: REQ-<CMP>-NNN` line in body
+4. **CI:** Structure & Docs Validation + Requirements Trace Validation run
+5. **CodeRabbit:** Automated code review (required gate input)
+6. **QAS:** Independent review at exact commit SHA (Kai), posted as COMMENT (PRs are authored by the `cheddarfox` account, which is also the account Kai reviews through; GitHub does not let a PR's author APPROVE or REQUEST_CHANGES on their own PR, so the independent QAS verdict is recorded as a COMMENT review with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line)
+7. **Decision pack:** If Medium or High tier, create decision pack with rationale, evidence, and risks
+8. **Merge:** Merge rights belong only to Scott (HITL), Kai (GM, delegated authority, recorded as `hitl_delegate` at Low or written Scott concur at Med/High), and Release · RTE (pending codification in the follow-up amendment). No other agent merges, including Delivery and cloud agents
+
+**Key constraint:** QAS independence means QAS is never the implementer. Nobody merges their own authored change. High/O2 still needs Scott's recorded concur.
+
+```mermaid
+graph TD
+    A[Issue Created] --> B[Branch: issue#-slug]
+    B --> C[Implement + Test]
+    C --> D[Open PR]
+    D --> E[CI: Structure & Trace]
+    E --> F[CodeRabbit Review]
+    F --> G[QAS Review COMMENT]
+    G --> H{Risk Tier?}
+    H -->|Low| I[Kai merge with hitl_delegate]
+    H -->|Med/High| J[Decision Pack]
+    J --> K[Scott or Kai merge with Scott concur]
+    I --> L[Merged to main]
+    K --> L
+```
+
+---
+
+## Roles and ownership
+
+| Role | Seat | Responsibilities | Card |
+| --- | --- | --- | --- |
+| **Scott** | HITL / POPM | Owns intent.md & spec.md, High/O2 HITL, constitution concur | Role card planned |
+| **Kai** | GM / lead ARCHitect | QAS, merge, architecture registry, O2 decisions | [`roles/kai-gm-architect.md`](roles/kai-gm-architect.md) |
+| **Delivery · Lead** | Implementation | Execute bolts, cite REQs, author PRs, never merge | [`roles/delivery-lead.md`](roles/delivery-lead.md) |
+| **Studio · Lead** | Design & requirements | Draft intent & spec with Scott, derive REQ IDs, research appendix | [`roles/studio-lead.md`](roles/studio-lead.md) |
+| **Ops · CoS** | Operations & flow | Morning roll, concur queue, weekly trace/gap reviews, gate visibility | [`roles/ops-cos.md`](roles/ops-cos.md) |
+| **Librarian · Signals** | Knowledge & links | Link health, rot detection, vault citations, archive frozen maps | [`roles/librarian-signals.md`](roles/librarian-signals.md) |
+| **Scout · Story Media** | Research & media | Model selection, fit-band research, evidence sources, Confluence inputs | [`roles/scout-story-media.md`](roles/scout-story-media.md) |
+| **Specialists** | As needed | SecEng ([`roles/seceng.md`](roles/seceng.md)), QAS ([`roles/qas.md`](roles/qas.md)), Implementer ([`roles/implementer.md`](roles/implementer.md)), BSA-like ([`roles/bsa-like.md`](roles/bsa-like.md)), RTE ([`roles/rte-collapsible.md`](roles/rte-collapsible.md) — legacy card, replaced in follow-up), Model Stack ([`roles/model-stack.md`](roles/model-stack.md)) | Scott: role card planned |
+
+---
+
+## Structure
+
+| Path | Purpose |
+| --- | --- |
+| [`constitution/`](constitution/) | Governance framework (risk tiers, gates, ownership, evidence) |
+| [`roles/`](roles/) | Round Table seat definitions |
+| [`templates/`](templates/) | Brief and handoff templates (Bolt, Studio→Delivery) |
+| [`prove/`](prove/) | Evidence and bolt records (wave-0-retro.md, wave-1/) |
+| [`prove/d-p1/`](prove/d-p1/) | D-P1 bolt evidence (Wave 0) |
+| `prove/d-p2/` | (planned) D-P2 bolt evidence |
+| [`arch/`](arch/) | Component registry (ARC-<CMP>, components.yaml) |
+| [`requirements/`](requirements/) | REQ-<CMP>-NNN registry (REQ-TEMPLATE.yaml, README.md) |
+| [`trace/`](trace/) | Trace map (trace-map.yaml, schema.md, linear-saf-map.csv) |
+| [`intent.md`](intent.md) | Human-owned design intent (Scott only) |
+| [`spec.md`](spec.md) | Human-owned specification (Scott only) |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Contributing guide (personal-boundary rule, workflow, evidence) |
+| [`adapters/`](adapters/) | Runtime adapters (Claude Code, Cursor — doc stubs; Codex/local planned) |
+| [`.github/CODEOWNERS`](.github/CODEOWNERS) | Review gates (intent, spec, constitution, requirements, trace) |
+| [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) | Issue templates (bolt.yml, requirement.yml, decision.yml) |
+| [`.github/labels.yml`](.github/labels.yml) | Label definitions (work types, risk tiers, O2, exit states, gates) |
+| [`.github/workflows/`](.github/workflows/) | CI workflows (wave0-checks.yml, trace-check.yml) |
+
+---
+
+## Key concepts
+
+### Dual spine (peer)
+
+- **(A) CD execute/deploy** — Delivery lane, spine A, forge/CI-native
+- **(B) Think/plan** — Studio lane, spine B, multi-vault knowledge
+
+Both share Round Table principles, exit states, and ownership. They differ in gates and storage.
+
+### Risk tiers
+
+- **Low**: Auto when green (tests + evidence met); human assignee still named; HITL-delegated merge allowed
+- **Med**: One human decision pack; HITL merge
+- **High**: Two distinct humans; agent ≠ human; HITL merge
+
+**O2 high-risk items default to High** unless downgraded in writing at QAS. Delivery may propose a downgrade rationale; Kai decides at QAS: pricing, refunds, auth, deploy CI/workflows, prod secrets, privacy-boundary crosses.
+
+### Requirements tracing
+
+**Requirements = definition of success.** Each REQ-<CMP>-NNN has:
+- `source`: spec.md#anchor or intent.md#anchor
+- `exit_criterion`: Concrete pass/fail condition
+- `metric`: M1–M6 tie or custom metric name
+
+**Trace map:** [`trace/trace-map.yaml`](trace/trace-map.yaml) (fixed path)  
+**Trace states:** Placed / Deferred / Dropped / Missing  
+
+**Trace-check CI:** `.github/workflows/trace-check.yml` validates requirements and evidence linkage. Runs **warn-only** until:
+1. `spec.md` contains REQ IDs, **AND**
+2. A code-owner-reviewed PR adds the marker file `trace/.blocking`
+
+Until both conditions are met, trace-check warns but does not block merges. The marker file is added by the first follow-up issue (trace-check blocking validations) after Wave 1 merge.
+
+### Exit states
+
+1. Ready for QAS
+2. Approved for RTE (or collapsed-RTE annotated)
+3. Ready for HITL
+4. MERGED (HITL only)
+5. MERGED (HITL-delegated) — Low tier only, with `hitl_delegate` record
+
+### Evidence (portable)
+
+Each evidence row includes:
+- `evidence_id` (runtime-native unique ID: cloud agent bcId, session id, etc.)
+- `runtime` (cursor / claude-code / grok-bot / local / etc.)
+- `exact_head` (commit SHA or PR head)
+- `issue` (GitHub Issue `#N`)
+- `actor` (agent or human handle)
+- `gate` (which gate this evidence satisfies)
+- `req_ids` (REQ-<CMP>-NNN list)
+
+---
+
+## Human vs. agent ownership
+
+**Humans (Scott only) own and accept design:**
+- `intent.md`, `spec.md` — Scott owns and accepts; agents may propose edits but **never merge**
+
+**Agents own everything else end-to-end:**
+- Plan, GitHub Issues, code, tests, PRs, evidence
+- **Requirements registry** (`requirements/`) — agents author; human-reviewed PR required
+- **Trace map** (`trace/`) — agents author; human-reviewed PR required
+- **Constitution changes** — agents author; human-reviewed PR required
+
+**CODEOWNERS = review gate, not ownership:** `.github/CODEOWNERS` enforces @cheddarfox review for intent, spec, constitution, requirements, trace, and workflows. Agents author requirements, trace, and constitution changes; humans review and approve before merge.
+
+---
+
+## GitHub conventions
+
+**Branch naming:** `<issue#>-slug` (e.g., `42-add-trace-check`)
+
+**Commit conventions:**
+- Subject: Reference the issue number (e.g., `Add trace-check CI (#42)`) or natural subject
+- Trailer: `Refs #N` — references GitHub Issue
+- Trailer: `Req: REQ-<CMP>-NNN` — satisfies requirement
+
+**PR body:** `Requirements: REQ-<CMP>-NNN, ...` line listing all requirements addressed
+
+**Labels:** See `.github/labels.yml` (work types, risk tiers, O2 items, exit states, gate labels: `gate:rnd`, `gate:plan`, `gate:concur`, `gate:execute`, `gate:measure`, plus `needs-scott-concur`)
+
+---
+
+## Contributing
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for:
+- Personal boundary rule (never include personal-vault content, story IP, or NAS-private facts in this repository)
+- Change flow (issue → branch → PR → CI → CodeRabbit → QAS → decision pack → merge)
+- Risk tiers and O2 high-risk items
+- Evidence schema and trace linkage
+- How QAS reviews work (COMMENT format, exact-head review)
+
+---
+
+## Metrics (M1–M6)
+
+See [`constitution/00-north-star.md`](constitution/00-north-star.md):
+
+- **M1**: Multi-runtime template ships
+- **M2**: tmux not required
+- **M3**: SAFe + AI-DLC spine retained
+- **M4**: Round Table seats map
+- **M5**: Time-to-first owned ticket
+- **M6**: Deploy/release flow health
+
+---
+
+## Status
+
+- **Wave 0:** ✅ Complete (constitution, thin CI, D-P1 prove)
+- **Wave 1:** ✅ Adopted 2026-10-29 (Scott concur) — repo-only SoR, tracing, GitHub conventions
+
+See [`prove/README.md`](prove/README.md) for wave checklist and [`prove/wave-1/decision-pack.md`](prove/wave-1/decision-pack.md) for adoption record.
+
+---
+
+## Reference
+
+- **SAW:** `bybren-llc/safe-agentic-workflow` @ `dev` (reference only; never silent-rewrite)
+- **Linear archive:** SAF-1 through SAF-5 (read-only after cutover)
+- **Mapping table:** [`trace/linear-saf-map.csv`](trace/linear-saf-map.csv) (to be populated before cutover)
+
+---
+
+**Provenance:** ADR pack concurred 2026-10-28 (C1–C8 / O1–O6 / E1–E3). Wave 1 adopted 2026-10-29 (Scott concur: README/structure fixes + constitution amendments).

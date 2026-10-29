@@ -1,0 +1,90 @@
+name: Decision
+description: Decision requiring Scott/Kai concurrence
+title: "[DECISION] "
+labels: ["decision", "needs-concur"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Decision Request
+        
+        Use this template for decisions requiring explicit concurrence from Scott or Kai.
+        Common cases: constitution changes, O2 risk downgrades, architecture pivots.
+
+  - type: dropdown
+    id: decision_owner
+    attributes:
+      label: Decision Owner
+      description: Who must concur?
+      options:
+        - Scott
+        - Kai
+        - Scott + Kai
+    validations:
+      required: true
+
+  - type: input
+    id: related_pr
+    attributes:
+      label: Related PR
+      description: PR number if applicable
+      placeholder: "#42"
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What decision is being requested and why?
+    validations:
+      required: true
+
+  - type: textarea
+    id: options
+    attributes:
+      label: Options
+      description: List options considered (including recommended option)
+      placeholder: |
+        1. **[RECOMMENDED]** Option A: ...
+        2. Option B: ...
+        3. Option C: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks
+      description: Known risks and mitigations for each option
+    validations:
+      required: true
+
+  - type: textarea
+    id: recommendation
+    attributes:
+      label: Recommendation
+      description: Agent/submitter recommendation with rationale
+    validations:
+      required: true
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      description: Current decision status
+      options:
+        - Awaiting concurrence
+        - Concurred
+        - Rejected
+        - Needs revision
+    validations:
+      required: true
+
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome
+      description: Record concurrence/rejection and any conditions (filled by decision owner)
+    validations:
+      required: false

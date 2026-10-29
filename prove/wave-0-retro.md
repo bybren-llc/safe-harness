@@ -43,7 +43,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 - **CR-only:** Workflow implementation details (link-check subshell bug, fence state tracking, markdown parser limits), template completeness (evidence payload fields, HITL/approver fields)
 - **QAS-only:** Risk-tier downgrade authority (O2 workflow item → Low via written rationale), SecEng N/A justification review
 
-**Implications:** CodeRabbit caught structural/implementation issues in workflow code and template completeness; QAS exercised human judgment on risk-tier classification and policy application. No critical findings escaped both.
+**Implications:** CodeRabbit caught structural/implementation issues in workflow code and template completeness; QAS exercised independent judgment on risk-tier classification and policy application. No critical findings escaped both.
 
 ### PR #3 — D-P1 Bolt Brief
 
@@ -87,10 +87,10 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 **Evidence:** PR #2 had 7 commits and 2 CodeRabbit reviews spanning the overnight period; the final QAS APPROVE @ `fb74ba5` came morning of Oct 29.
 
 ### PR-event routine didn't fire for PR #4's first head
-**Timeline:** PR #4 created 07:58:13 EDT; CodeRabbit review posted 12:07:20 UTC (08:07:20 EDT) for commit `2c3a821`.  
+**Timeline:** PR #4 created 07:58:13 EDT; CodeRabbit review posted 08:07:20 EDT for commit `2c3a821`.  
 **Cause (per Delivery log):** An event-driven automation that should have triggered on CodeRabbit completion for PR #4's first head didn't fire as expected.  
 **Impact:** Minor delay; workflow continued manually.  
-**Evidence:** [CodeRabbit review timestamp](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697391802) vs PR creation timestamp show ~9-minute gap, but Kai QAS at 12:19:56 UTC (08:19:56 EDT) indicates the routine gap was brief.
+**Evidence:** [CodeRabbit review timestamp](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697391802) vs PR creation timestamp show ~9-minute gap, but Kai QAS at 08:19:56 EDT indicates the routine gap was brief.
 
 ### Author-account review limitation
 **Impact:** QAS reviews were posted from the PR-authoring GitHub account (`cheddarfox`), which GitHub blocks from using REQUEST_CHANGES or APPROVE review states, forcing COMMENTED reviews with verdict in body text.  
@@ -184,7 +184,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 - `prove/d-p1/bolt-brief.md` (as example): Retroactively document `hitl_delegate` field in evidence rows where Kai merged under Scott's standing auth
 - `.github/workflows/`: Optionally add CI check to enforce delegation rules (e.g. reject PR merge if `hitl_delegate` field present but no authorization link, or if tier > Low)
 
-**Status:** **Awaiting Scott concur.** Constitution remains untouched pending decision. If approved, Delivery will prepare the amendment PR (SAF-6 or follow-on epic). If declined, current evidence-only practice (option B) continues with documented ambiguity accepted.
+**Status:** **Awaiting Scott concur.** Constitution remains untouched pending decision. If approved, Delivery will prepare the amendment PR ([#6](https://github.com/bybren-llc/safe-harness/pull/6)). If declined, current evidence-only practice (option B) continues with documented ambiguity accepted.
 
 ---
 
