@@ -165,6 +165,6 @@ Thin skeleton → full path is intentional scaffolding, not final state.
 - Exact-head SHA / PR
 - Evidence IDs (portable — see `05-evidence-and-linear.md`)
 - Requirements addressed (REQ-<CMP>-NNN list)
-- QAS + SecEng status (Low: explicit N/A with rationale allowed; High/O2: never N/A). This PR: SecEng (independent, non-author; cloud agent bc-ff5334e0): PASS WITH CONDITIONS at e93e388 (Med findings 1-4, Low 5-6, no Critical or High). Conditions addressed at TIPSHA, and SecEng re-verification is pending.
+- QAS + SecEng status (Low: explicit N/A with rationale allowed; High/O2: never N/A). This PR: SecEng (independent, non-author; cloud agent bc-ff5334e0): PASS WITH CONDITIONS at e93e388 (Med findings 1-4, Low 5-6, no Critical or High). Conditions addressed at 6994b12, and SecEng re-verification is pending.
 - Risk tier + O2 checklist (note if Kai downgraded any O2 item)
 - Ask: approve / change-request / escalate

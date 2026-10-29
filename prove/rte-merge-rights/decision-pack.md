@@ -53,7 +53,7 @@ Authority for the environment-promotion widening is Scott's verbatim 1:54 and 1:
 | Evidence IDs | Kai QAS review 5702808926; CodeRabbit review 5702671974 |
 | Requirements | Closes #10 (no REQ-IDs in spec.md yet) |
 | QAS | CHANGES NEEDED at `bc94fe87` (review 5702808926); re-QAS required at new head |
-| SecEng | SecEng (independent, non-author; cloud agent bc-ff5334e0): PASS WITH CONDITIONS at e93e388 (Med findings 1-4, Low 5-6, no Critical or High). Conditions addressed at TIPSHA, and SecEng re-verification is pending. |
+| SecEng | SecEng (independent, non-author; cloud agent bc-ff5334e0): PASS WITH CONDITIONS at e93e388 (Med findings 1-4, Low 5-6, no Critical or High). Conditions addressed at 6994b12, and SecEng re-verification is pending. |
 | Risk tier + O2 | **High / O2 auth**. Merge authority = permissions. No downgrade. |
 | Ask | approve / change-request / escalate — **approve the template default; answer the open questions below in your own words** |
 
