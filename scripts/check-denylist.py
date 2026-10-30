@@ -78,7 +78,7 @@ def classify_local_path(path: Path) -> str:
 
 def read_utf8(path: Path, label: str) -> str:
     try:
-        return path.read_text(encoding="utf-8")
+        return path.read_text(encoding="utf-8-sig")
     except UnicodeDecodeError as exc:
         raise ConfigError(f"ERROR: {label} is not valid UTF-8") from exc
     except OSError as exc:

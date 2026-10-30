@@ -186,6 +186,33 @@ class RunConfigTests(unittest.TestCase):
             self.assertIn("cannot be read", err)
             self.assertNotIn(FAKE_TERM, err)
 
+    def test_bom_term_on_line_1_is_enforced(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            local = root / "denylist.local"
+            local.write_bytes(
+                b"\xef\xbb\xbf" + FAKE_TERM.encode("utf-8") + b"\thardware-hostname\n"
+            )
+            (root / "tracked.txt").write_text(f"see {FAKE_TERM} here\n", encoding="utf-8")
+            code, out, err = _capture_run(
+                local,
+                repo_root=root,
+                list_files=lambda: ["tracked.txt"],
+            )
+            self.assertEqual(code, 1)
+            self.assertIn("denylist hit (hardware-hostname)", out)
+            self.assertNotIn(FAKE_TERM, out)
+            self.assertNotIn(FAKE_TERM, err)
+
+    def test_bom_comments_only_is_config_error(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "denylist.local"
+            path.write_bytes(b"\xef\xbb\xbf# comments only\n")
+            code, _out, err = _capture_run(path)
+            self.assertEqual(code, 2)
+            self.assertIn("has no active terms", err)
+            self.assertNotIn(FAKE_TERM, err)
+
     def test_tracked_listing_failure_is_config_error(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "denylist.local"
