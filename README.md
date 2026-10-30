@@ -78,7 +78,7 @@
 7. **Decision pack:** If Medium or High tier, create decision pack with rationale, evidence, and risks
 8. **Merge:** Human approval (owner's recorded concur) is distinct from merge execution. On trunk, QAS may execute the merge once checks are green and an independent QAS APPROVE is on the exact head; at Med/High/O2 also RTE PASS on the exact head, or a HOLD override from QAS or owner recorded on the PR with its reason. Release · RTE also needs independent QAS APPROVE and its own PASS. Owner's recorded own-words concur is required for constitution/, High, and O2. CODEOWNERS-gated paths other than constitution/ (intent.md, spec.md, requirements/, trace/) stay agents-must-not-merge (owner/CODEOWNERS only). Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md).
 
-**Key constraint:** QAS independence means QAS is never the implementer. Nobody merges their own authored change. An agent merge never counts as human approval. High/O2 still needs Scott's recorded concur as a required human approval. Two distinct humans on High-tier work is recommended guidance, not a gate. See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for the template default.
+**Key constraint:** QAS independence means QAS is never the implementer. Nobody merges their own authored change. An agent merge never counts as human approval. High/O2 still needs owner's recorded concur as a required human approval. Two distinct humans on High-tier work is recommended guidance, not a gate. See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for the template default.
 
 ```mermaid
 graph TD
@@ -89,16 +89,16 @@ graph TD
     E --> F[CodeRabbit Review]
     F --> G[Kai independent QAS APPROVE]
     G --> H[RTE PASS]
-    G --> I[Scott concur when required]
+    G --> I[owner concur when required]
     H --> J{Merge execution}
     I --> J
     J -->|"QAS APPROVE + RTE PASS (Med+) + required concur"| K[Kai executes merge]
     J -->|RTE: Kai QAS APPROVE plus RTE PASS plus required concur| L[RTE executes merge]
-    J -->|Scott| S[Scott executes merge]
+    J -->|owner| S[owner executes merge]
     K --> M[Merged to main]
     L --> M
     S --> M
-    M --> P[Prod promotion: Scott concur on prod-risk]
+    M --> P[Prod promotion: owner concur on prod-risk]
 ```
 
 Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. This repo is a template; adopting teams configure dev, staging, and prod for their own environments. Safe-harness itself is trunk-only; trunk concur is `constitution/`, High, and O2.
@@ -109,15 +109,15 @@ Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deplo
 
 | Role | Seat | Responsibilities | Card |
 | --- | --- | --- | --- |
-| **Scott** | HITL / POPM | Owns intent.md & spec.md, High/O2 HITL, constitution concur, X writes, secrets | Role card planned |
+| **owner** | HITL / POPM | Owns intent.md & spec.md, High/O2 HITL, constitution concur, X writes, secrets | Role card planned |
 | **Kai** | GM / lead ARCHitect | High-tier or cross-lane work; QAS, merge, architecture registry, O2 decisions | [`roles/gm-architect.md`](roles/gm-architect.md) |
 | **Delivery · Lead** | Implementation | Projects end to end; execute bolts, cite REQs, author PRs, never merge | [`roles/delivery-lead.md`](roles/delivery-lead.md) |
-| **Studio · Lead** | Design & requirements | Stories; draft intent & spec with Scott, derive REQ IDs, research appendix | [`roles/studio-lead.md`](roles/studio-lead.md) |
+| **Studio · Lead** | Design & requirements | Stories; draft intent & spec with owner, derive REQ IDs, research appendix | [`roles/studio-lead.md`](roles/studio-lead.md) |
 | **Ops · CoS** | Operations & flow | Digests and rolls, concur queue, weekly trace/gap reviews, gate visibility | [`roles/ops-cos.md`](roles/ops-cos.md) |
 | **Dispatcher · Board** | Tracking board | Owns the board; 4:30 AM ET read-only sweep; surfaces only (never decides, posts, or merges) | [`roles/dispatcher-board.md`](roles/dispatcher-board.md) |
 | **Librarian · Signals** | Knowledge & links | Signals, X research, CVE scans; link health, rot detection, vault citations | [`roles/librarian.md`](roles/librarian.md) |
 | **Scout · Story Media** | Research & media | Tool, model, and price calls; fit-band research, evidence sources | [`roles/scout.md`](roles/scout.md) |
-| **Specialists** | As needed | SecEng ([`roles/seceng.md`](roles/seceng.md)), QAS ([`roles/qas.md`](roles/qas.md)), Implementer ([`roles/implementer.md`](roles/implementer.md)), BSA-like ([`roles/bsa-like.md`](roles/bsa-like.md)), RTE ([`roles/release-rte.md`](roles/release-rte.md)), Model Stack ([`roles/model-stack.md`](roles/model-stack.md)) | Scott: role card planned |
+| **Specialists** | As needed | SecEng ([`roles/seceng.md`](roles/seceng.md)), QAS ([`roles/qas.md`](roles/qas.md)), Implementer ([`roles/implementer.md`](roles/implementer.md)), BSA-like ([`roles/bsa-like.md`](roles/bsa-like.md)), RTE ([`roles/release-rte.md`](roles/release-rte.md)), Model Stack ([`roles/model-stack.md`](roles/model-stack.md)) | Role card planned |
 
 ---
 
@@ -136,8 +136,8 @@ Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deplo
 | [`AGENTS.md`](AGENTS.md) | Agent entry point (rules by link; local checks) |
 | [`requirements/`](requirements/) | REQ-<CMP>-NNN registry (REQ-TEMPLATE.yaml, README.md) |
 | [`trace/`](trace/) | Trace map (trace-map.yaml, schema.md, linear-saf-map.csv) |
-| [`intent.md`](intent.md) | Human-owned design intent (Scott only) |
-| [`spec.md`](spec.md) | Human-owned specification (Scott only) |
+| [`intent.md`](intent.md) | Human-owned design intent (owner only) |
+| [`spec.md`](spec.md) | Human-owned specification (owner only) |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Contributing guide (personal-boundary rule, workflow, evidence) |
 | [`adapters/`](adapters/) | Runtime adapters (Claude Code, Cursor — doc stubs; Codex/local planned) |
 | [`.github/CODEOWNERS`](.github/CODEOWNERS) | Review gates (intent.md, intent/, spec.md, constitution, requirements, trace, arch, AGENTS.md, skills, workflows) |
@@ -161,7 +161,7 @@ Both share Round Table principles, exit states, and ownership. They differ in ga
 
 - **Low**: Auto when green (tests + evidence met); human assignee still named; trunk merge by Kai after QAS APPROVE; RTE merge also needs RTE PASS
 - **Med**: One human decision pack; trunk merge by Kai after QAS APPROVE; RTE merge also needs RTE PASS
-- **High**: Two distinct humans is recommended guidance, not a gate (many projects do not need it). Agent ≠ human. Scott's recorded concur is a required human approval; RTE merge needs RTE PASS plus the required concur; merge execution may be Scott, Kai, or RTE.
+- **High**: Two distinct humans is recommended guidance, not a gate (many projects do not need it). Agent ≠ human. Owner's recorded concur is a required human approval; RTE merge needs RTE PASS plus the required concur; merge execution may be owner, QAS, or RTE.
 
 **O2 high-risk items default to High** unless downgraded in writing at QAS. Delivery may propose a downgrade rationale; Kai decides at QAS: pricing, refunds, auth, deploy CI/workflows, prod secrets, privacy-boundary crosses.
 
@@ -186,7 +186,7 @@ Until both conditions are met, trace-check warns but does not block merges. The 
 1. Ready for QAS
 2. Approved for RTE
 3. Ready for HITL
-4. MERGED (HITL only) — Scott executed
+4. MERGED (HITL only) — owner executed
 5. MERGED (HITL-delegated) — Low tier only, with `hitl_delegate` record
 6. MERGED (delegated Kai/RTE) — Kai or Release · RTE executed; record executor + exact-head gates
 
@@ -205,8 +205,8 @@ Each evidence row includes:
 
 ## Human vs. agent ownership
 
-**Humans (Scott only) own and accept design:**
-- `intent.md`, `intent/`, `spec.md` — Scott owns and accepts; agents may propose edits but **never merge**
+**Humans (owner only) own and accept design:**
+- `intent.md`, `intent/`, `spec.md` — owner owns and accepts; agents may propose edits but **never merge**
 
 **Agents own everything else end-to-end:**
 - Plan, GitHub Issues, code, tests, PRs, evidence
@@ -214,7 +214,7 @@ Each evidence row includes:
 - **Trace map** (`trace/`) — agents author; human-reviewed PR required
 - **Constitution changes** — agents author; human-reviewed PR required
 
-**CODEOWNERS = review gate, not ownership:** `.github/CODEOWNERS` enforces @cheddarfox review for `intent.md`, `intent/`, `spec.md`, `constitution/`, `requirements/`, `trace/`, `arch/`, `AGENTS.md`, `adapters/**/AGENTS.md`, `skills/`, and workflows. Agents author requirements, trace, and constitution changes; humans review and approve before merge.
+**CODEOWNERS = review gate, not ownership:** `.github/CODEOWNERS` enforces owner review for `intent.md`, `intent/`, `spec.md`, `constitution/`, `requirements/`, `trace/`, `arch/`, `AGENTS.md`, `adapters/**/AGENTS.md`, `skills/`, and workflows. Agents author requirements, trace, and constitution changes; humans review and approve before merge.
 
 ---
 
@@ -229,7 +229,7 @@ Each evidence row includes:
 
 **PR body:** Use [`.github/pull_request_template.md`](.github/pull_request_template.md). Include a `Requirements: REQ-<CMP>-NNN, ...` line listing all requirements addressed (or N/A)
 
-**Labels:** See `.github/labels.yml` (work types, risk tiers, O2 items, exit states, gate labels: `gate:rnd`, `gate:plan`, `gate:concur`, `gate:execute`, `gate:measure`, plus `needs-scott-concur`)
+**Labels:** See `.github/labels.yml` (work types, risk tiers, O2 items, exit states, gate labels: `gate:rnd`, `gate:plan`, `gate:concur`, `gate:execute`, `gate:measure`, plus `needs-owner-concur` renamed from the earlier owner-named label)
 
 ---
 
@@ -260,7 +260,7 @@ See [`constitution/00-north-star.md`](constitution/00-north-star.md):
 ## Status
 
 - **Wave 0:** ✅ Complete (constitution, thin CI, D-P1 prove)
-- **Wave 1:** ✅ Adopted 2026-10-29 (Scott concur) — repo-only SoR, tracing, GitHub conventions
+- **Wave 1:** ✅ Adopted 2026-10-29 (owner concur) — repo-only SoR, tracing, GitHub conventions
 
 See [`prove/README.md`](prove/README.md) for wave checklist and [`prove/wave-1/decision-pack.md`](prove/wave-1/decision-pack.md) for adoption record.
 
@@ -274,4 +274,4 @@ See [`prove/README.md`](prove/README.md) for wave checklist and [`prove/wave-1/d
 
 ---
 
-**Provenance:** ADR pack concurred 2026-10-28 (C1–C8 / O1–O6 / E1–E3). Records: [`docs/decisions/`](docs/decisions/). Wave 1 adopted 2026-10-29 (Scott concur: README/structure fixes + constitution amendments).
+**Provenance:** ADR pack concurred 2026-10-28 (C1–C8 / O1–O6 / E1–E3). Records: [`docs/decisions/`](docs/decisions/). Wave 1 adopted 2026-10-29 (owner concur: README/structure fixes + constitution amendments).

@@ -1,8 +1,8 @@
 ---
 status: "superseded (RTE clause) by #22"
 date: 2026-10-28
-decision-makers: Scott (HITL/POPM)
-consulted: Kai (GM & lead ARCHitect), Studio · Lead
+decision-makers: owner (HITL/POPM)
+consulted: QAS (GM consulted: QAS (GM & lead ARCHitect) lead ARCHitect), Studio · Lead
 informed: Round Table seats
 ---
 
@@ -21,7 +21,7 @@ RTE collapsible; QAS + SecEng never; drop always-on 11 bots?
 
 ## Decision Outcome
 
-Chosen option: "Yes", because Scott concurred the filled pack as written on 2026-10-28.
+Chosen option: "Yes", because owner concurred the filled pack as written on 2026-10-28.
 
 Decision text: RTE may collapse when simple. QAS and SecEng never collapse. Drop the always-on 11 SAFe bots and collapse lanes until a lane overloads. Kai leads, and TDM is reactive, not the primary orchestrator.
 
@@ -34,7 +34,7 @@ Status: superseded (RTE clause) by #22 (`d88c884`, merged 2026-10-30). Release �
 
 ### Confirmation
 
-Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
+owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
 
@@ -44,6 +44,6 @@ Historical: `roles/` no longer carries a collapsible-RTE card as current (PR #22
 
 ## More Information
 
-Owner: Kai (GM). Executor: Delivery · Lead.
+Owner: QAS (GM). Executor: Delivery · Lead.
 
 Cross-ref: W0-05 Ownership / collapsing (RTE part superseded by PR #22); W0-04 HITL without freeze (**superseded by PR #22**). Record format: [MADR 4.0](https://adr.github.io/madr/).

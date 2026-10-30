@@ -1,8 +1,8 @@
 ---
 status: accepted
 date: 2026-10-28
-decision-makers: Scott (HITL/POPM)
-consulted: Kai (GM & lead ARCHitect), Studio · Lead
+decision-makers: owner (HITL/POPM)
+consulted: QAS (GM consulted: QAS (GM & lead ARCHitect) lead ARCHitect), Studio · Lead
 informed: Round Table seats
 ---
 
@@ -22,7 +22,7 @@ SDLC = CD with risk-tier HITL (not freeze by default)?
 
 ## Decision Outcome
 
-Chosen option: "Yes", because Scott concurred the filled pack as written.
+Chosen option: "Yes", because owner concurred the filled pack as written.
 
 Decision text: Continuous deployment; verify before PR; layered automated review; merge queue + squash; flags and staged release; exact-head gates (approval binds to the commit SHA, and a new push makes it stale); production gate outside the model. HITL gate types: decision pack (blocks only that change unit); independence QAS/SecEng (blocks that unit until cleared); business-context HITL (blocks that Bolt's construction start); freeze-the-train is an org-wide exception only.
 
@@ -35,7 +35,7 @@ The CD + risk-tier principle stands. The specific "who approves per tier" mappin
 
 ### Confirmation
 
-Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
+owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
 
@@ -45,6 +45,6 @@ Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 ## More Information
 
-Owner: Kai (GM). Executor: Delivery · Lead.
+Owner: QAS (GM). Executor: Delivery · Lead.
 
 Cross-ref: W0-03 CD assumptions (active); W0-04 HITL without freeze (**superseded by PR #22**). Public framing that may be cited: the Anthropic [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook) (committed artifacts per stage, layered agentic review, human review kept for critical code, hooks as approval gates, agent acts up to the production gate and not past it). Record format: [MADR 4.0](https://adr.github.io/madr/).
