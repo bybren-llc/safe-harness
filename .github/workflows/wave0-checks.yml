@@ -176,6 +176,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install PyYAML (pinned)
+        continue-on-error: true
         run: |
           echo "Installing PyYAML==${PYYAML_VERSION} (pinned)"
           python3 -m pip install --user --break-system-packages "PyYAML==${PYYAML_VERSION}"
