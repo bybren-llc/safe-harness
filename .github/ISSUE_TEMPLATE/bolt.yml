@@ -15,7 +15,7 @@ body:
     attributes:
       label: Human Assignee
       description: Round Table seat (must be human per constitution)
-      placeholder: "Scott Graham / Kai"
+      placeholder: "<owner-name>"
     validations:
       required: true
 

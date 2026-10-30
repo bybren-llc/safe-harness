@@ -29,7 +29,7 @@ description: |
 # rationale: |
 #   Why this requirement is deferred or dropped.
 #   For Deferred: include when to revisit.
-# decided_by: Kai  # or "Scott Graham" for intent-sourced drops
+# decided_by: QAS  # or "owner" for intent-sourced drops
 # decided_at: 2026-10-29  # ISO 8601 date
 # defer_to: 2026-11-15  # Required for Deferred only: target date or milestone
 

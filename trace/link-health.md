@@ -10,7 +10,7 @@
 
 ## 1. Purpose
 
-Keep every link between safe-harness artifacts, GitHub issues and PRs, the Atlas vault, external sources, and the retired Linear SAF archive resolvable, and catch link rot before a reader does. The repo is the sole source of truth ([`../constitution/05-evidence-and-traceability.md`](../constitution/05-evidence-and-traceability.md)); this spec makes that claim checkable.
+Keep every link between safe-harness artifacts, GitHub issues and PRs, the knowledge base, external sources, and the retired Linear archive resolvable, and catch link rot before a reader does. The repo is the sole source of truth ([`../constitution/05-evidence-and-traceability.md`](../constitution/05-evidence-and-traceability.md)); this spec makes that claim checkable.
 
 Principles (from the Librarian concur, Wave 1):
 
@@ -32,9 +32,9 @@ Principles (from the Librarian concur, Wave 1):
 | L5 | Other private GitHub targets | blob/tree URLs into `bybren-llc/*` at a branch or SHA, commit URLs | Weekly scan (GitHub connector) |
 | L6 | Atlas links, both directions | safe-harness → private Atlas repo paths / concept IDs; Atlas citations (`source_url`) → safe-harness | Weekly scan (GitHub connector) |
 | L7 | External URLs | vendor docs, papers, `https://` anything not covered above | Weekly scan (HTTP) |
-| L8 | Linear SAF references | `SAF-n`, `[SAF-n]`, `linear.app/cheddarfox/issue/SAF-n/...` | Weekly scan, resolved through the active map (§5.2) |
+| L8 | Linear references | `<WRK>-n`, `[<WRK>-n]`, `<tracker-url>/<workspace>/issue/<WRK>-n/...` | Weekly scan, resolved through the active map (§5.2) |
 
-Out of scope: personal vault and NAS-private targets. They must never appear in this repo ([`../constitution/04-privacy-and-vaults.md`](../constitution/04-privacy-and-vaults.md), [`../CONTRIBUTING.md`](../CONTRIBUTING.md)). If the scan ever finds one, it is reported as a **privacy finding** to Kai and Scott directly, not as a public `link-rot` issue, and the issue body never quotes the target.
+Out of scope: personal vault and private-store targets. They must never appear in this repo ([`../constitution/04-privacy-and-vaults.md`](../constitution/04-privacy-and-vaults.md), [`../CONTRIBUTING.md`](../CONTRIBUTING.md)). If the scan ever finds one, it is reported as a **privacy finding** to QAS and the owner directly, not as a public `link-rot` issue, and the issue body never quotes the target.
 
 Files scanned: every tracked `*.md`, `*.yaml`, `*.yml`, and `*.csv` at `main` HEAD, plus open PR bodies and issue bodies for L3/L4/L8 references. Fenced code blocks are scanned for L4–L8 only (they often hold example URLs); examples marked as placeholders (`example`, `<...>`, RFC 5737 / RFC 2606 hosts) are skipped.
 

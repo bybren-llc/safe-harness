@@ -1,5 +1,5 @@
 name: Decision
-description: Decision requiring Scott/Kai concurrence
+description: Decision requiring owner/QAS concurrence
 title: "[DECISION] "
 labels: ["decision", "needs-concur"]
 body:
@@ -8,7 +8,7 @@ body:
       value: |
         ## Decision Request
         
-        Use this template for decisions requiring explicit concurrence from Scott or Kai.
+        Use this template for decisions requiring explicit concurrence from the owner or QAS.
         Common cases: constitution changes, O2 risk downgrades, architecture pivots.
 
   - type: dropdown
@@ -17,9 +17,9 @@ body:
       label: Decision Owner
       description: Who must concur?
       options:
-        - Scott
-        - Kai
-        - Scott + Kai
+        - owner
+        - QAS
+        - owner + QAS
     validations:
       required: true
 
