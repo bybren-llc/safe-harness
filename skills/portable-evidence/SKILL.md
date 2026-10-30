@@ -10,7 +10,7 @@ description: Record a portable evidence row (evidence_id, runtime, exact_head, i
 
 ## Authority
 
-- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — portable evidence fields; exact-head
+- [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md) — portable evidence fields; exact-head
 - [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — exact-head at gates
 
 See the cited section; this skill grants no authority.

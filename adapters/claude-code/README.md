@@ -19,7 +19,7 @@ Maps constitution → Claude Code teams / workflows / hooks. Thin stub — no ul
 Place under future repo `.claude/agents/` (names only — bodies land at create time):
 
 ```
-kai-gm-architect.md
+gm-architect.md
 delivery-lead.md
 studio-lead.md   # consult-only on Delivery train
 implementer.md

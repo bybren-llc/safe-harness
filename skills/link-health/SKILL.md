@@ -10,7 +10,7 @@ description: Run blocking in-repo link checks and a weekly non-blocking cross-sy
 
 ## Authority
 
-- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — blocking vs scheduled checks; CODEOWNERS paths
+- [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md) — blocking vs scheduled checks; CODEOWNERS paths
 - [`constitution/07-roles-and-lanes.md`](../../constitution/07-roles-and-lanes.md) — Librarian is not a merge seat
 - [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — merge execution
 

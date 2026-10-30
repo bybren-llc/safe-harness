@@ -10,7 +10,7 @@ description: Detect and repair drift between governance docs, README, AGENTS.md,
 
 ## Authority
 
-- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — intent/spec and CODEOWNERS-gated paths
+- [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md) — intent/spec and CODEOWNERS-gated paths
 - [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — merge execution
 
 See the cited section; this skill grants no authority.

@@ -10,7 +10,7 @@ description: Write one Architecture Decision Record per decision in MADR 4.0 wit
 
 ## Authority
 
-- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — repo is SoR
+- [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md) — repo is SoR
 - [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — constitution changes need recorded concur; exact-head
 
 See the cited section; this skill grants no authority.

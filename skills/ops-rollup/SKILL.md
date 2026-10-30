@@ -11,7 +11,7 @@ description: Produce status digests and rolls — queued work, gate waits, weekl
 ## Authority
 
 - [`constitution/07-roles-and-lanes.md`](../../constitution/07-roles-and-lanes.md) — Ops owns digests and rolls; not a decision or merge seat
-- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — weekly trace / gap review
+- [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md) — weekly trace / gap review
 
 See the cited section; this skill grants no authority.
 

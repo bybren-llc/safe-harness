@@ -12,7 +12,7 @@ description: "Independent QAS review at the exact head with a QAS: APPROVE or QA
 
 - [`constitution/02-safe-ai-dlc.md`](../../constitution/02-safe-ai-dlc.md) — QAS never collapses; independence
 - [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — exact-head; QAS is never the implementer; agent merge is not human approval; SecEng N/A rules
-- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — independence detectable
+- [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md) — independence detectable
 
 See the cited section; this skill grants no authority.
 

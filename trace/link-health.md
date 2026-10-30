@@ -1,7 +1,7 @@
 # Link Health & Rot Detection — safe-harness
 
 **Status:** PROPOSED (Librarian · Signals draft, pending QAS by Kai and @cheddarfox review)  
-**Owner seat:** Librarian · Signals ([`../roles/librarian-signals.md`](../roles/librarian-signals.md))  
+**Owner seat:** Librarian · Signals ([`../roles/librarian.md`](../roles/librarian.md))  
 **Component:** ARC-TRC (trace), with proposed CI extensions under ARC-WFL  
 **Authority:** constitution/05 "CI scope" and Decision 12 in [`../prove/wave-1/decision-pack.md`](../prove/wave-1/decision-pack.md) (Librarian concur conditions 1–4)  
 **Last updated:** 2026-10-29
@@ -10,7 +10,7 @@
 
 ## 1. Purpose
 
-Keep every link between safe-harness artifacts, GitHub issues and PRs, the Atlas vault, external sources, and the retired Linear SAF archive resolvable, and catch link rot before a reader does. The repo is the sole source of truth ([`../constitution/05-evidence-and-linear.md`](../constitution/05-evidence-and-linear.md)); this spec makes that claim checkable.
+Keep every link between safe-harness artifacts, GitHub issues and PRs, the Atlas vault, external sources, and the retired Linear SAF archive resolvable, and catch link rot before a reader does. The repo is the sole source of truth ([`../constitution/05-evidence-and-traceability.md`](../constitution/05-evidence-and-traceability.md)); this spec makes that claim checkable.
 
 Principles (from the Librarian concur, Wave 1):
 
@@ -26,7 +26,7 @@ Principles (from the Librarian concur, Wave 1):
 | # | Link class | Examples | Checked by |
 | --- | --- | --- | --- |
 | L1 | Relative file links in markdown | `[x](../roles/qas.md)`, reference-style `[x]: path.md` | Blocking (in-repo) |
-| L2 | Anchors / fragments | `constitution/05-evidence-and-linear.md#ci-scope`, `spec.md#anchor` in REQ `source` | Blocking (in-repo) |
+| L2 | Anchors / fragments | `constitution/05-evidence-and-traceability.md#ci-scope`, `spec.md#anchor` in REQ `source` | Blocking (in-repo) |
 | L3 | REQ / ARC references | `REQ-<CMP>-NNN` in trace map, docs, PR bodies; `component: ARC-<CMP>` | Blocking (in-repo) for the tree; PR-body linkage per trace-check follow-up |
 | L4 | Issue / PR references from the repo | `#N`, `Refs #N`, `github.com/bybren-llc/safe-harness/issues/N`, `/pull/N` | Weekly scan (needs the GitHub API) |
 | L5 | Other private GitHub targets | blob/tree URLs into `bybren-llc/*` at a branch or SHA, commit URLs | Weekly scan (GitHub connector) |

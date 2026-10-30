@@ -10,7 +10,7 @@ description: Add or update REQ-<CMP>-NNN rows and trace-map states (Placed, Defe
 
 ## Authority
 
-- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — REQ format; trace states; who may author vs merge `requirements/` and `trace/`; intent/spec ownership
+- [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md) — REQ format; trace states; who may author vs merge `requirements/` and `trace/`; intent/spec ownership
 
 See the cited section; this skill grants no authority.
 

@@ -12,7 +12,7 @@
 
 ## Executive summary
 
-Docs-only operating-draft update. Rewrites `release/flow.md` §§3, 5, 7, 8 and 9 to match `constitution/03-cd-and-hitl.md`, `constitution/05-evidence-and-linear.md`, and `roles/release-rte.md`. Removes the superseded note. Aligns `templates/delivery-bolt-brief.md` stale fields with the same sources.
+Docs-only operating-draft update. Rewrites `release/flow.md` §§3, 5, 7, 8 and 9 to match `constitution/03-cd-and-hitl.md`, `constitution/05-evidence-and-traceability.md`, and `roles/release-rte.md`. Removes the superseded note. Aligns `templates/delivery-bolt-brief.md` stale fields with the same sources.
 
 This file stays **PROPOSED / needs Scott concur / non-binding**. It does not amend `constitution/`.
 

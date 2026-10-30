@@ -15,7 +15,7 @@
 | Risk tier | Low / Med / High |
 | O2 items in scope? | pricing / refunds / auth / deploy CI / prod secrets / privacy-boundary / none |
 | RTE | An RTE-executed merge always needs RTE PASS on the exact head (any tier). A Low PR merged by Kai or Scott may use the annotated async checklist instead of a per-PR verdict. Required at Med, High, and O2. Non-collapsible at Med+ (`constitution/02-safe-ai-dlc.md`, `constitution/03-cd-and-hitl.md`, `roles/release-rte.md`) |
-| QAS actor | (required; never = implementer; distinguishable in GitHub — `constitution/05-evidence-and-linear.md`) |
+| QAS actor | (required; never = implementer; distinguishable in GitHub — `constitution/05-evidence-and-traceability.md`) |
 | SecEng actor | (required if Med/High/O2; never = implementer; High/O2 never N/A — `constitution/03-cd-and-hitl.md`) |
 | HITL approver | the project's named HITL / POPM human (Round Table: Scott). High/O2 and `constitution/` need that human's recorded own-words concur. Two distinct humans is recommended guidance, not a gate (`constitution/03-cd-and-hitl.md`). Agent ≠ human. |
 | POPM approver | Same seat as HITL — the project's named HITL / POPM human (Round Table: Scott). Not a second human. |
@@ -24,7 +24,7 @@
 
 | Field | Value |
 | --- | --- |
-| GitHub Issue | `#N` (repo source of truth; `constitution/05-evidence-and-linear.md`) |
+| GitHub Issue | `#N` (repo source of truth; `constitution/05-evidence-and-traceability.md`) |
 | Exact-head SHA or PR | |
 | Evidence IDs | |
 | Requirements | REQ-<CMP>-NNN list (`constitution/03-cd-and-hitl.md`) |
@@ -53,7 +53,7 @@
 - [ ] SecEng (if required)
 - [ ] RTE PASS when RTE executes (any tier); a Low PR merged by Kai or Scott may use the annotated async checklist (`constitution/03-cd-and-hitl.md` RTE placement)
 - [ ] HITL decision pack (exact-head)
-- [ ] MERGED (HITL only) / MERGED (HITL-delegated) / MERGED (delegated Kai/RTE) — exit states in `constitution/05-evidence-and-linear.md`
+- [ ] MERGED (HITL only) / MERGED (HITL-delegated) / MERGED (delegated Kai/RTE) — exit states in `constitution/05-evidence-and-traceability.md`
 
 ## Model plan (O4)
 

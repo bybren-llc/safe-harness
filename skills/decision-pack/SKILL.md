@@ -11,7 +11,7 @@ description: Assemble the constitution/03 decision-pack minimum for a Med or Hig
 ## Authority
 
 - [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — decision-pack minimum; tiers; O2; when QAS / SecEng may be N/A
-- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — portable evidence fields
+- [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md) — portable evidence fields
 
 See the cited section; this skill grants no authority.
 

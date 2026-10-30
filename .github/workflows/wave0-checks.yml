@@ -28,7 +28,7 @@ jobs:
             "constitution/02-safe-ai-dlc.md"
             "constitution/03-cd-and-hitl.md"
             "constitution/04-privacy-and-vaults.md"
-            "constitution/05-evidence-and-linear.md"
+            "constitution/05-evidence-and-traceability.md"
             "constitution/06-empiricism.md"
             "roles/model-stack.md"
             "adapters/claude-code/README.md"

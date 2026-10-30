@@ -10,7 +10,7 @@ description: Help the human owner draft intent.md and spec.md. Propose only. Age
 
 ## Authority
 
-- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — humans own and accept intent and spec; agents never merge those paths
+- [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md) — humans own and accept intent and spec; agents never merge those paths
 
 See the cited section; this skill grants no authority.
 
