@@ -25,7 +25,7 @@ Ops owns digests and rolls, the concur queue (see [`concur-queue`](../concur-que
 
 - Status of open bolts and PRs
 - Queued work by lane
-- Gate waits (QAS, SecEng, RTE, HITL concur) with exact heads
+- Gate waits (the GM, SecEng, RTE, HITL concur) with exact heads
 - Weekly trace / gap review (Missing / Deferred / unevidenced REQs)
 - Flow metrics the adopter named (cycle time is a common pair: PR open→merge, issue open→close)
 

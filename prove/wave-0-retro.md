@@ -175,7 +175,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 
 **Risks:**
 - **Governance complexity:** Adding a constitution field requires owner's explicit concur and versioning discipline
-- **Abuse potential:** Delegated actor must remain independent (current: QAS as GM/QAS, not implementer); delegation scope must stay narrow (Low tier only)
+- **Abuse potential:** Delegated actor must remain independent (current: QAS as GM/the GM, not implementer); delegation scope must stay narrow (Low tier only)
 - **Audit trail:** Requires durable authorization record (archived comment); must not expire or become unresolvable
 
 **What would change if approved:**

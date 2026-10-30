@@ -1,8 +1,8 @@
 ---
 status: accepted
 date: 2026-10-28
-decision-makers: Scott (HITL/POPM)
-consulted: Kai (GM & lead ARCHitect), Studio · Lead
+decision-makers: the owner (HITL/POPM)
+consulted: the GM (GM & lead ARCHitect), Studio · Lead
 informed: Round Table seats
 ---
 
@@ -33,7 +33,7 @@ Workstations mount it, with local working copies only when the network is down. 
 
 ### Confirmation
 
-Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
+the owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
 
@@ -43,6 +43,6 @@ The repo contains no private storage paths; Studio briefs cite storage paths onl
 
 ## More Information
 
-Owner: Kai (GM). Executor: Delivery · Lead.
+Owner: the GM (GM). Executor: Delivery · Lead.
 
 Owner responses recorded at 2026-10-28, 11:09 AM ET in a longer message. That message is not quoted here. Record format: [MADR 4.0](https://adr.github.io/madr/).

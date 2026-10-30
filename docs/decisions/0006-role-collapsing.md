@@ -2,7 +2,7 @@
 status: "superseded (RTE clause) by #22"
 date: 2026-10-28
 decision-makers: owner (HITL/POPM)
-consulted: QAS (GM consulted: QAS (GM & lead ARCHitect) lead ARCHitect), Studio · Lead
+consulted: GM consulted: the GM (GM consulted: the GM (GM & lead ARCHitect) lead ARCHitect) lead ARCHitect, Studio · Lead, Studio · Lead
 informed: Round Table seats
 ---
 
@@ -23,14 +23,14 @@ RTE collapsible; QAS + SecEng never; drop always-on 11 bots?
 
 Chosen option: "Yes", because owner concurred the filled pack as written on 2026-10-28.
 
-Decision text: RTE may collapse when simple. QAS and SecEng never collapse. Drop the always-on 11 SAFe bots and collapse lanes until a lane overloads. Kai leads, and TDM is reactive, not the primary orchestrator.
+Decision text: RTE may collapse when simple. QAS and SecEng never collapse. Drop the always-on 11 SAFe bots and collapse lanes until a lane overloads. the GM leads, and TDM is reactive, not the primary orchestrator.
 
 Status: superseded (RTE clause) by #22 (`d88c884`, merged 2026-10-30). Release · RTE is now an independent, non-collapsible final release gate. Trunk merge rights are in [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md). The QAS/SecEng-never-collapse and drop-the-11-bots parts of C6 still stand.
 
 ### Consequences
 
 * Historical: RTE could collapse when simple; QAS and SecEng could not; the always-on 11-bot roster was dropped.
-* Supersession (RTE clause only): #22 made Release · RTE non-collapsible. Merge authority is in [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md), replacing W0-04's "low auto / medium one human / high two humans" flow. An agent merge never counts as human approval. "High = two distinct humans" is recommended guidance, not a gate, per constitution/03 and Scott's answers on #22. With Scott as the only human, his own-words concur is the required human approval.
+* Supersession (RTE clause only): #22 made Release · RTE non-collapsible. Merge authority is in [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md), replacing W0-04's "low auto / medium one human / high two humans" flow. An agent merge never counts as human approval. "High = two distinct humans" is recommended guidance, not a gate, per constitution/03 and the owner's answers on #22. With the owner as the only human, his own-words concur is the required human approval.
 
 ### Confirmation
 
@@ -44,6 +44,6 @@ Historical: `roles/` no longer carries a collapsible-RTE card as current (PR #22
 
 ## More Information
 
-Owner: QAS (GM). Executor: Delivery · Lead.
+Owner: the GM (GM). Executor: Delivery · Lead.
 
 Cross-ref: W0-05 Ownership / collapsing (RTE part superseded by PR #22); W0-04 HITL without freeze (**superseded by PR #22**). Record format: [MADR 4.0](https://adr.github.io/madr/).

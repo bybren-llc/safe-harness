@@ -2,7 +2,7 @@
 status: accepted
 date: 2026-10-28
 decision-makers: owner (HITL/POPM)
-consulted: QAS (GM consulted: QAS (GM & lead ARCHitect) lead ARCHitect), Studio · Lead
+consulted: GM consulted: the GM (GM consulted: the GM (GM & lead ARCHitect) lead ARCHitect) lead ARCHitect, Studio · Lead, Studio · Lead
 informed: Round Table seats
 ---
 
@@ -31,7 +31,7 @@ The CD + risk-tier principle stands. The specific "who approves per tier" mappin
 ### Consequences
 
 * Good, because HITL gates bind to a change unit and an exact head, not a freeze-the-train default.
-* Partial supersession: W0-04's "low auto / medium one human / high two humans" flow was replaced by #22. Merge authority now follows a template default by risk tier and environment (dev/trunk: Kai/RTE; staging: auto; prod and constitution/High/O2: Scott's own-words concur). An agent merge never counts as human approval. "High = two distinct humans" is recommended guidance, not a gate, per [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) and Scott's answers on #22. With Scott as the only human, his own-words concur is the required human approval.
+* Partial supersession: W0-04's "low auto / medium one human / high two humans" flow was replaced by #22. Merge authority now follows a template default by risk tier and environment (dev/trunk: Kai/RTE; staging: auto; prod and constitution/High/O2: the owner's own-words concur). An agent merge never counts as human approval. "High = two distinct humans" is recommended guidance, not a gate, per [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) and the owner's answers on #22. With the owner as the only human, his own-words concur is the required human approval.
 
 ### Confirmation
 
@@ -45,6 +45,6 @@ owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 ## More Information
 
-Owner: QAS (GM). Executor: Delivery · Lead.
+Owner: the GM (GM). Executor: Delivery · Lead.
 
 Cross-ref: W0-03 CD assumptions (active); W0-04 HITL without freeze (**superseded by PR #22**). Public framing that may be cited: the Anthropic [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook) (committed artifacts per stage, layered agentic review, human review kept for critical code, hooks as approval gates, agent acts up to the production gate and not past it). Record format: [MADR 4.0](https://adr.github.io/madr/).

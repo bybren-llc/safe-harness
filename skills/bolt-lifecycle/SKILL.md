@@ -1,6 +1,6 @@
 ---
 name: bolt-lifecycle
-description: Run one bolt from brief through implement, evidence, QAS, RTE, and merge request. Use for a bounded unit of work on Low, Med, or High paths. Not for open-ended research or constitution edits without a brief.
+description: Run one bolt from brief through implement, evidence, the GM, RTE, and merge request. Use for a bounded unit of work on Low, Med, or High paths. Not for open-ended research or constitution edits without a brief.
 ---
 
 # Bolt lifecycle
@@ -53,4 +53,4 @@ The cited sections define the gates. This table is a reading order, not a grant 
 
 - Do not merge from this skill. See the cited section; this skill grants no authority.
 - Scanner, not fixer: see the cited `constitution/07` section.
-- Do not collapse QAS, SecEng, or RTE except as the cited `constitution/02` section allows.
+- Do not collapse the GM, SecEng, or RTE except as the cited `constitution/02` section allows.

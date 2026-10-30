@@ -1,30 +1,30 @@
-# Migration Plan — Linear to GitHub (Wave 1)
+# Migration Plan — the issue tracker to GitHub (Wave 1)
 
 **Status:** Proposed (pending owner concurrence)  
-**Scope:** safe-harness repository only (other Linear teams untouched)  
+**Scope:** safe-harness repository only (other the issue tracker teams untouched)  
 **Owner:** Delivery (QAS coordinates cutover timing with HITL)
 
 ---
 
 ## Overview
 
-This plan transitions safe-harness from Linear to GitHub Issues while preserving all Linear history as a read-only archive. **Never delete Linear history.** Every existing Linear evidence URL must remain resolvable.
+This plan transitions safe-harness from the issue tracker to GitHub Issues while preserving all the issue tracker history as a read-only archive. **Never delete the issue tracker history.** Every existing the issue tracker evidence URL must remain resolvable.
 
 ## Archive strategy
 
-### Linear remains accessible
+### the issue tracker remains accessible
 
-- Linear workspace: (organization-specific)
+- issue-tracker workspace: (organization-specific)
 - Historical work items: archived pre-cutover items
 - **Access:** Read-only archive; never delete
-- **Evidence preservation:** All Linear evidence URLs remain valid and resolvable
-- **Citation:** Link to Linear items directly when referencing historical context
+- **Evidence preservation:** All the issue tracker evidence URLs remain valid and resolvable
+- **Citation:** Link to the issue tracker items directly when referencing historical context
 
 ### SAF-n to GitHub Issue mapping
 
 **Frozen mapping table:** `trace/linear-saf-map.csv`
 
-This CSV will be populated before Linear retirement with actual mappings. Canonical columns match `trace/schema.md` and `trace/linear-saf-map.csv` (6 columns, including `pr`). `trace/linear-saf-map.csv` stays header-only until the migration.
+This CSV will be populated before the issue tracker retirement with actual mappings. Canonical columns match `trace/schema.md` and `trace/linear-saf-map.csv` (6 columns, including `pr`). `trace/linear-saf-map.csv` stays header-only until the migration.
 
 Illustrative example only (placeholder values; not real mappings — do not copy into the CSV):
 
@@ -33,7 +33,7 @@ saf_id,linear_url,github_issue,pr,title,status
 SAF-N,<linear-url>,#<issue>,#<pr>,<title>,<status>
 ```
 
-**During Wave 1:** The mapping table is header-only. Populate it during migration execution (after Scott concurrence).
+**During Wave 1:** The mapping table is header-only. Populate it during migration execution (after the owner concurrence).
 
 ---
 
@@ -55,16 +55,16 @@ SAF-N,<linear-url>,#<issue>,#<pr>,<title>,<status>
 ### Phase 2: Parallel operation (transition window)
 
 **Done when:**
-- [ ] Create GitHub Issues for archived Linear items (archive mirrors)
+- [ ] Create GitHub Issues for archived the issue tracker items (archive mirrors)
 - [ ] Populate `trace/linear-saf-map.csv` with actual mappings
 - [ ] Test GitHub Issues workflow with one new work item
 - [ ] Verify trace-check CI on a test PR
-- [ ] Announce cutover date to team (owner + QAS agreement)
+- [ ] Announce cutover date to team (owner + GM agreement)
 
 **Duration:** TBD (set after owner concurrence)
 
 **Activities:**
-- Create GitHub Issues mirroring Linear historical context (no duplication of full bodies; link back to Linear)
+- Create GitHub Issues mirroring the issue tracker historical context (no duplication of full bodies; link back to the issue tracker)
 - Update evidence references in prove/ to include GitHub Issue numbers
 - Train team on GitHub conventions (branch naming, commit trailers, PR body requirements)
 
@@ -73,14 +73,14 @@ SAF-N,<linear-url>,#<issue>,#<pr>,<title>,<status>
 **Cutover date:** TBD (QAS sets after owner concurrence)
 
 **Cutover actions:**
-1. Freeze Linear writes (team stops creating/updating Linear items for safe-harness; other teams untouched)
-2. Mark team read-only in Linear workspace for safe-harness scope
+1. Freeze the issue tracker writes (team stops creating/updating the issue tracker items for safe-harness; other teams untouched)
+2. Mark team read-only in issue-tracker workspace for safe-harness scope
 3. Commit final `trace/linear-saf-map.csv` to main
 4. Switch default work tracking to GitHub Issues
 5. Update documentation to reference GitHub as SoR
 
 **Done when:**
-- [ ] Linear writes frozen for safe-harness
+- [ ] the issue tracker writes frozen for safe-harness
 - [ ] All active work migrated to GitHub Issues
 - [ ] Team using GitHub Issues for new work
 - [ ] trace/linear-saf-map.csv committed and complete
@@ -89,7 +89,7 @@ SAF-N,<linear-url>,#<issue>,#<pr>,<title>,<status>
 ### Phase 4: Archive maintenance
 
 **Ongoing:**
-- Linear history remains accessible indefinitely
+- the issue tracker history remains accessible indefinitely
 - Evidence URLs continue to resolve
 - `trace/linear-saf-map.csv` maps historical references
 - New work uses GitHub Issues exclusively
@@ -98,9 +98,9 @@ SAF-N,<linear-url>,#<issue>,#<pr>,<title>,<status>
 
 ## Evidence preservation
 
-### Linear evidence URLs remain valid
+### the issue tracker evidence URLs remain valid
 
-Wave 0 evidence in `prove/d-p1/bolt-brief.md` and Linear comments/reviews remain accessible. Archive URLs stay valid and resolvable.
+Wave 0 evidence in `prove/d-p1/bolt-brief.md` and the issue tracker comments/reviews remain accessible. Archive URLs stay valid and resolvable.
 
 **No URL changes required.** Continue citing these URLs in documentation and trace maps.
 
@@ -125,21 +125,21 @@ Both are valid; tooling will handle both formats during transition.
 
 If critical issues arise during cutover:
 
-1. Reopen Linear writes for team (safe-harness scope only)
-2. Reconcile any GitHub-only work created during cutover attempt (copy context to Linear or document in Linear comments)
-3. Continue using Linear as temporary SoR
+1. Reopen the issue tracker writes for team (safe-harness scope only)
+2. Reconcile any GitHub-only work created during cutover attempt (copy context to the issue tracker or document in the issue tracker comments)
+3. Continue using the issue tracker as temporary SoR
 4. Investigate and resolve GitHub Issues workflow blockers
 5. Retry cutover after fixes validated
 
-**No data loss:** Linear history always preserved; GitHub Issues are additive. Reconcile step ensures no work is orphaned.
+**No data loss:** the issue tracker history always preserved; GitHub Issues are additive. Reconcile step ensures no work is orphaned.
 
 ---
 
-## Other Linear teams (out of scope)
+## Other the issue tracker teams (out of scope)
 
-- Other Linear teams remain on Linear
+- Other the issue tracker teams remain on Linear
 - This migration affects **safe-harness only**
-- No organization-wide Linear retirement
+- No organization-wide the issue tracker retirement
 - Other teams may adopt GitHub Issues independently on their own timeline
 
 ---
@@ -152,5 +152,5 @@ The Phase 3 **Done when** list is authoritative. Migration is complete when thos
 - [ ] Librarian's Linear-map freeze PR merged (row validation, `trace/linear-saf-map.sha256`, Frozen note in `schema.md`, and validation check passing)
 - [ ] Team trained and using GitHub conventions
 - [ ] Trace-check CI operational and green
-- [ ] Linear archive accessible and evidence URLs resolve
-- [ ] Zero Linear writes for safe-harness post-cutover
+- [ ] the issue tracker archive accessible and evidence URLs resolve
+- [ ] Zero the issue tracker writes for safe-harness post-cutover

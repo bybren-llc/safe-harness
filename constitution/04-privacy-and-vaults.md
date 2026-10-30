@@ -4,14 +4,14 @@ Non-negotiable standing rules. Delivery never invents vault paths.
 
 ## Secrets ownership
 
-Secrets live in vaults. Scott owns both the GitHub secrets and the vault side. Never put a secret value in this repository, in a PR, or in a decision pack.
+Secrets live in vaults. the owner owns both the GitHub secrets and the vault side. Never put a secret value in this repository, in a PR, or in a decision pack.
 
 ## Three vaults
 
 | Vault | Storage | Remote forge? | Delivery lane? |
 | --- | --- | --- | --- |
 | **Personal** | Local → migrate to **NAS**; never Desktop long-term | **NEVER** | Out of lane |
-| **Story IP** | **NAS pins** (may be NAS-private) | Not assumed forge-backed | Consume via handoff pins only |
+| **Story IP** | **NAS pins** (may be private-storage) | Not assumed forge-backed | Consume via handoff pins only |
 | **Atlas** (a private repo) | Forge / business IP | Yes — forge-backed | Follow Atlas agent contribution playbook |
 
 ## NAS is SoT for work data (O3)
@@ -43,16 +43,16 @@ Chat dumps are not knowledge objects. Librarian / Studio must distill to pinned 
 - Handoffs that cite personal vault as source pin
 - Invented NAS paths not provided by Studio/Librarian
 
-## Model cache / HF_HOME (NAS Option A — locked 2026-10-28)
+## Model cache / HF_HOME (private storage option A — locked 2026-10-28)
 
-Scott concurred: Hugging Face and other model downloads land **direct on a private NAS** via Docker `hf` → a private inference volume — **not** via Mac Desktop as a cache hop.
+Scott concurred: Hugging Face and other model downloads land **direct on a private storage** via Docker `hf` → a private inference volume — **not** via Mac Desktop as a cache hop.
 
 | Rule | Detail |
 | --- | --- |
-| SoT for weights/cache | a private NAS (private inference volume path family — exact mount pins from Studio/Ops, never invent) |
-| `HF_HOME` / hub cache | Point at NAS-backed dirs inside the Docker / private inference volume env, not `~/` or Desktop |
+| SoT for weights/cache | a private storage (private inference volume path family — exact mount pins from Studio/Ops, never invent) |
+| `HF_HOME` / hub cache | Point at private-storage-backed dirs inside the Docker / private inference volume env, not `~/` or Desktop |
 | Mac role | Mount/consume; do not stage large downloads on Mac then copy |
 | Privacy | Model weights ≠ personal vault; still never push caches into GitHub/`safe-harness` |
 | Empiricism | Path pins and docker compose live with Studio/Ops; Delivery adapters only document the env contract |
 
-When adapters document local/Ollama/HF lanes, require `HF_HOME` (and kin) to resolve on a private NAS — Mac-local cache is non-compliant with Option A.
+When adapters document local/Ollama/HF lanes, require `HF_HOME` (and kin) to resolve on a private storage — Mac-local cache is non-compliant with Option A.

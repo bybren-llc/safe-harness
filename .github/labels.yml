@@ -12,15 +12,9 @@
 #   tier:medium      - Risk tier: Medium
 #   tier:high        - Risk tier: High
 #   requirement      - Requirement definition or state change
-<<<<<<< HEAD
-#   decision         - Decision requiring owner/QAS concurrence
-#   needs-concur     - Awaiting explicit concurrence (general)
-#   needs-owner-concur - Awaiting owner concurrence (intent/spec/constitution PRs)
-=======
 #   decision         - Decision requiring decision concurrence (not design ownership)
 #   needs-concur     - Awaiting decision concurrence (not design ownership)
-#   needs-scott-concur - Awaiting Scott concurrence (intent/spec/constitution PRs)
->>>>>>> origin/main
+#   needs-owner-concur - Awaiting owner concurrence (intent/spec/constitution PRs) (renamed from earlier owner-named label)
 #   gate:rnd         - Gate: Research & Discover
 #   gate:plan        - Gate: Plan
 #   gate:concur      - Gate: Concurrence
@@ -46,11 +40,7 @@ labels:
   
   - name: needs-concur
     color: "fbca04"
-<<<<<<< HEAD
-    description: "Awaiting owner/QAS concurrence"
-=======
-    description: "Awaiting decision concurrence (Scott or Kai); not design ownership"
->>>>>>> origin/main
+    description: "Awaiting decision concurrence (the owner or the GM); not design ownership"
 
   - name: needs-owner-concur
     color: "d93f0b"
@@ -117,7 +107,7 @@ labels:
 
   - name: "exit:merged-rte"
     color: "0e8a16"
-    description: "Exit state: MERGED (delegated QAS/RTE) — QAS or Release · RTE executed under constitution/03"
+    description: "Exit state: MERGED (delegated GM/RTE) — GM or Release · RTE executed under constitution/03"
 
   # Gate labels (wave workflow stages)
   - name: "gate:rnd"

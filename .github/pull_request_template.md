@@ -12,7 +12,7 @@ Requirements: N/A
 
 ### O2 checklist
 
-Defaults to High unless Kai downgrades in writing at QAS (`constitution/03-cd-and-hitl.md`).
+Defaults to High unless the GM downgrades in writing at QAS (`constitution/03-cd-and-hitl.md`).
 
 - [ ] Pricing
 - [ ] Refunds

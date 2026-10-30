@@ -21,7 +21,7 @@ See the cited section; this skill grants no authority.
 
 ## When to use
 
-A review landed: an AI review bot (for example CodeRabbit), a human comment, QAS, or SecEng. Read the findings yourself. Do not let a summarizer agent disposition them for you.
+A review landed: an AI review bot (for example CodeRabbit), a human comment, the GM, or SecEng. Read the findings yourself. Do not let a summarizer agent disposition them for you.
 
 ## Disposition
 

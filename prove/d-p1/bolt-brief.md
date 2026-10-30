@@ -13,7 +13,7 @@
 | Goal (ties to M1–M6) | Prove D-P1: one Delivery bolt on spine A, end-to-end under exit states (M3, M4, M6) |
 | Studio handoff ID | none (D-P2 separate) |
 | Human assignee | owner |
-| Agent delegate | Delivery · Lead (Grok Bot) via Cursor CloudAgent — not Linear Agent product |
+| Agent delegate | Delivery · Lead (Grok Bot) via Cursor CloudAgent — not the issue tracker Agent product |
 | Risk tier | Low |
 | O2 items in scope? | none |
 | RTE collapse | Allowed |

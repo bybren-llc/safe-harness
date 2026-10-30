@@ -14,7 +14,7 @@
 | Agent delegate | (optional; humans remain assignees — `constitution/01-round-table.md`) |
 | Risk tier | Low / Med / High |
 | O2 items in scope? | pricing / refunds / auth / deploy CI / prod secrets / privacy-boundary / none |
-| RTE | An RTE-executed merge always needs RTE PASS on the exact head (any tier). A Low PR merged by Kai or Scott may use the annotated async checklist instead of a per-PR verdict. Required at Med, High, and O2. Non-collapsible at Med+ (`constitution/02-safe-ai-dlc.md`, `constitution/03-cd-and-hitl.md`, `roles/release-rte.md`) |
+| RTE | An RTE-executed merge always needs RTE PASS on the exact head (any tier). A Low PR merged by the GM or the owner may use the annotated async checklist instead of a per-PR verdict. Required at Med, High, and O2. Non-collapsible at Med+ (`constitution/02-safe-ai-dlc.md`, `constitution/03-cd-and-hitl.md`, `roles/release-rte.md`) |
 | QAS actor | (required; never = implementer; distinguishable in GitHub — `constitution/05-evidence-and-traceability.md`) |
 | SecEng actor | (required if Med/High/O2; never = implementer; High/O2 never N/A — `constitution/03-cd-and-hitl.md`) |
 | HITL approver | the project's named HITL / POPM human (Round Table: Scott). High/O2 and `constitution/` need that human's recorded own-words concur. Two distinct humans is recommended guidance, not a gate (`constitution/03-cd-and-hitl.md`). Agent ≠ human. |
@@ -30,7 +30,7 @@
 | Requirements | `REQ-<CMP>-NNN` list (`constitution/03-cd-and-hitl.md`); `none yet (bootstrap)` while `spec.md` has no REQ IDs |
 | QAS status | pass / change-request / N/A (Low tier only; rationale required). High/O2: never N/A and cannot be waived |
 | SecEng status | pass / change-request / N/A (Low tier only; rationale required). High/O2: never N/A and cannot be waived |
-| Risk tier + O2 details | (note if Kai downgraded any O2 item) |
+| Risk tier + O2 details | (note if the GM downgraded any O2 item) |
 | Ask | approve / change-request / escalate |
 
 ## Scope
@@ -51,7 +51,7 @@
 - [ ] Implement → Ready for QAS
 - [ ] QAS independence
 - [ ] SecEng (if required)
-- [ ] RTE PASS when RTE executes (any tier); a Low PR merged by Kai or Scott may use the annotated async checklist (`constitution/03-cd-and-hitl.md` RTE placement)
+- [ ] RTE PASS when RTE executes (any tier); a Low PR merged by the GM or the owner may use the annotated async checklist (`constitution/03-cd-and-hitl.md` RTE placement)
 - [ ] HITL decision pack (exact-head)
 - [ ] MERGED (HITL only) / MERGED (HITL-delegated) / MERGED (delegated Kai/RTE) — exit states in `constitution/05-evidence-and-traceability.md`
 

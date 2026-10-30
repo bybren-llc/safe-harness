@@ -2,7 +2,7 @@
 status: accepted
 date: 2026-10-28
 decision-makers: owner (HITL/POPM)
-consulted: QAS (GM consulted: QAS (GM & lead ARCHitect) lead ARCHitect), Studio · Lead
+consulted: GM consulted: the GM (GM consulted: the GM (GM & lead ARCHitect) lead ARCHitect) lead ARCHitect, Studio · Lead, Studio · Lead
 informed: Round Table seats
 ---
 
@@ -46,6 +46,6 @@ The repo exists under the org with internal visibility; README names it and its 
 
 ## More Information
 
-Owner: QAS (GM). Executor: Delivery · Lead.
+Owner: the GM (GM). Executor: Delivery · Lead.
 
 Cross-ref: [0016](0016-authorize-new-template-repo.md) (E2 authorize the repo). Record format: [MADR 4.0](https://adr.github.io/madr/).

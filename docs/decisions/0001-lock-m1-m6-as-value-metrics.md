@@ -2,7 +2,7 @@
 status: accepted
 date: 2026-10-28
 decision-makers: owner (HITL/POPM)
-consulted: QAS (GM consulted: QAS (GM & lead ARCHitect) lead ARCHitect), Studio · Lead
+consulted: GM consulted: the GM (GM consulted: the GM (GM & lead ARCHitect) lead ARCHitect) lead ARCHitect, Studio · Lead, Studio · Lead
 informed: Round Table seats
 ---
 
@@ -10,7 +10,7 @@ informed: Round Table seats
 
 ## Context and Problem Statement
 
-Wave 0 rethought the predecessor template, SAW (Safe Agentic Workflow), as a modern multi-runtime work harness for Claude Code, Codex, Cursor, local models and Grok Bot. It keeps the SAFe + AI-DLC ownership/cadence spirit (Bolts, Units of Work, human validation of business context, exit states, QAS/SecEng independence). The cycle under test was: R&D → draft → Scott concur → execute → measure against M1–M6.
+Wave 0 rethought the predecessor template, SAW (Safe Agentic Workflow), as a modern multi-runtime work harness for Claude Code, Codex, Cursor, local models and Grok Bot. It keeps the SAFe + AI-DLC ownership/cadence spirit (Bolts, Units of Work, human validation of business context, exit states, QAS/SecEng independence). The cycle under test was: R&D → draft → the owner concur → execute → measure against M1–M6.
 
 Lock M1–M6 as Wave 0 value metrics?
 
@@ -43,6 +43,6 @@ Every Bolt retro and decision pack reports against M1–M6; `spec.md` keeps an M
 
 ## More Information
 
-Owner: QAS (GM). Executor: Delivery · Lead.
+Owner: the GM (GM). Executor: Delivery · Lead.
 
 Cross-ref: W0-01 Value metrics (active). Public framing that may be cited: the Anthropic [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook). Record format: [MADR 4.0](https://adr.github.io/madr/).

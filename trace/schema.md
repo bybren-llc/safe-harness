@@ -72,7 +72,7 @@ decided_at: 2026-10-29
 
 ---
 
-## Linear SAF to GitHub Issue mapping
+## the issue tracker to GitHub Issue mapping
 
 **Frozen mapping table:** `trace/linear-saf-map.csv`
 

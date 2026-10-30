@@ -2,7 +2,7 @@
 
 This file is the intended GitHub setting for `main`. It does not apply the setting. A repository administrator applies it after this policy lands on `main`, using the checklist below.
 
-Who may merge remains [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md): only Scott, Kai, or Release · RTE. Delivery and cloud agents never merge. These GitHub rules do not encode that seat list. They require a pull request, require the named status checks, and block force-pushes and deletion.
+Who may merge remains [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md): only the owner, the GM, or Release · RTE. Delivery and cloud agents never merge. These GitHub rules do not encode that seat list. They require a pull request, require the named status checks, and block force-pushes and deletion.
 
 ## Intended settings
 
@@ -40,7 +40,7 @@ Do **not** add **API Contract Checks** as a required status check until #35 is c
 
 ## Why 0 required approvals
 
-QAS is a COMMENT review: pull requests are authored by the same account Kai reviews through, and GitHub does not let a pull request's author APPROVE or REQUEST_CHANGES on their own PR. The independent QAS verdict is a COMMENT with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line (see the README glossary).
+QAS is a COMMENT review: pull requests are authored by the same account the GM reviews through, and GitHub does not let a pull request's author APPROVE or REQUEST_CHANGES on their own PR. The independent QAS verdict is a COMMENT with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line (see the README glossary).
 
 Requiring one or more approving reviews, or requiring a code-owner review, would deadlock merges on that account.
 
@@ -49,7 +49,7 @@ The review gate is therefore process, not a GitHub approval count:
 - Independent QAS APPROVE on the exact head (COMMENT)
 - Independent SecEng where constitution/03 requires it
 - RTE PASS on the exact head where constitution/03 and [`roles/release-rte.md`](../roles/release-rte.md) require it
-- Scott's recorded own-words concur for `constitution/`, High, and O2
+- the owner's recorded own-words concur for `constitution/`, High, and O2
 
 RTE PASS is not a GitHub required status check. Do not add it to the required-check list.
 

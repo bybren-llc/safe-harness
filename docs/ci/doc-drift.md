@@ -1,6 +1,6 @@
 # Doc-drift checks (v1 proposed)
 
-**Status:** v1 proposed. Warn-only. Kai to confirm the rule set before any flip to blocking.
+**Status:** v1 proposed. Warn-only. the GM to confirm the rule set before any flip to blocking.
 
 The workflow is `.github/workflows/doc-drift.yml`. It runs on `pull_request` only. Permissions are `contents: read`. No secrets. No `pull_request_target`. Checkout is pinned the same way as the other repo workflows (`actions/checkout@v4`). The job never fails the build: findings print as `WARN` and the step exits 0.
 

@@ -2,7 +2,7 @@
 status: accepted
 date: 2026-10-28
 decision-makers: owner (HITL/POPM)
-consulted: QAS (GM consulted: QAS (GM & lead ARCHitect) lead ARCHitect), Studio · Lead
+consulted: GM consulted: the GM (GM consulted: the GM (GM & lead ARCHitect) lead ARCHitect) lead ARCHitect, Studio · Lead, Studio · Lead
 informed: Round Table seats
 ---
 
@@ -42,6 +42,6 @@ Constitution and README describe both spines; role cards name a spine; the bolt 
 
 ## More Information
 
-Owner: QAS (GM). Executor: Delivery · Lead.
+Owner: the GM (GM). Executor: Delivery · Lead.
 
 Cross-ref: W0-02 Dual spine (active). Public framing that may be cited: the Anthropic [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook). Record format: [MADR 4.0](https://adr.github.io/madr/).

@@ -2,7 +2,7 @@
 status: accepted
 date: 2026-10-28
 decision-makers: owner (HITL/POPM)
-consulted: QAS (GM consulted: QAS (GM & lead ARCHitect) lead ARCHitect), Studio · Lead
+consulted: GM consulted: the GM (GM consulted: the GM (GM & lead ARCHitect) lead ARCHitect) lead ARCHitect, Studio · Lead, Studio · Lead
 informed: Round Table seats
 ---
 
@@ -42,6 +42,6 @@ A handoff/bolt-brief template exists in `templates/`; spine-A Bolts that start f
 
 ## More Information
 
-Owner: QAS (GM). Executor: Delivery · Lead.
+Owner: the GM (GM). Executor: Delivery · Lead.
 
 Cross-ref: W0-08 Vaults + handoff (active; also [0004](0004-privacy-and-vault-boundaries.md)). Record format: [MADR 4.0](https://adr.github.io/madr/).

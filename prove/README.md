@@ -1,6 +1,6 @@
 # Prove checklist
 
-D-P1 is complete. D-P2 is pending. Coordinate Studio · Lead for D-P2. Report status to Kai.
+D-P1 is complete. D-P2 is pending. Coordinate Studio · Lead for D-P2. Report status to the GM.
 
 Repo: `bybren-llc/safe-harness` (O1 locked).
 
@@ -19,9 +19,9 @@ Repo: `bybren-llc/safe-harness` (O1 locked).
 | 1 | Empty `bybren-llc/safe-harness` exists + Cursor App access granted | ☑ |
 | 2 | Constitution + adapters (docs stubs) landed in repo — PR #2, `740eb2a` | ☑ |
 | 3 | Bolt brief from `../templates/delivery-bolt-brief.md` filled — [`d-p1/bolt-brief.md`](d-p1/bolt-brief.md) | ☑ |
-| 4 | GitHub Issue: **human assignee** + optional agent delegate. Wave 0 recorded this as Linear SAF-3 (archive, read-only). | ☑ |
+| 4 | GitHub Issue: **human assignee** + optional agent delegate. Wave 0 recorded this as the issue tracker-3 (archive, read-only). | ☑ |
 | 5 | Low or Med tier preferred for first prove; avoid O2 unless intentional — Low | ☑ |
-| 6 | Business-context HITL **before construct** (if Med/High/O2) → Implement → QAS (separate) → SecEng (if required) → RTE/collapse → HITL decision pack | ☑ — Low: business-context HITL N/A; QAS 2 rounds; RTE collapsed; MERGED by Kai (standing auth) — [`d-p1/bolt-brief.md#gates`](d-p1/bolt-brief.md#gates) |
+| 6 | Business-context HITL **before construct** (if Med/High/O2) → Implement → QAS (separate) → SecEng (if required) → RTE/collapse → HITL decision pack | ☑ — Low: business-context HITL N/A; QAS 2 rounds; RTE collapsed; MERGED by the GM (standing auth) — [`d-p1/bolt-brief.md#gates`](d-p1/bolt-brief.md#gates) |
 | 7 | Exact-head evidence + portable evidence_id posted | ☑ — see [`d-p1/bolt-brief.md`](d-p1/bolt-brief.md) Evidence |
 | 8 | Report vs M1–M6 (at least M3, M4, M6 touched) | ☑ — M3, M4, M6 in bolt brief Measure |
 
@@ -41,7 +41,7 @@ Repo: `bybren-llc/safe-harness` (O1 locked).
 ## Explicit non-goals of prove
 
 - No personal vault sync
-- No Linear Agents (work tracking is GitHub Issues; Linear SAF archive is read-only)
+- No the issue tracker Agents (work tracking is GitHub Issues; the issue tracker archive is read-only)
 - No ultracode-as-default
 - No tmux required
 - No silent SAW `dev` rewrite

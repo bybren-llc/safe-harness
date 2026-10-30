@@ -8,7 +8,7 @@
 
 ## AMENDMENT: Repository as sole source of truth
 
-**Decision (2026-10-29):** The GitHub repository is the **sole source of truth** for intent, spec, plan, requirements, trace map, review findings, and evidence. Work tracking moves to GitHub Issues. Linear archive remains read-only.
+**Decision (2026-10-29):** The GitHub repository is the **sole source of truth** for intent, spec, plan, requirements, trace map, review findings, and evidence. Work tracking moves to GitHub Issues. the issue tracker archive remains read-only.
 
 **Linear is optional.** The preferred path is design, specs, and PRDs in GitHub. Adopting teams may keep Linear; this template does not require it. The archive map `trace/linear-saf-map.csv` stays frozen.
 
@@ -17,8 +17,8 @@
 ### Human vs. agent ownership split
 
 **Humans own and accept only design (intent + spec):**
-- `intent.md` — Scott owns and accepts; agents may propose edits but **never merge**
-- `spec.md` — Scott owns and accepts; agents may propose edits but **never merge**
+- `intent.md` — the owner owns and accepts; agents may propose edits but **never merge**
+- `spec.md` — the owner owns and accepts; agents may propose edits but **never merge**
 
 **Agents own everything else end-to-end:**
 - Plan, GitHub Issues, code, tests, PRs, evidence
@@ -28,19 +28,19 @@
 
 **CODEOWNERS review gates** (not ownership):
 
-`.github/CODEOWNERS` requires @cheddarfox review for:
+`.github/CODEOWNERS` requires the code owner review for:
 - `intent.md`, `intent/`, `spec.md` (human-owned design)
 - `requirements/` (agent-authored, any REQ-ID add/change/removal needs human review)
 - `constitution/` (agent-authored constitution changes need human review)
 - `trace/` (agent-authored trace map needs human review)
 
-Agents may open PRs touching these files but must not merge them, except Kai or Release · RTE may merge `constitution/` changes only under the conditions in `constitution/03-cd-and-hitl.md`, including Scott's recorded own-words concurrence at exact head. Use the `needs-scott-concur` label on PRs awaiting Scott's review.
+Agents may open PRs touching these files but must not merge them, except the GM or Release · RTE may merge `constitution/` changes only under the conditions in `constitution/03-cd-and-hitl.md`, including the owner's recorded own-words concurrence at exact head. Use the `needs-scott-concur` label on PRs awaiting the owner's review.
 
 **Distinction:** Humans own design (accept/reject intent and spec content). Agents own execution (author requirements, trace, constitution changes, code, tests), but CODEOWNERS enforces human review gates before merge.
 
 ### Studio's write path
 
-Studio drafts `intent.md` and `spec.md` and hands them to Delivery. Delivery commits them in a PR. Scott approves via CODEOWNERS before merge.
+Studio drafts `intent.md` and `spec.md` and hands them to Delivery. Delivery commits them in a PR. the owner approves via CODEOWNERS before merge.
 
 ### GitHub Issues for work tracking
 
@@ -79,7 +79,7 @@ See `requirements/README.md` for trace states (Placed / Deferred / Dropped / Mis
 
 **Deferred** requirements must include:
 - `rationale`: Why deferred and conditions for revisiting
-- `decided_by`: Decision owner (Scott, Kai, or "Scott + Kai")
+- `decided_by`: Decision owner (the owner, the GM, or "Scott + Kai")
 - `decided_at`: ISO 8601 date (YYYY-MM-DD)
 - `defer_to`: Target date or milestone reference (e.g., "2026-11-15" or "Wave 2")
 
@@ -88,7 +88,7 @@ See `requirements/README.md` for trace states (Placed / Deferred / Dropped / Mis
 - `decided_by`: Decision owner
 - `decided_at`: ISO 8601 date
 
-**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires Scott's sign-off. Record as `decided_by: Scott Graham` plus a link in `rationale`.
+**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires the owner's sign-off. Record as `decided_by: the owner Graham` plus a link in `rationale`.
 
 **Deferred dates:** `defer_to` and `decided_at` live in the trace map entry only, never in GitHub Issue fields.
 
@@ -126,7 +126,7 @@ The `.github/workflows/trace-check.yml` CI workflow validates:
 2. No requirements in state **Missing** (CI fails)
 3. **Deferred** and **Dropped** requirements have: `rationale`, `decided_by`, `decided_at`
 4. **Deferred** requirements have: `defer_to`
-5. Requirements with `source: intent.md#*` that are Dropped must have `decided_by: Scott Graham` (exactly)
+5. Requirements with `source: intent.md#*` that are Dropped must have `decided_by: the owner Graham` (exactly)
 6. Evidence rows must have required fields: `evidence_id`, `exact_head`, `actor`, `gate`
 
 **Blocking activation gate:** Trace-check becomes blocking only after the first `spec.md` with REQ IDs lands **AND** a code-owner-reviewed PR adds the marker file `trace/.blocking`. The follow-up validations PR (first GitHub Issue in migration Phase 1) adds the marker after implementing the additional validations below. Until both conditions are met, trace-check remains warn-only.
@@ -170,17 +170,17 @@ Use consistent labels across runtimes. Human approval is distinct from merge exe
 1. Ready for QAS  
 2. Approved for RTE  
 3. Ready for HITL  
-4. **MERGED (HITL only)** — Scott executed the merge (human approval + execution)
+4. **MERGED (HITL only)** — the owner executed the merge (human approval + execution)
 5. **MERGED (HITL-delegated)** — Low tier only; delegated HITL (D1)
-6. **MERGED (delegated Kai/RTE)** — Kai or Release · RTE executed a trunk merge under `constitution/03`. Record `merged_by` (Kai | Release · RTE), exact-head SHA, independent QAS APPROVE (Kai's independent QAS APPROVE when RTE executed), RTE PASS when RTE executed, and Scott's recorded concur on constitution/, High, and O2 where required. This is not a HITL merge.
+6. **MERGED (delegated Kai/RTE)** — the GM or Release · RTE executed a trunk merge under `constitution/03`. Record `merged_by` (Kai | Release · RTE), exact-head SHA, independent QAS APPROVE (the GM's independent QAS APPROVE when RTE executed), RTE PASS when RTE executed, and the owner's recorded concur on constitution/, High, and O2 where required. This is not a HITL merge.
 
 ### D1: Delegated HITL (Low tier only)
 
-At **Low tier** only, HITL may be delegated with a structured `hitl_delegate` record. Scott's #22 concur (2026-10-30, recorded on [`d88c884`](https://github.com/bybren-llc/safe-harness/commit/d88c884c14c64aa2dbc244c89290818df423924e)) keeps this Low-tier record **as written**. ADR-style accountability is required: who delegated, what was delegated, when, and a link to the record.
+At **Low tier** only, HITL may be delegated with a structured `hitl_delegate` record. the owner's #22 concur (2026-10-30, recorded on [`d88c884`](https://github.com/bybren-llc/safe-harness/commit/d88c884c14c64aa2dbc244c89290818df423924e)) keeps this Low-tier record **as written**. ADR-style accountability is required: who delegated, what was delegated, when, and a link to the record.
 
 ```yaml
 hitl_delegate:
-  delegating_actor: Scott Graham
+  delegating_actor: the owner Graham
   delegate_actor: Kai
   authorization_url: https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98
   scope: low  # Must be "low" only
@@ -215,21 +215,21 @@ Report cycle time per Bolt in prove/ records. Track blocking gates separately (Q
 
 ---
 
-## Linear archive (Wave 1 migration)
+## the issue tracker archive (Wave 1 migration)
 
-Linear issues SAF-1 through SAF-5 remain accessible as read-only archive. **Never delete Linear history.** Every existing Linear evidence URL must remain resolvable.
+Linear issues SAF-1 through SAF-5 remain accessible as read-only archive. **Never delete the issue tracker history.** Every existing the issue tracker evidence URL must remain resolvable.
 
 Migration plan (`prove/wave-1/migration-plan.md`) includes:
 - SAF-n to GitHub Issue mapping table (`trace/linear-saf-map.csv`)
 - Evidence URL preservation strategy (Linear URLs remain valid; cite them by link)
 - Archive access instructions
-- Cutover date: TBD (set after Scott concurrence)
-- Scope: safe-harness only (other Linear teams like STO are untouched)
+- Cutover date: TBD (set after the owner concurrence)
+- Scope: safe-harness only (other the issue tracker teams like STO are untouched)
 
-**Delivery owns migration and closeout.** Kai coordinates with Scott on cutover timing.
+**Delivery owns migration and closeout.** the GM coordinates with the owner on cutover timing.
 
 ---
 
 ## Wave 1 GitHub writes
 
-After Scott concurrence on this amendment, agents may create GitHub Issues using the structured templates. Constitution changes require explicit Scott concur before merge.
+After the owner concurrence on this amendment, agents may create GitHub Issues using the structured templates. Constitution changes require explicit the owner concur before merge.

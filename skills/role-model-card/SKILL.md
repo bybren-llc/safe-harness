@@ -25,7 +25,7 @@ Every adapter publishes a role→tier card. No harness silently overrides the ca
 | --- | --- |
 | Orchestrator | Seat coordination, bolt planning, handoff acceptance, decision-pack assembly |
 | Heavy | Architecture, high-ambiguity implement, SecEng deep review, hard QAS |
-| Light | Research gather, confirmations, routine QAS, lookups |
+| Light | Research gather, confirmations, routine the GM, lookups |
 
 Concrete model names and versions belong only in the adapter's **example config**, not in this skill and not as a repo-wide default.
 
