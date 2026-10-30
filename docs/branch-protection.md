@@ -30,9 +30,9 @@ Leave other optional toggles off unless the HITL owner adds them later (conversa
 
 Add these three names, matching the check as it appears on pull requests:
 
-1. **Structure & Docs Validation** — job in `.github/workflows/wave0-checks.yml`
-2. **Requirements Trace Validation** — job in `.github/workflows/trace-check.yml`. This check is **warn-only** until `spec.md` has REQ IDs **and** `trace/.blocking` exists. In warn-only mode it exits 0, so requiring it does not block merges on trace findings
-3. **CodeRabbit** — the CodeRabbit check as reported on pull requests
+1. **Structure & Docs Validation** (GitHub Actions) — job in `.github/workflows/wave0-checks.yml`
+2. **Requirements Trace Validation** (warn-only, GitHub Actions) — job in `.github/workflows/trace-check.yml`. This check is **warn-only** until `spec.md` has REQ IDs **and** `trace/.blocking` exists. In warn-only mode it exits 0, so requiring it does not block merges on trace findings
+3. **CodeRabbit** (CodeRabbit GitHub App)
 
 If CodeRabbit skips or doesn't run on the head, anyone comments `@coderabbitai review`, and nobody bypasses the required check.
 
