@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 ByBren, LLC
 # Requirements trace validation (constitution/05).
 # Used by .github/workflows/trace-check.yml and trace/fixtures/run.sh.
 #

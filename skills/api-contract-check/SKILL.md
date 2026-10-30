@@ -1,6 +1,7 @@
 ---
 name: api-contract-check
 description: Run contract tests and breaking-change diffs on an adopter's OpenAPI spec. Warn-only first. Use when the adopter has a spec path configured. Skip cleanly when none exists.
+license: MIT (see repository LICENSE)
 ---
 
 # API contract check
