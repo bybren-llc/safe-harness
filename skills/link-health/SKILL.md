@@ -39,7 +39,15 @@ A flaky outside site must never block a merge.
 
 ## Weekly scan
 
-Configurable schedule (the adopter names the weekday and timezone). Read-only: no repo writes, no PR comments, no channel posts. Outputs: `link-rot` issues, a weekly summary to Ops, and (for a clear rewrite) a fix PR for a merge seat.
+Configurable schedule (the adopter names the weekday and timezone). Two phases:
+
+### Scan phase (read-only)
+
+Read-only: no repo writes, no PR comments, no channel posts. Collect findings only. Do not open issues, post a summary, or open a PR in this phase.
+
+### Reporting phase (authorized only)
+
+Runs only when authorized. Then: open `link-rot` issues, send a weekly summary to Ops, and (for a clear rewrite) open a fix PR for a merge seat.
 
 Do not teach frozen-map locator forms or internal knowledge-base URL shapes. Cite concept names.
 

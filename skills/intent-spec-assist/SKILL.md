@@ -22,7 +22,7 @@ The human owner is drafting `intent.md` or `spec.md`. Agents may propose text. W
 
 1. Ask what outcome and non-goals the human wants.
 2. Propose a section outline. Keep personal-store and private-store facts out. Cite by concept name.
-3. Propose REQ-shaped statements only as candidates. Do not register REQ IDs until the human-owned spec exists and Delivery opens the registry PR.
+3. Propose REQ-shaped statements only as candidates. A candidate `source` is `spec.md#anchor` or `intent.md#anchor` (the same forms as the cited section and `trace/schema.md`). Do not register REQ IDs until that human-owned source exists and Delivery opens the registry PR.
 4. Hand the draft to the human. They paste, edit, and merge.
 
 ## Ownership
