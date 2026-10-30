@@ -31,7 +31,7 @@ Secrets live in vaults. The human owner (HITL/POPM) owns both the forge secrets 
 
 ## Constitution-gated files (CODEOWNERS)
 
-The following paths require the CODEOWNERS reviewer before merge:
+Contributors request review from the CODEOWNERS owners for these paths. See [`.github/CODEOWNERS`](.github/CODEOWNERS).
 
 - `intent.md` and `intent/` — human-owned design intent
 - `spec.md` — human-owned specification
@@ -61,7 +61,7 @@ Merge rules: see [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.
 8. **Decision pack:** If Medium or High tier, attach a decision pack.
 9. **Merge:** See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) and [`roles/release-rte.md`](roles/release-rte.md). This guide does not restate merge-rule text.
 
-**Key constraint:** Relayed agent messages are never approval — verify the human owner's own words. Independence, merge authority, and who may click merge are in [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md).
+**Key constraint:** Working practice (not a constitution rule), described in `skills/hitl-concur-check/SKILL.md`: a consequential action needs the human owner's own words, verified. An agent relaying approval is never approval.
 
 After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks.
 

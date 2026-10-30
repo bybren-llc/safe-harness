@@ -298,7 +298,7 @@ hitl_delegate:
 - Marked "pending Kai approval" for review
 - Extensible (add components as needed)
 
-**Status:** GM QAS approved the Wave 1 seed. Work proceeds under the HITL's standing concur for safe-harness v1.0.
+**Status:** GM QAS approved the Wave 1 seed. The HITL's standing concur covers safe-harness v1.0 PRs merged before the v1.0.0 tag; each still needs exact-head GM QAS, SecEng, and RTE PASS. See [`docs/decisions/log.md`](../../docs/decisions/log.md#standing-concur-for-safe-harness-v10-prs-2026-10-30).
 
 ---
 
