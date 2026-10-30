@@ -12,7 +12,7 @@ Maps constitution → Cursor rules + Projects / Cloud Agents.
 | SAFe + AI-DLC | Bolt checklist rule; human validate before construct on Med/High |
 | CD + HITL | PR template / rule: risk tier, O2 list, decision pack link |
 | Privacy | Rules: never commit personal vault; NAS SoT; Atlas forge OK |
-| Evidence + Linear | Rule: portable evidence payload (`evidence_id`, `runtime`, `exact_head`, `linear_issue`, `actor`, `gate`) + human assignee — see `constitution/05-evidence-and-linear.md` |
+| Evidence + Linear | Rule: portable evidence payload (`evidence_id`, `runtime`, `exact_head`, `linear_issue`, `actor`, `gate`) + human assignee — see `constitution/05-evidence-and-traceability.md` |
 | Model stack (O4) | Project model defaults per role card — **ultracode not default** |
 | Empiricism | Changelog of default changes only after HITL concur |
 

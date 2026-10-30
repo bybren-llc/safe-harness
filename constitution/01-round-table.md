@@ -35,6 +35,6 @@ Everyone **owns** work through exit states, e.g.:
 
 `implementer → Ready for QAS → QAS → Approved for RTE → RTE PASS (in parallel with Scott concur where required) → Ready for HITL → MERGED (HITL only | HITL-delegated | delegated Kai/RTE)`
 
-Canonical merged states live in `05-evidence-and-linear.md`. Record who executed the merge. RTE-executed merges use **MERGED (delegated Kai/RTE)**, not HITL MERGED.
+Canonical merged states live in `05-evidence-and-traceability.md`. Record who executed the merge. RTE-executed merges use **MERGED (delegated Kai/RTE)**, not HITL MERGED.
 
-Agent ≠ human. Agents may be **delegates**; humans remain **assignees** in GitHub Issues (Linear is optional; see `05-evidence-and-linear.md`). Lane owners: `07-roles-and-lanes.md`.
+Agent ≠ human. Agents may be **delegates**; humans remain **assignees on GitHub Issues** (Linear SAF archive is read-only; cite by link). See `05-evidence-and-traceability.md`. Lane owners: `07-roles-and-lanes.md`.

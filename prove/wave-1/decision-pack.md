@@ -480,12 +480,12 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 
 ---
 
-### Decision 18: Rename constitution/05-evidence-and-linear.md (follow-up)
+### Decision 18: Rename constitution/05-evidence-and-traceability.md (follow-up)
 
 **Context:** constitution/05 filename still references "linear" despite Wave 1 moving to GitHub-only. Renaming in this PR would break existing links in Wave 0 documentation.
 
 **Proposal:** Propose rename as a follow-up PR after Wave 1 lands:
-- Current: `constitution/05-evidence-and-linear.md`
+- Current: `constitution/05-evidence-and-traceability.md`
 - Proposed: `constitution/05-evidence-and-trace.md` or `constitution/05-source-of-truth.md`
 
 **Why not in Wave 1:**
@@ -502,7 +502,7 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 **Mitigations:**
 - Follow-up PR updates all internal links atomically
 - Git preserves file history across rename
-- Search for "05-evidence-and-linear" confirms all references updated
+- Search for "05-evidence-and-traceability" confirms all references updated
 
 **Status:** Awaiting Scott concurrence (see Team concur record above)
 
@@ -600,7 +600,7 @@ Expected requirements:
 
 **Constitution amendments:**
 - constitution/03-cd-and-hitl.md (GitHub conventions, O2 downgrade authority)
-- constitution/05-evidence-and-linear.md (repo as SoR, human/agent split, trace enforcement, cycle time, D1 delegated-HITL)
+- constitution/05-evidence-and-traceability.md (repo as SoR, human/agent split, trace enforcement, cycle time, D1 delegated-HITL)
 
 **Architecture & tracing:**
 - arch/components.yaml (ARC-<CMP> registry, pending Kai approval)
@@ -673,7 +673,7 @@ If critical issues arise post-merge:
 5. All constitution/03 and constitution/05 amendments
 6. O2 downgrade: Kai's decision recorded — Medium accepted conditional on fixes #3 and #4
 7. Migration plan scope and timing (cutover date TBD)
-8. Follow-up rename of constitution/05-evidence-and-linear.md (Decision 18)
+8. Follow-up rename of constitution/05-evidence-and-traceability.md (Decision 18)
 9. Sticky blocking mode: enable "require code owner review" on `main` and/or add `trace/.blocking` marker (Decision 19)
 
 **Open questions from seats (to answer or defer):**

@@ -5,7 +5,7 @@
 **Scope:** spine (A) delivery in `bybren-llc/safe-harness`.
 **Owner:** RTE (once codified) · **Reader of record:** Ops · CoS (morning roll = read of the live queue)
 **Time zone:** America/New_York (all times ET)
-**Grounded in (main):** `constitution/01-round-table.md`, `constitution/02-safe-ai-dlc.md`, `constitution/03-cd-and-hitl.md`, `constitution/05-evidence-and-linear.md`, `roles/release-rte.md`, `roles/qas.md`, `roles/seceng.md`, `roles/kai-gm-architect.md`, `roles/delivery-lead.md`, `templates/delivery-bolt-brief.md`, `prove/wave-0-retro.md`, `.github/workflows/wave0-checks.yml`
+**Grounded in (main):** `constitution/01-round-table.md`, `constitution/02-safe-ai-dlc.md`, `constitution/03-cd-and-hitl.md`, `constitution/05-evidence-and-traceability.md`, `roles/release-rte.md`, `roles/qas.md`, `roles/seceng.md`, `roles/gm-architect.md`, `roles/delivery-lead.md`, `templates/delivery-bolt-brief.md`, `prove/wave-0-retro.md`, `.github/workflows/wave0-checks.yml`
 
 Label key used in this file:
 - **[main]** — already stated on `main`; quoted or paraphrased, path given.
@@ -45,7 +45,7 @@ Ops · CoS reads this file plus the live queue for the morning roll (§8). `cons
 | **Delivery · Lead** | Bolt execution; fix routing; CodeRabbit triage; evidence and decision-pack authoring; sends RTE the **ready for release check** packet | [main] owns spine (A) delivery: Bolts, CD health (M6), adapters, prove D-P1 (paraphrase of `roles/delivery-lead.md` mission); packet handoff [PENDING-CODIFY] |
 | **QAS** | Independence gate; "evidence sufficiency before RTE/HITL"; **never collapse** | [main] `roles/qas.md`, `constitution/02-safe-ai-dlc.md` |
 | **SecEng** | Security / privacy-boundary / secrets; negative authority; **never collapse** | [main] `roles/seceng.md` |
-| **Kai** | GM / lead ARCHitect; org locks; merges under Scott's HITL record (one of the three permitted mergers **Decided — Scott 2026-10-29 · merge rule**) | [main] `roles/kai-gm-architect.md`; standing Wave 0 merge auth in `prove/wave-0-retro.md` §7 |
+| **Kai** | GM / lead ARCHitect; org locks; merges under Scott's HITL record (one of the three permitted mergers **Decided — Scott 2026-10-29 · merge rule**) | [main] `roles/gm-architect.md`; standing Wave 0 merge auth in `prove/wave-0-retro.md` §7 |
 | **Scott** | HITL / POPM; "Final merge authority; decision packs; business-context gate"; may merge **Decided — Scott 2026-10-29 · merge rule** | [main] `constitution/01-round-table.md` |
 
 **Who may merge** **Decided — Scott 2026-10-29 · merge rule**: only **Scott**, **Kai**, and **Release · RTE**. Every other agent — Delivery · Lead, implementers, cloud agents, specialists (QAS, SecEng, BSA-like, etc.) — **never merges**.
@@ -57,7 +57,7 @@ Escalation path [main]: Delivery · Lead escalates "via Ops · CoS or Kai — no
 Posted on the PR (or linked Linear issue) only once QAS APPROVE and SecEng clearance (or a Low-tier N/A with rationale) are both on the exact head. **The RTE check fires immediately on packet arrival.**
 
 - PR link + **head SHA** (exact-head — "Evidence and CI must refer to the exact commit/PR head under review", `constitution/03-cd-and-hitl.md`)
-- Linear issue key [LEGACY, non-authoritative; GitHub Issue/PR + exact head is the record, see constitution/05 and #26] (SoR; `constitution/05-evidence-and-linear.md`)
+- Linear issue key [LEGACY, non-authoritative; GitHub Issue/PR + exact head is the record, see constitution/05 and #26] (SoR; `constitution/05-evidence-and-traceability.md`)
 - Risk tier (Low / Med / High) + O2 checklist
 - Gate checklist (§4) with a link per row
 - Decision pack link (`templates/delivery-bolt-brief.md` → "Decision pack (constitution/03 minimum)")
@@ -82,10 +82,10 @@ Implement → Ready for QAS
           → RTE tags the merge commit + publishes the GitHub Release (= deploy)  [SUPERSEDED, see constitution/03 and #26]
 ```
 
-- Canonical exit-state labels are verbatim from `constitution/05-evidence-and-linear.md`: "Ready for QAS", "Approved for RTE (or collapsed-RTE path annotated)", "Ready for HITL", "MERGED (HITL only)". Do not rename them here (`prove/wave-0-retro.md` §4: prove docs cannot redefine constitution/05 labels).
+- Canonical exit-state labels are verbatim from `constitution/05-evidence-and-traceability.md`: "Ready for QAS", "Approved for RTE (or collapsed-RTE path annotated)", "Ready for HITL", "MERGED (HITL only)". Do not rename them here (`prove/wave-0-retro.md` §4: prove docs cannot redefine constitution/05 labels).
 - "Where required" for Scott's concur: Med = one human decision pack; High = Scott's recorded own-words concur (two distinct humans is recommended guidance, not a gate); Low = auto when green, today under Scott's standing Wave 0 merge authorization (Linear SAF-1 comment `54d37e98`, `prove/wave-0-retro.md` §7). [main] `constitution/03-cd-and-hitl.md` risk tiers.
 - **Merger** **Decided — Scott 2026-10-29 · merge rule**: Kai, Release · RTE, or Scott — no other agent. RTE merge conditions: (a) Kai's QAS APPROVE on the exact head, (b) RTE's own PASS on that same head, (c) Scott's concur recorded wherever the constitution requires it, (d) RTE did not author the change, (e) High/O2 and any `constitution/` change only with Scott's recorded concur ([main] grounding for (e): constitution updates require HITL concur — `constitution/06-empiricism.md` step 6, `roles/model-stack.md` stop rules). Merge protection on `main` is not yet configured — branch protection is **pending Scott** (§9).
-- [main] "Humans merge; agents never self-merge" and RTE "never merges" (`constitution/03-cd-and-hitl.md`, `roles/release-rte.md`). Kai "does not merge own Delivery PRs as HITL" (`roles/kai-gm-architect.md`). These [main] lines still conflict with the merge rule above; the follow-up amendment must update them — see §9.
+- [main] "Humans merge; agents never self-merge" and RTE "never merges" (`constitution/03-cd-and-hitl.md`, `roles/release-rte.md`). Kai "does not merge own Delivery PRs as HITL" (`roles/gm-architect.md`). These [main] lines still conflict with the merge rule above; the follow-up amendment must update them — see §9.
 - **High tier:** two distinct humans is recommended guidance, not a gate (`constitution/03-cd-and-hitl.md`). Many projects do not need it. Scott's recorded concur remains required. Agent ≠ human. RTE PASS does not count as a human approval.
 - Tagging is not merging: RTE creates the tag/Release on the merge commit after `MERGED (HITL only)`; a tag never substitutes for any gate. Tagging/release automation counts as **deploy CI / workflows → O2 → High** (`constitution/03-cd-and-hitl.md` O2 list). **Decided — Kai 2026-10-29**
 - Note: `constitution/01-round-table.md` writes the flow sequentially (`… → RTE/collapsed PR → Ready for HITL → HITL MERGED`). Running RTE PASS **in parallel** with Scott's concur must be stated in the `constitution/03` amendment so it does not read as a deviation.
@@ -96,14 +96,14 @@ RTE checks each row against the **exact head SHA** in the packet. Any unchecked 
 
 | # | Gate | PASS when | Source |
 | --- | --- | --- | --- |
-| G1 | **QAS verdict** | Kai's independent review exists on the exact head with "APPROVE" in the body (posted as a GitHub **COMMENT** review — author-account limitation means APPROVE/REQUEST_CHANGES states are unavailable); QAS actor ≠ implementer, detectable in Linear | [main] `prove/wave-0-retro.md` §2, §4; `roles/qas.md`; `constitution/05-evidence-and-linear.md` "Independence detectable" |
+| G1 | **QAS verdict** | Kai's independent review exists on the exact head with "APPROVE" in the body (posted as a GitHub **COMMENT** review — author-account limitation means APPROVE/REQUEST_CHANGES states are unavailable); QAS actor ≠ implementer, detectable in Linear | [main] `prove/wave-0-retro.md` §2, §4; `roles/qas.md`; `constitution/05-evidence-and-traceability.md` "Independence detectable" |
 | G2 | **CodeRabbit** | Review complete on the exact head; every actionable finding triaged **Fix / Accept / Waive** with a one-line reason; Fix items verified fixed on head | CodeRabbit use [main] `prove/wave-0-retro.md` §3; Fix/Accept/Waive taxonomy [PENDING-CODIFY] |
 | G3 | **CI green** | `Structure & Docs Validation` (`.github/workflows/wave0-checks.yml`, workflow "Wave 0 Sanity Checks") green on exact head | [main] `.github/workflows/wave0-checks.yml`; `constitution/03-cd-and-hitl.md` "Wave 0 CI/CD path" |
-| G4 | **Decision pack + HITL record** | Decision pack has the constitution/03 minimum (GitHub Issue, exact-head SHA/PR, evidence IDs, QAS + SecEng status or Low-tier N/A with rationale, risk tier + O2 checklist, Ask). HITL record present: Scott's recorded concur, **or** (Low/D1 only) the standing `hitl_delegate` record (Linear SAF-1 comment `54d37e98`, kept as written with ADR-style accountability). High/O2/`constitution/` need Scott's recorded concur; the SAF-1 standing delegation does not cover them | [main] `constitution/03-cd-and-hitl.md` "Decision pack minimum"; `constitution/05-evidence-and-linear.md` D1; `templates/delivery-bolt-brief.md` |
+| G4 | **Decision pack + HITL record** | Decision pack has the constitution/03 minimum (GitHub Issue, exact-head SHA/PR, evidence IDs, QAS + SecEng status or Low-tier N/A with rationale, risk tier + O2 checklist, Ask). HITL record present: Scott's recorded concur, **or** (Low/D1 only) the standing `hitl_delegate` record (Linear SAF-1 comment `54d37e98`, kept as written with ADR-style accountability). High/O2/`constitution/` need Scott's recorded concur; the SAF-1 standing delegation does not cover them | [main] `constitution/03-cd-and-hitl.md` "Decision pack minimum"; `constitution/05-evidence-and-traceability.md` D1; `templates/delivery-bolt-brief.md` |
 | G5 | **Trace** | PR body has a `Requirements:` line listing REQ IDs, and the Linear issue key | [PENDING-CODIFY] — no `Requirements:` line or REQ ID scheme exists on `main` |
 | G6 | **Risk tier correct** | Tier matches the O2 list (pricing, refunds, auth, deploy CI / workflows, prod secrets, privacy-boundary crosses = **High** unless Scott/Kai downgrade **in writing**); SecEng actor present if Med/High/O2 | [main] `constitution/03-cd-and-hitl.md` "O2 high-risk default"; `templates/delivery-bolt-brief.md` header |
 | G7 | **Docs match structure** | `README.md` and repo structure match what docs describe (no stale paths, required paths present, relative links resolve) | Partly automated [main] by `wave0-checks.yml` (required paths + relative links); human check [PENDING-CODIFY] |
-| G8 | **Exit state + evidence** | Linear shows "Approved for RTE"; portable evidence rows present (`evidence_id`, `runtime`, `exact_head`, `linear_issue`, `actor`, `gate`) | [main] `constitution/05-evidence-and-linear.md` |
+| G8 | **Exit state + evidence** | Linear shows "Approved for RTE"; portable evidence rows present (`evidence_id`, `runtime`, `exact_head`, `linear_issue`, `actor`, `gate`) | [main] `constitution/05-evidence-and-traceability.md` |
 
 RTE verdict is posted as a single PR comment: `RTE PASS @ <sha>` or `RTE HOLD @ <sha> — G<n>: <reason>`. **Decided — Kai 2026-10-29** (format).
 
@@ -204,9 +204,9 @@ The weekly look back is **Ops · CoS's Monday aggregate** (Ops-owned; this file 
 
 > **Branch protection on `main` — pending Scott.** No branch protection / required-reviewer / merge-restriction settings are recorded on `main` yet. Enforcing "only Scott, Kai, Release · RTE merge" in GitHub (and that tagging/release automation is O2/High, Decided — Kai 2026-10-29) waits on Scott.
 
-- RTE role card (`Release · RTE`) with release-flow + release-notes scope and the merge right (Decided — Scott 2026-10-29) (today only `roles/rte-collapsible.md` (replaced by `roles/release-rte.md` in the amendment PR): collapsible PR shepherd, Light tier).
+- RTE role card (`Release · RTE`) with release-flow + release-notes scope and the merge right (Decided — Scott 2026-10-29) (today only `roles/release-rte.md` (replaced by `roles/release-rte.md` in the amendment PR): collapsible PR shepherd, Light tier).
 - `constitution/03-cd-and-hitl.md` High-tier two distinct humans is recommended guidance, not a gate (Scott #22 concur, 2026-10-30).
-- `constitution/05-evidence-and-linear.md` `hitl_delegate` stays as written, with ADR-style accountability (Scott #22 concur, 2026-10-30).
+- `constitution/05-evidence-and-traceability.md` `hitl_delegate` stays as written, with ADR-style accountability (Scott #22 concur, 2026-10-30).
 - `Requirements:` line / REQ ID scheme.
 - CodeRabbit Fix/Accept/Waive triage convention (and any `.coderabbit.yaml`).
 - PR template carrying risk tier, O2 list, decision-pack link, `Requirements:` line (intent only in `adapters/cursor/README.md`).

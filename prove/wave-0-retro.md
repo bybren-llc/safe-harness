@@ -179,7 +179,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 - **Audit trail:** Requires durable authorization record (current: [Linear SAF-1 comment `54d37e98`](https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98)); must not expire or become unresolvable
 
 **What would change if approved:**
-- `constitution/05-evidence-and-linear.md`: Add structured `hitl_delegate` field (delegating_actor, delegate_actor, authorization_url, scope) to evidence schema (§ Evidence Format), document scope/constraints (Low tier only), add governed exit state `MERGED (HITL-delegated)` with delegation semantics; keep `MERGED (HITL only)` unchanged for direct HITL merge
+- `constitution/05-evidence-and-traceability.md`: Add structured `hitl_delegate` field (delegating_actor, delegate_actor, authorization_url, scope) to evidence schema (§ Evidence Format), document scope/constraints (Low tier only), add governed exit state `MERGED (HITL-delegated)` with delegation semantics; keep `MERGED (HITL only)` unchanged for direct HITL merge
 - `templates/delivery-bolt-brief.md`: Add `hitl_delegate` field to Evidence table, update HITL gate wording to permit delegation at Low tier with authorization annotation
 - `prove/d-p1/bolt-brief.md` (as example): Retroactively document `hitl_delegate` field in evidence rows where Kai merged under Scott's standing auth
 - `.github/workflows/`: Optionally add CI check to enforce delegation rules (e.g. reject PR merge if `hitl_delegate` field present but no authorization link, or if tier > Low)
