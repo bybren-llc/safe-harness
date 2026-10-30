@@ -73,8 +73,7 @@ if [[ "$OWNER_IDENTITY" =~ ^- ]]; then
   exit 1
 fi
 
-# Safe output with printf
-printf '✓ Loaded owner_identity: %s\n' "$OWNER_IDENTITY"
+printf '%s\n' "✓ Loaded owner_identity: $OWNER_IDENTITY"
 echo ""
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -88,14 +87,36 @@ if [[ ! -f "$MAP" ]]; then
   exit 0
 fi
 
-# Validate YAML
+# Validate YAML and fail closed on parse errors
 if ! yq '.' "$MAP" > /dev/null 2>&1; then
-  # Invalid YAML — owner check doesn't apply
-  exit 0
+  echo "❌ trace-map.yaml is invalid YAML"
+  exit 1
 fi
 
-REQ_COUNT=$(yq -r '.requirements | length' "$MAP")
-[[ "$REQ_COUNT" =~ ^[0-9]+$ ]] || REQ_COUNT=0
+# Check for multi-document YAML (fail closed)
+# yq outputs one result per document; count lines of a constant expression
+DOC_COUNT=$(yq -r '1' "$MAP" 2>/dev/null | wc -l)
+if [[ "$DOC_COUNT" -gt 1 ]]; then
+  echo "❌ trace-map.yaml contains multiple YAML documents"
+  echo "   Only a single YAML document is allowed."
+  exit 1
+fi
+
+# Validate requirements is a sequence if it exists
+if yq -e '.requirements' "$MAP" > /dev/null 2>&1; then
+  REQ_TYPE=$(yq -r '.requirements | type' "$MAP" 2>/dev/null || echo "null")
+  if [[ "$REQ_TYPE" != "array" && "$REQ_TYPE" != "!!seq" ]]; then
+    echo "❌ requirements must be a sequence (array), not $REQ_TYPE"
+    exit 1
+  fi
+fi
+
+# Get requirements count and validate it's a non-negative integer
+REQ_COUNT=$(yq -r '.requirements | length' "$MAP" 2>/dev/null || echo "invalid")
+if ! [[ "$REQ_COUNT" =~ ^[0-9]+$ ]]; then
+  echo "❌ requirements length is not a valid non-negative integer: $REQ_COUNT"
+  exit 1
+fi
 [[ "$REQ_COUNT" -eq 0 ]] && exit 0
 
 OWNER_CHECK_ERRORS=0

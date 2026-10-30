@@ -137,6 +137,18 @@ if ! yq_eval '.' "$MAP" >/dev/null 2>&1; then
   exit 0
 fi
 
+# Multi-document guard: hard-fail even in warn-only mode
+DOC_COUNT=$(yq -r '1' "$MAP" 2>/dev/null | wc -l)
+if [[ "$DOC_COUNT" -gt 1 ]]; then
+  echo ""
+  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  echo "❌ Multi-document trace-map FAILED (hard fail, even in warn-only mode)"
+  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  echo "trace-map.yaml contains multiple YAML documents."
+  echo "Only a single YAML document is allowed."
+  exit 1
+fi
+
 ok "trace/trace-map.yaml is valid YAML"
 echo ""
 
