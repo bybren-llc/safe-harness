@@ -36,6 +36,7 @@ jobs:
             "adapters/claude-code/README.md"
             "adapters/cursor/README.md"
             "prove/README.md"
+            ".github/harness.yml"
           )
           
           missing=()
@@ -56,6 +57,19 @@ jobs:
           
           echo ""
           echo "✅ All required paths present"
+      
+      - name: Validate harness config
+        run: |
+          echo "Checking .github/harness.yml config..."
+          
+          # Call the same validation script used by trace-check
+          if bash trace/validate-trace.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/.github/harness.yml" > /dev/null 2>&1; then
+            echo "✅ Config valid: owner_identity is set and valid"
+          else
+            echo "❌ Config validation failed (see trace/validate-trace.sh for details)"
+            bash trace/validate-trace.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/.github/harness.yml"
+            exit 1
+          fi
       
       - name: Check markdown relative links
         run: |

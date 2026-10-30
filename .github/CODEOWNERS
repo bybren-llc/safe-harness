@@ -24,3 +24,4 @@
 /skills/                @cheddarfox
 /.github/CODEOWNERS     @cheddarfox
 /.github/workflows/     @cheddarfox
+/.github/harness.yml    @cheddarfox

@@ -88,7 +88,7 @@ See `requirements/README.md` for trace states (Placed / Deferred / Dropped / Mis
 - `decided_by`: Decision owner
 - `decided_at`: ISO 8601 date
 
-**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires Scott's sign-off. Record as `decided_by: Scott Graham` plus a link in `rationale`.
+**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires owner sign-off. Record as `decided_by: <owner_identity>` (exactly matching `.github/harness.yml`) plus a link in `rationale`.
 
 **Deferred dates:** `defer_to` and `decided_at` live in the trace map entry only, never in GitHub Issue fields.
 
@@ -126,7 +126,7 @@ The `.github/workflows/trace-check.yml` CI workflow validates:
 2. No requirements in state **Missing** (CI fails)
 3. **Deferred** and **Dropped** requirements have: `rationale`, `decided_by`, `decided_at`
 4. **Deferred** requirements have: `defer_to`
-5. Requirements with `source: intent.md#*` that are Dropped must have `decided_by: Scott Graham` (exactly)
+5. Requirements with `source: intent.md#*` that are Dropped must have `decided_by` matching `.github/harness.yml` `owner_identity` (exactly)
 6. Evidence rows must have required fields: `evidence_id`, `exact_head`, `actor`, `gate`
 
 **Blocking activation gate:** Trace-check becomes blocking only after the first `spec.md` with REQ IDs lands **AND** a code-owner-reviewed PR adds the marker file `trace/.blocking`. The follow-up validations PR (first GitHub Issue in migration Phase 1) adds the marker after implementing the additional validations below. Until both conditions are met, trace-check remains warn-only.

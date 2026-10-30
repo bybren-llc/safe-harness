@@ -1,0 +1,12 @@
+# Pass case: Dropped requirement with owner identity containing apostrophe and hyphen
+requirements:
+  - id: REQ-TEST-002
+    component: ARC-CON
+    state: Dropped
+    title: Test dropped requirement with special chars
+    source: intent.md#test-anchor
+    rationale: No longer needed per design review https://example.com/review
+    decided_by: Repository O'Brien-Smith
+    decided_at: 2026-10-30
+
+evidence: []

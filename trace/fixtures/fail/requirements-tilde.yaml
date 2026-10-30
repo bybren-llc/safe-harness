@@ -1,0 +1,5 @@
+# Fixture: requirements key present but value is ~ (YAML null)
+# Expected: FAIL (validate-trace.sh should reject ~, not treat it as absent)
+
+requirements: ~
+evidence: []

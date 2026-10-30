@@ -47,12 +47,12 @@ title: Brief requirement title
 source: spec.md#anchor-name
 rationale: |
   Why deferred and conditions for revisiting
-decided_by: Kai  # or "Scott Graham" (exactly, for intent-sourced drops)
+decided_by: Kai  # or owner_identity from .github/harness.yml (exactly, for intent-sourced drops)
 decided_at: 2026-10-29  # ISO 8601 date
 defer_to: 2026-11-15  # Target date or milestone reference
 ```
 
-**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires Scott's sign-off. Record as `decided_by: Scott Graham` (exactly) plus link in `rationale`.
+**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires owner sign-off. Record as `decided_by: <owner_identity>` (exactly matching `.github/harness.yml`) plus link in `rationale`.
 
 ### Dropped requirements
 
@@ -68,7 +68,7 @@ decided_by: Kai
 decided_at: 2026-10-29
 ```
 
-**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires Scott's sign-off. Record as `decided_by: Scott Graham` (exactly) plus link in `rationale`.
+**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires owner sign-off. Record as `decided_by: <owner_identity>` (exactly matching `.github/harness.yml`) plus link in `rationale`.
 
 ---
 

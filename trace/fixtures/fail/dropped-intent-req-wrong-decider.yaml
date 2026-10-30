@@ -1,0 +1,12 @@
+# Fail case: Dropped requirement from intent.md with wrong decided_by
+requirements:
+  - id: REQ-TEST-001
+    component: ARC-CON
+    state: Dropped
+    title: Test dropped requirement
+    source: intent.md#test-anchor
+    rationale: No longer needed per design review https://example.com/review
+    decided_by: Wrong Person
+    decided_at: 2026-10-30
+
+evidence: []
