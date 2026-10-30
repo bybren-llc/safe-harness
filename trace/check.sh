@@ -14,10 +14,13 @@
 # Exit: 0 on pass, or on errors while warn-only. 1 on errors while blocking.
 # yq: mikefarah (CI) or kislyuk (some local images). Wrapper below.
 
-set -o pipefail
+set -euo pipefail
 
-ROOT="${1:-.}"
-ROOT="$(cd "$ROOT" && pwd)"
+ROOT_ARG="${1:-.}"
+if ! ROOT="$(cd "$ROOT_ARG" && pwd)"; then
+  echo "❌ cannot cd to ROOT: $ROOT_ARG"
+  exit 1
+fi
 MAP="$ROOT/trace/trace-map.yaml"
 COMPONENTS="$ROOT/arch/components.yaml"
 SPEC="$ROOT/spec.md"
@@ -47,6 +50,10 @@ is_missing() {
   [[ -z "$v" || "$v" == "null" || "$v" == "~" || "$v" == "TBD" || "$v" == "#TBD" ]]
 }
 
+req_id_ok() {
+  [[ "${1:-}" =~ ^REQ-[A-Z]{3}-[0-9]{3}$ ]]
+}
+
 # --- yq wrapper (mikefarah `yq eval` vs kislyuk `yq -r`) ---
 YQ_FLAVOR=""
 detect_yq() {
@@ -74,7 +81,7 @@ yq_eval() {
 }
 
 yq_str() {
-  yq_eval "$1" "$2" 2>/dev/null | sed -n '1p' | tr -d '\r'
+  yq_eval "$1" "$2" 2>/dev/null | sed -n '1p' | tr -d '\r' || true
 }
 
 detect_yq
@@ -173,6 +180,10 @@ if [[ "$REQ_COUNT" -gt 0 ]]; then
 
     echo "Checking $REQ_ID (state: $REQ_STATE, component: $REQ_COMPONENT)"
 
+    if ! req_id_ok "$REQ_ID"; then
+      error "Malformed requirement id: $REQ_ID (expected REQ-[A-Z]{3}-[0-9]{3})"
+    fi
+
     if [[ "$REQ_STATE" != "Placed" && "$REQ_STATE" != "Deferred" && "$REQ_STATE" != "Dropped" && "$REQ_STATE" != "Missing" ]]; then
       error "Invalid state: $REQ_STATE (must be Placed/Deferred/Dropped/Missing)"
     fi
@@ -217,7 +228,9 @@ if [[ "$REQ_COUNT" -gt 0 ]]; then
           fi
 
           REQ_IDS=$(yq_eval ".evidence[$j].req_ids[]" "$MAP" 2>/dev/null || true)
-          if echo "$REQ_IDS" | grep -q "^${REQ_ID}$"; then
+          if ! req_id_ok "$REQ_ID"; then
+            :
+          elif printf '%s\n' "$REQ_IDS" | grep -Fxq -- "$REQ_ID"; then
             HAS_EVIDENCE=true
             if ! is_missing "$EV_ISSUE" && [[ "$EV_ISSUE" =~ ^#[0-9]+$ ]]; then
               HAS_ISSUE=true
@@ -284,7 +297,7 @@ if [[ "$REQ_COUNT" -gt 0 ]]; then
 
     if [[ "$HAS_COMPONENTS" == "true" ]]; then
       if ! is_missing "$REQ_COMPONENT"; then
-        if ! yq_eval '.components[].id' "$COMPONENTS" 2>/dev/null | grep -q "^${REQ_COMPONENT}$"; then
+        if ! yq_eval '.components[].id' "$COMPONENTS" 2>/dev/null | grep -Fxq -- "$REQ_COMPONENT"; then
           error "Component $REQ_COMPONENT not found in arch/components.yaml"
         fi
       fi
@@ -310,8 +323,12 @@ fi
 
 if [[ -n "$SPEC_REQS" ]]; then
   while IFS= read -r sid; do
-    [[ -z "$sid" ]] && continue
-    if ! echo "$MAP_REQS" | grep -q "^${sid}$"; then
+    if [[ -z "$sid" ]]; then
+      continue
+    fi
+    if ! req_id_ok "$sid"; then
+      error "Malformed spec REQ id: $sid (expected REQ-[A-Z]{3}-[0-9]{3})"
+    elif ! printf '%s\n' "$MAP_REQS" | grep -Fxq -- "$sid"; then
       error "Spec REQ $sid is not in the trace map"
     fi
   done <<< "$SPEC_REQS"
@@ -324,7 +341,7 @@ if [[ "$REQ_COUNT" -gt 0 ]]; then
     REQ_ID=$(yq_str ".requirements[$i].id" "$MAP")
     SOURCE=$(yq_str ".requirements[$i].source" "$MAP")
     if [[ "$SOURCE" =~ ^spec\.md ]]; then
-      if [[ -z "$SPEC_REQS" ]] || ! echo "$SPEC_REQS" | grep -q "^${REQ_ID}$"; then
+      if [[ -z "$SPEC_REQS" ]] || ! printf '%s\n' "$SPEC_REQS" | grep -Fxq -- "$REQ_ID"; then
         error "Trace-map $REQ_ID has source $SOURCE but that ID is not in spec.md"
       fi
     fi
@@ -447,7 +464,9 @@ if [[ -d "$REQ_DIR" ]]; then
         fi
       done
     fi
-    if [[ -z "$MAP_REQS" ]] || ! echo "$MAP_REQS" | grep -q "^${RID}$"; then
+    if ! req_id_ok "$RID"; then
+      error "$base.yaml id $RID is malformed (expected REQ-[A-Z]{3}-[0-9]{3})"
+    elif [[ -z "$MAP_REQS" ]] || ! printf '%s\n' "$MAP_REQS" | grep -Fxq -- "$RID"; then
       error "$base.yaml id $RID is not in the trace map"
     else
       # state must match map
@@ -475,7 +494,7 @@ echo ""
 echo "Issue + PR Requirements: linkage"
 echo ""
 
-PR_TEXT="${PR_BODY-}"
+PR_TEXT="${PR_BODY:-}"
 if [[ -z "$PR_TEXT" && -f "$ROOT/.pr-body" ]]; then
   PR_TEXT="$(cat "$ROOT/.pr-body")"
 fi
@@ -521,8 +540,10 @@ if [[ "$REQ_LINE_REQUIRED" == "true" ]]; then
           error "Requirements: line has neither N/A nor REQ IDs"
         else
           while IFS= read -r pid; do
-            [[ -z "$pid" ]] && continue
-            if [[ -z "$MAP_REQS" ]] || ! echo "$MAP_REQS" | grep -q "^${pid}$"; then
+            if [[ -z "$pid" ]]; then
+              continue
+            fi
+            if [[ -z "$MAP_REQS" ]] || ! printf '%s\n' "$MAP_REQS" | grep -Fxq -- "$pid"; then
               error "Requirements: lists $pid which is not in the trace map"
             fi
           done <<< "$FOUND_IDS"
@@ -541,7 +562,9 @@ echo "Evidence rows from bolt briefs / decision packs"
 echo ""
 
 if [[ -d "$PROVE_DIR" ]]; then
-  python3 - "$PROVE_DIR" <<'PY' > /tmp/trace-prove-evidence.txt || true
+  tmp="$(mktemp)"
+  trap 'rm -f "$tmp"' EXIT
+  python3 - "$PROVE_DIR" <<'PY' > "$tmp" || true
 import os, re, sys
 prove = sys.argv[1]
 sep_re = re.compile(r"^:?-+:?$")
@@ -607,39 +630,41 @@ for dirpath, _, files in os.walk(prove):
             flush(rel, header, rows)
 PY
 
-  if [[ -s /tmp/trace-prove-evidence.txt ]]; then
-    while IFS=$'\t' read -r rel lineno ev head actor gate issue reqs; do
-      echo "  prove/$rel:$lineno"
+  if [[ -s "$tmp" ]]; then
+    while IFS=$'\t' read -r rel lineno ev head actor gate issue reqs || [[ -n "${rel:-}" ]]; do
+      echo "  prove/${rel:-}:$lineno"
       row_err=0
-      if is_missing "$ev"; then
-        error "prove/$rel:$lineno missing evidence_id"
+      if is_missing "${ev:-}"; then
+        error "prove/${rel:-}:${lineno:-} missing evidence_id"
         row_err=1
       fi
-      if is_missing "$head"; then
-        error "prove/$rel:$lineno missing exact_head"
+      if is_missing "${head:-}"; then
+        error "prove/${rel:-}:${lineno:-} missing exact_head"
         row_err=1
       fi
-      if is_missing "$actor"; then
-        error "prove/$rel:$lineno missing actor"
+      if is_missing "${actor:-}"; then
+        error "prove/${rel:-}:${lineno:-} missing actor"
         row_err=1
       fi
-      if is_missing "$gate"; then
-        error "prove/$rel:$lineno missing gate"
+      if is_missing "${gate:-}"; then
+        error "prove/${rel:-}:${lineno:-} missing gate"
         row_err=1
       fi
-      if [[ -n "$reqs" ]]; then
+      if [[ -n "${reqs:-}" ]]; then
         while IFS= read -r pid; do
-          [[ -z "$pid" ]] && continue
-          if [[ -z "$MAP_REQS" ]] || ! echo "$MAP_REQS" | grep -q "^${pid}$"; then
-            error "prove/$rel:$lineno req_ids lists $pid which is not in the trace map"
+          if [[ -z "$pid" ]]; then
+            continue
+          fi
+          if [[ -z "$MAP_REQS" ]] || ! printf '%s\n' "$MAP_REQS" | grep -Fxq -- "$pid"; then
+            error "prove/${rel:-}:${lineno:-} req_ids lists $pid which is not in the trace map"
             row_err=1
           fi
         done < <(printf '%s\n' "$reqs" | grep -oE 'REQ-[A-Z]{3}-[0-9]{3}' || true)
       fi
       if [[ "$row_err" -eq 0 ]]; then
-        ok "prove/$rel:$lineno evidence row"
+        ok "prove/${rel:-}:${lineno:-} evidence row"
       fi
-    done < /tmp/trace-prove-evidence.txt
+    done < "$tmp"
   else
     echo "  (no Wave 1 evidence tables with req_ids under prove/)"
   fi
