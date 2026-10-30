@@ -280,7 +280,7 @@ hitl_delegate:
 
 **Context:** Need component registry before REQ-<CMP>-NNN IDs can be assigned.
 
-**Proposal:** Seed arch/components.yaml first in Wave 1, mark "pending Kai approval". Components:
+**Proposal:** Seed arch/components.yaml first in Wave 1. Components:
 - ARC-CON (Constitution)
 - ARC-ADP (Adapters)
 - ARC-ROL (Roles)
@@ -295,10 +295,10 @@ hitl_delegate:
 
 **Mitigations:**
 - Seeded from actual repo structure (no invented product components)
-- Marked "pending Kai approval" for review
+- Kai approved the Wave 1 seed at QAS (review 5702397094; O2 Medium confirmed)
 - Extensible (add components as needed)
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** GM QAS approved the Wave 1 seed. The HITL's standing concur satisfies the High/O2 HITL requirement only for safe-harness v1.0 PRs merged before the v1.0.0 tag; each still needs exact-head GM QAS, SecEng, and RTE PASS. See [`docs/decisions/log.md`](../../docs/decisions/log.md#standing-concur-for-safe-harness-v10-prs-2026-10-30).
 
 ---
 
@@ -550,7 +550,7 @@ This PR touches **Deploy CI / workflows** (O2 item):
 - [x] Prod secrets — N/A
 - [x] Privacy-boundary crosses — N/A (personal-boundary rule added as safeguard)
 
-**Downgrade rationale (proposed by Delivery; downgrade decision pending Kai in writing at QAS):**
+**Downgrade rationale (proposed by Delivery; Kai confirmed Medium in writing at QAS, reviews 5699823929 and 5702397094):**
 
 O2 item "Deploy CI / workflows" defaults to High tier. **Proposed downgrade to Medium** is justified by:
 
@@ -603,7 +603,7 @@ Expected requirements:
 - constitution/05-evidence-and-traceability.md (repo as SoR, human/agent split, trace enforcement, cycle time, D1 delegated-HITL)
 
 **Architecture & tracing:**
-- arch/components.yaml (ARC-<CMP> registry, pending Kai approval)
+- arch/components.yaml (ARC-<CMP> registry, Kai approved at QAS)
 - requirements/README.md (trace states, evidence linkage)
 - requirements/REQ-TEMPLATE.yaml (requirement template)
 - trace/schema.md (state vocabulary, required fields, M1–M6 pointer)
@@ -779,7 +779,7 @@ Extracted from each seat's SendToAgent message to Kai, 2026-10-29. Some passages
 ### Scott — 12:44 PM ET and 12:46 PM ET, Kai chat 2026-10-29
 
 > We only have main right?  I'm hoping our commits and PRs have good best practices according to the new way we learned. If so I think you can check yes if it is a repo like this one where we can not really break anything and there is no real test except to Make sure we have proper README docs and info for humans to understand how this works. Otherwise own it
-
+>
 > I think we could see from the projects that our main README should definitely be great and our structure of our repo should match what we espouse
 
 **Conditional concur:** Scott concurs provided the README is great for humans and the repo structure matches what we espouse. Condition satisfied in final commit (README rewrite + structure fixes, items 1-7 below).

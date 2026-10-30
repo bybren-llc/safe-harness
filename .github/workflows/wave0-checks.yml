@@ -60,20 +60,14 @@ jobs:
         run: |
           echo "Checking .github/harness.yml config..."
           
-          if [[ ! -f ".github/harness.yml" ]]; then
-            echo "❌ .github/harness.yml not found"
+          # Call the same validation script used by trace-check
+          if bash trace/validate-trace.sh > /dev/null 2>&1; then
+            echo "✅ Config valid: owner_identity is set and valid"
+          else
+            echo "❌ Config validation failed (see trace/validate-trace.sh for details)"
+            bash trace/validate-trace.sh
             exit 1
           fi
-          
-          OWNER_IDENTITY=$(yq -r '.owner_identity' .github/harness.yml 2>/dev/null || echo "")
-          OWNER_IDENTITY=$(echo "$OWNER_IDENTITY" | xargs)
-          
-          if [[ "$OWNER_IDENTITY" == "null" || -z "$OWNER_IDENTITY" ]]; then
-            echo "❌ owner_identity not set or empty in .github/harness.yml"
-            exit 1
-          fi
-          
-          echo "✅ Config valid: owner_identity is set"
       
       - name: Check markdown relative links
         run: |

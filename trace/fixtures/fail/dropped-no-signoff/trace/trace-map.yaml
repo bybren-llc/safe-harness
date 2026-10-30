@@ -1,0 +1,11 @@
+requirements:
+  - id: REQ-CON-002
+    component: ARC-CON
+    state: Dropped
+    title: Dropped without sign-off link
+    source: intent.md#design-goal
+    rationale: |
+      Dropped, but rationale has no sign-off link
+    decided_by: Scott Graham
+    decided_at: 2026-10-30
+evidence: []

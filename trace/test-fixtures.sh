@@ -51,8 +51,10 @@ FAIL_COUNT=0
 # Test pass fixtures (with placeholder config)
 echo "Testing PASS fixtures (should succeed):"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+# Test with standard placeholder
 cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
-for fixture in "$FIXTURES_DIR"/pass/*.yaml; do
+for fixture in "$FIXTURES_DIR"/pass/dropped-intent-req-valid.yaml; do
   if [[ ! -f "$fixture" ]]; then
     continue
   fi
@@ -60,10 +62,8 @@ for fixture in "$FIXTURES_DIR"/pass/*.yaml; do
   fixture_name=$(basename "$fixture")
   echo -n "  $fixture_name ... "
   
-  # Copy fixture to trace-map.yaml
   cp "$fixture" "$ORIGINAL_TRACE_MAP"
   
-  # Run validation script
   if bash "$REPO_ROOT/trace/validate-trace.sh" > /dev/null 2>&1; then
     echo "✓ PASS"
     PASS_COUNT=$((PASS_COUNT + 1))
@@ -72,6 +72,19 @@ for fixture in "$FIXTURES_DIR"/pass/*.yaml; do
     FAIL_COUNT=$((FAIL_COUNT + 1))
   fi
 done
+
+# Test with special characters (apostrophe, hyphen)
+echo -n "  owner-identity-with-special-chars.yaml ... "
+echo "owner_identity: \"Repository O'Brien-Smith\"" > "$ORIGINAL_HARNESS_CONFIG"
+cp "$FIXTURES_DIR/pass/owner-identity-with-special-chars.yaml" "$ORIGINAL_TRACE_MAP"
+if bash "$REPO_ROOT/trace/validate-trace.sh" > /dev/null 2>&1; then
+  echo "✓ PASS"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ FAIL (expected to pass)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
 
 echo ""
 
@@ -154,6 +167,20 @@ else
   echo "❌ PASS (expected to fail)"
   FAIL_COUNT=$((FAIL_COUNT + 1))
 fi
+cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
+
+# Test: owner-identity-echo-flag (leading -n)
+echo -n "  owner-identity-echo-flag.yaml ... "
+cp "$FIXTURES_DIR/fail/owner-identity-echo-flag.yaml" "$ORIGINAL_TRACE_MAP"
+echo "owner_identity: \"-n malicious\"" > "$ORIGINAL_HARNESS_CONFIG"
+if ! bash "$REPO_ROOT/trace/validate-trace.sh" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

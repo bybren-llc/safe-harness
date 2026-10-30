@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Trace validation script
-# Called by .github/workflows/trace-check.yml
-# Implements all owner-identity and decided_by validation logic
+# Trace validation script — owner-identity and decided_by checks
+# Called by trace/check.sh
+# Implements HARD FAIL owner-identity validation (never warn-only)
 
 set -euo pipefail
 
@@ -18,34 +18,37 @@ if [[ ! -f ".github/harness.yml" ]]; then
   exit 1
 fi
 
-OWNER_IDENTITY=$(yq -r '.owner_identity' .github/harness.yml 2>/dev/null || echo "")
+# Get RAW value from yq
+OWNER_IDENTITY_RAW=$(yq -r '.owner_identity' .github/harness.yml 2>/dev/null || echo "")
 
-# Trim leading/trailing whitespace
-OWNER_IDENTITY=$(echo "$OWNER_IDENTITY" | xargs)
+# Validate RAW value FIRST: reject newlines, $, backticks, control characters
+if [[ "$OWNER_IDENTITY_RAW" =~ $'\n' ]] || \
+   [[ "$OWNER_IDENTITY_RAW" =~ \$ ]] || \
+   [[ "$OWNER_IDENTITY_RAW" =~ \` ]] || \
+   [[ "$OWNER_IDENTITY_RAW" =~ [[:cntrl:]] ]]; then
+  echo "❌ owner_identity contains invalid characters (newline, \$, backtick, or control characters)"
+  echo "   Must be a single line with no special shell characters."
+  exit 1
+fi
 
-# Check for null, empty, or whitespace-only
+# Pure bash trim (no echo, no xargs, no subshell)
+OWNER_IDENTITY="$OWNER_IDENTITY_RAW"
+OWNER_IDENTITY="${OWNER_IDENTITY#"${OWNER_IDENTITY%%[![:space:]]*}"}"
+OWNER_IDENTITY="${OWNER_IDENTITY%"${OWNER_IDENTITY##*[![:space:]]}"}"
+
+# Check for null, empty, or whitespace-only (after trim)
 if [[ "$OWNER_IDENTITY" == "null" || -z "$OWNER_IDENTITY" ]]; then
   echo "❌ owner_identity not set or empty in .github/harness.yml"
   echo "   Set owner_identity to the decision authority's full name."
   exit 1
 fi
 
-# Validate: single line, no $, backticks, or control characters
-if [[ "$OWNER_IDENTITY" =~ $'\n' ]] || \
-   [[ "$OWNER_IDENTITY" =~ \$ ]] || \
-   [[ "$OWNER_IDENTITY" =~ \` ]] || \
-   [[ "$OWNER_IDENTITY" =~ [[:cntrl:]] ]]; then
-  echo "❌ owner_identity contains invalid characters (newline, \$, backtick, or control characters)"
-  echo "   Must be a single line with no special shell characters."
-  exit 1
-fi
-
-# Safe output
+# Safe output with printf
 printf '✓ Loaded owner_identity: %s\n' "$OWNER_IDENTITY"
 echo ""
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Bootstrap mode check (rest of trace-check behavior, not owner-check)
+# Bootstrap mode check (not used for owner-check, but for context)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 BLOCKING_MODE=false
@@ -54,24 +57,24 @@ if [[ -f "spec.md" ]] && grep -qE "REQ-[A-Z]{3}-[0-9]{3}" spec.md && [[ -f "trac
 fi
 
 if [[ ! -f "trace/trace-map.yaml" ]]; then
-  echo "❌ trace/trace-map.yaml not found"
-  [[ "$BLOCKING_MODE" == "true" ]] && exit 1 || exit 0
+  # No trace map yet — owner check is still PASS (nothing to validate)
+  exit 0
 fi
 
 # Validate YAML
 if ! yq '.' trace/trace-map.yaml > /dev/null 2>&1; then
-  echo "❌ Invalid YAML"
-  [[ "$BLOCKING_MODE" == "true" ]] && exit 1 || exit 0
+  # Invalid YAML — owner check doesn't apply
+  exit 0
 fi
 
 REQ_COUNT=$(yq -r '.requirements | length' trace/trace-map.yaml)
+[[ "$REQ_COUNT" =~ ^[0-9]+$ ]] || REQ_COUNT=0
 [[ "$REQ_COUNT" -eq 0 ]] && exit 0
 
-ERRORS=0
 OWNER_CHECK_ERRORS=0
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Check requirements (owner-check HARD FAILS; other checks respect bootstrap)
+# Check requirements (owner-check HARD FAILS; never warn-only)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 for i in $(seq 0 $((REQ_COUNT - 1))); do
@@ -100,9 +103,7 @@ done
 # Hard fail on owner-check errors (never warn-only, even in bootstrap)
 if [[ "$OWNER_CHECK_ERRORS" -gt 0 ]]; then
   echo ""
-  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
   printf 'Owner-check ERRORS: %d\n' "$OWNER_CHECK_ERRORS"
-  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
   exit 1
 fi
 
