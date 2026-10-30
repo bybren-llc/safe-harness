@@ -16,9 +16,9 @@ Known categories: `denied-term`, `hardware-hostname`, `internal-volume`, `privat
 python3 scripts/check-denylist.py
 ```
 
-If `.denylist.local` is missing, the script exits 0 and prints `no local denylist, skipped`.
+Skip (exit 0, `no local denylist, skipped`) only when `.denylist.local` has no path entry at all. A directory, a broken symlink, or anything that is not a readable regular file is a config error (exit 2).
 
-If the file exists but has no active terms (empty or comments only), that is a config error and the script exits non-zero.
+An existing file that cannot be read, is not valid UTF-8, or has no active terms (empty or comments only) is also a config error (exit 2). The same applies to an unreadable or undecodable tracked file and to a failed tracked-file listing.
 
 Local tests (fake terms only):
 
