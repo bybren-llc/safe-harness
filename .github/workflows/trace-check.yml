@@ -35,6 +35,24 @@ jobs:
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo ""
           
+          # Load owner identity from config (fail-closed)
+          if [[ ! -f ".github/harness.yml" ]]; then
+            echo "❌ Config file .github/harness.yml not found"
+            echo "   This file is required for trace validation."
+            exit 1
+          fi
+          
+          OWNER_IDENTITY=$(yq -r '.owner_identity' .github/harness.yml)
+          
+          if [[ "$OWNER_IDENTITY" == "null" || -z "$OWNER_IDENTITY" ]]; then
+            echo "❌ owner_identity not set in .github/harness.yml"
+            echo "   Set owner_identity to the decision authority's full name."
+            exit 1
+          fi
+          
+          echo "✓ Loaded owner_identity from config: $OWNER_IDENTITY"
+          echo ""
+          
           # Bootstrap rule: check if spec.md has REQ IDs
           # Blocking activation gate: also requires trace/.blocking marker (added by follow-up validations PR)
           # If not, run warn-only (non-blocking)
@@ -68,7 +86,7 @@ jobs:
           fi
           
           # Validate YAML syntax
-          if ! yq eval '.' trace/trace-map.yaml > /dev/null 2>&1; then
+          if ! yq '.' trace/trace-map.yaml > /dev/null 2>&1; then
             echo "❌ trace/trace-map.yaml has invalid YAML syntax"
             if [[ "$BLOCKING_MODE" == "true" ]]; then
               exit 1
@@ -82,7 +100,7 @@ jobs:
           echo ""
           
           # Extract requirements
-          REQ_COUNT=$(yq eval '.requirements | length' trace/trace-map.yaml)
+          REQ_COUNT=$(yq -r '.requirements | length' trace/trace-map.yaml)
           echo "Found $REQ_COUNT requirements"
           echo ""
           
@@ -96,9 +114,9 @@ jobs:
           
           # Check each requirement
           for i in $(seq 0 $((REQ_COUNT - 1))); do
-            REQ_ID=$(yq eval ".requirements[$i].id" trace/trace-map.yaml)
-            REQ_STATE=$(yq eval ".requirements[$i].state" trace/trace-map.yaml)
-            REQ_COMPONENT=$(yq eval ".requirements[$i].component" trace/trace-map.yaml)
+            REQ_ID=$(yq -r ".requirements[$i].id" trace/trace-map.yaml)
+            REQ_STATE=$(yq -r ".requirements[$i].state" trace/trace-map.yaml)
+            REQ_COMPONENT=$(yq -r ".requirements[$i].component" trace/trace-map.yaml)
             
             echo "Checking $REQ_ID (state: $REQ_STATE, component: $REQ_COMPONENT)"
             
@@ -117,9 +135,9 @@ jobs:
             # Check Placed requirements
             if [[ "$REQ_STATE" == "Placed" ]]; then
               # Check required fields
-              SOURCE=$(yq eval ".requirements[$i].source" trace/trace-map.yaml)
-              EXIT_CRIT=$(yq eval ".requirements[$i].exit_criterion" trace/trace-map.yaml)
-              METRIC=$(yq eval ".requirements[$i].metric" trace/trace-map.yaml)
+              SOURCE=$(yq -r ".requirements[$i].source" trace/trace-map.yaml)
+              EXIT_CRIT=$(yq -r ".requirements[$i].exit_criterion" trace/trace-map.yaml)
+              METRIC=$(yq -r ".requirements[$i].metric" trace/trace-map.yaml)
               
               if [[ "$SOURCE" == "null" ]]; then
                 echo "  ❌ Missing required field: source"
@@ -135,22 +153,22 @@ jobs:
               fi
               
               # Check for evidence linkage
-              EVIDENCE_COUNT=$(yq eval ".evidence | length" trace/trace-map.yaml)
+              EVIDENCE_COUNT=$(yq -r '.evidence | length' trace/trace-map.yaml)
               HAS_EVIDENCE=false
               
               for j in $(seq 0 $((EVIDENCE_COUNT - 1))); do
                 # Validate evidence row has required fields
-                EV_ID=$(yq eval ".evidence[$j].evidence_id" trace/trace-map.yaml)
-                EV_HEAD=$(yq eval ".evidence[$j].exact_head" trace/trace-map.yaml)
-                EV_ACTOR=$(yq eval ".evidence[$j].actor" trace/trace-map.yaml)
-                EV_GATE=$(yq eval ".evidence[$j].gate" trace/trace-map.yaml)
+                EV_ID=$(yq -r ".evidence[$j].evidence_id" trace/trace-map.yaml)
+                EV_HEAD=$(yq -r ".evidence[$j].exact_head" trace/trace-map.yaml)
+                EV_ACTOR=$(yq -r ".evidence[$j].actor" trace/trace-map.yaml)
+                EV_GATE=$(yq -r ".evidence[$j].gate" trace/trace-map.yaml)
                 
                 if [[ "$EV_ID" == "null" || "$EV_HEAD" == "null" || "$EV_ACTOR" == "null" || "$EV_GATE" == "null" ]]; then
                   echo "  ⚠ Evidence row $j missing required fields (evidence_id, exact_head, actor, gate); skipping"
                   continue
                 fi
                 
-                REQ_IDS=$(yq eval ".evidence[$j].req_ids[]" trace/trace-map.yaml 2>/dev/null)
+                REQ_IDS=$(yq -r ".evidence[$j].req_ids[]" trace/trace-map.yaml 2>/dev/null)
                 if echo "$REQ_IDS" | grep -q "^${REQ_ID}$"; then
                   HAS_EVIDENCE=true
                   break
@@ -167,10 +185,10 @@ jobs:
             
             # Check Deferred requirements
             if [[ "$REQ_STATE" == "Deferred" ]]; then
-              RATIONALE=$(yq eval ".requirements[$i].rationale" trace/trace-map.yaml)
-              DECIDED_BY=$(yq eval ".requirements[$i].decided_by" trace/trace-map.yaml)
-              DECIDED_AT=$(yq eval ".requirements[$i].decided_at" trace/trace-map.yaml)
-              DEFER_TO=$(yq eval ".requirements[$i].defer_to" trace/trace-map.yaml)
+              RATIONALE=$(yq -r ".requirements[$i].rationale" trace/trace-map.yaml)
+              DECIDED_BY=$(yq -r ".requirements[$i].decided_by" trace/trace-map.yaml)
+              DECIDED_AT=$(yq -r ".requirements[$i].decided_at" trace/trace-map.yaml)
+              DEFER_TO=$(yq -r ".requirements[$i].defer_to" trace/trace-map.yaml)
               
               if [[ "$RATIONALE" == "null" ]]; then
                 echo "  ❌ Missing required field: rationale"
@@ -192,10 +210,10 @@ jobs:
             
             # Check Dropped requirements
             if [[ "$REQ_STATE" == "Dropped" ]]; then
-              RATIONALE=$(yq eval ".requirements[$i].rationale" trace/trace-map.yaml)
-              DECIDED_BY=$(yq eval ".requirements[$i].decided_by" trace/trace-map.yaml)
-              DECIDED_AT=$(yq eval ".requirements[$i].decided_at" trace/trace-map.yaml)
-              SOURCE=$(yq eval ".requirements[$i].source" trace/trace-map.yaml)
+              RATIONALE=$(yq -r ".requirements[$i].rationale" trace/trace-map.yaml)
+              DECIDED_BY=$(yq -r ".requirements[$i].decided_by" trace/trace-map.yaml)
+              DECIDED_AT=$(yq -r ".requirements[$i].decided_at" trace/trace-map.yaml)
+              SOURCE=$(yq -r ".requirements[$i].source" trace/trace-map.yaml)
               
               if [[ "$RATIONALE" == "null" ]]; then
                 echo "  ❌ Missing required field: rationale"
@@ -210,10 +228,10 @@ jobs:
                 ERRORS=$((ERRORS + 1))
               fi
               
-              # Check if source is intent.md and requires Scott sign-off
+              # Check if source is intent.md and requires owner sign-off
               if [[ "$SOURCE" =~ ^intent\.md# ]]; then
-                if [[ "$DECIDED_BY" != "Scott Graham" ]]; then
-                  echo "  ❌ Dropping REQ from intent.md requires Scott's sign-off (decided_by must be exactly 'Scott Graham')"
+                if [[ "$DECIDED_BY" != "$OWNER_IDENTITY" ]]; then
+                  echo "  ❌ Dropping REQ from intent.md requires owner's sign-off (decided_by must be exactly '$OWNER_IDENTITY')"
                   ERRORS=$((ERRORS + 1))
                 fi
                 
@@ -227,7 +245,7 @@ jobs:
             
             # Check component exists in arch/components.yaml
             if [[ -f "arch/components.yaml" ]]; then
-              if ! yq eval '.components[].id' arch/components.yaml | grep -q "^${REQ_COMPONENT}$"; then
+              if ! yq -r '.components[].id' arch/components.yaml | grep -q "^${REQ_COMPONENT}$"; then
                 echo "  ❌ Component $REQ_COMPONENT not found in arch/components.yaml"
                 ERRORS=$((ERRORS + 1))
               fi

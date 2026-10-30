@@ -34,6 +34,7 @@ jobs:
             "adapters/claude-code/README.md"
             "adapters/cursor/README.md"
             "prove/README.md"
+            ".github/harness.yml"
           )
           
           missing=()
