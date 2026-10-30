@@ -564,10 +564,15 @@ echo ""
 if [[ -d "$PROVE_DIR" ]]; then
   tmp="$(mktemp)"
   trap 'rm -f "$tmp"' EXIT
-  python3 - "$PROVE_DIR" <<'PY' > "$tmp" || true
+  extractor_rc=0
+  python3 - "$PROVE_DIR" <<'PY' > "$tmp" || extractor_rc=$?
 import os, re, sys
 prove = sys.argv[1]
 sep_re = re.compile(r"^:?-+:?$")
+SENT = "."
+
+def emit(*fields):
+    print("\x1f".join(fields + (SENT,)))
 
 def cells(line):
     line = line.strip()
@@ -595,7 +600,7 @@ def flush(path, header, rows):
         gate = col("gate")
         issue = col("issue")
         reqs = col("req_ids")
-        print("\x1f".join([path, str(n), ev, head, actor, gate, issue, reqs]))
+        emit("ROW", path, str(n), ev, head, actor, gate, issue, reqs)
 
 for dirpath, _, files in os.walk(prove):
     for fn in files:
@@ -605,33 +610,50 @@ for dirpath, _, files in os.walk(prove):
         rel = os.path.relpath(path, prove)
         try:
             lines = open(path, encoding="utf-8").read().splitlines()
-        except OSError:
-            continue
-        header = None
-        rows = []
-        start = 0
-        for i, line in enumerate(lines, 1):
-            if "|" not in line:
-                if header is not None:
-                    flush(rel, header, rows)
-                header = None
-                rows = []
-                continue
-            cols = cells(line)
-            if header is None:
-                header = cols
-                start = i
-                rows = []
-                continue
-            if all(sep_re.match(c.replace(" ", "")) for c in cols if c):
-                continue
-            rows.append((i, cols))
-        if header is not None:
-            flush(rel, header, rows)
+            header = None
+            rows = []
+            start = 0
+            for i, line in enumerate(lines, 1):
+                if "|" not in line:
+                    if header is not None:
+                        flush(rel, header, rows)
+                    header = None
+                    rows = []
+                    continue
+                cols = cells(line)
+                if header is None:
+                    header = cols
+                    start = i
+                    rows = []
+                    continue
+                if all(sep_re.match(c.replace(" ", "")) for c in cols if c):
+                    continue
+                rows.append((i, cols))
+            if header is not None:
+                flush(rel, header, rows)
+        except Exception as e:
+            msg = f"{type(e).__name__}: {e}".replace("\x1f", " ").replace("\n", " ")
+            emit("ERR", rel, msg)
 PY
 
+  if [[ "$extractor_rc" -ne 0 ]]; then
+    if ! command -v python3 >/dev/null 2>&1; then
+      error "evidence-table extractor failed: python3 not found"
+    else
+      error "evidence-table extractor failed (exit $extractor_rc); prove/ rows not fully validated"
+    fi
+  fi
+
   if [[ -s "$tmp" ]]; then
-    while IFS=$'\x1f' read -r rel lineno ev head actor gate issue reqs || [[ -n "${rel:-}" ]]; do
+    while IFS=$'\x1f' read -r kind rel lineno ev head actor gate issue reqs sent || [[ -n "${kind:-}" ]]; do
+      if [[ "${kind:-}" == "ERR" ]]; then
+        error "prove/${rel:-}: evidence-table extractor failed: ${lineno:-}"
+        continue
+      fi
+      if [[ "${kind:-}" != "ROW" ]]; then
+        error "evidence-table extractor returned a malformed record"
+        continue
+      fi
       echo "  prove/${rel:-}:$lineno"
       row_err=0
       if is_missing "${ev:-}"; then
@@ -665,7 +687,7 @@ PY
         ok "prove/${rel:-}:${lineno:-} evidence row"
       fi
     done < "$tmp"
-  else
+  elif [[ "$extractor_rc" -eq 0 ]]; then
     echo "  (no Wave 1 evidence tables with req_ids under prove/)"
   fi
 else

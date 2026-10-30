@@ -60,6 +60,31 @@ for d in "$HERE"/fail/*; do
       echo "→ NOT OK (expected exit 1 and 'missing exact_head')"
       fail_bad=$((fail_bad + 1))
     fi
+  elif [[ "$name" == "non-utf8-prove" ]]; then
+    out="$(FORCE_BLOCKING=1 EVENT_NAME=pull_request bash "$CHECK" "$d" 2>&1)" && rc=0 || rc=$?
+    printf '%s\n' "$out"
+    if [[ "$rc" -ne 0 ]] \
+      && grep -Fq 'prove/latin1.md: evidence-table extractor failed' <<<"$out" \
+      && ! grep -Fq 'Trace check passed' <<<"$out"; then
+      echo "→ OK (exit 1; extractor named latin1.md; no pass line)"
+      fail_ok=$((fail_ok + 1))
+    else
+      echo "→ NOT OK (expected exit 1, named latin1.md, and no pass line)"
+      fail_bad=$((fail_bad + 1))
+    fi
+  elif [[ "$name" == "empty-actor-req-ids-cell" ]]; then
+    out="$(FORCE_BLOCKING=1 EVENT_NAME=pull_request bash "$CHECK" "$d" 2>&1)" && rc=0 || rc=$?
+    printf '%s\n' "$out"
+    if [[ "$rc" -ne 0 ]] \
+      && grep -Fq 'missing actor' <<<"$out" \
+      && ! grep -Fq 'missing exact_head' <<<"$out" \
+      && ! grep -Fq 'Trace check passed' <<<"$out"; then
+      echo "→ OK (exit 1; missing actor only; no pass line)"
+      fail_ok=$((fail_ok + 1))
+    else
+      echo "→ NOT OK (expected exit 1, missing actor only, and no pass line)"
+      fail_bad=$((fail_bad + 1))
+    fi
   elif FORCE_BLOCKING=1 EVENT_NAME=pull_request bash "$CHECK" "$d"; then
     echo "→ NOT OK (expected exit 1)"
     fail_bad=$((fail_bad + 1))
@@ -97,15 +122,32 @@ fi
 echo ""
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "WARN-ONLY fail/non-utf8-prove (no FORCE_BLOCKING)"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+WARN_UTF8_OK=0
+out="$(EVENT_NAME=pull_request bash "$CHECK" "$HERE/fail/non-utf8-prove" 2>&1)" && rc=0 || rc=$?
+printf '%s\n' "$out"
+if [[ "$rc" -eq 0 ]] \
+  && grep -Fq 'prove/latin1.md: evidence-table extractor failed' <<<"$out" \
+  && ! grep -Fq 'Trace check passed' <<<"$out"; then
+  echo "→ OK (warn-only exit 0; named latin1.md; no pass line)"
+  WARN_UTF8_OK=1
+else
+  echo "→ NOT OK (warn-only should exit 0, name latin1.md, and not print pass)"
+fi
+echo ""
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "Fixture summary"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "pass: $pass_ok ok, $pass_bad unexpected fail"
 echo "fail: $fail_ok ok, $fail_bad unexpected pass"
 echo "warn-only still exits 0: $WARN_OK"
 echo "warn-only empty-evidence-cell: $WARN_EMPTY_OK"
+echo "warn-only non-utf8-prove: $WARN_UTF8_OK"
 echo ""
 
-if [[ "$pass_bad" -eq 0 && "$fail_bad" -eq 0 && "$WARN_OK" -eq 1 && "$WARN_EMPTY_OK" -eq 1 ]]; then
+if [[ "$pass_bad" -eq 0 && "$fail_bad" -eq 0 && "$WARN_OK" -eq 1 && "$WARN_EMPTY_OK" -eq 1 && "$WARN_UTF8_OK" -eq 1 ]]; then
   echo "✅ All fixtures behaved as expected"
   exit 0
 fi
