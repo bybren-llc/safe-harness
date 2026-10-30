@@ -61,7 +61,10 @@ jobs:
           
           broken_links=0
           
-          # Discover markdown files: root level + recursive under key directories
+          # Discover markdown files: root level + recursive under key directories.
+          # skills/ is scanned warn-only by the skills-checks job. To make
+          # skills/ blocking, add `skills` to this find list and remove
+          # continue-on-error from the skills-checks link step.
           md_files=$(find . -maxdepth 1 -name "*.md" 2>/dev/null)
           md_files+=" "$(find constitution roles adapters templates prove -type f -name "*.md" 2>/dev/null)
           
@@ -158,4 +161,102 @@ jobs:
           echo ""
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo "✅ Wave 0 sanity checks passed"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+  # Warn-only skills checks (#37). Findings do not fail the workflow.
+  # Flip to blocking: see docs/ci/skills-checks.md
+  skills-checks:
+    name: Skills frontmatter & link scan (warn-only)
+    runs-on: ubuntu-latest
+    env:
+      PYYAML_VERSION: "6.0.3"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install PyYAML (pinned)
+        run: |
+          echo "Installing PyYAML==${PYYAML_VERSION} (pinned)"
+          python3 -m pip install --user --break-system-packages "PyYAML==${PYYAML_VERSION}"
+          python3 -c "import yaml; print('PyYAML', yaml.__version__)"
+
+      - name: Check skills frontmatter
+        # WARN-ONLY. To flip to blocking, remove continue-on-error below.
+        continue-on-error: true
+        run: |
+          if [[ ! -f skills/check-frontmatter.py ]]; then
+            echo "skills/check-frontmatter.py not present — skipping frontmatter check"
+            exit 0
+          fi
+          echo "Running python3 skills/check-frontmatter.py (warn-only)"
+          python3 skills/check-frontmatter.py
+
+      - name: Check markdown relative links in skills/
+        # WARN-ONLY. To flip to blocking, remove continue-on-error below
+        # and add `skills` to the structure-check find list.
+        continue-on-error: true
+        run: |
+          echo "Checking skills/ markdown files for broken relative links (warn-only)..."
+
+          broken_links=0
+
+          # Same scan as structure-check, extended to skills/.
+          md_files=$(find skills -type f -name "*.md" 2>/dev/null)
+
+          for md_file in $md_files; do
+            echo "Checking: $md_file"
+
+            while IFS= read -r link; do
+              link="${link%% \"*}"
+              link="${link%% \'*}"
+
+              if [[ "$link" =~ ^(https?://|#|mailto:) ]]; then
+                continue
+              fi
+
+              dir=$(dirname "$md_file")
+              target="$dir/$link"
+              target_path="${target%%#*}"
+
+              if [[ ! -e "$target_path" ]]; then
+                echo "  ❌ Broken link in $md_file: $link → $target_path"
+                broken_links=$((broken_links + 1))
+              fi
+            done < <(grep -oP '\]\(\K[^)]+(?=\))' "$md_file" 2>/dev/null)
+
+            while IFS= read -r refline; do
+              link=$(echo "$refline" | sed -E 's/^\[([^]]+)\]:[[:space:]]*([^[:space:]"]+).*/\2/')
+
+              if [[ "$link" =~ ^(https?://|#|mailto:) ]]; then
+                continue
+              fi
+
+              dir=$(dirname "$md_file")
+              target="$dir/$link"
+              target_path="${target%%#*}"
+
+              if [[ ! -e "$target_path" ]]; then
+                echo "  ❌ Broken reference-style link in $md_file: $link → $target_path"
+                broken_links=$((broken_links + 1))
+              fi
+            done < <(grep -P '^\[[^]]+\]:[[:space:]]+[^[:space:]]+' "$md_file" 2>/dev/null)
+          done
+
+          if [[ $broken_links -gt 0 ]]; then
+            echo ""
+            echo "WARN: Found $broken_links broken relative link(s) under skills/"
+            exit 1
+          fi
+
+          echo ""
+          echo "✅ No broken relative links detected under skills/"
+
+      - name: Summary
+        if: always()
+        run: |
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Skills checks are warn-only and do not block merge."
+          echo "To flip to blocking, see docs/ci/skills-checks.md"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
