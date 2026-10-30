@@ -98,7 +98,7 @@ jobs:
           set -euo pipefail
           echo "Running oasdiff breaking (pinned v${OASDIFF_VERSION}) — warn-only"
           oasdiff breaking --fail-on ERR --allow-external-refs=false \
-            "${BASE_REVISION}" "${OPENAPI_SPEC_PATH}"
+            "${BASE_REVISION}" "HEAD:${OPENAPI_SPEC_PATH}"
 
       - name: Decide Schemathesis
         if: steps.spec.outputs.found == 'true'
