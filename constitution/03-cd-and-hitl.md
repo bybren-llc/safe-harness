@@ -96,7 +96,7 @@ Scott (HITL), 2026-10-29, verbatim:
 
 The Dev/trunk Gate cell applies to template adopters as well as safe-harness.
 
-This repo is a **template**. Adopting teams configure **dev, staging, and prod** for their own environments. **safe-harness** itself is a docs repo with only `main`. It is the **trunk** case under Dev or trunk. Its `constitution/`, High, and O2 changes still need Scott's recorded own-words concur.
+This repo is a **template**. Adopting teams configure **dev, staging, and prod** for their own environments. **safe-harness** itself is a docs repo with only `main`. It is the **trunk** case under Dev or trunk. Its `constitution/`, `.github/CODEOWNERS`, `.github/workflows/**`, High, and O2 changes still need Scott's recorded own-words concur.
 
 Scott may merge any change at any tier and environment.
 
@@ -106,7 +106,7 @@ Scott may merge any change at any tier and environment.
 - Nobody merges their own authored change.
 - An agent merge never counts as human approval.
 - Delivery and cloud agents never merge.
-- CODEOWNERS-gated paths other than `constitution/` (`intent.md`, `spec.md`, `requirements/`, `trace/`, `.github/CODEOWNERS`, `.github/workflows/`) stay **agents must not merge** (Scott/CODEOWNERS only), matching `constitution/05` and `CONTRIBUTING.md`.
+- CODEOWNERS-gated paths other than `constitution/` (`intent.md`, `spec.md`, `requirements/`, `trace/`) stay **agents must not merge** (Scott/CODEOWNERS only), matching `constitution/05` and `CONTRIBUTING.md`.
 
 ### Who may execute a trunk merge (safe-harness)
 
@@ -170,6 +170,6 @@ Thin skeleton → full path is intentional scaffolding, not final state.
 - Exact-head SHA / PR
 - Evidence IDs (portable — see `05-evidence-and-traceability.md`)
 - Requirements addressed (REQ-<CMP>-NNN list)
-- QAS + SecEng status (Low: explicit N/A with rationale allowed; High/O2: never N/A and cannot be waived). SecEng is independent and is not the author. Later commits must be SecEng delta-confirmed as non-widening before merge; that confirmation is recorded in the QAS review on the merge head.
+- QAS + SecEng status (Low: explicit N/A with rationale allowed; High/O2: never N/A and cannot be waived). SecEng is independent and is not the author.
 - Risk tier + O2 checklist (note if Kai downgraded any O2 item)
 - Ask: approve / change-request / escalate

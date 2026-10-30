@@ -33,4 +33,4 @@ Copy patterns from SAW `dev` when they win comparisons. Do **not** rewrite SAW i
 
 ## Provenance
 
-ADR pack concurred 2026-10-28 (C1–C8 / O1–O6 / E1–E3). See [`docs/decisions/`](../docs/decisions/).
+ADR pack concurred 2026-10-28 (C1–C8 / O1–O6 / E1–E3). See [`docs/decisions/`](../docs/decisions/) and [`docs/decisions/log.md`](../docs/decisions/log.md).
