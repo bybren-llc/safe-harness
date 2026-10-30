@@ -1,0 +1,18 @@
+requirements:
+  - id: REQ-CON-001
+    component: ARC-CON
+    state: Placed
+    title: Repo is source of truth
+    source: spec.md#source-of-truth
+    exit_criterion: |
+      Should fail because arch/components.yaml is missing
+    metric: M6
+evidence:
+  - evidence_id: fixture-ev-001
+    runtime: local
+    exact_head: 0000000000000000000000000000000000000001
+    issue: "#7"
+    actor: Delivery · Lead
+    gate: Implement → Ready for QAS
+    req_ids:
+      - REQ-CON-001
