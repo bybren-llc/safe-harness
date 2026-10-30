@@ -2,6 +2,10 @@
 
 Non-negotiable standing rules. Delivery never invents vault paths.
 
+## Secrets ownership
+
+Secrets live in vaults. Scott owns both the GitHub secrets and the vault side. Never put a secret value in this repository, in a PR, or in a decision pack.
+
 ## Three vaults
 
 | Vault | Storage | Remote forge? | Delivery lane? |

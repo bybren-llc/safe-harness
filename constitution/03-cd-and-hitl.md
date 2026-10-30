@@ -40,7 +40,7 @@ No Gitflow. Trunk-based development with feature flags for incomplete work.
 | --- | --- | --- |
 | **Low** | Auto when green (tests + evidence types met) | Agent may flow; human assignee still named |
 | **Med** | One human decision pack | Approve / change-request on that unit only |
-| **High** | Two humans | Two distinct humans; agent ≠ human |
+| **High** | Recommended: two distinct humans | Guidance, not a gate. Many projects do not need it. Scott's recorded own-words concur remains required. Agent ≠ human |
 
 ## O2 high-risk default (always High unless downgraded in writing at QAS)
 
@@ -96,7 +96,7 @@ Scott (HITL), 2026-10-29, verbatim:
 
 The Dev/trunk Gate cell applies to template adopters as well as safe-harness.
 
-**safe-harness** is a docs repo with only `main`. It is the **trunk** case under Dev or trunk. Its `constitution/`, High, and O2 changes still need Scott's recorded own-words concur.
+This repo is a **template**. Adopting teams configure **dev, staging, and prod** for their own environments. **safe-harness** itself is a docs repo with only `main`. It is the **trunk** case under Dev or trunk. Its `constitution/`, High, and O2 changes still need Scott's recorded own-words concur.
 
 Scott may merge any change at any tier and environment.
 
@@ -124,17 +124,21 @@ Only **Kai** or **Scott** may override an RTE HOLD. The override must be explici
 
 ### Human approval at High/O2
 
-At High/O2, Scott's recorded own-words concur is **a** required human approval. An agent merge (by Kai or Release · RTE) never counts as a human approval.
+At High/O2, Scott's recorded own-words concur is **a** required human approval. An agent merge (by Kai or Release · RTE) never counts as a human approval. Two distinct humans is recommended guidance, not a gate.
 
-### Needs Scott concur
+### Recorded from Scott's #22 concur (2026-10-30)
 
-Open questions (do not resolve in this amendment):
+Recorded on the #22 squash [`d88c884`](https://github.com/bybren-llc/safe-harness/commit/d88c884c14c64aa2dbc244c89290818df423924e). Living text is here and in `07-roles-and-lanes.md`; the #22 decision pack stays the historical ask.
 
-1. **High-tier "two distinct humans"** (`constitution/03` tier table; README Key concepts): Scott is the only human today. Does High need two distinct humans when Scott is the only human, or does his recorded concur plus independent agent QAS satisfy it? Options live in the decision pack.
-2. **RTE rights over deploy workflows and secrets** — OPEN. What rights Release · RTE has over deploy CI/workflows and prod secrets. No answer is written here.
-3. **Merge scope by environment** — Confirm the environment-promotion template default (dev/trunk, staging, prod). No answer is written here.
-4. **`main` branch protection** — not configured yet. Enforcing who may merge in GitHub waits on Scott.
-5. **D1 `hitl_delegate`** — Low-tier delegated HITL record (`constitution/05`). Still awaiting Scott on whether it stays as written.
+1. **High-tier "two distinct humans"** — recommended guidance, not a gate. Many projects do not need it. See the risk-tier table.
+2. **Secrets** — secrets live in vaults. Scott owns both the GitHub secrets and the vault side. See `04-privacy-and-vaults.md`. This amendment does not expand Release · RTE rights over deploy CI/workflows.
+3. **Environments** — this repo is a template. Adopting teams configure dev, staging, and prod for their own environments.
+4. **Linear** — optional. Preferred path is design, specs, and PRDs in GitHub. See `05-evidence-and-linear.md`. `trace/linear-saf-map.csv` stays frozen.
+5. **D1 `hitl_delegate`** — stays as written. ADR-style accountability is in `05-evidence-and-linear.md`.
+
+### Open question (unanswered)
+
+**`main` branch protection** — not configured yet. Enforcing who may merge in GitHub waits on Scott. No answer is written here.
 
 ### Scott's earlier recorded delegation (2026-10-29 ET)
 

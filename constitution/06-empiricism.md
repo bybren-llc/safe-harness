@@ -29,5 +29,5 @@ Every empiricism pack ends with a three-column matrix. Defaults change only when
 ## Stop rules
 
 - Do not A/B production secrets or privacy-boundary crossings.
-- High-tier O2 work is not an empiricism playground without two-human concur.
+- High-tier O2 work is not an empiricism playground without Scott's recorded concur. Two distinct humans is recommended guidance, not a gate.
 - SAW `dev` remains reference until a comparison says otherwise — still no silent rewrite.

@@ -21,6 +21,8 @@ Every adapter must publish a role→model card. No harness may silently override
 | Kai / ARCHitect | Orchestrator (+ Heavy for deep design) |
 | Delivery · Lead | Orchestrator |
 | Studio · Lead | Orchestrator |
+| Ops · CoS | Orchestrator |
+| Dispatcher · Board | Light (read-only sweep) |
 | Implementer | Heavy (Sonnet default; Opus if complex) |
 | QAS | Light routine / Heavy when independence risk high |
 | SecEng | Heavy |

@@ -16,7 +16,7 @@ Spines share Round Table principles, exit states, and ownership language. They d
 | **M1** | Multi-runtime template ships | One template path works for Claude Code, Codex, Cursor, local, Grok Bot |
 | **M2** | tmux not required | Happy-path team run without Dark Factory/tmux; tmux optional accelerator |
 | **M3** | SAFe + AI-DLC spine retained | Bolts / Units of Work / Mob Elaboration / human business-context gate named and taught |
-| **M4** | Round Table seats map | Explicit map: Scott / Kai / Ops / Delivery / Studio / Librarian / Scout + SAW roles ↔ harness seats |
+| **M4** | Round Table seats map | Explicit map: Scott / Kai / Ops / Dispatcher / Delivery / Studio / Librarian / Scout + SAW roles ↔ harness seats |
 | **M5** | Time-to-first owned ticket | New seat picks up and owns a ticket end-to-end under exit states within target SLA |
 | **M6** | Deploy/release flow health | Spine (A): evidence → independence → HITL decision pack → CD green without freezing the train |
 

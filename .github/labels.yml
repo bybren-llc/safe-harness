@@ -57,7 +57,7 @@ labels:
   
   - name: "tier:high"
     color: "d73a4a"
-    description: "Risk tier: High (two distinct humans)"
+    description: "Risk tier: High (two distinct humans recommended, not a gate)"
 
   # O2 high-risk items (default High unless downgraded)
   - name: "o2:pricing"

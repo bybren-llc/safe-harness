@@ -10,6 +10,8 @@
 
 **Decision (2026-10-29):** The GitHub repository is the **sole source of truth** for intent, spec, plan, requirements, trace map, review findings, and evidence. Work tracking moves to GitHub Issues. Linear archive remains read-only.
 
+**Linear is optional.** The preferred path is design, specs, and PRDs in GitHub. Adopting teams may keep Linear; this template does not require it. The archive map `trace/linear-saf-map.csv` stays frozen.
+
 **Evidence canonical in repo:** Evidence for safe-harness is canonical in this repository. Vaults (personal, NAS) and Atlas cite evidence by link without duplicating it. Never copy repo evidence into private vaults.
 
 ### Human vs. agent ownership split
@@ -174,7 +176,7 @@ Use consistent labels across runtimes. Human approval is distinct from merge exe
 
 ### D1: Delegated HITL (Low tier only)
 
-At **Low tier** only, HITL may be delegated with a structured `hitl_delegate` record:
+At **Low tier** only, HITL may be delegated with a structured `hitl_delegate` record. Scott's #22 concur (2026-10-30, recorded on [`d88c884`](https://github.com/bybren-llc/safe-harness/commit/d88c884c14c64aa2dbc244c89290818df423924e)) keeps this Low-tier record **as written**. ADR-style accountability is required: who delegated, what was delegated, when, and a link to the record.
 
 ```yaml
 hitl_delegate:
@@ -182,7 +184,18 @@ hitl_delegate:
   delegate_actor: Kai
   authorization_url: https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98
   scope: low  # Must be "low" only
+  delegated_what: Low-tier HITL merge execution (standing Wave 0 authorization)
+  delegated_at: 2026-10-28
 ```
+
+Accountability fields (required on every new `hitl_delegate` row). The standing record keeps `delegating_actor`, `delegate_actor`, `authorization_url`, and `scope` as written, and adds `delegated_what` and `delegated_at`:
+
+| Field | ADR question |
+| --- | --- |
+| `delegating_actor` | Who delegated |
+| `delegated_what` | What was delegated |
+| `delegated_at` | When |
+| `authorization_url` | Link to the record |
 
 Exit label: `MERGED (HITL-delegated)` (distinct from `MERGED (HITL only)`).
 
