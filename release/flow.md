@@ -144,10 +144,10 @@ RTE placement on `main` already requires the RTE check at Med, High, and O2 (`co
 
 [main] `constitution/03-cd-and-hitl.md`: "Tag from `main` when ready" and "Hotfixes — Branch from tag → fix → merge to `main` → re-tag".
 
-[main] `roles/release-rte.md`: RTE owns release notes now. Tag format is `vYYYY.MM.DD-<shortsha>` (date in America/New_York, 7-char merge SHA). Tag and GitHub Release publication are future ownership pending their own O2 PR (deploy CI / workflows).
+[main] `roles/release-rte.md`: RTE owns release notes now. Product releases use SemVer tags (`vMAJOR.MINOR.PATCH`, first `v1.0.0`), created by Release · RTE on the main merge SHA under the recorded concur, with a GitHub Release whose notes match CHANGELOG.md. Per-merge `vYYYY.MM.DD-<shortsha>` tags are unchanged. See [`roles/release-rte.md`](../roles/release-rte.md).
 
 - **Publication is not a merge step.** Creating the tag and GitHub Release is its own O2 step or PR. It does not run as part of MERGED. This file does not set a publish SLA. Tagging/release automation is **deploy CI / workflows → O2 → High** unless Kai downgrades in writing at QAS (`constitution/03-cd-and-hitl.md`).
-- **Tag scheme: `vYYYY.MM.DD-<shortsha>`** (date in America/New_York, 7-char merge SHA; e.g. `v2026.10.29-acd9f38`). No semver for this docs/process repo. [main] `roles/release-rte.md`
+- **Tag scheme: `vYYYY.MM.DD-<shortsha>`** (date in America/New_York, 7-char merge SHA; e.g. `v2026.10.29-acd9f38`). Product SemVer and publication: [`roles/release-rte.md`](../roles/release-rte.md).
 - **Hotfix** under CD: the fix merges to `main` like any PR and gets its own new tag ("re-tag"); tags never move or get rewritten (`constitution/03-cd-and-hitl.md`)
 - **Release notes** are drafted by RTE from the decision pack, requirements, and evidence (`roles/release-rte.md`). When the O2 publication step or PR lands, each GitHub Release contains:
   - PR title + link

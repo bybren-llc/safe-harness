@@ -24,7 +24,7 @@ At Low, an annotated, non-blocking async RTE checklist is allowed, with no per-P
 
 ## Release notes
 
-RTE owns release notes now. It drafts them from the decision pack, requirements, and evidence. Per-merge tag format is `vYYYY.MM.DD-<shortsha>` (date in America/New_York, 7-char merge SHA). Product releases use SemVer tags (`vMAJOR.MINOR.PATCH`, first `v1.0.0`), created by Release · RTE on the exact main SHA that RTE PASSed, with a GitHub Release whose notes match the CHANGELOG entry.
+RTE owns release notes now. It drafts them from the decision pack, requirements, and evidence. Per-merge tag format is `vYYYY.MM.DD-<shortsha>` (date in America/New_York, 7-char merge SHA). Product releases use SemVer tags (`vMAJOR.MINOR.PATCH`, first `v1.0.0`): after merge, Release · RTE tags the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head. The tag is created under the recorded concur, with a GitHub Release whose notes match the CHANGELOG entry.
 
 ## Merge authority
 

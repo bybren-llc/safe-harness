@@ -17,9 +17,9 @@ Placeholder rows for in-flight v1.0 work that will merge before tag `v1.0.0`. SH
 - #47 — AGENTS.md entry points + CODEOWNERS coverage (`pending merge, SHA TBD`)
 - #48 — doc-drift + trace/ link coverage checks, warn-only (`pending merge, SHA TBD`)
 - #51 — trace-check validations, warn-only (`pending merge, SHA TBD`)
-- README rewrite (PR7) (`pending merge, SHA TBD`)
+- #59 — Rewrite README for v1.0 (generic, template-ready) (`pending merge, SHA TBD`)
 
-## [1.0.0] - 2026-10-30
+## [1.0.0] - TBD
 
 First product release of safe-harness. Date to be confirmed when Release · RTE creates tag `v1.0.0` on the exact `main` SHA that RTE PASSed.
 
@@ -51,10 +51,6 @@ Warn-only jobs do not block merge.
 
 - #31 — API contract workflow (warn-only oasdiff + Schemathesis) (`79c92ed`)
 - #43 — Skills frontmatter and skills/ link scan in CI (warn-only) (`c4a59c4`)
-
-#### Privacy denylist
-
-- #38 — Privacy scrub and fail-closed local denylist check (`0abdbca`)
 
 #### ADRs and decision log
 
