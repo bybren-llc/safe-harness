@@ -26,6 +26,8 @@ For each git rename (`R` status) in that same diff, the check searches tracked `
 
 Generic basenames are skipped for the basename search: `README.md`, `AGENTS.md`, `SKILL.md`, `index.md`, `LICENSE`, and any basename shorter than 8 characters. The old full path is still searched.
 
+Hits under `prove/` are skipped. That tree is historical evidence (decision packs and Wave 0 records). An old filename cited there, including the Decision 18 history row in `prove/wave-1/decision-pack.md`, is a citation, not drift.
+
 ## Flip to blocking (not in v1)
 
 1. Confirm this rule set in writing (Kai).

@@ -170,7 +170,9 @@ jobs:
                 while IFS= read -r term; do
                   [[ -z "${term}" ]] && continue
                   # git grep exits 1 when there are no matches; that is not a failure.
-                  hits="$(git grep -nF -- "${term}" -- '*.md' '*.yml' '*.yaml' || true)"
+                  # prove/ is historical evidence (Decision packs, Wave 0 records).
+                  # A leftover old name there is a citation, not drift — skip it.
+                  hits="$(git grep -nF -- "${term}" -- '*.md' '*.yml' '*.yaml' ':!prove/**' || true)"
                   if [[ -n "${hits}" ]]; then
                     echo "  WARN: leftover reference to renamed path (${term}):"
                     echo "${hits}" | sed 's/^/    /'

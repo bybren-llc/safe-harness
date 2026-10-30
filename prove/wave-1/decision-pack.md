@@ -42,7 +42,7 @@ Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub b
 
 **Open questions from seats (follow-up):**
 - Scout 1: Where evidence lives (repo vs Atlas sources/)
-- Scout 3: Confluence WTFB APP pages + Atlas sources/linear/ repointing after SAF retirement
+- Scout 3: Confluence product-app pages + Atlas sources/linear/ repointing after SAF retirement
 
 ---
 
@@ -480,13 +480,13 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 
 ---
 
-### Decision 18: Rename constitution/05-evidence-and-traceability.md (follow-up)
+### Decision 18: Rename constitution/05-evidence-and-linear.md (follow-up)
 
-**Context:** constitution/05 filename still references "linear" despite Wave 1 moving to GitHub-only. Renaming in this PR would break existing links in Wave 0 documentation.
+**Context:** constitution/05 filename still referenced "linear" despite Wave 1 moving to GitHub-only. Renaming in Wave 1 would have broken existing links in Wave 0 documentation.
 
 **Proposal:** Propose rename as a follow-up PR after Wave 1 lands:
-- Current: `constitution/05-evidence-and-traceability.md`
-- Proposed: `constitution/05-evidence-and-trace.md` or `constitution/05-source-of-truth.md`
+- Current (historical): `constitution/05-evidence-and-linear.md`
+- Landed: `constitution/05-evidence-and-traceability.md`
 
 **Why not in Wave 1:**
 - Breaking change for existing links in prove/d-p1/bolt-brief.md and other Wave 0 docs
@@ -502,9 +502,9 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 **Mitigations:**
 - Follow-up PR updates all internal links atomically
 - Git preserves file history across rename
-- Search for "05-evidence-and-traceability" confirms all references updated
+- Search for `05-evidence-and-linear` must return ZERO matches outside this historical Decision 18 record; then run the link check for `constitution/05-evidence-and-traceability.md`
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Done — landed as `constitution/05-evidence-and-traceability.md`
 
 ---
 
@@ -673,12 +673,12 @@ If critical issues arise post-merge:
 5. All constitution/03 and constitution/05 amendments
 6. O2 downgrade: Kai's decision recorded — Medium accepted conditional on fixes #3 and #4
 7. Migration plan scope and timing (cutover date TBD)
-8. Follow-up rename of constitution/05-evidence-and-traceability.md (Decision 18)
+8. Follow-up rename of constitution/05-evidence-and-linear.md (Decision 18) — Done, landed as `constitution/05-evidence-and-traceability.md`
 9. Sticky blocking mode: enable "require code owner review" on `main` and/or add `trace/.blocking` marker (Decision 19)
 
 **Open questions from seats (to answer or defer):**
 - Scout 1: Where evidence lives — repo evidence folder vs. Atlas sources/, or both with cross-link? Scout wants one place, not two copies drifting apart.
-- Scout 3: Confluence WTFB APP pages (Scene Realizer, Module 18, Animatics) — do they stay as cited inputs, get snapshotted into repo, or does intent.md in GitHub replace them? Also, do any Atlas sources/linear/ STO stubs need re-pointing once SAF is retired?
+- Scout 3: Confluence product-app pages (Scene Realizer, Module 18, Animatics) — do they stay as cited inputs, get snapshotted into repo, or does intent.md in GitHub replace them? Also, do any Atlas sources/linear/ STO stubs need re-pointing once SAF is retired?
 
 **Kai:** After Scott concurs and fixes land:
 1. QAS re-review at new exact-head (after fixes #1-12 from review 5699823929)
@@ -735,9 +735,9 @@ Extracted from each seat's SendToAgent message to Kai, 2026-10-29. Some passages
 > Scout: **concur**, with three small concerns to settle before cutover.
 > Concur: repo-only safe-harness, GitHub Issues instead of Linear SAF, and humans owning intent and design. Scout stays research-only, and findings enter only as an `intent.md` draft that Studio and Scott accept. I never write REQ IDs or requirements directly. This fits plan, then concur, then execute.
 > Concerns:
-> 1. **Where evidence lives.** Today my research gets pinned under wtfb-atlas `sources/`. Which store holds evidence going forward: the safe-harness repo's evidence folder, Atlas `sources/`, or both with a cross-link? I want one place, not two copies of the same model research drifting apart.
+> 1. **Where evidence lives.** Today my research gets pinned under the private Atlas repo source pins. Which store holds evidence going forward: the safe-harness repo's evidence folder, Atlas source pins, or both with a cross-link? I want one place, not two copies of the same model research drifting apart.
 > 2. **What a research draft carries.** For model picks, `intent.md` should keep fit band (Mac-now, NAS-stage, cloud), license, footprint, and source links, with UNKNOWN where unverified. Otherwise that detail gets lost before requirements are written. Can the template include a short research appendix section?
-> 3. **Confluence WTFB APP pages.** Scene Realizer, Module 18, and Animatics are still my product targets. Do they stay as cited inputs, snapshotted into the repo, or does intent in GitHub replace them? Also, do any Atlas `sources/linear/` STO stubs need re-pointing once SAF is retired?
+> 3. **Confluence product-app pages.** Scene Realizer, Module 18, and Animatics are still my product targets. Do they stay as cited inputs, snapshotted into the repo, or does intent in GitHub replace them? Also, do any Atlas `sources/linear/` STO stubs need re-pointing once SAF is retired?
 > None of these block. Answer them whenever, and I'll follow the repo playbook from cutover.
 
 ### Librarian · Signals — 09:48 ET, call id toolu_01KkZrQJMBSc9vwPuPbSVbUN
