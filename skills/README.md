@@ -1,8 +1,8 @@
 # Skills library (v1.0)
 
-**License:** MIT (see [/LICENSE](/LICENSE))
+**License:** MIT (see [../LICENSE](../LICENSE))
 **Copyright:** © 2026 ByBren, LLC
-**Attribution:** See [/NOTICE](/NOTICE)
+**Attribution:** See [../NOTICE](../NOTICE)
 
 Canonical path: `skills/<slug>/SKILL.md`.
 

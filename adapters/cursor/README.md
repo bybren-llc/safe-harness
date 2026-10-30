@@ -1,8 +1,8 @@
 # Adapter — Cursor (Wave 0 first)
 
-**License:** MIT (see [/LICENSE](/LICENSE))
+**License:** MIT (see [../../LICENSE](../../LICENSE))
 **Copyright:** © 2026 ByBren, LLC
-**Attribution:** See [/NOTICE](/NOTICE)
+**Attribution:** See [../../NOTICE](../../NOTICE)
 
 Maps constitution → Cursor rules + Projects / Cloud Agents.  
 **Project = Delivery train** (spine A). Studio think/plan stays peer — not buried inside Delivery Project settings.
