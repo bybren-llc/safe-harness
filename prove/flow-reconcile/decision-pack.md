@@ -27,7 +27,7 @@ Delivery does not merge. Kai QAS APPROVE and Scott's own-words concur are requir
 | Field | Value |
 | --- | --- |
 | GitHub Issue | [#26](https://github.com/bybren-llc/safe-harness/issues/26) |
-| Exact-head SHA / PR | this commit (see PR head) |
+| Exact-head SHA / PR | [#29](https://github.com/bybren-llc/safe-harness/pull/29). The exact head under concur is recorded in Kai's QAS review and in the merge commit body. |
 | Evidence IDs | this pack; #26; #22 squash `d88c884`; #27 squash `132f890` |
 | Requirements | Closes #26 (no REQ-IDs in spec.md yet) |
 | QAS | Pending Kai independent QAS at exact head |

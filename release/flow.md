@@ -20,7 +20,7 @@ Label key used in this file:
 
 ## 1. Purpose
 
-Each PR **ships as soon as its gates pass**. There is no release window, no batching, and no scheduled release day: one approved PR = one merge = one release.
+Each PR **ships as soon as its gates pass**. There is no release window, no batching, and no scheduled release day: one approved PR = one merge. Tag and GitHub Release publication is a separate O2 step or PR.
 
 This is what `main` already asks for [main]:
 - "SDLC target = **continuous deployment**. Mainline stays releasable. Gates prove safety without long freeze windows." (`constitution/03-cd-and-hitl.md`)
@@ -29,7 +29,7 @@ This is what `main` already asks for [main]:
 - Bolts exit on **evidence, not a date** (`constitution/02-safe-ai-dlc.md`).
 - The constitution's freeze gate (`Freeze-the-train`, quoted verbatim from `constitution/03-cd-and-hitl.md`) is "**Exception only** (critical SecEng / prod incident)" (`constitution/03-cd-and-hitl.md`; `constitution/00-north-star.md` non-goals).
 
-**What "deploy" means for `safe-harness`:** it is a docs/policy repo with no runtime deployment target (Wave 0 CI is a thin skeleton with "No deploy secrets", `constitution/03-cd-and-hitl.md`). **Deploy = the tag + GitHub Release** created from `main` for that merge. [main] for "tag from `main`"; the tag-as-deploy framing is [PENDING-CODIFY].
+**What "deploy" means for `safe-harness`:** it is a docs/policy repo with no runtime deployment target (Wave 0 CI is a thin skeleton with "No deploy secrets", `constitution/03-cd-and-hitl.md`). Tag and GitHub Release publication is a separate O2 step or PR (`constitution/03-cd-and-hitl.md` O2 list; `roles/release-rte.md`). A merge does not publish the tag or GitHub Release.
 
 Ops · CoS reads this file plus the live queue for the morning roll (§8). `constitution/03` is the policy; this file is the operating draft; the queue is the state.
 
@@ -83,7 +83,7 @@ Implement → Ready for QAS
 
 - Canonical exit-state labels are verbatim from `constitution/05-evidence-and-linear.md`: "Ready for QAS", "Approved for RTE", "Ready for HITL", "MERGED (HITL only)", "MERGED (HITL-delegated)", "MERGED (delegated Kai/RTE)". Do not rename them (`prove/wave-0-retro.md` §4: prove docs cannot redefine constitution/05 labels). Record who executed the merge. A Kai or Release · RTE trunk merge uses **MERGED (delegated Kai/RTE)**, not **MERGED (HITL only)** (`constitution/01-round-table.md`, `constitution/05-evidence-and-linear.md`).
 - "Where required" for Scott's concur matches `constitution/03-cd-and-hitl.md`: `constitution/`, High, and O2 need Scott's recorded own-words concur. Med = one human decision pack. Low = auto when green (tests + evidence types met); human assignee still named. Low-tier delegated HITL uses the `constitution/05-evidence-and-linear.md` D1 `hitl_delegate` record (kept as written). Two distinct humans at High is recommended guidance, not a gate.
-- **Merger** [main] `constitution/03-cd-and-hitl.md` "Who may execute a trunk merge": only **Scott**, **Kai**, and **Release · RTE**. RTE merge conditions: (a) required checks green on the exact head, (b) Kai's independent QAS APPROVE on the exact head, (c) RTE's own PASS on that same head (every tier, including Low), (d) Scott's recorded own-words concur on `constitution/`, High, and O2, (e) RTE did not author the change, (f) never over a standing HOLD. Kai "does not merge own Delivery PRs as HITL" (`roles/kai-gm-architect.md`). Merge protection on `main` is not yet configured — branch protection is **pending Scott** (`constitution/03-cd-and-hitl.md` open question; §9).
+- **Merger** [main] `constitution/03-cd-and-hitl.md` "Who may execute a trunk merge": only **Scott**, **Kai**, and **Release · RTE**. RTE merge conditions: (a) required checks green on the exact head, (b) Kai's independent QAS APPROVE on the exact head, (c) RTE's own PASS on that same head (any tier — an RTE-executed merge always needs RTE PASS on the exact head), (d) Scott's recorded own-words concur on `constitution/`, High, and O2, (e) RTE did not author the change, (f) never over a standing HOLD. A Low PR merged by Kai or Scott may use the annotated async checklist instead of a per-PR verdict. Kai "does not merge own Delivery PRs as HITL" (`roles/kai-gm-architect.md`). Merge protection on `main` is not yet configured — branch protection is **pending Scott** (`constitution/03-cd-and-hitl.md` open question; §9).
 - **High tier:** two distinct humans is recommended guidance, not a gate (`constitution/03-cd-and-hitl.md`). Many projects do not need it. Scott's recorded concur remains required. Agent ≠ human. An RTE merge never counts as a human approval.
 - Tagging is not merging. Tag and GitHub Release publication is its own O2 step or PR (deploy CI / workflows → High unless downgraded in writing at QAS; `constitution/03-cd-and-hitl.md` O2 list; `roles/release-rte.md`). A tag never substitutes for any gate. RTE owns release-notes drafting now; it does not publish the tag/Release as part of this merge.
 - RTE PASS runs **in parallel** with Scott's concur where concur is required (`constitution/03-cd-and-hitl.md` RTE placement; `constitution/01-round-table.md`). An RTE merge needs RTE PASS plus the required concur.
@@ -107,11 +107,11 @@ RTE verdict is posted as a single PR comment: `RTE PASS @ <sha>` or `RTE HOLD @ 
 
 ## 5. Tier handling
 
-Tier names are verbatim from `constitution/03-cd-and-hitl.md`: **Low**, **Med**, **High**, plus the **O2** high-risk default list. Release · RTE is **required** at Med, High, and O2. At Low it is an async checklist (not blocking if the path is annotated). RTE stays non-collapsible at Med+ (`constitution/03-cd-and-hitl.md` RTE placement; `constitution/02-safe-ai-dlc.md`; `roles/release-rte.md`). Every RTE check **starts immediately when the packet arrives**; targets are measured packet → RTE verdict: **Low ≤5 min · Med ≤15 min · High/O2 ≤30 min** — **Decided — Kai 2026-10-29**.
+Tier names are verbatim from `constitution/03-cd-and-hitl.md`: **Low**, **Med**, **High**, plus the **O2** high-risk default list. Release · RTE is **required** at Med, High, and O2. An RTE-executed merge always needs RTE PASS on the exact head (any tier). A Low PR merged by Kai or Scott may use the annotated async checklist instead of a per-PR verdict. RTE stays non-collapsible at Med+ (`constitution/03-cd-and-hitl.md` RTE placement; `constitution/02-safe-ai-dlc.md`; `roles/release-rte.md`). Every RTE check that needs a verdict **starts immediately when the packet arrives**; targets are measured packet → RTE verdict: **Low ≤5 min · Med ≤15 min · High/O2 ≤30 min** — **Decided — Kai 2026-10-29**.
 
 | Tier | Constitution behavior [main] | RTE release check | Target (packet → verdict) |
 | --- | --- | --- | --- |
-| **Low** (incl. HITL-delegated) | "Auto when green (tests + evidence types met)"; human assignee still named. At Low, an annotated, non-blocking async RTE checklist is allowed, with no per-PR verdict required (`roles/release-rte.md`) | **Checklist-only async pass, immediate.** Not blocking if the annotated Low path is recorded | **≤5 min** — Decided — Kai 2026-10-29 |
+| **Low** (incl. HITL-delegated) | "Auto when green (tests + evidence types met)"; human assignee still named. An annotated, non-blocking async RTE checklist is allowed when Kai or Scott merge (no per-PR verdict required). An RTE-executed Low merge still needs RTE PASS on the exact head (`roles/release-rte.md`) | **RTE PASS** if RTE executes. **Checklist-only async pass** if Kai or Scott merge and the annotated Low path is recorded | **≤5 min** when a verdict is required — Decided — Kai 2026-10-29 |
 | **Med** | "One human decision pack" | **Required**, immediate | **≤15 min** — Decided — Kai 2026-10-29 |
 | **High** | Two distinct humans is recommended guidance, not a gate; Scott's recorded concur required; agent ≠ human | **Required**, immediate; full independence gates (QAS + SecEng) still apply (`roles/release-rte.md` stop rules) | **≤30 min** — Decided — Kai 2026-10-29 |
 | **O2** | Always High unless Kai downgrades in writing at QAS (`constitution/03-cd-and-hitl.md`) | **Required**, immediate; RTE confirms the written downgrade link if tier < High | **≤30 min** (as High) — Decided — Kai 2026-10-29 |
@@ -122,7 +122,7 @@ Targets are RTE's own clock. Human steps (Scott's concur) and the merge are trac
 
 | Tier | Who may merge | Precondition for an RTE merge |
 | --- | --- | --- |
-| **Low** (incl. HITL-delegated) | Kai, Release · RTE, or Scott | Kai's QAS APPROVE + RTE PASS on exact head; RTE not the author. Exit: **MERGED (delegated Kai/RTE)** when Kai or RTE executed; **MERGED (HITL-delegated)** only with the `constitution/05` D1 `hitl_delegate` record (Low only; kept as written); **MERGED (HITL only)** when Scott executed |
+| **Low** (incl. HITL-delegated) | Kai, Release · RTE, or Scott | RTE-executed: Kai's QAS APPROVE + RTE PASS on exact head; RTE not the author. Kai or Scott merge at Low: annotated async checklist may replace the per-PR verdict. Exit: **MERGED (delegated Kai/RTE)** when Kai or RTE executed; **MERGED (HITL-delegated)** only with the `constitution/05` D1 `hitl_delegate` record (Low only; kept as written); **MERGED (HITL only)** when Scott executed |
 | **Med** | Kai, Release · RTE, or Scott | Kai's QAS APPROVE + RTE PASS on exact head + Scott's decision-pack concur recorded; RTE not the author. Open decision, see #28; unchanged here. |
 | **High** | Kai, Release · RTE, or Scott | As Med, plus **Scott's recorded concur** (required). Two distinct humans is recommended guidance, not a gate |
 | **O2** | Kai, Release · RTE, or Scott | As High (O2 = High unless Kai downgrades in writing at QAS) |
@@ -174,11 +174,11 @@ The GitHub repository (Issues and PRs) is the source of truth (`constitution/05-
 
 **Stall rule — 2× the tier target, in minutes.** **Decided — Kai 2026-10-29**
 
-A packet with **no RTE verdict** at 2× the tier target (measured from packet arrival) escalates **to Kai** via `SendToAgent` with `priority: true`. **Decided — Kai 2026-10-29**
+Except for an annotated Low path with its §5 checklist recorded, a packet with **no RTE verdict** at 2× the tier target (measured from packet arrival) escalates **to Kai** via `SendToAgent` with `priority: true`. **Decided — Kai 2026-10-29**
 
 | Tier | RTE target (§5) | Escalate to Kai at |
 | --- | --- | --- |
-| Low | ≤5 min | **10 min** |
+| Low | ≤5 min when a verdict is required | **10 min** for paths that need an RTE verdict; no verdict timer for an annotated Low path with its checklist recorded |
 | Med | ≤15 min | **30 min** |
 | High / O2 | ≤30 min | **60 min** |
 
