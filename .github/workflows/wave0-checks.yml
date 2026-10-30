@@ -63,7 +63,7 @@ jobs:
           
           # Discover markdown files: root level + recursive under key directories
           md_files=$(find . -maxdepth 1 -name "*.md" 2>/dev/null)
-          md_files+=" "$(find constitution roles adapters templates prove -type f -name "*.md" 2>/dev/null)
+          md_files+=" "$(find constitution roles adapters templates prove trace -type f -name "*.md" 2>/dev/null)
           
           for md_file in $md_files; do
             echo "Checking: $md_file"
