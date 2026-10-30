@@ -9,8 +9,8 @@
   </a>
 </p>
 <p align="center">
-  <a href="AGENTS.md">
-    <img src="https://img.shields.io/badge/agents-3-red?style=flat-square" alt="Agents">
+  <a href="roles/">
+    <img src="https://img.shields.io/badge/agents-13%20roles-red?style=flat-square" alt="Agents">
   </a>
   <a href="skills/">
     <img src="https://img.shields.io/badge/skills-38-purple?style=flat-square" alt="Skills">
