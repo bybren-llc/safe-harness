@@ -58,7 +58,8 @@ Human-owner confirmation of this 2026-10-28 relayed record is still pending (D1,
 
 ## Standing concur for safe-harness v1.0 PRs (2026-10-30)
 
-**Date:** 2026-10-30 1:15 PM ET
+**Date:** 2026-10-30 1:15 PM ET  
+**Kind/Provenance:** the human owner's own words, given directly to the GM in the owner's Grok Bot chat on 2026-10-30 at 1:15 PM ET; the GitHub copy is the GM's verbatim relay.
 
 Scott's 2026-10-30 1:15 PM ET standing concur satisfies the High/O2 HITL requirement only for safe-harness PRs merged before the v1.0.0 tag. Each such PR still needs Kai QAS, SecEng and RTE PASS at its own exact head, and its merge note quotes the concur. It expires when v1.0.0 is tagged and is not a reusable template rule.
 
