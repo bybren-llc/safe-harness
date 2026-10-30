@@ -27,7 +27,7 @@
 | GitHub Issue | `#N` (repo source of truth; `constitution/05-evidence-and-linear.md`) |
 | Exact-head SHA or PR | |
 | Evidence IDs | |
-| Requirements | REQ-<CMP>-NNN list (`constitution/03-cd-and-hitl.md`); none yet (bootstrap) |
+| Requirements | `REQ-<CMP>-NNN` list (`constitution/03-cd-and-hitl.md`); `none yet (bootstrap)` while `spec.md` has no REQ IDs |
 | QAS status | pass / change-request / N/A (Low tier only; rationale required). High/O2: never N/A and cannot be waived |
 | SecEng status | pass / change-request / N/A (Low tier only; rationale required). High/O2: never N/A and cannot be waived |
 | Risk tier + O2 details | (note if Kai downgraded any O2 item) |
@@ -75,7 +75,7 @@ Ultracode: **not default**.
 | Review/approval wait (hours) | | |
 | Confidence (L/M/H) | | |
 
-Capture actuals at close and compare each sprint (M5 / M6).
+Capture actuals at close; compare actuals with estimates each sprint and report under M5 / M6.
 
 ## Measure
 

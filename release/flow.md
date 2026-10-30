@@ -209,7 +209,7 @@ Still open (not landed, or not binding, on `main`):
 - #28 (a) G4 ordering and (b) Med-tier Scott decision-pack concur — parked; unchanged here.
 - `Requirements:` / REQ ID scheme in `spec.md` (the PR-body convention is in `constitution/03-cd-and-hitl.md`; no REQ IDs have landed yet).
 - CodeRabbit Fix/Accept/Waive triage convention (and any `.coderabbit.yaml`).
-- PR template carrying risk tier, O2 list, decision-pack link, `Requirements:` line — landed in `.github/pull_request_template.md` (this PR).
+- PR template carrying risk tier, O2 list, `Requirements:` line — landed in `.github/pull_request_template.md` (this PR).
 - Tag and GitHub Release publication — its own O2 step or PR (`roles/release-rte.md`; deploy CI / workflows). Not in this PR.
 - Event triggers for "packet arrived" and the 2× stall alerts to Kai via `SendToAgent` `priority: true` (Wave 0 PR-event routine was unreliable — `prove/wave-0-retro.md` §4, §6 item 1).
 - Whether `wave0-checks.yml` should list `release/flow.md` as a required path (path itself decided — Kai 2026-10-29).

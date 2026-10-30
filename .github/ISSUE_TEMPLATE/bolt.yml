@@ -116,7 +116,7 @@ body:
       value: |
         ## Estimate
 
-        Fill estimates at open. Capture actuals at close and compare each sprint (M5 / M6).
+        Fill estimates at open. Capture actuals at close; compare actuals with estimates each sprint and report under M5 / M6.
 
   - type: input
     id: estimate_agent_hours
@@ -161,7 +161,7 @@ body:
     id: actuals
     attributes:
       label: Actuals (at close)
-      description: Capture at close and compare each sprint (M5 / M6). Leave blank until close.
+      description: Capture actuals at close; compare actuals with estimates each sprint and report under M5 / M6. Leave blank until close.
       value: |
         Agent-hours:
         Human-hours:

@@ -47,9 +47,11 @@ W0-04, W0-07 and W0-09 are superseded stubs. They do not have their own ADR file
 **Date:** 2026-10-28 ~4:11 PM EDT  
 **Kind:** Relayed authorization. This is not the human owner's own words. The grant was made by the human owner (HITL/POPM) and relayed via the GM.
 
-**Scope:** The GM may merge Wave 0 `bybren-llc/safe-harness` PRs once CodeRabbit is complete on the exact head, the GM's independent QAS is APPROVE on that exact head, and the required checks are green.
+**Scope:** This relayed record applies at Low/D1 only. The GM may merge Wave 0 `bybren-llc/safe-harness` PRs once CodeRabbit is complete on the exact head, the GM's independent QAS is APPROVE on that exact head, and the required checks are green.
 
 **Limits:** The delivery lead never merges. The human owner's HITL is still required for any deploy and for High/O2 items. This record does not amend `constitution/05`. D1 is a separate decision.
+
+Scott's 2026-10-30 1:15 PM ET standing concur satisfies the High/O2 HITL requirement for v1.0 PRs; it does not waive that requirement; the merge path is RTE PASS, then Kai merges.
 
 **Provenance:** Linear SAF-1 comment `54d37e98`, as already cited in `constitution/05-evidence-and-linear.md`.
 
