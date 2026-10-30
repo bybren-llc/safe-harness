@@ -145,8 +145,9 @@ echo ""
 # - Loading owner_identity from .github/harness.yml
 # - Validating it (safe characters, not empty)
 # - Checking decided_by on Dropped intent-sourced requirements
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo "Running owner-identity validation..."
-if ! bash "$ROOT/trace/validate-trace.sh"; then
+if ! bash "$SCRIPT_DIR/validate-trace.sh" "$ROOT" "$ROOT/.github/harness.yml"; then
   echo ""
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
   echo "❌ Owner-identity check FAILED (hard fail, even in warn-only mode)"
@@ -288,7 +289,6 @@ if [[ "$REQ_COUNT" -gt 0 ]]; then
       RATIONALE=$(yq_str ".requirements[$i].rationale" "$MAP")
       DECIDED_BY=$(yq_str ".requirements[$i].decided_by" "$MAP")
       DECIDED_AT=$(yq_str ".requirements[$i].decided_at" "$MAP")
-      SOURCE=$(yq_str ".requirements[$i].source" "$MAP")
 
       if is_missing "$RATIONALE"; then
         error "Missing required field: rationale"
@@ -300,14 +300,8 @@ if [[ "$REQ_COUNT" -gt 0 ]]; then
         error "Missing required field: decided_at"
       fi
 
-      if [[ "$SOURCE" =~ ^intent\.md# ]]; then
-        if [[ "$DECIDED_BY" != "Scott Graham" ]]; then
-          error "Dropping REQ from intent.md requires Scott's sign-off (decided_by must be exactly 'Scott Graham')"
-        fi
-        if [[ ! "$RATIONALE" =~ https?:// ]]; then
-          error "Dropping REQ from intent.md requires sign-off link in rationale"
-        fi
-      fi
+      # Owner-check for intent-sourced drops is handled by validate-trace.sh
+      # (called earlier in this script via SCRIPT_DIR/validate-trace.sh)
     fi
 
     if [[ "$HAS_COMPONENTS" == "true" ]]; then

@@ -1,25 +1,30 @@
 #!/usr/bin/env bash
 # Trace validation script — owner-identity and decided_by checks
-# Called by trace/check.sh
+# Called by trace/check.sh with args: ROOT CONFIG_PATH
 # Implements HARD FAIL owner-identity validation (never warn-only)
 
 set -euo pipefail
 
-REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$REPO_ROOT"
+TRACE_ROOT="${1:-.}"
+CONFIG_PATH="${2:-.github/harness.yml}"
+
+if ! cd "$TRACE_ROOT"; then
+  echo "❌ cannot cd to TRACE_ROOT: $TRACE_ROOT"
+  exit 1
+fi
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Load owner identity from config (HARD FAIL-CLOSED — never warn-only)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-if [[ ! -f ".github/harness.yml" ]]; then
-  echo "❌ Config file .github/harness.yml not found"
+if [[ ! -f "$CONFIG_PATH" ]]; then
+  echo "❌ Config file $CONFIG_PATH not found"
   echo "   This file is required for trace validation."
   exit 1
 fi
 
 # Get RAW value from yq
-OWNER_IDENTITY_RAW=$(yq -r '.owner_identity' .github/harness.yml 2>/dev/null || echo "")
+OWNER_IDENTITY_RAW=$(yq -r '.owner_identity' "$CONFIG_PATH" 2>/dev/null || echo "")
 
 # Validate RAW value FIRST: reject newlines, $, backticks, control characters
 if [[ "$OWNER_IDENTITY_RAW" =~ $'\n' ]] || \
@@ -38,8 +43,15 @@ OWNER_IDENTITY="${OWNER_IDENTITY%"${OWNER_IDENTITY##*[![:space:]]}"}"
 
 # Check for null, empty, or whitespace-only (after trim)
 if [[ "$OWNER_IDENTITY" == "null" || -z "$OWNER_IDENTITY" ]]; then
-  echo "❌ owner_identity not set or empty in .github/harness.yml"
+  echo "❌ owner_identity not set or empty in $CONFIG_PATH"
   echo "   Set owner_identity to the decision authority's full name."
+  exit 1
+fi
+
+# Reject leading hyphen (could be interpreted as echo flag or command option)
+if [[ "$OWNER_IDENTITY" =~ ^- ]]; then
+  echo "❌ owner_identity cannot start with a hyphen (would be interpreted as a flag)"
+  echo "   Names may contain hyphens internally (e.g., 'John Smith-Jones')."
   exit 1
 fi
 
@@ -48,43 +60,36 @@ printf '✓ Loaded owner_identity: %s\n' "$OWNER_IDENTITY"
 echo ""
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Bootstrap mode check (not used for owner-check, but for context)
+# Check requirements (owner-check HARD FAILS; never warn-only)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-BLOCKING_MODE=false
-if [[ -f "spec.md" ]] && grep -qE "REQ-[A-Z]{3}-[0-9]{3}" spec.md && [[ -f "trace/.blocking" ]]; then
-  BLOCKING_MODE=true
-fi
+MAP="trace/trace-map.yaml"
 
-if [[ ! -f "trace/trace-map.yaml" ]]; then
+if [[ ! -f "$MAP" ]]; then
   # No trace map yet — owner check is still PASS (nothing to validate)
   exit 0
 fi
 
 # Validate YAML
-if ! yq '.' trace/trace-map.yaml > /dev/null 2>&1; then
+if ! yq '.' "$MAP" > /dev/null 2>&1; then
   # Invalid YAML — owner check doesn't apply
   exit 0
 fi
 
-REQ_COUNT=$(yq -r '.requirements | length' trace/trace-map.yaml)
+REQ_COUNT=$(yq -r '.requirements | length' "$MAP")
 [[ "$REQ_COUNT" =~ ^[0-9]+$ ]] || REQ_COUNT=0
 [[ "$REQ_COUNT" -eq 0 ]] && exit 0
 
 OWNER_CHECK_ERRORS=0
 
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Check requirements (owner-check HARD FAILS; never warn-only)
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 for i in $(seq 0 $((REQ_COUNT - 1))); do
-  REQ_ID=$(yq -r ".requirements[$i].id" trace/trace-map.yaml)
-  REQ_STATE=$(yq -r ".requirements[$i].state" trace/trace-map.yaml)
+  REQ_ID=$(yq -r ".requirements[$i].id" "$MAP")
+  REQ_STATE=$(yq -r ".requirements[$i].state" "$MAP")
   
   if [[ "$REQ_STATE" == "Dropped" ]]; then
-    SOURCE=$(yq -r ".requirements[$i].source" trace/trace-map.yaml)
-    DECIDED_BY=$(yq -r ".requirements[$i].decided_by" trace/trace-map.yaml)
-    RATIONALE=$(yq -r ".requirements[$i].rationale" trace/trace-map.yaml)
+    SOURCE=$(yq -r ".requirements[$i].source" "$MAP")
+    DECIDED_BY=$(yq -r ".requirements[$i].decided_by" "$MAP")
+    RATIONALE=$(yq -r ".requirements[$i].rationale" "$MAP")
     
     # Owner-check: HARD FAIL (never warn-only)
     if [[ "$SOURCE" =~ ^intent\.md# ]]; then
