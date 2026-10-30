@@ -1,6 +1,7 @@
 ---
 name: testing-evidence
 description: Give the agent a feedback loop — failing test first for bugs, paste literal output as evidence, never weaken a test during a fix. Use while implementing or while QAS is checking evidence.
+license: MIT (see repository LICENSE)
 ---
 
 # Testing evidence

@@ -1,6 +1,7 @@
 ---
 name: concur-queue
 description: Maintain the queue of items waiting on HITL concur — exact head, tier, why, QAS/RTE status. Ping only when ready. Use when a pack needs the HITL owner's own words.
+license: MIT (see repository LICENSE)
 ---
 
 # Concur queue

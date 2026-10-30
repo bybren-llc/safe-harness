@@ -1,6 +1,7 @@
 ---
 name: studio-handoff
 description: Emit or accept the Studio to Delivery handoff artifact (AC, sources, privacy class, exit evidence). Use when spine B knowledge becomes buildable on spine A.
+license: MIT (see repository LICENSE)
 ---
 
 # Studio → Delivery handoff

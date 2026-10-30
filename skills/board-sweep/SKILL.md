@@ -1,6 +1,7 @@
 ---
 name: board-sweep
 description: Scheduled read-only sweep of queues, PRs, and stalls. The only write is board-row status. Use on the adopter's sweep cadence. Never decide, post, or merge.
+license: MIT (see repository LICENSE)
 ---
 
 # Board sweep

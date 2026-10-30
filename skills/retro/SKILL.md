@@ -1,6 +1,7 @@
 ---
 name: retro
 description: Run a wave or bolt retro against the value set named up front (M1–M6 is the template example). Use at bolt or wave exit. Empiricism retires losing defaults.
+license: MIT (see repository LICENSE)
 ---
 
 # Retro

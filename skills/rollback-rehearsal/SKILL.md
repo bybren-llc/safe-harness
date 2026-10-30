@@ -1,6 +1,7 @@
 ---
 name: rollback-rehearsal
 description: Treat rollback as first-class — rehearse before high-risk deploys, keep a one-step revert, record evidence. Use before a High or prod-risk promotion and when a deploy goes bad.
+license: MIT (see repository LICENSE)
 ---
 
 # Rollback rehearsal

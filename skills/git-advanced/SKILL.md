@@ -1,6 +1,7 @@
 ---
 name: git-advanced
 description: Rebase, bisect, cherry-pick, and conflict resolution with safety rules. Use on feature branches. Trunk is main. Never force-push trunk.
+license: MIT (see repository LICENSE)
 ---
 
 # Git advanced

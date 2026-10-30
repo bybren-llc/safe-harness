@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 ByBren, LLC
 """Local check: every skills/<slug>/SKILL.md starts with parseable YAML frontmatter."""
 
 from __future__ import annotations

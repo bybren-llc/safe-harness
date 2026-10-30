@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 ByBren, LLC
 # Run trace-check fixtures. See trace/fixtures/README.md.
 set -u
 set -o pipefail

@@ -1,6 +1,7 @@
 ---
 name: delegation-brief
 description: Write a cloud or sub-agent brief with scope, files, tier, stop rules, and evidence to return. Use when handing a bolt to an implementer or a nested agent.
+license: MIT (see repository LICENSE)
 ---
 
 # Delegation brief

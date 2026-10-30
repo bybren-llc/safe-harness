@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this template, please cite it as below."
+authors:
+  - given-names: "J. Scott"
+    family-names: "Graham"
+    alias: "cheddarfox"
+  - name: "ByBren, LLC"
+title: "safe-harness"
+version: 1.0.0
+date-released: 2026-10-30
+url: "https://github.com/bybren-llc/safe-harness"
+repository-code: "https://github.com/bybren-llc/safe-harness"
+license: MIT
+type: software

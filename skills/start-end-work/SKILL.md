@@ -1,6 +1,7 @@
 ---
 name: start-end-work
 description: Start a work session (pick issue, branch, read brief) and end it (evidence posted, status, handoff). Use at session boundaries on Delivery work.
+license: MIT (see repository LICENSE)
 ---
 
 # Start and end work

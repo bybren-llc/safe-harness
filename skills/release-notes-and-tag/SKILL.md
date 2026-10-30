@@ -1,6 +1,7 @@
 ---
 name: release-notes-and-tag
 description: Draft release notes from the decision pack, REQs, and evidence, plus a CHANGELOG entry. Use when a release is being prepared. Do not publish a tag unless the named executor is doing it.
+license: MIT (see repository LICENSE)
 ---
 
 # Release notes and tag
