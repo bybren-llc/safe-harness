@@ -1,0 +1,11 @@
+requirements:
+  - id: REQ-CON-002
+    component: ARC-CON
+    state: Dropped
+    title: Dropped intent item
+    source: intent.md#design-goal
+    rationale: |
+      Dropped with HITL sign-off. Record: https://github.com/bybren-llc/safe-harness/issues/7
+    decided_by: Scott Graham
+    decided_at: 2026-10-30
+evidence: []

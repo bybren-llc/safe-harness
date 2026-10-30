@@ -1,0 +1,12 @@
+requirements:
+  - id: REQ-CON-001
+    component: ARC-CON
+    state: Deferred
+    title: Bad anchor
+    source: spec.md#does-not-exist
+    rationale: |
+      Fixture for missing anchor
+    decided_by: Kai
+    decided_at: 2026-10-30
+    defer_to: Wave 2
+evidence: []

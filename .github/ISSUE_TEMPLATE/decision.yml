@@ -1,5 +1,5 @@
 name: Decision
-description: Decision requiring owner/QAS concurrence
+description: Decision requiring explicit decision concurrence (not design ownership)
 title: "[DECISION] "
 labels: ["decision", "needs-concur"]
 body:
@@ -8,7 +8,8 @@ body:
       value: |
         ## Decision Request
         
-        Use this template for decisions requiring explicit concurrence from the owner or QAS.
+        Use this template for decisions requiring explicit decision concurrence from the owner or the GM.
+        This is decision concurrence, not design ownership of intent.md or spec.md.
         Common cases: constitution changes, O2 risk downgrades, architecture pivots.
 
   - type: dropdown
@@ -17,9 +18,9 @@ body:
       label: Decision Owner
       description: Who must concur?
       options:
-        - owner
-        - QAS
-        - owner + QAS
+        - the owner
+        - the GM
+        - owner + GM
     validations:
       required: true
 

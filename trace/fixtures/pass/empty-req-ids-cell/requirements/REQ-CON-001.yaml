@@ -1,0 +1,10 @@
+id: REQ-CON-001
+component: ARC-CON
+state: Placed
+title: Repo is source of truth
+source: spec.md#source-of-truth
+exit_criterion: |
+  Happy-path fixture exits 0
+metric: M6
+description: |
+  Fixture placed requirement
