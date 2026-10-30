@@ -1,6 +1,6 @@
 # Component Registry — safe-harness
 #
-# **Status:** Pending Kai approval (Wave 1 seed)
+# **Status:** Pending GM approval (Wave 1 seed)
 #
 # Each component receives an ARC-<CMP> identifier for requirements tracing.
 # Components represent the logical architecture of the safe-harness system.

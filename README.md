@@ -1,5 +1,32 @@
 # safe-harness
 
+<p align="center">
+  <img src="https://img.shields.io/badge/version-v1.0.0-blue?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/license-none-lightgrey?style=flat-square" alt="License">
+  <img src="https://img.shields.io/badge/template-ready-brightgreen?style=flat-square" alt="Template Ready">
+  <a href="https://deepwiki.com/bybren-llc/safe-harness">
+    <img src="https://img.shields.io/badge/DeepWiki-bybren--llc%2Fsafe--harness-blue?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTQgMTloMTYiLz48cGF0aCBkPSJNNCAxNWg4Ii8+PHBhdGggZD0iTTQgMTFoMTIiLz48cGF0aCBkPSJNNCA3aDE2Ii8+PC9zdmc+" alt="DeepWiki">
+  </a>
+</p>
+<p align="center">
+  <a href="AGENTS.md">
+    <img src="https://img.shields.io/badge/agents-3-red?style=flat-square" alt="Agents">
+  </a>
+  <a href="skills/">
+    <img src="https://img.shields.io/badge/skills-38-purple?style=flat-square" alt="Skills">
+  </a>
+</p>
+
+<p align="center">
+  <strong>Supported runtimes</strong><br>
+  <a href="adapters/claude-code/">
+    <img src="https://img.shields.io/badge/Claude_Code-adapter-orange?style=flat-square" alt="Claude Code">
+  </a>
+  <a href="adapters/cursor/">
+    <img src="https://img.shields.io/badge/Cursor-adapter-00D084?style=flat-square" alt="Cursor">
+  </a>
+</p>
+
 A template for everyday, safe AI-assisted development.
 
 **Status:** Wave 1 adopted. This README is the adopter-facing index. It is **not** a policy source. Binding rules live in [`constitution/`](constitution/).

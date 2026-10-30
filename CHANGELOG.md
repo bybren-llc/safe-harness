@@ -6,7 +6,7 @@ Format follows Keep a Changelog conventions. Product versions use SemVer (`MAJOR
 
 The heading stays `## [1.0.0] - TBD` until tag time.
 
-Each merged row is `PR number — one-line summary (7-char merge SHA)`, taken from `git log --first-parent main` from the first Wave 0 commit through `f90ec1f`. In-flight rows that must land before the tag are marked `(pending merge, SHA TBD)`. Delivery will ask for one final commit that fills those SHAs.
+Each merged row is `PR number — one-line summary (7-char merge SHA)`, taken from `git log --first-parent main` from the first Wave 0 commit through HEAD.
 
 ## [Unreleased]
 
@@ -14,10 +14,10 @@ Placeholder rows for in-flight v1.0 work that will merge before tag `v1.0.0`. SH
 
 ### Added
 
-- #47 — AGENTS.md entry points + CODEOWNERS coverage (`pending merge, SHA TBD`)
-- #48 — doc-drift + trace/ link coverage checks, warn-only (`pending merge, SHA TBD`)
-- #51 — trace-check validations, warn-only (`pending merge, SHA TBD`)
-- #59 — Rewrite README for v1.0 (generic, template-ready) (`pending merge, SHA TBD`)
+- #47 — AGENTS.md entry points + CODEOWNERS coverage (`202d29c`)
+- #48 — doc-drift + trace/ link coverage checks, warn-only (`606d4b6`)
+- #51 — trace-check validations, warn-only (`27fbc68`)
+- #59 — Rewrite README for v1.0 (generic, template-ready) (`7fc391d`)
 
 ## [1.0.0] - TBD
 
