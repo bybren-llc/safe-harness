@@ -123,7 +123,7 @@ body:
     attributes:
       label: Estimate — agent-hours
       description: Planned agent hours for this bolt
-      placeholder: "2"
+      placeholder: "2 hours"
     validations:
       required: false
 
@@ -132,16 +132,16 @@ body:
     attributes:
       label: Estimate — human-hours
       description: Planned human hours (assignee, HITL, review)
-      placeholder: "0.5"
+      placeholder: "0.5 hours"
     validations:
       required: false
 
   - type: input
     id: estimate_review_wait
     attributes:
-      label: Estimate — review/approval wait
-      description: Planned wait for QAS, SecEng, RTE, and HITL concur
-      placeholder: "1h"
+      label: Estimate — review/approval wait (hours)
+      description: Planned wait in hours for QAS, SecEng, RTE, and HITL concur
+      placeholder: "1 hour"
     validations:
       required: false
 
@@ -162,10 +162,10 @@ body:
     attributes:
       label: Actuals (at close)
       description: Capture at close and compare each sprint (M5 / M6). Leave blank until close.
-      placeholder: |
+      value: |
         Agent-hours:
         Human-hours:
-        Review/approval wait:
+        Review/approval wait (hours):
         Sprint compared:
     validations:
       required: false

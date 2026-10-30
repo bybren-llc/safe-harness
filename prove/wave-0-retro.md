@@ -100,7 +100,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 
 ### Brief wording vs constitution/05 exit states (PR #4)
 **Issue:** SAF-4 acceptance criteria asked to relabel the exit state from `MERGED (HITL only)` to an alternate phrasing. QAS rejected this in PR #4: prove docs cannot redefine constitution/05 labels.  
-**Resolution:** CodeRabbit Major finding accepted; exit-state label restored verbatim; delegation recorded as evidence per [this retro §7](#7-decision-pack-d1-for-scott-hitl) (repo record).  
+**Resolution:** CodeRabbit Major finding accepted; exit-state label restored verbatim; delegation recorded as evidence per [Linear SAF-1 comment `54d37e98`](https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98).  
 **Decision pack:** Carried as D1 — should constitution/05 gain a governed amendment for delegated-HITL merge at Low tier?  
 **Evidence:** [PR #4 CodeRabbit review](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697391802), [QAS CHANGES NEEDED @ `2c3a821`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697573204)
 
@@ -139,7 +139,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 
 **Context:**
 - **Current practice:** Scott Graham issued standing Wave 0 merge authorization (2026-10-28) allowing Kai to merge Low-tier PRs after CodeRabbit complete + independent QAS APPROVE + green checks. HITL remains required for Deploy and High/O2 work.
-- **Evidence location:** Delegation recorded in this section (repo record), referenced from [prove/d-p1/bolt-brief.md](d-p1/bolt-brief.md) HITL gates and merge evidence rows.
+- **Evidence location:** Delegation recorded in [Linear SAF-1 comment `54d37e98`](https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98), referenced from [prove/d-p1/bolt-brief.md](d-p1/bolt-brief.md) HITL gates and merge evidence rows.
 - **Exit-state label:** Stays verbatim `MERGED (HITL only)` per constitution/05; prove docs cannot redefine canonical labels.
 
 **Options:**
@@ -176,7 +176,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 **Risks:**
 - **Governance complexity:** Adding a constitution field requires Scott's explicit concur and versioning discipline
 - **Abuse potential:** Delegated actor must remain independent (current: Kai as GM/QAS, not implementer); delegation scope must stay narrow (Low tier only)
-- **Audit trail:** Requires durable authorization record (current: this section, repo record); must not expire or become unresolvable
+- **Audit trail:** Requires durable authorization record (current: [Linear SAF-1 comment `54d37e98`](https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98)); must not expire or become unresolvable
 
 **What would change if approved:**
 - `constitution/05-evidence-and-linear.md`: Add structured `hitl_delegate` field (delegating_actor, delegate_actor, authorization_url, scope) to evidence schema (§ Evidence Format), document scope/constraints (Low tier only), add governed exit state `MERGED (HITL-delegated)` with delegation semantics; keep `MERGED (HITL only)` unchanged for direct HITL merge

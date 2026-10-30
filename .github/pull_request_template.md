@@ -38,9 +38,9 @@ The final reviewed head is recorded in the QAS review and the squash-merge body.
 
 Refs #N
 
-## needs-HITL-concur
+## needs-scott-concur — human owner's (Scott's) recorded own-words concur
 
-- [ ] This PR needs HITL own-words concur at the exact head (`constitution/`, High, or O2). Apply the `needs-scott-concur` label.
+- [ ] This PR needs the human owner's (Scott's) recorded own-words concur at the exact head (`constitution/`, High, or O2). Apply the `needs-scott-concur` label.
 
 ## Gate status
 
