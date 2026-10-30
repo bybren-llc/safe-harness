@@ -96,7 +96,7 @@ Scott (HITL), 2026-10-29, verbatim:
 
 The Dev/trunk Gate cell applies to template adopters as well as safe-harness.
 
-This repo is a **template**. Adopting teams configure **dev, staging, and prod** for their own environments. **safe-harness** itself is a docs repo with only `main`. It is the **trunk** case under Dev or trunk. Its `constitution/`, High, and O2 changes still need Scott's recorded own-words concur.
+This repo is a **template**. Adopting teams configure **dev, staging, and prod** for their own environments. **safe-harness** itself is a docs repo with only `main`. It is the **trunk** case under Dev or trunk. Its `constitution/`, `.github/CODEOWNERS`, `.github/workflows/**`, High, and O2 changes still need Scott's recorded own-words concur.
 
 Scott may merge any change at any tier and environment.
 
@@ -106,7 +106,7 @@ Scott may merge any change at any tier and environment.
 - Nobody merges their own authored change.
 - An agent merge never counts as human approval.
 - Delivery and cloud agents never merge.
-- CODEOWNERS-gated paths other than `constitution/` (`intent.md`, `spec.md`, `requirements/`, `trace/`, `.github/CODEOWNERS`, `.github/workflows/`) stay **agents must not merge** (Scott/CODEOWNERS only), matching `constitution/05` and `CONTRIBUTING.md`.
+- CODEOWNERS-gated paths other than `constitution/` (`intent.md`, `spec.md`, `requirements/`, `trace/`) stay **agents must not merge** (Scott/CODEOWNERS only), matching `constitution/05` and `CONTRIBUTING.md`.
 
 ### Who may execute a trunk merge (safe-harness)
 
@@ -136,9 +136,9 @@ Recorded on the #22 squash [`d88c884`](https://github.com/bybren-llc/safe-harnes
 4. **Linear** — optional. Preferred path is design, specs, and PRDs in GitHub. See `05-evidence-and-traceability.md`. `trace/linear-saf-map.csv` stays frozen.
 5. **D1 `hitl_delegate`** — stays as written. ADR-style accountability is in `05-evidence-and-traceability.md`.
 
-### Open question (unanswered)
+### `main` branch protection
 
-**`main` branch protection** — not configured yet. Enforcing who may merge in GitHub waits on Scott. No answer is written here.
+Answered. Require a pull request before merging. Required status checks: `Structure & Docs Validation`, `Requirements Trace Validation` (warn-only), and CodeRabbit. Do not require `API Contract Checks` until #35 closes. Required approvals: 0 (QAS is a COMMENT review; merge authority and the review gate remain as listed in Merge authority, Who may execute a trunk merge, and Gate types above). Block force-pushes and deletion. The repo admin keeps bypass. A separate bot identity (GitHub App or bot user) for real APPROVE reviews is the planned upgrade; the HITL owner decides it. Intended settings, apply checklist, and verification: [`docs/branch-protection.md`](../docs/branch-protection.md).
 
 ### Scott's earlier recorded delegation (2026-10-29 ET)
 
@@ -170,6 +170,6 @@ Thin skeleton → full path is intentional scaffolding, not final state.
 - Exact-head SHA / PR
 - Evidence IDs (portable — see `05-evidence-and-traceability.md`)
 - Requirements addressed (REQ-<CMP>-NNN list)
-- QAS + SecEng status (Low: explicit N/A with rationale allowed; High/O2: never N/A and cannot be waived). SecEng is independent and is not the author. Later commits must be SecEng delta-confirmed as non-widening before merge; that confirmation is recorded in the QAS review on the merge head.
+- QAS + SecEng status (Low: explicit N/A with rationale allowed; High/O2: never N/A and cannot be waived). SecEng is independent and is not the author.
 - Risk tier + O2 checklist (note if Kai downgraded any O2 item)
 - Ask: approve / change-request / escalate
