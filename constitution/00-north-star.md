@@ -28,7 +28,7 @@ Techniques that win in controlled comparison replace prior defaults. See `06-emp
 
 ## Environment (O5)
 
-- NAS + cloud = ongoing env.
+- private storage + cloud = ongoing env.
 - Mac 24×7 during working runs OK.
 - Dark Factory = optional legacy accelerator, **not** required ceremony.
 

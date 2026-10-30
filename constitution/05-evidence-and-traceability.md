@@ -126,7 +126,7 @@ The `.github/workflows/trace-check.yml` CI workflow validates:
 2. No requirements in state **Missing** (CI fails)
 3. **Deferred** and **Dropped** requirements have: `rationale`, `decided_by`, `decided_at`
 4. **Deferred** requirements have: `defer_to`
-5. Requirements with `source: intent.md#*` that are Dropped must have `decided_by: the owner Graham` (exactly)
+5. Requirements with `source: intent.md#*` that are Dropped must have `decided_by: Scott Graham` (exactly)
 6. Evidence rows must have required fields: `evidence_id`, `exact_head`, `actor`, `gate`
 
 **Blocking activation gate:** Trace-check becomes blocking only after the first `spec.md` with REQ IDs lands **AND** a code-owner-reviewed PR adds the marker file `trace/.blocking`. The follow-up validations PR (first GitHub Issue in migration Phase 1) adds the marker after implementing the additional validations below. Until both conditions are met, trace-check remains warn-only.
@@ -182,7 +182,7 @@ At **Low tier** only, HITL may be delegated with a structured `hitl_delegate` re
 hitl_delegate:
   delegating_actor: owner
   delegate_actor: the GM
-  authorization_url: https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98
+  authorization_url: <issue-tracker-url>/issue/<KEY>-<n>#comment-<id>
   scope: low  # Must be "low" only
   delegated_what: Low-tier HITL merge execution (standing Wave 0 authorization)
   delegated_at: 2026-10-28
