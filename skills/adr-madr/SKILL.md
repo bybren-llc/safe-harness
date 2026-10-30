@@ -25,7 +25,7 @@ Format: [MADR](https://adr.github.io/madr/) 4.0, plus a `## Confirmation` sectio
 
 ## Steps
 
-1. Take the next number under `docs/adr/` (four-digit prefix).
+1. Take the next number under `docs/decisions/` (four-digit prefix).
 2. Fill: status, date, deciders, context, considered options, decision outcome, consequences, Confirmation.
 3. If a later decision supersedes or amends this one, add a "Superseded/amended by" link to the later ADR and to the in-repo issue or PR that changed the rule.
 4. Add a row to `docs/decisions/log.md`: ID, date, decider, ADR link, Decision issue, merge SHA, status.
