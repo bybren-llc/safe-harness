@@ -1,0 +1,19 @@
+# Fail case: owner_identity is YAML null
+requirements:
+  - id: REQ-TEST-001
+    component: ARC-CON
+    state: Placed
+    title: Test requirement
+    source: spec.md#test
+    exit_criterion: Test passes
+    metric: M6
+
+evidence:
+  - evidence_id: test-evidence-001
+    runtime: cursor
+    exact_head: abc123
+    issue: "#1"
+    actor: Test Actor
+    gate: Test Gate
+    req_ids:
+      - REQ-TEST-001

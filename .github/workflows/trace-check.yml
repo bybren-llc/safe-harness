@@ -35,23 +35,11 @@ jobs:
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo ""
           
-          # Load owner identity from config (fail-closed)
-          if [[ ! -f ".github/harness.yml" ]]; then
-            echo "❌ Config file .github/harness.yml not found"
-            echo "   This file is required for trace validation."
-            exit 1
-          fi
+          # Call the validation script (all owner-check and decided_by logic)
+          bash trace/validate-trace.sh
           
-          OWNER_IDENTITY=$(yq -r '.owner_identity' .github/harness.yml)
-          
-          if [[ "$OWNER_IDENTITY" == "null" || -z "$OWNER_IDENTITY" ]]; then
-            echo "❌ owner_identity not set in .github/harness.yml"
-            echo "   Set owner_identity to the decision authority's full name."
-            exit 1
-          fi
-          
-          echo "✓ Loaded owner_identity from config: $OWNER_IDENTITY"
-          echo ""
+          # Continue with full trace validation if bootstrap blocking is active
+          # (The validation script handles owner-check; this continues with other checks)
           
           # Bootstrap rule: check if spec.md has REQ IDs
           # Blocking activation gate: also requires trace/.blocking marker (added by follow-up validations PR)
@@ -213,7 +201,6 @@ jobs:
               RATIONALE=$(yq -r ".requirements[$i].rationale" trace/trace-map.yaml)
               DECIDED_BY=$(yq -r ".requirements[$i].decided_by" trace/trace-map.yaml)
               DECIDED_AT=$(yq -r ".requirements[$i].decided_at" trace/trace-map.yaml)
-              SOURCE=$(yq -r ".requirements[$i].source" trace/trace-map.yaml)
               
               if [[ "$RATIONALE" == "null" ]]; then
                 echo "  ❌ Missing required field: rationale"
@@ -228,19 +215,8 @@ jobs:
                 ERRORS=$((ERRORS + 1))
               fi
               
-              # Check if source is intent.md and requires owner sign-off
-              if [[ "$SOURCE" =~ ^intent\.md# ]]; then
-                if [[ "$DECIDED_BY" != "$OWNER_IDENTITY" ]]; then
-                  echo "  ❌ Dropping REQ from intent.md requires owner's sign-off (decided_by must be exactly '$OWNER_IDENTITY')"
-                  ERRORS=$((ERRORS + 1))
-                fi
-                
-                # Require sign-off link in rationale
-                if [[ ! "$RATIONALE" =~ https?:// ]]; then
-                  echo "  ❌ Dropping REQ from intent.md requires sign-off link in rationale"
-                  ERRORS=$((ERRORS + 1))
-                fi
-              fi
+              # Owner-check for intent-sourced drops is handled by validate-trace.sh
+              # (called at the start of this workflow step)
             fi
             
             # Check component exists in arch/components.yaml

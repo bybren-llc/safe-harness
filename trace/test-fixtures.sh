@@ -28,11 +28,19 @@ BACKUP_HARNESS_CONFIG="$REPO_ROOT/.github/harness.yml.backup"
 cp "$ORIGINAL_TRACE_MAP" "$BACKUP_TRACE_MAP"
 cp "$ORIGINAL_HARNESS_CONFIG" "$BACKUP_HARNESS_CONFIG"
 
+# Create temporary config with role-term placeholder
+TEMP_CONFIG="$REPO_ROOT/.github/harness.yml.temp"
+cat > "$TEMP_CONFIG" << 'EOF'
+# safe-harness configuration (test fixture temporary)
+owner_identity: "Repository Owner"
+EOF
+
 cleanup() {
   echo ""
   echo "Restoring original files..."
   mv "$BACKUP_TRACE_MAP" "$ORIGINAL_TRACE_MAP"
   mv "$BACKUP_HARNESS_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
+  rm -f "$TEMP_CONFIG"
 }
 
 trap cleanup EXIT
@@ -40,9 +48,10 @@ trap cleanup EXIT
 PASS_COUNT=0
 FAIL_COUNT=0
 
-# Test pass fixtures
+# Test pass fixtures (with placeholder config)
 echo "Testing PASS fixtures (should succeed):"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
 for fixture in "$FIXTURES_DIR"/pass/*.yaml; do
   if [[ ! -f "$fixture" ]]; then
     continue
@@ -54,8 +63,8 @@ for fixture in "$FIXTURES_DIR"/pass/*.yaml; do
   # Copy fixture to trace-map.yaml
   cp "$fixture" "$ORIGINAL_TRACE_MAP"
   
-  # Run validation script (extracted from workflow)
-  if "$SCRIPT_DIR/validate-trace.sh" > /dev/null 2>&1; then
+  # Run validation script
+  if bash "$REPO_ROOT/trace/validate-trace.sh" > /dev/null 2>&1; then
     echo "✓ PASS"
     PASS_COUNT=$((PASS_COUNT + 1))
   else
@@ -74,32 +83,71 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo -n "  config-missing.yaml ... "
 cp "$FIXTURES_DIR/fail/config-missing.yaml" "$ORIGINAL_TRACE_MAP"
 rm "$ORIGINAL_HARNESS_CONFIG"
-if ! "$SCRIPT_DIR/validate-trace.sh" > /dev/null 2>&1; then
+if ! bash "$REPO_ROOT/trace/validate-trace.sh" > /dev/null 2>&1; then
   echo "✓ FAIL (as expected)"
   PASS_COUNT=$((PASS_COUNT + 1))
 else
   echo "❌ PASS (expected to fail)"
   FAIL_COUNT=$((FAIL_COUNT + 1))
 fi
-cp "$BACKUP_HARNESS_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
+cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
 
 # Test: owner-identity-empty
 echo -n "  owner-identity-empty.yaml ... "
 cp "$FIXTURES_DIR/fail/owner-identity-empty.yaml" "$ORIGINAL_TRACE_MAP"
 echo "owner_identity: " > "$ORIGINAL_HARNESS_CONFIG"
-if ! "$SCRIPT_DIR/validate-trace.sh" > /dev/null 2>&1; then
+if ! bash "$REPO_ROOT/trace/validate-trace.sh" > /dev/null 2>&1; then
   echo "✓ FAIL (as expected)"
   PASS_COUNT=$((PASS_COUNT + 1))
 else
   echo "❌ PASS (expected to fail)"
   FAIL_COUNT=$((FAIL_COUNT + 1))
 fi
-cp "$BACKUP_HARNESS_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
+cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
+
+# Test: owner-identity-whitespace
+echo -n "  owner-identity-whitespace.yaml ... "
+cp "$FIXTURES_DIR/fail/owner-identity-whitespace.yaml" "$ORIGINAL_TRACE_MAP"
+echo "owner_identity: \"   \"" > "$ORIGINAL_HARNESS_CONFIG"
+if ! bash "$REPO_ROOT/trace/validate-trace.sh" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
+
+# Test: owner-identity-null
+echo -n "  owner-identity-null.yaml ... "
+cp "$FIXTURES_DIR/fail/owner-identity-null.yaml" "$ORIGINAL_TRACE_MAP"
+echo "owner_identity: null" > "$ORIGINAL_HARNESS_CONFIG"
+if ! bash "$REPO_ROOT/trace/validate-trace.sh" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
+
+# Test: owner-identity-key-missing
+echo -n "  owner-identity-key-missing.yaml ... "
+cp "$FIXTURES_DIR/fail/owner-identity-key-missing.yaml" "$ORIGINAL_TRACE_MAP"
+echo "# Config with missing key" > "$ORIGINAL_HARNESS_CONFIG"
+if ! bash "$REPO_ROOT/trace/validate-trace.sh" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
 
 # Test: dropped-intent-req-wrong-decider
 echo -n "  dropped-intent-req-wrong-decider.yaml ... "
 cp "$FIXTURES_DIR/fail/dropped-intent-req-wrong-decider.yaml" "$ORIGINAL_TRACE_MAP"
-if ! "$SCRIPT_DIR/validate-trace.sh" > /dev/null 2>&1; then
+if ! bash "$REPO_ROOT/trace/validate-trace.sh" > /dev/null 2>&1; then
   echo "✓ FAIL (as expected)"
   PASS_COUNT=$((PASS_COUNT + 1))
 else
