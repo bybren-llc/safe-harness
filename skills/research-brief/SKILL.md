@@ -17,7 +17,7 @@ See the cited section; this skill grants no authority.
 
 ## When to use
 
-A decision pack or Studio handoff needs sources. Research only. No invented links (W0-08 evidence step).
+A decision pack or Studio handoff needs sources. Research only. No invented links.
 
 ## Shape
 
