@@ -23,7 +23,7 @@ Before every PR on an unfrozen head.
 ## Steps
 
 1. Confirm the working tree is what you intend to ship. No secret files, no personal-store paths.
-2. Rebase onto latest trunk (`main`) if the brief allows. See [`git-advanced`](../git-advanced/SKILL.md).
+2. Merge latest trunk (`main`) if needed. See [`git-advanced`](../git-advanced/SKILL.md).
 3. Run **the repo's documented check command** (CI script, make target, or workflow job you can run locally). Do not substitute a stack-specific command from another repo.
 4. Run the in-repo link check and the trace check. Trace-check runs on every PR with no path filter; do not skip it. Paste literal output.
 5. Confirm branch name, commit subjects, and the PR `Requirements:` line. See [`github-conventions`](../github-conventions/SKILL.md).

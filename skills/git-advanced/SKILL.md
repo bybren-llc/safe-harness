@@ -77,7 +77,7 @@ Resolve, `git add`, `git cherry-pick --continue`.
 3. `git add` the resolved files
 4. Continue the rebase, merge, or cherry-pick
 
-Rebase often on long-running feature branches so conflicts stay small.
+Merge main often on long-running feature branches so conflicts stay small.
 
 ## Stop rules
 
