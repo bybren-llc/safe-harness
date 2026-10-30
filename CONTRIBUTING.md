@@ -50,7 +50,7 @@ Agents may open PRs touching these files but **must not merge them**, except Kai
 2. **Branch:** Create branch `<issue#>-slug` off main (e.g., `42-add-trace-check`)
 3. **Implement:** Write code, tests, gather evidence
 4. **Commit:** Use `Refs #N` and `Req: REQ-<CMP>-NNN` trailers (no Linear SAF tags)
-5. **PR:** Open PR with `Requirements: REQ-<CMP>-NNN` line in body
+5. **PR:** Open PR from [`.github/pull_request_template.md`](.github/pull_request_template.md) with a `Requirements:` line (`REQ-<CMP>-NNN` or N/A)
 6. **CI:** Structure & Docs Validation + Requirements Trace Validation run automatically
 7. **CodeRabbit:** Automated code review (required gate input)
 8. **QAS:** Independent review at exact commit SHA (Kai), posted as COMMENT review (PRs are authored by the `cheddarfox` account, which is also the account Kai reviews through; GitHub does not let a PR's author APPROVE or REQUEST_CHANGES on their own PR, so the independent QAS verdict is recorded as a COMMENT review with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line)

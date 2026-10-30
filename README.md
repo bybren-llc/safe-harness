@@ -51,7 +51,7 @@
 1. Create branch: `<issue#>-slug` (e.g., `42-add-auth-check`)
 2. Implement, test, gather evidence
 3. Commit with trailers: `Refs #42` and `Req: REQ-<CMP>-NNN`
-4. Open PR with `Requirements: REQ-<CMP>-NNN` line in body
+4. Open PR from [`.github/pull_request_template.md`](.github/pull_request_template.md) with a `Requirements:` line (`REQ-<CMP>-NNN` or N/A)
 5. Wait for CI (Structure & Docs, Trace), CodeRabbit, and QAS
 6. If Medium/High, create decision pack
 7. Request merge: Kai on trunk after independent QAS APPROVE; Release · RTE after Kai's independent QAS APPROVE and RTE PASS; Scott's recorded concur on constitution/, High, and O2
@@ -71,7 +71,7 @@
 
 1. **Issue:** Create GitHub Issue with work type, risk tier, and O2 labels
 2. **Branch:** Create branch `<issue#>-slug` off main
-3. **PR:** Open PR with `Requirements: REQ-<CMP>-NNN` line in body
+3. **PR:** Open PR from [`.github/pull_request_template.md`](.github/pull_request_template.md) with a `Requirements:` line (`REQ-<CMP>-NNN` or N/A)
 4. **CI:** Structure & Docs Validation + Requirements Trace Validation run
 5. **CodeRabbit:** Automated code review (required gate input)
 6. **QAS:** Independent review at exact commit SHA (Kai), posted as COMMENT (PRs are authored by the `cheddarfox` account, which is also the account Kai reviews through; GitHub does not let a PR's author APPROVE or REQUEST_CHANGES on their own PR, so the independent QAS verdict is recorded as a COMMENT review with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line)
@@ -141,6 +141,7 @@ Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deplo
 | [`adapters/`](adapters/) | Runtime adapters (Claude Code, Cursor — doc stubs; Codex/local planned) |
 | [`.github/CODEOWNERS`](.github/CODEOWNERS) | Review gates (intent, spec, constitution, requirements, trace) |
 | [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) | Issue templates (bolt.yml, requirement.yml, decision.yml) |
+| [`.github/pull_request_template.md`](.github/pull_request_template.md) | PR body template (Requirements, risk tier, O2, evidence, exact head, gates) |
 | [`.github/labels.yml`](.github/labels.yml) | Label definitions (work types, risk tiers, O2, exit states, gates) |
 | [`.github/workflows/`](.github/workflows/) | CI workflows (wave0-checks.yml, trace-check.yml) |
 
@@ -225,7 +226,7 @@ Each evidence row includes:
 - Trailer: `Refs #N` — references GitHub Issue
 - Trailer: `Req: REQ-<CMP>-NNN` — satisfies requirement
 
-**PR body:** `Requirements: REQ-<CMP>-NNN, ...` line listing all requirements addressed
+**PR body:** Use [`.github/pull_request_template.md`](.github/pull_request_template.md). Include a `Requirements: REQ-<CMP>-NNN, ...` line listing all requirements addressed (or N/A)
 
 **Labels:** See `.github/labels.yml` (work types, risk tiers, O2 items, exit states, gate labels: `gate:rnd`, `gate:plan`, `gate:concur`, `gate:execute`, `gate:measure`, plus `needs-scott-concur`)
 

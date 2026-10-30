@@ -110,3 +110,62 @@ body:
         | bc-abc123... | cursor | abc123 | #42 | Delivery Lead | Ready for QAS | REQ-CON-001 |
     validations:
       required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Estimate
+
+        Fill estimates at open. Capture actuals at close; compare actuals with estimates each sprint and report under M5 / M6.
+
+  - type: input
+    id: estimate_agent_hours
+    attributes:
+      label: Estimate — agent-hours
+      description: Planned agent hours for this bolt
+      placeholder: "2 hours"
+    validations:
+      required: false
+
+  - type: input
+    id: estimate_human_hours
+    attributes:
+      label: Estimate — human-hours
+      description: Planned human hours (assignee, HITL, review)
+      placeholder: "0.5 hours"
+    validations:
+      required: false
+
+  - type: input
+    id: estimate_review_wait
+    attributes:
+      label: Estimate — review/approval wait (hours)
+      description: Planned wait in hours for QAS, SecEng, RTE, and HITL concur
+      placeholder: "1 hour"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: estimate_confidence
+    attributes:
+      label: Estimate — confidence
+      description: Confidence in the estimates
+      options:
+        - L
+        - M
+        - H
+    validations:
+      required: false
+
+  - type: textarea
+    id: actuals
+    attributes:
+      label: Actuals (at close)
+      description: Capture actuals at close; compare actuals with estimates each sprint and report under M5 / M6. Leave blank until close.
+      value: |
+        Agent-hours:
+        Human-hours:
+        Review/approval wait (hours):
+        Sprint compared:
+    validations:
+      required: false

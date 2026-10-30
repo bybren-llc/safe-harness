@@ -27,7 +27,7 @@
 | GitHub Issue | `#N` (repo source of truth; `constitution/05-evidence-and-traceability.md`) |
 | Exact-head SHA or PR | |
 | Evidence IDs | |
-| Requirements | REQ-<CMP>-NNN list (`constitution/03-cd-and-hitl.md`) |
+| Requirements | `REQ-<CMP>-NNN` list (`constitution/03-cd-and-hitl.md`); `none yet (bootstrap)` while `spec.md` has no REQ IDs |
 | QAS status | pass / change-request / N/A (Low tier only; rationale required). High/O2: never N/A and cannot be waived |
 | SecEng status | pass / change-request / N/A (Low tier only; rationale required). High/O2: never N/A and cannot be waived |
 | Risk tier + O2 details | (note if Kai downgraded any O2 item) |
@@ -65,6 +65,17 @@
 | SecEng | Heavy | Opus 5.5 preferred on O2 |
 
 Ultracode: **not default**.
+
+## Estimate
+
+| Field | Estimate | Actual (at close) |
+| --- | --- | --- |
+| Agent-hours | | |
+| Human-hours | | |
+| Review/approval wait (hours) | | |
+| Confidence (L/M/H) | | |
+
+Capture actuals at close; compare actuals with estimates each sprint and report under M5 / M6.
 
 ## Measure
 
