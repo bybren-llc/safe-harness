@@ -128,13 +128,12 @@ if [[ ! -f "$MAP" ]]; then
 fi
 
 if ! yq_eval '.' "$MAP" >/dev/null 2>&1; then
-  error "trace/trace-map.yaml has invalid YAML syntax"
-  if [[ "$BLOCKING_MODE" == "true" ]]; then
-    echo "❌ BLOCKING MODE: Trace check failed"
-    exit 1
-  fi
-  echo "⚠ WARN-ONLY: continuing (bootstrap mode)"
-  exit 0
+  echo ""
+  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  echo "❌ Invalid YAML FAILED (hard fail, even in warn-only mode)"
+  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  echo "trace/trace-map.yaml has invalid YAML syntax"
+  exit 1
 fi
 
 # Multi-document guard: hard-fail even in warn-only mode
@@ -170,7 +169,12 @@ echo ""
 
 REQ_COUNT=$(yq_str '.requirements | length' "$MAP")
 if ! [[ "$REQ_COUNT" =~ ^[0-9]+$ ]]; then
-  REQ_COUNT=0
+  echo ""
+  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  echo "❌ Invalid requirements count FAILED (hard fail)"
+  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  echo "requirements length is not a valid non-negative integer: $REQ_COUNT"
+  exit 1
 fi
 echo "Found $REQ_COUNT requirements"
 echo ""
