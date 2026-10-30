@@ -4,7 +4,7 @@ All notable changes to this project are documented in this file.
 
 Format follows Keep a Changelog conventions. Product versions use SemVer (`MAJOR.MINOR.PATCH`). Per-merge tags stay `vYYYY.MM.DD-<shortsha>` as recorded in [`roles/release-rte.md`](roles/release-rte.md).
 
-The `## [1.0.0] - 2026-10-30` date is to be confirmed at tag time.
+The heading stays `## [1.0.0] - TBD` until tag time.
 
 Each merged row is `PR number — one-line summary (7-char merge SHA)`, taken from `git log --first-parent main` from the first Wave 0 commit through `f90ec1f`. In-flight rows that must land before the tag are marked `(pending merge, SHA TBD)`. Delivery will ask for one final commit that fills those SHAs.
 
@@ -21,7 +21,7 @@ Placeholder rows for in-flight v1.0 work that will merge before tag `v1.0.0`. SH
 
 ## [1.0.0] - TBD
 
-First product release of safe-harness. Date to be confirmed when Release · RTE creates tag `v1.0.0` on the exact `main` SHA that RTE PASSed.
+First product release of safe-harness. After merge, Release · RTE tags the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head. The tag is created under the recorded concur.
 
 ### Added
 

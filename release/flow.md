@@ -20,7 +20,7 @@ Label key used in this file:
 
 ## 1. Purpose
 
-Each PR **ships as soon as its gates pass**. There is no release window, no batching, and no scheduled release day: one approved PR = one merge. Tag and GitHub Release publication is a separate O2 step or PR.
+Each PR **ships as soon as its gates pass**. There is no release window, no batching, and no scheduled release day: one approved PR = one merge. Tag and GitHub Release publication is owned by Release · RTE after merge, per `roles/release-rte.md`.
 
 This is what `main` already asks for [main]:
 - "SDLC target = **continuous deployment**. Mainline stays releasable. Gates prove safety without long freeze windows." (`constitution/03-cd-and-hitl.md`)
@@ -29,7 +29,7 @@ This is what `main` already asks for [main]:
 - Bolts exit on **evidence, not a date** (`constitution/02-safe-ai-dlc.md`).
 - The constitution's freeze gate (`Freeze-the-train`, quoted verbatim from `constitution/03-cd-and-hitl.md`) is "**Exception only** (critical SecEng / prod incident)" (`constitution/03-cd-and-hitl.md`; `constitution/00-north-star.md` non-goals).
 
-**What "deploy" means for `safe-harness`:** it is a docs/policy repo with no runtime deployment target (Wave 0 CI is a thin skeleton with "No deploy secrets", `constitution/03-cd-and-hitl.md`). Tag and GitHub Release publication is a separate O2 step or PR (`constitution/03-cd-and-hitl.md` O2 list; `roles/release-rte.md`). A merge does not publish the tag or GitHub Release.
+**What "deploy" means for `safe-harness`:** it is a docs/policy repo with no runtime deployment target (Wave 0 CI is a thin skeleton with "No deploy secrets", `constitution/03-cd-and-hitl.md`). Tag and GitHub Release publication is owned by Release · RTE after merge, per `roles/release-rte.md`. A merge does not publish the tag or GitHub Release.
 
 Ops · CoS reads this file plus the live queue for the morning roll (§8). `constitution/03` is the policy; this file is the operating draft; the queue is the state.
 
@@ -37,7 +37,7 @@ Ops · CoS reads this file plus the live queue for the morning roll (§8). `cons
 
 | Seat | Owns (for this file's purposes) | Source |
 | --- | --- | --- |
-| **Release · RTE** | **Release flow** (the per-PR release check, RTE PASS/HOLD) and **release notes** (one per merge). Tag and GitHub Release publication is deferred to a future O2 PR (matching `roles/release-rte.md`). **May merge** once Kai's QAS APPROVE and its own RTE PASS are on the exact head and Scott's concur is recorded wherever the constitution requires it; never its own change; never High/O2 or `constitution/` changes without Scott's recorded concur **Decided — Scott 2026-10-29 · merge rule** | [main] `roles/release-rte.md`; release-flow + release-notes ownership is [PENDING-CODIFY] |
+| **Release · RTE** | **Release flow** (the per-PR release check, RTE PASS/HOLD) and **release notes** (one per merge). Tag and GitHub Release publication is owned by Release · RTE after merge, per `roles/release-rte.md`. **May merge** once Kai's QAS APPROVE and its own RTE PASS are on the exact head and Scott's concur is recorded wherever the constitution requires it; never its own change; never High/O2 or `constitution/` changes without Scott's recorded concur **Decided — Scott 2026-10-29 · merge rule** | [main] `roles/release-rte.md`; release-flow + release-notes ownership is [PENDING-CODIFY] |
 | **Ops · CoS** | Digests and rolls of the live queue; the Monday weekly trace/flow aggregate (Ops-owned; not defined here); Scott concurrence queue; org chart; escalations | [main] `constitution/07-roles-and-lanes.md`; `roles/ops-cos.md` |
 | **Dispatcher · Board** | Tracking board; 4:30 AM ET read-only sweep. Surfaces only: never decides, posts, or merges | [main] `constitution/07-roles-and-lanes.md`; `roles/dispatcher-board.md` |
 | **Delivery · Lead** | Bolt execution; fix routing; CodeRabbit triage; evidence and decision-pack authoring; sends RTE the **ready for release check** packet | [main] owns spine (A) delivery: Bolts, CD health (M6), adapters, prove D-P1 (paraphrase of `roles/delivery-lead.md` mission); packet handoff [PENDING-CODIFY] |
@@ -146,10 +146,10 @@ RTE placement on `main` already requires the RTE check at Med, High, and O2 (`co
 
 [main] `roles/release-rte.md`: RTE owns release notes now. Product releases use SemVer tags (`vMAJOR.MINOR.PATCH`, first `v1.0.0`), created by Release · RTE on the main merge SHA under the recorded concur, with a GitHub Release whose notes match CHANGELOG.md. Per-merge `vYYYY.MM.DD-<shortsha>` tags are unchanged. See [`roles/release-rte.md`](../roles/release-rte.md).
 
-- **Publication is not a merge step.** Creating the tag and GitHub Release is its own O2 step or PR. It does not run as part of MERGED. This file does not set a publish SLA. Tagging/release automation is **deploy CI / workflows → O2 → High** unless Kai downgrades in writing at QAS (`constitution/03-cd-and-hitl.md`).
+- **Publication is not a merge step.** Creating the tag and GitHub Release is owned by Release · RTE after merge, per `roles/release-rte.md`. It does not run as part of MERGED. This file does not set a publish SLA. Tagging/release automation is **deploy CI / workflows → O2 → High** unless Kai downgrades in writing at QAS (`constitution/03-cd-and-hitl.md`).
 - **Tag scheme: `vYYYY.MM.DD-<shortsha>`** (date in America/New_York, 7-char merge SHA; e.g. `v2026.10.29-acd9f38`). Product SemVer and publication: [`roles/release-rte.md`](../roles/release-rte.md).
 - **Hotfix** under CD: the fix merges to `main` like any PR and gets its own new tag ("re-tag"); tags never move or get rewritten (`constitution/03-cd-and-hitl.md`)
-- **Release notes** are drafted by RTE from the decision pack, requirements, and evidence (`roles/release-rte.md`). When the O2 publication step or PR lands, each GitHub Release contains:
+- **Release notes** are drafted by RTE from the decision pack, requirements, and evidence (`roles/release-rte.md`). After merge, Release · RTE publishes a GitHub Release that contains:
   - PR title + link
   - Merge SHA
   - Risk tier (+ O2 items / written downgrade link if any)
@@ -169,7 +169,7 @@ The GitHub repository (Issues and PRs) is the source of truth (`constitution/05-
 | HOLDs | `RTE HOLD @ <sha> — G<n>` not yet cleared, and who owns the fix | PR comments + GitHub Issue |
 | Scott concurrence queue | PRs requiring Scott's recorded concur (`constitution/` at any tier; High; O2) with RTE PASS waiting on Scott | Ops · CoS queue + GitHub Issue/PR |
 | Awaiting merge | "Ready for HITL" with no merge | GitHub Issue/PR |
-| Tag / Release publication (separate O2 work) | The future O2 step or PR that publishes the tag and GitHub Release — not a per-merge queue of this flow | GitHub Issue/PR for that O2 work |
+| Tag / Release publication (after merge) | Owned by Release · RTE after merge, per `roles/release-rte.md` — not a per-merge queue of this flow | GitHub Release / tag on `main` |
 | Stalls | Anything past the stall thresholds below | Derived |
 
 **Stall rule — 2× the tier target, in minutes.** **Decided — Kai 2026-10-29**
@@ -190,7 +190,7 @@ Every other stall point — same 2× rule, in minutes. **Decided — Kai 2026-10
 | Scott concurrence pending (`constitution/` at any tier; High; O2) | RTE PASS posted | 2× tier target: Low 10 / Med 30 / High·O2 60 min | Ops · CoS surfaces in the Scott concurrence queue (Ops escalates per §2; never Scott-direct unless Scott in-thread) |
 | "Ready for HITL" with no merge | Both RTE PASS and HITL record present | 2× tier target: Low 10 / Med 30 / High·O2 60 min | Kai (`SendToAgent`, `priority: true`) |
 
-Tag and GitHub Release publication is its own O2 step or PR (`roles/release-rte.md`). It is not a per-merge stall of this flow. Track that work on its own GitHub Issue/PR when it exists.
+Tag and GitHub Release publication is owned by Release · RTE after merge, per `roles/release-rte.md`. It is not a per-merge stall of this flow.
 
 - Every escalation is logged twice: a comment on the PR, plus one line in §10 Escalation log below. Ops · CoS rolls them up in its Monday aggregate. This is logging only and not part of the stall rule. Decided — Kai 2026-10-29
 - Clocks run outside working hours; escalations still fire with `priority: true` (Wave 0 overnight stall fix, `prove/wave-0-retro.md` §4).
@@ -210,7 +210,7 @@ Still open (not landed, or not binding, on `main`):
 - `Requirements:` / REQ ID scheme in `spec.md` (the PR-body convention is in `constitution/03-cd-and-hitl.md`; no REQ IDs have landed yet).
 - CodeRabbit Fix/Accept/Waive triage convention (and any `.coderabbit.yaml`).
 - PR template carrying risk tier, O2 list, `Requirements:` line — landed in `.github/pull_request_template.md` (this PR).
-- Tag and GitHub Release publication — its own O2 step or PR (`roles/release-rte.md`; deploy CI / workflows). Not in this PR.
+- Tag and GitHub Release publication — owned by Release · RTE after merge, per `roles/release-rte.md`.
 - Event triggers for "packet arrived" and the 2× stall alerts to Kai via `SendToAgent` `priority: true` (Wave 0 PR-event routine was unreliable — `prove/wave-0-retro.md` §4, §6 item 1).
 - Whether `wave0-checks.yml` should list `release/flow.md` as a required path (path itself decided — Kai 2026-10-29).
 - `main` branch protection — pending Scott.
