@@ -1,7 +1,7 @@
 # Link Health & Rot Detection — safe-harness
 
 **Status:** PROPOSED (Librarian · Signals draft, pending QAS by Kai and @cheddarfox review)  
-**Owner seat:** Librarian · Signals ([`../roles/librarian-signals.md`](../roles/librarian-signals.md))  
+**Owner seat:** Librarian · Signals ([`../roles/librarian.md`](../roles/librarian.md))  
 **Component:** ARC-TRC (trace), with proposed CI extensions under ARC-WFL  
 **Authority:** constitution/05 "CI scope" and Decision 12 in [`../prove/wave-1/decision-pack.md`](../prove/wave-1/decision-pack.md) (Librarian concur conditions 1–4)  
 **Last updated:** 2026-10-29
@@ -10,7 +10,7 @@
 
 ## 1. Purpose
 
-Keep every link between safe-harness artifacts, GitHub issues and PRs, the WTFB Atlas vault, external sources, and the retired Linear SAF archive resolvable, and catch link rot before a reader does. The repo is the sole source of truth ([`../constitution/05-evidence-and-linear.md`](../constitution/05-evidence-and-linear.md)); this spec makes that claim checkable.
+Keep every link between safe-harness artifacts, GitHub issues and PRs, the Atlas vault, external sources, and the retired Linear SAF archive resolvable, and catch link rot before a reader does. The repo is the sole source of truth ([`../constitution/05-evidence-and-traceability.md`](../constitution/05-evidence-and-traceability.md)); this spec makes that claim checkable.
 
 Principles (from the Librarian concur, Wave 1):
 
@@ -26,11 +26,11 @@ Principles (from the Librarian concur, Wave 1):
 | # | Link class | Examples | Checked by |
 | --- | --- | --- | --- |
 | L1 | Relative file links in markdown | `[x](../roles/qas.md)`, reference-style `[x]: path.md` | Blocking (in-repo) |
-| L2 | Anchors / fragments | `constitution/05-evidence-and-linear.md#ci-scope`, `spec.md#anchor` in REQ `source` | Blocking (in-repo) |
+| L2 | Anchors / fragments | `constitution/05-evidence-and-traceability.md#ci-scope`, `spec.md#anchor` in REQ `source` | Blocking (in-repo) |
 | L3 | REQ / ARC references | `REQ-<CMP>-NNN` in trace map, docs, PR bodies; `component: ARC-<CMP>` | Blocking (in-repo) for the tree; PR-body linkage per trace-check follow-up |
 | L4 | Issue / PR references from the repo | `#N`, `Refs #N`, `github.com/bybren-llc/safe-harness/issues/N`, `/pull/N` | Weekly scan (needs the GitHub API) |
 | L5 | Other private GitHub targets | blob/tree URLs into `bybren-llc/*` at a branch or SHA, commit URLs | Weekly scan (GitHub connector) |
-| L6 | WTFB Atlas links, both directions | safe-harness → `bybren-llc/wtfb-atlas` paths / concept IDs; Atlas citations (`source_url`) → safe-harness | Weekly scan (GitHub connector) |
+| L6 | Atlas links, both directions | safe-harness → private Atlas repo paths / concept IDs; Atlas citations (`source_url`) → safe-harness | Weekly scan (GitHub connector) |
 | L7 | External URLs | vendor docs, papers, `https://` anything not covered above | Weekly scan (HTTP) |
 | L8 | Linear SAF references | `SAF-n`, `[SAF-n]`, `linear.app/cheddarfox/issue/SAF-n/...` | Weekly scan, resolved through the active map (§5.2) |
 
@@ -104,7 +104,7 @@ Resolved through the GitHub API (connector), never by unauthenticated HTTP, beca
 | Blob/tree at a **branch** (`main`) | `get_file_contents` at HEAD; if missing, search `list_commits` for the path to find a rename | Renamed → `moved` with the new path; deleted → `broken`; branch deleted → `broken` |
 | Commit URL | `get_commit` | Missing → `broken` |
 | Repo URL | `get_repository` | 404 → `auth-unknown` first (it may be an access gap), then `broken` only after confirming the org listing does not include it |
-| Atlas path or concept | `get_git_tree` on `bybren-llc/wtfb-atlas` `main` (recursive), plus the Atlas manifest (`vault/_meta/manifest.json`) for concept IDs | Not in tree / not registered → `broken`; registered stub only → `ok` with note |
+| Atlas path or concept | `get_git_tree` on the private Atlas repo `main` (recursive), plus the Atlas manifest (path from Atlas CONVENTIONS) for concept IDs | Not in tree / not registered → `broken`; registered stub only → `ok` with note |
 | Atlas → safe-harness citations | Search Atlas for `safe-harness` `source_url`s and resolve each as above | Same verdicts; fixes go to Atlas as a PR that follows Atlas register-first rules |
 
 ### 4.4 Private-repo and auth handling
@@ -157,7 +157,7 @@ Each scan finds `SAF-[0-9]+` (bare, bracketed, or in a Linear URL) in this repo,
 - **Never rewrite historical evidence.** Wave 0 evidence in `prove/` (bolt briefs, retro, decision packs), commit messages, and quoted reviews keep their SAF references and Linear URLs; constitution/05 says these URLs stay valid and cited. The scan only checks they resolve.
 - In live docs (README, constitution, roles, templates, adapters, trace docs), the rewrite is **additive**: `SAF-3` becomes `SAF-3 (#3)` or gains the GitHub link beside the Linear one. Nothing is deleted.
 - One rewrite PR per batch (per scan), never per reference; branch `<issue#>-saf-rewrite-<yyyymmdd>`; commit trailer `Refs #N`. Constitution files touched by a rewrite need Scott concur like any constitution change.
-- Atlas rewrites go to `bybren-llc/wtfb-atlas` as a separate PR following Atlas CONVENTIONS (latest-wins, register-first, citations carry `source_url`).
+- Atlas rewrites go to the private Atlas repo as a separate PR following Atlas CONVENTIONS (latest-wins, register-first, citations carry `source_url`).
 
 ## 6. Reporting
 
@@ -246,7 +246,7 @@ evidence:
 1. **Spec location.** Resolved (Kai): keep this file in `trace/` beside `schema.md` (ARC-TRC, CODEOWNED). A later move to `docs/specs/` would need the Wave 0 link scan extended to cover it.
 2. **SAF map columns.** Resolved (Kai): the canonical map is the 6-column header (`saf_id,linear_url,github_issue,pr,title,status`) in `schema.md` and `linear-saf-map.csv`. `prove/wave-1/migration-plan.md` is aligned to that header in this PR.
 3. **Cutover date** for the freeze: TBD per migration-plan.md.
-4. **Atlas manifest path** (`vault/_meta/manifest.json`) is taken from Atlas CONVENTIONS; confirm before the first L6 run.
+4. **Atlas manifest path** is taken from Atlas CONVENTIONS; confirm before the first L6 run.
 5. **Scan day/time.** Proposed Monday 07:00 ET with confirm re-check Tuesday 07:00 ET, so the summary is ready for the Monday roll-up. Adjust as needed.
 6. **Who creates the `link-rot` label** in GitHub, and when (labels.yml says manual or approved automation after Scott concurrence). Keep the `[link-rot]` title prefix. A "create link-rot label" item is added to the labels follow-up; this PR documents the label only.
 
@@ -258,7 +258,7 @@ evidence:
 
 - `bybren-llc/safe-harness` at `main` HEAD (recursive tree + file contents via the GitHub connector), open issues and PRs
 - `trace/trace-map.yaml`, `requirements/REQ-*.yaml`, `arch/components.yaml`, the active SAF map per §5.2 (+ its `.sha256` once frozen)
-- `bybren-llc/wtfb-atlas` at `main` HEAD (tree, manifest, files citing safe-harness)
+- the private Atlas repo at `main` HEAD (tree, manifest, files citing safe-harness)
 - Box-local scan state from the previous run
 - Open issues titled `[link-rot]` (for dedupe)
 
@@ -280,7 +280,7 @@ evidence:
 **Outputs**
 
 - `link-rot` issues (new or updated)
-- At most one fix PR per repo per scan (safe-harness, wtfb-atlas)
+- At most one fix PR per repo per scan (safe-harness, private Atlas repo)
 - One weekly summary comment + chat relay to Scott
 - Updated box-local scan state
 - Escalations: access gaps and privacy findings to Kai/Scott directly

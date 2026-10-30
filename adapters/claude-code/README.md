@@ -19,7 +19,7 @@ Maps constitution → Claude Code teams / workflows / hooks. Thin stub — no ul
 Place under future repo `.claude/agents/` (names only — bodies land at create time):
 
 ```
-kai-gm-architect.md
+gm-architect.md
 delivery-lead.md
 studio-lead.md   # consult-only on Delivery train
 implementer.md
@@ -60,4 +60,4 @@ Trigger tests (does a prompt load the right skill) are **UNKNOWN** to automate i
 
 ## Local / HF cache (Option A)
 
-NAS Option A (Scott 2026-10-28): Docker `hf` → MainSqueeze `local-ai`. Adapters that touch local inference must set `HF_HOME` (and related hub caches) to NAS-backed paths — never Mac Desktop. Exact pins from Studio/Ops; do not invent paths. Weights never enter the GitHub template.
+NAS Option A (Scott 2026-10-28): Docker `hf` → a private NAS inference volume. Adapters that touch local inference must set `HF_HOME` (and related hub caches) to NAS-backed paths — never Mac Desktop. Exact pins from Studio/Ops; do not invent paths. Weights never enter the GitHub template.

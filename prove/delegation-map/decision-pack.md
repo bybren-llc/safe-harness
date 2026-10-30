@@ -58,9 +58,9 @@ O2 checklist:
 | Canonical map | `constitution/07-roles-and-lanes.md:9-21` |
 | Delivery · Lead owns projects end to end | `constitution/07-roles-and-lanes.md:13`, `roles/delivery-lead.md:5`, `constitution/01-round-table.md:13` |
 | Ops · CoS runs digests and rolls | `constitution/07-roles-and-lanes.md:14`, `roles/ops-cos.md:5`, `constitution/01-round-table.md:11` |
-| Kai handles only High-tier or cross-lane work | `constitution/07-roles-and-lanes.md:15`, `roles/kai-gm-architect.md:5`, `constitution/01-round-table.md:10`, `constitution/02-safe-ai-dlc.md:33` |
-| Librarian · Signals: signals, X research, CVE scans | `constitution/07-roles-and-lanes.md:16`, `roles/librarian-signals.md:5` |
-| Scout · Story Media: tool, model, and price calls | `constitution/07-roles-and-lanes.md:17`, `roles/scout-story-media.md:5` |
+| Kai handles only High-tier or cross-lane work | `constitution/07-roles-and-lanes.md:15`, `roles/gm-architect.md:5`, `constitution/01-round-table.md:10`, `constitution/02-safe-ai-dlc.md:33` |
+| Librarian · Signals: signals, X research, CVE scans | `constitution/07-roles-and-lanes.md:16`, `roles/librarian.md:5` |
+| Scout · Story Media: tool, model, and price calls | `constitution/07-roles-and-lanes.md:17`, `roles/scout.md:5` |
 | Studio · Lead covers stories | `constitution/07-roles-and-lanes.md:18`, `roles/studio-lead.md:5` |
 | Release · RTE cited, not restated (#22 files) | `constitution/07-roles-and-lanes.md:23-31` |
 | Dispatcher · Board (new staff role) | `constitution/07-roles-and-lanes.md:33-39`, `roles/dispatcher-board.md:1-39`, `constitution/01-round-table.md:12` |
@@ -100,7 +100,7 @@ O2 checklist:
 
 | File:line |
 | --- |
-| `constitution/05-evidence-and-linear.md:13` |
+| `constitution/05-evidence-and-traceability.md:13` |
 | `constitution/03-cd-and-hitl.md:136` |
 | `constitution/README.md:16` |
 | `constitution/01-round-table.md:40` |
@@ -123,7 +123,7 @@ No secret value is included.
 
 | File:line |
 | --- |
-| `constitution/05-evidence-and-linear.md:178-198` (record fields kept; `delegated_what` / `delegated_at` added) |
+| `constitution/05-evidence-and-traceability.md:178-198` (record fields kept; `delegated_what` / `delegated_at` added) |
 | `constitution/03-cd-and-hitl.md:137` |
 | `release/flow.md:102` |
 | `release/flow.md:209` |

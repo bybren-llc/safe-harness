@@ -10,7 +10,7 @@ description: Detect and repair drift between governance docs, README, AGENTS.md,
 
 ## Authority
 
-- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — intent/spec and CODEOWNERS-gated paths
+- [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md) — intent/spec and CODEOWNERS-gated paths
 - [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — merge execution
 
 See the cited section; this skill grants no authority.
@@ -37,4 +37,4 @@ Run the repo's documented link check and markdown syntax check. Paste literal ou
 
 - Repo docs only. No external vault format, no machine paths.
 - Do not edit `intent.md` or `spec.md`. See the cited section; this skill grants no authority.
-- Do not merge `@<code-owners>` paths. See the cited section; this skill grants no authority.
+- Do not merge CODEOWNERS-gated paths. See the cited section; this skill grants no authority.

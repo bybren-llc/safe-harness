@@ -11,7 +11,7 @@ description: Apply trunk GitHub conventions — branch names, plain commit subje
 ## Authority
 
 - [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — GitHub conventions (branch, trailers, PR Requirements line)
-- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — labels and issue types
+- [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md) — labels and issue types
 
 See the cited section; this skill grants no authority.
 

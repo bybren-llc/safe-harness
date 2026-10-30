@@ -52,7 +52,7 @@ W0-04, W0-07 and W0-09 are superseded stubs. They do not have their own ADR file
 
 **Limits:** The delivery lead never merges. The human owner's HITL is still required for any deploy and for High/O2 items. This record does not amend `constitution/05`. D1 is a separate decision.
 
-**Provenance:** Linear SAF-1 comment `54d37e98`, as already cited in `constitution/05-evidence-and-linear.md`.
+**Provenance:** Linear SAF-1 comment `54d37e98`, as already cited in `constitution/05-evidence-and-traceability.md`.
 
 Human-owner confirmation of this 2026-10-28 relayed record is still pending (D1, tracked in #53). This entry does not present the 2026-10-28 record as the human owner's own words.
 

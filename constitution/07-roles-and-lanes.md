@@ -12,7 +12,7 @@ This file is the lane-ownership map. Seats and exit states stay in `01-round-tab
 | --- | --- | --- |
 | **Delivery · Lead** | Spine A | Projects end to end |
 | **Ops · CoS** | Staff (both spines) | Digests and rolls |
-| **Kai** (GM & lead ARCHitect) | Cross-lane / High | High-tier or cross-lane work only. Standing GM and QAS duties stay on [`roles/kai-gm-architect.md`](../roles/kai-gm-architect.md) |
+| **Kai** (GM & lead ARCHitect) | Cross-lane / High | High-tier or cross-lane work only. Standing GM and QAS duties stay on [`roles/gm-architect.md`](../roles/gm-architect.md) |
 | **Librarian · Signals** | Knowledge | Signals, X research, and CVE scans |
 | **Scout · Story Media** | Research | Tool, model, and price calls |
 | **Studio · Lead** | Spine B | Stories |

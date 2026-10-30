@@ -13,7 +13,7 @@ SAW = **Safe Agentic Workflow** (everyday safe). Not SAFe the trademark. SAFe + 
 3. Run cadence via `02-safe-ai-dlc.md` (Bolts, Units of Work, independence).
 4. Gate CD with `03-cd-and-hitl.md` (risk tiers + O2 high-risk list).
 5. Route knowledge with `04-privacy-and-vaults.md` (NAS SoT; personal vault never remote; Scott owns secrets).
-6. Track evidence in GitHub per `05-evidence-and-linear.md`. Linear is optional; the preferred path is design, specs, and PRDs in GitHub. No Linear Agents.
+6. Track evidence in GitHub per `05-evidence-and-traceability.md`. Linear is optional; the preferred path is design, specs, and PRDs in GitHub. No Linear Agents.
 7. Retire dogma via `06-empiricism.md`.
 8. Apply the lane map in `07-roles-and-lanes.md` (delegation map; Dispatcher · Board; scanner-not-fixer).
 
@@ -33,4 +33,4 @@ Copy patterns from SAW `dev` when they win comparisons. Do **not** rewrite SAW i
 
 ## Provenance
 
-ADR pack concurred 2026-10-28 (C1–C8 / O1–O6 / E1–E3). See [`docs/decisions/`](../docs/decisions/).
+ADR pack concurred 2026-10-28 (C1–C8 / O1–O6 / E1–E3). See [`docs/decisions/`](../docs/decisions/) and [`docs/decisions/log.md`](../docs/decisions/log.md).

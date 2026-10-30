@@ -10,7 +10,7 @@ description: Give the agent a feedback loop — failing test first for bugs, pas
 
 ## Authority
 
-- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — evidence before HITL; portable rows
+- [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md) — evidence before HITL; portable rows
 - [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — High / O2 evidence sufficiency
 - [`constitution/02-safe-ai-dlc.md`](../../constitution/02-safe-ai-dlc.md) — QAS independence
 

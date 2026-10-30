@@ -12,7 +12,7 @@ description: Enforce the personal-boundary rule — no personal-store content, s
 
 - [`constitution/04-privacy-and-vaults.md`](../../constitution/04-privacy-and-vaults.md) — vault classes; secrets; refuse list
 - [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — privacy-boundary as O2
-- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — repo is SoR for evidence
+- [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md) — repo is SoR for evidence
 
 See the cited section; this skill grants no authority.
 

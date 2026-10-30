@@ -10,7 +10,7 @@ description: Add or update REQ-<CMP>-NNN rows and trace-map states (Placed, Defe
 
 ## Authority
 
-- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — REQ format; trace states; who may author vs merge `requirements/` and `trace/`; intent/spec ownership
+- [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md) — REQ format; trace states; who may author vs merge `requirements/` and `trace/`; intent/spec ownership
 
 See the cited section; this skill grants no authority.
 
@@ -20,7 +20,7 @@ Requirements are the definition of success. Use this skill to add or update a `R
 
 ## Identifier
 
-`REQ-<CMP>-NNN` where `<CMP>` is an `ARC-<CMP>` component from `arch/components.yaml`. Do not invent a component. Do not invent a REQ ID that is not going into the registry.
+`REQ-<CMP>-NNN` where `<CMP>` is the three-letter code after `ARC-` in `arch/components.yaml`. For example, use `REQ-TRC-001` with `component: ARC-TRC`. Do not invent a component. Do not invent a REQ ID that is not going into the registry.
 
 ## Trace states
 

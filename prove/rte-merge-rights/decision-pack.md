@@ -142,7 +142,7 @@ Tag automation (`vYYYY.MM.DD-<shortsha>`, one per merge) and GitHub Release publ
 
 - `release/flow.md` — RTE's continuous-deployment release flow (as written)
 - `constitution/03-cd-and-hitl.md` — template-default merge authority; RTE placement; HOLD override; open questions
-- `constitution/01-round-table.md`, `constitution/02-safe-ai-dlc.md`, `constitution/05-evidence-and-linear.md`
+- `constitution/01-round-table.md`, `constitution/02-safe-ai-dlc.md`, `constitution/05-evidence-and-traceability.md`
 - `roles/release-rte.md`
 - `README.md`, `CONTRIBUTING.md`
 - `adapters/claude-code/README.md`, `adapters/cursor/README.md`

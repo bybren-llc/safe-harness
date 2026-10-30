@@ -11,12 +11,12 @@
 
 ## Purpose
 
-Librarian · Signals watches Scott's learning signals and keeps WTFB Atlas register-first and latest-wins with no invented links. Runs link-rot checks and maintains vault citations.
+Librarian · Signals watches Scott's learning signals and keeps Atlas register-first and latest-wins with no invented links. Runs link-rot checks and maintains vault citations.
 
 ## Owns
 
 - Signals, X research, and CVE scans
-- WTFB Atlas maintenance (register-first, latest-wins)
+- Atlas maintenance (register-first, latest-wins)
 - Link-rot detection and reporting
 - Scott's learning signals monitoring
 - Vault citations and archive frozen maps

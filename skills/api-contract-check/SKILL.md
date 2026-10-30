@@ -23,10 +23,11 @@ A later warn-only CI job may pair with this skill. Until then, run locally.
 ## Steps
 
 1. Read the configured spec path (proposed default: `openapi.yaml`; **UNKNOWN** until the adopter sets it).
-2. If the path is missing, print a skip notice and exit 0. Do not invent a spec.
-3. If present, run the adopter's documented property-based contract tester (Schemathesis is an example) against the spec, and a breaking-change diff (oasdiff is an example) against the previous released spec.
-4. Report: new violations, breaking changes, skip/warn/fail. v1.0 default is warn-only.
-5. Paste literal output as evidence.
+2. If no spec path is configured, print a skip notice and exit 0. Do not invent a spec.
+3. If a path is configured but the file is missing or unreadable, warn and do not exit 0. Do not invent a spec.
+4. If the configured file is present, run the adopter's documented property-based contract tester (Schemathesis is an example) against the spec, and a breaking-change diff (oasdiff is an example) against the previous released spec.
+5. Report: new violations, breaking changes, skip/warn/fail. v1.0 default is warn-only.
+6. Paste literal output as evidence.
 
 ## Stop rules
 
