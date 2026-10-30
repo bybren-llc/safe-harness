@@ -19,7 +19,7 @@ Review gates (not ownership) are listed in [`.github/CODEOWNERS`](.github/CODEOW
 
 ## Skills
 
-Canonical skills live in `skills/` as `skills/<slug>/SKILL.md` (PR #32; the directory may not be on `main` yet). Adapters map that tree into the runtime. Do not fork skill bodies.
+Canonical skills live in [`skills/`](skills/) as `skills/<slug>/SKILL.md`. Adapters map that tree into the runtime. Do not fork skill bodies.
 
 ## Adapters
 
@@ -59,10 +59,12 @@ Trace check (warn-only until `spec.md` has REQ IDs **and** `trace/.blocking` exi
 yq eval '.' trace/trace-map.yaml
 ```
 
-When `skills/` is present:
+Skills frontmatter and denylist (from the repo root):
 
 ```bash
 python3 skills/check-frontmatter.py
+python3 scripts/check-denylist.py
+python3 scripts/test_check_denylist.py
 ```
 
 ## Stop

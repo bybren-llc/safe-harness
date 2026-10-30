@@ -48,6 +48,16 @@ Wave 0: document intents here; implement when `safe-harness` exists.
 - Dark Factory / tmux **not** required for happy path.
 - Linear Agents **not** wired.
 
+## Skills library (v1.0)
+
+Canonical skills live in [`../../skills/`](../../skills/README.md) as `skills/<slug>/SKILL.md`.
+
+This adapter maps each slug into the Claude Code skills directory (typically `.claude/skills/<slug>/SKILL.md`) by copy or symlink at install time. Do not rewrite skill bodies in the adapter tree. See the [Claude Code skills](https://docs.claude.com/en/docs/claude-code/skills) docs.
+
+Runtime-specific role→model examples stay in this adapter. Skills themselves use tier names only.
+
+Trigger tests (does a prompt load the right skill) are **UNKNOWN** to automate in v1.0. Generic hooks are **UNKNOWN** and not shipped.
+
 ## Local / HF cache (Option A)
 
-NAS Option A (Scott 2026-10-28): Docker `hf` → MainSqueeze `local-ai`. Adapters that touch local inference must set `HF_HOME` (and related hub caches) to NAS-backed paths — never Mac Desktop. Exact pins from Studio/Ops; do not invent paths. Weights never enter the GitHub template.
+NAS Option A (Scott 2026-10-28): Docker `hf` → a private NAS inference volume. Adapters that touch local inference must set `HF_HOME` (and related hub caches) to NAS-backed paths — never Mac Desktop. Exact pins from Studio/Ops; do not invent paths. Weights never enter the GitHub template.

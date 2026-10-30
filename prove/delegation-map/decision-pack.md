@@ -23,7 +23,7 @@ Delivery does not merge. Kai QAS APPROVE and Scott's own-words concur are requir
 
 | Field | Value |
 | --- | --- |
-| GitHub Issue | Follow-up from #22 / `d88c884` (originating #10). Dedicated Decision issue not opened in this PR. |
+| GitHub Issue | #30 (follow-up from #22 / `d88c884`, originating #10) |
 | Exact-head SHA / PR | SecEng + CodeRabbit reviewed `81efe31` on [#27](https://github.com/bybren-llc/safe-harness/pull/27). This commit is the follow-up recording. Later commits must be SecEng delta-confirmed. |
 | Evidence IDs | #22 squash `d88c884`; CodeRabbit review 5712012854; SecEng PASS at `81efe31`; this pack |
 | Requirements | No REQ-IDs in spec.md yet |
