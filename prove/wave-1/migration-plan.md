@@ -46,7 +46,8 @@ SAF-N,<linear-url>,#<issue>,#<pr>,<title>,<status>
 - [ ] Wave 1 PR merged to main
 - [ ] GitHub Issue templates available (`.github/ISSUE_TEMPLATE/`)
 - [ ] Labels created from `.github/labels.yml` (manual or automation)
-- [ ] First GitHub Issue created: "Trace-check blocking validations" (implements additional validations from constitution/05:136-141, adds `trace/.blocking` marker)
+- [x] First GitHub Issue created: "Trace-check blocking validations" (#7)
+- [ ] Validations PR merged with `trace/.blocking` marker (creating the issue does not complete Phase 1; the marker waits on spec.md REQ IDs)
 - [ ] Trace-check CI operational (bootstrap mode)
 
 **Duration:** Immediate (gated on Scott concurrence)
