@@ -33,7 +33,7 @@ A flaky outside site must never block a merge.
 
 1. One trace map is the truth. Other docs cite it; they do not restate REQ text.
 2. **No invented links.** A target you cannot verify is `UNKNOWN`. Register-first.
-3. Rot is reported as issues labelled `link-rot`. Fixes are PRs. Merge execution: see the cited section; this skill grants no authority.
+3. Rot is reported as issues labelled `link-rot`. Fixes are PRs. Both happen only in the reporting phase. Merge execution: see the cited section; this skill grants no authority.
 4. Personal-store and private-store targets must not appear. If they do, report a privacy finding; do not quote the target in a public issue.
 5. Skip placeholders, `<...>` samples, and documentation-range hosts.
 
@@ -47,7 +47,9 @@ Read-only: no repo writes, no PR comments, no channel posts. Collect findings on
 
 ### Reporting phase (authorized only)
 
-Runs only when authorized. Then: open `link-rot` issues, send a weekly summary to Ops, and (for a clear rewrite) open a fix PR for a merge seat.
+The human owner (HITL) authorizes the reporting phase. The delivery lead may file in-repo issues only. Each run needs an explicit go. The weekly schedule is not authorization.
+
+When authorized for that run: open `link-rot` issues (the delivery lead may file in-repo issues only), send a weekly summary to Ops only with the human owner's OK (same external-write bar as [`signals-digest`](../signals-digest/SKILL.md) and the cited `constitution/07` section), and (for a clear rewrite) open a fix PR for a merge seat. A fix PR that is a security finding needs the human owner's explicit go (scanner, not fixer). See the cited section; this skill grants no authority.
 
 Do not teach frozen-map locator forms or internal knowledge-base URL shapes. Cite concept names.
 
