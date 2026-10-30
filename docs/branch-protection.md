@@ -18,7 +18,7 @@ Use a **classic branch protection rule** on `main` (Settings → Branches → Br
 | Require approval of the most recent reviewable push | Off |
 | Require status checks to pass before merging | On |
 | Require branches to be up to date before merging | On |
-| Required status checks | `Structure & Docs Validation`; `Requirements Trace Validation` (warn-only); CodeRabbit |
+| Required status checks | `Structure & Docs Validation` (GitHub Actions); `Requirements Trace Validation` (warn-only, GitHub Actions); CodeRabbit (CodeRabbit GitHub App). Pin each expected source. Without a pinned source, the shared account could post a passing status itself. |
 | `API Contract Checks` | **Do not require** until #35 is closed |
 | Allow force pushes | Off (block force-pushes) |
 | Allow deletions | Off (block deletion) |
@@ -76,10 +76,10 @@ After this file is on `main`:
 9. Leave **Require approval of the most recent reviewable push** unchecked.
 10. Enable **Require status checks to pass before merging**.
 11. Enable **Require branches to be up to date before merging**.
-12. Add required checks, using the names as they appear in the picker (a check must have run on a recent pull request to appear):
-   - `Structure & Docs Validation`
-   - `Requirements Trace Validation`
-   - `CodeRabbit`
+12. Add required checks, using the names as they appear in the picker (a check must have run on a recent pull request to appear). Pin the expected source for each. Without a pinned source, the shared account could post a passing status itself.
+   - `Structure & Docs Validation` — GitHub Actions
+   - `Requirements Trace Validation` — GitHub Actions
+   - `CodeRabbit` — CodeRabbit GitHub App (commit status from that app)
 13. Do **not** add `API Contract Checks` until #35 is closed.
 14. Leave **Allow force pushes** unchecked.
 15. Leave **Allow deletions** unchecked.
@@ -89,7 +89,8 @@ After this file is on `main`:
 ## Verify
 
 1. **The branch shows protected.** Settings → Branches lists a protection rule on `main`. The `main` branch reports as protected (`protected: true`).
-2. **A test pull request shows the checks as required.** Open a test PR targeting `main`. The three required checks appear as required (merge waits on them). `API Contract Checks` is not required.
-3. **Force-push and deletion are blocked.** A non-admin cannot force-push to `main` or delete `main`.
+2. **A test pull request shows the checks as required, from the pinned sources.** Open a test PR targeting `main`. The three required checks appear as required (merge waits on them). `Structure & Docs Validation` and `Requirements Trace Validation` are reported by GitHub Actions. CodeRabbit is reported by the CodeRabbit GitHub App. `API Contract Checks` is not required.
+3. **Include administrators is Off.** Settings shows "Include administrators" (enforce for admins) Off, as intended.
+4. **Force-push and deletion are blocked.** Run the force-push test as a non-admin with no bypass permission. An admin push is not a valid test. The same non-admin must not be able to delete `main`.
 
 When #35 closes, a follow-up (HITL owner or named admin) may add `API Contract Checks` to the required list. That is not this rule.
