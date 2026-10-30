@@ -4,7 +4,7 @@
 **Owner seat:** Librarian · Signals ([`../roles/librarian.md`](../roles/librarian.md))  
 **Component:** ARC-TRC (trace), with proposed CI extensions under ARC-WFL  
 **Authority:** constitution/05 "CI scope" and Decision 12 in [`../prove/wave-1/decision-pack.md`](../prove/wave-1/decision-pack.md) (Librarian concur conditions 1–4)  
-**Last updated:** 2026-10-29
+**Last updated:** 2026-10-30
 
 ---
 
@@ -44,15 +44,30 @@ Files scanned: every tracked `*.md`, `*.yaml`, `*.yml`, and `*.csv` at `main` HE
 
 These need only the checkout, so they can block without flake risk.
 
-**Already live** in [`../.github/workflows/wave0-checks.yml`](../.github/workflows/wave0-checks.yml) ("Check markdown relative links"): L1 for root `*.md` and `constitution/ roles/ adapters/ templates/ prove/`.
+**Already live** in [`../.github/workflows/wave0-checks.yml`](../.github/workflows/wave0-checks.yml) ("Check markdown relative links"): L1 for root `*.md` and `constitution/ roles/ adapters/ templates/ prove/ trace/`.
 
 **Already live** in [`../.github/workflows/trace-check.yml`](../.github/workflows/trace-check.yml) (warn-only until `trace/.blocking`): REQ → ARC component exists in `arch/components.yaml`.
+
+#### Coverage (B1)
+
+The Wave 0 L1 find list in `wave0-checks.yml` is the in-repo coverage for relative file links. `trace/` is in that list (#24), so `trace/link-health.md`, `trace/schema.md`, and other `trace/*.md` are scanned the same way as `constitution/` and `roles/`. SAF map files that are not markdown (`linear-saf-map.csv`, `trace-map.yaml`) stay out of this L1 step; they remain weekly-scan / trace-check scope.
+
+| Tree | In the Wave 0 L1 find list |
+| --- | --- |
+| root `*.md` | yes |
+| `constitution/` | yes |
+| `roles/` | yes |
+| `adapters/` | yes |
+| `templates/` | yes |
+| `prove/` | yes |
+| `trace/` | yes (#24) |
+| `requirements/`, `arch/`, `.github/`, `docs/` | no (still proposed under B1) |
 
 **PROPOSED extensions** (to land as their own Low/High-tier issues; workflow edits are O2 `deploy-ci` and default to High):
 
 | Check | Rule | Fails when |
 | --- | --- | --- |
-| B1 coverage | Extend the L1 scan to every tracked `*.md` (adds `trace/`, `requirements/`, `arch/`, `.github/`, any new `docs/`) | A relative target does not exist |
+| B1 coverage | Extend the L1 scan to every tracked `*.md`. `trace/` is live in Wave 0 (#24). Remaining: `requirements/`, `arch/`, `.github/`, any new `docs/` | A relative target does not exist |
 | B2 anchors | For L2 links into in-repo markdown, the fragment must match a heading slug (GitHub slug rules) or an explicit HTML anchor in the target. Non-REQ fragment links into `spec.md` and `intent.md` stay in B2 and can block a PR. REQ `source:` anchors on those files are excluded from B2 | Fragment not found |
 | B3 REQ sources | Each REQ `source:` (`spec.md#…` / `intent.md#…`) must resolve through both checks. The B3 trace-check follow-up is authoritative for blocking; the weekly scan is advisory only. Not B2 | Anchor missing |
 | B4 REQ references | Every `REQ-[A-Z]{3}-[0-9]{3}` mentioned in tracked files exists in `trace/trace-map.yaml` or `requirements/REQ-*.yaml`, in any state | Unknown REQ ID |
@@ -169,7 +184,7 @@ Each scan finds `SAF-[0-9]+` (bare, bracketed, or in a Linear URL) in this repo,
 - **Body (public):** target, verdict, first-seen and last-seen dates (ET), HTTP/API evidence (status chain, final URL, or API response summary), every source location, and a proposed fix or `UNKNOWN`. Locators by source type:
   - In-repo file: `path:line` at the scanned safe-harness SHA (permalink to that SHA).
   - Issue or PR body: the issue or PR permalink plus the body line, or the comment permalink when the citation is in a comment.
-  - Atlas citation (chat only; Atlas is private): the Atlas permalink at its commit SHA.
+  - Atlas, vault, or other private citation: **not allowed in a public body.** Public issue and PR bodies may use only the target class (`atlas` or `vault-citation`). Do not write an Atlas permalink, a vault path, a private-repo path, or any other private locator in a public issue or PR body. Those locators go only to Librarian · Signals' chat (see Body (private) below).
 - **Body (private GitHub, Atlas, or vault citation):** fingerprint, target class, verdict, first-seen and last-seen dates (ET), and the source repo name only. Omit the raw target, private URLs, API details, and private citation locators; send those to Librarian · Signals' chat. Personal-vault paths never appear in an issue.
 - **Dedupe:** before opening, search open issues for the fingerprint. If found, append new source locations or a verdict change as one comment (public targets) or a redacted class/date update (private targets); never open a second issue. If a closed issue matches and the target is failing again, reopen-by-reference: open a new issue that links the old one.
 - **Recovery:** when a reported target passes two consecutive scans, comment "recovered" with evidence. Closing is done by the fix PR (`Fixes #N`) or a human; the Librarian does not close issues it cannot tie to a merged fix.

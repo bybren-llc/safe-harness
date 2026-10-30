@@ -298,7 +298,7 @@ hitl_delegate:
 - Marked "pending Kai approval" for review
 - Extensible (add components as needed)
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** GM QAS approved the Wave 1 seed. Work proceeds under the HITL's standing concur for safe-harness v1.0.
 
 ---
 

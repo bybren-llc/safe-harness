@@ -38,10 +38,14 @@ The following paths require the CODEOWNERS reviewer before merge:
 - `requirements/` — agent-authored REQ-<CMP>-NNN registry (human review gate)
 - `constitution/` — agent-authored governance changes (human review gate)
 - `trace/` — agent-authored trace map (human review gate)
+- `arch/` — component registry (human review gate)
+- `AGENTS.md` and `adapters/**/AGENTS.md` — agent entry points (human review gate)
+- `skills/` — skills library (human review gate)
+- `.github/CODEOWNERS` and `.github/workflows/` — review-gate and CI controls
 
-**Ownership distinction:** Humans own and accept only design (`intent.md` + `spec.md`). Agents own and author everything else (plan, issues, code, tests, PRs, evidence, requirements, trace, constitution changes). CODEOWNERS is a review gate, not ownership.
+**Ownership distinction:** Humans own and accept only design (`intent.md`, `intent/`, `spec.md`). Agents own and author everything else (plan, issues, code, tests, PRs, evidence, requirements, trace, constitution changes). CODEOWNERS is a review gate, not ownership.
 
-Agents may open PRs touching these files but **must not merge them**, except as [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) allows for `constitution/` (including the human owner's recorded own-words concurrence at exact head when that file requires it). Use this repo's HITL-concur label (`needs-scott-concur`) on PRs awaiting the human owner.
+Merge rules: see [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md).
 
 ---
 
@@ -87,7 +91,7 @@ Portable evidence ([`constitution/05-evidence-and-traceability.md`](constitution
 
 **Humans own and accept only design:**
 
-- `intent.md`, `spec.md` — the human owner (HITL/POPM) owns and accepts; agents may propose but **never merge**
+- `intent.md`, `intent/`, `spec.md` — the human owner (HITL/POPM) owns and accepts; agents may propose but **never merge**
 
 **Agents own everything else end-to-end:**
 
