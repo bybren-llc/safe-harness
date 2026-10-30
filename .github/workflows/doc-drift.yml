@@ -1,0 +1,201 @@
+name: Doc drift (warn-only)
+
+on:
+  pull_request:
+
+# Least privilege. No secrets. No pull_request_target.
+permissions:
+  contents: read
+
+jobs:
+  doc-drift:
+    name: Doc drift (warn-only)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Doc-drift check (warn-only)
+        # WARN-ONLY (v1). Findings print as WARN. This step exits 0.
+        # To flip to blocking later, see docs/ci/doc-drift.md.
+        # Do not interpolate github.event.* into this run: script.
+        continue-on-error: true
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Doc drift (warn-only, v1 proposed)"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+
+          WARNINGS=0
+
+          finish() {
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "Warnings: ${WARNINGS}"
+            echo "WARN-ONLY: exiting 0 (v1 never fails the build)"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            exit 0
+          }
+
+          # GITHUB_BASE_REF is the Actions default env for pull_request.
+          # Reject anything that is not a simple ref name (no event payload).
+          if [[ -z "${GITHUB_BASE_REF}" ]]; then
+            echo "WARN: GITHUB_BASE_REF empty; skipping (not a pull_request?)"
+            WARNINGS=$((WARNINGS + 1))
+            finish
+          fi
+          if [[ ! "${GITHUB_BASE_REF}" =~ ^[A-Za-z0-9._/-]+$ ]]; then
+            echo "WARN: unexpected GITHUB_BASE_REF; skipping"
+            WARNINGS=$((WARNINGS + 1))
+            finish
+          fi
+
+          if ! git fetch --no-tags origin "${GITHUB_BASE_REF}"; then
+            echo "WARN: could not fetch origin/${GITHUB_BASE_REF}; skipping"
+            WARNINGS=$((WARNINGS + 1))
+            finish
+          fi
+
+          BASE="origin/${GITHUB_BASE_REF}"
+          echo "Comparing ${BASE}...HEAD"
+          echo ""
+
+          CHANGED="$(git diff --name-only "${BASE}...HEAD" || true)"
+          if [[ -z "${CHANGED}" ]]; then
+            echo "No file changes vs ${BASE}. Nothing to check."
+            finish
+          fi
+
+          echo "Changed files:"
+          echo "${CHANGED}"
+          echo ""
+
+          constitution_changed=0
+          roles_changed=0
+          workflows_changed=0
+          constitution_companion=0
+          roles_companion=0
+          workflows_companion=0
+
+          while IFS= read -r f; do
+            [[ -z "${f}" ]] && continue
+            case "${f}" in
+              constitution/*)
+                constitution_changed=1
+                if [[ "${f}" == "constitution/README.md" ]]; then
+                  constitution_companion=1
+                fi
+                ;;
+              roles/*)
+                roles_changed=1
+                if [[ "${f}" == "roles/README.md" ]]; then
+                  roles_companion=1
+                fi
+                ;;
+              .github/workflows/*)
+                workflows_changed=1
+                ;;
+            esac
+            case "${f}" in
+              README.md|AGENTS.md)
+                constitution_companion=1
+                roles_companion=1
+                workflows_companion=1
+                ;;
+              skills/*/SKILL.md)
+                constitution_companion=1
+                roles_companion=1
+                workflows_companion=1
+                ;;
+              docs/ci/*)
+                workflows_companion=1
+                ;;
+            esac
+          done <<< "${CHANGED}"
+
+          echo "Companion-doc rule (v1 proposed):"
+          if [[ "${constitution_changed}" -eq 1 && "${constitution_companion}" -eq 0 ]]; then
+            echo "  WARN: constitution/ changed without a companion (constitution/README.md, README.md, AGENTS.md, or skills/*/SKILL.md)"
+            WARNINGS=$((WARNINGS + 1))
+          elif [[ "${constitution_changed}" -eq 1 ]]; then
+            echo "  OK: constitution/ has a companion doc in this PR"
+          else
+            echo "  skip: constitution/ unchanged"
+          fi
+
+          if [[ "${roles_changed}" -eq 1 && "${roles_companion}" -eq 0 ]]; then
+            echo "  WARN: roles/ changed without a companion (roles/README.md, README.md, AGENTS.md, or skills/*/SKILL.md)"
+            WARNINGS=$((WARNINGS + 1))
+          elif [[ "${roles_changed}" -eq 1 ]]; then
+            echo "  OK: roles/ has a companion doc in this PR"
+          else
+            echo "  skip: roles/ unchanged"
+          fi
+
+          if [[ "${workflows_changed}" -eq 1 && "${workflows_companion}" -eq 0 ]]; then
+            echo "  WARN: .github/workflows/ changed without a companion (docs/ci/*, README.md, AGENTS.md, or skills/*/SKILL.md)"
+            WARNINGS=$((WARNINGS + 1))
+          elif [[ "${workflows_changed}" -eq 1 ]]; then
+            echo "  OK: .github/workflows/ has a companion doc in this PR"
+          else
+            echo "  skip: .github/workflows/ unchanged"
+          fi
+          echo ""
+
+          echo "Stale-rename rule (v1 proposed):"
+          RENAME_HITS=0
+          while IFS=$'\t' read -r status old_path new_path; do
+            [[ -z "${status}" ]] && continue
+            case "${status}" in
+              R*)
+                old_base="$(basename "${old_path}")"
+                echo "  rename: ${old_path} -> ${new_path}"
+                skip_base=0
+                case "${old_base}" in
+                  README.md|AGENTS.md|SKILL.md|index.md|LICENSE)
+                    skip_base=1
+                    ;;
+                esac
+                if [[ ${#old_base} -lt 8 ]]; then
+                  skip_base=1
+                fi
+
+                search_terms="${old_path}"
+                if [[ "${skip_base}" -eq 0 && "${old_base}" != "${old_path}" ]]; then
+                  search_terms="${old_path}"$'\n'"${old_base}"
+                fi
+
+                while IFS= read -r term; do
+                  [[ -z "${term}" ]] && continue
+                  # git grep exits 1 when there are no matches; that is not a failure.
+                  # prove/ is historical evidence (Decision packs, Wave 0 records).
+                  # A leftover old name there is a citation, not drift — skip it.
+                  hits="$(git grep -nF -- "${term}" -- '*.md' '*.yml' '*.yaml' ':!prove/**' || true)"
+                  if [[ -n "${hits}" ]]; then
+                    echo "  WARN: leftover reference to renamed path (${term}):"
+                    echo "${hits}" | sed 's/^/    /'
+                    RENAME_HITS=$((RENAME_HITS + 1))
+                    WARNINGS=$((WARNINGS + 1))
+                  fi
+                done <<< "${search_terms}"
+                ;;
+            esac
+          done < <(git diff --name-status -M "${BASE}...HEAD" || true)
+
+          if [[ "${RENAME_HITS}" -eq 0 ]]; then
+            echo "  OK: no leftover references to renamed paths (or no renames)"
+          fi
+
+          finish
+        shell: bash
+
+      - name: Summary
+        if: always()
+        run: |
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Doc-drift is warn-only and does not block merge."
+          echo "Rule set: docs/ci/doc-drift.md (v1 proposed; Kai to confirm)"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
