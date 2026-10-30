@@ -14,7 +14,10 @@ Use a **classic branch protection rule** on `main` (Settings → Branches → Br
 | Require a pull request before merging | On |
 | Required number of approvals | **0** |
 | Require review from Code Owners | Off |
+| Dismiss stale pull request approvals when new commits are pushed | Off |
+| Require approval of the most recent reviewable push | Off |
 | Require status checks to pass before merging | On |
+| Require branches to be up to date before merging | On |
 | Required status checks | `Structure & Docs Validation`; `Requirements Trace Validation` (warn-only); CodeRabbit |
 | `API Contract Checks` | **Do not require** until #35 is closed |
 | Allow force pushes | Off (block force-pushes) |
@@ -30,6 +33,8 @@ Add these three names, matching the check as it appears on pull requests:
 1. **Structure & Docs Validation** — job in `.github/workflows/wave0-checks.yml`
 2. **Requirements Trace Validation** — job in `.github/workflows/trace-check.yml`. This check is **warn-only** until `spec.md` has REQ IDs **and** `trace/.blocking` exists. In warn-only mode it exits 0, so requiring it does not block merges on trace findings
 3. **CodeRabbit** — the CodeRabbit check as reported on pull requests
+
+If CodeRabbit skips or doesn't run on the head, anyone comments `@coderabbitai review`, and nobody bypasses the required check.
 
 Do **not** add **API Contract Checks** as a required status check until #35 is closed. #35 is the hardening follow-up (pin, checksum, warn-only installs). Until it closes, an install flake on that workflow could block every merge.
 
@@ -67,16 +72,19 @@ After this file is on `main`:
 5. Enable **Require a pull request before merging**.
 6. Set **Required number of approvals before merging** to `0`.
 7. Leave **Require review from Code Owners** unchecked.
-8. Enable **Require status checks to pass before merging**.
-9. Add required checks, using the names as they appear in the picker (a check must have run on a recent pull request to appear):
+8. Leave **Dismiss stale pull request approvals when new commits are pushed** unchecked.
+9. Leave **Require approval of the most recent reviewable push** unchecked.
+10. Enable **Require status checks to pass before merging**.
+11. Enable **Require branches to be up to date before merging**.
+12. Add required checks, using the names as they appear in the picker (a check must have run on a recent pull request to appear):
    - `Structure & Docs Validation`
    - `Requirements Trace Validation`
    - `CodeRabbit`
-10. Do **not** add `API Contract Checks` until #35 is closed.
-11. Leave **Allow force pushes** unchecked.
-12. Leave **Allow deletions** unchecked.
-13. Leave **Do not allow bypassing the above settings** / **Include administrators** unchecked (repo admin keeps bypass).
-14. Save the rule.
+13. Do **not** add `API Contract Checks` until #35 is closed.
+14. Leave **Allow force pushes** unchecked.
+15. Leave **Allow deletions** unchecked.
+16. Leave **Do not allow bypassing the above settings** / **Include administrators** unchecked (repo admin keeps bypass).
+17. Save the rule.
 
 ## Verify
 
