@@ -145,7 +145,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | [`adapters/cursor/`](adapters/cursor/README.md) | Cursor adapter (docs stub). |
 | [`adapters/cursor/AGENTS.md`](adapters/cursor/AGENTS.md) | Cursor agent entry point. |
 | [`AGENTS.md`](AGENTS.md) | Root agent entry point (rules by link; local checks). |
-| [`docs/decisions/`](docs/decisions/) | Architecture Decision Records (canonical home; ADRs `0001`–`0017` and [`log.md`](docs/decisions/log.md)). |
+| [`docs/decisions/`](docs/decisions/) | Architecture Decision Records (canonical home; numbered ADRs and [`log.md`](docs/decisions/log.md)). |
 | [`docs/decisions/log.md`](docs/decisions/log.md) | Latest-wins decision log. |
 | [`constitution/`](constitution/) | Binding governance. |
 | [`roles/`](roles/) | Seat cards. |

@@ -56,7 +56,7 @@ Merge rules: see [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.
 3. **Implement:** Write code, tests, gather evidence. Fill [`templates/delivery-bolt-brief.md`](templates/delivery-bolt-brief.md) for a bolt.
 4. **Commit:** `Refs #N` and, when REQ IDs exist, `Req: REQ-<CMP>-NNN`. Do not invent REQ IDs during bootstrap.
 5. **PR:** Open from [`.github/pull_request_template.md`](.github/pull_request_template.md) with a `Requirements:` line (`REQ-<CMP>-NNN` or `N/A`).
-6. **CI:** Structure & Docs Validation runs blocking. Requirements Trace Validation, skills checks, and API contract checks are warn-only (see [`README.md`](README.md#ci-checks-from-githubworkflows-on-main)).
+6. **CI:** Structure & Docs Validation runs blocking. Requirements Trace Validation, skills checks, API contract checks, and doc drift are warn-only (see [`README.md`](README.md#ci-checks-from-githubworkflows-on-main)).
 7. **Review:** Automated review (CodeRabbit on this repo) plus independent QAS at the exact head. QAS is posted as a COMMENT review with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line when the reviewer account is also the PR author (the forge does not let an author APPROVE their own PR).
 8. **Decision pack:** If Medium or High tier, attach a decision pack.
 9. **Merge:** See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) and [`roles/release-rte.md`](roles/release-rte.md). This guide does not restate merge-rule text.
