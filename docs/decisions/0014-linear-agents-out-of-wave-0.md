@@ -28,7 +28,7 @@ Status: superseded by #6 (`6a06388`, merged 2026-10-29). The GitHub repo is now 
 ### Consequences
 
 * Historical: the issue tracker Agents were out of Wave 0.
-* Supersession: #6 archived the issue tracker read-only and made the repo the sole system of record, so the the issue tracker Agents question no longer applies.
+* Supersession: #6 archived the issue tracker read-only and made the repo the sole system of record, so the issue tracker Agents question no longer applies.
 
 ### Confirmation
 

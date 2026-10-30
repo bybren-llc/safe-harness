@@ -7,7 +7,7 @@
 | **May collapse?** | Support seat; research-only |
 | **Independence** | Reports under Studio; research and fit checks |
 | **Default model tier** | Orchestrator |
-| **Stop rules** | No merges; constitution and High/O2 changes need the owner concur; research-only by default; scanner not fixer (no security fix PRs without the owner's explicit go); no X writes (Scott only) |
+| **Stop rules** | No merges; constitution and High/O2 changes need the owner concur; research-only by default; scanner not fixer (no security fix PRs without the owner's explicit go); no X writes (the owner only) |
 
 ## Purpose
 

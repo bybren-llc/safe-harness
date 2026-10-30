@@ -1,6 +1,6 @@
 # 05 — Evidence & Source of Truth
 
-**Status:** Adopted 2026-10-29 (Scott concur)  
+**Status:** Adopted 2026-10-29 (the owner concur)  
 **Supersedes:** Wave 0 version (Linear as SoR)  
 **Effective:** 2026-10-29
 
@@ -12,7 +12,7 @@
 
 **Linear is optional.** The preferred path is design, specs, and PRDs in GitHub. Adopting teams may keep Linear; this template does not require it. The archive map `trace/linear-saf-map.csv` stays frozen.
 
-**Evidence canonical in repo:** Evidence for safe-harness is canonical in this repository. Vaults (personal, NAS) and Atlas cite evidence by link without duplicating it. Never copy repo evidence into private vaults.
+**Evidence canonical in repo:** Evidence for safe-harness is canonical in this repository. Vaults (personal, private storage) and knowledge base cite evidence by link without duplicating it. Never copy repo evidence into private vaults.
 
 ### Human vs. agent ownership split
 
@@ -34,7 +34,7 @@
 - `constitution/` (agent-authored constitution changes need human review)
 - `trace/` (agent-authored trace map needs human review)
 
-Agents may open PRs touching these files but must not merge them, except the GM or Release · RTE may merge `constitution/` changes only under the conditions in `constitution/03-cd-and-hitl.md`, including the owner's recorded own-words concurrence at exact head. Use the `needs-scott-concur` label on PRs awaiting the owner's review.
+Agents may open PRs touching these files but must not merge them, except the GM or Release · RTE may merge `constitution/` changes only under the conditions in `constitution/03-cd-and-hitl.md`, including the owner's recorded own-words concurrence at exact head. Use the `needs-owner-concur` label on PRs awaiting the owner's review.
 
 **Distinction:** Humans own design (accept/reject intent and spec content). Agents own execution (author requirements, trace, constitution changes, code, tests), but CODEOWNERS enforces human review gates before merge.
 
@@ -54,7 +54,7 @@ Commit trailers: `Refs #N` (references issue) + `Req: REQ-<CMP>-NNN` (satisfies 
 PR body: `Requirements: REQ-<CMP>-NNN, REQ-<CMP>-MMM` line
 
 Labels (documented in `.github/labels.yml`):
-- Work types: `bolt`, `requirement`, `decision`, `needs-concur`, `needs-scott-concur`
+- Work types: `bolt`, `requirement`, `decision`, `needs-concur`, `needs-owner-concur`
 - Risk tiers: `tier:low`, `tier:medium`, `tier:high`
 - O2 items: `o2:pricing`, `o2:refunds`, `o2:auth`, `o2:deploy-ci`, `o2:secrets`, `o2:privacy`
 - Exit states: `exit:qas`, `exit:rte`, `exit:hitl`, `exit:merged`, `exit:merged-delegated`, `exit:merged-rte`
@@ -79,7 +79,7 @@ See `requirements/README.md` for trace states (Placed / Deferred / Dropped / Mis
 
 **Deferred** requirements must include:
 - `rationale`: Why deferred and conditions for revisiting
-- `decided_by`: Decision owner (the owner, the GM, or "Scott + Kai")
+- `decided_by`: Decision owner (the owner, the GM, or "owner + GM")
 - `decided_at`: ISO 8601 date (YYYY-MM-DD)
 - `defer_to`: Target date or milestone reference (e.g., "2026-11-15" or "Wave 2")
 
@@ -88,7 +88,7 @@ See `requirements/README.md` for trace states (Placed / Deferred / Dropped / Mis
 - `decided_by`: Decision owner
 - `decided_at`: ISO 8601 date
 
-**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires the owner's sign-off. Record as `decided_by: the owner Graham` plus a link in `rationale`.
+**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires the owner's sign-off. Record as `decided_by: owner` plus a link in `rationale`.
 
 **Deferred dates:** `defer_to` and `decided_at` live in the trace map entry only, never in GitHub Issue fields.
 
@@ -172,7 +172,7 @@ Use consistent labels across runtimes. Human approval is distinct from merge exe
 3. Ready for HITL  
 4. **MERGED (HITL only)** — the owner executed the merge (human approval + execution)
 5. **MERGED (HITL-delegated)** — Low tier only; delegated HITL (D1)
-6. **MERGED (delegated Kai/RTE)** — the GM or Release · RTE executed a trunk merge under `constitution/03`. Record `merged_by` (Kai | Release · RTE), exact-head SHA, independent QAS APPROVE (the GM's independent QAS APPROVE when RTE executed), RTE PASS when RTE executed, and the owner's recorded concur on constitution/, High, and O2 where required. This is not a HITL merge.
+6. **MERGED (delegated the GM/RTE)** — the GM or Release · RTE executed a trunk merge under `constitution/03`. Record `merged_by` (the GM | Release · RTE), exact-head SHA, independent QAS APPROVE (the GM's independent QAS APPROVE when RTE executed), RTE PASS when RTE executed, and the owner's recorded concur on constitution/, High, and O2 where required. This is not a HITL merge.
 
 ### D1: Delegated HITL (Low tier only)
 
@@ -180,8 +180,8 @@ At **Low tier** only, HITL may be delegated with a structured `hitl_delegate` re
 
 ```yaml
 hitl_delegate:
-  delegating_actor: the owner Graham
-  delegate_actor: Kai
+  delegating_actor: owner
+  delegate_actor: the GM
   authorization_url: https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98
   scope: low  # Must be "low" only
   delegated_what: Low-tier HITL merge execution (standing Wave 0 authorization)

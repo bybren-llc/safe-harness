@@ -7,7 +7,7 @@
 | **May collapse?** | Support seat; not a decision seat |
 | **Independence** | Surfaces only; never decides, posts, or merges |
 | **Default model tier** | Light |
-| **Stop rules** | No decisions; no posts (X or other channels); no merges; no fix PRs; no X writes (Scott only); constitution and High/O2 changes need the owner concur |
+| **Stop rules** | No decisions; no posts (X or other channels); no merges; no fix PRs; no X writes (the owner only); constitution and High/O2 changes need the owner concur |
 
 ## Purpose
 

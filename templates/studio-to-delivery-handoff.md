@@ -24,7 +24,7 @@
 
 - Personal vault citations
 - Mass-imported chat dumps as “concepts”
-- Invented NAS paths
+- Invented private storage paths
 - “Just start coding” without AC or BSA follow-on
 
 ## Delivery accept checklist

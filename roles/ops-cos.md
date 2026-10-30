@@ -2,16 +2,16 @@
 
 | Field | Value |
 | --- | --- |
-| **Mission** | Chief of Staff and Ops staff to C-suite (Scott and Kai); digests and rolls; routing, status |
+| **Mission** | Chief of Staff and Ops staff to C-suite (the owner and the GM); digests and rolls; routing, status |
 | **Spine** | Support both A and B |
 | **May collapse?** | Support seat; not a decision seat |
 | **Independence** | Does not merge; routes to decision seats |
 | **Default model tier** | Orchestrator |
-| **Stop rules** | No merges; no X writes (Scott only); constitution and High/O2 changes need the owner concur |
+| **Stop rules** | No merges; no X writes (the owner only); constitution and High/O2 changes need the owner concur |
 
 ## Purpose
 
-Ops · CoS handles operational flow and staff support for the C-suite (Scott and Kai). Runs digests and rolls, concur queues, weekly trace/gap reviews, and gate visibility. Dispatcher · Board owns the tracking board and the 4:30 AM ET sweep; Ops does not.
+Ops · CoS handles operational flow and staff support for the C-suite (the owner and the GM). Runs digests and rolls, concur queues, weekly trace/gap reviews, and gate visibility. Dispatcher · Board owns the tracking board and the 4:30 AM ET sweep; Ops does not.
 
 ## Owns
 

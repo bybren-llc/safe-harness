@@ -31,7 +31,7 @@ The CD + risk-tier principle stands. The specific "who approves per tier" mappin
 ### Consequences
 
 * Good, because HITL gates bind to a change unit and an exact head, not a freeze-the-train default.
-* Partial supersession: W0-04's "low auto / medium one human / high two humans" flow was replaced by #22. Merge authority now follows a template default by risk tier and environment (dev/trunk: Kai/RTE; staging: auto; prod and constitution/High/O2: the owner's own-words concur). An agent merge never counts as human approval. "High = two distinct humans" is recommended guidance, not a gate, per [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) and the owner's answers on #22. With the owner as the only human, his own-words concur is the required human approval.
+* Partial supersession: W0-04's "low auto / medium one human / high two humans" flow was replaced by #22. Merge authority now follows a template default by risk tier and environment (dev/trunk: the GM/RTE; staging: auto; prod and constitution/High/O2: the owner's own-words concur). An agent merge never counts as human approval. "High = two distinct humans" is recommended guidance, not a gate, per [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) and the owner's answers on #22. With the owner as the only human, the owner's own-words concur is the required human approval.
 
 ### Confirmation
 

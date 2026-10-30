@@ -1,6 +1,6 @@
 # Specification — safe-harness
 
-**Ownership:** HUMAN-OWNED (Scott only)  
+**Ownership:** HUMAN-OWNED (the owner only)  
 **Status:** Draft  
 **Last updated:** 2026-10-29
 

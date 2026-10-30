@@ -17,11 +17,11 @@ Which change classes always need the owner.
 ## Considered Options
 
 * the GM default list
-* Scott-specified list
+* the owner-specified list
 
 ## Decision Outcome
 
-Chosen option: "Kai default, adopted under \"concur on all as written\"", because O2 was not answered by the owner in chat. Blanks were filled by the GM defaults where he did not specify, adopted under "concur on all as written".
+Chosen option: "the GM default, adopted under \"concur on all as written\"", because O2 was not answered by the owner in chat. Blanks were filled by the GM defaults where the owner did not specify, adopted under "concur on all as written".
 
 Decision text: pricing, refunds, auth/permissions, CI/workflows that deploy, production secrets, privacy-boundary crossings. the owner can extend it.
 

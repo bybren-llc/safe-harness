@@ -24,7 +24,7 @@ Lock M1–M6 as Wave 0 value metrics?
 
 Chosen option: "Yes", because owner concurred the filled pack as written.
 
-Decision text: M1 multi-runtime template ships (Wave 0: Claude Code + Cursor adapters live; Codex/local/Grok next, same constitution). M2 tmux not required (happy path in-process; tmux optional display only). M3 SAFe + AI-DLC spine retained (Bolts / Units of Work / Mob Elaboration / human validate still taught). M4 Round Table seats map (Scott/Kai/Ops/Delivery/Studio/Librarian/Scout + on-demand SAFe specialists). M5 time-to-first owned ticket (new seat owns a ticket under exit states; measure human minutes + SLA after first prove). M6 deploy/release flow health (risk-tier CD path; evidence → independence → decision pack; revert/incident as guardrails).
+Decision text: M1 multi-runtime template ships (Wave 0: Claude Code + Cursor adapters live; Codex/local/Grok next, same constitution). M2 tmux not required (happy path in-process; tmux optional display only). M3 SAFe + AI-DLC spine retained (Bolts / Units of Work / Mob Elaboration / human validate still taught). M4 Round Table seats map (the owner/the GM/Ops/Delivery/Studio/Librarian/Scout + on-demand SAFe specialists). M5 time-to-first owned ticket (new seat owns a ticket under exit states; measure human minutes + SLA after first prove). M6 deploy/release flow health (risk-tier CD path; evidence → independence → decision pack; revert/incident as guardrails).
 
 ### Consequences
 

@@ -9,7 +9,7 @@ Maps constitution → Claude Code teams / workflows / hooks. Thin stub — no ul
 | Round Table seats | Team member / agent role defs (placeholders below) |
 | SAFe + AI-DLC Bolts | Workflow: elaborate → human gate → construct → QAS → RTE → HITL |
 | CD + HITL risk tiers | Hooks advisory→blocking on O2 paths when supported; else checklist in decision pack |
-| Privacy / vaults | Deny tools/paths that touch personal vault; Atlas via forge; Story via NAS pins only |
+| Privacy / vaults | Deny tools/paths that touch personal vault; knowledge base via forge; Story via private storage pins only |
 | Evidence + the issue tracker | Portable `evidence_id` + session id; human assignee / agent delegate fields in issue body |
 | Empiricism | No default model override to ultracode |
 | Model stack (O4) | Role→model in agent frontmatter: orchestrator Fable 5.1+; heavy Opus/Sonnet 5.5; light Haiku 5.5 |
@@ -60,4 +60,4 @@ Trigger tests (does a prompt load the right skill) are **UNKNOWN** to automate i
 
 ## Local / HF cache (Option A)
 
-private storage option A (Scott 2026-10-28): Docker `hf` → a private storage inference volume. Adapters that touch local inference must set `HF_HOME` (and related hub caches) to private-storage-backed paths — never Mac Desktop. Exact pins from Studio/Ops; do not invent paths. Weights never enter the GitHub template.
+private storage option A (the owner 2026-10-28): Docker `hf` → a private storage inference volume. Adapters that touch local inference must set `HF_HOME` (and related hub caches) to private-storage-backed paths — never Mac Desktop. Exact pins from Studio/Ops; do not invent paths. Weights never enter the GitHub template.

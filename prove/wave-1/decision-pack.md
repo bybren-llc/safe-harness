@@ -3,11 +3,11 @@
 **PR:** #6  
 **Branch:** cursor/wave-1-repo-sot-9236  
 **Exact-head:** final reviewed head recorded in the GM's QAS review and in the squash-merge body  
-**Status:** Adopted 2026-10-29 (Scott concur)
+**Status:** Adopted 2026-10-29 (the owner concur)
 
 **Owner:** the GM (coordinator)  
 **Delivery:** Cursor CloudAgent  
-**Tier:** Medium (Kai confirmed; conditions met at f84ee52)
+**Tier:** Medium (the GM confirmed; conditions met at f84ee52)
 
 ---
 
@@ -19,7 +19,7 @@ Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub b
 1. constitution/05 amendment (repo as SoR, human/agent ownership split, trace enforcement)
 2. constitution/03 amendment (GitHub conventions replace Linear)
 3. Requirements tracing framework (REQ-<CMP>-NNN, trace map, trace-check CI)
-4. CODEOWNERS: intent/spec human-owned (Scott only); requirements, trace and constitution are agent-authored behind a the code owner review gate
+4. CODEOWNERS: intent/spec human-owned (the owner only); requirements, trace and constitution are agent-authored behind a the code owner review gate
 5. GitHub Issue templates and label scheme
 6. Migration plan (Linear → GitHub)
 
@@ -41,8 +41,8 @@ Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub b
 | **the owner** | CONCUR, conditional | the owner → the GM chat, 2026-10-29 12:44 PM ET and 12:46 PM ET | Conditional concur; condition = README/structure fixes in this commit (see Appendix A) | Satisfied in commit (item 7 below) |
 
 **Open questions from seats (follow-up):**
-- Scout 1: Where evidence lives (repo vs Atlas sources/)
-- Scout 3: docs wiki product-app pages + Atlas sources/linear/ repointing after SAF retirement
+- Scout 1: Where evidence lives (repo vs knowledge base sources/)
+- Scout 3: docs wiki product-app pages + knowledge base sources/linear/ repointing after SAF retirement
 
 ---
 
@@ -82,7 +82,7 @@ All constitution changes below were **adopted 2026-10-29** following the owner's
 
 **Proposal:**
 
-**Humans (Scott only) own and accept only intent.md and spec.md:**
+**Humans (the owner only) own and accept only intent.md and spec.md:**
 - `intent.md`, `spec.md` — the owner owns and accepts; agents may propose edits but **never merge**
 
 **Agents own everything else end-to-end:**
@@ -128,7 +128,7 @@ All constitution changes below were **adopted 2026-10-29** following the owner's
 - Deferred needs: defer_to (target date/milestone)
 - Dropping REQ from intent.md needs the owner's sign-off
 
-**Special rule:** Dropping a REQ whose source is `intent.md#*` requires `decided_by: the owner Graham`.
+**Special rule:** Dropping a REQ whose source is `intent.md#*` requires `decided_by: owner`.
 
 **Trace-check CI enforcement:**
 - Fail on Missing state
@@ -179,8 +179,8 @@ Wave 1: `issue` (GitHub `#N`) + `req_ids` (list of REQ-<CMP>-NNN)
 
 ```yaml
 hitl_delegate:
-  delegating_actor: the owner Graham
-  delegate_actor: Kai
+  delegating_actor: owner
+  delegate_actor: the GM
   authorization_url: <link>
   scope: low  # Must be "low" only
 ```
@@ -256,7 +256,7 @@ hitl_delegate:
 
 **Proposal:** Deferred/Dropped entries must carry:
 - `rationale` (why deferred/dropped + conditions)
-- `decided_by` (decision owner: the owner, the GM, or "Scott + Kai")
+- `decided_by` (decision owner: the owner, the GM, or "owner + GM")
 - `decided_at` (ISO 8601 date)
 - `defer_to` (for Deferred only: target date or milestone)
 
@@ -335,7 +335,7 @@ hitl_delegate:
 - Archive the issue tracker (never delete); every the issue tracker evidence URL remains resolvable
 - Scope: safe-harness only (other the issue tracker teams like STO untouched)
 - Cutover date: TBD (set after the owner concurrence)
-- Owner: Delivery (Kai coordinates timing with the owner)
+- Owner: Delivery (the GM coordinates timing with the owner)
 
 **Risks:**
 - Mapping gaps or lost context
@@ -380,7 +380,7 @@ hitl_delegate:
 
 **Context:** Avoid evidence duplication across repo and private vaults.
 
-**Proposal:** Evidence for safe-harness is canonical in the repo. Vaults (personal, NAS) and Atlas cite evidence by link without duplicating it.
+**Proposal:** Evidence for safe-harness is canonical in the repo. Vaults (personal, private storage) and knowledge base cite evidence by link without duplicating it.
 
 **Risks:**
 - Vault access friction (need repo access to see evidence)
@@ -414,11 +414,11 @@ hitl_delegate:
 
 ---
 
-### Decision 15: needs-scott-concur label
+### Decision 15: needs-owner-concur label
 
 **Context:** PRs changing intent, spec, or constitution need the owner's review before merge.
 
-**Proposal:** Add `needs-scott-concur` label (distinct from general `needs-concur`). Required on any PR touching:
+**Proposal:** Add `needs-owner-concur` label (distinct from general `needs-concur`). Required on any PR touching:
 - intent.md, intent/
 - spec.md
 - constitution/
@@ -430,7 +430,7 @@ hitl_delegate:
 - the owner bottleneck
 
 **Mitigations:**
-- CODEOWNERS enforcement (Scott must approve)
+- CODEOWNERS enforcement (the owner must approve)
 - Label documented in `.github/labels.yml`
 - Clear workflow in CONTRIBUTING.md
 
@@ -493,7 +493,7 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 - Filename change is cosmetic; content update is substantive
 - Cleaner to land content change first, then rename
 
-**Recommendation:** Approve the follow-up rename principle; exact new filename TBD (Kai decides).
+**Recommendation:** Approve the follow-up rename principle; exact new filename TBD (the GM decides).
 
 **Risks:**
 - Filename remains misaligned with content temporarily
@@ -520,7 +520,7 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 
 **Current mitigation:** `spec.md` is CODEOWNED (the code owner), so the owner must approve any changes. This works *only if* branch protection requires code-owner review.
 
-**Known limitation:** The authoring account (`cheddarfox`) cannot satisfy CODEOWNERS on its own PRs; the GM posts COMMENT reviews for that reason. This limits the effectiveness of CODEOWNERS as a gate without branch protection enabled.
+**Known limitation:** The authoring account (the code owner) cannot satisfy CODEOWNERS on its own PRs; the GM posts COMMENT reviews for that reason. This limits the effectiveness of CODEOWNERS as a gate without branch protection enabled.
 
 **Additional context:** External link-check stays separate and non-blocking (Librarian's spec + weekly routine after merge).
 
@@ -610,7 +610,7 @@ Expected requirements:
 - trace/trace-map.yaml (stub)
 - trace/linear-saf-map.csv (header-only stub)
 
-**Human-owned templates (Scott only):**
+**Human-owned templates (the owner only):**
 - intent.md (skeleton with personal-boundary rule, research appendix)
 - spec.md (skeleton with personal-boundary rule, M1–M6 pointer)
 
@@ -619,7 +619,7 @@ Expected requirements:
 - .github/ISSUE_TEMPLATE/bolt.yml (Bolt/UoW template)
 - .github/ISSUE_TEMPLATE/requirement.yml (REQ state change template)
 - .github/ISSUE_TEMPLATE/decision.yml (concurrence request template)
-- .github/labels.yml (work types, risk tiers, O2 items, exit states, gate labels, needs-scott-concur)
+- .github/labels.yml (work types, risk tiers, O2 items, exit states, gate labels, needs-owner-concur renamed from earlier owner-named label)
 
 **CI workflow:**
 - .github/workflows/trace-check.yml (read-only, bootstrap rule, warn-only until first spec)
@@ -665,9 +665,9 @@ If critical issues arise post-merge:
 
 ## Ask
 
-**Scott:** Please review and concur on:
+**[The owner]:** Please review and concur on:
 1. Repository as sole source of truth (Linear → GitHub)
-2. Human vs. agent ownership split (Scott only owns and accepts intent.md and spec.md; agents own and author everything else with CODEOWNERS review gates)
+2. Human vs. agent ownership split (the owner only owns and accepts intent.md and spec.md; agents own and author everything else with CODEOWNERS review gates)
 3. Requirements tracing framework (REQ-<CMP>-NNN, trace states, trace-check CI)
 4. D1 delegated-HITL at Low tier
 5. All constitution/03 and constitution/05 amendments
@@ -677,10 +677,10 @@ If critical issues arise post-merge:
 9. Sticky blocking mode: enable "require code owner review" on `main` and/or add `trace/.blocking` marker (Decision 19)
 
 **Open questions from seats (to answer or defer):**
-- Scout 1: Where evidence lives — repo evidence folder vs. Atlas sources/, or both with cross-link? Scout wants one place, not two copies drifting apart.
-- Scout 3: docs wiki product-app pages (a private product feature, a private product feature, a private product feature) — do they stay as cited inputs, get snapshotted into repo, or does intent.md in GitHub replace them? Also, do any Atlas sources/linear/ STO stubs need re-pointing once SAF is retired?
+- Scout 1: Where evidence lives — repo evidence folder vs. knowledge base sources/, or both with cross-link? Scout wants one place, not two copies drifting apart.
+- Scout 3: docs wiki product-app pages (a private product feature) — do they stay as cited inputs, get snapshotted into repo, or does intent.md in GitHub replace them? Also, do any knowledge base sources/linear/ STO stubs need re-pointing once SAF is retired?
 
-**Kai:** After the owner concurs and fixes land:
+**[The GM]:** After the owner concurs and fixes land:
 1. QAS re-review at new exact-head (after fixes #1-12 from review 5699823929)
 2. Merge decision (HITL)
 3. Set the issue tracker cutover date

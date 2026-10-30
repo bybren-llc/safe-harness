@@ -1,6 +1,6 @@
 # 03 — Continuous Deployment & HITL
 
-**Status:** Adopted 2026-10-29 (Scott concur)
+**Status:** Adopted 2026-10-29 (the owner concur)
 
 SDLC target = **continuous deployment**. Mainline stays releasable. Gates prove safety without long freeze windows.
 
@@ -80,7 +80,7 @@ Default = decision packs + independence. Freeze is rare and named.
 
 Merge authority is set by **risk tier and environment**, written here as a **TEMPLATE DEFAULT**. Each adopting repo declares its own environments and tiers (README or a constitution section). Authority for this widening is the owner's verbatim 1:54 and 1:55 PM ET quotes below. No other source is cited.
 
-Scott (HITL), 2026-10-29, verbatim:
+the owner (HITL), 2026-10-29, verbatim:
 
 > **1:54 PM ET:** "we're definitely gonna be able to lend me agents merge man for sure especially in development ... let's imagine if we had a dev staging and PROD we would be able to handle things and testing throughout each"
 
@@ -98,7 +98,7 @@ The Dev/trunk Gate cell applies to template adopters as well as safe-harness.
 
 This repo is a **template**. Adopting teams configure **dev, staging, and prod** for their own environments. **safe-harness** itself is a docs repo with only `main`. It is the **trunk** case under Dev or trunk. Its `constitution/`, `.github/CODEOWNERS`, `.github/workflows/**`, High, and O2 changes still need the owner's recorded own-words concur.
 
-Scott may merge any change at any tier and environment.
+the owner may merge any change at any tier and environment.
 
 ### Invariants (do not collapse)
 
@@ -106,11 +106,11 @@ Scott may merge any change at any tier and environment.
 - Nobody merges their own authored change.
 - An agent merge never counts as human approval.
 - Delivery and cloud agents never merge.
-- CODEOWNERS-gated paths other than `constitution/` (`intent.md`, `spec.md`, `requirements/`, `trace/`) stay **agents must not merge** (Scott/CODEOWNERS only), matching `constitution/05` and `CONTRIBUTING.md`.
+- CODEOWNERS-gated paths other than `constitution/` (`intent.md`, `spec.md`, `requirements/`, `trace/`) stay **agents must not merge** (the owner/CODEOWNERS only), matching `constitution/05` and `CONTRIBUTING.md`.
 
 ### Who may execute a trunk merge (safe-harness)
 
-1. **Scott (HITL)** — any change
+1. **the owner (HITL)** — any change
 2. **the GM (GM)** — authorized trunk agent: checks green + independent QAS APPROVE on exact head; at Med/High/O2, RTE PASS on the exact head, or a HOLD override from the GM or the owner recorded on the PR with its reason; the owner's recorded concur on `constitution/`, High, and O2
 3. **Release · RTE** — authorized trunk agent: checks green + the GM's independent QAS APPROVE + its own RTE PASS on the exact head (every tier, including Low); the owner's recorded concur on `constitution/`, High, and O2; never its own authored change; never over a standing HOLD
 

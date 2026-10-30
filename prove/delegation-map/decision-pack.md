@@ -28,7 +28,7 @@ Delivery does not merge. the GM QAS APPROVE and the owner's own-words concur are
 | Evidence IDs | #22 squash `d88c884`; CodeRabbit review 5712012854; SecEng PASS at `81efe31`; this pack |
 | Requirements | No REQ-IDs in spec.md yet |
 | QAS | Pending the GM independent QAS at exact head |
-| SecEng | SecEng (independent, non-author): PASS at 81efe31 vs d88c884. No merge/override widen; RTE still the GM QAS + own PASS, HOLD Kai/Scott only; Dispatcher cannot decide/post/merge; no agent X writes or security fix PRs without Scott; two-humans guidance does not drop QAS/SecEng/Scott concur/prod-risk; no secrets; branch protection unanswered. |
+| SecEng | SecEng (independent, non-author): PASS at 81efe31 vs d88c884. No merge/override widen; RTE still the GM QAS + own PASS, HOLD [the GM/the owner] only; Dispatcher cannot decide/post/merge; no agent X writes or security fix PRs without [the owner]; two-humans guidance does not drop QAS/SecEng/[the owner] concur/prod-risk; no secrets; branch protection unanswered. |
 | Risk tier + O2 | **High / O2 auth-adjacent**. No downgrade |
 | Ask | approve / change-request / escalate — **concur in your own words at the exact head. Do not answer the open question (branch protection).** |
 
@@ -51,7 +51,7 @@ O2 checklist:
 
 ## File:line change map
 
-### A — Delegation map (Scott approved 2026-10-29)
+### A — Delegation map (the owner approved 2026-10-29)
 
 | Item | File:line |
 | --- | --- |
@@ -151,7 +151,7 @@ No answer is written.
 
 ## SecEng / evidence
 
-SecEng (independent, non-author): PASS at 81efe31 vs d88c884. No merge/override widen; RTE still the GM QAS + own PASS, HOLD Kai/Scott only; Dispatcher cannot decide/post/merge; no agent X writes or security fix PRs without Scott; two-humans guidance does not drop QAS/SecEng/Scott concur/prod-risk; no secrets; branch protection unanswered.
+SecEng (independent, non-author): PASS at 81efe31 vs d88c884. No merge/override widen; RTE still the GM QAS + own PASS, HOLD [the GM/the owner] only; Dispatcher cannot decide/post/merge; no agent X writes or security fix PRs without [the owner]; two-humans guidance does not drop QAS/SecEng/[the owner] concur/prod-risk; no secrets; branch protection unanswered.
 
 Later commits must be SecEng delta-confirmed as non-widening before merge; that confirmation is recorded in the QAS review on the merge head.
 
@@ -183,7 +183,7 @@ Findings that would change authority or gates are recorded here for the GM and t
 **Do not merge until:**
 
 - [ ] the GM's independent QAS APPROVE on the exact head
-- [x] SecEng (independent, non-author): PASS at 81efe31 vs d88c884. No merge/override widen; RTE still the GM QAS + own PASS, HOLD Kai/Scott only; Dispatcher cannot decide/post/merge; no agent X writes or security fix PRs without Scott; two-humans guidance does not drop QAS/SecEng/Scott concur/prod-risk; no secrets; branch protection unanswered.
+- [x] SecEng (independent, non-author): PASS at 81efe31 vs d88c884. No merge/override widen; RTE still the GM QAS + own PASS, HOLD [the GM/the owner] only; Dispatcher cannot decide/post/merge; no agent X writes or security fix PRs without [the owner]; two-humans guidance does not drop QAS/SecEng/[the owner] concur/prod-risk; no secrets; branch protection unanswered.
 - [ ] SecEng delta confirmation on the merge head is recorded as non-widening relative to 81efe31.
 - [ ] CodeRabbit findings on the new head triaged (5712012854 at `81efe31` and 5712116836 at `bba95a2` triaged in this commit)
 - [ ] the owner's recorded own-words concur at exact head

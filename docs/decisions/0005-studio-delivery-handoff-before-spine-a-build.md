@@ -23,7 +23,7 @@ Require a Studio→Delivery handoff before spine-A build?
 
 Chosen option: "Yes", because owner concurred the filled pack as written.
 
-Decision text: When work becomes build, Studio hands Delivery a brief with: outcome/value link (M1–M6 or Bolt goal), acceptance criteria/DoD, source pins (business-knowledge concept IDs and/or private storage path references, never the personal vault), non-code gates already passed, suggested owner seat, and expected exit evidence on spine A. Studio flow: Brief → Evidence (sources cited, no invented links) → Gate (privacy/PII/IP class) → Concur (Scott) → Ship/verify/log.
+Decision text: When work becomes build, Studio hands Delivery a brief with: outcome/value link (M1–M6 or Bolt goal), acceptance criteria/DoD, source pins (business-knowledge concept IDs and/or private storage path references, never the personal vault), non-code gates already passed, suggested owner seat, and expected exit evidence on spine A. Studio flow: Brief → Evidence (sources cited, no invented links) → Gate (privacy/PII/IP class) → Concur (the owner) → Ship/verify/log.
 
 ### Consequences
 

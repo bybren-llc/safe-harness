@@ -39,7 +39,7 @@ Delivery does not merge. the GM QAS APPROVE and the owner's own-words concur are
 
 ## Tier ruling
 
-**High.** The rewrite restates who may merge, which MERGED exit state a Kai/RTE merge uses, and that tag/Release publication is a separate O2 step. That is merge and release authority text. the owner's own-words concur is required at the exact head. No workflow files changed. No secret values.
+**High.** The rewrite restates who may merge, which MERGED exit state a [the GM]/RTE merge uses, and that tag/Release publication is a separate O2 step. That is merge and release authority text. the owner's own-words concur is required at the exact head. No workflow files changed. No secret values.
 
 O2 checklist:
 

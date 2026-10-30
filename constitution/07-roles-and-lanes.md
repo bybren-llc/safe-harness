@@ -1,6 +1,6 @@
 # 07 — Roles and lanes (delegation map)
 
-**Status:** Adopted 2026-10-29 (Scott approved the delegation map)  
+**Status:** Adopted 2026-10-29 (the owner approved the delegation map)  
 **Complements:** `01-round-table.md` (seat map), `03-cd-and-hitl.md` (merge authority)  
 **Evidence:** PR #22 squash `d88c884` — do not restate the merged Release · RTE text
 

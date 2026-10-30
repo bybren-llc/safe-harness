@@ -101,7 +101,7 @@ Numbering (old → new): (a) → 1; (b) → 2; merge scope (old pack ### 2) → 
 `constitution/03` risk-tier table and README Key concepts still say High = "Two distinct humans; agent ≠ human." the owner is the only human today.
 
 - Keep the rule as written and block High merges until a second human exists.
-- the owner's recorded concur + independent agent QAS (Kai) satisfies High.
+- the owner's recorded concur + independent agent QAS ([the GM]) satisfies High.
 - Other (name it): for example, the owner's recorded concur is one required human and a second named human must be added later.
 
 This pack does **not** pick an option. An agent merge never counts as a human approval regardless of the answer.

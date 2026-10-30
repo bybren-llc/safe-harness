@@ -6,6 +6,6 @@ requirements:
     source: intent.md#design-goal
     rationale: |
       Dropped, but rationale has no sign-off link
-    decided_by: the owner Graham
+    decided_by: Scott Graham
     decided_at: 2026-10-30
 evidence: []

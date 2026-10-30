@@ -33,7 +33,7 @@ Repo: `bybren-llc/safe-harness` (O1 locked).
 | --- | --- | --- |
 | 1 | Coordinate Studio · Lead | ☐ |
 | 2 | Studio emits handoff via `../templates/studio-to-delivery-handoff.md` | ☐ |
-| 3 | Pins = Atlas and/or NAS only (no personal vault) | ☐ |
+| 3 | Pins = knowledge base and/or private storage only (no personal vault) | ☐ |
 | 4 | Delivery accepts handoff checklist | ☐ |
 | 5 | Optional: same or follow-on Bolt consumes handoff on spine A | ☐ |
 | 6 | Report dual-spine peer behavior (not forge-only) | ☐ |

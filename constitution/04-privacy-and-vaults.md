@@ -10,16 +10,16 @@ Secrets live in vaults. the owner owns both the GitHub secrets and the vault sid
 
 | Vault | Storage | Remote forge? | Delivery lane? |
 | --- | --- | --- | --- |
-| **Personal** | Local → migrate to **NAS**; never Desktop long-term | **NEVER** | Out of lane |
-| **Story IP** | **NAS pins** (may be private-storage) | Not assumed forge-backed | Consume via handoff pins only |
-| **Atlas** (a private repo) | Forge / business IP | Yes — forge-backed | Follow Atlas agent contribution playbook |
+| **Personal** | Local → migrate to **private storage**; never Desktop long-term | **NEVER** | Out of lane |
+| **Story IP** | **private storage pins** (may be private-storage) | Not assumed forge-backed | Consume via handoff pins only |
+| **knowledge base** (a private repo) | Forge / business IP | Yes — forge-backed | Follow knowledge base agent contribution playbook |
 
-## NAS is SoT for work data (O3)
+## Private storage is SoT for work data (O3)
 
-- NAS = source of truth for work data (RAID5).
-- Mac **mounts** NAS; vaults live **on NAS**, not Desktop.
-- Personal vault migrates Desktop → NAS but **still never** syncs to GitHub/remote forge.
-- Atlas = forge/business IP; Story IP = NAS pins.
+- Private storage = source of truth for work data.
+- Workstations mount it; vaults live on private storage, not local Desktop.
+- Personal vault migrates Desktop → private storage but **still never** syncs to GitHub/remote forge.
+- knowledge base = forge/business IP; Story IP = private storage pins.
 
 ## Studio → Delivery handoff requirements
 
@@ -27,7 +27,7 @@ When spine (B) knowledge becomes buildable, Studio emits a handoff (see `../temp
 
 - Outcome / value link (M1–M6 or Bolt goal)
 - AC / DoD (or BSA follow-on named)
-- **Source pins** — Atlas concept IDs and/or NAS paths — **never personal vault**
+- **Source pins** — knowledge base concept IDs and/or private storage paths — **never personal vault**
 - Non-code gates already passed
 - Suggested owner seat + RTE collapse allowed?
 - Exit evidence expected on spine (A)
@@ -41,11 +41,11 @@ Chat dumps are not knowledge objects. Librarian / Studio must distill to pinned 
 - Any PR/CI that syncs personal vault content
 - Paths claimed as “Desktop vault” as SoT
 - Handoffs that cite personal vault as source pin
-- Invented NAS paths not provided by Studio/Librarian
+- Invented private storage paths not provided by Studio/Librarian
 
 ## Model cache / HF_HOME (private storage option A — locked 2026-10-28)
 
-Scott concurred: Hugging Face and other model downloads land **direct on a private storage** via Docker `hf` → a private inference volume — **not** via Mac Desktop as a cache hop.
+the owner concurred: Hugging Face and other model downloads land **direct on a private storage** via Docker `hf` → a private inference volume — **not** via Mac Desktop as a cache hop.
 
 | Rule | Detail |
 | --- | --- |
