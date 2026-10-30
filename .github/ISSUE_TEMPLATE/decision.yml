@@ -1,5 +1,5 @@
 name: Decision
-description: Decision requiring Scott/Kai concurrence
+description: Decision requiring explicit decision concurrence (not design ownership)
 title: "[DECISION] "
 labels: ["decision", "needs-concur"]
 body:
@@ -8,7 +8,8 @@ body:
       value: |
         ## Decision Request
         
-        Use this template for decisions requiring explicit concurrence from Scott or Kai.
+        Use this template for decisions requiring explicit decision concurrence from Scott or Kai.
+        This is decision concurrence, not design ownership of intent.md or spec.md.
         Common cases: constitution changes, O2 risk downgrades, architecture pivots.
 
   - type: dropdown

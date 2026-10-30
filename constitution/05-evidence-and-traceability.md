@@ -47,7 +47,7 @@ Studio drafts `intent.md` and `spec.md` and hands them to Delivery. Delivery com
 Work items use GitHub Issues with structured templates:
 - **Bolt / Unit of Work** (spine A: Delivery)
 - **Requirement** (REQ-<CMP>-NNN state changes)
-- **Decision** (Scott/Kai concurrence requests)
+- **Decision** (decision concurrence requests; not design ownership)
 
 Branch naming: `<issue#>-slug` (e.g., `42-add-trace-check`)  
 Commit trailers: `Refs #N` (references issue) + `Req: REQ-<CMP>-NNN` (satisfies requirement)  
