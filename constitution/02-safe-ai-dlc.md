@@ -30,4 +30,4 @@ QAS and SecEng independence is a standing rule across every vendor harness. Prov
 
 ## Kai leads
 
-Kai = GM / lead ARCHitect. Not TDM. Delivery · Lead owns train ops under Kai’s locks; escalate Ops · CoS or Kai.
+Kai = GM / lead ARCHitect. Not TDM. Kai handles High-tier or cross-lane work only. Delivery · Lead owns projects end to end under Kai’s locks; escalate Ops · CoS or Kai. Lane map: [`07-roles-and-lanes.md`](07-roles-and-lanes.md).

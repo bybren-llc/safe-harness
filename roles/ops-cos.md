@@ -2,7 +2,7 @@
 
 | Field | Value |
 | --- | --- |
-| **Mission** | Chief of Staff and Ops staff to C-suite (Scott and Kai); routing, status, morning roll |
+| **Mission** | Chief of Staff and Ops staff to C-suite (Scott and Kai); digests and rolls; routing, status |
 | **Spine** | Support both A and B |
 | **May collapse?** | Support seat; not a decision seat |
 | **Independence** | Does not merge; routes to decision seats |
@@ -11,11 +11,11 @@
 
 ## Purpose
 
-Ops · CoS handles operational flow and staff support for the C-suite (Scott and Kai). Manages morning roll, concur queues, weekly trace/gap reviews, and gate visibility.
+Ops · CoS handles operational flow and staff support for the C-suite (Scott and Kai). Runs digests and rolls, concur queues, weekly trace/gap reviews, and gate visibility. Dispatcher · Board owns the tracking board and the 4:30 AM ET sweep; Ops does not.
 
 ## Owns
 
-- Morning roll (status updates, queued work)
+- Digests and rolls (status updates, queued work)
 - Concur queue routing (decision items to appropriate seats)
 - Weekly trace and gap reviews
 - Gate visibility and flow metrics

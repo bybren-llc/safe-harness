@@ -23,6 +23,8 @@ Prohibited content:
 
 Agents and humans: when referencing NAS, personal vault, or private context, **describe the pattern** without exposing the instance.
 
+Secrets live in vaults. Scott owns both the GitHub secrets and the vault side. Never include a secret value in this repository.
+
 ---
 
 ## Constitution-gated files (CODEOWNERS)
@@ -53,7 +55,7 @@ Agents may open PRs touching these files but **must not merge them**, except Kai
 9. **Decision pack:** If Medium or High tier, create decision pack with rationale, evidence, and risks
 10. **Merge:** Human approval is distinct from merge execution. On trunk, Kai may execute the merge once checks are green and an independent QAS APPROVE is on the exact head; at Med/High/O2 also RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason. Release · RTE also needs Kai's independent QAS APPROVE and its own PASS. Scott's recorded own-words concur is required for constitution/, High, and O2. CODEOWNERS-gated paths other than constitution/ (intent.md, spec.md, requirements/, trace/) stay agents-must-not-merge (Scott/CODEOWNERS only). Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md).
 
-**Key constraint:** QAS independence means QAS is never the implementer. Nobody merges their own authored change. An agent merge never counts as human approval. High/O2 still needs Scott's recorded concur as a required human approval. See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for the template default.
+**Key constraint:** QAS independence means QAS is never the implementer. Nobody merges their own authored change. An agent merge never counts as human approval. High/O2 still needs Scott's recorded concur as a required human approval. Two distinct humans on High-tier work is recommended guidance, not a gate. See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for the template default.
 
 ---
 

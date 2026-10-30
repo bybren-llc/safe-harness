@@ -59,7 +59,7 @@
 ### (c) What needs Scott
 
 - Constitution amendments (requires Scott concurrence)
-- High and O2 items (require Scott as one of two humans)
+- High and O2 items (require Scott's recorded concur; two distinct humans is recommended guidance, not a gate)
 - Intent or spec changes (Scott owns and must approve via CODEOWNERS)
 - Dropping a requirement from `intent.md` (requires Scott sign-off)
 
@@ -78,7 +78,7 @@
 7. **Decision pack:** If Medium or High tier, create decision pack with rationale, evidence, and risks
 8. **Merge:** Human approval (Scott's recorded concur) is distinct from merge execution. On trunk, Kai may execute the merge once checks are green and an independent QAS APPROVE is on the exact head; at Med/High/O2 also RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason. Release · RTE also needs Kai's independent QAS APPROVE and its own PASS. Scott's recorded own-words concur is required for constitution/, High, and O2. CODEOWNERS-gated paths other than constitution/ (intent.md, spec.md, requirements/, trace/) stay agents-must-not-merge (Scott/CODEOWNERS only). Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md).
 
-**Key constraint:** QAS independence means QAS is never the implementer. Nobody merges their own authored change. An agent merge never counts as human approval. High/O2 still needs Scott's recorded concur as a required human approval (whether that plus independent agent QAS satisfies "two distinct humans" is open for Scott). See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for the template default.
+**Key constraint:** QAS independence means QAS is never the implementer. Nobody merges their own authored change. An agent merge never counts as human approval. High/O2 still needs Scott's recorded concur as a required human approval. Two distinct humans on High-tier work is recommended guidance, not a gate. See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for the template default.
 
 ```mermaid
 graph TD
@@ -101,7 +101,7 @@ graph TD
     M --> P[Prod promotion: Scott concur on prod-risk]
 ```
 
-Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. Safe-harness is trunk-only; trunk concur is `constitution/`, High, and O2.
+Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. This repo is a template; adopting teams configure dev, staging, and prod for their own environments. Safe-harness itself is trunk-only; trunk concur is `constitution/`, High, and O2.
 
 ---
 
@@ -109,13 +109,14 @@ Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deplo
 
 | Role | Seat | Responsibilities | Card |
 | --- | --- | --- | --- |
-| **Scott** | HITL / POPM | Owns intent.md & spec.md, High/O2 HITL, constitution concur | Role card planned |
-| **Kai** | GM / lead ARCHitect | QAS, merge, architecture registry, O2 decisions | [`roles/kai-gm-architect.md`](roles/kai-gm-architect.md) |
-| **Delivery · Lead** | Implementation | Execute bolts, cite REQs, author PRs, never merge | [`roles/delivery-lead.md`](roles/delivery-lead.md) |
-| **Studio · Lead** | Design & requirements | Draft intent & spec with Scott, derive REQ IDs, research appendix | [`roles/studio-lead.md`](roles/studio-lead.md) |
-| **Ops · CoS** | Operations & flow | Morning roll, concur queue, weekly trace/gap reviews, gate visibility | [`roles/ops-cos.md`](roles/ops-cos.md) |
-| **Librarian · Signals** | Knowledge & links | Link health, rot detection, vault citations, archive frozen maps | [`roles/librarian-signals.md`](roles/librarian-signals.md) |
-| **Scout · Story Media** | Research & media | Model selection, fit-band research, evidence sources, Confluence inputs | [`roles/scout-story-media.md`](roles/scout-story-media.md) |
+| **Scott** | HITL / POPM | Owns intent.md & spec.md, High/O2 HITL, constitution concur, X writes, secrets | Role card planned |
+| **Kai** | GM / lead ARCHitect | High-tier or cross-lane work; QAS, merge, architecture registry, O2 decisions | [`roles/kai-gm-architect.md`](roles/kai-gm-architect.md) |
+| **Delivery · Lead** | Implementation | Projects end to end; execute bolts, cite REQs, author PRs, never merge | [`roles/delivery-lead.md`](roles/delivery-lead.md) |
+| **Studio · Lead** | Design & requirements | Stories; draft intent & spec with Scott, derive REQ IDs, research appendix | [`roles/studio-lead.md`](roles/studio-lead.md) |
+| **Ops · CoS** | Operations & flow | Digests and rolls, concur queue, weekly trace/gap reviews, gate visibility | [`roles/ops-cos.md`](roles/ops-cos.md) |
+| **Dispatcher · Board** | Tracking board | Owns the board; 4:30 AM ET read-only sweep; surfaces only (never decides, posts, or merges) | [`roles/dispatcher-board.md`](roles/dispatcher-board.md) |
+| **Librarian · Signals** | Knowledge & links | Signals, X research, CVE scans; link health, rot detection, vault citations | [`roles/librarian-signals.md`](roles/librarian-signals.md) |
+| **Scout · Story Media** | Research & media | Tool, model, and price calls; fit-band research, evidence sources | [`roles/scout-story-media.md`](roles/scout-story-media.md) |
 | **Specialists** | As needed | SecEng ([`roles/seceng.md`](roles/seceng.md)), QAS ([`roles/qas.md`](roles/qas.md)), Implementer ([`roles/implementer.md`](roles/implementer.md)), BSA-like ([`roles/bsa-like.md`](roles/bsa-like.md)), RTE ([`roles/release-rte.md`](roles/release-rte.md)), Model Stack ([`roles/model-stack.md`](roles/model-stack.md)) | Scott: role card planned |
 
 ---
@@ -124,11 +125,11 @@ Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deplo
 
 | Path | Purpose |
 | --- | --- |
-| [`constitution/`](constitution/) | Governance framework (risk tiers, gates, ownership, evidence) |
+| [`constitution/`](constitution/) | Governance framework (risk tiers, gates, ownership, evidence, [`07-roles-and-lanes.md`](constitution/07-roles-and-lanes.md) delegation map) |
 | [`roles/`](roles/) | Round Table seat definitions |
 | [`templates/`](templates/) | Brief and handoff templates (Bolt, Studio→Delivery) |
 | [`release/`](release/) | Continuous-deployment release flow ([`release/flow.md`](release/flow.md)) |
-| [`prove/`](prove/) | Evidence and bolt records (wave-0-retro.md, wave-1/, [rte-merge-rights/decision-pack.md](prove/rte-merge-rights/decision-pack.md)) |
+| [`prove/`](prove/) | Evidence and bolt records (wave-0-retro.md, wave-1/, [rte-merge-rights/decision-pack.md](prove/rte-merge-rights/decision-pack.md), [delegation-map/decision-pack.md](prove/delegation-map/decision-pack.md)) |
 | [`prove/d-p1/`](prove/d-p1/) | D-P1 bolt evidence (Wave 0) |
 | `prove/d-p2/` | (planned) D-P2 bolt evidence |
 | [`arch/`](arch/) | Component registry (ARC-<CMP>, components.yaml) |
@@ -158,7 +159,7 @@ Both share Round Table principles, exit states, and ownership. They differ in ga
 
 - **Low**: Auto when green (tests + evidence met); human assignee still named; trunk merge by Kai after QAS APPROVE; RTE merge also needs RTE PASS
 - **Med**: One human decision pack; trunk merge by Kai after QAS APPROVE; RTE merge also needs RTE PASS
-- **High**: Two distinct humans; agent ≠ human (how this is met is open for Scott). Scott's recorded concur is a required human approval; RTE merge needs RTE PASS plus the required concur; merge execution may be Scott, Kai, or RTE.
+- **High**: Two distinct humans is recommended guidance, not a gate (many projects do not need it). Agent ≠ human. Scott's recorded concur is a required human approval; RTE merge needs RTE PASS plus the required concur; merge execution may be Scott, Kai, or RTE.
 
 **O2 high-risk items default to High** unless downgraded in writing at QAS. Delivery may propose a downgrade rationale; Kai decides at QAS: pricing, refunds, auth, deploy CI/workflows, prod secrets, privacy-boundary crosses.
 
@@ -266,8 +267,8 @@ See [`prove/README.md`](prove/README.md) for wave checklist and [`prove/wave-1/d
 ## Reference
 
 - **SAW:** `bybren-llc/safe-agentic-workflow` @ `dev` (reference only; never silent-rewrite)
-- **Linear archive:** SAF-1 through SAF-5 (read-only after cutover)
-- **Mapping table:** [`trace/linear-saf-map.csv`](trace/linear-saf-map.csv) (to be populated before cutover)
+- **Linear:** optional. Preferred path is design, specs, and PRDs in GitHub. Archive SAF-1 through SAF-5 remains read-only.
+- **Mapping table:** [`trace/linear-saf-map.csv`](trace/linear-saf-map.csv) (frozen; do not edit)
 
 ---
 

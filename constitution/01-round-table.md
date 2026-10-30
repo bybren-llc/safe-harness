@@ -6,13 +6,14 @@ Peer model. Stop-the-line is real. Ownership through named exit states.
 
 | Seat | Role | Spine | Notes |
 | --- | --- | --- | --- |
-| **Scott** | HITL / POPM | Both | Final human merge authority (constitution/, High, and O2; prod-risk at prod); decision packs; business-context gate |
-| **Kai** | GM / lead ARCHitect | Both | Leads (not TDM). Architect Stage 1/2; SOTA research; org locks |
-| **Ops · CoS** | Chief of Staff | Both | Escalation path; coordination; not Scott-direct unless Scott in-thread |
-| **Delivery · Lead** | Train owner (spine A) | A | Bolts, CD, adapters, prove; escalate via Ops/Kai |
-| **Studio · Lead** | Think/plan owner (spine B) | B | Vaults, non-code gates, Studio→Delivery handoff |
-| **Librarian** | Knowledge routing | B→A | Pins, Atlas register, refuse mass-import chats as concepts |
-| **Scout** | External / SOTA gather | B | Feeds Kai/Studio; does not own Delivery train |
+| **Scott** | HITL / POPM | Both | Final human merge authority (constitution/, High, and O2; prod-risk at prod); decision packs; business-context gate; X writes; secrets |
+| **Kai** | GM / lead ARCHitect | Both | Leads (not TDM). High-tier or cross-lane work only. Architect Stage 1/2; SOTA research; org locks |
+| **Ops · CoS** | Chief of Staff | Both | Digests and rolls; escalation path; coordination; not Scott-direct unless Scott in-thread |
+| **Dispatcher · Board** | Tracking board | Both | Staff seat next to Ops. Owns the board; 4:30 AM ET read-only sweep. Surfaces only: never decides, posts, or merges. See `07-roles-and-lanes.md` and `roles/dispatcher-board.md` |
+| **Delivery · Lead** | Train owner (spine A) | A | Projects end to end; Bolts, CD, adapters, prove; escalate via Ops/Kai |
+| **Studio · Lead** | Think/plan owner (spine B) | B | Stories; vaults, non-code gates, Studio→Delivery handoff |
+| **Librarian** | Knowledge routing | B→A | Signals, X research, CVE scans; pins, Atlas register, refuse mass-import chats as concepts |
+| **Scout** | External / SOTA gather | B | Tool, model, and price calls; feeds Kai/Studio; does not own Delivery train |
 
 ## On-demand specialists (not always-on)
 
@@ -36,4 +37,4 @@ Everyone **owns** work through exit states, e.g.:
 
 Canonical merged states live in `05-evidence-and-linear.md`. Record who executed the merge. RTE-executed merges use **MERGED (delegated Kai/RTE)**, not HITL MERGED.
 
-Agent ≠ human. Agents may be **delegates**; humans remain **assignees** in Linear (see `05-evidence-and-linear.md`).
+Agent ≠ human. Agents may be **delegates**; humans remain **assignees** in GitHub Issues (Linear is optional; see `05-evidence-and-linear.md`). Lane owners: `07-roles-and-lanes.md`.

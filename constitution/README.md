@@ -12,9 +12,10 @@ SAW = **Safe Agentic Workflow** (everyday safe). Not SAFe the trademark. SAFe + 
 2. Map seats in `01-round-table.md` before assigning work.
 3. Run cadence via `02-safe-ai-dlc.md` (Bolts, Units of Work, independence).
 4. Gate CD with `03-cd-and-hitl.md` (risk tiers + O2 high-risk list).
-5. Route knowledge with `04-privacy-and-vaults.md` (NAS SoT; personal vault never remote).
-6. Track evidence in Linear per `05-evidence-and-linear.md` (no Linear Agents in Wave 0).
+5. Route knowledge with `04-privacy-and-vaults.md` (NAS SoT; personal vault never remote; Scott owns secrets).
+6. Track evidence in GitHub per `05-evidence-and-linear.md`. Linear is optional; the preferred path is design, specs, and PRDs in GitHub. No Linear Agents.
 7. Retire dogma via `06-empiricism.md`.
+8. Apply the lane map in `07-roles-and-lanes.md` (delegation map; Dispatcher · Board; scanner-not-fixer).
 
 Adapters express the same constitution in runtime-native form:
 
