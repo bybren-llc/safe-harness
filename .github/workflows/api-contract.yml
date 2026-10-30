@@ -1,0 +1,153 @@
+name: API Contract Checks (warn-only)
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Least privilege. No secrets. No pull_request_target.
+permissions:
+  contents: read
+
+env:
+  # Default OpenAPI spec path. Adopters: change this to the spec in the repo.
+  # Documented default: openapi.yaml
+  OPENAPI_SPEC_PATH: openapi.yaml
+  # Schemathesis runs only when this is non-empty. Use a public base URL.
+  # Leave empty to skip. Do not put credentials here; this workflow uses no secrets.
+  API_CONTRACT_BASE_URL: ""
+  # Pinned tool versions
+  OASDIFF_VERSION: "1.35.0"
+  SCHEMATHESIS_VERSION: "4.32.7"
+
+jobs:
+  api-contract:
+    name: API Contract Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Locate OpenAPI spec
+        id: spec
+        run: |
+          set -euo pipefail
+          echo "Configured OpenAPI spec path: ${OPENAPI_SPEC_PATH} (default: openapi.yaml)"
+          if [[ -f "${OPENAPI_SPEC_PATH}" ]]; then
+            echo "found=true" >> "${GITHUB_OUTPUT}"
+            echo "OpenAPI spec found at ${OPENAPI_SPEC_PATH}"
+          else
+            echo "found=false" >> "${GITHUB_OUTPUT}"
+            echo "No OpenAPI spec at ${OPENAPI_SPEC_PATH} (default: openapi.yaml)."
+            echo "Skipping API contract checks. This is expected when the repo has no spec yet."
+            echo "Adopters: add a spec at that path, or change OPENAPI_SPEC_PATH in this workflow."
+          fi
+
+      - name: Fetch base-ref spec
+        if: steps.spec.outputs.found == 'true'
+        id: base
+        run: |
+          set -euo pipefail
+          if [[ "${GITHUB_EVENT_NAME}" == "pull_request" ]]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          else
+            BASE_SHA="${{ github.event.before }}"
+          fi
+
+          if [[ -z "${BASE_SHA}" || "${BASE_SHA}" == "0000000000000000000000000000000000000000" ]]; then
+            echo "No comparison SHA. Skipping oasdiff."
+            echo "available=false" >> "${GITHUB_OUTPUT}"
+            exit 0
+          fi
+
+          if ! git fetch --depth=1 origin "${BASE_SHA}"; then
+            echo "Could not fetch ${BASE_SHA}. Skipping oasdiff."
+            echo "available=false" >> "${GITHUB_OUTPUT}"
+            exit 0
+          fi
+
+          if git cat-file -e "${BASE_SHA}:${OPENAPI_SPEC_PATH}" 2>/dev/null; then
+            git show "${BASE_SHA}:${OPENAPI_SPEC_PATH}" > /tmp/openapi-base.yaml
+            echo "available=true" >> "${GITHUB_OUTPUT}"
+            echo "Base spec written from ${BASE_SHA}:${OPENAPI_SPEC_PATH}"
+          else
+            echo "No OpenAPI spec at ${OPENAPI_SPEC_PATH} on ${BASE_SHA}. Skipping oasdiff (nothing to compare)."
+            echo "available=false" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Install oasdiff
+        if: steps.spec.outputs.found == 'true' && steps.base.outputs.available == 'true'
+        run: |
+          set -euo pipefail
+          curl -fsSL -o /tmp/oasdiff.tar.gz \
+            "https://github.com/oasdiff/oasdiff/releases/download/v${OASDIFF_VERSION}/oasdiff_${OASDIFF_VERSION}_linux_amd64.tar.gz"
+          tar -xzf /tmp/oasdiff.tar.gz -C /tmp
+          sudo install -m 0755 /tmp/oasdiff /usr/local/bin/oasdiff
+          oasdiff --version
+
+      - name: oasdiff breaking-change detection
+        if: steps.spec.outputs.found == 'true' && steps.base.outputs.available == 'true'
+        # WARN-ONLY: findings never fail the job.
+        # To flip to blocking later, remove the continue-on-error line below.
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          echo "Running oasdiff breaking (pinned v${OASDIFF_VERSION}) — warn-only"
+          oasdiff breaking /tmp/openapi-base.yaml "${OPENAPI_SPEC_PATH}"
+
+      - name: Decide Schemathesis
+        if: steps.spec.outputs.found == 'true'
+        id: st
+        run: |
+          set -euo pipefail
+          if [[ -n "${API_CONTRACT_BASE_URL}" ]]; then
+            echo "run=true" >> "${GITHUB_OUTPUT}"
+            echo "API_CONTRACT_BASE_URL is set. Schemathesis will run warn-only."
+          else
+            echo "run=false" >> "${GITHUB_OUTPUT}"
+            echo "API_CONTRACT_BASE_URL is empty. Skipping Schemathesis."
+            echo "Adopters: set API_CONTRACT_BASE_URL in this workflow to a public API base URL."
+          fi
+
+      - name: Install Schemathesis
+        if: steps.spec.outputs.found == 'true' && steps.st.outputs.run == 'true'
+        run: |
+          set -euo pipefail
+          python3 -m venv /tmp/schemathesis-venv
+          /tmp/schemathesis-venv/bin/pip install --upgrade pip
+          /tmp/schemathesis-venv/bin/pip install "schemathesis==${SCHEMATHESIS_VERSION}"
+          /tmp/schemathesis-venv/bin/schemathesis --version
+
+      - name: Schemathesis
+        if: steps.spec.outputs.found == 'true' && steps.st.outputs.run == 'true'
+        # WARN-ONLY: findings never fail the job.
+        # To flip to blocking later, remove the continue-on-error line below.
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          echo "Running Schemathesis (pinned v${SCHEMATHESIS_VERSION}) — warn-only"
+          /tmp/schemathesis-venv/bin/schemathesis run "${OPENAPI_SPEC_PATH}" --url "${API_CONTRACT_BASE_URL}"
+
+      - name: Summary
+        if: always()
+        run: |
+          set -euo pipefail
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          if [[ "${{ steps.spec.outputs.found }}" != "true" ]]; then
+            echo "API contract checks skipped (no spec at ${OPENAPI_SPEC_PATH}; default: openapi.yaml)"
+          else
+            echo "OpenAPI spec found at ${OPENAPI_SPEC_PATH}"
+            if [[ "${{ steps.base.outputs.available }}" == "true" ]]; then
+              echo "oasdiff: ran warn-only"
+            else
+              echo "oasdiff: skipped (no base-ref spec)"
+            fi
+            if [[ "${{ steps.st.outputs.run }}" == "true" ]]; then
+              echo "Schemathesis: ran warn-only"
+            else
+              echo "Schemathesis: skipped (no API_CONTRACT_BASE_URL)"
+            fi
+          fi
+          echo "Job is warn-only and exits 0. Checks do not block merge."
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
