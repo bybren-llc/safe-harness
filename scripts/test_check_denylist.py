@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 ByBren, LLC
 """Local tests for check-denylist.py. Fake terms only."""
 
 from __future__ import annotations

@@ -1,6 +1,7 @@
 ---
 name: seceng-review
 description: Security, privacy-boundary, and secrets review with negative authority. Use on Med/High/O2 and on any diff that touches auth, secrets, deploy, or privacy. Scanner not fixer.
+license: MIT (see repository LICENSE)
 ---
 
 # SecEng review

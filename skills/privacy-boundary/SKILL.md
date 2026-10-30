@@ -1,6 +1,7 @@
 ---
 name: privacy-boundary
 description: Enforce the personal-boundary rule — no personal-store content, story IP, or private-store facts in repos. Use when drafting, reviewing, or scanning a diff for privacy leakage.
+license: MIT (see repository LICENSE)
 ---
 
 # Privacy boundary

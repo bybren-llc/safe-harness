@@ -1,0 +1,65 @@
+safe-harness
+Copyright (c) 2026 J. Scott Graham (@cheddarfox) / ByBren, LLC
+
+safe-harness is licensed under the MIT License (see LICENSE).
+
+ATTRIBUTION:
+If you build on this harness, please keep this NOTICE file and include the
+following attribution in a prominent location (e.g., README or documentation):
+
+    Built with safe-harness by ByBren, LLC
+    https://github.com/bybren-llc/safe-harness
+
+SKILLS DERIVED FROM SAFe AGENTIC WORKFLOW (SAW):
+Some skills were ported or generalized from SAW (SAFe Agentic Workflow) at
+https://github.com/bybren-llc/safe-agentic-workflow and rewritten for this
+template. SAW is MIT-licensed:
+
+    Copyright (c) 2026 J. Scott Graham (@cheddarfox) / ByBren, LLC
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+For skill provenance details, see the Source table in skills/README.md.
+
+--------------------------------------------------------------------------------
+
+THIRD-PARTY NOTICES
+
+No third-party source code is vendored in this repository.
+
+AI-Driven Development Life Cycle (AI-DLC)
+Published by Amazon Web Services
+    https://aws.amazon.com/blogs/devops/ai-driven-development-life-cycle/
+The cadence vocabulary (Bolt, Unit of Work, Inception / Construction /
+Operations) follows AI-DLC. AI-DLC is AWS's methodology. The fusion with
+SAFe's ownership spine, gates and evidence rules is this project's work.
+
+Markdown Architectural Decision Records (MADR) 4.0
+    https://adr.github.io/madr/  (licensed MIT OR CC0-1.0)
+Decision records in docs/decisions/ follow the MADR format.
+
+Tools invoked by CI workflows (downloaded at run time, not redistributed):
+    oasdiff (Apache-2.0)      https://github.com/oasdiff/oasdiff
+    Schemathesis (MIT)        https://github.com/schemathesis/schemathesis
+    PyYAML (MIT)              https://github.com/yaml/pyyaml
+    yq (MIT)                  https://github.com/mikefarah/yq
+    actions/checkout (MIT)    https://github.com/actions/checkout
+
+SAFe® is a registered trademark of Scaled Agile, Inc. This project is not
+affiliated with, endorsed by, or certified by Scaled Agile, Inc.

@@ -1,6 +1,7 @@
 ---
 name: signals-digest
 description: Research or learning-signals digest from read-only sources, with citations. Use for Librarian cadence. Never write to external platforms.
+license: MIT (see repository LICENSE)
 ---
 
 # Signals digest

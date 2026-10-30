@@ -1,6 +1,7 @@
 ---
 name: pattern-discovery
 description: Check the adopter's existing pattern library before writing new code. Use before new API, UI, storage, or test work in a product repo.
+license: MIT (see repository LICENSE)
 ---
 
 # Pattern discovery

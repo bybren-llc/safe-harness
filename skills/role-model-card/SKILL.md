@@ -1,6 +1,7 @@
 ---
 name: role-model-card
 description: Publish and keep a role-to-model-tier card per adapter. Use when adding an adapter or changing defaults. Ultracode is not the default. Do not run Light-only on O2 construction.
+license: MIT (see repository LICENSE)
 ---
 
 # Role → model-tier card

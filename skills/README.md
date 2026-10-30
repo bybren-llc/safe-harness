@@ -1,5 +1,9 @@
 # Skills library (v1.0)
 
+**License:** MIT (see [/LICENSE](/LICENSE))
+**Copyright:** © 2026 ByBren, LLC
+**Attribution:** See [/NOTICE](/NOTICE)
+
 Canonical path: `skills/<slug>/SKILL.md`.
 
 Each skill is institutional knowledge for one job. Adapters map this directory into the runtime's native location. Skills that mention a gate, merge, release, concur, or freeze rule cite the governing file by relative path (for example [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md) or [`roles/release-rte.md`](../roles/release-rte.md)) and say **see the cited section; this skill grants no authority**. They do not paraphrase a rule in a way that adds or changes authority.

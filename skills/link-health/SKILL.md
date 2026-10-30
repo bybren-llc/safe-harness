@@ -1,6 +1,7 @@
 ---
 name: link-health
 description: Run blocking in-repo link checks and a weekly non-blocking cross-system scan. Register-first, no invented links, link-rot label. Use when checking a PR's links or running the scheduled scan.
+license: MIT (see repository LICENSE)
 ---
 
 # Link health

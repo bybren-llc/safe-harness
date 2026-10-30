@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 ByBren, LLC
 name: API Contract Checks (warn-only)
 
 on:

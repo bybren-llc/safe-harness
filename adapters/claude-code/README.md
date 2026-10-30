@@ -1,5 +1,9 @@
 # Adapter — Claude Code (Wave 0 first)
 
+**License:** MIT (see [/LICENSE](/LICENSE))
+**Copyright:** © 2026 ByBren, LLC
+**Attribution:** See [/NOTICE](/NOTICE)
+
 Maps constitution → Claude Code teams / workflows / hooks. Thin stub — no ultracode-as-default.
 
 ## Mapping
