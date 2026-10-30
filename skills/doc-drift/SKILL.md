@@ -37,4 +37,4 @@ Run the repo's documented link check and markdown syntax check. Paste literal ou
 
 - Repo docs only. No external vault format, no machine paths.
 - Do not edit `intent.md` or `spec.md`. See the cited section; this skill grants no authority.
-- Do not merge `@<code-owners>` paths. See the cited section; this skill grants no authority.
+- Do not merge CODEOWNERS-gated paths. See the cited section; this skill grants no authority.
