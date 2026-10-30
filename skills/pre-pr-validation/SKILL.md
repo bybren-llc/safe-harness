@@ -8,9 +8,17 @@ description: Run the repo's documented local checks, link check, and trace check
 **Source:** generalize
 **Used by:** Delivery, Implementer
 
+## Authority
+
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — exact-head; O2 architect-review triggers (deploy CI, auth, secrets)
+
+See the cited section; this skill grants no authority.
+
+**Working practice, not yet constitutional:** After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks. Do not run this skill to "clean up" a frozen head unless Delivery explicitly asked for a new head.
+
 ## When to use
 
-Before every PR. After `QAS: APPROVE` do not run this to "clean up" the branch unless Delivery explicitly asked for a new head.
+Before every PR on an unfrozen head.
 
 ## Steps
 
@@ -29,5 +37,4 @@ Paste the command and its output into the PR or the bolt brief. Paraphrase is no
 ## Stop rules
 
 - Block on red checks. Do not open a "CI will catch it" PR for a known local failure.
-- Architect-review triggers (deploy CI, auth, secrets, IaC, migrations) escalate before the PR, not after.
-- After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks.
+- Architect-review triggers (deploy CI, auth, secrets, IaC, migrations) escalate before the PR, not after. See the cited section; this skill grants no authority.

@@ -8,6 +8,12 @@ description: Add or update REQ-<CMP>-NNN rows and trace-map states (Placed, Defe
 **Source:** new
 **Used by:** Delivery, Studio, BSA-like
 
+## Authority
+
+- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — REQ format; trace states; who may author vs merge `requirements/` and `trace/`; intent/spec ownership
+
+See the cited section; this skill grants no authority.
+
 ## When to use
 
 Requirements are the definition of success. Use this skill to add or update a `REQ-<CMP>-NNN` and its row in `trace/trace-map.yaml`. Do not use it to edit `intent.md` or `spec.md` — those are human-owned. See [`intent-spec-assist`](../intent-spec-assist/SKILL.md) to propose draft text.
@@ -33,7 +39,7 @@ Requirements are the definition of success. Use this skill to add or update a `R
 2. Add `requirements/REQ-<CMP>-NNN.yaml` from the template.
 3. Add or update the row in `trace/trace-map.yaml`.
 4. Link evidence with `req_ids`. See [`portable-evidence`](../portable-evidence/SKILL.md).
-5. Agents may author `requirements/` and `trace/`. They never merge those paths. `@<code-owners>` review is required.
+5. Who may author vs merge `requirements/` and `trace/` is in the cited section. See the cited section; this skill grants no authority.
 
 ## External trackers
 

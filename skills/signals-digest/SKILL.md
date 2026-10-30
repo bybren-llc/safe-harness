@@ -8,6 +8,12 @@ description: Research or learning-signals digest from read-only sources, with ci
 **Source:** generalize
 **Used by:** Librarian · Signals
 
+## Authority
+
+- [`constitution/07-roles-and-lanes.md`](../../constitution/07-roles-and-lanes.md) — Librarian is read-only on external platforms; not a merge seat
+
+See the cited section; this skill grants no authority.
+
 ## When to use
 
 The Librarian watches learning signals and read-only external sources (public docs, feeds, social / external sources in read-only mode). This skill packages a digest. It never writes back.
@@ -21,6 +27,6 @@ The Librarian watches learning signals and read-only external sources (public do
 
 ## Stop rules
 
-- Never write to social or other external platforms. No public or external posts without the HITL owner's explicit OK.
-- Do not merge.
+- Never write to social or other external platforms. See the cited section; this skill grants no authority.
+- Do not merge. See the cited section; this skill grants no authority.
 - Scanner, not fixer, if a signal is a security finding.

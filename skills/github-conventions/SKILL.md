@@ -8,6 +8,15 @@ description: Apply trunk GitHub conventions — branch names, plain commit subje
 **Source:** generalize
 **Used by:** All authoring seats
 
+## Authority
+
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — GitHub conventions (branch, trailers, PR Requirements line)
+- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — labels and issue types
+
+See the cited section; this skill grants no authority.
+
+**Working practice, not yet constitutional:** After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks. That includes "fix up the PR title" and "add a trailer."
+
 ## When to use
 
 Any time you create a branch, commit, or open a PR in a repo that adopted this template.
@@ -32,10 +41,6 @@ Req: REQ-<CMP>-NNN
 ## Legacy note
 
 Older branches or commits may use a ticket-prefix form (`SAF-N-slug`, `[SAF-N]` subjects). Treat that as archive/legacy. New work uses the GitHub Issue number.
-
-## After QAS APPROVE
-
-After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks. That includes "fix up the PR title" and "add a trailer."
 
 ## Stop rules
 

@@ -8,9 +8,16 @@ description: Record a portable evidence row (evidence_id, runtime, exact_head, i
 **Source:** new
 **Used by:** All seats
 
+## Authority
+
+- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — portable evidence fields; exact-head
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — exact-head at gates
+
+See the cited section; this skill grants no authority.
+
 ## When to use
 
-Every gate that asks for proof gets a portable row. Do not rely on one runtime's session ID alone. Schema: `constitution/05`.
+Every gate that asks for proof gets a portable row. Do not rely on one runtime's session ID alone. The field list is in the cited `constitution/05` section.
 
 ## Row
 

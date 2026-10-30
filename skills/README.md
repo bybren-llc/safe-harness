@@ -2,7 +2,7 @@
 
 Canonical path: `skills/<slug>/SKILL.md`.
 
-Each skill is institutional knowledge for one job. Adapters map this directory into the runtime's native location. Skills do not restate the constitution; they point at it by number (`constitution/03`, `constitution/05`) and name seats, not file paths that later PRs may rename.
+Each skill is institutional knowledge for one job. Adapters map this directory into the runtime's native location. Skills that mention a gate, merge, release, concur, or freeze rule cite the governing file by relative path (for example [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md) or [`roles/release-rte.md`](../roles/release-rte.md)) and say **see the cited section; this skill grants no authority**. They do not paraphrase a rule in a way that adds or changes authority.
 
 Authoring follows the public skill and rules conventions:
 
@@ -13,7 +13,7 @@ Authoring follows the public skill and rules conventions:
 
 ## Standing practice (v1.0)
 
-These two rules are working practice. They apply to every authoring seat:
+**Working practice, not yet constitutional.** These two lines are not in `constitution/` yet. They apply to every authoring seat until they are written there:
 
 1. After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks.
 2. A consequential action needs the human's own words verified. An agent relaying approval is never approval.
@@ -59,9 +59,19 @@ Allowed public URLs (where they help):
 | --- | --- |
 | Claude Code | Map each `skills/<slug>/` to the runtime skills directory (typically `.claude/skills/<slug>/SKILL.md`). See the [Claude Code skills](https://docs.claude.com/en/docs/claude-code/skills) docs and [`adapters/claude-code/README.md`](../adapters/claude-code/README.md). |
 | Cursor | Map selected skills into Cursor rules or the runtime skills directory. See [Cursor rules](https://docs.cursor.com/context/rules) and [`adapters/cursor/README.md`](../adapters/cursor/README.md). |
-| Grok Bot | **UNKNOWN.** The exact loading path for a repo `skills/` directory is not decided in v1.0. Keep this directory as the source of truth until an adapter lands. |
+| Grok Bot | Does **not** auto-load this repo's `skills/` folder. **Setup:** import each skill as its own skill on the bot — one folder per skill, containing a `SKILL.md` with `name` and `description` frontmatter. Copy or link each `skills/<slug>/` folder. This directory stays the source of truth. |
 
 Trigger tests per skill (does the runtime load the right skill for a prompt) are **UNKNOWN** to automate per runtime. v1.0 does not ship hook files. Whether generic hooks (protected-path block, no secrets in diff) ship later is **UNKNOWN**.
+
+## Local check
+
+From the repo root:
+
+```text
+python3 skills/check-frontmatter.py
+```
+
+This check requires every `skills/<slug>/SKILL.md` to start with YAML frontmatter (`---` / `name: <slug>` / `description: <when to use it>` / `---`) that parses cleanly, and `name` to match the folder slug. It does not replace the Wave 0 structure and link checks.
 
 ## Index (38 skills)
 
@@ -124,7 +134,7 @@ Cadence language (Bolts, Units of Work, human validate) follows the [SAFe](https
 
 1. Add `skills/<slug>/SKILL.md` with `name` and `description`.
 2. State Source and Used by.
-3. Point at constitution numbers and seat names. Do not copy gate text.
-4. Run the sanitization grep in this PR's body (or the later CI denylist).
+3. If the skill mentions a gate, merge, release, concur, or freeze rule, cite the governing file by relative path and write "see the cited section; this skill grants no authority."
+4. Run `python3 skills/check-frontmatter.py` and the repo link check.
 5. Link the skill from this index.
 6. Keep every external URL on the allowlist above.

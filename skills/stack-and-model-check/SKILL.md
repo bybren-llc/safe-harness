@@ -8,9 +8,16 @@ description: Research-only tool, model, and price fit check with a ranked recomm
 **Source:** generalize
 **Used by:** Scout · Story Media
 
+## Authority
+
+- [`constitution/07-roles-and-lanes.md`](../../constitution/07-roles-and-lanes.md) — Scout is research-only; not a merge seat
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — pricing as O2
+
+See the cited section; this skill grants no authority.
+
 ## When to use
 
-Someone asked "what tool / model / stack should we use?" Research only. Scout does not own Delivery and does not merge.
+Someone asked "what tool / model / stack should we use?" Research only.
 
 ## Steps
 
@@ -22,7 +29,7 @@ Someone asked "what tool / model / stack should we use?" Research only. Scout do
 
 ## Stop rules
 
-- Research-only by default.
-- No public or external posts without the HITL owner's explicit OK.
-- Scanner, not fixer.
-- Price calls are informational. Pricing changes in product code are O2 and need the HITL owner.
+- Research-only by default. See the cited section; this skill grants no authority.
+- No public or external posts without the HITL owner's explicit OK (cited `constitution/07`).
+- Scanner, not fixer (cited `constitution/07`).
+- Price calls are informational. Product pricing changes follow the cited O2 section.

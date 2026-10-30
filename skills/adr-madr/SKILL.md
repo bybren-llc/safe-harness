@@ -8,6 +8,15 @@ description: Write one Architecture Decision Record per decision in MADR 4.0 wit
 **Source:** generalize
 **Used by:** GM, Delivery
 
+## Authority
+
+- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — repo is SoR
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — constitution changes need recorded concur; exact-head
+
+See the cited section; this skill grants no authority.
+
+**Working practice, not yet constitutional:** A consequential action needs the human's own words verified. An agent relaying approval is never approval.
+
 ## When to use
 
 One ADR per decision. The repo is the source of truth. Do not publish the ADR to an external wiki as the record.
@@ -30,8 +39,6 @@ Record:
 - Own words (quoted) or `UNKNOWN`
 - Timestamp
 - Exact head
-
-A consequential action needs the human's own words verified. An agent relaying approval is never approval.
 
 ## Stop rules
 

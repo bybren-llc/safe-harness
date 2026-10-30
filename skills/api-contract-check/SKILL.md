@@ -8,6 +8,12 @@ description: Run contract tests and breaking-change diffs on an adopter's OpenAP
 **Source:** new
 **Used by:** Delivery, QAS (adopters)
 
+## Authority
+
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — High / O2; deploy CI / workflows
+
+See the cited section; this skill grants no authority.
+
 ## When to use
 
 An adopting product repo has an OpenAPI (or equivalent) spec. This template repo has no spec. The skill is a template: skip with a notice when no spec path is configured.
@@ -25,5 +31,5 @@ A later warn-only CI job may pair with this skill. Until then, run locally.
 ## Stop rules
 
 - Do not add an OpenAPI file to this template repo "to make the check interesting."
-- Do not treat warn-only as a pass that hides a known break on a High / O2 API change.
+- Do not treat warn-only as a pass that hides a known break on a High / O2 API change. See the cited section; this skill grants no authority.
 - Tool names are examples. Pin versions in the adopter's workflow when that O2 PR lands. Do not add extra URLs here.

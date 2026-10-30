@@ -8,11 +8,17 @@ description: Enforce the personal-boundary rule — no personal-store content, s
 **Source:** new
 **Used by:** All seats, SecEng
 
+## Authority
+
+- [`constitution/04-privacy-and-vaults.md`](../../constitution/04-privacy-and-vaults.md) — vault classes; secrets; refuse list
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — privacy-boundary as O2
+- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — repo is SoR for evidence
+
+See the cited section; this skill grants no authority.
+
 ## When to use
 
-Before a commit, in every SecEng review, and whenever a brief or handoff cites a knowledge source. Binding text: `constitution/04` and the contributing guide.
-
-Crossing this boundary is an O2 item and defaults to High.
+Before a commit, in every SecEng review, and whenever a brief or handoff cites a knowledge source. Binding text is the cited sections (and the contributing guide for citation style). This skill does not set the O2 default.
 
 ## Three classes (generic)
 

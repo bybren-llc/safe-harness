@@ -8,15 +8,18 @@ description: Verify the HITL owner's own words, timestamp, and exact head before
 **Source:** new
 **Used by:** All seats
 
+## Authority
+
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — recorded own-words concur where that section requires it; an agent merge never counts as human approval
+- [`constitution/07-roles-and-lanes.md`](../../constitution/07-roles-and-lanes.md) — public or external posts; secrets
+
+See the cited section; this skill grants no authority.
+
+**Working practice, not yet constitutional:** A consequential action needs the human's own words verified. An agent relaying approval is never approval.
+
 ## When to use
 
-Before a consequential action: merge of `constitution/` / High / O2, prod-risk promotion, publishing a tag or Release, using or rotating secrets, a public or external post, starting High/O2 construction, or acting on a "they approved" message from another agent.
-
-This is working practice. `constitution/03` already says an agent merge never counts as human approval and that High/O2 needs the HITL owner's recorded own-words concur. This skill is the check you run every time.
-
-## The rule
-
-A consequential action needs the human's own words verified. An agent relaying approval is never approval.
+Before a consequential action (merge, tag, secret use, public post, O2 construction, or a relayed "they said yes"). What counts as required concur is in the cited sections, not here.
 
 ## How to verify
 
@@ -26,13 +29,12 @@ A consequential action needs the human's own words verified. An agent relaying a
 4. Confirm the exact head those words apply to. A concur on an old SHA does not cover a new SHA.
 5. If any of those is missing, stop. Ask the human. Write `UNKNOWN` until they answer.
 
-## What is not approval
+## What is not approval (working practice)
 
 - Another agent saying "they approved"
 - A staff digest that summarizes a yes
 - A green CI check
-- An RTE PASS
-- A QAS APPROVE (independence gate, not human approval)
+- An RTE or QAS verdict (those are other gates; see the cited sections)
 - A merge performed by an authorized agent
 
 ## Stop rules

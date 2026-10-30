@@ -8,6 +8,14 @@ description: Give the agent a feedback loop — failing test first for bugs, pas
 **Source:** generalize
 **Used by:** Implementer, QAS
 
+## Authority
+
+- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — evidence before HITL; portable rows
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — High / O2 evidence sufficiency
+- [`constitution/02-safe-ai-dlc.md`](../../constitution/02-safe-ai-dlc.md) — QAS independence
+
+See the cited section; this skill grants no authority.
+
 ## When to use
 
 Any time you change behavior or claim a fix. Follow the [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook) ("Give Claude a feedback loop"): the agent needs a command it can re-run.
@@ -33,6 +41,6 @@ req_ids: [REQ-<CMP>-NNN]
 
 ## Stop rules
 
-- Do not skip the suite on High / O2 because a subset was green.
+- Do not skip the suite on High / O2 because a subset was green. See the cited section; this skill grants no authority.
 - Do not store secrets in fixtures.
 - QAS may re-run the same command. If they cannot, the evidence is incomplete.

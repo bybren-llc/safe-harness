@@ -8,9 +8,15 @@ description: Help the human owner draft intent.md and spec.md. Propose only. Age
 **Source:** new
 **Used by:** Studio · Lead
 
+## Authority
+
+- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — humans own and accept intent and spec; agents never merge those paths
+
+See the cited section; this skill grants no authority.
+
 ## When to use
 
-The human owner is drafting `intent.md` or `spec.md`. Agents may propose text. The human writes and merges. `@<code-owners>` is the review gate. See the [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook) ("Capture as intent.md", "Requirements and design").
+The human owner is drafting `intent.md` or `spec.md`. Agents may propose text. Who writes and who merges is in the cited section. See the [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook) ("Capture as intent.md", "Requirements and design").
 
 ## How to help
 
@@ -21,16 +27,11 @@ The human owner is drafting `intent.md` or `spec.md`. Agents may propose text. T
 
 ## Ownership
 
-| File | Who writes | Who merges |
-| --- | --- | --- |
-| `intent.md` | Human owner (agents propose) | Human owner only |
-| `spec.md` | Human owner (agents propose) | Human owner only |
-
-Studio may draft; Delivery may commit a PR that contains the human's text. Agents still do not merge those paths.
+See the cited section; this skill grants no authority. Studio may draft; Delivery may commit a PR that contains the human's text. Merge of those paths follows the cited section.
 
 ## Stop rules
 
-- The agent proposes. The human writes and merges.
+- The agent proposes. The human writes and merges as the cited section requires.
 - Do not fill empty placeholders with invented product intent.
 - Do not put secrets, personal-store facts, or story IP in a proposal.
 - Do not treat a proposed draft as adopted.

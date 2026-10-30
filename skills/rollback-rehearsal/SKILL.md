@@ -8,9 +8,18 @@ description: Treat rollback as first-class — rehearse before high-risk deploys
 **Source:** generalize
 **Used by:** RTE, Delivery
 
+## Authority
+
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — rollback is first-class; prod-risk
+- [`constitution/07-roles-and-lanes.md`](../../constitution/07-roles-and-lanes.md) — scanner, not fixer
+
+See the cited section; this skill grants no authority.
+
+**Working practice, not yet constitutional:** A consequential action needs the human's own words verified. An agent relaying approval is never approval.
+
 ## When to use
 
-`constitution/03` makes rollback first-class. Rehearse the path before a high-risk deploy. Use it for real when a promotion is bad.
+Rehearse the path before a high-risk deploy. Use it for real when a promotion is bad.
 
 ## Rehearse (before)
 
@@ -24,7 +33,7 @@ description: Treat rollback as first-class — rehearse before high-risk deploys
 1. Identify the failure with evidence.
 2. Run the rehearsed one-step revert.
 3. Re-smoke.
-4. File the incident note. Do not hotfix forward on prod-risk without HITL own-words.
+4. File the incident note. Do not hotfix forward on prod-risk except as the cited section allows.
 
 ## Stop rules
 

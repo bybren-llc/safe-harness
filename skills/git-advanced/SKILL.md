@@ -8,6 +8,14 @@ description: Rebase, bisect, cherry-pick, and conflict resolution with safety ru
 **Source:** port
 **Used by:** Implementer
 
+## Authority
+
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — trunk is `main`; exact-head
+
+See the cited section; this skill grants no authority.
+
+**Working practice, not yet constitutional:** After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks. That includes a "quick rebase."
+
 ## When to use
 
 Rebasing a feature branch, finding a regression with bisect, cherry-picking, or resolving conflicts. Trunk is `main`.
@@ -67,10 +75,6 @@ Resolve, `git add`, `git cherry-pick --continue`.
 4. Continue the rebase, merge, or cherry-pick
 
 Rebase often on long-running feature branches so conflicts stay small.
-
-## After QAS APPROVE
-
-After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks. That includes a "quick rebase."
 
 ## Stop rules
 

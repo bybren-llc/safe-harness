@@ -8,6 +8,14 @@ description: Emit or accept the Studio to Delivery handoff artifact (AC, sources
 **Source:** port
 **Used by:** Studio · Lead, Delivery
 
+## Authority
+
+- [`constitution/04-privacy-and-vaults.md`](../../constitution/04-privacy-and-vaults.md) — handoff minimum; source pins
+- [`constitution/02-safe-ai-dlc.md`](../../constitution/02-safe-ai-dlc.md) — RTE collapse at Low only
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — merge execution (Studio does not merge Delivery work)
+
+See the cited section; this skill grants no authority.
+
 ## When to use
 
 Spine B (think/plan) has something Delivery can build. Emit the handoff. Delivery does not start a bolt from a chat dump or a "just start coding" note.
@@ -26,7 +34,7 @@ Template: `templates/studio-to-delivery-handoff.md`.
 | Privacy class | Personal / private-store / forge-backed. See [`privacy-boundary`](../privacy-boundary/SKILL.md). |
 | Non-code gates passed | List |
 | Suggested owner seat | Delivery lane owner |
-| RTE collapse | Allowed at Low (annotated) only. Never at Med+. |
+| RTE collapse | As the cited `constitution/02` section allows |
 | Risk tier guess | Low / Med / High + O2 items |
 | Exit evidence expected | What spine A must attach |
 | Out of scope | Explicit |
@@ -48,6 +56,6 @@ Template: `templates/studio-to-delivery-handoff.md`.
 
 ## Stop rules
 
-- Studio does not own the Delivery merge.
+- Studio does not own the Delivery merge. See the cited section; this skill grants no authority.
 - Delivery does not invent pins.
 - Do not put secret values in the handoff.

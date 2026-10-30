@@ -8,9 +8,20 @@ description: Route work by the delegation map and refuse out-of-lane work. Use w
 **Source:** generalize
 **Used by:** All seats
 
+## Authority
+
+- [`constitution/07-roles-and-lanes.md`](../../constitution/07-roles-and-lanes.md) — lane owners; scanner, not fixer; public posts
+- [`constitution/01-round-table.md`](../../constitution/01-round-table.md) — seat map
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — merge execution (do not restate it here)
+- [`constitution/02-safe-ai-dlc.md`](../../constitution/02-safe-ai-dlc.md) — QAS / SecEng never collapse
+
+See the cited section; this skill grants no authority.
+
+**Working practice, not yet constitutional:** A consequential action needs the human's own words verified. An agent relaying approval is never approval.
+
 ## When to use
 
-Before you start work that might belong to another seat. `constitution/07` is the lane map. `constitution/01` is the seat map. This skill does not restate merge authority (`constitution/03`).
+Before you start work that might belong to another seat. The tables below are a reading aid. The cited sections are the map.
 
 ## Lane owners
 
@@ -43,6 +54,5 @@ Blocked work goes to Ops · CoS, then the GM. Do not page the HITL owner unless 
 
 ## Stop rules
 
-- Do not decide, post, or merge from a staff seat (Ops, Dispatcher).
+- Do not decide, post, or merge from a staff seat. See the cited section; this skill grants no authority.
 - Do not take single-lane delivery away from Delivery · Lead.
-- A consequential action needs the human's own words verified. An agent relaying approval is never approval.

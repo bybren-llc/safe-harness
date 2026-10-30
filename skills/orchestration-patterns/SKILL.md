@@ -8,6 +8,17 @@ description: Run long-running, multi-step agent work with evidence-based deliver
 **Source:** port
 **Used by:** Delivery, GM
 
+## Authority
+
+- [`constitution/02-safe-ai-dlc.md`](../../constitution/02-safe-ai-dlc.md) — QAS independence
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — merge execution; exact-head
+
+See the cited section; this skill grants no authority.
+
+**Working practice, not yet constitutional:** After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks.
+
+**Working practice, not yet constitutional:** A consequential action needs the human's own words verified. An agent relaying approval is never approval.
+
 ## When to use
 
 Multi-step work, parallel sessions, or subagents. Pair with [`delegation-brief`](../delegation-brief/SKILL.md) and [`bolt-lifecycle`](../bolt-lifecycle/SKILL.md). See the [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook) ("Parallel sessions and subagents").
@@ -40,7 +51,5 @@ At session boundaries: completed, in progress, remaining, blockers, exact head, 
 ## Stop rules
 
 - Evidence over assertion.
-- Independent QAS is mandatory before a merge request. QAS is never the implementer.
-- After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks.
-- A consequential action needs the human's own words verified. An agent relaying approval is never approval.
-- Delivery and cloud agents never merge.
+- Independent QAS before a merge request: see the cited section; this skill grants no authority.
+- Do not let a subagent merge. See the cited section; this skill grants no authority.

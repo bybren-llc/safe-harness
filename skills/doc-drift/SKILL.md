@@ -8,6 +8,13 @@ description: Detect and repair drift between governance docs, README, AGENTS.md,
 **Source:** generalize
 **Used by:** Delivery, Librarian
 
+## Authority
+
+- [`constitution/05-evidence-and-linear.md`](../../constitution/05-evidence-and-linear.md) — intent/spec and CODEOWNERS-gated paths
+- [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — merge execution
+
+See the cited section; this skill grants no authority.
+
 ## When to use
 
 A merge changed `constitution/`, `roles/`, adapters, or workflows. Matching README, AGENTS.md, and skills should still agree. This skill is repo-docs only. It does not sync an external vault.
@@ -29,5 +36,5 @@ Run the repo's documented link check and markdown syntax check. Paste literal ou
 ## Stop rules
 
 - Repo docs only. No external vault format, no machine paths.
-- Do not edit `intent.md` or `spec.md`.
-- Do not merge `@<code-owners>` paths.
+- Do not edit `intent.md` or `spec.md`. See the cited section; this skill grants no authority.
+- Do not merge `@<code-owners>` paths. See the cited section; this skill grants no authority.
