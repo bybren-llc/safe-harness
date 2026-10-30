@@ -267,6 +267,30 @@ else
 fi
 cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
 
+# Test: requirements-null
+echo -n "  requirements-null.yaml ... "
+cp "$FIXTURES_DIR/fail/requirements-null.yaml" "$ORIGINAL_TRACE_MAP"
+if ! bash "$REPO_ROOT/trace/validate-trace.sh" "$REPO_ROOT" "$ORIGINAL_HARNESS_CONFIG" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
+
+# Test: requirements-tilde (YAML ~)
+echo -n "  requirements-tilde.yaml ... "
+cp "$FIXTURES_DIR/fail/requirements-tilde.yaml" "$ORIGINAL_TRACE_MAP"
+if ! bash "$REPO_ROOT/trace/validate-trace.sh" "$REPO_ROOT" "$ORIGINAL_HARNESS_CONFIG" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
+
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "Part 2: check.sh regression tests (hard-fail in warn-only)"
@@ -372,6 +396,32 @@ requirements: []
 evidence: []
 ---
 extra: document
+REOF
+cat > "$TEMP_DIR/arch/components.yaml" << 'REOF'
+components:
+  - id: ARC-CON
+    name: Constitution
+REOF
+if ! bash "$REPO_ROOT/trace/check.sh" "$TEMP_DIR" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected, hard-fail even in warn-only)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected hard-fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+# Regression test 5: invalid YAML syntax
+echo -n "  Regression: invalid YAML (no FORCE_BLOCKING) ... "
+TEMP_DIR=$(mktemp -d /tmp/trace-check-test-XXXXXX)
+TEMP_DIRS+=("$TEMP_DIR")
+mkdir -p "$TEMP_DIR/trace" "$TEMP_DIR/arch" "$TEMP_DIR/.github"
+cat > "$TEMP_DIR/.github/harness.yml" << 'REOF'
+owner_identity: "Repository Owner"
+REOF
+cat > "$TEMP_DIR/trace/trace-map.yaml" << 'REOF'
+requirements: [
+  - id: REQ-BROKEN
+evidence: []
 REOF
 cat > "$TEMP_DIR/arch/components.yaml" << 'REOF'
 components:

@@ -102,10 +102,14 @@ if [[ "$DOC_COUNT" -gt 1 ]]; then
   exit 1
 fi
 
-# Validate requirements is a sequence if it exists
-if yq -e '.requirements' "$MAP" > /dev/null 2>&1; then
+# Validate requirements is a sequence if the key exists
+if yq -e 'has("requirements")' "$MAP" > /dev/null 2>&1; then
   REQ_TYPE=$(yq -r '.requirements | type' "$MAP" 2>/dev/null || echo "null")
-  if [[ "$REQ_TYPE" != "array" && "$REQ_TYPE" != "!!seq" ]]; then
+  if [[ "$REQ_TYPE" == "null" || "$REQ_TYPE" == "!!null" ]]; then
+    echo "❌ requirements key is present but value is null"
+    echo "   Use requirements: [] for an empty list, or omit the key entirely."
+    exit 1
+  elif [[ "$REQ_TYPE" != "array" && "$REQ_TYPE" != "!!seq" ]]; then
     echo "❌ requirements must be a sequence (array), not $REQ_TYPE"
     exit 1
   fi
