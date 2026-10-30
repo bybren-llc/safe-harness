@@ -32,7 +32,7 @@
 - `constitution/` (agent-authored constitution changes need human review)
 - `trace/` (agent-authored trace map needs human review)
 
-Agents may open PRs touching these files but must not merge them. Use the `needs-scott-concur` label on PRs awaiting Scott's review.
+Agents may open PRs touching these files but must not merge them, except Kai or Release · RTE may merge `constitution/` changes only under the conditions in `constitution/03-cd-and-hitl.md`, including Scott's recorded own-words concurrence at exact head. Use the `needs-scott-concur` label on PRs awaiting Scott's review.
 
 **Distinction:** Humans own design (accept/reject intent and spec content). Agents own execution (author requirements, trace, constitution changes, code, tests), but CODEOWNERS enforces human review gates before merge.
 
@@ -55,7 +55,7 @@ Labels (documented in `.github/labels.yml`):
 - Work types: `bolt`, `requirement`, `decision`, `needs-concur`, `needs-scott-concur`
 - Risk tiers: `tier:low`, `tier:medium`, `tier:high`
 - O2 items: `o2:pricing`, `o2:refunds`, `o2:auth`, `o2:deploy-ci`, `o2:secrets`, `o2:privacy`
-- Exit states: `exit:qas`, `exit:rte`, `exit:hitl`, `exit:merged`, `exit:merged-delegated`
+- Exit states: `exit:qas`, `exit:rte`, `exit:hitl`, `exit:merged`, `exit:merged-delegated`, `exit:merged-rte`
 - Gates: `gate:rnd`, `gate:plan`, `gate:concur`, `gate:execute`, `gate:measure`
 
 **GitHub milestones:** One milestone per wave (e.g., "Wave 1", "Wave 2"). Document milestones; create them manually or via approved automation.
@@ -163,13 +163,14 @@ QAS and SecEng actors must be distinguishable from implementer in GitHub (assign
 
 ## Exit states (canonical names)
 
-Use consistent labels across runtimes:
+Use consistent labels across runtimes. Human approval is distinct from merge execution; record who executed the merge.
 
 1. Ready for QAS  
-2. Approved for RTE (or collapsed-RTE path annotated)  
+2. Approved for RTE  
 3. Ready for HITL  
-4. **MERGED (HITL only)** — two humans (High tier) or explicit human approval
+4. **MERGED (HITL only)** — Scott executed the merge (human approval + execution)
 5. **MERGED (HITL-delegated)** — Low tier only; delegated HITL (D1)
+6. **MERGED (delegated Kai/RTE)** — Kai or Release · RTE executed a trunk merge under `constitution/03`. Record `merged_by` (Kai | Release · RTE), exact-head SHA, independent QAS APPROVE (Kai's independent QAS APPROVE when RTE executed), RTE PASS when RTE executed, and Scott's recorded concur on constitution/, High, and O2 where required. This is not a HITL merge.
 
 ### D1: Delegated HITL (Low tier only)
 

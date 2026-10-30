@@ -26,7 +26,7 @@ implementer.md
 qas.md
 seceng.md
 bsa-like.md
-rte-collapsible.md
+release-rte.md
 ```
 
 Each file must include: mission, spine, may-collapse, independence, model tier, stop rules — copy from `../../roles/`.
@@ -37,7 +37,7 @@ Each file must include: mission, spine, may-collapse, independence, model tier, 
 | --- | --- |
 | Pre-construct | Require business-context HITL note on Med/High / O2 — **Wave 0 intentionally broader than strict Low-only; ensures HITL cannot be skipped** |
 | Pre-PR | Exact-head + evidence_id + Linear key present |
-| Merge attempt by agent | Deny — HITL only |
+| Merge attempt by agent | Deny Delivery and cloud agents; allow authorized Kai / Release · RTE trunk merges that meet constitution/03 |
 | Personal-vault path | Deny |
 
 Wave 0: document intents here; implement when `safe-harness` exists.

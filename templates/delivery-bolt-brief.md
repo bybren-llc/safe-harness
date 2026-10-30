@@ -14,7 +14,7 @@
 | Agent delegate | (optional; not Linear Agent product) |
 | Risk tier | Low / Med / High |
 | O2 items in scope? | pricing / refunds / auth / deploy CI / prod secrets / privacy-boundary / none |
-| RTE collapse | Allowed / Not allowed |
+| RTE collapse | Allowed at Low (annotated) only / Not allowed — never at Med+ (`constitution/02`) |
 | QAS actor | (required; never = implementer) |
 | SecEng actor | (required if Med/High/O2; never = implementer) |
 | HITL approver | (required; High requires two distinct human approvers) |
@@ -50,9 +50,9 @@
 - [ ] Implement → Ready for QAS
 - [ ] QAS independence
 - [ ] SecEng (if required)
-- [ ] RTE or collapsed-RTE annotated
+- [ ] RTE PASS, or Low-only annotated async checklist (`constitution/02`: never collapse at Med+)
 - [ ] HITL decision pack (exact-head)
-- [ ] MERGED by human
+- [ ] MERGED (HITL only) or MERGED (delegated Kai/RTE) — exit states in `constitution/05`
 
 ## Model plan (O4)
 

@@ -6,6 +6,8 @@ Repo: `bybren-llc/safe-harness` (O1 locked).
 
 **Wave 0 retrospective:** [wave-0-retro.md](wave-0-retro.md)
 
+**RTE merge-rights amendment (PR #22):** [rte-merge-rights/decision-pack.md](rte-merge-rights/decision-pack.md)
+
 ## D-P1 — One Delivery bolt (spine A)
 
 | Step | Target | Done? |
