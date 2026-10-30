@@ -272,4 +272,4 @@ See [`prove/README.md`](prove/README.md) for wave checklist and [`prove/wave-1/d
 
 ---
 
-**Provenance:** ADR pack concurred 2026-10-28 (C1–C8 / O1–O6 / E1–E3). Wave 1 adopted 2026-10-29 (Scott concur: README/structure fixes + constitution amendments).
+**Provenance:** ADR pack concurred 2026-10-28 (C1–C8 / O1–O6 / E1–E3). Records: [`docs/decisions/`](docs/decisions/). Wave 1 adopted 2026-10-29 (Scott concur: README/structure fixes + constitution amendments).
