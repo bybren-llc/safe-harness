@@ -1,0 +1,11 @@
+requirements:
+  - id: REQ-CON-002
+    component: ARC-CON
+    state: Dropped
+    title: Different ID
+    source: spec.md#source-of-truth
+    rationale: |
+      Fixture mismatch
+    decided_by: Kai
+    decided_at: 2026-10-30
+evidence: []

@@ -1,0 +1,11 @@
+requirements:
+  - id: NOT-A-REQ
+    component: ARC-CON
+    state: Dropped
+    title: Malformed id
+    source: intent.md#design-goal
+    rationale: |
+      Fixture for a malformed requirement id
+    decided_by: Kai
+    decided_at: 2026-10-30
+evidence: []

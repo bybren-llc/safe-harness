@@ -12,8 +12,8 @@
 #   tier:medium      - Risk tier: Medium
 #   tier:high        - Risk tier: High
 #   requirement      - Requirement definition or state change
-#   decision         - Decision requiring Scott/Kai concurrence
-#   needs-concur     - Awaiting explicit concurrence (general)
+#   decision         - Decision requiring decision concurrence (not design ownership)
+#   needs-concur     - Awaiting decision concurrence (not design ownership)
 #   needs-scott-concur - Awaiting Scott concurrence (intent/spec/constitution PRs)
 #   gate:rnd         - Gate: Research & Discover
 #   gate:plan        - Gate: Plan
@@ -36,11 +36,11 @@ labels:
   
   - name: decision
     color: "d93f0b"
-    description: "Decision requiring explicit concurrence"
+    description: "Decision requiring explicit decision concurrence (not design ownership)"
   
   - name: needs-concur
     color: "fbca04"
-    description: "Awaiting Scott/Kai concurrence"
+    description: "Awaiting decision concurrence (Scott or Kai); not design ownership"
 
   - name: needs-scott-concur
     color: "d93f0b"
