@@ -173,6 +173,7 @@ Findings that would change authority or gates are recorded here for Kai and Scot
 - [`d88c884`](https://github.com/bybren-llc/safe-harness/commit/d88c884c14c64aa2dbc244c89290818df423924e) — #22 squash; Scott's answers in the commit message
 - [PR #27](https://github.com/bybren-llc/safe-harness/pull/27) — this amendment
 - CodeRabbit review [5712012854](https://github.com/bybren-llc/safe-harness/pull/27#pullrequestreview-5712012854) at `81efe31`
+- CodeRabbit review [5712116836](https://github.com/bybren-llc/safe-harness/pull/27#pullrequestreview-5712116836) at `bba95a2`
 - Historical ask: [`prove/rte-merge-rights/decision-pack.md`](../rte-merge-rights/decision-pack.md) (not rewritten)
 
 ---
@@ -183,7 +184,8 @@ Findings that would change authority or gates are recorded here for Kai and Scot
 
 - [ ] Kai's independent QAS APPROVE on the exact head
 - [x] SecEng (independent, non-author): PASS at 81efe31 vs d88c884. No merge/override widen; RTE still Kai QAS + own PASS, HOLD Kai/Scott only; Dispatcher cannot decide/post/merge; no agent X writes or security fix PRs without Scott; two-humans guidance does not drop QAS/SecEng/Scott concur/prod-risk; no secrets; branch protection unanswered.
-- [ ] CodeRabbit findings on the new head triaged (5712012854 at `81efe31` triaged in this commit)
+- [ ] SecEng delta confirmation on the merge head is recorded as non-widening relative to 81efe31.
+- [ ] CodeRabbit findings on the new head triaged (5712012854 at `81efe31` and 5712116836 at `bba95a2` triaged in this commit)
 - [ ] Scott's recorded own-words concur at exact head
 - [ ] Wave 0 checks green
 - [ ] Delivery does not merge
