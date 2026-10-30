@@ -1,0 +1,8 @@
+# SHA-256 (hex) of lowercase UTF-8 denied tokens or paths.
+# Do not put plaintext terms in this file. Category is generic only.
+# Add a hash with: printf '%s' "<lowercase-term>" | sha256sum
+11b51258a8d6e10d38f41807268dd96c42c5f1aacde2596fd9d4b57ba5d0e38a	hardware-hostname
+780ae151f274900c71fd4af357eca60e1f502387be18d6e3e4fe28c558c066ec	private-repo
+92f2323406abb9306164deecb894e10892c49dfe27cd4b0b4c3347088b618c10	internal-name
+575ddda4699f927d7be072f3d460737c49ac9eabe9a858752409503baab7b131	internal-volume
+de929a67ec3135d08be7ea796f78af43f13af58b2439c35ce6ca565a4f271442	vault-path

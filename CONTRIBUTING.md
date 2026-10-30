@@ -23,6 +23,8 @@ Prohibited content:
 
 Agents and humans: when referencing NAS, personal vault, or private context, **describe the pattern** without exposing the instance.
 
+**Local denylist:** run `python3 scripts/check-denylist.py` before opening a PR. It scans tracked files (except `constitution/`) against hashed tokens in `scripts/denylist.hashes` and prints `file:line` plus a generic category only. This is not yet wired into CI — adding it to `.github/workflows/` is High/O2. See `scripts/README.md`.
+
 Secrets live in vaults. Scott owns both the GitHub secrets and the vault side. Never include a secret value in this repository.
 
 ---
