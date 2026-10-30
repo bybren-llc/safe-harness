@@ -1,5 +1,5 @@
 ---
-status: superseded by #6
+status: "superseded by #6"
 date: 2026-10-28
 decision-makers: Scott (HITL/POPM)
 consulted: Kai (GM & lead ARCHitect), Studio · Lead

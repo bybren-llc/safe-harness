@@ -23,7 +23,7 @@ This is an execute authorization, not an architecture choice: authorize the new 
 
 Chosen option: "Yes", because Scott authorized an org-owned, SAW-branded name per [0009](0009-template-home-and-name.md) (O1).
 
-Historical, executed. W0-10 ("no new repo") is fulfilled: the repo exists.
+Historical, executed. The non-goal was not to create a new repo until authorized; Scott created `bybren-llc/safe-harness`, so the template now has its own org-owned home.
 
 ### Consequences
 
