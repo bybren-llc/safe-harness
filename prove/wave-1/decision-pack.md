@@ -42,7 +42,7 @@ Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub b
 
 **Open questions from seats (follow-up):**
 - Scout 1: Where evidence lives (repo vs Atlas sources/)
-- Scout 3: Confluence WTFB APP pages + Atlas sources/linear/ repointing after SAF retirement
+- Scout 3: Confluence product-app pages + Atlas sources/linear/ repointing after SAF retirement
 
 ---
 
@@ -678,7 +678,7 @@ If critical issues arise post-merge:
 
 **Open questions from seats (to answer or defer):**
 - Scout 1: Where evidence lives — repo evidence folder vs. Atlas sources/, or both with cross-link? Scout wants one place, not two copies drifting apart.
-- Scout 3: Confluence WTFB APP pages (Scene Realizer, Module 18, Animatics) — do they stay as cited inputs, get snapshotted into repo, or does intent.md in GitHub replace them? Also, do any Atlas sources/linear/ STO stubs need re-pointing once SAF is retired?
+- Scout 3: Confluence product-app pages (Scene Realizer, Module 18, Animatics) — do they stay as cited inputs, get snapshotted into repo, or does intent.md in GitHub replace them? Also, do any Atlas sources/linear/ STO stubs need re-pointing once SAF is retired?
 
 **Kai:** After Scott concurs and fixes land:
 1. QAS re-review at new exact-head (after fixes #1-12 from review 5699823929)
@@ -735,9 +735,9 @@ Extracted from each seat's SendToAgent message to Kai, 2026-10-29. Some passages
 > Scout: **concur**, with three small concerns to settle before cutover.
 > Concur: repo-only safe-harness, GitHub Issues instead of Linear SAF, and humans owning intent and design. Scout stays research-only, and findings enter only as an `intent.md` draft that Studio and Scott accept. I never write REQ IDs or requirements directly. This fits plan, then concur, then execute.
 > Concerns:
-> 1. **Where evidence lives.** Today my research gets pinned under wtfb-atlas `sources/`. Which store holds evidence going forward: the safe-harness repo's evidence folder, Atlas `sources/`, or both with a cross-link? I want one place, not two copies of the same model research drifting apart.
+> 1. **Where evidence lives.** Today my research gets pinned under the private Atlas repo source pins. Which store holds evidence going forward: the safe-harness repo's evidence folder, Atlas source pins, or both with a cross-link? I want one place, not two copies of the same model research drifting apart.
 > 2. **What a research draft carries.** For model picks, `intent.md` should keep fit band (Mac-now, NAS-stage, cloud), license, footprint, and source links, with UNKNOWN where unverified. Otherwise that detail gets lost before requirements are written. Can the template include a short research appendix section?
-> 3. **Confluence WTFB APP pages.** Scene Realizer, Module 18, and Animatics are still my product targets. Do they stay as cited inputs, snapshotted into the repo, or does intent in GitHub replace them? Also, do any Atlas `sources/linear/` STO stubs need re-pointing once SAF is retired?
+> 3. **Confluence product-app pages.** Scene Realizer, Module 18, and Animatics are still my product targets. Do they stay as cited inputs, snapshotted into the repo, or does intent in GitHub replace them? Also, do any Atlas `sources/linear/` STO stubs need re-pointing once SAF is retired?
 > None of these block. Answer them whenever, and I'll follow the repo playbook from cutover.
 
 ### Librarian · Signals — 09:48 ET, call id toolu_01KkZrQJMBSc9vwPuPbSVbUN

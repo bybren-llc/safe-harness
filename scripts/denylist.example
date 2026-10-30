@@ -1,0 +1,11 @@
+# Fake local denylist. Copy to the repo root, then replace with real terms:
+#   cp scripts/denylist.example .denylist.local
+#
+# Format: one term per line. Lines starting with # are comments.
+# Optional <TAB>generic-category after the term.
+# Never commit .denylist.local.
+example-host-01	hardware-hostname
+example-volume	internal-volume
+example-repo-slug	private-repo
+example-project	internal-name
+example-vault/path	vault-path
