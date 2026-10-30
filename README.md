@@ -140,7 +140,7 @@ Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deplo
 | [`spec.md`](spec.md) | Human-owned specification (Scott only) |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Contributing guide (personal-boundary rule, workflow, evidence) |
 | [`adapters/`](adapters/) | Runtime adapters (Claude Code, Cursor — doc stubs; Codex/local planned) |
-| [`.github/CODEOWNERS`](.github/CODEOWNERS) | Review gates (intent.md, spec.md, constitution, requirements, trace, arch, AGENTS.md, skills, workflows) |
+| [`.github/CODEOWNERS`](.github/CODEOWNERS) | Review gates (intent.md, intent/, spec.md, constitution, requirements, trace, arch, AGENTS.md, skills, workflows) |
 | [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) | Issue templates (bolt.yml, requirement.yml, decision.yml) |
 | [`.github/labels.yml`](.github/labels.yml) | Label definitions (work types, risk tiers, O2, exit states, gates) |
 | [`.github/workflows/`](.github/workflows/) | CI workflows (wave0-checks.yml, trace-check.yml) |
@@ -205,7 +205,7 @@ Each evidence row includes:
 ## Human vs. agent ownership
 
 **Humans (Scott only) own and accept design:**
-- `intent.md`, `spec.md` — Scott owns and accepts; agents may propose edits but **never merge**
+- `intent.md`, `intent/`, `spec.md` — Scott owns and accepts; agents may propose edits but **never merge**
 
 **Agents own everything else end-to-end:**
 - Plan, GitHub Issues, code, tests, PRs, evidence
@@ -213,7 +213,7 @@ Each evidence row includes:
 - **Trace map** (`trace/`) — agents author; human-reviewed PR required
 - **Constitution changes** — agents author; human-reviewed PR required
 
-**CODEOWNERS = review gate, not ownership:** `.github/CODEOWNERS` enforces @cheddarfox review for `intent.md`, `spec.md`, `constitution/`, `requirements/`, `trace/`, `arch/`, `AGENTS.md`, `adapters/**/AGENTS.md`, `skills/`, and workflows. Agents author requirements, trace, and constitution changes; humans review and approve before merge.
+**CODEOWNERS = review gate, not ownership:** `.github/CODEOWNERS` enforces @cheddarfox review for `intent.md`, `intent/`, `spec.md`, `constitution/`, `requirements/`, `trace/`, `arch/`, `AGENTS.md`, `adapters/**/AGENTS.md`, `skills/`, and workflows. Agents author requirements, trace, and constitution changes; humans review and approve before merge.
 
 ---
 

@@ -32,7 +32,7 @@ Secrets live in vaults. Scott owns both the GitHub secrets and the vault side. N
 ## Constitution-gated files (CODEOWNERS)
 
 The following files require @cheddarfox review and approval before merge:
-- `intent.md` — human-owned design intent
+- `intent.md` and `intent/` — human-owned design intent
 - `spec.md` — human-owned specification
 - `requirements/` — agent-authored REQ-<CMP>-NNN registry (human review gate)
 - `constitution/` — agent-authored governance changes (human review gate)

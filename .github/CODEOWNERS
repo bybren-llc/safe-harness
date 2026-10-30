@@ -10,6 +10,7 @@
 
 # Human-owned design (intent + spec)
 /intent.md              @cheddarfox
+/intent/                @cheddarfox
 /spec.md                @cheddarfox
 
 # Agent-authored with review gate
