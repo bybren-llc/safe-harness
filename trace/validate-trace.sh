@@ -23,8 +23,18 @@ if [[ ! -f "$CONFIG_PATH" ]]; then
   exit 1
 fi
 
-# Get RAW value from yq
-OWNER_IDENTITY_RAW=$(yq -r '.owner_identity' "$CONFIG_PATH" 2>/dev/null || echo "")
+# Check type: must be a string (not true, false, number, list, map, or null)
+OWNER_TYPE=$(yq -r '.owner_identity | type' "$CONFIG_PATH" 2>/dev/null || echo "null")
+if [[ "$OWNER_TYPE" != "string" ]]; then
+  echo "❌ owner_identity must be a string, not $OWNER_TYPE"
+  echo "   Set owner_identity to a quoted string (e.g., owner_identity: \"Repository Owner\")."
+  exit 1
+fi
+
+# Get RAW value with sentinel (preserves trailing newlines), then strip yq's formatting newline
+OWNER_IDENTITY_RAW=$(yq -r '.owner_identity' "$CONFIG_PATH" 2>/dev/null; printf x)
+OWNER_IDENTITY_RAW="${OWNER_IDENTITY_RAW%x}"
+OWNER_IDENTITY_RAW="${OWNER_IDENTITY_RAW%$'\n'}"
 
 # Validate RAW value FIRST: reject newlines, $, backticks, control characters
 if [[ "$OWNER_IDENTITY_RAW" =~ $'\n' ]] || \
@@ -40,6 +50,13 @@ fi
 OWNER_IDENTITY="$OWNER_IDENTITY_RAW"
 OWNER_IDENTITY="${OWNER_IDENTITY#"${OWNER_IDENTITY%%[![:space:]]*}"}"
 OWNER_IDENTITY="${OWNER_IDENTITY%"${OWNER_IDENTITY##*[![:space:]]}"}"
+
+# FAIL if raw value differs from trimmed (reject padded values)
+if [[ "$OWNER_IDENTITY_RAW" != "$OWNER_IDENTITY" ]]; then
+  echo "❌ owner_identity has leading or trailing whitespace"
+  echo "   Remove padding: owner_identity should be exactly \"$OWNER_IDENTITY\"."
+  exit 1
+fi
 
 # Check for null, empty, or whitespace-only (after trim)
 if [[ "$OWNER_IDENTITY" == "null" || -z "$OWNER_IDENTITY" ]]; then
@@ -88,11 +105,17 @@ for i in $(seq 0 $((REQ_COUNT - 1))); do
   
   if [[ "$REQ_STATE" == "Dropped" ]]; then
     SOURCE=$(yq -r ".requirements[$i].source" "$MAP")
-    DECIDED_BY=$(yq -r ".requirements[$i].decided_by" "$MAP")
+    
+    # Read decided_by with sentinel (preserves trailing newlines), then strip yq's formatting newline
+    DECIDED_BY=$(yq -r ".requirements[$i].decided_by" "$MAP" 2>/dev/null; printf x)
+    DECIDED_BY="${DECIDED_BY%x}"
+    DECIDED_BY="${DECIDED_BY%$'\n'}"
+    
     RATIONALE=$(yq -r ".requirements[$i].rationale" "$MAP")
     
     # Owner-check: HARD FAIL (never warn-only)
     if [[ "$SOURCE" =~ ^intent\.md# ]]; then
+      # Exact comparison (no trim on decided_by)
       if [[ "$DECIDED_BY" != "$OWNER_IDENTITY" ]]; then
         printf '❌ %s: decided_by must be exactly: %s\n' "$REQ_ID" "$OWNER_IDENTITY"
         OWNER_CHECK_ERRORS=$((OWNER_CHECK_ERRORS + 1))
