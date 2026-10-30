@@ -145,7 +145,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | [`adapters/cursor/`](adapters/cursor/README.md) | Cursor adapter (docs stub). |
 | [`adapters/cursor/AGENTS.md`](adapters/cursor/AGENTS.md) | Cursor agent entry point. |
 | [`AGENTS.md`](AGENTS.md) | Root agent entry point (rules by link; local checks). |
-| [`docs/adr/`](docs/adr/) | Architecture Decision Records (new ADRs). |
+| [`docs/decisions/`](docs/decisions/) | Architecture Decision Records (canonical home; ADRs `0001`–`0017` and [`log.md`](docs/decisions/log.md)). |
 | [`docs/decisions/log.md`](docs/decisions/log.md) | Latest-wins decision log. |
 | [`constitution/`](constitution/) | Binding governance. |
 | [`roles/`](roles/) | Seat cards. |
@@ -167,7 +167,7 @@ CODEOWNERS coverage (review gate, not ownership): `intent.md`, `intent/`, `spec.
 | --- | --- | --- |
 | [`wave0-checks.yml`](.github/workflows/wave0-checks.yml) | Structure & Docs Validation (required Wave 0 paths, relative links including `trace/`, fence parity) | **Yes** |
 | [`wave0-checks.yml`](.github/workflows/wave0-checks.yml) | Skills frontmatter & link scan | **Warn-only** |
-| [`trace-check.yml`](.github/workflows/trace-check.yml) | Requirements Trace Validation | **Warn-only** until `spec.md` has REQ IDs **and** `trace/.blocking` exists |
+| [`trace-check.yml`](.github/workflows/trace-check.yml) | Requirements Trace Validation | **Warn-only** for validation findings until `spec.md` has REQ IDs **and** `trace/.blocking` exists. The yq preflight step still fails the required check if yq is missing. |
 | [`api-contract.yml`](.github/workflows/api-contract.yml) | API Contract Checks (oasdiff + optional Schemathesis) | **Warn-only** (skips when no OpenAPI spec) |
 | [`doc-drift.yml`](.github/workflows/doc-drift.yml) | Doc drift | **Warn-only** |
 
@@ -183,7 +183,7 @@ CodeRabbit is a required review input on this repo's trunk protection. It is not
 
 ## Provenance
 
-Recorded architecture decisions: [`docs/adr/`](docs/adr/). Latest-wins index: [`docs/decisions/log.md`](docs/decisions/log.md). Wave 0 pack files currently live under [`docs/decisions/`](docs/decisions/).
+Recorded architecture decisions: [`docs/decisions/`](docs/decisions/). Latest-wins index: [`docs/decisions/log.md`](docs/decisions/log.md).
 
 ---
 

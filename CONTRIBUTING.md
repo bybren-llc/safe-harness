@@ -106,7 +106,7 @@ Portable evidence ([`constitution/05-evidence-and-traceability.md`](constitution
 
 ## Studio handoff (spine B → A)
 
-Studio drafts `intent.md` and `spec.md` and hands them to Delivery via [`templates/studio-to-delivery-handoff.md`](templates/studio-to-delivery-handoff.md). Delivery commits them in a PR. The human owner approves via CODEOWNERS.
+Studio drafts `intent.md` and `spec.md` and hands them to Delivery via [`templates/studio-to-delivery-handoff.md`](templates/studio-to-delivery-handoff.md). Delivery commits them in a PR. The human owner approves the PR after the CODEOWNERS review request.
 
 ---
 
