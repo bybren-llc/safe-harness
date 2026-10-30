@@ -25,7 +25,8 @@ fi
 
 # Check type: must be a string (not true, false, number, list, map, or null)
 OWNER_TYPE=$(yq -r '.owner_identity | type' "$CONFIG_PATH" 2>/dev/null || echo "null")
-if [[ "$OWNER_TYPE" != "string" ]]; then
+# Accept "string" or "!!str" (different yq versions output different formats)
+if [[ "$OWNER_TYPE" != "string" && "$OWNER_TYPE" != "!!str" ]]; then
   echo "❌ owner_identity must be a string, not $OWNER_TYPE"
   echo "   Set owner_identity to a quoted string (e.g., owner_identity: \"Repository Owner\")."
   exit 1
