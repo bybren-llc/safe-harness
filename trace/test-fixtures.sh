@@ -13,9 +13,17 @@ echo "Trace Fixture Test Runner"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 
+# Lock directory to prevent concurrent runs
+LOCK_DIR="/tmp/trace-test-fixtures-lock"
+if ! mkdir "$LOCK_DIR" 2>/dev/null; then
+  echo "❌ Another test-fixtures.sh is running (lock exists: $LOCK_DIR)"
+  exit 1
+fi
+
 # Verify yq is available
 if ! command -v yq &> /dev/null; then
   echo "❌ yq not found"
+  rmdir "$LOCK_DIR"
   exit 1
 fi
 
@@ -35,14 +43,23 @@ cat > "$TEMP_CONFIG" << 'EOF'
 owner_identity: "Repository Owner"
 EOF
 
+# Track temp directories created by mktemp
+TEMP_DIRS=()
+
 cleanup() {
   echo ""
   echo "Restoring original files..."
   mv "$BACKUP_TRACE_MAP" "$ORIGINAL_TRACE_MAP"
   mv "$BACKUP_HARNESS_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
   rm -f "$TEMP_CONFIG"
-  # Clean up any temp dirs from check.sh regression tests
-  rm -rf /tmp/trace-check-test-*
+  # Clean up tracked temp dirs from check.sh regression tests
+  for temp_dir in "${TEMP_DIRS[@]}"; do
+    if [[ -d "$temp_dir" ]]; then
+      rm -rf "$temp_dir"
+    fi
+  done
+  # Release lock
+  rmdir "$LOCK_DIR" 2>/dev/null || true
 }
 
 trap cleanup EXIT
@@ -61,11 +78,9 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 
 # Test with standard placeholder
 cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
-for fixture in "$FIXTURES_DIR"/pass/dropped-intent-req-valid.yaml; do
-  if [[ ! -f "$fixture" ]]; then
-    continue
-  fi
-  
+
+fixture="$FIXTURES_DIR/pass/dropped-intent-req-valid.yaml"
+if [[ -f "$fixture" ]]; then
   fixture_name=$(basename "$fixture")
   echo -n "  $fixture_name ... "
   
@@ -78,7 +93,7 @@ for fixture in "$FIXTURES_DIR"/pass/dropped-intent-req-valid.yaml; do
     echo "❌ FAIL (expected to pass)"
     FAIL_COUNT=$((FAIL_COUNT + 1))
   fi
-done
+fi
 
 # Test with special characters (apostrophe, hyphen)
 echo -n "  owner-identity-with-special-chars.yaml ... "
@@ -205,7 +220,7 @@ cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
 # Test: owner-identity-trailing-newline
 echo -n "  owner-identity-trailing-newline.yaml ... "
 cp "$FIXTURES_DIR/fail/owner-identity-trailing-newline.yaml" "$ORIGINAL_TRACE_MAP"
-printf 'owner_identity: "Repository Owner\n"' > "$ORIGINAL_HARNESS_CONFIG"
+printf '%s\n' 'owner_identity: "Repository Owner\n"' > "$ORIGINAL_HARNESS_CONFIG"
 if ! bash "$REPO_ROOT/trace/validate-trace.sh" "$REPO_ROOT" "$ORIGINAL_HARNESS_CONFIG" > /dev/null 2>&1; then
   echo "✓ FAIL (as expected)"
   PASS_COUNT=$((PASS_COUNT + 1))
@@ -239,6 +254,7 @@ echo ""
 # Regression test 1: missing .github/harness.yml
 echo -n "  Regression: missing harness.yml (no FORCE_BLOCKING) ... "
 TEMP_DIR=$(mktemp -d /tmp/trace-check-test-XXXXXX)
+TEMP_DIRS+=("$TEMP_DIR")
 mkdir -p "$TEMP_DIR/trace" "$TEMP_DIR/arch"
 cat > "$TEMP_DIR/trace/trace-map.yaml" << 'REOF'
 requirements: []
@@ -256,11 +272,11 @@ else
   echo "❌ PASS (expected hard-fail)"
   FAIL_COUNT=$((FAIL_COUNT + 1))
 fi
-rm -rf "$TEMP_DIR"
 
 # Regression test 2: invalid owner_identity (non-string)
 echo -n "  Regression: invalid owner_identity (no FORCE_BLOCKING) ... "
 TEMP_DIR=$(mktemp -d /tmp/trace-check-test-XXXXXX)
+TEMP_DIRS+=("$TEMP_DIR")
 mkdir -p "$TEMP_DIR/trace" "$TEMP_DIR/arch" "$TEMP_DIR/.github"
 cat > "$TEMP_DIR/.github/harness.yml" << 'REOF'
 owner_identity: 42
@@ -281,11 +297,11 @@ else
   echo "❌ PASS (expected hard-fail)"
   FAIL_COUNT=$((FAIL_COUNT + 1))
 fi
-rm -rf "$TEMP_DIR"
 
 # Regression test 3: decided_by mismatch
 echo -n "  Regression: decided_by mismatch (no FORCE_BLOCKING) ... "
 TEMP_DIR=$(mktemp -d /tmp/trace-check-test-XXXXXX)
+TEMP_DIRS+=("$TEMP_DIR")
 mkdir -p "$TEMP_DIR/trace" "$TEMP_DIR/arch" "$TEMP_DIR/.github"
 cat > "$TEMP_DIR/.github/harness.yml" << 'REOF'
 owner_identity: "Repository Owner"
@@ -318,7 +334,6 @@ else
   echo "❌ PASS (expected hard-fail)"
   FAIL_COUNT=$((FAIL_COUNT + 1))
 fi
-rm -rf "$TEMP_DIR"
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
