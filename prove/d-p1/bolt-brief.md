@@ -56,8 +56,8 @@
 - [x] QAS independence
 - [ ] SecEng (if required) — N/A (Low; rationale above)
 - [x] RTE or collapsed-RTE annotated (collapsed into implementer per RTE collapse=Allowed)
-- [x] HITL decision pack (exact-head) — HITL delegated: Scott Graham standing Wave 0 merge authorization (2026-10-28), exercised by Kai at Low tier — [record](https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98)
-- [x] MERGED — HITL delegated: Scott Graham standing Wave 0 merge authorization (2026-10-28), exercised by Kai at Low tier — [record](https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98)
+- [x] HITL decision pack (exact-head) — HITL delegated: Scott Graham standing Wave 0 merge authorization (2026-10-28), exercised by Kai at Low tier — [record](../wave-0-retro.md#7-decision-pack-d1-for-scott-hitl)
+- [x] MERGED — HITL delegated: Scott Graham standing Wave 0 merge authorization (2026-10-28), exercised by Kai at Low tier — [record](../wave-0-retro.md#7-decision-pack-d1-for-scott-hitl)
 
 ## Model plan (O4)
 

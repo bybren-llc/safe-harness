@@ -27,6 +27,7 @@
 | Linear issue | |
 | Exact-head SHA or PR | |
 | Evidence IDs | |
+| Requirements | none yet (bootstrap) |
 | QAS status | pass / change-request / N/A (Low tier only; rationale required) |
 | SecEng status | pass / change-request / N/A (Low tier only; rationale required) |
 | Risk tier + O2 details | |
@@ -64,6 +65,17 @@
 | SecEng | Heavy | Opus 5.5 preferred on O2 |
 
 Ultracode: **not default**.
+
+## Estimate
+
+| Field | Estimate | Actual (at close) |
+| --- | --- | --- |
+| Agent-hours | | |
+| Human-hours | | |
+| Review/approval wait | | |
+| Confidence (L/M/H) | | |
+
+Capture actuals at close and compare each sprint (M5 / M6).
 
 ## Measure
 
