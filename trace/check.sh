@@ -595,7 +595,7 @@ def flush(path, header, rows):
         gate = col("gate")
         issue = col("issue")
         reqs = col("req_ids")
-        print(f"{path}\t{n}\t{ev}\t{head}\t{actor}\t{gate}\t{issue}\t{reqs}")
+        print("\x1f".join([path, str(n), ev, head, actor, gate, issue, reqs]))
 
 for dirpath, _, files in os.walk(prove):
     for fn in files:
@@ -631,7 +631,7 @@ for dirpath, _, files in os.walk(prove):
 PY
 
   if [[ -s "$tmp" ]]; then
-    while IFS=$'\t' read -r rel lineno ev head actor gate issue reqs || [[ -n "${rel:-}" ]]; do
+    while IFS=$'\x1f' read -r rel lineno ev head actor gate issue reqs || [[ -n "${rel:-}" ]]; do
       echo "  prove/${rel:-}:$lineno"
       row_err=0
       if is_missing "${ev:-}"; then
