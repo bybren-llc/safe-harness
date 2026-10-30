@@ -49,4 +49,4 @@ Trigger tests (does a prompt load the right skill) are **UNKNOWN** to automate i
 
 ## Local / HF cache (Option A)
 
-If a Cursor/local lane uses HF or similar caches: MainSqueeze NAS via Docker `hf`→`local-ai` (Scott Option A). Do not default `HF_HOME` to machine home. See `constitution/04-privacy-and-vaults.md`.
+If a Cursor/local lane uses HF or similar caches: a private NAS via Docker `hf` → the private inference volume (Scott Option A). Do not default `HF_HOME` to machine home. See `constitution/04-privacy-and-vaults.md`.
