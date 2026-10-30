@@ -10,7 +10,7 @@ Each merged row is `PR number — one-line summary (7-char merge SHA)`, taken fr
 
 ## [Unreleased]
 
-Placeholder rows for in-flight v1.0 work that will merge before tag `v1.0.0`. SHAs are TBD.
+Merged v1.0 rows recorded here until Release · RTE creates tag `v1.0.0`. The product tag does not exist yet. SHAs below are on `main`.
 
 ### Added
 
