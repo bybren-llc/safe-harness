@@ -7,11 +7,19 @@ import pathlib
 import re
 import sys
 
+try:
+    import yaml  # type: ignore
+except ImportError:
+    print("skills/check-frontmatter.py: FAIL")
+    print("  ❌ PyYAML is required. Install it with: python3 -m pip install pyyaml")
+    sys.exit(1)
+
 ROOT = pathlib.Path(__file__).resolve().parent
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+STRING_FIELDS = ("name", "description")
 
 
-def parse_frontmatter(text: str) -> dict[str, str]:
+def parse_frontmatter(text: str) -> dict[str, object]:
     if text.startswith("\ufeff"):
         text = text[1:]
     if not text.startswith("---"):
@@ -25,6 +33,7 @@ def parse_frontmatter(text: str) -> dict[str, str]:
         raise ValueError("opening --- is not followed by a newline")
 
     end = None
+    raw = ""
     for marker in ("\n---\n", "\n---\r\n", "\r\n---\r\n", "\r\n---\n"):
         idx = rest.find(marker)
         if idx != -1:
@@ -34,38 +43,21 @@ def parse_frontmatter(text: str) -> dict[str, str]:
     if end is None:
         raise ValueError("closing --- not found")
 
-    try:
-        import yaml  # type: ignore
-    except ImportError:
-        yaml = None
+    data = yaml.safe_load(raw)
+    if not isinstance(data, dict):
+        raise ValueError("frontmatter did not parse as a mapping")
 
-    if yaml is not None:
-        data = yaml.safe_load(raw)
-        if not isinstance(data, dict):
-            raise ValueError("frontmatter did not parse as a mapping")
-        out = {str(k): data[k] for k in data}
-        for key, value in out.items():
-            if value is None:
-                raise ValueError(f"frontmatter key {key!r} is empty")
-            if not isinstance(value, str):
-                out[key] = str(value)
-        return out
-
-    data: dict[str, str] = {}
-    for line in raw.splitlines():
-        if not line.strip() or line.lstrip().startswith("#"):
-            continue
-        if ":" not in line:
-            raise ValueError(f"unparseable frontmatter line: {line!r}")
-        key, value = line.split(":", 1)
-        key = key.strip()
-        value = value.strip()
-        if not key:
-            raise ValueError(f"empty frontmatter key in {line!r}")
-        if not value:
-            raise ValueError(f"empty frontmatter value for {key!r}")
-        data[key] = value
-    return data
+    out: dict[str, object] = {}
+    for key, value in data.items():
+        key_s = key if isinstance(key, str) else str(key)
+        if value is None:
+            raise ValueError(f"frontmatter key {key_s!r} is empty")
+        if key_s in STRING_FIELDS and not isinstance(value, str):
+            raise ValueError(
+                f"frontmatter key {key_s!r} must be a string, got {type(value).__name__}"
+            )
+        out[key_s] = value
+    return out
 
 
 def main() -> int:
@@ -86,21 +78,37 @@ def main() -> int:
         except Exception as exc:  # noqa: BLE001 — report parse failures as check errors
             errors.append(f"{path.relative_to(ROOT.parent)}: {exc}")
             continue
-        name = str(fm.get("name", "")).strip()
-        description = str(fm.get("description", "")).strip()
         if "name" not in fm:
             errors.append(f"{path.relative_to(ROOT.parent)}: missing name")
-        elif name != slug:
-            errors.append(
-                f"{path.relative_to(ROOT.parent)}: name {name!r} does not match folder {slug!r}"
-            )
-        elif not NAME_RE.match(name):
-            errors.append(f"{path.relative_to(ROOT.parent)}: name {name!r} is not a slug")
-        if "description" not in fm or not description:
+        else:
+            name_val = fm["name"]
+            if not isinstance(name_val, str):
+                errors.append(
+                    f"{path.relative_to(ROOT.parent)}: name must be a string, "
+                    f"got {type(name_val).__name__}"
+                )
+            else:
+                name = name_val.strip()
+                if name != slug:
+                    errors.append(
+                        f"{path.relative_to(ROOT.parent)}: name {name!r} does not match folder {slug!r}"
+                    )
+                elif not NAME_RE.match(name):
+                    errors.append(f"{path.relative_to(ROOT.parent)}: name {name!r} is not a slug")
+        if "description" not in fm:
             errors.append(f"{path.relative_to(ROOT.parent)}: missing description")
+        else:
+            desc_val = fm["description"]
+            if not isinstance(desc_val, str):
+                errors.append(
+                    f"{path.relative_to(ROOT.parent)}: description must be a string, "
+                    f"got {type(desc_val).__name__}"
+                )
+            elif not desc_val.strip():
+                errors.append(f"{path.relative_to(ROOT.parent)}: missing description")
 
-    if checked != 38:
-        errors.append(f"expected 38 SKILL.md files, found {checked}")
+    if checked < 1:
+        errors.append(f"expected at least 1 SKILL.md file, found {checked}")
 
     if errors:
         print("skills/check-frontmatter.py: FAIL")

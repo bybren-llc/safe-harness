@@ -20,7 +20,7 @@ Requirements are the definition of success. Use this skill to add or update a `R
 
 ## Identifier
 
-`REQ-<CMP>-NNN` where `<CMP>` is an `ARC-<CMP>` component from `arch/components.yaml`. Do not invent a component. Do not invent a REQ ID that is not going into the registry.
+`REQ-<CMP>-NNN` where `<CMP>` is the three-letter code after `ARC-` in `arch/components.yaml`. For example, use `REQ-TRC-001` with `component: ARC-TRC`. Do not invent a component. Do not invent a REQ ID that is not going into the registry.
 
 ## Trace states
 

@@ -23,10 +23,10 @@ The Librarian watches learning signals and read-only external sources (public do
 1. Read the sources the HITL owner or GM named. Stay read-only.
 2. Distill to pinned concepts with provenance. Chat dumps are not concepts.
 3. Cite. No invented links. Mark unverified URLs `UNKNOWN`.
-4. File the digest in-repo or in the forge-backed knowledge base (register-first). Do not copy personal-store facts.
+4. File the digest in-repo (register-first). A forge-backed knowledge base is an external platform under this skill's no-write rule; writes there need the same authorization as any external write. Do not copy personal-store facts.
 
 ## Stop rules
 
-- Never write to social or other external platforms. See the cited section; this skill grants no authority.
+- Never write to social or other external platforms, including a forge-backed knowledge base, without the same authorization any external write requires. See the cited section; this skill grants no authority.
 - Do not merge. See the cited section; this skill grants no authority.
 - Scanner, not fixer, if a signal is a security finding.
