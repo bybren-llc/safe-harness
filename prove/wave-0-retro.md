@@ -1,16 +1,16 @@
 # Wave 0 Meta-Cycle Retrospective
 
-**Epic:** SAF-1 · **Delivery:** Kai & Delivery · Lead · **Date:** 2026-10-29 · **Time zone:** America/New_York (EDT)
+**Epic:** <linear-ref> · **Delivery:** QAS & Delivery · Lead · **Date:** 2026-10-29 · **Time zone:** America/New_York (EDT)
 
 ## 1. Summary
 
 Wave 0 delivered the initial prove cycle end-to-end:
-- **SAF-1** (epic) closed
+- Work item (epic) closed
 - **Constitution** merged via [PR #2](https://github.com/bybren-llc/safe-harness/pull/2) @ `740eb2a`
 - **D-P1 bolt brief** merged via [PR #3](https://github.com/bybren-llc/safe-harness/pull/3) @ `acd9f389`
 - **D-P1 evidence** merged via [PR #4](https://github.com/bybren-llc/safe-harness/pull/4) @ `333edff8`
 
-All PRs passed Structure & Docs Validation, underwent CodeRabbit automated review, and received independent QAS by Kai (non-implementer) before merge.
+All PRs passed Structure & Docs Validation, underwent CodeRabbit automated review, and received independent QAS (non-implementer) before merge.
 
 ## 2. Cycle Time
 
@@ -25,7 +25,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 - PR #3 timestamps: https://github.com/bybren-llc/safe-harness/pull/3, merge SHA `acd9f389bc1f54ab79dbfa1e9732a80c957a10d0`
 - PR #4 timestamps: https://github.com/bybren-llc/safe-harness/pull/4, merge SHA `333edff8`
 
-**Notes on QAS rounds:** QAS verdicts were posted as COMMENTED reviews with "APPROVE" or "CHANGES NEEDED" in the review body because reviews came from the PR-authoring GitHub account (`cheddarfox`), which GitHub blocks from using REQUEST_CHANGES or APPROVE review states.
+**Notes on QAS rounds:** QAS verdicts were posted as COMMENTED reviews with "APPROVE" or "CHANGES NEEDED" in the review body because reviews came from the PR-authoring GitHub account, which GitHub blocks from using REQUEST_CHANGES or APPROVE review states.
 
 ## 3. CodeRabbit vs QAS Catches
 
@@ -35,8 +35,8 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 - [Review 1 @ `ed1dc32`](https://github.com/bybren-llc/safe-harness/pull/2#pullrequestreview-5688373795): 8 actionable + 1 nitpick (Major: workflow link-check, fence validation, evidence payload, HITL gates, brief decision-pack fields, SecEng requirements, pre-construct HITL scope)
 - [Review 2 @ `d629a92`](https://github.com/bybren-llc/safe-harness/pull/2#pullrequestreview-5689145897): 1 Major (QAS/SecEng N/A constraint to Low tier with rationale)
 
-**Kai QAS findings:**
-- [QAS APPROVE @ `fb74ba5`](https://github.com/bybren-llc/safe-harness/pull/2#pullrequestreview-5696343738): Verified CR Major fix (QAS/SecEng N/A rows), downgraded risk tier High→Low with written rationale (read-only non-deploy CI), SecEng N/A justified; noted thin-CI limitations as decision-pack for follow-on work
+**QAS findings:**
+- QAS APPROVE: Verified CR Major fix (QAS/SecEng N/A rows), downgraded risk tier High→Low with written rationale (read-only non-deploy CI), SecEng N/A justified; noted thin-CI limitations as decision-pack for follow-on work
 
 **Classification:**
 - **Overlap:** QAS/SecEng N/A constraint (CR Major, QAS verified fix)
@@ -51,9 +51,9 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 - [Review 1 @ `0952071`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5696472789): 1 Major (evidence placeholders, actor field, exact_head mismatch)
 - [Review 2 @ `41b969f`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5696882028): 1 Minor outside-diff (M3 "used" vs "named" gate wording)
 
-**Kai QAS findings:**
-- [QAS CHANGES NEEDED @ `0952071`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5696808123): CR Major accepted + 3 additional (exact-head should be PR not SHA, merge gate wording contradiction, model plan placeholder)
-- [QAS APPROVE @ `41b969f`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5697239991): All must-fixes verified; CR Minor carried to D-P1 follow-on as non-blocking
+**QAS findings:**
+- QAS CHANGES NEEDED: CR Major accepted + 3 additional (exact-head should be PR not SHA, merge gate wording contradiction, model plan placeholder)
+- QAS APPROVE: All must-fixes verified; CR Minor carried to D-P1 follow-on as non-blocking
 
 **Classification:**
 - **Overlap:** Evidence placeholders and actor/exact_head issues (CR Major, QAS expanded scope)
@@ -67,9 +67,9 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 **CodeRabbit findings (1 review):**
 - [Review 1 @ `2c3a821`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697391802): 4 actionable (Major: exit-state label must stay `MERGED (HITL only)` verbatim per constitution/05; HITL gates need delegation annotation with durable link; runtime column should be `grok-bot` not `cursor` for Kai's rows; README step 6 needs bolt-brief link)
 
-**Kai QAS findings:**
-- [QAS CHANGES NEEDED @ `2c3a821`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697573204): All 4 CR findings accepted as valid; #1 (exit state) overrides SAF-4 AC #3 which was wrong
-- [QAS APPROVE @ `067053f`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5698021770): All must-fixes verified; decision-pack D1 carried as non-blocking
+**QAS findings:**
+- QAS CHANGES NEEDED: All 4 CR findings accepted as valid; #1 (exit state) overrides work item AC which was wrong
+- QAS APPROVE: All must-fixes verified; decision-pack D1 carried as non-blocking
 
 **Classification:**
 - **Overlap:** All 4 findings (CR caught, QAS triaged and accepted)
@@ -88,15 +88,15 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 
 ### PR-event routine didn't fire for PR #4's first head
 **Timeline:** PR #4 created 07:58:13 EDT; CodeRabbit review posted 08:07:20 EDT for commit `2c3a821`.  
-**Cause (per Delivery log):** An event-driven automation that should have triggered on CodeRabbit completion for PR #4's first head didn't fire as expected.  
+**Cause (per Delivery log):** An event-driven automation that should have triggered on CodeRabbit completion for the first head didn't fire as expected.  
 **Impact:** Minor delay; workflow continued manually.  
-**Evidence:** [CodeRabbit review timestamp](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697391802) vs PR creation timestamp show ~9-minute gap, but Kai QAS at 08:19:56 EDT indicates the routine gap was brief.
+**Evidence:** CodeRabbit review timestamp vs PR creation timestamp show ~9-minute gap, but QAS review indicates the routine gap was brief.
 
 ### Author-account review limitation
-**Impact:** QAS reviews were posted from the PR-authoring GitHub account (`cheddarfox`), which GitHub blocks from using REQUEST_CHANGES or APPROVE review states, forcing COMMENTED reviews with verdict in body text.  
+**Impact:** QAS reviews were posted from the PR-authoring GitHub account, which GitHub blocks from using REQUEST_CHANGES or APPROVE review states, forcing COMMENTED reviews with verdict in body text.  
 **Workaround:** Each QAS review explicitly stated "treat as CHANGES NEEDED" or "treat as APPROVE."  
 **Visibility:** All QAS verdicts were clear and auditable; no ambiguity in merge decisions.  
-**Evidence:** [PR #3 QAS CHANGES @ `0952071`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5696808123), [PR #4 QAS CHANGES @ `2c3a821`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697573204)
+**Evidence:** PR review records show explicit CHANGES/APPROVE verdicts.
 
 ### Brief wording vs constitution/05 exit states (PR #4)
 **Issue:** SAF-4 acceptance criteria asked to relabel the exit state from `MERGED (HITL only)` to an alternate phrasing. QAS rejected this in PR #4: prove docs cannot redefine constitution/05 labels.  

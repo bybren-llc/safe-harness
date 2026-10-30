@@ -1,8 +1,8 @@
 # safe-harness
 
 **Org:** bybren-llc  
-**Owner:** Kai · GM & lead ARCHitect  
-**Status:** Wave 1 adopted 2026-10-29 (Scott concur)
+**Owner:** POPM · GM & lead ARCHitect  
+**Status:** Wave 1 adopted 2026-10-29 (owner concur)
 
 ---
 
@@ -18,15 +18,15 @@
 
 ## Glossary
 
-**HITL (Human In The Loop):** Scott is HITL/POPM for safe-harness. HITL is the **human approval** gate (decision pack + recorded own-words concur), not always the person who clicks merge. Merge **execution** on trunk may be Scott, Kai, or Release · RTE per [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md). An agent merge never counts as human approval.
+**HITL (Human In The Loop):** Owner is HITL/POPM for safe-harness. HITL is the **human approval** gate (decision pack + recorded own-words concur), not always the person who clicks merge. Merge **execution** on trunk may be owner, QAS, or Release · RTE per [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md). An agent merge never counts as human approval.
 
-**QAS (Quality Assurance & Acceptance):** Independent review by a seat who did not implement the change. Kai is QAS today (an agent). QAS reviews code, tests, evidence, and decision packs at exact commit SHA. QAS is posted as COMMENT reviews (PRs are authored by the `cheddarfox` account, which is also the account Kai reviews through; GitHub does not let a PR's author APPROVE or REQUEST_CHANGES on their own PR, so the independent QAS verdict is recorded as a COMMENT review with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line).
+**QAS (Quality Assurance & Acceptance):** Independent review by a seat who did not implement the change. QAS today is an agent. QAS reviews code, tests, evidence, and decision packs at exact commit SHA. QAS is posted as COMMENT reviews (PRs are authored by the owner account, which is also the account QAS reviews through; GitHub does not let a PR's author APPROVE or REQUEST_CHANGES on their own PR, so the independent QAS verdict is recorded as a COMMENT review with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line).
 
-**RTE (Release Train Engineer):** In Round Table the Release · RTE seat: an independent final release gate under continuous deployment (no trains). It runs a per-PR release check with an RTE PASS or HOLD verdict. It owns release notes now; tag format is documented, and tag + GitHub Release publication is future ownership pending its own O2 PR. On trunk it may merge once checks are green and Kai's independent QAS APPROVE plus its own RTE PASS are on the exact head; Scott's recorded concur is required for constitution/, High, and O2. An RTE merge never counts as human approval. See [`roles/release-rte.md`](roles/release-rte.md) and [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md).
+**RTE (Release Train Engineer):** In Round Table the Release · RTE seat: an independent final release gate under continuous deployment (no trains). It runs a per-PR release check with an RTE PASS or HOLD verdict. It owns release notes now; tag format is documented, and tag + GitHub Release publication is future ownership pending its own O2 PR. On trunk it may merge once checks are green and independent QAS APPROVE plus its own RTE PASS are on the exact head; owner's recorded concur is required for constitution/, High, and O2. An RTE merge never counts as human approval. See [`roles/release-rte.md`](roles/release-rte.md) and [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md).
 
-**O2:** High-risk items from ADR decision O2 that default to High tier and require extra scrutiny: pricing, refunds, auth, deploy CI/workflows, prod secrets, privacy-boundary crosses. Delivery may propose downgrades; Kai decides in writing at QAS.
+**O2:** High-risk items from ADR decision O2 that default to High tier and require extra scrutiny: pricing, refunds, auth, deploy CI/workflows, prod secrets, privacy-boundary crosses. Delivery may propose downgrades; QAS decides in writing.
 
-**POPM (Product Owner / Product Manager):** The role that owns product direction, requirements priority, and go/no-go decisions. In safe-harness, Scott is HITL/POPM for the whole repo.
+**POPM (Product Owner / Product Manager):** The role that owns product direction, requirements priority, and go/no-go decisions. In safe-harness, owner is HITL/POPM for the whole repo.
 
 **Bolt:** A small, bounded work package with a decision pack, implementation, tests, and evidence. Named for speed and precision. Each bolt has a risk tier (Low/Med/High) and goes through structured gates.
 
@@ -54,16 +54,16 @@
 4. Open PR from [`.github/pull_request_template.md`](.github/pull_request_template.md) with a `Requirements:` line (`REQ-<CMP>-NNN` or N/A)
 5. Wait for CI (Structure & Docs, Trace), CodeRabbit, and QAS
 6. If Medium/High, create decision pack
-7. Request merge: Kai on trunk after independent QAS APPROVE; Release · RTE after Kai's independent QAS APPROVE and RTE PASS; Scott's recorded concur on constitution/, High, and O2
+7. Request merge: QAS on trunk after independent QAS APPROVE; Release · RTE after independent QAS APPROVE and RTE PASS; owner's recorded concur on constitution/, High, and O2
 
-### (c) What needs Scott
+### (c) What needs owner concurrence
 
-- Constitution amendments (requires Scott concurrence)
-- High and O2 items (require Scott's recorded concur; two distinct humans is recommended guidance, not a gate)
-- Intent or spec changes (Scott owns and must approve via CODEOWNERS)
-- Dropping a requirement from `intent.md` (requires Scott sign-off)
+- Constitution amendments (requires owner concurrence)
+- High and O2 items (require owner's recorded concur; two distinct humans is recommended guidance, not a gate)
+- Intent or spec changes (owner owns and must approve via CODEOWNERS)
+- Dropping a requirement from `intent.md` (requires owner sign-off)
 
-**Note:** GitHub conventions (`<issue#>-slug` branches, `Refs #N`, `Req:` trailers) apply from Linear cutover. Wave 0 used `SAF-n` branch and `[SAF-n]` commit prefix format.
+**Note:** GitHub conventions (`<issue#>-slug` branches, `Refs #N`, `Req:` trailers) apply from Linear cutover. Wave 0 used earlier branch and commit formats.
 
 ---
 
@@ -74,9 +74,9 @@
 3. **PR:** Open PR from [`.github/pull_request_template.md`](.github/pull_request_template.md) with a `Requirements:` line (`REQ-<CMP>-NNN` or N/A)
 4. **CI:** Structure & Docs Validation + Requirements Trace Validation run
 5. **CodeRabbit:** Automated code review (required gate input)
-6. **QAS:** Independent review at exact commit SHA (Kai), posted as COMMENT (PRs are authored by the `cheddarfox` account, which is also the account Kai reviews through; GitHub does not let a PR's author APPROVE or REQUEST_CHANGES on their own PR, so the independent QAS verdict is recorded as a COMMENT review with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line)
+6. **QAS:** Independent review at exact commit SHA, posted as COMMENT (PRs are authored by the owner account, which is also the account QAS reviews through; GitHub does not let a PR's author APPROVE or REQUEST_CHANGES on their own PR, so the independent QAS verdict is recorded as a COMMENT review with an explicit `QAS: APPROVE` / `QAS: CHANGES NEEDED` line)
 7. **Decision pack:** If Medium or High tier, create decision pack with rationale, evidence, and risks
-8. **Merge:** Human approval (Scott's recorded concur) is distinct from merge execution. On trunk, Kai may execute the merge once checks are green and an independent QAS APPROVE is on the exact head; at Med/High/O2 also RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason. Release · RTE also needs Kai's independent QAS APPROVE and its own PASS. Scott's recorded own-words concur is required for constitution/, High, and O2. CODEOWNERS-gated paths other than constitution/ (intent.md, spec.md, requirements/, trace/) stay agents-must-not-merge (Scott/CODEOWNERS only). Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md).
+8. **Merge:** Human approval (owner's recorded concur) is distinct from merge execution. On trunk, QAS may execute the merge once checks are green and an independent QAS APPROVE is on the exact head; at Med/High/O2 also RTE PASS on the exact head, or a HOLD override from QAS or owner recorded on the PR with its reason. Release · RTE also needs independent QAS APPROVE and its own PASS. Owner's recorded own-words concur is required for constitution/, High, and O2. CODEOWNERS-gated paths other than constitution/ (intent.md, spec.md, requirements/, trace/) stay agents-must-not-merge (owner/CODEOWNERS only). Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md).
 
 **Key constraint:** QAS independence means QAS is never the implementer. Nobody merges their own authored change. An agent merge never counts as human approval. High/O2 still needs Scott's recorded concur as a required human approval. Two distinct humans on High-tier work is recommended guidance, not a gate. See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for the template default.
 

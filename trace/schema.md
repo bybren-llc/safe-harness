@@ -47,12 +47,12 @@ title: Brief requirement title
 source: spec.md#anchor-name
 rationale: |
   Why deferred and conditions for revisiting
-decided_by: Kai  # or "Scott Graham" (exactly, for intent-sourced drops)
+decided_by: QAS  # or "owner" (exactly, for intent-sourced drops)
 decided_at: 2026-10-29  # ISO 8601 date
 defer_to: 2026-11-15  # Target date or milestone reference
 ```
 
-**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires Scott's sign-off. Record as `decided_by: Scott Graham` (exactly) plus link in `rationale`.
+**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires the owner's sign-off. Record as `decided_by: owner` (exactly) plus link in `rationale`.
 
 ### Dropped requirements
 
@@ -64,11 +64,11 @@ title: Brief requirement title
 source: spec.md#anchor-name
 rationale: |
   Why permanently removed
-decided_by: Kai
+decided_by: QAS
 decided_at: 2026-10-29
 ```
 
-**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires Scott's sign-off. Record as `decided_by: Scott Graham` (exactly) plus link in `rationale`.
+**Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires the owner's sign-off. Record as `decided_by: owner` (exactly) plus link in `rationale`.
 
 ---
 
@@ -91,9 +91,9 @@ saf_id,linear_url,github_issue,pr,title,status
 
 **Example data (placeholders only):**
 ```csv
-SAF-1,https://linear.app/cheddarfox/issue/SAF-1/adr-pack-concur,#1,#2,ADR pack concur,Archived
-SAF-2,https://linear.app/cheddarfox/issue/SAF-2/constitution-thin-ci,#2,#2,Constitution + thin CI,Archived
-SAF-3,https://linear.app/cheddarfox/issue/SAF-3/d-p1-delivery-bolt,#3,#3,D-P1 delivery bolt,Archived
+SAF-1,<linear-url>,#1,#2,ADR pack concur,Archived
+SAF-2,<linear-url>,#2,#2,Constitution + thin CI,Archived
+SAF-3,<linear-url>,#3,#3,D-P1 delivery bolt,Archived
 ```
 
 Populate the actual mapping before Linear closeout (migration-plan.md Phase 2).

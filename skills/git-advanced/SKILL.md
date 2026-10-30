@@ -1,6 +1,6 @@
 ---
 name: git-advanced
-description: Rebase, bisect, cherry-pick, and conflict resolution with safety rules. Use on feature branches. Trunk is main. Never force-push trunk.
+description: Merge main to update feature branches, bisect, cherry-pick, and conflict resolution. Use on feature branches. Trunk is main. Never force-push shared branches.
 ---
 
 # Git advanced
@@ -18,32 +18,35 @@ See the cited section; this skill grants no authority.
 
 ## When to use
 
-Rebasing a feature branch, finding a regression with bisect, cherry-picking, or resolving conflicts. Trunk is `main`.
+Updating a feature branch from trunk, finding a regression with bisect, cherry-picking, or resolving conflicts. Trunk is `main`.
 
 ## Forbidden
 
-- Force-push to trunk or any protected branch
+- Force-push to trunk or any shared branch (including PR branches you don't own)
+- `--force-with-lease` on shared branches (use it only on your own private work branches before you share them)
+- Rebase or amend commits that others have already pulled
 - Merge commits onto trunk from the client (use the repo's PR merge policy)
 - `git commit --no-verify`
-- Rewriting history that other people already pulled, unless they agree
 
 ## Safe
 
-- `git push --force-with-lease` on **your** feature branch
-- Interactive rebase of local commits before anyone else pulled them
-- `git rebase --abort` / `git merge --abort` / `git cherry-pick --abort`
+- Merge `main` into your feature branch to update it (plain commits, no rebase)
+- `git merge --abort` / `git cherry-pick --abort`
 - `git reflog` to recover
 
-## Rebase onto trunk (before a PR, or when Delivery asked for a new head)
+## Update a feature branch from trunk
+
+**Constitutional rule:** Update feature branches by merging main. No rebase. No force-push on shared branches.
 
 ```text
 git fetch origin
-git rebase origin/main
-# resolve conflicts, git add, git rebase --continue
-git push --force-with-lease origin <issue#>-slug
+git checkout <issue#>-slug
+git merge origin/main
+# resolve conflicts if any, git add, git commit
+git push origin <issue#>-slug
 ```
 
-Ask first if others may have pulled, the branch is shared, or the branch has been open a long time.
+This creates a plain merge commit. If the PR is already open, the new commit updates the PR head. QAS reviews at the new exact head.
 
 ## Bisect
 

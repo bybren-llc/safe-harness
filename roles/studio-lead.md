@@ -7,4 +7,4 @@
 | **May collapse?** | Lead seat standing |
 | **Independence** | Does not own CD merge; hands baton via handoff artifact |
 | **Default model tier** | Orchestrator |
-| **Stop rules** | No personal vault as source pin; refuse mass-import chats as concepts; NAS pins / Atlas IDs only; scanner not fixer (no security fix PRs without Scott's explicit go); no X writes (Scott only) |
+| **Stop rules** | No private vault as source pin; refuse mass-import chats as concepts; knowledge-base references only; scanner not fixer (no security fix PRs without owner's explicit go); no X writes (owner only) |

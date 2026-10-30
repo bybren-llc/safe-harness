@@ -2,24 +2,24 @@
 
 **PR:** #6  
 **Branch:** cursor/wave-1-repo-sot-9236  
-**Exact-head:** final reviewed head recorded in Kai's QAS review and in the squash-merge body  
-**Status:** Adopted 2026-10-29 (Scott concur)
+**Exact-head:** final reviewed head recorded in QAS review and in the squash-merge body  
+**Status:** Adopted 2026-10-29 (owner concur)
 
-**Owner:** Kai (coordinator)  
+**Owner:** QAS (coordinator)  
 **Delivery:** Cursor CloudAgent  
-**Tier:** Medium (Kai confirmed; conditions met at f84ee52)
+**Tier:** Medium (QAS confirmed; conditions met)
 
 ---
 
 ## Executive summary
 
-Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub becomes the sole SoR for intent, spec, plan, requirements, trace map, review findings, and evidence. Linear is archived read-only. Constitution changes require Scott's explicit concurrence before merge.
+Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub becomes the sole SoR for intent, spec, plan, requirements, trace map, review findings, and evidence. Linear is archived read-only. Constitution changes require owner's explicit concurrence before merge.
 
 **Key changes:**
 1. constitution/05 amendment (repo as SoR, human/agent ownership split, trace enforcement)
 2. constitution/03 amendment (GitHub conventions replace Linear)
 3. Requirements tracing framework (REQ-<CMP>-NNN, trace map, trace-check CI)
-4. CODEOWNERS: intent/spec human-owned (Scott only); requirements, trace and constitution are agent-authored behind a @cheddarfox review gate
+4. CODEOWNERS: intent/spec human-owned (owner only); requirements, trace and constitution are agent-authored behind an owner review gate
 5. GitHub Issue templates and label scheme
 6. Migration plan (Linear → GitHub)
 

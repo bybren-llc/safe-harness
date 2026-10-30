@@ -1,8 +1,8 @@
 # Migration Plan — Linear to GitHub (Wave 1)
 
-**Status:** Proposed (pending Scott concurrence)  
-**Scope:** safe-harness repository only (other Linear teams like STO untouched)  
-**Owner:** Delivery (Kai coordinates cutover timing with Scott)
+**Status:** Proposed (pending owner concurrence)  
+**Scope:** safe-harness repository only (other Linear teams untouched)  
+**Owner:** Delivery (QAS coordinates cutover timing with HITL)
 
 ---
 
@@ -14,11 +14,11 @@ This plan transitions safe-harness from Linear to GitHub Issues while preserving
 
 ### Linear remains accessible
 
-- Linear workspace: `cheddarfox`
-- Historical issues: SAF-1 through SAF-5 (and any others created before cutover)
+- Linear workspace: (organization-specific)
+- Historical work items: archived pre-cutover items
 - **Access:** Read-only archive; never delete
 - **Evidence preservation:** All Linear evidence URLs remain valid and resolvable
-- **Citation:** Link to Linear issues directly when referencing historical context
+- **Citation:** Link to Linear items directly when referencing historical context
 
 ### SAF-n to GitHub Issue mapping
 
@@ -42,25 +42,25 @@ SAF-N,<linear-url>,#<issue>,#<pr>,<title>,<status>
 ### Phase 1: Preparation (Wave 1 PR lands)
 
 **Done when:**
-- [ ] Scott concurs on constitution/05 amendment
+- [ ] Owner concurs on constitution/05 amendment
 - [ ] Wave 1 PR merged to main
 - [ ] GitHub Issue templates available (`.github/ISSUE_TEMPLATE/`)
 - [ ] Labels created from `.github/labels.yml` (manual or automation)
 - [ ] First GitHub Issue created: "Trace-check blocking validations" (implements additional validations from constitution/05:136-141, adds `trace/.blocking` marker)
 - [ ] Trace-check CI operational (bootstrap mode)
 
-**Duration:** Immediate (gated on Scott concurrence)
+**Duration:** Immediate (gated on owner concurrence)
 
 ### Phase 2: Parallel operation (transition window)
 
 **Done when:**
-- [ ] Create GitHub Issues for SAF-1 through SAF-5 (archive mirrors)
+- [ ] Create GitHub Issues for archived Linear items (archive mirrors)
 - [ ] Populate `trace/linear-saf-map.csv` with actual mappings
 - [ ] Test GitHub Issues workflow with one new work item
 - [ ] Verify trace-check CI on a test PR
-- [ ] Announce cutover date to team (Scott + Kai agreement)
+- [ ] Announce cutover date to team (owner + QAS agreement)
 
-**Duration:** TBD (set after Scott concurrence)
+**Duration:** TBD (set after owner concurrence)
 
 **Activities:**
 - Create GitHub Issues mirroring Linear historical context (no duplication of full bodies; link back to Linear)
@@ -69,11 +69,11 @@ SAF-N,<linear-url>,#<issue>,#<pr>,<title>,<status>
 
 ### Phase 3: Cutover
 
-**Cutover date:** TBD (Kai sets after Scott concurrence)
+**Cutover date:** TBD (QAS sets after owner concurrence)
 
 **Cutover actions:**
-1. Freeze Linear writes (SAF team stops creating/updating Linear issues for safe-harness; STO and other teams untouched)
-2. Mark SAF team read-only in Linear workspace for safe-harness scope
+1. Freeze Linear writes (team stops creating/updating Linear items for safe-harness; other teams untouched)
+2. Mark team read-only in Linear workspace for safe-harness scope
 3. Commit final `trace/linear-saf-map.csv` to main
 4. Switch default work tracking to GitHub Issues
 5. Update documentation to reference GitHub as SoR
@@ -83,7 +83,7 @@ SAF-N,<linear-url>,#<issue>,#<pr>,<title>,<status>
 - [ ] All active work migrated to GitHub Issues
 - [ ] Team using GitHub Issues for new work
 - [ ] trace/linear-saf-map.csv committed and complete
-- [ ] Librarian's SAF-map freeze PR merged (row validation, `trace/linear-saf-map.sha256`, Frozen note in `schema.md`, and B5 or the equivalent manual check passing)
+- [ ] Librarian's Linear-map freeze PR merged (row validation, `trace/linear-saf-map.sha256`, Frozen note in `schema.md`, and validation check passing)
 
 ### Phase 4: Archive maintenance
 
@@ -99,12 +99,7 @@ SAF-N,<linear-url>,#<issue>,#<pr>,<title>,<status>
 
 ### Linear evidence URLs remain valid
 
-Wave 0 evidence in `prove/d-p1/bolt-brief.md` and Linear comments/reviews remain accessible:
-
-- SAF-1: https://linear.app/cheddarfox/issue/SAF-1/... (concur comment)
-- SAF-3: https://linear.app/cheddarfox/issue/SAF-3/... (D-P1 bolt)
-- SAF-4: https://linear.app/cheddarfox/issue/SAF-4/... (evidence follow-up)
-- SAF-5: https://linear.app/cheddarfox/issue/SAF-5/... (Wave 0 retro)
+Wave 0 evidence in `prove/d-p1/bolt-brief.md` and Linear comments/reviews remain accessible. Archive URLs stay valid and resolvable.
 
 **No URL changes required.** Continue citing these URLs in documentation and trace maps.
 
@@ -121,7 +116,7 @@ Both are valid; tooling will handle both formats during transition.
 
 1. **Label creation:** Manual or automated? (Documented in `.github/labels.yml` only during Wave 1)
 2. **Milestone creation:** When to create "Wave 1", "Wave 2", etc. milestones?
-3. **PR #5 (SAF-5 Wave 0 retro):** Migrate to GitHub Issue or close in place?
+3. **Historical work:** Migrate to GitHub Issue or close in place?
 
 ---
 
@@ -129,7 +124,7 @@ Both are valid; tooling will handle both formats during transition.
 
 If critical issues arise during cutover:
 
-1. Reopen Linear writes for SAF team (safe-harness scope only)
+1. Reopen Linear writes for team (safe-harness scope only)
 2. Reconcile any GitHub-only work created during cutover attempt (copy context to Linear or document in Linear comments)
 3. Continue using Linear as temporary SoR
 4. Investigate and resolve GitHub Issues workflow blockers
@@ -141,7 +136,7 @@ If critical issues arise during cutover:
 
 ## Other Linear teams (out of scope)
 
-- **STO** and other Linear teams remain on Linear
+- Other Linear teams remain on Linear
 - This migration affects **safe-harness only**
 - No organization-wide Linear retirement
 - Other teams may adopt GitHub Issues independently on their own timeline
@@ -153,7 +148,7 @@ If critical issues arise during cutover:
 The Phase 3 **Done when** list is authoritative. Migration is complete when those items are done, including:
 - [ ] All active safe-harness work tracked in GitHub Issues
 - [ ] `trace/linear-saf-map.csv` committed with complete mappings
-- [ ] Librarian's SAF-map freeze PR merged (row validation, `trace/linear-saf-map.sha256`, Frozen note in `schema.md`, and B5 or the equivalent manual check passing)
+- [ ] Librarian's Linear-map freeze PR merged (row validation, `trace/linear-saf-map.sha256`, Frozen note in `schema.md`, and validation check passing)
 - [ ] Team trained and using GitHub conventions
 - [ ] Trace-check CI operational and green
 - [ ] Linear archive accessible and evidence URLs resolve
