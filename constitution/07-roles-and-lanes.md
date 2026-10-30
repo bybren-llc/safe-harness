@@ -34,8 +34,8 @@ It merges only with Kai's QAS APPROVE plus its own RTE PASS on the exact head. O
 
 New staff role next to Ops. Card: [`roles/dispatcher-board.md`](../roles/dispatcher-board.md).
 
-- Owns the tracking board
-- Runs a 4:30 AM ET read-only sweep
+- Owns the tracking board. The only write is a limited exception: update board records to surface status.
+- Runs a 4:30 AM ET read-only sweep (no repo, PR, or channel writes)
 - Only surfaces things: it never decides, posts, or merges
 
 ## Security findings (every agent)

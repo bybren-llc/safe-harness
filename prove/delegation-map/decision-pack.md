@@ -1,12 +1,13 @@
 # Decision Pack — Delegation map and #22 follow-ups
 
-**PR:** this PR  
+**PR:** [#27](https://github.com/bybren-llc/safe-harness/pull/27)  
 **Branch:** `cursor/delegation-map-amendment-3907`  
-**Issue:** follow-up from [PR #22](https://github.com/bybren-llc/safe-harness/pull/22) (no new issue)  
+**Issue:** follow-up from [PR #22](https://github.com/bybren-llc/safe-harness/pull/22) (originating #10). Dedicated Decision issue not opened in this PR.  
 **Status:** PROPOSED — needs Scott concur  
 **Owner:** Delivery · Lead  
 **QAS:** Kai (independent; not the implementer)  
-**Tier:** **High** (O2 auth-adjacent — who may act on security findings, X writes, prod-risk, and secrets ownership). No downgrade.
+**Tier:** **High** (O2 auth-adjacent — who may act on security findings, X writes, prod-risk, and secrets ownership). No downgrade.  
+**Reviewed head (SecEng + CodeRabbit):** `81efe31`
 
 ---
 
@@ -22,12 +23,12 @@ Delivery does not merge. Kai QAS APPROVE and Scott's own-words concur are requir
 
 | Field | Value |
 | --- | --- |
-| GitHub Issue | Follow-up from #22 / `d88c884` (no new issue) |
-| Exact-head SHA / PR | this commit (see this PR head) |
-| Evidence IDs | #22 squash `d88c884`; this pack |
+| GitHub Issue | Follow-up from #22 / `d88c884` (originating #10). Dedicated Decision issue not opened in this PR. |
+| Exact-head SHA / PR | SecEng + CodeRabbit reviewed `81efe31` on [#27](https://github.com/bybren-llc/safe-harness/pull/27). This commit is the follow-up recording. Later commits must be SecEng delta-confirmed. |
+| Evidence IDs | #22 squash `d88c884`; CodeRabbit review 5712012854; SecEng PASS at `81efe31`; this pack |
 | Requirements | No REQ-IDs in spec.md yet |
 | QAS | Pending Kai independent QAS at exact head |
-| SecEng | Pending. High/O2 SecEng cannot be waived or N/A |
+| SecEng | SecEng (independent, non-author): PASS at 81efe31 vs d88c884. No merge/override widen; RTE still Kai QAS + own PASS, HOLD Kai/Scott only; Dispatcher cannot decide/post/merge; no agent X writes or security fix PRs without Scott; two-humans guidance does not drop QAS/SecEng/Scott concur/prod-risk; no secrets; branch protection unanswered. |
 | Risk tier + O2 | **High / O2 auth-adjacent**. No downgrade |
 | Ask | approve / change-request / escalate — **concur in your own words at the exact head. Do not answer the open question (branch protection).** |
 
@@ -104,6 +105,7 @@ O2 checklist:
 | `constitution/README.md:16` |
 | `constitution/01-round-table.md:40` |
 | `README.md:270` |
+| `prove/README.md:20` |
 
 `trace/linear-saf-map.csv` was not opened or edited.
 
@@ -147,10 +149,30 @@ No answer is written.
 
 ---
 
+## SecEng / evidence
+
+SecEng (independent, non-author): PASS at 81efe31 vs d88c884. No merge/override widen; RTE still Kai QAS + own PASS, HOLD Kai/Scott only; Dispatcher cannot decide/post/merge; no agent X writes or security fix PRs without Scott; two-humans guidance does not drop QAS/SecEng/Scott concur/prod-risk; no secrets; branch protection unanswered.
+
+Later commits must be SecEng delta-confirmed as non-widening before merge; that confirmation is recorded in the QAS review on the merge head.
+
+---
+
+## Open decisions (CodeRabbit; not adopted)
+
+Findings that would change authority or gates are recorded here for Kai and Scott. Not adopted. Branch protection stays unanswered.
+
+- **G4 ordering** (review 5712012854, `release/flow.md:102`): whether Scott's recorded concur is a merge prerequisite rather than an RTE PASS prerequisite. Constitution/03 says RTE PASS runs in parallel with Scott concur. Not adopted in this commit.
+- **Med RTE merge** (review 5712012854, `release/flow.md:128`): whether Scott's decision-pack concur is required for every Med RTE merge, or only for `constitution/`, High, and O2. Not adopted in this commit.
+- **Dedicated Decision issue** (review 5712012854, this pack): whether this amendment needs its own GitHub Decision issue, or #22 / originating #10 is enough. Not opened in this PR.
+
+---
+
 ## Evidence refs
 
 - [PR #22](https://github.com/bybren-llc/safe-harness/pull/22) — Release · RTE merge-rights amendment
 - [`d88c884`](https://github.com/bybren-llc/safe-harness/commit/d88c884c14c64aa2dbc244c89290818df423924e) — #22 squash; Scott's answers in the commit message
+- [PR #27](https://github.com/bybren-llc/safe-harness/pull/27) — this amendment
+- CodeRabbit review [5712012854](https://github.com/bybren-llc/safe-harness/pull/27#pullrequestreview-5712012854) at `81efe31`
 - Historical ask: [`prove/rte-merge-rights/decision-pack.md`](../rte-merge-rights/decision-pack.md) (not rewritten)
 
 ---
@@ -160,8 +182,8 @@ No answer is written.
 **Do not merge until:**
 
 - [ ] Kai's independent QAS APPROVE on the exact head
-- [ ] SecEng review
-- [ ] CodeRabbit findings on the new head triaged
+- [x] SecEng (independent, non-author): PASS at 81efe31 vs d88c884. No merge/override widen; RTE still Kai QAS + own PASS, HOLD Kai/Scott only; Dispatcher cannot decide/post/merge; no agent X writes or security fix PRs without Scott; two-humans guidance does not drop QAS/SecEng/Scott concur/prod-risk; no secrets; branch protection unanswered.
+- [ ] CodeRabbit findings on the new head triaged (5712012854 at `81efe31` triaged in this commit)
 - [ ] Scott's recorded own-words concur at exact head
 - [ ] Wave 0 checks green
 - [ ] Delivery does not merge

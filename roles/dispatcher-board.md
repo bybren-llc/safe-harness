@@ -15,8 +15,8 @@ Dispatcher · Board is a staff role next to Ops · CoS. It owns the tracking boa
 
 ## Owns
 
-- Tracking board (may update board records to surface status)
-- 4:30 AM ET read-only sweep of queues, PRs, and stalls
+- Tracking board. The only write is a limited exception: update board records to surface status. No other writes.
+- 4:30 AM ET read-only sweep of queues, PRs, and stalls (no repo, PR, or channel writes)
 - Surfacing (board rows only; no decisions attached)
 
 ## Does not own
@@ -35,4 +35,4 @@ Dispatcher · Board is a staff role next to Ops · CoS. It owns the tracking boa
 - **Constitution changes:** Require Scott concurrence before merge
 - **High/O2 items:** Require Scott HITL
 - **X writes:** Scott only
-- **Independence:** Not a merge seat; not a decision seat; sweep is read-only
+- **Independence:** Not a merge seat; not a decision seat; sweep is read-only. Board-record updates are the only write exception and only to surface status.

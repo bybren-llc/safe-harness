@@ -165,7 +165,7 @@ The morning roll is Ops · CoS reading the **live queue**, not a schedule. [PEND
 | --- | --- | --- |
 | Packets awaiting check | PRs with a ready packet and no RTE verdict on that head | PR comments |
 | HOLDs | `RTE HOLD @ <sha> — G<n>` not yet cleared, and who owns the fix | PR comments + Linear |
-| Scott concurrence queue | Med/High PRs with RTE PASS waiting on Scott | Ops · CoS queue + GitHub (Linear optional) |
+| Scott concurrence queue | PRs requiring Scott's recorded concur (`constitution/` at any tier; High; O2) with RTE PASS waiting on Scott | Ops · CoS queue + GitHub (Linear optional) |
 | Awaiting merge / tag | "Ready for HITL" with no merge; merged with no tag/Release | GitHub + Linear |
 | Stalls | Anything past the stall thresholds below | Derived |
 
@@ -184,7 +184,7 @@ Every other stall point — same 2× rule, in minutes. **Decided — Kai 2026-10
 | Stall point | Clock starts | Escalate at | To |
 | --- | --- | --- | --- |
 | HOLD unanswered (no new head and no written response) | `RTE HOLD` comment posted | 2× tier target: Low 10 / Med 30 / High·O2 60 min | Kai (`SendToAgent`, `priority: true`); Delivery · Lead copied |
-| Scott concurrence pending (Med/High/O2) | RTE PASS posted | 2× tier target: Med 30 / High·O2 60 min | Ops · CoS surfaces in the Scott concurrence queue (Ops escalates per §2; never Scott-direct unless Scott in-thread) |
+| Scott concurrence pending (`constitution/` at any tier; High; O2) | RTE PASS posted | 2× tier target: Low 10 / Med 30 / High·O2 60 min | Ops · CoS surfaces in the Scott concurrence queue (Ops escalates per §2; never Scott-direct unless Scott in-thread) |
 | "Ready for HITL" with no merge | Both RTE PASS and HITL record present | 2× tier target: Low 10 / Med 30 / High·O2 60 min | Kai (`SendToAgent`, `priority: true`) |
 | Merged with no tag / GitHub Release | `MERGED (HITL only)` | 2× the 5-min publish target = **10 min** | Kai (`SendToAgent`, `priority: true`) |
 

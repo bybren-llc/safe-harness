@@ -17,7 +17,7 @@ Repo: `bybren-llc/safe-harness` (O1 locked).
 | 1 | Empty `bybren-llc/safe-harness` exists + Cursor App access granted | ☑ |
 | 2 | Constitution + adapters (docs stubs) landed in repo — PR #2, `740eb2a` | ☑ |
 | 3 | Bolt brief from `../templates/delivery-bolt-brief.md` filled — [`d-p1/bolt-brief.md`](d-p1/bolt-brief.md) | ☑ |
-| 4 | Linear issue: **human assignee** + optional agent delegate (no Linear Agents) — SAF-3 | ☑ |
+| 4 | Linear issue (optional; preferred path is GitHub Issues): Wave 0 used SAF-3 with **human assignee** + optional agent delegate (no Linear Agents) | ☑ |
 | 5 | Low or Med tier preferred for first prove; avoid O2 unless intentional — Low | ☑ |
 | 6 | Business-context HITL **before construct** (if Med/High/O2) → Implement → QAS (separate) → SecEng (if required) → RTE/collapse → HITL decision pack | ☑ — Low: business-context HITL N/A; QAS 2 rounds; RTE collapsed; MERGED by Kai (standing auth) — [`d-p1/bolt-brief.md#gates`](d-p1/bolt-brief.md#gates) |
 | 7 | Exact-head evidence + portable evidence_id posted | ☑ — see [`d-p1/bolt-brief.md`](d-p1/bolt-brief.md) Evidence |
