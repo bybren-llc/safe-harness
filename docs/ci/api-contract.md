@@ -9,7 +9,7 @@ When that file is missing, the job prints a notice and exits 0.
 When a spec is present:
 
 1. **oasdiff** compares the current spec to the same path on the pull-request base (or the previous commit on `main`) and reports breaking changes. Warn-only.
-2. **Schemathesis** runs only when `API_CONTRACT_BASE_URL` is set to a public API base URL. Leave that env empty to skip. Warn-only. Do not put credentials in the workflow; it uses no secrets.
+2. **Schemathesis** runs only when `API_CONTRACT_BASE_URL` is set to an isolated test API with test data. Leave that env empty to skip. Do not point it at production. Warn-only. Do not put credentials in the workflow; it uses no secrets.
 
 Both checks use `continue-on-error` so findings never fail the job. A comment on each step marks where to remove that line later if the check should block.
 
