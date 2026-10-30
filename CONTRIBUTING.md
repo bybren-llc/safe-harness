@@ -37,6 +37,10 @@ The following files require @cheddarfox review and approval before merge:
 - `requirements/` — agent-authored REQ-<CMP>-NNN registry (human review gate)
 - `constitution/` — agent-authored governance changes (human review gate)
 - `trace/` — agent-authored trace map (human review gate)
+- `arch/` — component registry (human review gate)
+- `AGENTS.md` and `adapters/**/AGENTS.md` — agent entry points (human review gate)
+- `skills/` — skills library (human review gate)
+- `.github/CODEOWNERS` and `.github/workflows/` — review-gate and CI controls
 
 **Ownership distinction:** Humans own and accept only design (intent.md + spec.md). Agents own and author everything else (plan, issues, code, tests, PRs, evidence, requirements, trace, constitution changes). CODEOWNERS enforces human review gates before merge.
 

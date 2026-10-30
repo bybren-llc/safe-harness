@@ -133,13 +133,14 @@ Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deplo
 | [`prove/d-p1/`](prove/d-p1/) | D-P1 bolt evidence (Wave 0) |
 | `prove/d-p2/` | (planned) D-P2 bolt evidence |
 | [`arch/`](arch/) | Component registry (ARC-<CMP>, components.yaml) |
+| [`AGENTS.md`](AGENTS.md) | Agent entry point (rules by link; local checks) |
 | [`requirements/`](requirements/) | REQ-<CMP>-NNN registry (REQ-TEMPLATE.yaml, README.md) |
 | [`trace/`](trace/) | Trace map (trace-map.yaml, schema.md, linear-saf-map.csv) |
 | [`intent.md`](intent.md) | Human-owned design intent (Scott only) |
 | [`spec.md`](spec.md) | Human-owned specification (Scott only) |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Contributing guide (personal-boundary rule, workflow, evidence) |
 | [`adapters/`](adapters/) | Runtime adapters (Claude Code, Cursor — doc stubs; Codex/local planned) |
-| [`.github/CODEOWNERS`](.github/CODEOWNERS) | Review gates (intent, spec, constitution, requirements, trace) |
+| [`.github/CODEOWNERS`](.github/CODEOWNERS) | Review gates (intent.md, intent/, spec.md, constitution, requirements, trace, arch, AGENTS.md, skills, workflows) |
 | [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) | Issue templates (bolt.yml, requirement.yml, decision.yml) |
 | [`.github/pull_request_template.md`](.github/pull_request_template.md) | PR body template (Requirements, risk tier, O2, evidence, exact head, gates) |
 | [`.github/labels.yml`](.github/labels.yml) | Label definitions (work types, risk tiers, O2, exit states, gates) |
@@ -205,7 +206,7 @@ Each evidence row includes:
 ## Human vs. agent ownership
 
 **Humans (Scott only) own and accept design:**
-- `intent.md`, `spec.md` — Scott owns and accepts; agents may propose edits but **never merge**
+- `intent.md`, `intent/`, `spec.md` — Scott owns and accepts; agents may propose edits but **never merge**
 
 **Agents own everything else end-to-end:**
 - Plan, GitHub Issues, code, tests, PRs, evidence
@@ -213,7 +214,7 @@ Each evidence row includes:
 - **Trace map** (`trace/`) — agents author; human-reviewed PR required
 - **Constitution changes** — agents author; human-reviewed PR required
 
-**CODEOWNERS = review gate, not ownership:** `.github/CODEOWNERS` enforces @cheddarfox review for intent, spec, constitution, requirements, trace, and workflows. Agents author requirements, trace, and constitution changes; humans review and approve before merge.
+**CODEOWNERS = review gate, not ownership:** `.github/CODEOWNERS` enforces @cheddarfox review for `intent.md`, `intent/`, `spec.md`, `constitution/`, `requirements/`, `trace/`, `arch/`, `AGENTS.md`, `adapters/**/AGENTS.md`, `skills/`, and workflows. Agents author requirements, trace, and constitution changes; humans review and approve before merge.
 
 ---
 

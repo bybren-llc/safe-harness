@@ -1,5 +1,3 @@
-# Role definitions (placeholder)
+# Claude Code role files
 
-When integrating safe-harness with Claude Code agents, copy role cards from `../../../roles/*.md` into agent frontmatter.
-
-Do not invent ultracode defaults. Do not enable Linear Agents.
+Role cards live in [`../../../roles/`](../../../roles/). Copy them into the runtime agent directory when wiring this adapter. This file is a pointer, not a role card.
