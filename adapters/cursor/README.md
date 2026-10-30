@@ -37,6 +37,16 @@ Maps constitution → Cursor rules + Projects / Cloud Agents.
 - tmux/Dark Factory not required.
 - No Linear Agents in Wave 0.
 
+## Skills library (v1.0)
+
+Canonical skills live in [`../../skills/`](../../skills/README.md) as `skills/<slug>/SKILL.md`.
+
+This adapter maps selected skills into Cursor rules (`.cursor/rules`) or the runtime skills directory the project uses. Prefer pointing at the canonical file over forking the text. See [Cursor rules](https://docs.cursor.com/context/rules).
+
+Runtime-specific role→model examples stay in this adapter. Skills themselves use tier names only.
+
+Trigger tests (does a prompt load the right skill) are **UNKNOWN** to automate in v1.0. Generic hooks are **UNKNOWN** and not shipped.
+
 ## Local / HF cache (Option A)
 
-If a Cursor/local lane uses HF or similar caches: MainSqueeze NAS via Docker `hf`→`local-ai` (Scott Option A). Do not default `HF_HOME` to machine home. See `constitution/04-privacy-and-vaults.md`.
+If a Cursor/local lane uses HF or similar caches: a private NAS via Docker `hf` → the private inference volume (Scott Option A). Do not default `HF_HOME` to machine home. See `constitution/04-privacy-and-vaults.md`.
