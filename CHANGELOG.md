@@ -10,6 +10,12 @@ Each merged row is `PR number — one-line summary (7-char merge SHA)`, taken fr
 
 ## [Unreleased]
 
+## [1.0.1]
+
+### Docs
+
+- README generalized to show dual-spine use (code + stories/research); branch-protection and release-flow wording updated to reflect configured ruleset
+
 ## [1.0.0]
 
 First product release of safe-harness. Release · RTE tags `v1.0.0` at the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head, per [`roles/release-rte.md`](roles/release-rte.md).

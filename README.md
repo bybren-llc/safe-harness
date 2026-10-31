@@ -34,7 +34,7 @@
   </a>
 </p>
 
-A template for everyday, safe AI-assisted development.
+A template for everyday, safe AI-assisted work: code on one spine, and stories and research on the other.
 
 **Status:** Wave 1 adopted. This README is the adopter-facing index. It is **not** a policy source. Binding rules live in [`constitution/`](constitution/). See [Adapting this template](docs/adapting.md).
 
@@ -42,9 +42,9 @@ A template for everyday, safe AI-assisted development.
 
 ## What safe-harness is and who it's for
 
-**Safe-harness** is an AI-native software development lifecycle (SDLC) framework. Humans set direction and keep the safety gates. Agents execute the work and produce evidence.
+**Safe-harness** is an AI-native work harness. It started as a software development lifecycle (SDLC) framework and runs on two peer spines: **Delivery** (code: execute/deploy) and **Studio** (think/plan: stories and research). Humans set direction and keep the safety gates. Agents execute the work and produce evidence.
 
-**Who it's for:** Small engineering teams (about 1–10 people) working with AI coding agents who need structured governance, clear ownership, and evidence-based decisions.
+**Who it's for:** Small teams (about 1–10 people) working with AI agents who need structured governance, clear ownership, and evidence-based decisions. That includes engineering teams shipping code and teams producing non-code work such as stories and research.
 
 **What problem it solves:** Agents can write code faster than humans can review it. Without a thin harness, requirements drift, decisions go unrecorded, ownership blurs, and merges become unsafe. Safe-harness is the minimum viable governance that keeps AI-assisted development **safe, traceable, and human-controlled**.
 
@@ -62,6 +62,29 @@ Useful terms (definitions only; gates and merge authority are **not** restated h
 | **Bolt** | A small, bounded work package: brief, implementation, tests, evidence, gates. |
 | **Spine A / Spine B** | Dual workflows. A = Delivery (CD execute/deploy). B = Studio (think/plan). |
 | **AI-DLC** | Agent-first counterpart to a traditional SDLC: humans own intent and design; agents own plan-to-evidence execution. |
+
+---
+
+## Two spines: code and story/research
+
+Safe-harness runs on two peer spines with a shared shape. Per [`constitution/00-north-star.md`](constitution/00-north-star.md), the spines "share Round Table principles, exit states, and ownership language. They differ in gates and storage." This section is an index. The binding rules live in the linked files.
+
+| Spine element | Spine A — Delivery (code) | Spine B — Studio (stories and research) |
+| --- | --- | --- |
+| Owning seat | [Delivery · Lead](roles/delivery-lead.md) | [Studio · Lead](roles/studio-lead.md) (stories), with [Scout](roles/scout.md) (story media, research) and [Librarian](roles/librarian.md) (signals) |
+| Work unit / brief | [`templates/delivery-bolt-brief.md`](templates/delivery-bolt-brief.md) | [`research-brief`](skills/research-brief/SKILL.md) skill (sources plus `UNKNOWN` markers). When knowledge becomes build: [`templates/studio-to-delivery-handoff.md`](templates/studio-to-delivery-handoff.md) |
+| Flow | Issue → branch → implement + evidence → PR → CI + review → QAS (and SecEng when required) → Release · RTE → merge | Brief → Evidence (sources cited, no invented links) → Gate (privacy/PII/IP class) → Concur (the owner) → Ship/verify/log ([ADR 0005](docs/decisions/0005-studio-delivery-handoff-before-spine-a-build.md)) |
+| Gates | CI, independent QAS, SecEng, Release · RTE ([`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md)) | Non-code gates: sources cited, plus privacy class via [`privacy-boundary`](skills/privacy-boundary/SKILL.md) ([`constitution/04-privacy-and-vaults.md`](constitution/04-privacy-and-vaults.md)) |
+| Evidence | Portable evidence rows ([`portable-evidence`](skills/portable-evidence/SKILL.md)) at the exact head | The same portable evidence rows, plus cited sources in the brief |
+| Storage | The forge (this repo) | Knowledge-base concepts and private-storage pins. Story IP is never committed to the repo ([`constitution/04-privacy-and-vaults.md`](constitution/04-privacy-and-vaults.md)) |
+| Human in the loop | Decision pack + the owner's concur where [`constitution/03`](constitution/03-cd-and-hitl.md) requires it | The owner's concur before ship ([ADR 0005](docs/decisions/0005-studio-delivery-handoff-before-spine-a-build.md)) |
+| Exit | Canonical exit states in [`constitution/05-evidence-and-traceability.md`](constitution/05-evidence-and-traceability.md) | Ship/verify/log, or a handoff that Delivery accepts with the checklist in [`studio-handoff`](skills/studio-handoff/SKILL.md) |
+
+**Where they meet.** When Studio work becomes something to build, Studio emits the handoff and Delivery accepts it before a bolt starts ([ADR 0005](docs/decisions/0005-studio-delivery-handoff-before-spine-a-build.md), [`studio-handoff`](skills/studio-handoff/SKILL.md)). The [BSA-like](roles/bsa-like.md) seat shapes acceptance criteria across that bridge.
+
+**Adapting to your kind of work.** Keep the seats, gates, and evidence. Rename what flows through them. See [Adapting this template](docs/adapting.md).
+
+**Status.** The Delivery spine has a recorded proof: [`prove/d-p1/bolt-brief.md`](prove/d-p1/bolt-brief.md). The Studio-spine proof (D-P2, "One Studio brief (spine B → A)") is still **pending** in [`prove/README.md`](prove/README.md). Until it lands, treat the Studio column as defined in the constitution but not yet proven end to end.
 
 ---
 
@@ -96,6 +119,8 @@ Other issue forms: [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) (`requir
 7. Merge only under [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) and [`roles/release-rte.md`](roles/release-rte.md).
 
 Studio → Delivery handoffs use [`templates/studio-to-delivery-handoff.md`](templates/studio-to-delivery-handoff.md).
+
+Non-code work (stories and research) starts on spine B with Studio · Lead. See [Two spines: code and story/research](#two-spines-code-and-storyresearch).
 
 ---
 
@@ -209,7 +234,7 @@ CODEOWNERS coverage (review gate, not ownership): `intent.md`, `intent/`, `spec.
 
 Local checks before a PR: relative-link scan over markdown, Wave 0 required paths, `python3 skills/check-frontmatter.py`, `python3 scripts/check-denylist.py`. Flip notes: [`docs/ci/skills-checks.md`](docs/ci/skills-checks.md), [`docs/ci/api-contract.md`](docs/ci/api-contract.md), [`docs/ci/doc-drift.md`](docs/ci/doc-drift.md). Branch-protection intent: [`docs/branch-protection.md`](docs/branch-protection.md).
 
-CodeRabbit is a required review input on this repo's trunk protection. It is not a substitute for QAS, SecEng, or human approval.
+CodeRabbit is an optional review input. When it runs, its findings are triaged. It is not a required check.
 
 ---
 

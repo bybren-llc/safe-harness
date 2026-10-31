@@ -6,7 +6,7 @@ Who may merge remains [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-a
 
 ## Intended settings
 
-Use a **classic branch protection rule** on `main` (Settings → Branches → Branch protection rules). Classic rules are the ones that make the branch report as protected.
+The `main` branch is protected by a ruleset requiring three checks: **Structure & Docs Validation**, **Requirements Trace Validation**, and **API Contract Checks**. Use a **classic branch protection rule** on `main` (Settings → Branches → Branch protection rules). Classic rules are the ones that make the branch report as protected.
 
 | Setting | Value |
 | --- | --- |
