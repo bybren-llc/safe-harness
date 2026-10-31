@@ -30,10 +30,10 @@ Leave other optional toggles off unless the HITL owner adds them later (conversa
 Add these three names, matching the check as it appears on pull requests:
 
 1. **Structure & Docs Validation** (GitHub Actions) — job in `.github/workflows/wave0-checks.yml`. Includes the conflict-marker check and the template-ready check (CI scope).
-2. **Requirements Trace Validation** (warn-only, GitHub Actions) — job in `.github/workflows/trace-check.yml`. This check is **warn-only** until `spec.md` has REQ IDs **and** `trace/.blocking` exists. In warn-only mode it exits 0, so requiring it does not block merges on trace findings
-3. **API Contract Checks** (warn-only, GitHub Actions) — job in `.github/workflows/api-contract.yml`. oasdiff and Schemathesis run with `continue-on-error` and the job exits 0, so requiring it gates on the job running, not on contract findings.
+2. **Requirements Trace Validation** (warn-only, GitHub Actions) — job in `.github/workflows/trace-check.yml`. This check is **warn-only** until `spec.md` has REQ IDs **and** `trace/.blocking` exists. In warn-only mode trace findings exit 0 and do not block merges. Structural failures still fail the check in any mode: missing `yq`, invalid or multi-document `trace/trace-map.yaml`, the owner-identity check, an invalid requirements count, and the fixture-test steps.
+3. **API Contract Checks** (warn-only, GitHub Actions) — job in `.github/workflows/api-contract.yml`. oasdiff and Schemathesis findings do not fail the job (`continue-on-error`). Setup steps (spec lookup, base fetch, tool download/install) have no `continue-on-error`, so a setup failure fails the required check and blocks merge until rerun.
 
-**CodeRabbit** and the two warn-only checks (**Doc drift**, **Skills frontmatter & link scan**) are **not** required status checks. CodeRabbit review is process, handled by Delivery triage. The warn-only checks exit 0 and do not block merges.
+**CodeRabbit** and the two non-required warn-only checks (**Doc drift**, **Skills frontmatter & link scan**) are **not** required status checks. CodeRabbit review is process, handled by Delivery triage. The warn-only checks exit 0 and do not block merges.
 
 ## Why 0 required approvals
 

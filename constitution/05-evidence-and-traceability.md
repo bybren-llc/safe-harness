@@ -36,7 +36,7 @@
 
 Agents may open PRs touching these files but must not merge them, except the GM or Release · RTE may merge `constitution/` changes only under the conditions in `constitution/03-cd-and-hitl.md`, including the owner's recorded own-words concurrence at exact head. Use the `needs-owner-concur` label on PRs awaiting the owner's review.
 
-**Distinction:** Humans own design (accept/reject intent and spec content). Agents own execution (author requirements, trace, constitution changes, code, tests), but human review is required before merge. CODEOWNERS routes the review request; enforcement is merge policy and branch protection (see `docs/branch-protection.md`).
+**Distinction:** Humans own design (accept/reject intent and spec content). Agents own execution (author requirements, trace, constitution changes, code, tests), but human review is required before merge. CODEOWNERS routes the review request. The merge-seat policy (`constitution/03-cd-and-hitl.md`) enforces the review; branch protection only requires a pull request and the named status checks, with 0 approvals (see `docs/branch-protection.md`).
 
 ### Studio's write path
 
