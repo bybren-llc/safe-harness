@@ -29,14 +29,14 @@ Ops · CoS reads this file plus the live queue for the morning roll (§8). `cons
 
 | Seat | Owns (for this file's purposes) | Source |
 | --- | --- | --- |
-| **Release · RTE** | **Release flow** (the per-PR release check, RTE PASS/HOLD) and **release notes** (one per merge). Tag and GitHub Release publication is owned by Release · RTE after merge, per `roles/release-rte.md`. **May merge** once the GM's QAS APPROVE + SecEng PASS (or PASS-with-notes) + its own RTE PASS are on the exact head (Med, High, O2; Low may mark N/A with rationale) and the owner's concur is recorded wherever the constitution requires it; never its own change; never High/O2 or `constitution/` changes without the owner's recorded concur |  `roles/release-rte.md` |
+| **Release · RTE** | **Release flow** (the per-PR release check, RTE PASS/HOLD) and **release notes** (one per merge). Tag and GitHub Release publication is owned by Release · RTE after merge, per `roles/release-rte.md`. **May merge** once the GM's QAS APPROVE + SecEng PASS (or PASS-with-notes) + its own RTE PASS are on the exact head (Med, High, O2; Low may mark N/A with rationale) and the owner's concur is recorded wherever the constitution requires it; never its own change; never High/O2 or `constitution/` changes without the owner's recorded concur | `roles/release-rte.md` |
 | **Ops · CoS** | Digests and rolls of the live queue; the Monday weekly trace/flow aggregate (Ops-owned; not defined here); the owner concurrence queue; org chart; escalations |  `constitution/07-roles-and-lanes.md`; `roles/ops-cos.md` |
 | **Dispatcher · Board** | Tracking board; scheduled read-only sweep (time set by the adopter). Surfaces only: never decides, posts, or merges |  `constitution/07-roles-and-lanes.md`; `roles/dispatcher-board.md` |
 | **Delivery · Lead** | Bolt execution; fix routing; CodeRabbit triage; evidence and decision-pack authoring; sends RTE the **ready for release check** packet | owns spine (A) delivery: Bolts, CD health, adapters, prove (paraphrase of `roles/delivery-lead.md` mission); packet handoff |
 | **QAS** | Independence gate; "evidence sufficiency before RTE/HITL"; **never collapse** |  `roles/qas.md`, `constitution/02-safe-ai-dlc.md` |
 | **SecEng** | Security / privacy-boundary / secrets; negative authority; **never collapse** |  `roles/seceng.md` |
-| **the GM** | GM / lead ARCHitect; org locks; merges under the owner's HITL record (one of the three permitted mergers) |  `roles/gm-architect.md` |
-| **the owner** | HITL / POPM; "Final merge authority; decision packs; business-context gate"; may merge |  `constitution/01-round-table.md` |
+| **the GM** | GM / lead ARCHitect; org locks; merges under the owner's HITL record (one of the three permitted mergers) | `roles/gm-architect.md` |
+| **the owner** | HITL / POPM; "Final merge authority; decision packs; business-context gate"; may merge | `constitution/01-round-table.md` |
 
 **Who may merge**: only **the owner**, **the GM**, and **Release · RTE**. Every other agent — Delivery · Lead, implementers, cloud agents, specialists (QAS, SecEng, BSA-like, etc.) — **never merges**.
 
@@ -97,7 +97,7 @@ RTE checks each row against the **exact head SHA** in the packet. Any unchecked 
 | G8 | **Docs match structure** | `README.md` and repo structure match what docs describe (no stale paths, required paths present, relative links resolve) | Partly automated  by `wave0-checks.yml` (required paths + relative links); human check |
 | G9 | **Exit state + evidence** | GitHub Issue/PR shows "Approved for RTE"; portable evidence rows present (`evidence_id`, `runtime`, `exact_head`, `issue`, `actor`, `gate`, `req_ids`) |  `constitution/05-evidence-and-traceability.md` |
 
-RTE verdict is posted as a single PR comment: `RTE PASS @ <sha>` or `RTE HOLD @ <sha> — G<n>: <reason>`. (format). For a missing or stale SecEng verdict, use `RTE HOLD @ <sha> — G2: SecEng verdict missing or stale`.
+RTE verdict is posted as a single PR comment: `RTE PASS @ <sha>` or `RTE HOLD @ <sha> — G<n>: <reason>` (format). For a missing or stale SecEng verdict, use `RTE HOLD @ <sha> — G2: SecEng verdict missing or stale`.
 
 ## 5. Tier handling
 
@@ -176,7 +176,7 @@ Except for an annotated Low path with its §5 checklist recorded, a packet with 
 | Med | ≤15 min | **30 min** |
 | High / O2 | ≤30 min | **60 min** |
 
-Every other stall point — same 2× rule, in minutes.:
+Every other stall point — same 2× rule, in minutes:
 
 | Stall point | Clock starts | Escalate at | To |
 | --- | --- | --- | --- |
