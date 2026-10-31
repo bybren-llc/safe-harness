@@ -1,7 +1,7 @@
 # safe-harness
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-v1.0.0-blue?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/version-v1.0.1-blue?style=flat-square" alt="Version">
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="License">
   </a>

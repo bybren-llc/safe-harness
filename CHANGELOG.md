@@ -14,7 +14,7 @@ Each merged row is `PR number — one-line summary (7-char merge SHA)`, taken fr
 
 ### Docs
 
-- README generalized to show dual-spine use (code + stories/research); branch-protection and release-flow wording updated to reflect configured ruleset
+- #84 — README generalized to show dual-spine use (code + stories/research); branch-protection and release-flow wording updated to reflect configured ruleset
 
 ## [1.0.0]
 
