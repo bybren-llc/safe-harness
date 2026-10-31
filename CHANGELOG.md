@@ -18,6 +18,11 @@ Merged v1.0 rows recorded here until Release · RTE creates tag `v1.0.0`. The pr
 - #48 — doc-drift + trace/ link coverage checks, warn-only (`606d4b6`)
 - #51 — trace-check validations, warn-only (`27fbc68`)
 - #59 — Rewrite README for v1.0 (generic, template-ready) (`7fc391d`)
+- #63 — L1: MIT license, NOTICE, SPDX headers and CITATION (`91c24b7`)
+- #62 — trace: read decided_by owner from `.github/harness.yml`, fail closed (`91a7609`)
+- #61 — Genericize template surfaces to role terms and owner placeholders (`f0ef5d7`)
+- #65 — Add adaptation guide, owner placeholders and template-ready check (`ffbaf06`)
+- #79 — G-hardening: SecEng PASS at exact head as a merge condition; fail-closed conflict-marker check (`1c0f94d`)
 
 ## [1.0.0] - TBD
 
