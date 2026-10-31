@@ -92,7 +92,7 @@ the owner (HITL), 2026-10-29, verbatim:
 
 | Environment | Who may merge / promote | Gate |
 | --- | --- | --- |
-| **Dev or trunk** | Authorized agents (**the GM**, **Release · RTE**) | Required checks green + independent QAS APPROVE on the exact head; at Med/High/O2, RTE PASS on the exact head, or (for a merge by the GM or the owner only) a HOLD override from the GM or the owner recorded on the PR with its reason; an RTE merge always needs its own RTE PASS on the exact head at every tier including Low; the owner's recorded own-words concur for constitution/, High, and O2 |
+| **Dev or trunk** | Authorized agents (**the GM**, **Release · RTE**) | Required checks green + independent QAS APPROVE + SecEng PASS (or PASS-with-notes) on the exact head (Med, High, O2; Low may mark N/A with rationale); at Med/High/O2, RTE PASS on the exact head, or (for a merge by the GM or the owner only) a HOLD override from the GM or the owner recorded on the PR with its reason; an RTE merge always needs its own RTE PASS on the exact head at every tier including Low; the owner's recorded own-words concur for constitution/, High, and O2 |
 | **Staging** | Automatic promotion | Tests pass |
 | **Prod** | Human gate: the owner's recorded own-words concur | Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. |
 
@@ -113,8 +113,8 @@ the owner may merge any change at any tier and environment.
 ### Who may execute a trunk merge (safe-harness)
 
 1. **the owner (HITL)** — any change
-2. **the GM (GM)** — authorized trunk agent: checks green + independent QAS APPROVE on exact head; at Med/High/O2, RTE PASS on the exact head, or a HOLD override from the GM or the owner recorded on the PR with its reason; the owner's recorded concur on `constitution/`, High, and O2
-3. **Release · RTE** — authorized trunk agent: checks green + the GM's independent QAS APPROVE + its own RTE PASS on the exact head (every tier, including Low); the owner's recorded concur on `constitution/`, High, and O2; never its own authored change; never over a standing HOLD
+2. **the GM** — authorized trunk agent: checks green + independent QAS APPROVE + SecEng PASS (or PASS-with-notes) on exact head (Med, High, O2; Low may mark N/A with rationale); at Med/High/O2, RTE PASS on the exact head, or a HOLD override from the GM or the owner recorded on the PR with its reason; the owner's recorded concur on `constitution/`, High, and O2
+3. **Release · RTE** — authorized trunk agent: checks green + the GM's independent QAS APPROVE + SecEng PASS (or PASS-with-notes) + its own RTE PASS on the exact head (every tier, including Low; SecEng Med, High, O2; Low may mark N/A with rationale); the owner's recorded concur on `constitution/`, High, and O2; never its own authored change; never over a standing HOLD
 
 ### RTE placement
 
@@ -140,7 +140,7 @@ Recorded on the #22 squash [`d88c884`](https://github.com/bybren-llc/safe-harnes
 
 ### `main` branch protection
 
-Answered. Require a pull request before merging. Required status checks: `Structure & Docs Validation`, `Requirements Trace Validation` (warn-only), and CodeRabbit. Do not require `API Contract Checks` until #35 closes. Required approvals: 0 (QAS is a COMMENT review; merge authority and the review gate remain as listed in Merge authority, Who may execute a trunk merge, and Gate types above). Block force-pushes and deletion. The repo admin keeps bypass. A separate bot identity (GitHub App or bot user) for real APPROVE reviews is the planned upgrade; the HITL owner decides it. Intended settings, apply checklist, and verification: [`docs/branch-protection.md`](../docs/branch-protection.md).
+Answered. Require a pull request before merging. Required status checks: `Structure & Docs Validation`, `Requirements Trace Validation` (warn-only), and `API Contract Checks`. CodeRabbit and the two warn-only checks (Doc drift, Skills frontmatter & link scan) are not required. Required approvals: 0 (QAS is a COMMENT review; merge authority and the review gate remain as listed in Merge authority, Who may execute a trunk merge, and Gate types above). Block force-pushes and deletion. The repo admin keeps bypass. A separate bot identity (GitHub App or bot user) for real APPROVE reviews is the planned upgrade; the HITL owner decides it. Intended settings, apply checklist, and verification: [`docs/branch-protection.md`](../docs/branch-protection.md).
 
 ### the owner's earlier recorded delegation (2026-10-29 ET)
 
@@ -172,6 +172,6 @@ Thin skeleton → full path is intentional scaffolding, not final state.
 - Exact-head SHA / PR
 - Evidence IDs (portable — see `05-evidence-and-traceability.md`)
 - Requirements addressed (REQ-<CMP>-NNN list)
-- QAS + SecEng status (Low: explicit N/A with rationale allowed; High/O2: never N/A and cannot be waived). SecEng is independent and is not the author.
+- QAS APPROVE + SecEng PASS (or PASS-with-notes), both on the exact head (Low: SecEng may mark N/A with rationale; Med/High/O2: SecEng never N/A and cannot be waived). QAS APPROVE and SecEng PASS must both be on the exact head before RTE; never in parallel. SecEng is independent and is not the author.
 - Risk tier + O2 checklist (note if the GM downgraded any O2 item)
 - Ask: approve / change-request / escalate

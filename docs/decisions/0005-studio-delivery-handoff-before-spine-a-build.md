@@ -42,6 +42,6 @@ A handoff/bolt-brief template exists in `templates/`; spine-A Bolts that start f
 
 ## More Information
 
-Owner: the GM (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 Cross-ref: W0-08 Vaults + handoff (active; also [0004](0004-privacy-and-vault-boundaries.md)). Record format: [MADR 4.0](https://adr.github.io/madr/).

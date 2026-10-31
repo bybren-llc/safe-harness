@@ -42,6 +42,6 @@ The happy path in adapters needs no tmux; Dark Factory is documented as optional
 
 ## More Information
 
-Owner: the GM (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 the owner's O1–O6 answers were typed at 2026-10-28, 11:09 AM ET in a longer message that names private storage and hardware. That message is not quoted here. Record format: [MADR 4.0](https://adr.github.io/madr/).

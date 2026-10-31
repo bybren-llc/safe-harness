@@ -42,6 +42,6 @@ the owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 ## More Information
 
-Owner: the GM (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 Cross-ref: W0-10 Non-goals / execute (active, historical; also [0007](0007-new-template-not-silent-saw-rewrite.md), [0015](0015-concur-the-filled-pack.md)). Record format: [MADR 4.0](https://adr.github.io/madr/).

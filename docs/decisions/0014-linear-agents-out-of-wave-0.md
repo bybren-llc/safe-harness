@@ -40,6 +40,6 @@ the owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 ## More Information
 
-Owner: the GM (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 Cross-ref: W0-09 PM / tickets (**superseded by PR #6**); W0-07 Evidence & independence (**superseded by PR #6**; independence/no-merge-grant intent carried by #22). Also [0017](0017-linear-research-epics.md). Record format: [MADR 4.0](https://adr.github.io/madr/).

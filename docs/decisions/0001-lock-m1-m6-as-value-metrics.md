@@ -43,6 +43,6 @@ Every Bolt retro and decision pack reports against M1–M6; `spec.md` keeps an M
 
 ## More Information
 
-Owner: the GM (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 Cross-ref: W0-01 Value metrics (active). Public framing that may be cited: the Anthropic [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook). Record format: [MADR 4.0](https://adr.github.io/madr/).

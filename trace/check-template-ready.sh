@@ -8,7 +8,7 @@
 #   bash trace/check-template-ready.sh --full [ROOT]
 #   bash trace/check-template-ready.sh --template-ready=full
 #
-# Default (CI) scope: templates/, skills/, docs/, README.md
+# Default (CI) scope: templates/, skills/, docs/, constitution/, roles/, README.md, AGENTS.md
 # Full scope: entire repo except .git/
 #
 # Denylist config: .template-ready-denylist.local (untracked; generated in CI)
@@ -53,7 +53,7 @@ echo "Template-ready validation"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 echo "Root: $ROOT"
-echo "Mode: $([ "$FULL_MODE" = true ] && echo "full repo" || echo "CI scope (templates/, skills/, docs/, README.md)")"
+echo "Mode: $([ "$FULL_MODE" = true ] && echo "full repo" || echo "CI scope (templates/, skills/, docs/, constitution/, roles/, README.md, AGENTS.md)")"
 echo ""
 
 ERRORS=0
@@ -118,11 +118,11 @@ if [ "$FULL_MODE" = true ]; then
     ! -name ".template-ready-denylist.local" \
     -print0)
 else
-  # CI scope: templates/, skills/, docs/, README.md
+  # CI scope: templates/, skills/, docs/, constitution/, roles/, README.md, AGENTS.md
   # Exclude examples/round-table/ and .github/ instance config
   
   # Check that CI scan surface exists
-  CI_SURFACE_DIRS=("templates" "skills" "docs")
+  CI_SURFACE_DIRS=("templates" "skills" "docs" "constitution" "roles")
   SURFACE_EXISTS=false
   for dir in "${CI_SURFACE_DIRS[@]}"; do
     if [ -d "$ROOT/$dir" ]; then
@@ -131,8 +131,8 @@ else
     fi
   done
   
-  if [ "$SURFACE_EXISTS" = false ] && [ ! -f "$ROOT/README.md" ]; then
-    echo "❌ CI scan surface missing or empty (templates/, skills/, docs/, README.md)"
+  if [ "$SURFACE_EXISTS" = false ] && [ ! -f "$ROOT/README.md" ] && [ ! -f "$ROOT/AGENTS.md" ]; then
+    echo "❌ CI scan surface missing or empty (templates/, skills/, docs/, constitution/, roles/, README.md, AGENTS.md)"
     exit 1
   fi
   
@@ -166,6 +166,16 @@ else
       ERRORS=$((ERRORS + 1))
     else
       SCAN_PATHS+=("$ROOT/README.md")
+    fi
+  fi
+  
+  # Add AGENTS.md if it exists
+  if [ -f "$ROOT/AGENTS.md" ]; then
+    if [ -L "$ROOT/AGENTS.md" ]; then
+      echo "  ❌ Symlink encountered (rejected): AGENTS.md"
+      ERRORS=$((ERRORS + 1))
+    else
+      SCAN_PATHS+=("$ROOT/AGENTS.md")
     fi
   fi
 fi

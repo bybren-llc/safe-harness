@@ -15,6 +15,7 @@ At Low, an annotated, non-blocking async RTE checklist is allowed, with no per-P
 
 **RTE verifies evidence instead of re-reviewing code.** It checks that:
 - the GM's independent QAS APPROVE is present at exact head
+- SecEng PASS (or PASS-with-notes) is present at exact head (Med, High, O2; Low may mark N/A with rationale)
 - CI is green at exact head
 - Requirements trace is valid
 - Evidence is sufficient per risk tier
@@ -31,8 +32,9 @@ RTE owns release notes now. It drafts them from the decision pack, requirements,
 On **trunk** (safe-harness is trunk-only), **Release · RTE MAY merge** once all of the following conditions are met:
 1. Required checks are green on the exact head
 2. the GM's independent QAS APPROVE is present at exact head
-3. RTE's own RTE PASS is present at exact head
-4. the owner's recorded own-words concur is present for `constitution/`, High, and O2 changes
+3. SecEng PASS (or PASS-with-notes) is present at exact head (Med, High, O2; Low may mark N/A with rationale)
+4. RTE's own RTE PASS is present at exact head
+5. the owner's recorded own-words concur is present for `constitution/`, High, and O2 changes
 
 **Release · RTE NEVER merges:**
 - Its own authored change (RTE does not author changes)

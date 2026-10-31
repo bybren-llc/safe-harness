@@ -37,7 +37,7 @@ Ops · CoS reads this file plus the live queue for the morning roll (§8). `cons
 
 | Seat | Owns (for this file's purposes) | Source |
 | --- | --- | --- |
-| **Release · RTE** | **Release flow** (the per-PR release check, RTE PASS/HOLD) and **release notes** (one per merge). Tag and GitHub Release publication is deferred to a future O2 PR (matching `roles/release-rte.md`). **May merge** once the GM's QAS APPROVE and its own RTE PASS are on the exact head and the owner's concur is recorded wherever the constitution requires it; never its own change; never High/O2 or `constitution/` changes without the owner's recorded concur **Decided — the owner 2026-10-29 · merge rule** | [main] `roles/release-rte.md`; release-flow + release-notes ownership is [PENDING-CODIFY] |
+| **Release · RTE** | **Release flow** (the per-PR release check, RTE PASS/HOLD) and **release notes** (one per merge). Tag and GitHub Release publication is deferred to a future O2 PR (matching `roles/release-rte.md`). **May merge** once the GM's QAS APPROVE + SecEng PASS (or PASS-with-notes) + its own RTE PASS are on the exact head (Med, High, O2; Low may mark N/A with rationale) and the owner's concur is recorded wherever the constitution requires it; never its own change; never High/O2 or `constitution/` changes without the owner's recorded concur **Decided — the owner 2026-10-29 · merge rule** | [main] `roles/release-rte.md`; release-flow + release-notes ownership is [PENDING-CODIFY] |
 | **Ops · CoS** | Digests and rolls of the live queue; the Monday weekly trace/flow aggregate (Ops-owned; not defined here); the owner concurrence queue; org chart; escalations | [main] `constitution/07-roles-and-lanes.md`; `roles/ops-cos.md` |
 | **Dispatcher · Board** | Tracking board; 4:30 AM ET read-only sweep. Surfaces only: never decides, posts, or merges | [main] `constitution/07-roles-and-lanes.md`; `roles/dispatcher-board.md` |
 | **Delivery · Lead** | Bolt execution; fix routing; CodeRabbit triage; evidence and decision-pack authoring; sends RTE the **ready for release check** packet | [main] owns spine (A) delivery: Bolts, CD health (M6), adapters, prove D-P1 (paraphrase of `roles/delivery-lead.md` mission); packet handoff [PENDING-CODIFY] |
@@ -60,7 +60,7 @@ Posted on the PR (or linked GitHub Issue) only once QAS APPROVE and SecEng clear
 - Gate checklist (§4) with a link per row
 - Decision pack link (`templates/delivery-bolt-brief.md` → "Decision pack (constitution/03 minimum)")
 - Portable evidence rows (`evidence_id`, `runtime`, `exact_head`, `issue`, `actor`, `gate`, `req_ids`)
-- `Requirements:` line / REQ IDs (see G5)
+- `Requirements:` line / REQ IDs (see G6)
 
 If the head SHA moves after the packet is sent, the packet and any RTE PASS are void; Delivery re-sends against the new head (exact-head rule).
 
@@ -69,6 +69,7 @@ If the head SHA moves after the packet is sent, the packet and any RTE PASS are 
 ```
 Implement → Ready for QAS
           → QAS APPROVE (QAS independent COMMENT review, on exact head)
+          → SecEng PASS (or PASS-with-notes, on exact head; Med, High, O2; Low may mark N/A with rationale)
           → Approved for RTE ── Delivery sends ready packet ── RTE check fires immediately
           → ┌ RTE PASS (release check)                 ┐  in parallel
             └ the owner concur (HITL decision pack), where required ┘
@@ -83,7 +84,7 @@ Implement → Ready for QAS
 
 - Canonical exit-state labels are verbatim from `constitution/05-evidence-and-traceability.md`: "Ready for QAS", "Approved for RTE", "Ready for HITL", "MERGED (HITL only)", "MERGED (HITL-delegated)", "MERGED (delegated the GM/RTE)". Do not rename them (`prove/wave-0-retro.md` §4: prove docs cannot redefine constitution/05 labels). Record who executed the merge. A GM or Release · RTE trunk merge uses **MERGED (delegated the GM/RTE)**, not **MERGED (HITL only)** (`constitution/01-round-table.md`, `constitution/05-evidence-and-traceability.md`).
 - "Where required" for the owner's concur matches `constitution/03-cd-and-hitl.md`: `constitution/`, High, and O2 need the owner's recorded own-words concur. Med = one human decision pack. Low = auto when green (tests + evidence types met); human assignee still named. Low-tier delegated HITL uses the `constitution/05-evidence-and-traceability.md` D1 `hitl_delegate` record (kept as written). Two distinct humans at High is recommended guidance, not a gate.
-- **Merger** [main] `constitution/03-cd-and-hitl.md` "Who may execute a trunk merge": only **the owner**, **the GM**, and **Release · RTE**. RTE merge conditions: (a) required checks green on the exact head, (b) independent QAS APPROVE on the exact head, (c) RTE's own PASS on that same head (any tier — an RTE-executed merge always needs RTE PASS on the exact head), (d) the owner's recorded own-words concur on `constitution/`, High, and O2, (e) RTE did not author the change, (f) never over a standing HOLD. A Low PR merged by the GM or the owner may use the annotated async checklist instead of a per-PR verdict. the GM "does not merge own Delivery PRs as HITL" (`roles/gm-architect.md`). Merge protection on `main` is not yet configured — branch protection is **pending the owner** (`constitution/03-cd-and-hitl.md` open question; §9).
+- **Merger** [main] `constitution/03-cd-and-hitl.md` "Who may execute a trunk merge": only **the owner**, **the GM**, and **Release · RTE**. RTE merge conditions: (a) required checks green on the exact head, (b) the GM's independent QAS APPROVE on the exact head, (c) SecEng PASS (or PASS-with-notes) on the exact head (Med, High, O2; Low may mark N/A with rationale), (d) RTE's own PASS on that same head (any tier — an RTE-executed merge always needs RTE PASS on the exact head), (e) the owner's recorded own-words concur on `constitution/`, High, and O2, (f) RTE did not author the change, (g) never over a standing HOLD. QAS APPROVE and SecEng PASS must both be on the exact head before RTE; never in parallel. A Low PR merged by the GM or the owner may use the annotated async checklist instead of a per-PR verdict. the GM "does not merge own Delivery PRs as HITL" (`roles/gm-architect.md`). Merge protection on `main` is not yet configured — branch protection is **pending the owner** (`constitution/03-cd-and-hitl.md` open question; §9).
 - **High tier:** two distinct humans is recommended guidance, not a gate (`constitution/03-cd-and-hitl.md`). Many projects do not need it. the owner's recorded concur remains required. Agent ≠ human. An RTE merge never counts as a human approval.
 - Tagging is not merging. Tag and GitHub Release publication is its own O2 step or PR (deploy CI / workflows → High unless downgraded in writing at QAS; `constitution/03-cd-and-hitl.md` O2 list; `roles/release-rte.md`). A tag never substitutes for any gate. RTE owns release-notes drafting now; it does not publish the tag/Release as part of this merge.
 - RTE PASS runs **in parallel** with the owner's concur where concur is required (`constitution/03-cd-and-hitl.md` RTE placement; `constitution/01-round-table.md`). An RTE merge needs RTE PASS plus the required concur.
@@ -95,15 +96,16 @@ RTE checks each row against the **exact head SHA** in the packet. Any unchecked 
 | # | Gate | PASS when | Source |
 | --- | --- | --- | --- |
 | G1 | **QAS verdict** | QAS independent review exists on the exact head with "APPROVE" in the body (posted as a GitHub **COMMENT** review — author-account limitation means APPROVE/REQUEST_CHANGES states are unavailable); QAS actor ≠ implementer, distinguishable in GitHub | [main] `prove/wave-0-retro.md` §2, §4; `roles/qas.md`; `constitution/05-evidence-and-traceability.md` "Independence detectable" |
-| G2 | **CodeRabbit** | Review complete on the exact head; every actionable finding triaged **Fix / Accept / Waive** with a one-line reason; Fix items verified fixed on head | CodeRabbit use [main] `prove/wave-0-retro.md` §3; Fix/Accept/Waive taxonomy [PENDING-CODIFY] |
-| G3 | **CI green** | `Structure & Docs Validation` (`.github/workflows/wave0-checks.yml`, workflow "Wave 0 Sanity Checks") green on exact head | [main] `.github/workflows/wave0-checks.yml`; `constitution/03-cd-and-hitl.md` "Wave 0 CI/CD path" |
-| G4 | **Decision pack + HITL record** | Decision pack has the constitution/03 minimum (GitHub Issue, exact-head SHA/PR, evidence IDs, QAS + SecEng status or Low-tier N/A with rationale, risk tier + O2 checklist, Ask). HITL record present: the owner's recorded concur, **or** (Low/D1 only) the standing `hitl_delegate` record (`docs/decisions/log.md` Relayed Wave 0 delegated-HITL merge authorization; D1 kept as written with ADR-style accountability). High/O2/`constitution/` need the owner's recorded concur; the standing Wave 0 delegation does not cover them. Open decision, see #28; unchanged here. | [main] `constitution/03-cd-and-hitl.md` "Decision pack minimum"; `constitution/05-evidence-and-traceability.md` D1; `templates/delivery-bolt-brief.md` |
-| G5 | **Trace** | PR body has a `Requirements:` line listing REQ IDs, and the GitHub Issue `#N` | [main] `constitution/03-cd-and-hitl.md` PR body; `constitution/05-evidence-and-traceability.md`. REQ IDs are not yet in `spec.md` |
-| G6 | **Risk tier correct** | Tier matches the O2 list (pricing, refunds, auth, deploy CI / workflows, prod secrets, privacy-boundary crosses = **High** unless the owner/the GM downgrade **in writing**); SecEng actor present if Med/High/O2 | [main] `constitution/03-cd-and-hitl.md` "O2 high-risk default"; `templates/delivery-bolt-brief.md` header |
-| G7 | **Docs match structure** | `README.md` and repo structure match what docs describe (no stale paths, required paths present, relative links resolve) | Partly automated [main] by `wave0-checks.yml` (required paths + relative links); human check [PENDING-CODIFY] |
-| G8 | **Exit state + evidence** | GitHub Issue/PR shows "Approved for RTE"; portable evidence rows present (`evidence_id`, `runtime`, `exact_head`, `issue`, `actor`, `gate`, `req_ids`) | [main] `constitution/05-evidence-and-traceability.md` |
+| G2 | **SecEng verdict** | SecEng PASS (or PASS-with-notes) exists on the exact head (Med, High, O2; Low may mark N/A with rationale); SecEng actor ≠ implementer, independent; QAS APPROVE and SecEng PASS both on exact head before RTE, never in parallel | [main] `roles/seceng.md`; `constitution/03-cd-and-hitl.md` "Decision pack minimum"; `roles/release-rte.md` |
+| G3 | **CodeRabbit** | Review complete on the exact head; every actionable finding triaged **Fix / Accept / Waive** with a one-line reason; Fix items verified fixed on head | CodeRabbit use [main] `prove/wave-0-retro.md` §3; Fix/Accept/Waive taxonomy [PENDING-CODIFY] |
+| G4 | **CI green** | `Structure & Docs Validation` (`.github/workflows/wave0-checks.yml`, workflow "Wave 0 Sanity Checks") green on exact head | [main] `.github/workflows/wave0-checks.yml`; `constitution/03-cd-and-hitl.md` "Wave 0 CI/CD path" |
+| G5 | **Decision pack + HITL record** | Decision pack has the constitution/03 minimum (GitHub Issue, exact-head SHA/PR, evidence IDs, QAS + SecEng status or Low-tier N/A with rationale, risk tier + O2 checklist, Ask). HITL record present: the owner's recorded concur, **or** (Low/D1 only) the standing `hitl_delegate` record (`docs/decisions/log.md` Relayed Wave 0 delegated-HITL merge authorization; D1 kept as written with ADR-style accountability). High/O2/`constitution/` need the owner's recorded concur; the standing Wave 0 delegation does not cover them. Open decision, see #28; unchanged here. | [main] `constitution/03-cd-and-hitl.md` "Decision pack minimum"; `constitution/05-evidence-and-traceability.md` D1; `templates/delivery-bolt-brief.md` |
+| G6 | **Trace** | PR body has a `Requirements:` line listing REQ IDs, and the GitHub Issue `#N` | [main] `constitution/03-cd-and-hitl.md` PR body; `constitution/05-evidence-and-traceability.md`. REQ IDs are not yet in `spec.md` |
+| G7 | **Risk tier correct** | Tier matches the O2 list (pricing, refunds, auth, deploy CI / workflows, prod secrets, privacy-boundary crosses = **High** unless the owner/the GM downgrade **in writing**); SecEng actor present if Med/High/O2 | [main] `constitution/03-cd-and-hitl.md` "O2 high-risk default"; `templates/delivery-bolt-brief.md` header |
+| G8 | **Docs match structure** | `README.md` and repo structure match what docs describe (no stale paths, required paths present, relative links resolve) | Partly automated [main] by `wave0-checks.yml` (required paths + relative links); human check [PENDING-CODIFY] |
+| G9 | **Exit state + evidence** | GitHub Issue/PR shows "Approved for RTE"; portable evidence rows present (`evidence_id`, `runtime`, `exact_head`, `issue`, `actor`, `gate`, `req_ids`) | [main] `constitution/05-evidence-and-traceability.md` |
 
-RTE verdict is posted as a single PR comment: `RTE PASS @ <sha>` or `RTE HOLD @ <sha> — G<n>: <reason>`. **Decided — the GM 2026-10-29** (format).
+RTE verdict is posted as a single PR comment: `RTE PASS @ <sha>` or `RTE HOLD @ <sha> — G<n>: <reason>`. **Decided — the GM 2026-10-29** (format). For a missing or stale SecEng verdict, use `RTE HOLD @ <sha> — G2: SecEng verdict missing or stale`.
 
 ## 5. Tier handling
 
@@ -122,10 +124,10 @@ Targets are RTE's own clock. Human steps (the owner's concur) and the merge are 
 
 | Tier | Who may merge | Precondition for an RTE merge |
 | --- | --- | --- |
-| **Low** (incl. HITL-delegated) | the GM, Release · RTE, or the owner | RTE-executed: the GM's QAS APPROVE + RTE PASS on exact head; RTE not the author. the GM or the owner merge at Low: annotated async checklist may replace the per-PR verdict. Exit: **MERGED (delegated the GM/RTE)** when the GM or RTE executed; **MERGED (HITL-delegated)** only with the `constitution/05` D1 `hitl_delegate` record (Low only; kept as written); **MERGED (HITL only)** when the owner executed |
-| **Med** | the GM, Release · RTE, or the owner | the GM's QAS APPROVE + RTE PASS on exact head + the owner's decision-pack concur recorded; RTE not the author. Open decision, see #28; unchanged here. |
-| **High** | the GM, Release · RTE, or the owner | As Med, plus **the owner's recorded concur** (required). Two distinct humans is recommended guidance, not a gate |
-| **O2** | the GM, Release · RTE, or the owner | As High (O2 = High unless the GM downgrades in writing at QAS) |
+| **Low** (incl. HITL-delegated) | the GM, Release · RTE, or the owner | RTE-executed: the GM's QAS APPROVE + SecEng PASS (or N/A with rationale) + RTE PASS on exact head; RTE not the author. the GM or the owner merge at Low: annotated async checklist may replace the per-PR verdict. Exit: **MERGED (delegated the GM/RTE)** when the GM or RTE executed; **MERGED (HITL-delegated)** only with the `constitution/05` D1 `hitl_delegate` record (Low only; kept as written); **MERGED (HITL only)** when the owner executed |
+| **Med** | the GM, Release · RTE, or the owner | the GM's QAS APPROVE + SecEng PASS (or PASS-with-notes) + RTE PASS on exact head + the owner's decision-pack concur recorded; RTE not the author. Open decision, see #28; unchanged here. |
+| **High** | the GM, Release · RTE, or the owner | As Med, plus **the owner's recorded concur** (required). SecEng never N/A at High. Two distinct humans is recommended guidance, not a gate |
+| **O2** | the GM, Release · RTE, or the owner | As High (O2 = High unless the GM downgrades in writing at QAS). SecEng never N/A at O2 |
 
 Any PR touching `constitution/` needs the owner's recorded concur before an RTE merge, at any tier (`constitution/03-cd-and-hitl.md`).
 
@@ -206,7 +208,7 @@ Merge authority, RTE placement, HOLD override, and the High-tier two-humans guid
 Still open (not landed, or not binding, on `main`):
 
 - Making this file binding (the owner concur on this operating draft).
-- #28 (a) G4 ordering and (b) Med-tier the owner decision-pack concur — parked; unchanged here.
+- #28 (a) G5 ordering and (b) Med-tier the owner decision-pack concur — parked; unchanged here.
 - `Requirements:` / REQ ID scheme in `spec.md` (the PR-body convention is in `constitution/03-cd-and-hitl.md`; no REQ IDs have landed yet).
 - CodeRabbit Fix/Accept/Waive triage convention (and any `.coderabbit.yaml`).
 - PR template carrying risk tier, O2 list, `Requirements:` line — landed in `.github/pull_request_template.md` (this PR).

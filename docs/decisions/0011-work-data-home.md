@@ -43,6 +43,6 @@ The repo contains no private storage paths; Studio briefs cite storage paths onl
 
 ## More Information
 
-Owner: the GM (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 Owner responses recorded at 2026-10-28, 11:09 AM ET in a longer message. That message is not quoted here. Record format: [MADR 4.0](https://adr.github.io/madr/).

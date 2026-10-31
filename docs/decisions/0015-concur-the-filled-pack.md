@@ -42,6 +42,6 @@ The quote is recorded in this ADR; Wave 0 execute followed (PR `740eb2a` [SAF-2]
 
 ## More Information
 
-Owner: the GM (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 Cross-ref: W0-10 Non-goals / execute (active, historical; also [0007](0007-new-template-not-silent-saw-rewrite.md), [0016](0016-authorize-new-template-repo.md)). Record format: [MADR 4.0](https://adr.github.io/madr/).
