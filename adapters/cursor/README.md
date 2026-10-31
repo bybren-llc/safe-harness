@@ -17,7 +17,7 @@ Maps constitution → Cursor rules + Projects / Cloud Agents.
 | CD + HITL | PR template / rule: risk tier, O2 list, decision pack link |
 | Privacy | Rules: never commit personal vault; private storage SoT; knowledge base forge OK |
 | Evidence + GitHub Issues | Rule: portable evidence payload (`evidence_id`, `runtime`, `exact_head`, `issue`, `actor`, `gate`) + human assignee — see `constitution/05-evidence-and-traceability.md` |
-| Model stack (O4) | Project model defaults per role card — **ultracode not default** |
+| Model stack (O4) | Project model defaults per role card — **no single-maximum default** |
 | Empiricism | Changelog of default changes only after HITL concur |
 
 ## Project = Delivery train
@@ -32,12 +32,12 @@ Maps constitution → Cursor rules + Projects / Cloud Agents.
 2. `hitl-o2.mdc` — high-risk list + tiers; Cloud Agents / Delivery never merge; authorized the GM / Release · RTE trunk merges per constitution/03
 3. `privacy-vaults.mdc` — personal never remote; private storage SoT  
 4. `evidence.mdc` — SoR + portable evidence payload (evidence_id, runtime, exact_head, issue, actor, gate); the issue tracker archive is read-only  
-5. `model-stack.mdc` — O4 tiers; ultracode not default  
+5. `model-stack.mdc` — O4 tiers; no single-maximum default  
 6. `independence.mdc` — never collapse QAS/SecEng  
 
 ## Explicit non-defaults
 
-- Ultracode not Project default.
+- A single maximum-capability model is not the Project default.
 - tmux/Dark Factory not required.
 - No issue-tracker agents.
 

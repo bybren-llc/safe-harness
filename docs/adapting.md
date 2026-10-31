@@ -57,7 +57,7 @@ Root agent entry point: `AGENTS.md`
 
 Skills live in `skills/` as `skills/<slug>/SKILL.md`. Each runtime's adapter maps the canonical skill tree. See `skills/README.md`.
 
-Grok Bot and local agents are supported but require manual skill import per bot. Do not add Codex or local adapter stubs here.
+Other runtimes: add an adapter following this pattern. A runtime that does not auto-load `skills/` requires a manual skill import. Do not add adapter stubs here before they exist.
 
 ### 5. Branch protection
 

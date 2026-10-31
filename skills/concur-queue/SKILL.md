@@ -30,8 +30,8 @@ When an item is waiting on HITL concur as the cited sections require it. Ops mai
 | Exact head | SHA the cited sections require the concur to name |
 | Tier + O2 | Why this is in the queue (from the cited sections) |
 | Why | One sentence |
-| QAS | Verdict at that head, or "not yet" |
-| RTE | Status at that head, or "not yet" |
+| QAS | Verdict at that head, or absent |
+| RTE | Status at that head, or absent |
 | Ready? | Yes only when the gates the cited sections require before a HITL ping are already on that head |
 
 ## Ping rule

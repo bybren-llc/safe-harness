@@ -1,7 +1,7 @@
 # Specification
 
 **Ownership:** HUMAN-OWNED (the owner only)  
-**Status:** Template
+**Kind:** Adopter template
 
 ---
 

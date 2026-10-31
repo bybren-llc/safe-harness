@@ -37,7 +37,7 @@ Updating a feature branch from trunk, finding a regression with bisect, cherry-p
 
 ## Update a feature branch from trunk
 
-**Constitutional rule:** Update feature branches by merging main. No rebase. No force-push on shared branches.
+**Practice guidance (not a constitutional rule):** Update feature branches by merging main. No rebase. No force-push on shared branches.
 
 ```text
 git fetch origin

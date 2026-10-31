@@ -5,8 +5,8 @@
 # Schema: trace/schema.md
 # Enforced by: .github/workflows/trace-check.yml
 #
-# Bootstrap rule (Wave 1): CI runs warn-only until first spec.md with REQ IDs lands,
-# then becomes blocking. See constitution/05 for details.
+# Bootstrap rule: CI runs warn-only until spec.md has REQ IDs AND
+# trace/.blocking exists, then becomes blocking. See constitution/05.
 
 requirements: []
   # Example (remove when adding real requirements):

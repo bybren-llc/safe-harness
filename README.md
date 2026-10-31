@@ -124,7 +124,7 @@ Non-code work (stories and research) starts on spine B with Studio · Lead. See 
 
 ## Setting up an agent team with it
 
-Safe-harness is **runtime-neutral**. Cursor, Claude Code, Grok Bot, and local agents are all valid runtimes. Adapters in [`adapters/`](adapters/) map the same constitution into a runtime. Grok Bot is one runtime: it does not auto-load `skills/`; import each skill as its own skill on the bot (see [`skills/README.md`](skills/README.md)).
+Safe-harness is **runtime-neutral**. Cursor, Claude Code, and other agents are valid runtimes. Adapters in [`adapters/`](adapters/) map the same constitution into a runtime. A runtime that does not auto-load `skills/` must import each skill as its own skill (see [`skills/README.md`](skills/README.md)).
 
 ### Seats
 

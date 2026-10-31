@@ -35,4 +35,4 @@ See the cited section; this skill grants no authority. Studio may draft; Deliver
 - The agent proposes. The human writes and merges as the cited section requires.
 - Do not fill empty placeholders with invented product intent.
 - Do not put secrets, personal-store facts, or story IP in a proposal.
-- Do not treat a proposed draft as adopted.
+- Do not treat a draft as adopted.

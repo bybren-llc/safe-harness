@@ -11,14 +11,14 @@ license: MIT (see repository LICENSE)
 
 ## Authority
 
-- [`roles/release-rte.md`](../../roles/release-rte.md) — who drafts notes and tags; per-merge `vYYYY.MM.DD-<shortsha>` and product SemVer (`vMAJOR.MINOR.PATCH`); after merge, Release · RTE tags the main merge SHA under the HITL's release concur, with a GitHub Release whose notes match the CHANGELOG entry
+- [`roles/release-rte.md`](../../roles/release-rte.md) — RTE owns release notes and tagging. A release that contains prod-risk tier changes (migrations, money, permissions, deploy) is tagged only after the HITL's concur on that release; all other releases are tagged once RTE PASS is recorded. Per-merge `vYYYY.MM.DD-<shortsha>` and product SemVer (`vMAJOR.MINOR.PATCH`); GitHub Release notes match the CHANGELOG entry.
 - [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — O2 (deploy CI / workflows); who may execute a release step
 
 See the cited section; this skill grants no authority.
 
 ## When to use
 
-When a release is being prepared. Drafting notes is the RTE job in the cited role card. After merge, Release · RTE tags the main merge SHA and publishes the GitHub Release under the recorded concur, as [`roles/release-rte.md`](../../roles/release-rte.md) states. This skill does not publish a tag.
+When a release is being prepared. Drafting notes is the RTE job in the cited role card. After merge, Release · RTE tags per [`roles/release-rte.md`](../../roles/release-rte.md). This skill does not publish a tag.
 
 ## Draft
 
@@ -33,14 +33,14 @@ Do not invent links. Mark missing sources `UNKNOWN`.
 
 ## Tag format
 
-Per-merge tag format is `vYYYY.MM.DD-<shortsha>` (date in America/New_York, 7-char merge SHA). Product releases use SemVer tags (`vMAJOR.MINOR.PATCH`): after merge, Release · RTE tags the main merge SHA under the HITL's release concur, and re-PASSes that SHA first if it differs from the PASSed PR head. The GitHub Release notes match the CHANGELOG entry. Per-merge date-sha tags stay as documented. See [`roles/release-rte.md`](../../roles/release-rte.md).
+RTE owns release notes and tagging. A release that contains prod-risk tier changes (migrations, money, permissions, deploy) is tagged only after the HITL's concur on that release; all other releases are tagged once RTE PASS is recorded. Per-merge tag format is `vYYYY.MM.DD-<shortsha>` (date in America/New_York, 7-char merge SHA). Product releases use SemVer tags (`vMAJOR.MINOR.PATCH`): after merge, Release · RTE tags the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head. The GitHub Release notes match the CHANGELOG entry. Per-merge date-sha tags stay as documented. See [`roles/release-rte.md`](../../roles/release-rte.md).
 
 ## Steps
 
 1. Confirm the merge SHA and the gates required by the cited sections sit on that SHA.
 2. Draft notes and the CHANGELOG row. Do not bump versions across long-lived branches (this template is trunk-based).
 3. Hand the draft to the named executor.
-4. Release · RTE (only): after merge, tag the main merge SHA and publish the GitHub Release as [`roles/release-rte.md`](../../roles/release-rte.md) states, under the recorded concur. Re-PASS that SHA first if it differs from the PASSed PR head. O2/High applies only to deploy-CI and workflow tag-automation steps (`constitution/03-cd-and-hitl.md` Deploy CI / workflows); the GM may downgrade those in writing at QAS. Do not treat publication as unassigned.
+4. Release · RTE (only): after merge, tag the main merge SHA and publish the GitHub Release as [`roles/release-rte.md`](../../roles/release-rte.md) states. Re-PASS that SHA first if it differs from the PASSed PR head. O2/High applies only to deploy-CI and workflow tag-automation steps (`constitution/03-cd-and-hitl.md` Deploy CI / workflows); the GM may downgrade those in writing at QAS. Do not treat publication as unassigned.
 
 ## Stop rules
 

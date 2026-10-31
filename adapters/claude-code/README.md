@@ -4,7 +4,7 @@
 **Copyright:** © 2026 ByBren, LLC
 **Attribution:** See [../../NOTICE](../../NOTICE)
 
-Maps constitution → Claude Code teams / workflows / hooks. Thin stub — no ultracode-as-default.
+Maps constitution → Claude Code teams / workflows / hooks. Thin stub — no single-maximum default.
 
 ## Mapping
 
@@ -15,7 +15,7 @@ Maps constitution → Claude Code teams / workflows / hooks. Thin stub — no ul
 | CD + HITL risk tiers | Hooks advisory→blocking on O2 paths when supported; else checklist in decision pack |
 | Privacy / vaults | Deny tools/paths that touch personal vault; knowledge base via forge; Story via private storage pins only |
 | Evidence + the issue tracker | Portable `evidence_id` + session id; human assignee / agent delegate fields in issue body |
-| Empiricism | No default model override to ultracode |
+| Empiricism | No default model override to a single maximum-capability model |
 | Model stack (O4) | Role→model in agent frontmatter: orchestrator Fable 5.1+; heavy Opus/Sonnet 5.5; light Haiku 5.5 |
 
 ## Role def placeholders
@@ -48,7 +48,7 @@ Document intents here; implement when the harness exists.
 
 ## Explicit non-defaults
 
-- Ultracode **not** team default model.
+- A single maximum-capability model is **not** the team default.
 - Dark Factory / tmux **not** required for happy path.
 - the issue tracker Agents **not** wired.
 

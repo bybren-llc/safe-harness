@@ -1,7 +1,7 @@
 # Intent
 
 **Ownership:** HUMAN-OWNED (the owner only)  
-**Status:** Template
+**Kind:** Adopter template
 
 ---
 
@@ -37,25 +37,25 @@ Use this section to record research findings supporting intent decisions. Mark `
 
 *(Target use cases, team size, complexity range — what your project optimizes for.)*
 
-**Status:** UNKNOWN
+**UNKNOWN**
 
 ### License
 
 *(Open source license choice and rationale.)*
 
-**Status:** UNKNOWN
+**UNKNOWN**
 
 ### Footprint
 
 *(Resource requirements: compute, storage, network, cost envelope.)*
 
-**Status:** UNKNOWN
+**UNKNOWN**
 
 ### Sources
 
 *(External references: papers, comparable systems, standards.)*
 
-**Status:** UNKNOWN
+**UNKNOWN**
 
 ---
 

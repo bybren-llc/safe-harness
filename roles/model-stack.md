@@ -1,6 +1,6 @@
 # Model Stack (O4)
 
-**Ultracode is NOT the default.** It may appear as one of many options after empiricism wins — never as the initial baseline.
+**A single maximum-capability model is NOT the default.** It may appear as one of many options after empiricism wins — never as the initial baseline.
 
 ## Default tiers
 
@@ -14,7 +14,7 @@ Complexity rule for Heavy: prefer **Opus 5.5** when ambiguity, security, or cros
 
 ## Role → model (every vendor harness)
 
-Every adapter must publish a role→model card. No harness may silently override to ultracode-as-default.
+Every adapter must publish a role→model card. No harness may silently override to a single maximum-capability default.
 
 | Role / seat | Default tier |
 | --- | --- |
@@ -27,11 +27,11 @@ Every adapter must publish a role→model card. No harness may silently override
 | QAS | Light routine / Heavy when independence risk high |
 | SecEng | Heavy |
 | BSA-like | Light → Orchestrator if AC shaping spans spines |
-| RTE (collapsible) | Light |
+| Release · RTE (not collapsible at Med+) | Light |
 | Librarian / Scout | Light (research); Orchestrator only when synthesizing handoff pins |
 
 ## Stop rules
 
-- Do not set ultracode as Project/team default.
+- Do not set a single maximum-capability model as Project/team default.
 - Do not use Light tier alone for O2 high-risk construction.
 - Empiricism may change this table; constitution update requires HITL concur.

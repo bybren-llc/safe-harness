@@ -30,8 +30,8 @@ description: |
 #   Why this requirement is deferred or dropped.
 #   For Deferred: include when to revisit.
 # decided_by: the GM  # or owner_identity from .github/harness.yml for intent-sourced drops
-# decided_at: 2026-10-29  # ISO 8601 date
-# defer_to: 2026-11-15  # Required for Deferred only: target date or milestone
+# decided_at: YYYY-MM-DD  # ISO 8601 date
+# defer_to: YYYY-MM-DD  # Required for Deferred only: target date or milestone
 
 # Optional: dependencies on other requirements
 # dependencies:

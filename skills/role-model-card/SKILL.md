@@ -1,6 +1,6 @@
 ---
 name: role-model-card
-description: Publish and keep a role-to-model-tier card per adapter. Use when adding an adapter or changing defaults. Ultracode is not the default. Do not run Light-only on O2 construction.
+description: Publish and keep a role-to-model-tier card per adapter. Use when adding an adapter or changing defaults. A single maximum-capability model is not the default. Do not run Light-only on O2 construction.
 license: MIT (see repository LICENSE)
 ---
 
@@ -48,7 +48,7 @@ Concrete model names and versions belong only in the adapter's **example config*
 
 ## Stop rules
 
-- Ultracode is not the default (see the model-stack role card).
+- A single maximum-capability model is not the default (see the model-stack role card).
 - Do not use Light alone for O2 construction. See the cited section; this skill grants no authority.
 - Do not put vendor model versions in the skill body.
 - Changing defaults is an empiricism pack plus HITL concur as the cited `constitution/06` section requires.

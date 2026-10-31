@@ -65,7 +65,7 @@ Allowed public URLs (where they help):
 | --- | --- |
 | Claude Code | Map each `skills/<slug>/` to the runtime skills directory (typically `.claude/skills/<slug>/SKILL.md`). See the [Claude Code skills](https://docs.claude.com/en/docs/claude-code/skills) docs and [`adapters/claude-code/README.md`](../adapters/claude-code/README.md). |
 | Cursor | Map selected skills into Cursor rules or the runtime skills directory. See [Cursor rules](https://docs.cursor.com/context/rules) and [`adapters/cursor/README.md`](../adapters/cursor/README.md). |
-| Grok Bot | Does **not** auto-load this repo's `skills/` folder. **Setup:** import each skill as its own skill on the bot — one folder per skill, containing a `SKILL.md` with `name` and `description` frontmatter. Copy or link each `skills/<slug>/` folder. This directory stays the source of truth. |
+| Runtime without auto-load | Does **not** auto-load this repo's `skills/` folder. **Setup:** import each skill as its own skill on the runtime — one folder per skill, containing a `SKILL.md` with `name` and `description` frontmatter. Copy or link each `skills/<slug>/` folder. This directory stays the source of truth. |
 
 Trigger tests per skill (does the runtime load the right skill for a prompt) are **UNKNOWN** to automate per runtime. v1.0 does not ship hook files. Whether generic hooks (protected-path block, no secrets in diff) ship later is **UNKNOWN**.
 
@@ -102,15 +102,15 @@ This check requires every `skills/<slug>/SKILL.md` to start with YAML frontmatte
 | 17 | [studio-handoff](studio-handoff/SKILL.md) | port | templates/studio-to-delivery-handoff.md, roles/studio-lead.md | Studio · Lead, Delivery |
 | 18 | [acceptance-criteria](acceptance-criteria/SKILL.md) | generalize | [SAW spec-creation](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/skills/spec-creation/SKILL.md), [bsa agent](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/agents/bsa.md), roles/bsa-like.md | BSA-like, Studio |
 | 19 | [intent-spec-assist](intent-spec-assist/SKILL.md) | new | Anthropic playbook, intent.md/spec.md ownership | Studio · Lead |
-| 20 | [cve-watch](cve-watch/SKILL.md) | new | roles/librarian-signals.md, constitution/07, [SAW audit-deps command](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/commands/audit-deps.md) | Librarian, SecEng |
-| 21 | [link-health](link-health/SKILL.md) | generalize | trace/link-health.md, roles/librarian-signals.md | Librarian |
-| 22 | [stack-and-model-check](stack-and-model-check/SKILL.md) | generalize | roles/scout-story-media.md, roles/model-stack.md | Scout |
+| 20 | [cve-watch](cve-watch/SKILL.md) | new | roles/librarian.md, constitution/07, [SAW audit-deps command](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/commands/audit-deps.md) | Librarian, SecEng |
+| 21 | [link-health](link-health/SKILL.md) | generalize | examples/round-table/link-health.md, roles/librarian.md | Librarian |
+| 22 | [stack-and-model-check](stack-and-model-check/SKILL.md) | generalize | roles/scout.md, roles/model-stack.md | Scout |
 | 23 | [role-model-card](role-model-card/SKILL.md) | generalize | roles/model-stack.md | GM, adapter maintainers |
 | 24 | [board-sweep](board-sweep/SKILL.md) | new | roles/dispatcher-board.md, constitution/07 | Dispatcher · Board |
 | 25 | [ops-rollup](ops-rollup/SKILL.md) | new | roles/ops-cos.md | Ops · CoS |
 | 26 | [concur-queue](concur-queue/SKILL.md) | new | roles/ops-cos.md, constitution/03 | Ops · CoS |
-| 27 | [signals-digest](signals-digest/SKILL.md) | generalize | roles/librarian-signals.md | Librarian |
-| 28 | [research-brief](research-brief/SKILL.md) | new | roles/scout-story-media.md | Scout, Studio |
+| 27 | [signals-digest](signals-digest/SKILL.md) | generalize | roles/librarian.md | Librarian |
+| 28 | [research-brief](research-brief/SKILL.md) | new | roles/scout.md | Scout, Studio |
 | 29 | [start-end-work](start-end-work/SKILL.md) | generalize | [SAW start-work](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/commands/start-work.md), [end-work](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/commands/end-work.md), [check-workflow](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/commands/check-workflow.md) | Delivery, Implementer |
 | 30 | [retro](retro/SKILL.md) | generalize | [SAW retro command](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/commands/retro.md), prove/wave-0-retro.md, constitution/06 | Delivery, GM, Ops |
 | 31 | [doc-drift](doc-drift/SKILL.md) | generalize | [SAW vault-sync](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/skills/vault-sync/SKILL.md), [update-docs command](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/commands/update-docs.md) | Delivery, Librarian |

@@ -614,7 +614,7 @@ def flush(path, header, rows):
     if "evidence_id" not in idx:
         return
     if "req_ids" not in idx:
-        return  # Wave 0 tables (linear_issue, no req_ids)
+        return  # legacy tables (linear_issue, no req_ids)
     for n, row in rows:
         def col(name):
             i = idx.get(name)
@@ -715,7 +715,7 @@ PY
       fi
     done < "$tmp"
   elif [[ "$extractor_rc" -eq 0 ]]; then
-    echo "  (no Wave 1 evidence tables with req_ids under prove/)"
+    echo "  (no evidence tables with req_ids under prove/)"
   fi
 else
   echo "  (no prove/ directory)"

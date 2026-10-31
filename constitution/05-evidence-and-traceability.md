@@ -56,7 +56,7 @@ Labels (documented in `.github/labels.yml`):
 - Exit states: `exit:qas`, `exit:rte`, `exit:hitl`, `exit:merged`, `exit:merged-delegated`, `exit:merged-rte`
 - Gates: `gate:rnd`, `gate:plan`, `gate:concur`, `gate:execute`, `gate:measure`
 
-**GitHub milestones:** One milestone per wave (e.g., "Wave 1", "Wave 2"). Document milestones; create them manually or via approved automation.
+**GitHub milestones:** One milestone per increment. Document milestones; create them manually or via approved automation.
 
 ---
 
@@ -77,7 +77,7 @@ See `requirements/README.md` for trace states (Placed / Deferred / Dropped / Mis
 - `rationale`: Why deferred and conditions for revisiting
 - `decided_by`: Decision owner (the GM, owner_identity from .github/harness.yml, or "owner_identity + the GM")
 - `decided_at`: ISO 8601 date (YYYY-MM-DD)
-- `defer_to`: Target date or milestone reference (e.g., "2026-11-15" or "Wave 2")
+- `defer_to`: Target date or milestone reference (e.g., "YYYY-MM-DD" or a named milestone)
 
 **Dropped** requirements must include:
 - `rationale`: Why permanently removed
@@ -111,7 +111,7 @@ Do not rely on Claude-only session IDs. Each runtime posts a portable ID:
 | `gate` | Which gate this evidence satisfies |
 | `req_ids` | List of REQ-<CMP>-NNN IDs this evidence addresses |
 
-**Breaking change from Wave 0:** `linear_issue` → `issue` (GitHub Issue reference). Evidence rows must include `req_ids` list.
+**Issue field:** use `issue` (GitHub Issue reference), not a tracker-specific key. Evidence rows must include `req_ids` list.
 
 ---
 

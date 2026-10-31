@@ -11,7 +11,7 @@ Requirements are the **definition of success**. Each requirement receives a uniq
 | **Placed** | Active requirement; evidence required | source, exit_criterion, metric |
 | **Deferred** | Intentionally postponed | rationale (why deferred + when to revisit) |
 | **Dropped** | Permanently removed from scope | rationale (why no longer needed) |
-| **Missing** | Referenced but not yet defined | (CI fails on Missing state) |
+| **Missing** | Referenced without a definition | (CI fails on Missing state) |
 
 ## Format
 

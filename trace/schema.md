@@ -14,7 +14,7 @@ The trace-check CI parses these exact state values:
 | **Placed** | Active requirement; evidence required | source, exit_criterion, metric, req_ids linkage |
 | **Deferred** | Intentionally postponed | rationale, decided_by, decided_at, defer_to |
 | **Dropped** | Permanently removed from scope | rationale, decided_by, decided_at |
-| **Missing** | Referenced but not yet defined | (CI fails when blocking) |
+| **Missing** | Referenced without a definition | (CI fails when blocking) |
 
 ---
 
@@ -48,7 +48,7 @@ source: spec.md#anchor-name
 rationale: |
   Why deferred and conditions for revisiting
 decided_by: the GM  # or owner_identity from .github/harness.yml (exactly, for intent-sourced drops)
-decided_at: 2026-10-29  # ISO 8601 date
+decided_at: YYYY-MM-DD  # ISO 8601 date
 defer_to: 2026-11-15  # Target date or milestone reference
 ```
 
@@ -65,7 +65,7 @@ source: spec.md#anchor-name
 rationale: |
   Why permanently removed
 decided_by: the GM
-decided_at: 2026-10-29
+decided_at: YYYY-MM-DD
 ```
 
 **Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires owner sign-off. Record as `decided_by: <owner_identity>` (exactly matching `.github/harness.yml`) plus link in `rationale`.
@@ -108,12 +108,12 @@ Once blocking, CI fails when:
 2. Any **Placed** requirement has no evidence row with its ID in `req_ids`
 3. Any **Deferred** or **Dropped** requirement missing: `rationale`, `decided_by`, or `decided_at`
 4. Any **Deferred** requirement missing: `defer_to`
-5. *(Required before blocking activation; follow-up issue TBD)* Spec REQ ↔ trace-map reconciliation
-6. *(Required before blocking activation; follow-up issue TBD)* Empty trace map in blocking mode
-7. *(Required before blocking activation; follow-up issue TBD)* `requirements/*.yaml` registry validation
-8. *(Required before blocking activation; follow-up issue TBD)* Issue + PR `Requirements:` linkage enforcement
-9. *(Required before blocking activation; follow-up issue TBD)* Evidence rows from bolt briefs/decision packs
-10. *(Required before blocking activation; follow-up issue TBD)* Source-anchor validation (intent.md or spec.md anchors exist)
+5. Spec REQ ↔ trace-map reconciliation
+6. Empty trace map in blocking mode
+7. `requirements/*.yaml` registry validation
+8. Issue + PR `Requirements:` linkage enforcement
+9. Evidence rows from bolt briefs/decision packs
+10. Source-anchor validation (intent.md or spec.md anchors exist)
 
 ---
 
@@ -147,12 +147,7 @@ evidence:
 - Missing or unevidenced REQs
 - Deferred/Dropped missing required fields
 
-**Non-blocking scheduled check** (separate workflow, read-only):
-- Cross-system link validation (Issue tracker archive, external URLs)
-- spec.md anchor existence validation
-- Evidence URL reachability
-
-External link checks remain non-blocking to avoid failing builds on transient network issues.
+External link checks (issue-tracker archive, external URLs, evidence URL reachability) are not a shipped workflow. Keep them out of the blocking trace-check so transient network issues do not fail merges. spec.md anchor existence is validated by `trace/check.sh` when blocking.
 
 ---
 

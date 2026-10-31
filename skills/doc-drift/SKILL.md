@@ -20,7 +20,7 @@ See the cited section; this skill grants no authority.
 
 A merge changed `constitution/`, `roles/`, adapters, or workflows. Matching README, AGENTS.md, and skills should still agree. This skill is repo-docs only. It does not sync an external vault.
 
-A later warn-only CI check may pair with this skill. Until that check exists, run the steps by hand.
+A warn-only CI check pairs with this skill: `.github/workflows/doc-drift.yml`. Run the steps by hand as well.
 
 ## Steps
 

@@ -19,7 +19,7 @@ See the cited section; this skill grants no authority.
 
 ## When to use
 
-On every authoring PR (in-repo links) and on the adopter's weekly scan (cross-system). Spec: `trace/link-health.md`. This skill keeps the process generic.
+On every authoring PR (in-repo links) and on the adopter's weekly scan (cross-system). Spec: `examples/round-table/link-health.md`. This skill keeps the process generic.
 
 ## Two layers
 

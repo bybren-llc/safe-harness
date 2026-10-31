@@ -1,10 +1,8 @@
 # 07 — Roles and lanes (delegation map)
 
-**Status:** Adopted 2026-10-29 (the owner approved the delegation map)  
-**Complements:** `01-round-table.md` (seat map), `03-cd-and-hitl.md` (merge authority)  
-**Evidence:** PR #22 squash `d88c884` — do not restate the merged Release · RTE text
+**Complements:** `01-round-table.md` (seat map), `03-cd-and-hitl.md` (merge authority)
 
-This file is the lane-ownership map. Seats and exit states stay in `01-round-table.md`. Merge authority, RTE PASS, and HOLD override stay in the #22 files cited below.
+This file is the lane-ownership map. Seats and exit states stay in `01-round-table.md`. Merge authority, RTE PASS, and HOLD override stay in the files cited below.
 
 ## Lane owners
 
