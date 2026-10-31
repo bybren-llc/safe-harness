@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 ByBren, LLC
+# safe-harness configuration template
+#
+# Copy this file to .github/harness.yml and set owner_identity to your GitHub login
+# or decision authority's full name. See docs/adapting.md.
+
+# Owner identity for governance decisions
+# Used by trace validation to validate decided_by fields on Dropped requirements
+# sourced from intent.md.
+#
+# Replace <your-github-login> with your actual GitHub login or decision authority's full name
+owner_identity: "<your-github-login>"

@@ -1,0 +1,2 @@
+# Fixture: owner_identity set to template placeholder
+owner_identity: "<your-github-login>"

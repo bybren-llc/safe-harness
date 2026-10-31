@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 ByBren, LLC
+# CODEOWNERS — ByBren, LLC instance
+
+/intent.md              @cheddarfox
+/intent/                @cheddarfox
+/spec.md                @cheddarfox
+/requirements/          @cheddarfox
+/constitution/          @cheddarfox
+/trace/                 @cheddarfox
+/trace/.blocking        @cheddarfox
+/arch/                  @cheddarfox
+/AGENTS.md              @cheddarfox
+/adapters/**/AGENTS.md  @cheddarfox
+/skills/                @cheddarfox
+/.github/CODEOWNERS     @cheddarfox
+/.github/workflows/     @cheddarfox

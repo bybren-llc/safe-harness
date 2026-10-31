@@ -171,6 +171,11 @@ jobs:
           
           echo "✅ Basic markdown syntax valid"
       
+      - name: Template-ready check (CI scope)
+        run: |
+          echo "Checking template surface for example values..."
+          bash trace/check-template-ready.sh .
+      
       - name: Summary
         if: success()
         run: |

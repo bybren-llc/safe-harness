@@ -95,6 +95,21 @@ if [[ -f "$fixture" ]]; then
   fi
 fi
 
+# Test placeholder failure
+echo -n "  owner-identity-placeholder (should fail) ... "
+fixture="$FIXTURES_DIR/fail/owner-identity-placeholder"
+if [[ -d "$fixture" ]]; then
+  if bash "$REPO_ROOT/trace/validate-trace.sh" "$fixture" "$fixture/.github/harness.yml" > /dev/null 2>&1; then
+    echo "❌ FAIL (expected to fail on placeholder)"
+    FAIL_COUNT=$((FAIL_COUNT + 1))
+  else
+    echo "✓ PASS"
+    PASS_COUNT=$((PASS_COUNT + 1))
+  fi
+else
+  echo "⚠ SKIP (fixture not found)"
+fi
+
 # Test with special characters (apostrophe, hyphen)
 echo -n "  owner-identity-with-special-chars.yaml ... "
 echo "owner_identity: \"Repository O'Brien-Smith\"" > "$ORIGINAL_HARNESS_CONFIG"
