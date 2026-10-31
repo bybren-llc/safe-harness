@@ -178,4 +178,39 @@ R1 on #85 is the Cursor cloud run.
 
 ## Driving agents through desktop apps
 
-To be written after research.
+Use this section when a person runs Claude Code or Codex from a desktop machine instead of a cloud agent. The repo stays the source of truth: every runtime loads `AGENTS.md`, then intent, spec, decisions and the brief, in the order set out in [AGENTS.md](../AGENTS.md). Gates (QAS, SecEng, RTE) stay on the pull request, the same as for every other runtime.
+
+### 1. One worktree and branch per brief
+
+1. Write the brief to `.briefs/<issue>.md`. This folder is git-ignored, so don't commit briefs.
+2. Make a worktree for that brief: `git worktree add ../<repo>-<issue> -b agent/<issue>`. Claude Code can also make one with `claude -w <issue>`; Claude's worktrees land in `.claude/worktrees/`, which is also git-ignored.
+3. Run exactly one agent in each worktree. Remove the worktree when its PR merges or closes (`git worktree remove ../<repo>-<issue>`). Headless runs don't clean up their worktrees on their own.
+
+### 2. Claude Code
+
+- Claude Code reads `CLAUDE.md`, and when that file exists it skips `AGENTS.md`. This repo's `CLAUDE.md` imports `@AGENTS.md`; keep that import, or Claude Code won't load the harness.
+- Interactive: run `claude` in the worktree.
+- Headless: `claude -p "$(cat .briefs/<issue>.md)" --output-format json --permission-mode acceptEdits --allowedTools "Read,Edit,Bash(git *)"`. Save the JSON result (it includes `session_id`) as evidence. Continue the same session with `claude -p --resume <session_id> "<follow-up>"`.
+- Don't use `--bare`. It skips the repo's `CLAUDE.md`, rules and skills, and it doesn't work with subscription sign-in.
+- Docs: [headless mode](https://code.claude.com/docs/en/headless), [worktrees](https://code.claude.com/docs/en/worktrees), [desktop](https://code.claude.com/docs/en/desktop), [Remote Control](https://code.claude.com/docs/en/remote-control).
+
+### 3. Codex
+
+- Codex reads `AGENTS.md` directly ([AGENTS.md guide](https://developers.openai.com/codex/guides/agents-md)). See [adapters/codex](../adapters/codex/README.md).
+- Interactive: run `codex` in the worktree.
+- Headless: `codex exec --sandbox workspace-write --json -o <evidence-path>.md "$(cat .briefs/<issue>.md)"`. Continue with `codex exec resume <session-id> "<follow-up>"`. For scripted control, use the [Codex SDK](https://github.com/openai/codex/blob/main/sdk/typescript/README.md).
+- Don't use `codex mcp-server`; it has been removed. Use `codex exec` or the SDK instead.
+- Don't share one Codex sign-in file between concurrent jobs or across machines. Run Codex jobs one at a time on a host, or give each its own `CODEX_HOME`.
+- Docs: [non-interactive mode](https://learn.chatgpt.com/docs/non-interactive-mode), [git worktrees](https://learn.chatgpt.com/docs/environments/git-worktrees), [remote connections](https://learn.chatgpt.com/docs/remote-connections).
+
+### 4. Desktop apps as the window
+
+The Claude desktop app and the Codex app can open the same repo and the same worktrees as the CLIs. Use them to watch and steer a run. They don't replace the brief, the evidence or the gates.
+
+### 5. Rules for every desktop run
+
+- Sign in through each vendor's own flow on the unmodified app or CLI. Never copy, extract or share sign-in tokens.
+- Don't run subscription-signed-in Codex in GitHub Actions on a public repo. See [CI/CD auth](https://learn.chatgpt.com/docs/auth/ci-cd-auth). Run `codex exec` only on a trusted machine against a local clone, and only on branches your own team created; treat PR content from outsiders as untrusted input.
+- Don't script the desktop apps' GUIs. There's no supported API, and it breaks easily.
+- An agent never merges, force-pushes or edits history. It pushes its branch, opens the PR, and hands off with `git show --stat`, `git rev-parse HEAD` and the evidence paths.
+- Usage limits are shared with the owner's own use of the same plan. Don't raise limits or add paid tiers without the owner's approval.
