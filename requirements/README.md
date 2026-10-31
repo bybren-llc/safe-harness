@@ -24,7 +24,7 @@ Required fields for **Placed** requirements:
 - `title`: Brief description
 - `source`: spec.md#anchor (or intent.md#anchor)
 - `exit_criterion`: Concrete pass/fail condition
-- `metric`: M1–M6 tie (from constitution/00) or named metric
+- `metric`: a success metric defined in constitution/00
 - `description`: Full requirement text
 
 Optional fields:

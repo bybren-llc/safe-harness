@@ -1,6 +1,6 @@
 ---
 name: retro
-description: Run a wave or bolt retro against the value set named up front (M1–M6 is the template example). Use at bolt or wave exit. Empiricism retires losing defaults.
+description: Run a wave or bolt retro against the value set named up front (examples/round-table/metrics.md is an example set). Use at bolt or wave exit. Empiricism retires losing defaults.
 license: MIT (see repository LICENSE)
 ---
 
@@ -11,7 +11,7 @@ license: MIT (see repository LICENSE)
 
 ## Authority
 
-- [`constitution/00-north-star.md`](../../constitution/00-north-star.md) — M1–M6 example set
+- [`constitution/00-north-star.md`](../../constitution/00-north-star.md) — examples/round-table/metrics.md is an example set
 - [`constitution/06-empiricism.md`](../../constitution/06-empiricism.md) — keep / adapt / drop; HITL concur before defaults change
 - [`constitution/07-roles-and-lanes.md`](../../constitution/07-roles-and-lanes.md) — public posts
 
@@ -19,7 +19,7 @@ See the cited section; this skill grants no authority.
 
 ## When to use
 
-A bolt or wave ended. Measure against the value set named at the start. The template example set is M1–M6 in the cited `constitution/00` section. Adopters may use their own names; do not invent metrics after the fact.
+A bolt or wave ended. Measure against the value set named at the start. examples/round-table/metrics.md is an example set. Adopters may use their own names; do not invent metrics after the fact.
 
 ## Shape
 

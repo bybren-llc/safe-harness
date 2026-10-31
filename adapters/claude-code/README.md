@@ -16,7 +16,7 @@ Maps constitution → Claude Code teams / workflows / hooks. Thin stub — no si
 | Privacy / vaults | Deny tools/paths that touch personal vault; knowledge base via forge; Story via private storage pins only |
 | Evidence + the issue tracker | Portable `evidence_id` + session id; human assignee / agent delegate fields in issue body |
 | Empiricism | No default model override to a single maximum-capability model |
-| Model stack (O4) | Role→model in agent frontmatter: orchestrator Fable 5.1+; heavy Opus/Sonnet 5.5; light Haiku 5.5 |
+| Model stack | Role→model in agent frontmatter, one model per tier (Orchestrator / Heavy / Light) per `roles/model-stack.md` |
 
 ## Role def placeholders
 
@@ -44,15 +44,14 @@ Each file must include: mission, spine, may-collapse, independence, model tier, 
 | Merge attempt by agent | Deny Delivery and cloud agents; allow authorized the GM / Release · RTE trunk merges that meet constitution/03 |
 | Personal-vault path | Deny |
 
-Document intents here; implement when the harness exists.
+Document hook intents here; implement them in your runtime.
 
 ## Explicit non-defaults
 
 - A single maximum-capability model is **not** the team default.
-- Dark Factory / tmux **not** required for happy path.
-- the issue tracker Agents **not** wired.
+- Issue-tracker agents **not** wired.
 
-## Skills library (v1.0)
+## Skills library
 
 Canonical skills live in [`../../skills/`](../../skills/README.md) as `skills/<slug>/SKILL.md`.
 
@@ -60,7 +59,7 @@ This adapter maps each slug into the Claude Code skills directory (typically `.c
 
 Runtime-specific role→model examples stay in this adapter. Skills themselves use tier names only.
 
-Trigger tests (does a prompt load the right skill) are **UNKNOWN** to automate in v1.0. Generic hooks are **UNKNOWN** and not shipped.
+Trigger tests (does a prompt load the right skill) are **UNKNOWN** to automate. Generic hooks are **UNKNOWN** and not shipped.
 
 ## Local / HF cache
 

@@ -6,5 +6,5 @@
 | **Spine** | A (consults B on vault routing) |
 | **May collapse?** | **NEVER** |
 | **Independence** | Distinct actor; can stop-the-line for that unit; does not build the fix they block |
-| **Default model tier** | Heavy (Opus preferred on O2) |
+| **Default model tier** | Heavy (strongest Heavy model on O2) |
 | **Stop rules** | Blocks privacy→remote attempts; prod secrets; auth; never self-merge; scanner not fixer (files issues or drafts alerts; no fix PRs without the owner's explicit go); no X writes (the owner only) |

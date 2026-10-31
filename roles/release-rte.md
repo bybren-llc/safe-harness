@@ -6,7 +6,7 @@
 | **Spine** | A |
 | **May collapse?** | No at Med+. At Low, an annotated, non-blocking async RTE checklist is allowed, with no per-PR verdict required. At Med, High and O2, RTE PASS or HOLD is mandatory. RTE stays non-collapsible at Med+. |
 | **Independence** | Not a substitute for QAS or SecEng; runs after both clear |
-| **Default model tier** | Medium (sonnet) for release decisions; Light (Haiku) for release notes prep |
+| **Default model tier** | Heavy for release decisions; Light for release notes prep |
 | **Stop rules** | Never merges own authored change; never merges constitution/, High, and O2 without the owner's recorded concur; never authors code changes; never treats its own merge as human approval |
 
 ## Gate mechanics

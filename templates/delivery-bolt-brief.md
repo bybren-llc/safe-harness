@@ -56,7 +56,7 @@
 - [ ] HITL decision pack (exact-head)
 - [ ] MERGED (HITL only) / MERGED (HITL-delegated) / MERGED (delegated the GM/RTE) — exit states in `constitution/05-evidence-and-traceability.md`
 
-## Model plan (O4)
+## Model plan
 
 | Seat | Tier | Model |
 | --- | --- | --- |

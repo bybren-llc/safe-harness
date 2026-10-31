@@ -30,7 +30,7 @@ title: Brief requirement title
 source: spec.md#anchor-name  # or intent.md#anchor-name
 exit_criterion: |
   Concrete pass/fail condition
-metric: M6  # M1–M6 from constitution/00, or custom metric name
+metric: <metric>  # a success metric defined in constitution/00
 description: |
   Full requirement text
 ```
@@ -153,4 +153,4 @@ External link checks (issue-tracker archive, external URLs, evidence URL reachab
 
 ## Metrics pointer
 
-M1–M6 definitions: `constitution/00-north-star.md`
+Success metrics: `constitution/00-north-star.md` (example set: `examples/round-table/metrics.md`)

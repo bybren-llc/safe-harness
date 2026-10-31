@@ -186,7 +186,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | Implementer | [`roles/implementer.md`](roles/implementer.md) |
 | BSA-like | [`roles/bsa-like.md`](roles/bsa-like.md) |
 | Release · RTE | [`roles/release-rte.md`](roles/release-rte.md) |
-| Model stack (O4 tiers) | [`roles/model-stack.md`](roles/model-stack.md) |
+| Model stack (tiers) | [`roles/model-stack.md`](roles/model-stack.md) |
 | Human owner (HITL/POPM) | Role card planned |
 
 **Tiers, O2, and merge rules:** [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md). **Release · RTE:** [`roles/release-rte.md`](roles/release-rte.md). Seat map: [`constitution/01-round-table.md`](constitution/01-round-table.md). The HITL-concur label in this repo is `needs-owner-concur`.
@@ -264,4 +264,4 @@ If you build on this harness, please keep [NOTICE](NOTICE) and credit "Built wit
 - Release notes: [`CHANGELOG.md`](CHANGELOG.md).
 - Tag format and RTE ownership of notes: [`roles/release-rte.md`](roles/release-rte.md), [`release/flow.md`](release/flow.md).
 
-Metrics M1–M6: [`constitution/00-north-star.md`](constitution/00-north-star.md). Evidence and bolt records: [`prove/README.md`](prove/README.md).
+Success metrics: [`constitution/00-north-star.md`](constitution/00-north-star.md). Evidence and bolt records: [`prove/README.md`](prove/README.md).

@@ -16,8 +16,8 @@ exit_criterion: |
   Specific, measurable condition that defines requirement satisfaction.
   Example: "CI trace-check workflow passes on a PR with 3+ Placed requirements"
 
-# Metric tie to constitution/00 M1-M6 or named metric
-metric: M6  # M1 | M2 | M3 | M4 | M5 | M6 | custom-metric-name
+# Metric: a success metric defined in constitution/00
+metric: <metric>
 
 # Full requirement description
 description: |

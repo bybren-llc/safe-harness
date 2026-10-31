@@ -86,8 +86,8 @@ body:
     id: metric
     attributes:
       label: Metric Tie
-      description: M1–M6 or custom metric name
-      placeholder: "M6"
+      description: a success metric defined in constitution/00
+      placeholder: "<metric>"
     validations:
       required: false
 

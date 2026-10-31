@@ -57,8 +57,8 @@ body:
     id: goal
     attributes:
       label: Goal
-      description: What does this bolt accomplish? (Tie to M1–M6 from constitution/00)
-      placeholder: "Prove D-P2: Studio→Delivery handoff on spine B → A (M3, M4)"
+      description: What does this bolt accomplish? (Tie to a success metric defined in constitution/00)
+      placeholder: "Deliver <outcome> (metric: <metric>)"
     validations:
       required: true
 
@@ -116,7 +116,7 @@ body:
       value: |
         ## Estimate
 
-        Fill estimates at open. Capture actuals at close; compare actuals with estimates each sprint and report under M5 / M6.
+        Fill estimates at open. Capture actuals at close; compare actuals with estimates each sprint and report under <metric>.
 
   - type: input
     id: estimate_agent_hours
@@ -161,7 +161,7 @@ body:
     id: actuals
     attributes:
       label: Actuals (at close)
-      description: Capture actuals at close; compare actuals with estimates each sprint and report under M5 / M6. Leave blank until close.
+      description: Capture actuals at close; compare actuals with estimates each sprint and report under <metric>. Leave blank until close.
       value: |
         Agent-hours:
         Human-hours:

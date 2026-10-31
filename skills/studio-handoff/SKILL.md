@@ -28,7 +28,7 @@ Template: `templates/studio-to-delivery-handoff.md`.
 | Field | Rule |
 | --- | --- |
 | Handoff ID | Stable slug. No board or record IDs from an external tool. |
-| Outcome / value | M1–M6 and/or the bolt goal |
+| Outcome / value | a success metric defined in constitution/00 and/or the bolt goal |
 | Summary | ≤5 lines |
 | AC / DoD | Testable, or a named BSA follow-on |
 | Source pins | Generic source pin (forge-backed concept or private-store pin from Studio / Librarian). Never a personal-store pin. |

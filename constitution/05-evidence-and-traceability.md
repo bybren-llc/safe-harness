@@ -65,7 +65,7 @@ Labels (documented in `.github/labels.yml`):
 **Requirements** are REQ-<CMP>-NNN IDs derived from `spec.md`. Each requirement has:
 - `source`: spec.md#anchor (or intent.md#anchor)
 - `exit_criterion`: Concrete pass/fail condition
-- `metric`: M1–M6 tie (from constitution/00) or named metric
+- `metric`: a success metric defined in constitution/00
 
 See `requirements/README.md` for trace states (Placed / Deferred / Dropped / Missing) and format.
 
