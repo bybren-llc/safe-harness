@@ -209,8 +209,12 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | [`.cursor/rules/safe-harness.mdc`](.cursor/rules/safe-harness.mdc) | Cursor pointer rule. |
 | [`AGENTS.md`](AGENTS.md) | Root agent entry point (rules by link; local checks). |
 | [`docs/adapting.md`](docs/adapting.md) | Adapting this template. |
+| [`docs/runtimes.md`](docs/runtimes.md) | How to launch Claude Code, Codex, and Cursor cloud agents from this repo. |
+| [`docs/prd/PRD-TEMPLATE.md`](docs/prd/PRD-TEMPLATE.md) | Optional PRD template. Longer product context; `spec.md` stays canonical for REQ IDs. |
+| [`docs/design/`](docs/design/) | Design docs, one per subsystem or topic. Template: [`docs/design/DESIGN-TEMPLATE.md`](docs/design/DESIGN-TEMPLATE.md). |
 | [`docs/decisions/`](docs/decisions/) | Architecture Decision Records (canonical home; numbered ADRs and [`log.md`](docs/decisions/log.md)). |
-| [`docs/decisions/log.md`](docs/decisions/log.md) | Latest-wins decision log. |
+| [`docs/decisions/ADR-TEMPLATE.md`](docs/decisions/ADR-TEMPLATE.md) | Blank MADR 4.0 ADR template with Confirmation. |
+| [`docs/decisions/log.md`](docs/decisions/log.md) | Latest-wins decision log and Current shape. |
 | [`constitution/`](constitution/) | Binding governance. |
 | [`roles/`](roles/) | Seat cards. |
 | [`templates/`](templates/) | Bolt brief and Studio→Delivery handoff. |
@@ -219,7 +223,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | [`arch/`](arch/) | Component registry. |
 | [`requirements/`](requirements/) | REQ registry (agent-authored; human review). |
 | [`trace/`](trace/) | Trace map and schema. |
-| [`intent.md`](intent.md) / `intent/` / [`spec.md`](spec.md) | Human-owned design. |
+| [`intent.md`](intent.md) / [`intent/`](intent/) / [`spec.md`](spec.md) | Human-owned design. Root `intent.md` is canonical; `intent/` is optional longer material. |
 | [`.github/CODEOWNERS`](.github/CODEOWNERS) | Review gates (`intent.md`, `intent/`, `spec.md`, `constitution/`, `requirements/`, `trace/`, `arch/`, `AGENTS.md`, `adapters/**/AGENTS.md`, `skills/`, workflows). |
 | [`.github/workflows/`](.github/workflows/) | CI (see below). |
 
@@ -241,7 +245,7 @@ CodeRabbit is an optional review input. When it runs, its findings are triaged. 
 
 ---
 
-> **Owner-owned placeholders.** [`intent.md`](intent.md), `intent/`, and [`spec.md`](spec.md) are **human-owned**. Agents may draft; they never merge those files. Trace-check stays **warn-only** until `spec.md` has REQ IDs (and a later, code-owner-reviewed PR adds `trace/.blocking`). Do not invent REQ IDs during bootstrap.
+> **Owner-owned placeholders.** [`intent.md`](intent.md), [`intent/`](intent/), and [`spec.md`](spec.md) are **human-owned**. Agents may draft; they never merge those files. Trace-check stays **warn-only** until `spec.md` has REQ IDs (and a later, code-owner-reviewed PR adds `trace/.blocking`). Do not invent REQ IDs during bootstrap.
 
 ---
 

@@ -6,6 +6,18 @@ This file is the agent entry point for **safe-harness**. Convention: [AGENTS.md]
 
 safe-harness is a multi-runtime template for everyday, safe AI-assisted development. Humans set direction and keep the safety gates. Agents execute. Governance lives in [`constitution/`](constitution/). Seat cards live in [`roles/`](roles/).
 
+## Before you start
+
+Load in this order, then begin work:
+
+1. [`intent.md`](intent.md)
+2. [`spec.md`](spec.md)
+3. [`docs/decisions/log.md`](docs/decisions/log.md) — Current shape
+4. The issue and its bolt brief
+5. The REQ IDs the issue cites
+
+Stop and ask if the bolt brief is missing. Do not invent REQ IDs.
+
 ## Rules agents follow
 
 Do not restate these here. Read the linked file and follow it.

@@ -7,3 +7,7 @@
 # Python cache
 __pycache__/
 *.pyc
+
+# Local runtime working files
+.briefs/
+.claude/worktrees/
