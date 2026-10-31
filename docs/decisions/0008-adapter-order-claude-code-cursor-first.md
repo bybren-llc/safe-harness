@@ -1,8 +1,8 @@
 ---
 status: accepted
 date: 2026-10-28
-decision-makers: Scott (HITL/POPM)
-consulted: Kai (GM & lead ARCHitect), Studio · Lead
+decision-makers: owner (HITL/POPM)
+consulted: the GM (GM & lead ARCHitect), Studio · Lead
 informed: Round Table seats
 ---
 
@@ -21,7 +21,7 @@ Wave 0 adapters = Claude Code + Cursor first; Codex/local/Grok next?
 
 ## Decision Outcome
 
-Chosen option: "Yes", because Scott concurred the filled pack as written.
+Chosen option: "Yes", because owner concurred the filled pack as written.
 
 Decision text: One constitution; each runtime is a thin adapter, not a forked methodology. Claude Code (subagents/teams/workflows; map SAFe roles to agent defs; hooks for exit states). Cursor (Cloud Agents + Projects coordinator; project = Delivery train; rules mirror constitution). Next: Codex (role TOML from same role cards), local models (narrow tools, strict stop rules), Grok Bot (persistent seats, routines, digests; hands code to adapters).
 
@@ -32,7 +32,7 @@ Decision text: One constitution; each runtime is a thin adapter, not a forked me
 
 ### Confirmation
 
-Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
+owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
 
@@ -42,6 +42,6 @@ Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 ## More Information
 
-Owner: Kai (GM). Executor: Delivery · Lead.
+Owner: the GM (GM). Executor: Delivery · Lead.
 
 Cross-ref: W0-06 Multi-runtime (active). Record format: [MADR 4.0](https://adr.github.io/madr/).

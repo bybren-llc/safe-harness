@@ -1,7 +1,9 @@
 # CODEOWNERS — safe-harness
 #
-# Human-owned: intent.md and spec.md (Scott owns and accepts design).
-# Agent-authored with @cheddarfox review gate: requirements, trace, constitution,
+# Template users: replace @cheddarfox with your own owner's GitHub handle.
+#
+# Human-owned: intent.md and spec.md (owner owns and accepts design).
+# Agent-authored with owner review gate: requirements, trace, constitution,
 # arch, AGENTS.md, adapter AGENTS.md, skills, workflows, CODEOWNERS.
 # Agents may propose edits but never merge these files (constitution/05),
 # except constitution/ as allowed in constitution/03.

@@ -6,7 +6,7 @@ requirements:
     title: Test dropped requirement
     source: intent.md#test-anchor
     rationale: No longer needed per design review https://example.com/review
-    decided_by: Repository Owner
+    decided_by: example-owner
     decided_at: 2026-10-30
 
 evidence: []

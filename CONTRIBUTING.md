@@ -25,6 +25,14 @@ When referencing a personal store, private store, or private context, **describe
 
 **Local denylist:** copy `scripts/denylist.example` to `.denylist.local` at the repo root (gitignored), replace the fake terms, then run `python3 scripts/check-denylist.py` before opening a PR. It compares tracked files case-insensitively against the local plain terms and prints `file:line` plus a generic category only. If `.denylist.local` is missing, the script exits 0 (`no local denylist, skipped`). This is not yet wired into CI. A CI version using a repo secret is planned for v1.1. See [`scripts/README.md`](scripts/README.md).
 
+**Genericize allowlist (personal names):** The repository is genericized for template use. The only approved exceptions where the original copyright holder's personal name appears are:
+
+- `LICENSE:3` — Copyright holder line (required by MIT License)
+- `NOTICE` — Project copyright line (line 2) and SAW-derived verbatim MIT copyright line (line 18)
+- `CITATION.cff` — Authors entry (lines 4-6, required for academic citation)
+
+These exceptions are legally required for proper attribution and cannot be genericized. Template users must retain the existing copyright and license notices (MIT License requirement) and may add their own.
+
 Secrets live in vaults. The human owner (HITL/POPM) owns both the forge secrets and the vault side. Never include a secret value in this repository.
 
 ---

@@ -6,6 +6,6 @@ requirements:
     source: spec.md#source-of-truth
     rationale: |
       Fixture mismatch
-    decided_by: Kai
+    decided_by: example-owner
     decided_at: 2026-10-30
 evidence: []

@@ -1,8 +1,8 @@
 ---
 status: accepted
 date: 2026-10-28
-decision-makers: Scott (HITL/POPM)
-consulted: Kai (GM & lead ARCHitect), Studio · Lead
+decision-makers: owner (HITL/POPM)
+consulted: the GM (GM & lead ARCHitect), Studio · Lead
 informed: Round Table seats
 ---
 
@@ -21,9 +21,9 @@ Require a Studio→Delivery handoff before spine-A build?
 
 ## Decision Outcome
 
-Chosen option: "Yes", because Scott concurred the filled pack as written.
+Chosen option: "Yes", because owner concurred the filled pack as written.
 
-Decision text: When work becomes build, Studio hands Delivery a brief with: outcome/value link (M1–M6 or Bolt goal), acceptance criteria/DoD, source pins (business-knowledge concept IDs and/or private storage path references, never the personal vault), non-code gates already passed, suggested owner seat, and expected exit evidence on spine A. Studio flow: Brief → Evidence (sources cited, no invented links) → Gate (privacy/PII/IP class) → Concur (Scott) → Ship/verify/log.
+Decision text: When work becomes build, Studio hands Delivery a brief with: outcome/value link (M1–M6 or Bolt goal), acceptance criteria/DoD, source pins (business-knowledge concept IDs and/or private storage path references, never the personal vault), non-code gates already passed, suggested owner seat, and expected exit evidence on spine A. Studio flow: Brief → Evidence (sources cited, no invented links) → Gate (privacy/PII/IP class) → Concur (the owner) → Ship/verify/log.
 
 ### Consequences
 
@@ -32,7 +32,7 @@ Decision text: When work becomes build, Studio hands Delivery a brief with: outc
 
 ### Confirmation
 
-Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
+owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
 
@@ -42,6 +42,6 @@ A handoff/bolt-brief template exists in `templates/`; spine-A Bolts that start f
 
 ## More Information
 
-Owner: Kai (GM). Executor: Delivery · Lead.
+Owner: the GM (GM). Executor: Delivery · Lead.
 
 Cross-ref: W0-08 Vaults + handoff (active; also [0004](0004-privacy-and-vault-boundaries.md)). Record format: [MADR 4.0](https://adr.github.io/madr/).

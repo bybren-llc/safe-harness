@@ -40,7 +40,7 @@ cp "$ORIGINAL_HARNESS_CONFIG" "$BACKUP_HARNESS_CONFIG"
 TEMP_CONFIG="$REPO_ROOT/.github/harness.yml.temp"
 cat > "$TEMP_CONFIG" << 'EOF'
 # safe-harness configuration (test fixture temporary)
-owner_identity: "Repository Owner"
+owner_identity: "example-owner"
 EOF
 
 # Track temp directories created by mktemp
@@ -352,7 +352,7 @@ TEMP_DIR=$(mktemp -d /tmp/trace-check-test-XXXXXX)
 TEMP_DIRS+=("$TEMP_DIR")
 mkdir -p "$TEMP_DIR/trace" "$TEMP_DIR/arch" "$TEMP_DIR/.github"
 cat > "$TEMP_DIR/.github/harness.yml" << 'REOF'
-owner_identity: "Repository Owner"
+owner_identity: "example-owner"
 REOF
 cat > "$TEMP_DIR/intent.md" << 'REOF'
 # design-goal
@@ -389,7 +389,7 @@ TEMP_DIR=$(mktemp -d /tmp/trace-check-test-XXXXXX)
 TEMP_DIRS+=("$TEMP_DIR")
 mkdir -p "$TEMP_DIR/trace" "$TEMP_DIR/arch" "$TEMP_DIR/.github"
 cat > "$TEMP_DIR/.github/harness.yml" << 'REOF'
-owner_identity: "Repository Owner"
+owner_identity: "example-owner"
 REOF
 cat > "$TEMP_DIR/trace/trace-map.yaml" << 'REOF'
 requirements: []
@@ -416,7 +416,7 @@ TEMP_DIR=$(mktemp -d /tmp/trace-check-test-XXXXXX)
 TEMP_DIRS+=("$TEMP_DIR")
 mkdir -p "$TEMP_DIR/trace" "$TEMP_DIR/arch" "$TEMP_DIR/.github"
 cat > "$TEMP_DIR/.github/harness.yml" << 'REOF'
-owner_identity: "Repository Owner"
+owner_identity: "example-owner"
 REOF
 cat > "$TEMP_DIR/trace/trace-map.yaml" << 'REOF'
 requirements: [
