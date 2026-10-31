@@ -127,6 +127,21 @@ else
 fi
 cp "$TEMP_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
 
+# Test: owner-identity-placeholder
+echo -n "  owner-identity-placeholder ... "
+fixture="$FIXTURES_DIR/fail/owner-identity-placeholder"
+if [[ -d "$fixture" ]]; then
+  if ! bash "$REPO_ROOT/trace/validate-trace.sh" "$fixture" "$fixture/.github/harness.yml" > /dev/null 2>&1; then
+    echo "✓ FAIL (as expected)"
+    PASS_COUNT=$((PASS_COUNT + 1))
+  else
+    echo "❌ PASS (expected to fail)"
+    FAIL_COUNT=$((FAIL_COUNT + 1))
+  fi
+else
+  echo "⚠ SKIP (fixture not found)"
+fi
+
 # Test: owner-identity-empty
 echo -n "  owner-identity-empty.yaml ... "
 cp "$FIXTURES_DIR/fail/owner-identity-empty.yaml" "$ORIGINAL_TRACE_MAP"
@@ -434,6 +449,146 @@ if ! bash "$REPO_ROOT/trace/check.sh" "$TEMP_DIR" > /dev/null 2>&1; then
 else
   echo "❌ PASS (expected hard-fail)"
   FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "Part 3: check-template-ready.sh tests"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+
+# Template-ready pass fixture
+echo "Testing PASS fixtures (should succeed):"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo -n "  template-ready/pass ... "
+if bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/pass" > /dev/null 2>&1; then
+  echo "✓ PASS"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ FAIL (expected to pass)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+echo ""
+
+# Template-ready fail fixtures
+echo "Testing FAIL fixtures (should fail):"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+echo -n "  template-ready/fail (has cheddarfox) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+echo -n "  template-ready/fail-mixed-case (has CheddarFox) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-mixed-case" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+echo -n "  template-ready/fail-empty-surface (no CI surface) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-empty-surface" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+echo -n "  template-ready/fail-symlink (symlinked templates/) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-symlink" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+echo -n "  template-ready/fail-no-config (missing denylist config) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-no-config" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+echo -n "  template-ready/fail-empty-config (empty denylist) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-empty-config" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+echo -n "  template-ready/fail-configured-term (configured term caught) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-configured-term" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+echo -n "  template-ready/fail-symlinked-file (file symlink) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-symlinked-file" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+echo -n "  template-ready/fail-svg-denied (SVG file with denied term) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-svg-denied" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+echo -n "  template-ready/fail-dash-term (denylist term starting with -) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-dash-term" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+echo -n "  template-ready --full flag as argv[1] ... "
+if bash "$REPO_ROOT/trace/check-template-ready.sh" --full "$FIXTURES_DIR/template-ready/pass" > /dev/null 2>&1; then
+  echo "✓ PASS"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ FAIL (expected to pass)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+echo ""
+
+# Add owner-identity case variant test
+echo -n "  owner-identity-case-variant (case-insensitive placeholder check) ... "
+fixture="$FIXTURES_DIR/fail/owner-identity-case-variant"
+if [[ -d "$fixture" ]]; then
+  if ! bash "$REPO_ROOT/trace/validate-trace.sh" "$fixture" "$fixture/.github/harness.yml" > /dev/null 2>&1; then
+    echo "✓ FAIL (as expected)"
+    PASS_COUNT=$((PASS_COUNT + 1))
+  else
+    echo "❌ PASS (expected to fail)"
+    FAIL_COUNT=$((FAIL_COUNT + 1))
+  fi
+else
+  echo "⚠ SKIP (fixture not found)"
 fi
 
 echo ""

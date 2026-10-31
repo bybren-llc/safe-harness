@@ -1,0 +1,4 @@
+# Fixture denylist
+# The pass fixture uses placeholders, not the denied terms
+cheddarfox
+@cheddarfox

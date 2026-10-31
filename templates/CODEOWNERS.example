@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 ByBren, LLC
+# CODEOWNERS template — safe-harness
+#
+# Copy this file to .github/CODEOWNERS and replace <your-github-login>
+# with your actual GitHub login. See docs/adapting.md.
+#
+# Human-owned: intent.md and spec.md (owner accepts design).
+# Agent-authored with review gate: requirements, trace, constitution,
+# arch, AGENTS.md, adapter AGENTS.md, skills, workflows, CODEOWNERS.
+# Agents may propose edits but never merge these files (constitution/05),
+# except constitution/ as allowed in constitution/03.
+#
+# Any REQ-ID add, change, or removal needs a human-reviewed PR.
+
+# Human-owned design (intent + spec)
+/intent.md              @<your-github-login>
+/intent/                @<your-github-login>
+/spec.md                @<your-github-login>
+
+# Agent-authored with review gate
+/requirements/          @<your-github-login>
+/constitution/          @<your-github-login>
+/trace/                 @<your-github-login>
+/trace/.blocking        @<your-github-login>
+/arch/                  @<your-github-login>
+/AGENTS.md              @<your-github-login>
+/adapters/**/AGENTS.md  @<your-github-login>
+/skills/                @<your-github-login>
+/.github/harness.yml    @<your-github-login>
+/.github/CODEOWNERS     @<your-github-login>
+/.github/workflows/     @<your-github-login>

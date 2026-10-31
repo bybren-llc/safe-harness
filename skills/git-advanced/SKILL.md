@@ -15,7 +15,7 @@ license: MIT (see repository LICENSE)
 
 See the cited section; this skill grants no authority.
 
-**Working practice, not yet constitutional:** After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks. That includes a "quick rebase."
+**Working practice, not yet constitutional:** After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks.
 
 ## When to use
 
@@ -49,6 +49,7 @@ git push origin <issue#>-slug
 
 This creates a plain merge commit. If the PR is already open, the new commit updates the PR head. QAS reviews at the new exact head.
 
+
 ## Bisect
 
 ```text
@@ -76,11 +77,11 @@ Resolve, `git add`, `git cherry-pick --continue`.
 1. `git status`
 2. Edit out the conflict markers
 3. `git add` the resolved files
-4. Continue the rebase, merge, or cherry-pick
+4. Continue the merge or cherry-pick
 
 Merge main often on long-running feature branches so conflicts stay small.
 
 ## Stop rules
 
-- No secrets in commits. If you committed one, stop and follow SecEng; do not rebase it away in public without their go.
+- No secrets in commits. If you committed one, stop and follow SecEng; do not rewrite history without their go.
 - Run the repo's documented check command before you push a rewritten feature branch.
