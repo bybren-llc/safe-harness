@@ -171,6 +171,10 @@ jobs:
           
           echo "✅ Basic markdown syntax valid"
       
+      - name: Check for merge conflict markers
+        run: |
+          bash scripts/check-conflict-markers.sh
+      
       - name: Summary
         if: success()
         run: |
