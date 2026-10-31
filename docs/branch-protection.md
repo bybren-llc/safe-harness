@@ -1,12 +1,14 @@
 # Branch protection for `main`
 
-This file is the intended GitHub setting for `main`. It does not apply the setting. A repository administrator applies it after this policy lands on `main`, using the checklist below.
+Who may merge remains [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md): only the owner, the GM, or Release · RTE. Delivery and cloud agents never merge. The GitHub rules below do not encode that seat list. This file records both the live configuration and the intended future settings. A repository administrator applies intended settings after they are decided and land on `main`.
 
-Who may merge remains [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md): only the owner, the GM, or Release · RTE. Delivery and cloud agents never merge. These GitHub rules do not encode that seat list. They require a pull request, require the named status checks, and block force-pushes and deletion.
+## Live: active ruleset on `main`
 
-## Intended settings
+A ruleset on `main` requires three checks before merge: **Requirements Trace Validation**, **Structure & Docs Validation**, and **API Contract Checks**. This ruleset is active and enforced. It does not restrict who may merge (seat-list enforcement waits on the owner).
 
-The `main` branch is protected by a ruleset requiring three checks: **Structure & Docs Validation**, **Requirements Trace Validation**, and **API Contract Checks**. Use a **classic branch protection rule** on `main` (Settings → Branches → Branch protection rules). Classic rules are the ones that make the branch report as protected.
+## Intended settings (not yet applied)
+
+The intended configuration below uses a **classic branch protection rule** on `main` (Settings → Branches → Branch protection rules). Classic rules are the ones that make the branch report as protected. These settings are not yet applied; a repository administrator applies them after this policy lands on `main`, using the checklist at the end of this file.
 
 | Setting | Value |
 | --- | --- |

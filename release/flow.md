@@ -203,7 +203,7 @@ The weekly look back is **Ops · CoS's Monday aggregate** (Ops-owned; this file 
 
 Merge authority, RTE placement, HOLD override, and the High-tier two-humans guidance are on `main` in `constitution/03-cd-and-hitl.md` and `roles/release-rte.md` (#22 / `d88c884`, #27 / `132f890`). The `constitution/05-evidence-and-traceability.md` D1 `hitl_delegate` record stays as written. This file stays **PROPOSED — needs the owner concur** and non-binding.
 
-> **Branch protection on `main` — pending the owner.** No branch protection / required-reviewer / merge-restriction settings are recorded on `main` yet (`constitution/03-cd-and-hitl.md` open question). Enforcing who may merge in GitHub waits on the owner.
+> **Branch protection on `main`.** A ruleset on `main` requires the three checks: **Requirements Trace Validation**, **Structure & Docs Validation**, and **API Contract Checks** (`constitution/03-cd-and-hitl.md` Answered; `docs/branch-protection.md`). Seat-list enforcement (restricting who may merge in GitHub) still waits on the owner.
 
 Still open (not landed, or not binding, on `main`):
 
@@ -215,7 +215,7 @@ Still open (not landed, or not binding, on `main`):
 - Tag and GitHub Release publication — owned by Release · RTE after merge, per `roles/release-rte.md`.
 - Event triggers for "packet arrived" and the 2× stall alerts to the GM via `SendToAgent` `priority: true` (Wave 0 PR-event routine was unreliable — `prove/wave-0-retro.md` §4, §6 item 1).
 - Whether `wave0-checks.yml` should list `release/flow.md` as a required path (path itself decided — the GM 2026-10-29).
-- `main` branch protection — pending the owner.
+- Seat-list enforcement in GitHub (restricting who may merge) — pending the owner.
 
 ## 10. Escalation log
 
