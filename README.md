@@ -187,7 +187,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | BSA-like | [`roles/bsa-like.md`](roles/bsa-like.md) |
 | Release · RTE | [`roles/release-rte.md`](roles/release-rte.md) |
 | Model stack (tiers) | [`roles/model-stack.md`](roles/model-stack.md) |
-| Human owner (HITL/POPM) | Role card planned |
+| Human owner (HITL/POPM) | Defined in `constitution/01-round-table.md` |
 
 **Tiers, O2, and merge rules:** [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md). **Release · RTE:** [`roles/release-rte.md`](roles/release-rte.md). Seat map: [`constitution/01-round-table.md`](constitution/01-round-table.md). The HITL-concur label in this repo is `needs-owner-concur`.
 
@@ -197,7 +197,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 
 | Path | Purpose |
 | --- | --- |
-| [`skills/`](skills/README.md) | v1.0 skills library (index of 38 skills). Canonical path `skills/<slug>/SKILL.md`. |
+| [`skills/`](skills/README.md) | Skills library (index of 38 skills). Canonical path `skills/<slug>/SKILL.md`. |
 | [`adapters/claude-code/`](adapters/claude-code/README.md) | Claude Code adapter (docs stub). |
 | [`adapters/claude-code/AGENTS.md`](adapters/claude-code/AGENTS.md) | Claude Code agent entry point. |
 | [`adapters/cursor/`](adapters/cursor/README.md) | Cursor adapter (docs stub). |

@@ -20,7 +20,7 @@ jobs:
           fetch-depth: 0
 
       - name: Doc-drift check (warn-only)
-        # WARN-ONLY (v1). Findings print as WARN. This step exits 0.
+        # WARN-ONLY. Findings print as WARN. This step exits 0.
         # To flip to blocking later, see docs/ci/doc-drift.md.
         # Do not interpolate github.event.* into this run: script.
         continue-on-error: true

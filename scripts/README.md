@@ -26,4 +26,4 @@ Local tests (fake terms only):
 python3 scripts/test_check_denylist.py
 ```
 
-This check is **not** in CI. A CI version using a repo secret is planned for v1.1. Run it locally before opening a docs PR.
+This check is **not** in CI. Run it locally before opening a docs PR.

@@ -131,7 +131,7 @@ labels:
     color: "5319e7"
     description: "Gate: Measure (outcomes vs. metrics)"
 
-  # Link health (Librarian · Signals)
+  # Link health (Librarian)
   - name: link-rot
     color: "e99695"
     description: "Broken or stale link found by the Librarian link-health scan"

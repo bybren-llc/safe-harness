@@ -26,7 +26,7 @@ Generic basenames are skipped for the basename search: `README.md`, `AGENTS.md`,
 
 Hits under `prove/` are skipped. That tree is historical evidence (decision packs and historical records). An old filename cited there, including the Decision 18 history row in `prove/wave-1/decision-pack.md`, is a citation, not drift.
 
-## Flip to blocking (not in v1)
+## Flip to blocking
 
 1. Confirm this rule set in writing (the GM).
 2. In `.github/workflows/doc-drift.yml`, drop `continue-on-error` and make the check step exit non-zero when `WARNINGS` is greater than 0.
