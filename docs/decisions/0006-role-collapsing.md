@@ -2,7 +2,7 @@
 status: "superseded (RTE clause) by #22"
 date: 2026-10-28
 decision-makers: owner (HITL/POPM)
-consulted: GM consulted: the GM (GM consulted: the GM (GM & lead ARCHitect) lead ARCHitect) lead ARCHitect, Studio · Lead, Studio · Lead
+consulted: the GM (GM & lead ARCHitect), Studio · Lead
 informed: Round Table seats
 ---
 
@@ -30,7 +30,7 @@ Status: superseded (RTE clause) by #22 (`d88c884`, merged 2026-10-30). Release �
 ### Consequences
 
 * Historical: RTE could collapse when simple; QAS and SecEng could not; the always-on 11-bot roster was dropped.
-* Supersession (RTE clause only): #22 made Release · RTE non-collapsible. Merge authority is in [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md), replacing W0-04's "low auto / medium one human / high two humans" flow. An agent merge never counts as human approval. "High = two distinct humans" is recommended guidance, not a gate, per constitution/03 and the owner's answers on #22. With the owner as the only human, his own-words concur is the required human approval.
+* Supersession (RTE clause only): #22 made Release · RTE non-collapsible. Merge authority is in [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md), replacing W0-04's "low auto / medium one human / high two humans" flow. An agent merge never counts as human approval. "High = two distinct humans" is recommended guidance, not a gate, per constitution/03 and the owner's answers on #22. With the owner as the only human, the owner's own-words concur is the required human approval.
 
 ### Confirmation
 

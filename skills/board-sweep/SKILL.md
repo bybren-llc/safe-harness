@@ -24,7 +24,7 @@ On the adopter's configured schedule (weekday + timezone; no fixed clock time in
 
 - Open issues and PRs (age, labels, exact-head gates)
 - Stalls (no update past the adopter's stall threshold)
-- Gate waits (the GM, SecEng, RTE, HITL concur)
+- Gate waits (QAS, SecEng, RTE, HITL concur)
 
 ## The only write
 

@@ -126,7 +126,7 @@ Resolved through the GitHub API (connector), never by unauthenticated HTTP, beca
 
 - A 404 from the API on a `bybren-llc/*` target is not proof of rot; it can mean the connected account lacks access. The scan records `auth-unknown`, re-checks once with a repository listing, and only then decides `broken`.
 - An access gap is reported **once** to the Librarian's own chat for the owner/the GM to fix, never as a `link-rot` issue.
-- the issue tracker URLs (L8) are private. They are checked through the issue tracker connector (read-only) or, if it is unavailable, marked `auth-unknown`. the issue tracker history must never be deleted (constitution/05); a the issue tracker URL that stops resolving is `broken` and escalated to the GM.
+- the issue tracker URLs (L8) are private. They are checked through the issue tracker connector (read-only) or, if it is unavailable, marked `auth-unknown`. the issue tracker history must never be deleted (constitution/05); an issue tracker URL that stops resolving is `broken` and escalated to the GM.
 
 ### 4.5 Flake tolerance
 
@@ -159,7 +159,7 @@ After freeze, `trace/linear-saf-map.csv` is immutable. In-place edits are not pe
 
 ### 5.3 Resolving SAF references
 
-Each scan finds `SAF-[0-9]+` (bare, bracketed, or in a the issue tracker URL) in this repo, in open issue/PR bodies, and in knowledge base, then resolves it through the map:
+Each scan finds `SAF-[0-9]+` (bare, bracketed, or in an issue tracker URL) in this repo, in open issue/PR bodies, and in knowledge base, then resolves it through the map:
 
 | Result | Action |
 | --- | --- |

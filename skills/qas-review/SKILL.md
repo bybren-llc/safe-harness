@@ -21,7 +21,7 @@ See the cited section; this skill grants no authority.
 
 ## When to use
 
-When a change is ready for the independence gate. Who may act as the GM, and that QAS never collapses, is in the cited sections.
+When a change is ready for the independence gate. Who may act as QAS, and that QAS never collapses, is in the cited sections.
 
 ## Verdict
 

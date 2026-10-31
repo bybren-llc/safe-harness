@@ -140,7 +140,7 @@ body:
     id: estimate_review_wait
     attributes:
       label: Estimate — review/approval wait (hours)
-      description: Planned wait in hours for the GM, SecEng, RTE, and HITL concur
+      description: Planned wait in hours for QAS, SecEng, RTE, and HITL concur
       placeholder: "1 hour"
     validations:
       required: false

@@ -58,7 +58,7 @@ Other issue forms: [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) (`requir
 3. Implement, test, and record portable evidence.
 4. Commit with trailers `Refs #N` and, when REQ IDs exist, `Req: REQ-<CMP>-NNN`. While `spec.md` has no REQ IDs, do not invent them.
 5. Open a PR from [`.github/pull_request_template.md`](.github/pull_request_template.md). Include a `Requirements:` line (`REQ-<CMP>-NNN` or `N/A` during bootstrap).
-6. Wait for CI, independent review (the GM, and SecEng when required), and Release · RTE as the constitution requires.
+6. Wait for CI, independent review (QAS, and SecEng when required), and Release · RTE as the constitution requires.
 7. Merge only under [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) and [`roles/release-rte.md`](roles/release-rte.md).
 
 Studio → Delivery handoffs use [`templates/studio-to-delivery-handoff.md`](templates/studio-to-delivery-handoff.md).
@@ -71,7 +71,7 @@ Safe-harness is **runtime-neutral**. Cursor, Claude Code, Grok Bot, and local ag
 
 ### Seats
 
-Name every standing seat before the first bolt. On-demand specialists (Implementer, the GM, SecEng, BSA-like, Release · RTE) sit when the bolt needs them. Do not keep idle seats warm for ceremony. Cards live in [`roles/`](roles/) (index: [`roles/README.md`](roles/README.md)).
+Name every standing seat before the first bolt. On-demand specialists (Implementer, QAS, SecEng, BSA-like, Release · RTE) sit when the bolt needs them. Do not keep idle seats warm for ceremony. Cards live in [`roles/`](roles/) (index: [`roles/README.md`](roles/README.md)).
 
 ### Lanes
 

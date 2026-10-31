@@ -180,9 +180,9 @@ At **Low tier** only, HITL may be delegated with a structured `hitl_delegate` re
 
 ```yaml
 hitl_delegate:
-  delegating_actor: cheddarfox
+  delegating_actor: <owner_identity>
   delegate_actor: the GM
-  authorization_url: <issue-tracker-url>/issue/<KEY>-<n>#comment-<id>
+  authorization_url: <placeholder>
   scope: low  # Must be "low" only
   delegated_what: Low-tier HITL merge execution (standing Wave 0 authorization)
   delegated_at: 2026-10-28

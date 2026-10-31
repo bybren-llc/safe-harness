@@ -12,7 +12,7 @@
 | Outcome / value link | (M1–M6 and/or Bolt goal) |
 | Summary (≤5 lines) | |
 | Acceptance criteria / DoD | (or BSA follow-on: issue/person) |
-| Source pins | Knowledge-base references — **never private vault** |
+| Source pins | Knowledge-base references and/or private-storage paths — **never personal vault** |
 | Non-code gates passed | (list) |
 | Suggested owner seat | |
 | RTE collapse allowed? | Yes / No |
@@ -29,7 +29,7 @@
 
 ## Delivery accept checklist
 
-- [ ] Pins resolve (knowledge-base references)
+- [ ] Pins resolve (knowledge-base references and/or private-storage paths)
 - [ ] AC testable or BSA named
 - [ ] Risk tier + O2 scanned
 - [ ] Human assignee identified (agent delegate optional)

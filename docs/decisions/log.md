@@ -52,7 +52,7 @@ W0-04, W0-07 and W0-09 are superseded stubs. They do not have their own ADR file
 
 **Limits:** The delivery lead never merges. The human owner's HITL is still required for any deploy and for High/O2 items. This record does not amend `constitution/05`. D1 is a separate decision.
 
-**Provenance:** the issue tracker-1 comment `54d37e98`, as already cited in `constitution/05-evidence-and-traceability.md`.
+**Provenance:** SAF-1 comment `54d37e98`, as already cited in `constitution/05-evidence-and-traceability.md`.
 
 Human-owner confirmation of this 2026-10-28 relayed record is still pending (D1, tracked in #53). This entry does not present the 2026-10-28 record as the human owner's own words.
 
@@ -61,6 +61,6 @@ Human-owner confirmation of this 2026-10-28 relayed record is still pending (D1,
 **Date:** 2026-10-30 1:15 PM ET  
 **Kind/Provenance:** the human owner's own words, given directly to the GM in the owner's Grok Bot chat on 2026-10-30 at 1:15 PM ET; the GitHub copy is the GM's verbatim relay.
 
-the owner's 2026-10-30 1:15 PM ET standing concur satisfies the High/O2 HITL requirement only for safe-harness PRs merged before the v1.0.0 tag. Each such PR still needs the GM the GM, SecEng and RTE PASS at its own exact head, and its merge note quotes the concur. It expires when v1.0.0 is tagged and is not a reusable template rule.
+the owner's 2026-10-30 1:15 PM ET standing concur satisfies the High/O2 HITL requirement only for safe-harness PRs merged before the v1.0.0 tag. Each such PR still needs QAS, SecEng and RTE PASS at its own exact head, and its merge note quotes the concur. It expires when v1.0.0 is tagged and is not a reusable template rule.
 
 The current verbatim basis for v1.0 merges is the human owner's standing concur of 2026-10-30 1:15 PM ET: "I'm asking you all to manage all the way without my intervention. On the safe-harness we want to use it in this work. So finish and deliver that then adapt to the new project."

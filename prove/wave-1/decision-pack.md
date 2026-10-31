@@ -19,7 +19,7 @@ Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub b
 1. constitution/05 amendment (repo as SoR, human/agent ownership split, trace enforcement)
 2. constitution/03 amendment (GitHub conventions replace Linear)
 3. Requirements tracing framework (REQ-<CMP>-NNN, trace map, trace-check CI)
-4. CODEOWNERS: intent/spec human-owned (the owner only); requirements, trace and constitution are agent-authored behind a the code owner review gate
+4. CODEOWNERS: intent/spec human-owned (the owner only); requirements, trace and constitution are agent-authored behind the code owner review gate
 5. GitHub Issue templates and label scheme
 6. Migration plan (Linear → GitHub)
 
@@ -29,7 +29,7 @@ Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub b
 
 ## Team concur record (summary)
 
-**Note:** the owner's concurrence is separate and PENDING (see ## Ask section). the GM is coordinator, not a seat. the GM's 9:49 AM "all five concurred" messages are summaries; the seat rows below are the source. the owner's 9:48 "make the change now if we all concur" is not his concur. See verbatim quoted conditions in Appendix A.
+**Note:** the owner's concurrence is separate and PENDING (see ## Ask section). the GM is coordinator, not a seat. the GM's 9:49 AM "all five concurred" messages are summaries; the seat rows below are the source. the owner's 9:48 "make the change now if we all concur" is not the owner's concur. See verbatim quoted conditions in Appendix A.
 
 | Seat | Concur Status | Citation | Conditions Summary | Satisfied in PR |
 | --- | --- | --- | --- | --- |
@@ -128,7 +128,7 @@ All constitution changes below were **adopted 2026-10-29** following the owner's
 - Deferred needs: defer_to (target date/milestone)
 - Dropping REQ from intent.md needs the owner's sign-off
 
-**Special rule:** Dropping a REQ whose source is `intent.md#*` requires `decided_by: owner`.
+**Special rule:** Dropping a REQ whose source is `intent.md#*` requires `decided_by: <owner_identity>`.
 
 **Trace-check CI enforcement:**
 - Fail on Missing state
@@ -327,7 +327,7 @@ hitl_delegate:
 
 ### Decision 11: Migration plan scope and frozen mapping table
 
-**Context:** the issue tracker-1 through SAF-5 need GitHub Issue equivalents.
+**Context:** SAF-1 through SAF-5 need GitHub Issue equivalents.
 
 **Proposal:**
 - Migration plan: prove/wave-1/migration-plan.md
@@ -550,7 +550,7 @@ This PR touches **Deploy CI / workflows** (O2 item):
 - [x] Prod secrets — N/A
 - [x] Privacy-boundary crosses — N/A (personal-boundary rule added as safeguard)
 
-**Downgrade rationale (proposed by Delivery; the GM confirmed Medium in writing at the GM, reviews 5699823929 and 5702397094):**
+**Downgrade rationale (proposed by Delivery; QAS confirmed Medium in writing at QAS, reviews 5699823929 and 5702397094):**
 
 O2 item "Deploy CI / workflows" defaults to High tier. **Proposed downgrade to Medium** is justified by:
 

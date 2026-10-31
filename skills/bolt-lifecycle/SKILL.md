@@ -54,4 +54,4 @@ The cited sections define the gates. This table is a reading order, not a grant 
 
 - Do not merge from this skill. See the cited section; this skill grants no authority.
 - Scanner, not fixer: see the cited `constitution/07` section.
-- Do not collapse the GM, SecEng, or RTE except as the cited `constitution/02` section allows.
+- Do not collapse QAS, SecEng, or RTE except as the cited `constitution/02` section allows.

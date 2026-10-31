@@ -6,6 +6,6 @@ requirements:
     source: intent.md#design-goal
     rationale: |
       Fixture for a malformed requirement id
-    decided_by: cheddarfox
+    decided_by: example-owner
     decided_at: 2026-10-30
 evidence: []

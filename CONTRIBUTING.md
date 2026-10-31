@@ -28,10 +28,10 @@ When referencing a personal store, private store, or private context, **describe
 **Genericize allowlist (personal names):** The repository is genericized for template use. The only approved exceptions where the original copyright holder's personal name appears are:
 
 - `LICENSE:3` — Copyright holder line (required by MIT License)
-- `NOTICE` — Project copyright line (line 2) and SAW-derived verbatim MIT copyright line (line 17)
+- `NOTICE` — Project copyright line (line 2) and SAW-derived verbatim MIT copyright line (line 18)
 - `CITATION.cff` — Authors entry (lines 4-6, required for academic citation)
 
-These exceptions are legally required for proper attribution and cannot be genericized. Template users should replace these with their own information.
+These exceptions are legally required for proper attribution and cannot be genericized. Template users must retain the existing copyright and license notices (MIT License requirement) and may add their own.
 
 Secrets live in vaults. The human owner (HITL/POPM) owns both the forge secrets and the vault side. Never include a secret value in this repository.
 
