@@ -1,8 +1,8 @@
 ---
 status: accepted
 date: 2026-10-28
-decision-makers: Scott (HITL/POPM)
-consulted: Kai (GM & lead ARCHitect), Studio · Lead
+decision-makers: owner (HITL/POPM)
+consulted: the GM (GM & lead ARCHitect), Studio · Lead
 informed: Round Table seats
 ---
 
@@ -21,7 +21,7 @@ New template (not a silent SAW rewrite); SAW stays reference?
 
 ## Decision Outcome
 
-Chosen option: "Yes", because Scott concurred the filled pack as written.
+Chosen option: "Yes", because owner concurred the filled pack as written.
 
 Decision text: Build a new template harness. SAW stays reference, pattern library and migration source, frozen as reference. Don't fork the methodology silently. One core + thin adapters.
 
@@ -32,7 +32,7 @@ Decision text: Build a new template harness. SAW stays reference, pattern librar
 
 ### Confirmation
 
-Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
+owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
 
@@ -42,6 +42,6 @@ safe-harness exists as its own repo; README explains its relation to SAW as refe
 
 ## More Information
 
-Owner: Kai (GM). Executor: Delivery · Lead.
+Owner: the GM (GM). Executor: Delivery · Lead.
 
 Cross-ref: W0-10 Non-goals / execute (active, historical; also [0015](0015-concur-the-filled-pack.md), [0016](0016-authorize-new-template-repo.md)). Record format: [MADR 4.0](https://adr.github.io/madr/).

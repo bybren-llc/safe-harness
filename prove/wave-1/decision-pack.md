@@ -2,24 +2,24 @@
 
 **PR:** #6  
 **Branch:** cursor/wave-1-repo-sot-9236  
-**Exact-head:** final reviewed head recorded in Kai's QAS review and in the squash-merge body  
-**Status:** Adopted 2026-10-29 (Scott concur)
+**Exact-head:** final reviewed head recorded in the GM's QAS review and in the squash-merge body  
+**Status:** Adopted 2026-10-29 (the owner concur)
 
-**Owner:** Kai (coordinator)  
+**Owner:** the GM (coordinator)  
 **Delivery:** Cursor CloudAgent  
-**Tier:** Medium (Kai confirmed; conditions met at f84ee52)
+**Tier:** Medium (the GM confirmed; conditions met at f84ee52)
 
 ---
 
 ## Executive summary
 
-Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub becomes the sole SoR for intent, spec, plan, requirements, trace map, review findings, and evidence. Linear is archived read-only. Constitution changes require Scott's explicit concurrence before merge.
+Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub becomes the sole SoR for intent, spec, plan, requirements, trace map, review findings, and evidence. the issue tracker is archived read-only. Constitution changes require the owner's explicit concurrence before merge.
 
 **Key changes:**
 1. constitution/05 amendment (repo as SoR, human/agent ownership split, trace enforcement)
 2. constitution/03 amendment (GitHub conventions replace Linear)
 3. Requirements tracing framework (REQ-<CMP>-NNN, trace map, trace-check CI)
-4. CODEOWNERS: intent/spec human-owned (Scott only); requirements, trace and constitution are agent-authored behind a @cheddarfox review gate
+4. CODEOWNERS: intent/spec human-owned (the owner only); requirements, trace and constitution are agent-authored behind the code owner review gate
 5. GitHub Issue templates and label scheme
 6. Migration plan (Linear → GitHub)
 
@@ -29,35 +29,35 @@ Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub b
 
 ## Team concur record (summary)
 
-**Note:** Scott's concurrence is separate and PENDING (see ## Ask section). Kai is coordinator, not a seat. Kai's 9:49 AM "all five concurred" messages are summaries; the seat rows below are the source. Scott's 9:48 "make the change now if we all concur" is not his concur. See verbatim quoted conditions in Appendix A.
+**Note:** the owner's concurrence is separate and PENDING (see ## Ask section). the GM is coordinator, not a seat. the GM's 9:49 AM "all five concurred" messages are summaries; the seat rows below are the source. the owner's 9:48 "make the change now if we all concur" is not the owner's concur. See verbatim quoted conditions in Appendix A.
 
 | Seat | Concur Status | Citation | Conditions Summary | Satisfied in PR |
 | --- | --- | --- | --- | --- |
-| **Studio** | CONCUR with conditions | Studio → Kai SendToAgent, 2026-10-29 09:48 ET, call id toolu_017ZNtEo19N3873edkiGrWPG | 5 conditions (see Appendix A) | (1) intent.md:3-5, CONTRIBUTING.md:15-18<br>(2) .github/CODEOWNERS:7-9<br>(3) trace/schema.md:12-16, requirements/REQ-TEMPLATE.yaml:31-34<br>(4) prove/wave-1/migration-plan.md:1-154<br>(5) arch/components.yaml:1-12 |
-| **Scout** | concur (non-blocking concerns) | Scout → Kai SendToAgent, 2026-10-29 09:48 ET, call id toolu_01UTXbtMkNwJ6U755YFwo2da | 3 concerns (see Appendix A) | (1) Open question, follow-up<br>(2) intent.md:22-46 (research appendix)<br>(3) Open question, follow-up after merge |
-| **Librarian** | CONCUR, 5 conditions | Librarian → Kai SendToAgent, 2026-10-29 09:48 ET, call id toolu_01KkZrQJMBSc9vwPuPbSVbUN | 5 conditions (see Appendix A) | (1) trace/linear-saf-map.csv:1<br>(2) constitution/05:47-51, trace/schema.md:1-120<br>(3) Role defined; link-rot routine is follow-up<br>(4) constitution/05:130-135, trace/schema.md:90<br>(5) .github/CODEOWNERS:1-21 |
-| **Ops** | CONCUR, non-blocking concerns | Ops → Kai SendToAgent, 2026-10-29 09:48 ET, call id toolu_01Nsyi3W84uuopDQ92ATa2tz | 4 concerns (see Appendix A) | (A) Not applicable (Wave 0 closed 8:56 AM ET)<br>(B) .github/labels.yml:3-9,17-33<br>(C) .github/labels.yml:35-36<br>(D) Definitions provided; routine is follow-up after merge |
-| **Delivery** | concurs, six concerns | Delivery → Kai SendToAgent, 2026-10-29 ~09:49 ET, call id toolu_01519wT2WywojX49gq13NFv5 | 6 concerns (see Appendix A) | (1) decision-pack.md:697-709<br>(2) .github/CODEOWNERS:7-9<br>(3) .github/workflows/trace-check.yml:39-40, constitution/05:127-129<br>(4) constitution/05:97-108, constitution/03:61-70<br>(5) prove/wave-1/migration-plan.md:105-109, trace/linear-saf-map.csv:1<br>(6) decision-pack.md:571-574,:659-662 |
-| **Scott** | CONCUR, conditional | Scott → Kai chat, 2026-10-29 12:44 PM ET and 12:46 PM ET | Conditional concur; condition = README/structure fixes in this commit (see Appendix A) | Satisfied in commit (item 7 below) |
+| **Studio** | CONCUR with conditions | Studio → the GM SendToAgent, 2026-10-29 09:48 ET, call id toolu_017ZNtEo19N3873edkiGrWPG | 5 conditions (see Appendix A) | (1) intent.md:3-5, CONTRIBUTING.md:15-18<br>(2) .github/CODEOWNERS:7-9<br>(3) trace/schema.md:12-16, requirements/REQ-TEMPLATE.yaml:31-34<br>(4) prove/wave-1/migration-plan.md:1-154<br>(5) arch/components.yaml:1-12 |
+| **Scout** | concur (non-blocking concerns) | Scout → the GM SendToAgent, 2026-10-29 09:48 ET, call id toolu_01UTXbtMkNwJ6U755YFwo2da | 3 concerns (see Appendix A) | (1) Open question, follow-up<br>(2) intent.md:22-46 (research appendix)<br>(3) Open question, follow-up after merge |
+| **Librarian** | CONCUR, 5 conditions | Librarian → the GM SendToAgent, 2026-10-29 09:48 ET, call id toolu_01KkZrQJMBSc9vwPuPbSVbUN | 5 conditions (see Appendix A) | (1) trace/linear-saf-map.csv:1<br>(2) constitution/05:47-51, trace/schema.md:1-120<br>(3) Role defined; link-rot routine is follow-up<br>(4) constitution/05:130-135, trace/schema.md:90<br>(5) .github/CODEOWNERS:1-21 |
+| **Ops** | CONCUR, non-blocking concerns | Ops → the GM SendToAgent, 2026-10-29 09:48 ET, call id toolu_01Nsyi3W84uuopDQ92ATa2tz | 4 concerns (see Appendix A) | (A) Not applicable (Wave 0 closed 8:56 AM ET)<br>(B) .github/labels.yml:3-9,17-33<br>(C) .github/labels.yml:35-36<br>(D) Definitions provided; routine is follow-up after merge |
+| **Delivery** | concurs, six concerns | Delivery → the GM SendToAgent, 2026-10-29 ~09:49 ET, call id toolu_01519wT2WywojX49gq13NFv5 | 6 concerns (see Appendix A) | (1) decision-pack.md:697-709<br>(2) .github/CODEOWNERS:7-9<br>(3) .github/workflows/trace-check.yml:39-40, constitution/05:127-129<br>(4) constitution/05:97-108, constitution/03:61-70<br>(5) prove/wave-1/migration-plan.md:105-109, trace/linear-saf-map.csv:1<br>(6) decision-pack.md:571-574,:659-662 |
+| **the owner** | CONCUR, conditional | the owner → the GM chat, 2026-10-29 12:44 PM ET and 12:46 PM ET | Conditional concur; condition = README/structure fixes in this commit (see Appendix A) | Satisfied in commit (item 7 below) |
 
 **Open questions from seats (follow-up):**
-- Scout 1: Where evidence lives (repo vs Atlas sources/)
-- Scout 3: Confluence product-app pages + Atlas sources/linear/ repointing after SAF retirement
+- Scout 1: Where evidence lives (repo vs knowledge base sources/)
+- Scout 3: docs wiki product-app pages + knowledge base sources/linear/ repointing after SAF retirement
 
 ---
 
 ## Constitution changes
 
-All constitution changes below were **adopted 2026-10-29** following Scott's concurrence (conditional: README/structure fixes in final commit).
+All constitution changes below were **adopted 2026-10-29** following the owner's concurrence (conditional: README/structure fixes in final commit).
 
 ### Decision 1: Repository as sole source of truth
 
-**Context:** Wave 0 used Linear as SoR. Wave 1 moves to GitHub repo-only.
+**Context:** Wave 0 used the issue tracker as SoR. Wave 1 moves to GitHub repo-only.
 
 **Options:**
-1. **[RECOMMENDED]** Repo-only: GitHub repo is sole SoR; Linear archived read-only
-2. Dual SoR: Keep Linear + GitHub in parallel (complexity, drift risk)
-3. Status quo: Continue with Linear (misaligned with repo-native workflow)
+1. **[RECOMMENDED]** Repo-only: GitHub repo is sole SoR; the issue tracker archived read-only
+2. Dual SoR: Keep the issue tracker + GitHub in parallel (complexity, drift risk)
+3. Status quo: Continue with the issue tracker (misaligned with repo-native workflow)
 
 **Recommendation:** Option 1 (repo-only). Aligns with repo-native evidence, simplifies handoffs, enables audit via git history.
 
@@ -69,10 +69,10 @@ All constitution changes below were **adopted 2026-10-29** following Scott's con
 **Mitigations:**
 - Structured GitHub Issue templates
 - Comprehensive migration plan with mapping table
-- Linear archive preserved (no deletion)
+- the issue tracker archive preserved (no deletion)
 - Bootstrap CI rule (warn-only until first spec lands)
 
-**Status:** Awaiting Scott concurrence
+**Status:** Awaiting the owner concurrence
 
 ---
 
@@ -82,25 +82,25 @@ All constitution changes below were **adopted 2026-10-29** following Scott's con
 
 **Proposal:**
 
-**Humans (Scott only) own and accept only intent.md and spec.md:**
-- `intent.md`, `spec.md` — Scott owns and accepts; agents may propose edits but **never merge**
+**Humans (the owner only) own and accept only intent.md and spec.md:**
+- `intent.md`, `spec.md` — the owner owns and accepts; agents may propose edits but **never merge**
 
 **Agents own everything else end-to-end:**
 - Plan, GitHub Issues, code, tests, PRs, evidence
-- **Requirements registry** (`requirements/`) — agents author; human-reviewed PR required (CODEOWNERS: @cheddarfox)
-- **Trace map** (`trace/`) — agents author; human-reviewed PR required (CODEOWNERS: @cheddarfox)
-- **Constitution changes** — agents author; human-reviewed PR required (CODEOWNERS: @cheddarfox)
-- **Workflows and CODEOWNERS** — agents author; human-reviewed PR required (CODEOWNERS: @cheddarfox)
+- **Requirements registry** (`requirements/`) — agents author; human-reviewed PR required (CODEOWNERS: the code owner)
+- **Trace map** (`trace/`) — agents author; human-reviewed PR required (CODEOWNERS: the code owner)
+- **Constitution changes** — agents author; human-reviewed PR required (CODEOWNERS: the code owner)
+- **Workflows and CODEOWNERS** — agents author; human-reviewed PR required (CODEOWNERS: the code owner)
 
 **CODEOWNERS = review gate, not ownership:**
 
-`.github/CODEOWNERS` requires @cheddarfox review for:
+`.github/CODEOWNERS` requires the code owner review for:
 - `intent.md`, `intent/`, `spec.md` (human-owned design)
 - `requirements/` (agent-authored, human review required)
 - `constitution/` (agent-authored, human review required)
 - `trace/` (agent-authored, human review required)
 
-**Studio write path:** Studio drafts intent.md + spec.md → Delivery commits in PR → Scott approves via CODEOWNERS.
+**Studio write path:** Studio drafts intent.md + spec.md → Delivery commits in PR → the owner approves via CODEOWNERS.
 
 **Distinction:** Humans own design (accept/reject intent and spec content). Agents own execution (author requirements, trace, constitution changes, code, tests), but CODEOWNERS enforces human review gates before merge.
 
@@ -113,7 +113,7 @@ All constitution changes below were **adopted 2026-10-29** following Scott's con
 - Agents propose edits; humans approve quickly
 - Most work (code, tests, PRs) remains agent-owned
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
@@ -126,9 +126,9 @@ All constitution changes below were **adopted 2026-10-29** following Scott's con
 - Trace states: Placed / Deferred / Dropped / Missing
 - Deferred/Dropped need: rationale, decided_by, decided_at
 - Deferred needs: defer_to (target date/milestone)
-- Dropping REQ from intent.md needs Scott's sign-off
+- Dropping REQ from intent.md needs the owner's sign-off
 
-**Special rule:** Dropping a REQ whose source is `intent.md#*` requires `decided_by: Scott Graham`.
+**Special rule:** Dropping a REQ whose source is `intent.md#*` requires `decided_by: <owner_identity>`.
 
 **Trace-check CI enforcement:**
 - Fail on Missing state
@@ -145,7 +145,7 @@ All constitution changes below were **adopted 2026-10-29** following Scott's con
 - Bootstrap rule (warn-only until first spec lands)
 - Clear schema and examples
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
@@ -167,7 +167,7 @@ Wave 1: `issue` (GitHub `#N`) + `req_ids` (list of REQ-<CMP>-NNN)
 - Clear migration path in trace/schema.md
 - Examples in prove/wave-1/
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
@@ -179,8 +179,8 @@ Wave 1: `issue` (GitHub `#N`) + `req_ids` (list of REQ-<CMP>-NNN)
 
 ```yaml
 hitl_delegate:
-  delegating_actor: Scott Graham
-  delegate_actor: Kai
+  delegating_actor: owner
+  delegate_actor: the GM
   authorization_url: <link>
   scope: low  # Must be "low" only
 ```
@@ -199,17 +199,17 @@ hitl_delegate:
 - Structured record with authorization URL
 - Distinct exit label (differentiated from HITL only)
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
 ### Decision 6: GitHub conventions replace Linear
 
-**Context:** constitution/03 currently references Linear (SAF-N branches, Linear issue links).
+**Context:** constitution/03 currently references the issue tracker (SAF-N branches, the issue tracker issue links).
 
 **Proposal:** Update constitution/03 to document GitHub conventions:
 - Branch: `<issue#>-slug` (replaces `SAF-N-slug`)
-- Commit prefix: `[wave-1]` (no Linear SAF tags)
+- Commit prefix: `[wave-1]` (no the issue tracker tags)
 - Commit trailers: `Refs #N` + `Req: REQ-<CMP>-NNN`
 - PR body: `Requirements: REQ-<CMP>-NNN, ...` line
 
@@ -222,13 +222,13 @@ hitl_delegate:
 - Examples in prove/wave-1/
 - Migration plan includes team training
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
 ### Decision 7: Personal boundary rule
 
-**Context:** Never include personal-vault content, story IP, or NAS-private facts in repo.
+**Context:** Never include personal-vault content, story IP, or private-storage facts in repo.
 
 **Proposal:** Add personal-boundary rule to:
 - CONTRIBUTING.md
@@ -246,7 +246,7 @@ hitl_delegate:
 - Examples in CONTRIBUTING.md
 - QAS checks for violations
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
@@ -256,11 +256,11 @@ hitl_delegate:
 
 **Proposal:** Deferred/Dropped entries must carry:
 - `rationale` (why deferred/dropped + conditions)
-- `decided_by` (decision owner: Scott, Kai, or "Scott + Kai")
+- `decided_by` (decision owner: the owner, the GM, or "owner + GM")
 - `decided_at` (ISO 8601 date)
 - `defer_to` (for Deferred only: target date or milestone)
 
-**Special rule:** Dropping REQ from intent.md needs Scott sign-off recorded.
+**Special rule:** Dropping REQ from intent.md needs the owner sign-off recorded.
 
 **Deferred dates:** Live in trace map only, never in GitHub Issue fields.
 
@@ -272,7 +272,7 @@ hitl_delegate:
 - Trace-check CI enforces required fields
 - Template examples in trace/schema.md
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
@@ -295,7 +295,7 @@ hitl_delegate:
 
 **Mitigations:**
 - Seeded from actual repo structure (no invented product components)
-- Kai approved the Wave 1 seed at QAS (review 5702397094; O2 Medium confirmed)
+- the GM approved the Wave 1 seed at QAS (review 5702397094; O2 Medium confirmed)
 - Extensible (add components as needed)
 
 **Status:** GM QAS approved the Wave 1 seed. The HITL's standing concur satisfies the High/O2 HITL requirement only for safe-harness v1.0 PRs merged before the v1.0.0 tag; each still needs exact-head GM QAS, SecEng, and RTE PASS. See [`docs/decisions/log.md`](../../docs/decisions/log.md#standing-concur-for-safe-harness-v10-prs-2026-10-30).
@@ -304,7 +304,7 @@ hitl_delegate:
 
 ### Decision 10: Templates (intent, spec, trace schema, M1–M6 pointer)
 
-**Context:** Provide structured templates for intent.md, spec.md (human-owned: Scott only), and trace map (agent-authored).
+**Context:** Provide structured templates for intent.md, spec.md (human-owned: the owner only), and trace map (agent-authored).
 
 **Proposal:** Create:
 - intent.md (with research appendix: fit band, license, footprint, sources, UNKNOWN markers)
@@ -321,21 +321,21 @@ hitl_delegate:
 - Examples in comments
 - Iterative refinement post-Wave 1
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
 ### Decision 11: Migration plan scope and frozen mapping table
 
-**Context:** Linear SAF-1 through SAF-5 need GitHub Issue equivalents.
+**Context:** SAF-1 through SAF-5 need GitHub Issue equivalents.
 
 **Proposal:**
 - Migration plan: prove/wave-1/migration-plan.md
 - Frozen mapping table: trace/linear-saf-map.csv (header-only stub now; populate before cutover)
-- Archive Linear (never delete); every Linear evidence URL remains resolvable
-- Scope: safe-harness only (other Linear teams like STO untouched)
-- Cutover date: TBD (set after Scott concurrence)
-- Owner: Delivery (Kai coordinates timing with Scott)
+- Archive the issue tracker (never delete); every the issue tracker evidence URL remains resolvable
+- Scope: safe-harness only (other the issue tracker teams like STO untouched)
+- Cutover date: TBD (set after the owner concurrence)
+- Owner: Delivery (the GM coordinates timing with the owner)
 
 **Risks:**
 - Mapping gaps or lost context
@@ -345,10 +345,10 @@ hitl_delegate:
 **Mitigations:**
 - Phased migration (prep → parallel → cutover → archive)
 - Complete mapping table before cutover
-- Linear preserved indefinitely
+- the issue tracker preserved indefinitely
 - Team training on GitHub conventions
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
@@ -372,7 +372,7 @@ hitl_delegate:
 - Non-blocking external checks catch link rot separately
 - Explicit transition from warn-only → blocking
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
@@ -380,7 +380,7 @@ hitl_delegate:
 
 **Context:** Avoid evidence duplication across repo and private vaults.
 
-**Proposal:** Evidence for safe-harness is canonical in the repo. Vaults (personal, NAS) and Atlas cite evidence by link without duplicating it.
+**Proposal:** Evidence for safe-harness is canonical in the repo. Vaults (personal, private storage) and knowledge base cite evidence by link without duplicating it.
 
 **Risks:**
 - Vault access friction (need repo access to see evidence)
@@ -391,7 +391,7 @@ hitl_delegate:
 - Repo is accessible to authorized team
 - Vaults reference by concept + link, no duplication
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
@@ -399,7 +399,7 @@ hitl_delegate:
 
 **Context:** Organize work by wave (Wave 1, Wave 2, etc.).
 
-**Proposal:** Document one GitHub milestone per wave in `.github/labels.yml` commentary. Create milestones manually or via approved automation after Scott concurrence. Do not create via API during Wave 1.
+**Proposal:** Document one GitHub milestone per wave in `.github/labels.yml` commentary. Create milestones manually or via approved automation after the owner concurrence. Do not create via API during Wave 1.
 
 **Risks:**
 - Milestone creep or misalignment
@@ -410,15 +410,15 @@ hitl_delegate:
 - Document only during Wave 1
 - Automation post-concurrence
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
-### Decision 15: needs-scott-concur label
+### Decision 15: needs-owner-concur label
 
-**Context:** PRs changing intent, spec, or constitution need Scott's review before merge.
+**Context:** PRs changing intent, spec, or constitution need the owner's review before merge.
 
-**Proposal:** Add `needs-scott-concur` label (distinct from general `needs-concur`). Required on any PR touching:
+**Proposal:** Add `needs-owner-concur` label (distinct from general `needs-concur`). Required on any PR touching:
 - intent.md, intent/
 - spec.md
 - constitution/
@@ -427,14 +427,14 @@ hitl_delegate:
 
 **Risks:**
 - Label misuse or omission
-- Scott bottleneck
+- the owner bottleneck
 
 **Mitigations:**
-- CODEOWNERS enforcement (Scott must approve)
+- CODEOWNERS enforcement (the owner must approve)
 - Label documented in `.github/labels.yml`
 - Clear workflow in CONTRIBUTING.md
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
@@ -457,7 +457,7 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 - Gate turnaround tracked separately
 - Empirical comparison (constitution/06)
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
@@ -476,7 +476,7 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 - Extensible format (YAML supports large files)
 - Documented in trace/schema.md
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
@@ -493,7 +493,7 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 - Filename change is cosmetic; content update is substantive
 - Cleaner to land content change first, then rename
 
-**Recommendation:** Approve the follow-up rename principle; exact new filename TBD (Kai decides).
+**Recommendation:** Approve the follow-up rename principle; exact new filename TBD (the GM decides).
 
 **Risks:**
 - Filename remains misaligned with content temporarily
@@ -515,12 +515,12 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 **Blocking activation gate:** Trace-check becomes blocking only after the first `spec.md` with REQ IDs lands **AND** the CODEOWNED marker file `trace/.blocking` exists. The follow-up validations PR (first GitHub Issue in migration Phase 1) adds the marker after implementing the additional validations from constitution/05:136-141. Until both conditions are met, trace-check remains warn-only.
 
 **Proposal:** Enable sticky blocking mode via:
-1. **Blocking activation marker:** `trace/.blocking` (CODEOWNED to @cheddarfox) — required for trace-check to become blocking; also provides defense against removing REQ IDs from spec.md
+1. **Blocking activation marker:** `trace/.blocking` (CODEOWNED to the code owner) — required for trace-check to become blocking; also provides defense against removing REQ IDs from spec.md
 2. **Branch protection (optional):** Turn on "require code owner review" on `main` branch protection (GitHub setting) — additional defense in depth
 
-**Current mitigation:** `spec.md` is CODEOWNED (@cheddarfox), so Scott must approve any changes. This works *only if* branch protection requires code-owner review.
+**Current mitigation:** `spec.md` is CODEOWNED (the code owner), so the owner must approve any changes. This works *only if* branch protection requires code-owner review.
 
-**Known limitation:** The authoring account (`cheddarfox`) cannot satisfy CODEOWNERS on its own PRs; Kai posts COMMENT reviews for that reason. This limits the effectiveness of CODEOWNERS as a gate without branch protection enabled.
+**Known limitation:** The authoring account (the code owner) cannot satisfy CODEOWNERS on its own PRs; the GM posts COMMENT reviews for that reason. This limits the effectiveness of CODEOWNERS as a gate without branch protection enabled.
 
 **Additional context:** External link-check stays separate and non-blocking (Librarian's spec + weekly routine after merge).
 
@@ -536,7 +536,7 @@ Report per Bolt in prove/ records. Track blocking gates separately (QAS turnarou
 - `trace/.blocking` is simple and explicit
 - Branch protection + external reviews handle authoring-account limitation
 
-**Status:** Awaiting Scott concurrence (see Team concur record above)
+**Status:** Awaiting the owner concurrence (see Team concur record above)
 
 ---
 
@@ -550,7 +550,7 @@ This PR touches **Deploy CI / workflows** (O2 item):
 - [x] Prod secrets — N/A
 - [x] Privacy-boundary crosses — N/A (personal-boundary rule added as safeguard)
 
-**Downgrade rationale (proposed by Delivery; Kai confirmed Medium in writing at QAS, reviews 5699823929 and 5702397094):**
+**Downgrade rationale (proposed by Delivery; the GM confirmed Medium in writing at QAS, reviews 5699823929 and 5702397094):**
 
 O2 item "Deploy CI / workflows" defaults to High tier. **Proposed downgrade to Medium** is justified by:
 
@@ -558,11 +558,11 @@ O2 item "Deploy CI / workflows" defaults to High tier. **Proposed downgrade to M
 2. **Bootstrap rule**: Runs warn-only until first spec.md lands; cannot block this PR's own merge
 3. **Validation scope**: Checks YAML syntax and repo-internal gaps only; no external calls or mutations
 4. **Rollback path**: Revert PR or disable workflow via GitHub UI if issues arise
-5. **Independent QAS**: Kai reviews as separate actor (≠ implementer)
+5. **Independent QAS**: the GM reviews as separate actor (≠ implementer)
 
 **Delivery's recommendation:** Medium tier acceptable. One human decision pack (this document) + QAS independence sufficient. SecEng N/A (no secrets, no deploy mutations, no auth changes).
 
-**Kai's downgrade decision (written, PR #6 review 5699823929):** **Medium accepted, conditional.** `trace-check.yml` is read-only (`contents: read`), runs on `pull_request` not `pull_request_target`, has no secrets, does no deploys, makes no writes, and is warn-only until the first REQ-bearing `spec.md`. Rollback is a revert. **Conditions:** fixes #3 (`.github/CODEOWNERS` and `.github/workflows/` covered by CODEOWNERS) and #4 (no unpinned `latest` binary download) land on the next tip. If they don't land, the tier stays **High**. Medium still needs Scott's own concur, because this PR amends the constitution.
+**the GM's downgrade decision (written, PR #6 review 5699823929):** **Medium accepted, conditional.** `trace-check.yml` is read-only (`contents: read`), runs on `pull_request` not `pull_request_target`, has no secrets, does no deploys, makes no writes, and is warn-only until the first REQ-bearing `spec.md`. Rollback is a revert. **Conditions:** fixes #3 (`.github/CODEOWNERS` and `.github/workflows/` covered by CODEOWNERS) and #4 (no unpinned `latest` binary download) land on the next tip. If they don't land, the tier stays **High**. Medium still needs the owner's own concur, because this PR amends the constitution.
 
 ---
 
@@ -570,8 +570,8 @@ O2 item "Deploy CI / workflows" defaults to High tier. **Proposed downgrade to M
 
 | Role | Actor | Status | Rationale |
 | --- | --- | --- | --- |
-| **QAS** | Kai | APPROVE at final head (see merge body) | Independent review (≠ implementer); O2 decision: Medium confirmed (conditions met at f84ee52) |
-| **SecEng** | N/A | N/A | Medium tier (Kai's decision); no O2 secrets/auth/privacy mutations; read-only CI |
+| **QAS** | the GM | APPROVE at final head (see merge body) | Independent review (≠ implementer); O2 decision: Medium confirmed (conditions met at f84ee52) |
+| **SecEng** | N/A | N/A | Medium tier (the GM's decision); no O2 secrets/auth/privacy mutations; read-only CI |
 
 ---
 
@@ -603,23 +603,23 @@ Expected requirements:
 - constitution/05-evidence-and-traceability.md (repo as SoR, human/agent split, trace enforcement, cycle time, D1 delegated-HITL)
 
 **Architecture & tracing:**
-- arch/components.yaml (ARC-<CMP> registry, Kai approved at QAS)
+- arch/components.yaml (ARC-<CMP> registry, the GM approved at QAS)
 - requirements/README.md (trace states, evidence linkage)
 - requirements/REQ-TEMPLATE.yaml (requirement template)
 - trace/schema.md (state vocabulary, required fields, M1–M6 pointer)
 - trace/trace-map.yaml (stub)
 - trace/linear-saf-map.csv (header-only stub)
 
-**Human-owned templates (Scott only):**
+**Human-owned templates (the owner only):**
 - intent.md (skeleton with personal-boundary rule, research appendix)
 - spec.md (skeleton with personal-boundary rule, M1–M6 pointer)
 
 **GitHub configuration:**
-- .github/CODEOWNERS (@cheddarfox for intent, spec, constitution, requirements, trace)
+- .github/CODEOWNERS (the code owner for intent, spec, constitution, requirements, trace)
 - .github/ISSUE_TEMPLATE/bolt.yml (Bolt/UoW template)
 - .github/ISSUE_TEMPLATE/requirement.yml (REQ state change template)
 - .github/ISSUE_TEMPLATE/decision.yml (concurrence request template)
-- .github/labels.yml (work types, risk tiers, O2 items, exit states, gate labels, needs-scott-concur)
+- .github/labels.yml (work types, risk tiers, O2 items, exit states, gate labels, needs-owner-concur renamed from earlier owner-named label)
 
 **CI workflow:**
 - .github/workflows/trace-check.yml (read-only, bootstrap rule, warn-only until first spec)
@@ -634,9 +634,9 @@ Expected requirements:
 ## Risk summary
 
 **High risks:**
-1. Constitution changes without team alignment → **In progress:** Team concurred (Studio, Scout, Librarian, Ops, Delivery) above; Scott's concurrence PENDING
+1. Constitution changes without team alignment → **In progress:** Team concurred (Studio, Scout, Librarian, Ops, Delivery) above; the owner's concurrence PENDING
 2. CI false positives blocking work → **Mitigated:** Bootstrap rule (warn-only), read-only permissions
-3. Evidence migration gaps or lost context → **Mitigated:** Linear preserved indefinitely, mapping table, phased migration
+3. Evidence migration gaps or lost context → **Mitigated:** the issue tracker preserved indefinitely, mapping table, phased migration
 4. Personal-vault leaks to repo → **Mitigated:** Personal-boundary rule in CONTRIBUTING.md + intent/spec preambles
 5. CODEOWNERS bottleneck → **Mitigated:** Clear templates, most work agent-owned (code/tests/PRs)
 
@@ -655,131 +655,133 @@ Expected requirements:
 
 If critical issues arise post-merge:
 1. Revert this PR (git revert)
-2. Linear remains accessible (no writes needed; read-only archive sufficient)
+2. the issue tracker remains accessible (no writes needed; read-only archive sufficient)
 3. Investigate and fix GitHub Issues workflow blockers
 4. Re-propose Wave 1 after fixes
 
-**No data loss:** Linear preserved, repo history immutable, evidence portable.
+**No data loss:** the issue tracker preserved, repo history immutable, evidence portable.
 
 ---
 
 ## Ask
 
-**Scott:** Please review and concur on:
+**[The owner]:** Please review and concur on:
 1. Repository as sole source of truth (Linear → GitHub)
-2. Human vs. agent ownership split (Scott only owns and accepts intent.md and spec.md; agents own and author everything else with CODEOWNERS review gates)
+2. Human vs. agent ownership split (the owner only owns and accepts intent.md and spec.md; agents own and author everything else with CODEOWNERS review gates)
 3. Requirements tracing framework (REQ-<CMP>-NNN, trace states, trace-check CI)
 4. D1 delegated-HITL at Low tier
 5. All constitution/03 and constitution/05 amendments
-6. O2 downgrade: Kai's decision recorded — Medium accepted conditional on fixes #3 and #4
+6. O2 downgrade: the GM's decision recorded — Medium accepted conditional on fixes #3 and #4
 7. Migration plan scope and timing (cutover date TBD)
 8. Follow-up rename of constitution/05-evidence-and-linear.md (Decision 18) — Done, landed as `constitution/05-evidence-and-traceability.md`
 9. Sticky blocking mode: enable "require code owner review" on `main` and/or add `trace/.blocking` marker (Decision 19)
 
 **Open questions from seats (to answer or defer):**
-- Scout 1: Where evidence lives — repo evidence folder vs. Atlas sources/, or both with cross-link? Scout wants one place, not two copies drifting apart.
-- Scout 3: Confluence product-app pages (Scene Realizer, Module 18, Animatics) — do they stay as cited inputs, get snapshotted into repo, or does intent.md in GitHub replace them? Also, do any Atlas sources/linear/ STO stubs need re-pointing once SAF is retired?
+- Scout 1: Where evidence lives — repo evidence folder vs. knowledge base sources/, or both with cross-link? Scout wants one place, not two copies drifting apart.
+- Scout 3: docs wiki product-app pages (a private product feature) — do they stay as cited inputs, get snapshotted into repo, or does intent.md in GitHub replace them? Also, do any knowledge base sources/linear/ STO stubs need re-pointing once SAF is retired?
 
-**Kai:** After Scott concurs and fixes land:
+**[The GM]:** After the owner concurs and fixes land:
 1. QAS re-review at new exact-head (after fixes #1-12 from review 5699823929)
 2. Merge decision (HITL)
-3. Set Linear cutover date
+3. Set the issue tracker cutover date
 4. Coordinate team training on GitHub conventions
 
-**Note:** Kai's O2 downgrade decision already recorded above (Medium accepted conditional).
+**Note:** the GM's O2 downgrade decision already recorded above (Medium accepted conditional).
 
 ---
 
 ## MERGE HOLD
 
 **Do not merge until:**
-- [ ] Scott concurs on all constitution changes (recorded in this decision pack or PR comments)
-- [ ] Kai completes QAS independence review (exact-head, separate actor ≠ implementer)
-- [ ] Kai's written O2 tier decision recorded: **Medium accepted on condition that CODEOWNERS (#3: `.github/CODEOWNERS` and `.github/workflows/` covered) and the yq pin (#4: no unpinned `latest` binary download) land; otherwise it stays High** (Kai, PR #6 review 5699823929)
+- [ ] the owner concurs on all constitution changes (recorded in this decision pack or PR comments)
+- [ ] the GM completes QAS independence review (exact-head, separate actor ≠ implementer)
+- [ ] the GM's written O2 tier decision recorded: **Medium accepted on condition that CODEOWNERS (#3: `.github/CODEOWNERS` and `.github/workflows/` covered) and the yq pin (#4: no unpinned `latest` binary download) land; otherwise it stays High** (the GM, PR #6 review 5699823929)
 - [ ] If High tier: two distinct human approvals required
 - [ ] CodeRabbit review complete (if applicable)
 - [ ] trace-check CI green (bootstrap mode: warn-only expected)
 - [ ] Wave 0 checks green (structure validation, markdown links)
 
 **After merge:**
-- Kai merges (HITL delegated or HITL only, per Scott's approval)
+- the GM merges (HITL delegated or HITL only, per the owner's approval)
 - Execute migration plan Phase 2 (parallel operation)
-- Set Linear cutover date
+- Set the issue tracker cutover date
 - Train team on GitHub conventions
 
 ---
 
-**Status:** Awaiting Scott concurrence  
-**Next action:** Scott reviews decision pack and constitution amendments  
-**Delivery owner:** Kai (coordinates with Scott)
+**Status:** Awaiting the owner concurrence  
+**Next action:** the owner reviews decision pack and constitution amendments  
+**Delivery owner:** the GM (coordinates with the owner)
 
 ---
 
 ## Appendix A: Team concur record (extracted)
 
-Extracted from each seat's SendToAgent message to Kai, 2026-10-29. Some passages are omitted (marked […]). Kai's context notes are added (marked). Kai is coordinator, not a seat. Scott's concur is separate and PENDING; his 9:48 "make the change now if we all concur" is not that concur.
+Extracted from each seat's SendToAgent message to [the GM], 2026-10-29. Some passages are omitted (marked […]). [The GM]'s context notes are added (marked). [The GM] is coordinator, not a seat. [The owner]'s concur is separate and PENDING; [the owner]'s 9:48 "make the change now if we all concur" is not that concur.
+
+**Note:** Names and private identifiers in quotes are replaced in [brackets] for template genericization.
 
 ### Studio · Lead — 09:48 ET, call id toolu_017ZNtEo19N3873edkiGrWPG
 
-> Studio: CONCUR with conditions, on the safe-harness AI-native SDLC shift. My role (I draft intent.md and spec.md with Scott and derive the REQ IDs, you own ARC and approve the trace map) fits Spine B think/plan. My concerns and what I need are below.
+> Studio: CONCUR with conditions, on the safe-harness AI-native SDLC shift. My role (I draft intent.md and spec.md with [the owner] and derive the REQ IDs, you own ARC and approve the trace map) fits Spine B think/plan. My concerns and what I need are below.
 > Concerns:
-> 1. Personal boundary. intent.md and spec.md live in GitHub, so nothing from the personal vault, story IP or NAS-private facts goes into them (no LAN IPs, tokens or /home paths). I'll cite by concept name only. Please add this to the repo CONTRIBUTING or intent preamble.
-> 2. Acceptance mechanism. Scott's acceptance of intent and design needs to be explicit and checkable. I suggest he approves the PR that changes intent.md or spec.md, with CODEOWNERS on both files so agents can't merge their own edits. Otherwise "humans own intent" won't hold up in practice.
-> 3. Deferred and Dropped need a rationale, plus who decided and when, right in the trace map. Otherwise trace-check can go green on a pile of quiet drops. Dropping a REQ that came from intent should need Scott's sign-off.
-> 4. Linear SAF retirement. Delivery · Lead should own migrating or closing the open SAF items, with a cutover date, so nothing gets orphaned. Linear STO (Story Systems) is unaffected, and I'm assuming this applies only to safe-harness.
+> 1. Personal boundary. intent.md and spec.md live in GitHub, so nothing from the personal vault, story IP or private-storage facts goes into them (no LAN IPs, tokens or /home paths). I'll cite by concept name only. Please add this to the repo CONTRIBUTING or intent preamble.
+> 2. Acceptance mechanism. [The owner]'s acceptance of intent and design needs to be explicit and checkable. I suggest [the owner] approves the PR that changes intent.md or spec.md, with CODEOWNERS on both files so agents can't merge their own edits. Otherwise "humans own intent" won't hold up in practice.
+> 3. Deferred and Dropped need a rationale, plus who decided and when, right in the trace map. Otherwise trace-check can go green on a pile of quiet drops. Dropping a REQ that came from intent should need [the owner]'s sign-off.
+> 4. [Work tracker] retirement. Delivery · Lead should own migrating or closing the open [internal tracker IDs], with a cutover date, so nothing gets orphaned. [Other internal work trackers] are unaffected, and I'm assuming this applies only to safe-harness.
 > 5. Ordering. I can't derive REQ-<CMP> IDs until the ARC-<CMP> codes exist, so the ARC registry needs to be seeded first, even as a stub.
-> What I need to work: […] (needs, not conditions; omitted by Kai)
+> What I need to work: […] (needs, not conditions; omitted by [the GM])
 
 ### Scout · Story Media — 09:48 ET, call id toolu_01UTXbtMkNwJ6U755YFwo2da
 
 > Scout: **concur**, with three small concerns to settle before cutover.
-> Concur: repo-only safe-harness, GitHub Issues instead of Linear SAF, and humans owning intent and design. Scout stays research-only, and findings enter only as an `intent.md` draft that Studio and Scott accept. I never write REQ IDs or requirements directly. This fits plan, then concur, then execute.
+> Concur: repo-only safe-harness, GitHub Issues instead of [the external tracker], and humans owning intent and design. Scout stays research-only, and findings enter only as an `intent.md` draft that Studio and [the owner] accept. I never write REQ IDs or requirements directly. This fits plan, then concur, then execute.
 > Concerns:
-> 1. **Where evidence lives.** Today my research gets pinned under the private Atlas repo source pins. Which store holds evidence going forward: the safe-harness repo's evidence folder, Atlas source pins, or both with a cross-link? I want one place, not two copies of the same model research drifting apart.
-> 2. **What a research draft carries.** For model picks, `intent.md` should keep fit band (Mac-now, NAS-stage, cloud), license, footprint, and source links, with UNKNOWN where unverified. Otherwise that detail gets lost before requirements are written. Can the template include a short research appendix section?
-> 3. **Confluence product-app pages.** Scene Realizer, Module 18, and Animatics are still my product targets. Do they stay as cited inputs, snapshotted into the repo, or does intent in GitHub replace them? Also, do any Atlas `sources/linear/` STO stubs need re-pointing once SAF is retired?
+> 1. **Where evidence lives.** Today my research gets pinned under the private knowledge-base repo source pins. Which store holds evidence going forward: the safe-harness repo's evidence folder, knowledge-base source pins, or both with a cross-link? I want one place, not two copies of the same model research drifting apart.
+> 2. **What a research draft carries.** For model picks, `intent.md` should keep fit band (Mac-now, [private-storage]-stage, cloud), license, footprint, and source links, with UNKNOWN where unverified. Otherwise that detail gets lost before requirements are written. Can the template include a short research appendix section?
+> 3. **[docs wiki] product-app pages.** [Private product feature 1], [private product feature 2], and [private product feature 3] are still my product targets. Do they stay as cited inputs, snapshotted into the repo, or does intent in GitHub replace them? Also, do any [knowledge-base] `sources/[tracker]/` [other internal project IDs] stubs need re-pointing once [internal tracker IDs] are retired?
 > None of these block. Answer them whenever, and I'll follow the repo playbook from cutover.
 
 ### Librarian · Signals — 09:48 ET, call id toolu_01KkZrQJMBSc9vwPuPbSVbUN
 
 > Librarian · Signals: CONCUR with the safe-harness repo-only move and with my link-health role, with 5 conditions.
-> 1. **No orphaned SAF links.** Before Linear SAF is retired, check a frozen SAF-xxx → GitHub issue map into the repo (for example `trace/linear-saf-map.csv`). Old links in vault notes, PRs and Slack then still resolve, and I can rewrite them in batches.
+> 1. **No orphaned [tracker ID] links.** Before [the external tracker] is retired, check a frozen [ID-xxx] → GitHub issue map into the repo (for example `trace/linear-saf-map.csv`). Old links in vault notes, PRs and Slack then still resolve, and I can rewrite them in batches.
 > 2. **One trace map is the truth.** The repo trace map is canonical for REQ/ARC. Vaults cite it under `repos/` per AGENT-CONTRIBUTION and don't duplicate REQ text. That way rot shows up in one place.
-> 3. **Read-only by default.** I report broken or stale links as GitHub issues (label `link-rot`) plus a weekly digest to Scott. Any fix is a PR from me that you or a human merges. I never merge my own PRs, and vault fixes still follow register-first.
+> 3. **Read-only by default.** I report broken or stale links as GitHub issues (label `link-rot`) plus a weekly digest to [the owner]. Any fix is a PR from me that you or a human merges. I never merge my own PRs, and vault fixes still follow register-first.
 > 4. **Split the CI scope.** Trace-check CI blocks gaps inside the repo: REQ with no ARC, REQ with no issue, PR with no REQ. Cross-system links (vaults, external URLs) go in a scheduled non-blocking scan, so a flaky outside site can't block merges.
-> 5. **Humans keep the gates.** "Agents own the rest" should still leave a human or Kai approving merges and intent/spec changes. A REQ-ID change needs a human-reviewed PR.
+> 5. **Humans keep the gates.** "Agents own the rest" should still leave a human or [the GM] approving merges and intent/spec changes. A REQ-ID change needs a human-reviewed PR.
 > Note: the repo is private, so I'll read it through the GitHub connector, not public fetches. I can draft the link-check spec and a weekly link-health routine once you give the go.
 
 ### Ops · CoS — 09:48 ET, call id toolu_01Nsyi3W84uuopDQ92ATa2tz
 
 > CoS: CONCUR, with four concerns, none of them blocking.
-> What in my rolls depends on Linear SAF:
-> 1. Morning roll, harness section. Today's run read SAF-1 through SAF-4 status from Linear and only linked PR #4 from GitHub. My memory also says the train is "tracked in Linear team Safe Harness (SAF)". The saved routine prompt doesn't name SAF, so the only thing to repoint is my memory and where the run reads from. Nothing structural.
-> 2. Nothing else. The Scott concur queue (WOR-712/739/741/794) is Linear WOR in MVP Go-Live, not SAF, so it's unaffected unless you mean to move it too.
+> What in my rolls depends on [the external tracker]:
+> 1. Morning roll, harness section. Today's run read [ID-1] through [ID-4] status from [the external tracker] and only linked PR #4 from GitHub. My memory also says the train is "tracked in [the external tracker] team Safe Harness ([internal team key])". The saved routine prompt doesn't name [internal team key], so the only thing to repoint is my memory and where the run reads from. Nothing structural.
+> 2. Nothing else. [The owner]'s concur queue ([other tracker IDs]) is in [another external tracker project], not [internal team key], so it's unaffected unless you mean to move it too.
 > Concerns:
-> A. Cut over after Wave 0 closes, not during it. SAF-1 is In Progress and SAF-4 is paired with PR #4. A mid-wave switch makes two places claim to be the source of truth. Please decide whether open SAF issues migrate to GH Issues or close in place, and whether SAF gets archived rather than left looking live.
+> A. Cut over after Wave 0 closes, not during it. [ID-1] is In Progress and [ID-4] is paired with PR #4. A mid-wave switch makes two places claim to be the source of truth. Please decide whether open [ID] issues migrate to GH Issues or close in place, and whether [the tracker] gets archived rather than left looking live.
 > B. Gate visibility. The roll has to name the gate (R&D → plan → concur → execute → measure). Please set a GH convention I can read, like milestone per wave plus a gate:* label, or a status field. I'll also read the trace-check CI result on main as the stop-the-line signal.
-> C. Human-owned intent needs a marker. Give intent and design changes waiting on Scott a label (e.g. needs-scott-concur) so I can carry them on the concur queue and not infer them.
-> D. Weekly trace-gap and flow review: accepted. I need three definitions: where Deferred dates live (a field in the trace map, or an issue field), what counts as cycle time (issue open→close, or first PR→merge), and the path to the trace map file. I'll propose Mondays around 9am ET, Kai only, and quiet if there are no gaps.
-> When you say go, I'll repoint the morning roll to bybren-llc/safe-harness GH Issues, PRs and CI, update memory so Linear SAF is retired, and create the weekly review routine. I won't change anything before that. No Scott ping.
+> C. Human-owned intent needs a marker. Give intent and design changes waiting on [the owner] a label (e.g. [needs-owner-concur]) so I can carry them on the concur queue and not infer them.
+> D. Weekly trace-gap and flow review: accepted. I need three definitions: where Deferred dates live (a field in the trace map, or an issue field), what counts as cycle time (issue open→close, or first PR→merge), and the path to the trace map file. I'll propose Mondays around 9am ET, [the GM] only, and quiet if there are no gaps.
+> When you say go, I'll repoint the morning roll to bybren-llc/safe-harness GH Issues, PRs and CI, update memory so [the external tracker] is retired, and create the weekly review routine. I won't change anything before that. No [the owner] ping.
 
-(Kai context for A: Wave 0 had already closed at 8:56 AM ET; Kai sent Ops that correction at 9:49 AM ET.)
+([The GM]'s context note: Wave 0 had already closed at 8:56 AM ET; [the GM] sent Ops that correction at 9:49 AM ET.)
 
 ### Delivery · Lead — ~09:49 ET, call id toolu_01519wT2WywojX49gq13NFv5
 
 > Delivery concurs with the repo-only model, the human intent/spec vs agent plan-to-evidence split, and my role: I implement and cite REQ IDs in issues, commits, and PRs. I have six concerns, which I'll fold into the draft as fixes unless you object.
-> 1. Approval: 'if the team concurs' is a team input, not Scott's sign-off on the constitution text. I'll keep the decision pack as the record and ask for Scott's own concur on that pack, in his words in a thread, before the constitution/05 and /03 merge.
-> 2. Enforcing human ownership: add CODEOWNERS so intent.md and spec.md need Scott's review. Agents may propose edits to them but never merge them.
+> 1. Approval: 'if the team concurs' is a team input, not [the owner]'s sign-off on the constitution text. I'll keep the decision pack as the record and ask for [the owner]'s own concur on that pack, in [the owner]'s words in a thread, before the constitution/05 and /03 merge.
+> 2. Enforcing human ownership: add CODEOWNERS so intent.md and spec.md need [the owner]'s review. Agents may propose edits to them but never merge them.
 > 3. Bootstrap: trace-check will block everything until REQs exist. It needs a grandfather or bootstrap rule (warn-only until the first spec.md lands, or exempt for Wave 1 itself), or the Wave 1 PR fails its own gate.
-> 4. Independence is unchanged. QAS and SecEng never collapse into the implementer, and delegated HITL stays Low-tier only. Deploy, High, and O2 still need Scott.
-> 5. Migration: PRs #3–#5 cite Linear comment URLs as evidence_ids. The migration has to keep those URLs resolvable, so archive Linear rather than delete it, and map SAF-n to issue #n.
-> 6. The trace-check CI is O2. I'll include the checklist and a written downgrade, but the downgrade itself is your call or Scott's, not mine.
-> The draft PR is being built now on branch wave-1-repo-sot and includes Scott's 9:46 ownership split. I'll priority-ping you with the link as soon as it opens. I won't migrate SAF or touch Linear until you confirm team concur.
+> 4. Independence is unchanged. QAS and SecEng never collapse into the implementer, and delegated HITL stays Low-tier only. Deploy, High, and O2 still need [the owner].
+> 5. Migration: PRs #3–#5 cite [external tracker] comment URLs as evidence_ids. The migration has to keep those URLs resolvable, so archive [the tracker] rather than delete it, and map [work-item-n] to issue #n.
+> 6. The trace-check CI is O2. I'll include the checklist and a written downgrade, but the downgrade itself is your call or [the owner]'s, not mine.
+> The draft PR is being built now on branch wave-1-repo-sot and includes [the owner]'s 9:46 ownership split. I'll priority-ping you with the link as soon as it opens. I won't migrate [the tracker] or touch [the external tracker] until you confirm team concur.
 
-### Scott — 12:44 PM ET and 12:46 PM ET, Kai chat 2026-10-29
+### [The owner] — 12:44 PM ET and 12:46 PM ET, [the GM] chat 2026-10-29
 
 > We only have main right?  I'm hoping our commits and PRs have good best practices according to the new way we learned. If so I think you can check yes if it is a repo like this one where we can not really break anything and there is no real test except to Make sure we have proper README docs and info for humans to understand how this works. Otherwise own it
 >
 > I think we could see from the projects that our main README should definitely be great and our structure of our repo should match what we espouse
 
-**Conditional concur:** Scott concurs provided the README is great for humans and the repo structure matches what we espouse. Condition satisfied in final commit (README rewrite + structure fixes, items 1-7 below).
+**Conditional concur:** [The owner] concurs provided the README is great for humans and the repo structure matches what we espouse. Condition satisfied in final commit (README rewrite + structure fixes, items 1-7 below).

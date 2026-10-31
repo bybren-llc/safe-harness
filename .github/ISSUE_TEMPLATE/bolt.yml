@@ -15,7 +15,7 @@ body:
     attributes:
       label: Human Assignee
       description: Round Table seat (must be human per constitution)
-      placeholder: "Scott Graham / Kai"
+      placeholder: "<owner-name>"
     validations:
       required: true
 
@@ -69,7 +69,7 @@ body:
       description: What's in and out of scope?
       placeholder: |
         In: templates/studio-to-delivery-handoff.md filled
-        Out: runnable adapters, Linear writes
+        Out: runnable adapters, the issue tracker writes
     validations:
       required: true
 

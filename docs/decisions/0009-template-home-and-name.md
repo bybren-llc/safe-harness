@@ -1,8 +1,8 @@
 ---
 status: accepted
 date: 2026-10-28
-decision-makers: Scott (HITL/POPM)
-consulted: Kai (GM & lead ARCHitect), Studio · Lead
+decision-makers: owner (HITL/POPM)
+consulted: the GM (GM & lead ARCHitect), Studio · Lead
 informed: Round Table seats
 ---
 
@@ -25,9 +25,9 @@ Where the new template lives and what it's called.
 
 ## Decision Outcome
 
-Chosen option: "`bybren-llc/safe-harness`, an org-owned repo with internal (org-visible) visibility", because Scott picked `saw-harness` first, then renamed to `safe-harness` at creation.
+Chosen option: "`bybren-llc/safe-harness`, an org-owned repo with internal (org-visible) visibility", because owner picked `saw-harness` first, then renamed to `safe-harness` at creation.
 
-Picked as `saw-harness` first (card at 11:12 AM ET on 2026-10-28), then renamed to `safe-harness` at creation. Scott created `bybren-llc/safe-harness` himself (GitHub `created_at` 2026-10-28 15:32 UTC = 11:32 AM ET), and that became the final name. "SAW" keeps reading as Safe Agentic Workflow, with "safe" in its everyday sense, not the SAFe trademark. Anything other than the personal vault is created under the org so the org can see it.
+Picked as `saw-harness` first (recorded at 11:12 AM ET on 2026-10-28), then renamed to `safe-harness` at creation. Owner created `bybren-llc/safe-harness` (GitHub `created_at` 2026-10-28 15:32 UTC = 11:32 AM ET), and that became the final name. "SAW" keeps reading as Safe Agentic Workflow, with "safe" in its everyday sense, not the SAFe trademark. Anything other than a personal vault is created under the org so the org can see it.
 
 ### Consequences
 
@@ -36,7 +36,7 @@ Picked as `saw-harness` first (card at 11:12 AM ET on 2026-10-28), then renamed 
 
 ### Confirmation
 
-Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
+owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
 
@@ -46,6 +46,6 @@ The repo exists under the org with internal visibility; README names it and its 
 
 ## More Information
 
-Owner: Kai (GM). Executor: Delivery · Lead.
+Owner: the GM (GM). Executor: Delivery · Lead.
 
 Cross-ref: [0016](0016-authorize-new-template-repo.md) (E2 authorize the repo). Record format: [MADR 4.0](https://adr.github.io/madr/).

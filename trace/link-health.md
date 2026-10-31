@@ -1,6 +1,6 @@
 # Link Health & Rot Detection — safe-harness
 
-**Status:** PROPOSED (Librarian · Signals draft, pending QAS by Kai and @cheddarfox review)  
+**Status:** PROPOSED (Librarian · Signals draft, pending QAS by the GM and the code owner review)  
 **Owner seat:** Librarian · Signals ([`../roles/librarian.md`](../roles/librarian.md))  
 **Component:** ARC-TRC (trace), with proposed CI extensions under ARC-WFL  
 **Authority:** constitution/05 "CI scope" and Decision 12 in [`../prove/wave-1/decision-pack.md`](../prove/wave-1/decision-pack.md) (Librarian concur conditions 1–4)  
@@ -10,14 +10,14 @@
 
 ## 1. Purpose
 
-Keep every link between safe-harness artifacts, GitHub issues and PRs, the Atlas vault, external sources, and the retired Linear SAF archive resolvable, and catch link rot before a reader does. The repo is the sole source of truth ([`../constitution/05-evidence-and-traceability.md`](../constitution/05-evidence-and-traceability.md)); this spec makes that claim checkable.
+Keep every link between safe-harness artifacts, GitHub issues and PRs, the knowledge base, external sources, and the retired the issue tracker archive resolvable, and catch link rot before a reader does. The repo is the sole source of truth ([`../constitution/05-evidence-and-traceability.md`](../constitution/05-evidence-and-traceability.md)); this spec makes that claim checkable.
 
 Principles (from the Librarian concur, Wave 1):
 
 1. **One trace map is the truth.** [`trace-map.yaml`](trace-map.yaml) is canonical for REQ/ARC. Other places cite it; they do not restate REQ text.
 2. **Blocking stays in-repo.** Only checks that need nothing but the checked-out tree may block a merge.
 3. **Cross-system and external checks are scheduled and non-blocking**, so a flaky outside site can never block a merge.
-4. **Read-only by default.** Rot is reported as GitHub issues labelled `link-rot`. Every fix is a PR that a human or Kai merges. The Librarian never merges, including its own PRs.
+4. **Read-only by default.** Rot is reported as GitHub issues labelled `link-rot`. Every fix is a PR that a human or the GM merges. The Librarian never merges, including its own PRs.
 5. **No invented links.** A target that cannot be verified is recorded as `UNKNOWN`, never guessed (register-first).
 6. **Changes to intent, spec, or REQ IDs are human-reviewed.** A link fix that would touch `intent.md`, `spec.md`, `requirements/`, or a REQ ID goes through CODEOWNERS review like any other change.
 
@@ -30,11 +30,11 @@ Principles (from the Librarian concur, Wave 1):
 | L3 | REQ / ARC references | `REQ-<CMP>-NNN` in trace map, docs, PR bodies; `component: ARC-<CMP>` | Blocking (in-repo) for the tree; PR-body linkage per trace-check follow-up |
 | L4 | Issue / PR references from the repo | `#N`, `Refs #N`, `github.com/bybren-llc/safe-harness/issues/N`, `/pull/N` | Weekly scan (needs the GitHub API) |
 | L5 | Other private GitHub targets | blob/tree URLs into `bybren-llc/*` at a branch or SHA, commit URLs | Weekly scan (GitHub connector) |
-| L6 | Atlas links, both directions | safe-harness → private Atlas repo paths / concept IDs; Atlas citations (`source_url`) → safe-harness | Weekly scan (GitHub connector) |
+| L6 | knowledge base links, both directions | safe-harness → private knowledge-base repo paths / concept IDs; knowledge base citations (`source_url`) → safe-harness | Weekly scan (GitHub connector) |
 | L7 | External URLs | vendor docs, papers, `https://` anything not covered above | Weekly scan (HTTP) |
-| L8 | Linear SAF references | `SAF-n`, `[SAF-n]`, `linear.app/cheddarfox/issue/SAF-n/...` | Weekly scan, resolved through the active map (§5.2) |
+| L8 | the issue tracker references | `<WRK>-n`, `[<WRK>-n]`, `<tracker-url>/<workspace>/issue/<WRK>-n/...` | Weekly scan, resolved through the active map (§5.2) |
 
-Out of scope: personal vault and NAS-private targets. They must never appear in this repo ([`../constitution/04-privacy-and-vaults.md`](../constitution/04-privacy-and-vaults.md), [`../CONTRIBUTING.md`](../CONTRIBUTING.md)). If the scan ever finds one, it is reported as a **privacy finding** to Kai and Scott directly, not as a public `link-rot` issue, and the issue body never quotes the target.
+Out of scope: personal vault and private-store targets. They must never appear in this repo ([`../constitution/04-privacy-and-vaults.md`](../constitution/04-privacy-and-vaults.md), [`../CONTRIBUTING.md`](../CONTRIBUTING.md)). If the scan ever finds one, it is reported as a **privacy finding** to QAS and the owner directly, not as a public `link-rot` issue, and the issue body never quotes the target.
 
 Files scanned: every tracked `*.md`, `*.yaml`, `*.yml`, and `*.csv` at `main` HEAD, plus open PR bodies and issue bodies for L3/L4/L8 references. Fenced code blocks are scanned for L4–L8 only (they often hold example URLs); examples marked as placeholders (`example`, `<...>`, RFC 5737 / RFC 2606 hosts) are skipped.
 
@@ -77,7 +77,7 @@ B3 and B4 belong to the trace-check blocking-activation follow-up (constitution/
 
 ### 3.2 Weekly non-blocking scan (scheduled, read-only)
 
-Covers L4–L8 plus a re-run of L1–L3 against `main` HEAD as a cross-check. It never fails a build, never comments on PRs, and never pushes. Its only outputs are `link-rot` issues, a weekly summary, and (for clear-cut rewrites) a fix PR for human/Kai merge.
+Covers L4–L8 plus a re-run of L1–L3 against `main` HEAD as a cross-check. It never fails a build, never comments on PRs, and never pushes. Its only outputs are `link-rot` issues, a weekly summary, and (for clear-cut rewrites) a fix PR for human/the GM merge.
 
 **Runner:** the Librarian, from the Grok Bot box, through the GitHub connector acting as the connected account. **No credentials, tokens, or secrets are stored in this repository** and none are required by it. A GitHub Actions version of the same scan is possible later (see Appendix B) but is not required.
 
@@ -104,7 +104,7 @@ Every target gets one verdict per scan:
 - Timeout 15 s, 3 attempts per scan with backoff (2 s, 8 s, 30 s). Honour `Retry-After` on 429/503 up to 120 s. If a 429/503 has `Retry-After` greater than 120 s, the verdict for this scan is `transient`, which takes precedence over the repeated-5xx `broken` rule.
 - Up to 10 redirects. `301`/`308` to a different path → `moved` (propose an update). `302`/`303`/`307` → `redirect-ok` unless the final page is a login or a generic home page (soft-404), which is `broken`.
 - Soft-404 heuristic: final status 200 but the page `<title>` or first heading matches "not found / page doesn't exist", or the final URL is the site root when the source was a deep link.
-- `4xx` other than 401/403/429 → `broken`. `401`/`403` → `auth-unknown` for known-private hosts (Linear, Confluence, GitHub private), else `broken` after the flake rule.
+- `4xx` other than 401/403/429 → `broken`. `401`/`403` → `auth-unknown` for known-private hosts (Linear, docs wiki, GitHub private), else `broken` after the flake rule.
 - Fragments on external URLs are not checked (too many JS-rendered pages).
 - Polite: identify with a User-Agent naming the Librarian scan, at most 1 request/second per host.
 
@@ -119,14 +119,14 @@ Resolved through the GitHub API (connector), never by unauthenticated HTTP, beca
 | Blob/tree at a **branch** (`main`) | `get_file_contents` at HEAD; if missing, search `list_commits` for the path to find a rename | Renamed → `moved` with the new path; deleted → `broken`; branch deleted → `broken` |
 | Commit URL | `get_commit` | Missing → `broken` |
 | Repo URL | `get_repository` | 404 → `auth-unknown` first (it may be an access gap), then `broken` only after confirming the org listing does not include it |
-| Atlas path or concept | `get_git_tree` on the private Atlas repo `main` (recursive), plus the Atlas manifest (path from Atlas CONVENTIONS) for concept IDs | Not in tree / not registered → `broken`; registered stub only → `ok` with note |
-| Atlas → safe-harness citations | Search Atlas for `safe-harness` `source_url`s and resolve each as above | Same verdicts; fixes go to Atlas as a PR that follows Atlas register-first rules |
+| knowledge base path or concept | `get_git_tree` on the private knowledge-base repo `main` (recursive), plus the knowledge base manifest (path from knowledge base CONVENTIONS) for concept IDs | Not in tree / not registered → `broken`; registered stub only → `ok` with note |
+| knowledge base → safe-harness citations | Search knowledge base for `safe-harness` `source_url`s and resolve each as above | Same verdicts; fixes go to knowledge base as a PR that follows knowledge base register-first rules |
 
 ### 4.4 Private-repo and auth handling
 
 - A 404 from the API on a `bybren-llc/*` target is not proof of rot; it can mean the connected account lacks access. The scan records `auth-unknown`, re-checks once with a repository listing, and only then decides `broken`.
-- An access gap is reported **once** to the Librarian's own chat for Scott/Kai to fix, never as a `link-rot` issue.
-- Linear URLs (L8) are private. They are checked through the Linear connector (read-only) or, if it is unavailable, marked `auth-unknown`. Linear history must never be deleted (constitution/05); a Linear URL that stops resolving is `broken` and escalated to Kai.
+- An access gap is reported **once** to the Librarian's own chat for the owner/the GM to fix, never as a `link-rot` issue.
+- the issue tracker URLs (L8) are private. They are checked through the issue tracker connector (read-only) or, if it is unavailable, marked `auth-unknown`. the issue tracker history must never be deleted (constitution/05); an issue tracker URL that stops resolving is `broken` and escalated to the GM.
 
 ### 4.5 Flake tolerance
 
@@ -137,7 +137,7 @@ Resolved through the GitHub API (connector), never by unauthenticated HTTP, beca
 - A reported target that passes **two consecutive scans** is marked recovered (§6.1).
 - Scan state (last verdicts and failure counts) lives in the Librarian's box-local state file, not in the repo. Losing it only resets counters; it can never cause a false report.
 
-## 5. Linear SAF map handling
+## 5. the issue tracker map handling
 
 ### 5.1 Current state (2026-10-29)
 
@@ -150,16 +150,16 @@ Resolved through the GitHub API (connector), never by unauthenticated HTTP, beca
 When Delivery's cutover commit lands the complete map, the Librarian opens one PR (CODEOWNED under `trace/`) that:
 
 1. Records `sha256` of the CSV exactly as committed, with the commit SHA it was taken at, in `trace/linear-saf-map.sha256` (format: `<sha256>  trace/linear-saf-map.csv` on line 1, `# frozen-at: <commit-sha> <ISO date>` on line 2).
-2. Adds a "Frozen" note to [`schema.md`](schema.md) under "Linear SAF to GitHub Issue mapping": read-only, no edits after freeze; corrections are a new superseding file reviewed by Scott, never an in-place edit.
+2. Adds a "Frozen" note to [`schema.md`](schema.md) under "the issue tracker to GitHub Issue mapping": read-only, no edits after freeze; corrections are a new superseding file reviewed by the owner, never an in-place edit.
 3. Validates every row before freezing: `saf_id` unique and `SAF-[0-9]+`; `linear_url` resolves (Linear connector); `github_issue` and `pr` exist via the API; `status` = `Archived`. Failures block the freeze PR itself, not other merges.
 
-After freeze, `trace/linear-saf-map.csv` is immutable. In-place edits are not permitted. Corrections are a new superseding file `trace/linear-saf-map.vN.csv` (N = 1, 2, 3, …) with a matching `trace/linear-saf-map.vN.sha256`, CODEOWNED and reviewed by Scott.
+After freeze, `trace/linear-saf-map.csv` is immutable. In-place edits are not permitted. Corrections are a new superseding file `trace/linear-saf-map.vN.csv` (N = 1, 2, 3, …) with a matching `trace/linear-saf-map.vN.sha256`, CODEOWNED and reviewed by the owner.
 
 **Active map (deterministic):** the `trace/linear-saf-map.vN.csv` with the highest N, if any exist; otherwise `trace/linear-saf-map.csv`. B5 and the weekly scan checksum and resolve against that file only.
 
 ### 5.3 Resolving SAF references
 
-Each scan finds `SAF-[0-9]+` (bare, bracketed, or in a Linear URL) in this repo, in open issue/PR bodies, and in Atlas, then resolves it through the map:
+Each scan finds `SAF-[0-9]+` (bare, bracketed, or in an issue tracker URL) in this repo, in open issue/PR bodies, and in knowledge base, then resolves it through the map:
 
 | Result | Action |
 | --- | --- |
@@ -169,23 +169,23 @@ Each scan finds `SAF-[0-9]+` (bare, bracketed, or in a Linear URL) in this repo,
 
 ### 5.4 Rewrite PRs
 
-- **Never rewrite historical evidence.** Wave 0 evidence in `prove/` (bolt briefs, retro, decision packs), commit messages, and quoted reviews keep their SAF references and Linear URLs; constitution/05 says these URLs stay valid and cited. The scan only checks they resolve.
-- In live docs (README, constitution, roles, templates, adapters, trace docs), the rewrite is **additive**: `SAF-3` becomes `SAF-3 (#3)` or gains the GitHub link beside the Linear one. Nothing is deleted.
-- One rewrite PR per batch (per scan), never per reference; branch `<issue#>-saf-rewrite-<yyyymmdd>`; commit trailer `Refs #N`. Constitution files touched by a rewrite need Scott concur like any constitution change.
-- Atlas rewrites go to the private Atlas repo as a separate PR following Atlas CONVENTIONS (latest-wins, register-first, citations carry `source_url`).
+- **Never rewrite historical evidence.** Wave 0 evidence in `prove/` (bolt briefs, retro, decision packs), commit messages, and quoted reviews keep their SAF references and the issue tracker URLs; constitution/05 says these URLs stay valid and cited. The scan only checks they resolve.
+- In live docs (README, constitution, roles, templates, adapters, trace docs), the rewrite is **additive**: `SAF-3` becomes `SAF-3 (#3)` or gains the GitHub link beside the issue tracker one. Nothing is deleted.
+- One rewrite PR per batch (per scan), never per reference; branch `<issue#>-saf-rewrite-<yyyymmdd>`; commit trailer `Refs #N`. Constitution files touched by a rewrite need the owner concur like any constitution change.
+- knowledge base rewrites go to the private knowledge-base repo as a separate PR following knowledge base CONVENTIONS (latest-wins, register-first, citations carry `source_url`).
 
 ## 6. Reporting
 
 ### 6.1 One issue per broken target, with dedupe
 
 - **Key:** normalised target (lower-case host, strip default ports, trailing slash, tracking query params, and fragment for external URLs) → `fingerprint = first 12 hex of sha256(normalised target)`.
-- **Private vs public:** A target is **private** when the target repo is non-public, or the citation is an Atlas or vault citation. All other targets (public HTTP, public GitHub) are **public**. Personal-vault and NAS-private paths must never appear in an issue; they are a privacy finding to Kai and Scott only (§2) and are never quoted.
-- **Title:** public targets use `[link-rot] <verdict>: <short target>`; private GitHub, Atlas, or vault-citation targets use `[link-rot] <verdict>: <target class>` (`private-github`, `atlas`, or `vault-citation`) — never the raw target. Body line 1 is always `link-rot-fingerprint: <fingerprint>`.
+- **Private vs public:** A target is **private** when the target repo is non-public, or the citation is a knowledge base or vault citation. All other targets (public HTTP, public GitHub) are **public**. Personal-vault and private-storage paths must never appear in an issue; they are a privacy finding to the GM and the owner only (§2) and are never quoted.
+- **Title:** public targets use `[link-rot] <verdict>: <short target>`; private GitHub, knowledge base, or vault-citation targets use `[link-rot] <verdict>: <target class>` (`private-github`, `knowledge-base`, or `vault-citation`) — never the raw target. Body line 1 is always `link-rot-fingerprint: <fingerprint>`.
 - **Body (public):** target, verdict, first-seen and last-seen dates (ET), HTTP/API evidence (status chain, final URL, or API response summary), every source location, and a proposed fix or `UNKNOWN`. Locators by source type:
   - In-repo file: `path:line` at the scanned safe-harness SHA (permalink to that SHA).
   - Issue or PR body: the issue or PR permalink plus the body line, or the comment permalink when the citation is in a comment.
-  - Atlas, vault, or other private citation: **not allowed in a public body.** Public issue and PR bodies may use only the target class (`atlas` or `vault-citation`). Do not write an Atlas permalink, a vault path, a private-repo path, or any other private locator in a public issue or PR body. Those locators go only to Librarian · Signals' chat (see Body (private) below).
-- **Body (private GitHub, Atlas, or vault citation):** fingerprint, target class, verdict, first-seen and last-seen dates (ET), and the source repo name only. Omit the raw target, private URLs, API details, and private citation locators; send those to Librarian · Signals' chat. Personal-vault paths never appear in an issue.
+  - knowledge base, vault, or other private citation: **not allowed in a public body.** Public issue and PR bodies may use only the target class (`knowledge-base` or `vault-citation`). Do not write a knowledge base permalink, a vault path, a private-repo path, or any other private locator in a public issue or PR body. Those locators go only to Librarian · Signals' chat (see Body (private) below).
+- **Body (private GitHub, knowledge base, or vault citation):** fingerprint, target class, verdict, first-seen and last-seen dates (ET), and the source repo name only. Omit the raw target, private URLs, API details, and private citation locators; send those to Librarian · Signals' chat. Personal-vault paths never appear in an issue.
 - **Dedupe:** before opening, search open issues for the fingerprint. If found, append new source locations or a verdict change as one comment (public targets) or a redacted class/date update (private targets); never open a second issue. If a closed issue matches and the target is failing again, reopen-by-reference: open a new issue that links the old one.
 - **Recovery:** when a reported target passes two consecutive scans, comment "recovered" with evidence. Closing is done by the fix PR (`Fixes #N`) or a human; the Librarian does not close issues it cannot tie to a merged fix.
 - **Label:** `link-rot`. It is documented in [`../.github/labels.yml`](../.github/labels.yml) but is not created through the API during Wave 1. Until a human creates it, the title prefix `[link-rot]` is the dedupe and search key.
@@ -195,11 +195,11 @@ Each scan finds `SAF-[0-9]+` (bare, bracketed, or in a Linear URL) in this repo,
 
 - Only for unambiguous fixes: `moved`/`redirect-ok` with a single verified new target, renamed in-repo path, mapped SAF rewrite. Anything needing judgment stays an issue.
 - Branch `<issue#>-slug` off `main`; commits carry `Refs #N`; body says `Fixes #N` for each rot issue resolved and `Requirements:` per the repo convention (none until link-health REQs are placed).
-- **Never self-merged.** Merge rights stay with Scott (HITL), Kai (GM, `hitl_delegate` at Low), and Release · RTE. Fixes touching `intent.md`, `spec.md`, `requirements/`, `constitution/`, or REQ IDs are human-reviewed via CODEOWNERS.
+- **Never self-merged.** Merge rights stay with the owner (HITL), the GM (GM, `hitl_delegate` at Low), and Release · RTE. Fixes touching `intent.md`, `spec.md`, `requirements/`, `constitution/`, or REQ IDs are human-reviewed via CODEOWNERS.
 
 ### 6.3 Weekly summary
 
-Posted as one comment per week on a single long-lived tracking issue ("Link health — weekly summary"), and relayed to Scott in the Librarian's chat:
+Posted as one comment per week on a single long-lived tracking issue ("Link health — weekly summary"), and relayed to the owner in the Librarian's chat:
 
 - scan SHA, start/end time (ET), targets checked per class (L1–L8)
 - new reports, still-failing, recovered, queued, `auth-unknown`, `pending-map`, `transient`
@@ -212,19 +212,19 @@ Posted as one comment per week on a single long-lived tracking issue ("Link heal
 | Item | Owner |
 | --- | --- |
 | This spec, the weekly scan, `link-rot` issues, fix PRs, SAF freeze PR | Librarian · Signals |
-| Populating `linear-saf-map.csv`, cutover | Delivery (Kai sets timing with Scott) |
-| QAS of this spec and of fix PRs | Kai (COMMENT review with `QAS: APPROVE` / `QAS: CHANGES NEEDED`) |
-| Merges | Scott, Kai, Release · RTE only |
-| Blocking CI extensions (B1–B5) | Delivery implements; Kai decides tier at QAS (workflow edits are O2 `deploy-ci`) |
-| Access gaps found by the scan | Scott (GitHub org / Cursor access) |
+| Populating `linear-saf-map.csv`, cutover | Delivery (the GM sets timing with the owner) |
+| QAS of this spec and of fix PRs | the GM (COMMENT review with `QAS: APPROVE` / `QAS: CHANGES NEEDED`) |
+| Merges | the owner, the GM, Release · RTE only |
+| Blocking CI extensions (B1–B5) | Delivery implements; the GM decides tier at QAS (workflow edits are O2 `deploy-ci`) |
+| Access gaps found by the scan | the owner (GitHub org / Cursor access) |
 
-The Librarian runs from the Grok Bot box using the GitHub connector (and the Linear connector read-only for L8). It holds no credentials in this repository, adds no secrets to Actions, and makes no X writes.
+The Librarian runs from the Grok Bot box using the GitHub connector (and the issue tracker connector read-only for L8). It holds no credentials in this repository, adds no secrets to Actions, and makes no X writes.
 
 ## 8. Acceptance criteria and evidence
 
 | # | Criterion | Evidence |
 | --- | --- | --- |
-| AC1 | Spec merged with QAS: APPROVE from Kai at exact head | QAS review link, merge commit SHA |
+| AC1 | Spec merged with QAS: APPROVE from the GM at exact head | QAS review link, merge commit SHA |
 | AC2 | First weekly scan completes against `main` HEAD and posts a summary covering L1–L8 | Summary comment permalink; evidence row (below) |
 | AC3 | Flake rule holds: no `link-rot` issue is opened for a target that failed only once | Scan state excerpt in the summary; zero single-failure issues |
 | AC4 | Dedupe holds: a target failing in N locations produces exactly one issue | Issue search by fingerprint returns one open issue |
@@ -248,7 +248,7 @@ evidence:
 
 ## 9. Proposed requirements (PROPOSED — not registered)
 
-`spec.md` is human-owned and currently has no section these could cite, so no REQ ID is assigned. If Scott adds a spec anchor (for example a "Link health" section), Studio/Kai can derive real IDs. Until then:
+`spec.md` is human-owned and currently has no section these could cite, so no REQ ID is assigned. If the owner adds a spec anchor (for example a "Link health" section), Studio/the GM can derive real IDs. Until then:
 
 | Proposed ID | Component | Source | Proposed text | Metric |
 | --- | --- | --- | --- | --- |
@@ -258,12 +258,12 @@ evidence:
 
 ## 10. Open questions
 
-1. **Spec location.** Resolved (Kai): keep this file in `trace/` beside `schema.md` (ARC-TRC, CODEOWNED). A later move to `docs/specs/` would need the Wave 0 link scan extended to cover it.
-2. **SAF map columns.** Resolved (Kai): the canonical map is the 6-column header (`saf_id,linear_url,github_issue,pr,title,status`) in `schema.md` and `linear-saf-map.csv`. `prove/wave-1/migration-plan.md` is aligned to that header in this PR.
+1. **Spec location.** Resolved (the GM): keep this file in `trace/` beside `schema.md` (ARC-TRC, CODEOWNED). A later move to `docs/specs/` would need the Wave 0 link scan extended to cover it.
+2. **SAF map columns.** Resolved (the GM): the canonical map is the 6-column header (`saf_id,linear_url,github_issue,pr,title,status`) in `schema.md` and `linear-saf-map.csv`. `prove/wave-1/migration-plan.md` is aligned to that header in this PR.
 3. **Cutover date** for the freeze: TBD per migration-plan.md.
-4. **Atlas manifest path** is taken from Atlas CONVENTIONS; confirm before the first L6 run.
+4. **knowledge base manifest path** is taken from knowledge base CONVENTIONS; confirm before the first L6 run.
 5. **Scan day/time.** Proposed Monday 07:00 ET with confirm re-check Tuesday 07:00 ET, so the summary is ready for the Monday roll-up. Adjust as needed.
-6. **Who creates the `link-rot` label** in GitHub, and when (labels.yml says manual or approved automation after Scott concurrence). Keep the `[link-rot]` title prefix. A "create link-rot label" item is added to the labels follow-up; this PR documents the label only.
+6. **Who creates the `link-rot` label** in GitHub, and when (labels.yml says manual or approved automation after the owner concurrence). Keep the `[link-rot]` title prefix. A "create link-rot label" item is added to the labels follow-up; this PR documents the label only.
 
 ---
 
@@ -273,7 +273,7 @@ evidence:
 
 - `bybren-llc/safe-harness` at `main` HEAD (recursive tree + file contents via the GitHub connector), open issues and PRs
 - `trace/trace-map.yaml`, `requirements/REQ-*.yaml`, `arch/components.yaml`, the active SAF map per §5.2 (+ its `.sha256` once frozen)
-- the private Atlas repo at `main` HEAD (tree, manifest, files citing safe-harness)
+- the private knowledge-base repo at `main` HEAD (tree, manifest, files citing safe-harness)
 - Box-local scan state from the previous run
 - Open issues titled `[link-rot]` (for dedupe)
 
@@ -295,10 +295,10 @@ evidence:
 **Outputs**
 
 - `link-rot` issues (new or updated)
-- At most one fix PR per repo per scan (safe-harness, private Atlas repo)
-- One weekly summary comment + chat relay to Scott
+- At most one fix PR per repo per scan (safe-harness, private knowledge-base repo)
+- One weekly summary comment + chat relay to the owner
 - Updated box-local scan state
-- Escalations: access gaps and privacy findings to Kai/Scott directly
+- Escalations: access gaps and privacy findings to the GM/the owner directly
 
 ## Appendix B — PROPOSED scheduled workflow (not added in this PR)
 

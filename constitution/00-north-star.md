@@ -16,7 +16,7 @@ Spines share Round Table principles, exit states, and ownership language. They d
 | **M1** | Multi-runtime template ships | One template path works for Claude Code, Codex, Cursor, local, Grok Bot |
 | **M2** | tmux not required | Happy-path team run without Dark Factory/tmux; tmux optional accelerator |
 | **M3** | SAFe + AI-DLC spine retained | Bolts / Units of Work / Mob Elaboration / human business-context gate named and taught |
-| **M4** | Round Table seats map | Explicit map: Scott / Kai / Ops / Dispatcher / Delivery / Studio / Librarian / Scout + SAW roles ↔ harness seats |
+| **M4** | Round Table seats map | Explicit map: the owner / the GM / Ops / Dispatcher / Delivery / Studio / Librarian / Scout + SAW roles ↔ harness seats |
 | **M5** | Time-to-first owned ticket | New seat picks up and owns a ticket end-to-end under exit states within target SLA |
 | **M6** | Deploy/release flow health | Spine (A): evidence → independence → HITL decision pack → CD green without freezing the train |
 
@@ -28,7 +28,7 @@ Techniques that win in controlled comparison replace prior defaults. See `06-emp
 
 ## Environment (O5)
 
-- NAS + cloud = ongoing env.
+- private storage + cloud = ongoing env.
 - Mac 24×7 during working runs OK.
 - Dark Factory = optional legacy accelerator, **not** required ceremony.
 
@@ -36,7 +36,7 @@ Techniques that win in controlled comparison replace prior defaults. See `06-emp
 
 - No silent rewrite of SAW `dev`.
 - No personal-vault tooling in Delivery lane; personal vault **never** GitHub/remote forge.
-- No Linear Agents (O6).
+- No the issue tracker Agents (O6).
 - No always-on 11-bot roster — on-demand specialists only.
 - Do not silent-rewrite `safe-agentic-workflow`; Wave 0 lands only in `bybren-llc/safe-harness`.
 - Freeze-the-train is exception, not default CD mode.

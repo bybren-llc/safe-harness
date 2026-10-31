@@ -8,7 +8,7 @@ body:
       value: |
         ## Decision Request
         
-        Use this template for decisions requiring explicit decision concurrence from Scott or Kai.
+        Use this template for decisions requiring explicit decision concurrence from the owner or the GM.
         This is decision concurrence, not design ownership of intent.md or spec.md.
         Common cases: constitution changes, O2 risk downgrades, architecture pivots.
 
@@ -18,9 +18,9 @@ body:
       label: Decision Owner
       description: Who must concur?
       options:
-        - Scott
-        - Kai
-        - Scott + Kai
+        - the owner
+        - the GM
+        - owner + GM
     validations:
       required: true
 

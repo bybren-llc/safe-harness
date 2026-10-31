@@ -1,6 +1,6 @@
 ---
 name: git-advanced
-description: Bisect, cherry-pick, and conflict resolution with safety rules. Use on feature branches. Trunk is main. Update branches by merging main.
+description: Merge main to update feature branches, bisect, cherry-pick, and conflict resolution. Use on feature branches. Trunk is main. Never force-push shared branches.
 license: MIT (see repository LICENSE)
 ---
 
@@ -19,30 +19,36 @@ See the cited section; this skill grants no authority.
 
 ## When to use
 
-Finding a regression with bisect, cherry-picking, or resolving conflicts. Trunk is `main`.
+Updating a feature branch from trunk, finding a regression with bisect, cherry-picking, or resolving conflicts. Trunk is `main`.
 
 ## Forbidden
 
-- Force-push any branch
+- Force-push to trunk or any shared branch (including PR branches you don't own)
+- `--force-with-lease` on shared branches (use it only on your own private work branches before you share them)
+- Rebase or amend commits that others have already pulled
 - Merge commits onto trunk from the client (use the repo's PR merge policy)
 - `git commit --no-verify`
-- Rewriting history (amend, rebase) on pushed branches
 
 ## Safe
 
+- Merge `main` into your feature branch to update it (plain commits, no rebase)
 - `git merge --abort` / `git cherry-pick --abort`
 - `git reflog` to recover
 
-## Update branch from trunk (before a PR, or when Delivery asked for a new head)
+## Update a feature branch from trunk
 
-Update by merging `main`, never by rebase, amend, or force-push. See `roles/implementer.md`.
+**Constitutional rule:** Update feature branches by merging main. No rebase. No force-push on shared branches.
 
 ```text
 git fetch origin
+git checkout <issue#>-slug
 git merge origin/main
-# resolve conflicts, git add, git commit
+# resolve conflicts if any, git add, git commit
 git push origin <issue#>-slug
 ```
+
+This creates a plain merge commit. If the PR is already open, the new commit updates the PR head. QAS reviews at the new exact head.
+
 
 ## Bisect
 
@@ -73,7 +79,7 @@ Resolve, `git add`, `git cherry-pick --continue`.
 3. `git add` the resolved files
 4. Continue the merge or cherry-pick
 
-Merge `main` into long-running feature branches often so conflicts stay small (never rebase; see `roles/implementer.md`).
+Merge main often on long-running feature branches so conflicts stay small.
 
 ## Stop rules
 
