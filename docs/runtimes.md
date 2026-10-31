@@ -100,7 +100,7 @@ codex exec --json "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. I
 
 Record `evidence_id` from that `thread_id`. Set `runtime` to `codex`.
 
-Do not pass flags that skip approvals or sandboxing. If a flag is not in the vendor's public docs, do not invent it.
+Do not pass flags that skip approvals or sandboxing. `--sandbox workspace-write` is the expected sandbox for a run that edits the worktree; it is a sandbox mode, not a bypass. If a flag is not in the vendor's public docs, do not invent it.
 
 ## What to verify after launch
 
@@ -183,14 +183,14 @@ Use this section when a person runs Claude Code or Codex from a desktop machine 
 ### 1. One worktree and branch per brief
 
 1. Write the brief to `.briefs/<issue>.md`. This folder is git-ignored, so don't commit briefs.
-2. Make a worktree for that brief: `git worktree add ../<repo>-<issue> -b agent/<issue>`. Claude Code can also make one with `claude -w <issue>`; Claude's worktrees land in `.claude/worktrees/`, which is also git-ignored.
-3. Run exactly one agent in each worktree. Remove the worktree when its PR merges or closes (`git worktree remove ../<repo>-<issue>`). Headless runs don't clean up their worktrees on their own.
+2. Make a worktree for that brief: `git worktree add ../<repo>-wt/<issue>-<runtime> -b <issue>-<slug>-<runtime>`. Claude Code can also make one with `claude -w <issue>-<runtime>`; Claude's worktrees land in `.claude/worktrees/`, which is also git-ignored.
+3. Run exactly one agent in each worktree. Remove the worktree when its PR merges or closes (`git worktree remove ../<repo>-wt/<issue>-<runtime>`). Headless runs don't clean up their worktrees on their own.
 
 ### 2. Claude Code
 
 - Claude Code reads `CLAUDE.md`, and when that file exists it skips `AGENTS.md`. This repo's `CLAUDE.md` imports `@AGENTS.md`; keep that import, or Claude Code won't load the harness.
 - Interactive: run `claude` in the worktree.
-- Headless: `claude -p "$(cat .briefs/<issue>.md)" --output-format json --permission-mode acceptEdits --allowedTools "Read,Edit,Bash(git *)"`. Save the JSON result (it includes `session_id`) as evidence. Continue the same session with `claude -p --resume <session_id> "<follow-up>"`.
+- Headless: `claude -p "$(cat .briefs/<issue>.md)" --output-format json --allowedTools "Read,Edit,Bash(git *)"`. Record `evidence_id` from `session_id` and copy the JSON output to `prove/v1.1-<runtime>/` as [Commit, push, open the PR, record evidence](#commit-push-open-the-pr-record-evidence) already says. Continue the same session with `claude -p --resume <session_id> "<follow-up>"`.
 - Don't use `--bare`. It skips the repo's `CLAUDE.md`, rules and skills, and it doesn't work with subscription sign-in.
 - Docs: [headless mode](https://code.claude.com/docs/en/headless), [worktrees](https://code.claude.com/docs/en/worktrees), [desktop](https://code.claude.com/docs/en/desktop), [Remote Control](https://code.claude.com/docs/en/remote-control).
 
@@ -198,7 +198,7 @@ Use this section when a person runs Claude Code or Codex from a desktop machine 
 
 - Codex reads `AGENTS.md` directly ([AGENTS.md guide](https://developers.openai.com/codex/guides/agents-md)). See [adapters/codex](../adapters/codex/README.md).
 - Interactive: run `codex` in the worktree.
-- Headless: `codex exec --sandbox workspace-write --json -o <evidence-path>.md "$(cat .briefs/<issue>.md)"`. Continue with `codex exec resume <session-id> "<follow-up>"`. For scripted control, use the [Codex SDK](https://github.com/openai/codex/blob/main/sdk/typescript/README.md).
+- Headless: `codex exec --sandbox workspace-write --json "$(cat .briefs/<issue>.md)"`. Capture stdout. Record `evidence_id` from `thread_id` and copy the JSON output to `prove/v1.1-<runtime>/` as [Commit, push, open the PR, record evidence](#commit-push-open-the-pr-record-evidence) already says. Continue with `codex exec resume <session-id> "<follow-up>"`. For scripted control, use the [Codex SDK](https://github.com/openai/codex/blob/main/sdk/typescript/README.md).
 - Don't use `codex mcp-server`; it has been removed. Use `codex exec` or the SDK instead.
 - Don't share one Codex sign-in file between concurrent jobs or across machines. Run Codex jobs one at a time on a host, or give each its own `CODEX_HOME`.
 - Docs: [non-interactive mode](https://learn.chatgpt.com/docs/non-interactive-mode), [git worktrees](https://learn.chatgpt.com/docs/environments/git-worktrees), [remote connections](https://learn.chatgpt.com/docs/remote-connections).
