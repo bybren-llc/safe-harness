@@ -42,7 +42,7 @@ This README is the index for adopters. It is **not** a policy source. Binding ru
 
 ## What safe-harness is and who it's for
 
-**Safe-harness** is an AI-native work harness. It started as a software development lifecycle (SDLC) framework and runs on two peer spines: **Delivery** (code: execute/deploy) and **Studio** (think/plan: stories and research). Humans set direction and keep the safety gates. Agents execute the work and produce evidence.
+**Safe-harness** is an AI-native work harness with two peer spines: **Delivery** (code: execute/deploy) and **Studio** (think/plan: stories and research). Humans set direction and keep the safety gates. Agents execute the work and produce evidence.
 
 **Who it's for:** Small teams (about 1–10 people) working with AI agents who need structured governance, clear ownership, and evidence-based decisions. That includes engineering teams shipping code and teams producing non-code work such as stories and research.
 
@@ -83,8 +83,6 @@ Safe-harness runs on two peer spines with a shared shape. Per [`constitution/00-
 **Where they meet.** When Studio work becomes something to build, Studio emits the handoff and Delivery accepts it before a bolt starts ([ADR 0005](docs/decisions/0005-studio-delivery-handoff-before-spine-a-build.md), [`studio-handoff`](skills/studio-handoff/SKILL.md)). The [BSA-like](roles/bsa-like.md) seat shapes acceptance criteria across that bridge.
 
 **Adapting to your kind of work.** Keep the seats, gates, and evidence. Rename what flows through them. See [Adapting this template](docs/adapting.md).
-
-**Status.** The Delivery spine has a recorded proof: [`prove/d-p1/bolt-brief.md`](prove/d-p1/bolt-brief.md). The Studio-spine proof (D-P2, "One Studio brief (spine B → A)") is still **pending** in [`prove/README.md`](prove/README.md). Until it lands, treat the Studio column as defined in the constitution but not yet proven end to end.
 
 ---
 
@@ -226,13 +224,13 @@ CODEOWNERS coverage (review gate, not ownership): `intent.md`, `intent/`, `spec.
 
 | Workflow | Job | Blocks merge? |
 | --- | --- | --- |
-| [`wave0-checks.yml`](.github/workflows/wave0-checks.yml) | Structure & Docs Validation (required Wave 0 paths, relative links including `trace/`, fence parity) | **Yes** |
+| [`wave0-checks.yml`](.github/workflows/wave0-checks.yml) | Structure & Docs Validation (required paths, relative links including `trace/`, fence parity) | **Yes** |
 | [`wave0-checks.yml`](.github/workflows/wave0-checks.yml) | Skills frontmatter & link scan | **Warn-only** |
 | [`trace-check.yml`](.github/workflows/trace-check.yml) | Requirements Trace Validation | **Warn-only** for validation findings until `spec.md` has REQ IDs **and** `trace/.blocking` exists. The yq preflight step still fails the required check if yq is missing. |
 | [`api-contract.yml`](.github/workflows/api-contract.yml) | API Contract Checks (oasdiff + optional Schemathesis) | **Warn-only** (skips when no OpenAPI spec) |
 | [`doc-drift.yml`](.github/workflows/doc-drift.yml) | Doc drift | **Warn-only** |
 
-Local checks before a PR: relative-link scan over markdown, Wave 0 required paths, `python3 skills/check-frontmatter.py`, `python3 scripts/check-denylist.py`. Flip notes: [`docs/ci/skills-checks.md`](docs/ci/skills-checks.md), [`docs/ci/api-contract.md`](docs/ci/api-contract.md), [`docs/ci/doc-drift.md`](docs/ci/doc-drift.md). Branch-protection intent: [`docs/branch-protection.md`](docs/branch-protection.md).
+Local checks before a PR: relative-link scan over markdown, required paths, `python3 skills/check-frontmatter.py`, `python3 scripts/check-denylist.py`. Flip notes: [`docs/ci/skills-checks.md`](docs/ci/skills-checks.md), [`docs/ci/api-contract.md`](docs/ci/api-contract.md), [`docs/ci/doc-drift.md`](docs/ci/doc-drift.md). Branch-protection intent: [`docs/branch-protection.md`](docs/branch-protection.md).
 
 CodeRabbit is an optional review input. When it runs, its findings are triaged. It is not a required check.
 
@@ -266,4 +264,4 @@ If you build on this harness, please keep [NOTICE](NOTICE) and credit "Built wit
 - Release notes: [`CHANGELOG.md`](CHANGELOG.md).
 - Tag format and RTE ownership of notes: [`roles/release-rte.md`](roles/release-rte.md), [`release/flow.md`](release/flow.md).
 
-Metrics M1–M6: [`constitution/00-north-star.md`](constitution/00-north-star.md). Wave evidence: [`prove/README.md`](prove/README.md), [`prove/wave-1/decision-pack.md`](prove/wave-1/decision-pack.md).
+Metrics M1–M6: [`constitution/00-north-star.md`](constitution/00-north-star.md). Evidence and bolt records: [`prove/README.md`](prove/README.md).

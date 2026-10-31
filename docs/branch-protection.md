@@ -2,9 +2,9 @@
 
 Who may merge remains [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md): only the owner, the GM, or Release · RTE. Delivery and cloud agents never merge. The GitHub ruleset below does not encode that seat list. This file describes the applied ruleset. A repository administrator applied it. Adopters configure their own rulesets using this structure.
 
-## Ruleset on `main`
+## Recommended ruleset on `main`
 
-A GitHub ruleset on `main` is applied and enforced. The ruleset requires a pull request with 0 required approvals, requires three status checks to pass (strict on up-to-date branches), and blocks force-pushes and deletion.
+Adopters configure a GitHub ruleset on `main` using this structure. The ruleset should require a pull request with 0 required approvals, require three status checks to pass (strict on up-to-date branches), and block force-pushes and deletion.
 
 ### Ruleset settings
 
