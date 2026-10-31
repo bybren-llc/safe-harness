@@ -5,20 +5,22 @@
 #
 # Usage:
 #   bash trace/check-template-ready.sh [ROOT] [--full]
+#   bash trace/check-template-ready.sh --full [ROOT]
 #   bash trace/check-template-ready.sh --template-ready=full
 #
 # Default (CI) scope: templates/, skills/, docs/, README.md
 # Full scope: entire repo except .git/
 #
-# Fails if example values (cheddarfox, bybren-llc GitHub org references) appear
-# in the scanned files.
+# Fails if example values (cheddarfox, @cheddarfox) appear in the scanned files.
+# In full mode, the login is allowed only in .github/harness.yml, .github/CODEOWNERS,
+# examples/round-table/, LICENSE, NOTICE, and CITATION.cff.
 
 set -euo pipefail
 
-ROOT_ARG="${1:-.}"
+# Parse flags first
 FULL_MODE=false
+ROOT_ARG="."
 
-# Parse arguments
 for arg in "$@"; do
   case "$arg" in
     --full|--template-ready=full)
@@ -26,6 +28,13 @@ for arg in "$@"; do
       ;;
     --template-ready)
       # Default scope
+      ;;
+    -*)
+      echo "❌ Unknown flag: $arg"
+      exit 1
+      ;;
+    *)
+      ROOT_ARG="$arg"
       ;;
   esac
 done
@@ -46,34 +55,68 @@ echo ""
 ERRORS=0
 
 # Example values that should not appear in template surface
-# Note: "bybren-llc" org name in attribution/LICENSE is legitimate; 
-# we're checking for placeholder/example values like the cheddarfox GitHub login
+# The cheddarfox GitHub login is the working example; template surfaces must use placeholders
 EXAMPLE_VALUES=(
   "cheddarfox"
   "@cheddarfox"
 )
 
-# Directories to scan based on mode
+# Paths where the login is allowed in full mode
+ALLOWED_IN_FULL=(
+  ".github/harness.yml"
+  ".github/CODEOWNERS"
+  "examples/round-table/"
+  "LICENSE"
+  "NOTICE"
+  "CITATION.cff"
+)
+
+# Build list of files to scan
+SCAN_PATHS=()
+
 if [ "$FULL_MODE" = true ]; then
-  # Full mode: scan everything except .git/, LICENSE, NOTICE, CITATION.cff
-  SCAN_PATHS=()
+  # Full mode: scan everything except .git/ and specific exclusions
   while IFS= read -r -d '' file; do
+    # Reject symlinks (no silent pass)
+    if [ -L "$file" ]; then
+      echo "  ❌ Symlink encountered (rejected): ${file#$ROOT/}"
+      ERRORS=$((ERRORS + 1))
+      continue
+    fi
     SCAN_PATHS+=("$file")
   done < <(find "$ROOT" -type f \
     ! -path "$ROOT/.git/*" \
-    ! -name "LICENSE" \
-    ! -name "NOTICE" \
-    ! -name "CITATION.cff" \
     ! -name "check-template-ready.sh" \
     -print0)
 else
   # CI scope: templates/, skills/, docs/, README.md
   # Exclude examples/round-table/ and .github/ instance config
-  SCAN_PATHS=()
-  for dir in templates skills docs; do
+  
+  # Check that CI scan surface exists
+  CI_SURFACE_DIRS=("templates" "skills" "docs")
+  SURFACE_EXISTS=false
+  for dir in "${CI_SURFACE_DIRS[@]}"; do
+    if [ -d "$ROOT/$dir" ]; then
+      SURFACE_EXISTS=true
+      break
+    fi
+  done
+  
+  if [ "$SURFACE_EXISTS" = false ] && [ ! -f "$ROOT/README.md" ]; then
+    echo "❌ CI scan surface missing or empty (templates/, skills/, docs/, README.md)"
+    exit 1
+  fi
+  
+  for dir in "${CI_SURFACE_DIRS[@]}"; do
     if [ -d "$ROOT/$dir" ]; then
       while IFS= read -r -d '' file; do
-        # Skip examples/round-table/ in default scope
+        # Reject symlinks (no silent pass)
+        if [ -L "$file" ]; then
+          echo "  ❌ Symlink encountered (rejected): ${file#$ROOT/}"
+          ERRORS=$((ERRORS + 1))
+          continue
+        fi
+        # Skip examples/round-table/ in CI scope
         if [[ ! "$file" =~ /examples/round-table/ ]]; then
           SCAN_PATHS+=("$file")
         fi
@@ -83,26 +126,45 @@ else
   
   # Add README.md if it exists
   if [ -f "$ROOT/README.md" ]; then
-    SCAN_PATHS+=("$ROOT/README.md")
+    if [ -L "$ROOT/README.md" ]; then
+      echo "  ❌ Symlink encountered (rejected): README.md"
+      ERRORS=$((ERRORS + 1))
+    else
+      SCAN_PATHS+=("$ROOT/README.md")
+    fi
   fi
 fi
 
 if [ ${#SCAN_PATHS[@]} -eq 0 ]; then
-  echo "⚠ No files found in scan scope"
-  echo ""
-  echo "✅ Template-ready check passed (no files to scan)"
-  exit 0
+  echo "❌ No files found in scan scope (fail closed)"
+  exit 1
 fi
 
 echo "Scanning ${#SCAN_PATHS[@]} file(s)..."
 echo ""
 
-# Scan each file for example values
+# Scan each file for example values (case-insensitive, fixed-string)
 for file in "${SCAN_PATHS[@]}"; do
   # Skip binary files
   if file "$file" 2>/dev/null | grep -q "text"; then
     for value in "${EXAMPLE_VALUES[@]}"; do
-      if grep -l "$value" "$file" >/dev/null 2>&1; then
+      # Use grep -Fi for case-insensitive fixed-string matching
+      if grep -qi -F "$value" "$file" 2>/dev/null; then
+        # In full mode, check if file is in allowed paths
+        if [ "$FULL_MODE" = true ]; then
+          ALLOWED=false
+          REL_PATH="${file#$ROOT/}"
+          for allowed in "${ALLOWED_IN_FULL[@]}"; do
+            if [[ "$REL_PATH" == "$allowed" ]] || [[ "$REL_PATH" == "$allowed"* ]]; then
+              ALLOWED=true
+              break
+            fi
+          done
+          if [ "$ALLOWED" = true ]; then
+            continue
+          fi
+        fi
+        
         echo "  ❌ Found '$value' in: ${file#$ROOT/}"
         ERRORS=$((ERRORS + 1))
       fi

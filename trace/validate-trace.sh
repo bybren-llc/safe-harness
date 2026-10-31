@@ -66,9 +66,10 @@ if [[ "$OWNER_IDENTITY" == "null" || -z "$OWNER_IDENTITY" ]]; then
   exit 1
 fi
 
-# Fail on template placeholder (literal string)
-if [[ "$OWNER_IDENTITY" == "<your-github-login>" ]]; then
-  echo "❌ owner_identity is set to the template placeholder '<your-github-login>'"
+# Fail on template placeholder (case-insensitive)
+OWNER_LOWER="${OWNER_IDENTITY,,}"
+if [[ "$OWNER_LOWER" == "<your-github-login>" ]]; then
+  echo "❌ owner_identity is set to the template placeholder (or a case variant)"
   echo "   Replace it with your actual GitHub login or decision authority's full name."
   echo "   See docs/adapting.md for setup instructions."
   exit 1

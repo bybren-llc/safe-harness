@@ -61,19 +61,7 @@ Grok Bot and local agents are supported but require manual skill import per bot.
 
 ### 5. Branch protection
 
-Recommended branch protection settings for `main`:
-
-- Require pull request reviews (1+ approvals)
-- Dismiss stale reviews when new commits are pushed
-- Require status checks to pass:
-  - `Structure & Docs Validation` (from `wave0-checks.yml`)
-  - `Requirements Trace Validation` (from `trace-check.yml`)
-  - CodeRabbit (if enabled)
-- Require signed commits (recommended)
-- Do not allow force pushes
-- Do not allow deletions
-
-See `docs/branch-protection.md` for the full policy. This guide describes the settings; it does not apply them automatically.
+See `docs/branch-protection.md` for the complete branch protection policy and intended GitHub settings.
 
 **Merge authority:** See `constitution/03-cd-and-hitl.md`. The template default: Delivery and cloud agents never merge. Nobody merges their own authored change. Merge execution follows risk-tier and environment rules.
 
@@ -82,9 +70,6 @@ See `docs/branch-protection.md` for the full policy. This guide describes the se
 Before opening or updating a PR, run these checks from the repo root:
 
 ```bash
-# Wave 0 structure and docs validation
-bash .github/workflows/wave0-checks.yml  # or run checks manually
-
 # Trace validation
 bash trace/check.sh
 
@@ -100,8 +85,8 @@ bash trace/test-fixtures.sh
 bash trace/fixtures/run.sh
 
 # Template-ready (for template maintainers)
-bash trace/check-template-ready.sh         # CI scope
-bash trace/check-template-ready.sh --full  # full repo
+bash trace/check-template-ready.sh .        # CI scope
+bash trace/check-template-ready.sh . --full # full repo
 ```
 
 CI workflows live in `.github/workflows/`:

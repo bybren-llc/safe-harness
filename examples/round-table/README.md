@@ -41,7 +41,7 @@ From `README.md`:
 
 | Seat | Assignment |
 | --- | --- |
-| Human owner (HITL/POPM) | Human owner |
+| Human owner (HITL/POPM) | cheddarfox |
 | GM / lead architect | GM |
 | QAS | GM (never the implementer of the change under review) |
 | Delivery · Lead | Delivery lead |
@@ -69,8 +69,8 @@ Skills live in `skills/` as `skills/<slug>/SKILL.md`. Both runtimes map the same
 GitHub Issues with labels from `.github/labels.yml`:
 - Work types: `bolt`, `decision`, `requirement`
 - Risk tiers: `tier:low`, `tier:medium`, `tier:high`
-- O2 items: `o2:pricing`, `o2:refunds`, `o2:auth`, `o2:deploy-ci`, `o2:prod-secrets`, `o2:privacy-boundary`
-- Exit states: `needs-scott-concur`, `ready-for-qas`, `qas-approved`, etc.
+- O2 items: `o2:pricing`, `o2:refunds`, `o2:auth`, `o2:deploy-ci`, `o2:secrets`, `o2:privacy`
+- Exit states: `needs-concur`, `exit:qas`, `exit:rte`, etc.
 
 Issue templates:
 - `.github/ISSUE_TEMPLATE/bolt.yml`
