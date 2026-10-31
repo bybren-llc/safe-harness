@@ -37,7 +37,7 @@ Ops · CoS reads this file plus the live queue for the morning roll (§8). `cons
 
 | Seat | Owns (for this file's purposes) | Source |
 | --- | --- | --- |
-| **Release · RTE** | **Release flow** (the per-PR release check, RTE PASS/HOLD) and **release notes** (one per merge). Tag and GitHub Release publication is deferred to a future O2 PR (matching `roles/release-rte.md`). **May merge** once Kai's QAS APPROVE and its own RTE PASS are on the exact head and Scott's concur is recorded wherever the constitution requires it; never its own change; never High/O2 or `constitution/` changes without Scott's recorded concur **Decided — Scott 2026-10-29 · merge rule** | [main] `roles/release-rte.md`; release-flow + release-notes ownership is [PENDING-CODIFY] |
+| **Release · RTE** | **Release flow** (the per-PR release check, RTE PASS/HOLD) and **release notes** (one per merge). Tag and GitHub Release publication is deferred to a future O2 PR (matching `roles/release-rte.md`). **May merge** once Kai's QAS APPROVE + SecEng PASS (or PASS-with-notes) + its own RTE PASS are on the exact head (Med, High, O2; Low may mark N/A with rationale) and the owner's (HITL/POPM) concur is recorded wherever the constitution requires it; never its own change; never High/O2 or `constitution/` changes without the owner's (HITL/POPM) recorded concur **Decided — owner (HITL/POPM) 2026-10-29 · merge rule** | [main] `roles/release-rte.md`; release-flow + release-notes ownership is [PENDING-CODIFY] |
 | **Ops · CoS** | Digests and rolls of the live queue; the Monday weekly trace/flow aggregate (Ops-owned; not defined here); Scott concurrence queue; org chart; escalations | [main] `constitution/07-roles-and-lanes.md`; `roles/ops-cos.md` |
 | **Dispatcher · Board** | Tracking board; 4:30 AM ET read-only sweep. Surfaces only: never decides, posts, or merges | [main] `constitution/07-roles-and-lanes.md`; `roles/dispatcher-board.md` |
 | **Delivery · Lead** | Bolt execution; fix routing; CodeRabbit triage; evidence and decision-pack authoring; sends RTE the **ready for release check** packet | [main] owns spine (A) delivery: Bolts, CD health (M6), adapters, prove D-P1 (paraphrase of `roles/delivery-lead.md` mission); packet handoff [PENDING-CODIFY] |
@@ -60,7 +60,7 @@ Posted on the PR (or linked GitHub Issue) only once QAS APPROVE and SecEng clear
 - Gate checklist (§4) with a link per row
 - Decision pack link (`templates/delivery-bolt-brief.md` → "Decision pack (constitution/03 minimum)")
 - Portable evidence rows (`evidence_id`, `runtime`, `exact_head`, `issue`, `actor`, `gate`, `req_ids`)
-- `Requirements:` line / REQ IDs (see G5)
+- `Requirements:` line / REQ IDs (see G6)
 
 If the head SHA moves after the packet is sent, the packet and any RTE PASS are void; Delivery re-sends against the new head (exact-head rule).
 
@@ -124,10 +124,10 @@ Targets are RTE's own clock. Human steps (Scott's concur) and the merge are trac
 
 | Tier | Who may merge | Precondition for an RTE merge |
 | --- | --- | --- |
-| **Low** (incl. HITL-delegated) | Kai, Release · RTE, or Scott | RTE-executed: Kai's QAS APPROVE + RTE PASS on exact head; RTE not the author. Kai or Scott merge at Low: annotated async checklist may replace the per-PR verdict. Exit: **MERGED (delegated Kai/RTE)** when Kai or RTE executed; **MERGED (HITL-delegated)** only with the `constitution/05` D1 `hitl_delegate` record (Low only; kept as written); **MERGED (HITL only)** when Scott executed |
-| **Med** | Kai, Release · RTE, or Scott | Kai's QAS APPROVE + RTE PASS on exact head + Scott's decision-pack concur recorded; RTE not the author. Open decision, see #28; unchanged here. |
-| **High** | Kai, Release · RTE, or Scott | As Med, plus **Scott's recorded concur** (required). Two distinct humans is recommended guidance, not a gate |
-| **O2** | Kai, Release · RTE, or Scott | As High (O2 = High unless Kai downgrades in writing at QAS) |
+| **Low** (incl. HITL-delegated) | Kai, Release · RTE, or owner (HITL/POPM) | RTE-executed: Kai's QAS APPROVE + SecEng PASS (or N/A with rationale) + RTE PASS on exact head; RTE not the author. Kai or owner (HITL/POPM) merge at Low: annotated async checklist may replace the per-PR verdict. Exit: **MERGED (delegated Kai/RTE)** when Kai or RTE executed; **MERGED (HITL-delegated)** only with the `constitution/05` D1 `hitl_delegate` record (Low only; kept as written); **MERGED (HITL only)** when owner (HITL/POPM) executed |
+| **Med** | Kai, Release · RTE, or owner (HITL/POPM) | Kai's QAS APPROVE + SecEng PASS (or PASS-with-notes) + RTE PASS on exact head + owner's (HITL/POPM) decision-pack concur recorded; RTE not the author. Open decision, see #28; unchanged here. |
+| **High** | Kai, Release · RTE, or owner (HITL/POPM) | As Med, plus **owner's (HITL/POPM) recorded concur** (required). SecEng never N/A at High. Two distinct humans is recommended guidance, not a gate |
+| **O2** | Kai, Release · RTE, or owner (HITL/POPM) | As High (O2 = High unless Kai downgrades in writing at QAS). SecEng never N/A at O2 |
 
 Any PR touching `constitution/` needs Scott's recorded concur before an RTE merge, at any tier (`constitution/03-cd-and-hitl.md`).
 
@@ -208,7 +208,7 @@ Merge authority, RTE placement, HOLD override, and the High-tier two-humans guid
 Still open (not landed, or not binding, on `main`):
 
 - Making this file binding (Scott concur on this operating draft).
-- #28 (a) G4 ordering and (b) Med-tier Scott decision-pack concur — parked; unchanged here.
+- #28 (a) G5 ordering and (b) Med-tier owner (HITL/POPM) decision-pack concur — parked; unchanged here.
 - `Requirements:` / REQ ID scheme in `spec.md` (the PR-body convention is in `constitution/03-cd-and-hitl.md`; no REQ IDs have landed yet).
 - CodeRabbit Fix/Accept/Waive triage convention (and any `.coderabbit.yaml`).
 - PR template carrying risk tier, O2 list, `Requirements:` line — landed in `.github/pull_request_template.md` (this PR).

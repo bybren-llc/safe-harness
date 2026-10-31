@@ -175,6 +175,10 @@ jobs:
         run: |
           bash scripts/check-conflict-markers.sh
       
+      - name: Test conflict marker checker
+        run: |
+          bash scripts/test-conflict-markers.sh
+      
       - name: Summary
         if: success()
         run: |

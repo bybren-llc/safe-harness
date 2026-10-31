@@ -19,8 +19,8 @@ tracked_files=$(cd "$REPO_ROOT" && git ls-files)
 for file in $tracked_files; do
   filepath="$REPO_ROOT/$file"
   
-  # Skip test fixtures
-  if [[ "$file" == trace/fixtures/conflict-markers-*.md ]]; then
+  # Skip only the exact test fixture file and the test script itself
+  if [[ "$file" == "trace/fixtures/conflict-markers-fail.md" ]] || [[ "$file" == "scripts/test-conflict-markers.sh" ]]; then
     continue
   fi
   

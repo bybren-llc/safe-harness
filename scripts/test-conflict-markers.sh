@@ -66,6 +66,43 @@ fi
 cd - > /dev/null
 rm -rf "$TEMP_DIR"
 
+# Test 3: Hidden file with conflict markers (should FAIL)
+echo ""
+echo "Test 3: Hidden file with conflict markers (should FAIL)"
+echo -n "  conflict-markers-hidden.md ... "
+
+TEMP_DIR=$(mktemp -d /tmp/conflict-test-hidden-XXXXXX)
+cd "$TEMP_DIR"
+git init -q
+cat > conflict-markers-hidden.md << 'MARKER_EOF'
+# Hidden file test
+
+This file has conflict markers and should fail.
+
+<<<<<<< HEAD
+Content from HEAD
+=======
+Content from branch
+>>>>>>> branch-name
+
+This should be detected.
+MARKER_EOF
+git add conflict-markers-hidden.md
+git config user.email "test@example.com"
+git config user.name "Test User"
+git commit -q -m "Add hidden file with markers"
+
+if ! bash "$CHECK_SCRIPT" "$TEMP_DIR" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+cd - > /dev/null
+rm -rf "$TEMP_DIR"
+
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "Test Summary"
