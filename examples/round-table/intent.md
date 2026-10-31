@@ -27,7 +27,7 @@ safe-harness is the template that holds those shared docs, seats, and gates. Hum
 **In (what exists now):**
 
 - One constitution, one role set, one skills library.
-- Thin adapters for Cursor, Claude Code, and Codex. Pointer files (`CLAUDE.md`, `.cursor/rules/safe-harness.mdc`, `adapters/codex/`) load the same root `AGENTS.md`.
+- Thin adapters for Cursor, Claude Code, and Codex. Pointer files (`CLAUDE.md`, `.cursor/rules/safe-harness.mdc`) load root `AGENTS.md`. Codex reads root `AGENTS.md` natively.
 - Dual spines: Delivery (code) and Studio (stories and research).
 - Evidence rows with `evidence_id` and `runtime`. Exact-head gates. Agents never merge or approve.
 
@@ -75,4 +75,4 @@ No other sources are claimed.
 
 ---
 
-**Note:** Example only. Root `intent.md` is human-owned under constitution/05. Only the owner writes intent.
+**Note:** Example only. Root `intent.md` is human-owned under constitution/05. The owner accepts intent; agents may draft and propose edits but never merge.

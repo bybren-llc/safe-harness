@@ -31,7 +31,7 @@ Illustrative only. Not registered in `requirements/`. Not present in root `spec.
 | Example ID | Text | Metric |
 | --- | --- | --- |
 | EX-CON-001 | Humans own intent and spec. Agents execute plan, issues, code, tests, PRs, and evidence. | M3 |
-| EX-ADP-001 | Claude Code, Cursor, and Codex each reach root `AGENTS.md` and `skills/INDEX.md` through pointer files, not forked skill bodies. | M1 |
+| EX-ADP-001 | Claude Code and Cursor reach root `AGENTS.md` and `skills/INDEX.md` through pointer files. Codex reads root `AGENTS.md` natively. Skill bodies are not forked. | M1 |
 | EX-ADP-002 | One worktree and one branch per agent. Launch from the repo root as [`../../docs/runtimes.md`](../../docs/runtimes.md) describes. | M1 |
 | EX-TRC-001 | Evidence rows carry `evidence_id`, `runtime`, `exact_head`, `issue`, `actor`, `gate`, and `req_ids`. | M6 |
 | EX-WFL-001 | Delivery and cloud agents never merge, never approve, never push to `main`. | M6 |
@@ -41,7 +41,7 @@ Illustrative only. Not registered in `requirements/`. Not present in root `spec.
 Drawn from #85 and the W0.5 runbook. These are example success statements for the first slice, not registered REQs.
 
 - Each run loads `AGENTS.md` and follows the Before you start order.
-- Each run goes through SecEng, QAS, and RTE PASS at its exact head.
+- Each run goes through SecEng PASS, QAS APPROVE, and RTE PASS at its exact head.
 - Evidence is recorded with `runtime` and `evidence_id`.
 - At least one handoff crosses runtimes (for example, R2 picks up work or a review from R1).
 

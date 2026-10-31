@@ -44,7 +44,7 @@ The same structure is intended to seed an orchestration app's intent and PRD lat
 
 | Code | Domain fact or contract |
 | --- | --- |
-| D-001 | Root `AGENTS.md` is the agent entry. Pointer files load it. No forked skill bodies. |
+| D-001 | Root `AGENTS.md` is the agent entry. Claude Code and Cursor load it through pointer files. Codex reads it natively. No forked skill bodies. |
 | D-002 | One worktree and one branch per agent. Brief at `.briefs/<issue>.md`. |
 | D-003 | Portable evidence: `evidence_id`, `runtime`, `exact_head`, `issue`, `actor`, `gate`, `req_ids` (`constitution/05`). |
 | D-004 | Merge seats: owner, GM, or Release · RTE only (`constitution/03`). |
@@ -56,7 +56,7 @@ Maps-to stays `none yet`. Do not write `REQ-<CMP>-NNN` here.
 | Code | Requirement | Maps to |
 | --- | --- | --- |
 | FR-001 | Each run loads `AGENTS.md` and follows the Before you start order. | none yet |
-| FR-002 | Each run goes through SecEng, QAS, and RTE PASS at its exact head. | none yet |
+| FR-002 | Each run goes through SecEng PASS, QAS APPROVE, and RTE PASS at its exact head. | none yet |
 | FR-003 | Evidence is recorded with `runtime` and `evidence_id`. | none yet |
 | FR-004 | At least one handoff crosses runtimes (for example, R2 picks up work or a review from R1). | none yet |
 | FR-005 | W0 pointer files stay the load path (no symlinks). | none yet |

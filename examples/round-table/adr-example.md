@@ -54,7 +54,7 @@ Example only. The merge record is #86 on `main`. This file does not invent a con
 ### Pointer files only
 
 * Good, because no symlink support is assumed.
-* Neutral, because each vendor's expansion of the pointer is checked in prove/, not asserted here.
+* Neutral, because each vendor's expansion of the pointer will be checked in `prove/` during the #85 runs; this example does not assert the result.
 * Bad, because a runtime that does not read `AGENTS.md` or the pointer still needs a first-handoff check.
 
 ### Symlinks

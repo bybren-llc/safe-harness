@@ -9,7 +9,7 @@ One git worktree and one branch per agent. Agents never merge, never approve, ne
 R1–R3 each fail unless all of the following hold:
 
 - Each run loads `AGENTS.md` and follows the Before you start order.
-- Each run goes through SecEng, QAS, and RTE PASS at its exact head.
+- Each run goes through SecEng PASS, QAS APPROVE, and RTE PASS at its exact head.
 - Evidence is recorded with `runtime` and `evidence_id`.
 - At least one handoff crosses runtimes (for example, R2 picks up work or a review from R1).
 
@@ -61,13 +61,13 @@ First message: tell it to read `.briefs/<issue>.md`, then follow `AGENTS.md` Bef
 The public CLI documents `claude -p` (also `--print`) as the non-interactive form.
 
 ```bash
-claude -p "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
+claude -p --allowedTools "Read,Edit,Bash(git *)" "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
 ```
 
 To capture the session id for evidence, the public docs show `--output-format json`, which includes `session_id`:
 
 ```bash
-claude -p --output-format json "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
+claude -p --output-format json --allowedTools "Read,Edit,Bash(git *)" "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
 ```
 
 Record `evidence_id` from that `session_id`. Set `runtime` to `claude-code`.
@@ -89,13 +89,13 @@ First message: tell it to read `.briefs/<issue>.md`, then follow `AGENTS.md` Bef
 The public CLI documents `codex exec` as the non-interactive form.
 
 ```bash
-codex exec "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
+codex exec --sandbox workspace-write "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
 ```
 
 To capture the session id for evidence, the public docs show `--json`, whose stream includes a `thread.started` event with `thread_id`:
 
 ```bash
-codex exec --json "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
+codex exec --sandbox workspace-write --json "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
 ```
 
 Record `evidence_id` from that `thread_id`. Set `runtime` to `codex`.
@@ -133,7 +133,7 @@ Also run the relative-link scan and fence-parity check the same way [`AGENTS.md`
 2. One or more ordinary commits. Trailer `Refs #N`. Do not invent REQ IDs. Do not add trailers by hand beyond what the brief requires.
 3. Push the feature branch. Never push to `main`.
 4. Open the PR with [`.github/pull_request_template.md`](../.github/pull_request_template.md). Include `Requirements: N/A` (or real IDs when they exist) and `Refs #N`.
-5. Fill a portable evidence row:
+5. Fill a portable evidence row for each gate, and record the handoff:
 
 | Field | What to write |
 | --- | --- |
@@ -145,6 +145,8 @@ Also run the relative-link scan and fence-parity check the same way [`AGENTS.md`
 | `gate` | The gate this row satisfies |
 | `req_ids` | `N/A` while `spec.md` has no REQ IDs |
 
+Write one row each for Implement → Ready for QAS, SecEng, QAS, and RTE. For the required cross-runtime handoff, record the source and target `evidence_id`s on those rows. Every row for that run uses the same `exact_head`.
+
 See [`constitution/05-evidence-and-traceability.md`](../constitution/05-evidence-and-traceability.md).
 
 ## Handoff to SecEng, QAS, and RTE
@@ -153,7 +155,7 @@ The implementer stops at Ready for QAS. Delivery and cloud agents never merge, n
 
 SecEng reviews (scanner, not fixer). QAS is independent of the implementer. Release · RTE PASSes the exact head. Merge seats are the owner, the GM, or Release · RTE only.
 
-For R1–R3, each of SecEng, QAS, and RTE PASS must land on the same exact head, in that order. A new commit voids those verdicts.
+For R1–R3, SecEng PASS, QAS APPROVE, and RTE PASS must land on the same exact head, in that order. A new commit voids those verdicts.
 
 ## Cleanup
 

@@ -14,7 +14,7 @@ These notes are a reusable starting point for orchestrating agents across runtim
 - [`decisions.md`](decisions.md) — Instance decisions, plus a Current shape example.
 - [`metrics.md`](metrics.md) — M1–M6 as already locked (v1.0).
 - [`link-health.md`](link-health.md) — Link rot detection notes for this instance.
-- [`linear-saf-map.csv`](linear-saf-map.csv) — Frozen issue-map archive.
+- [`linear-saf-map.csv`](linear-saf-map.csv) — Header-only issue-map draft.
 - [`harness.yml`](harness.yml) — Instance harness snippet.
 - [`CODEOWNERS`](CODEOWNERS) — Instance CODEOWNERS snippet.
 

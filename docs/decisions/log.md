@@ -26,7 +26,7 @@ A PR that changes a decision updates Current shape and the index in the same PR.
 14. Issue-tracker agents were out of Wave 0. That question is superseded: this GitHub repo is the sole system of record. ([0014](0014-linear-agents-out-of-wave-0.md))
 15. The Wave 0 pack was one-pass concurred as written. ([0015](0015-concur-the-filled-pack.md))
 16. The owner authorized and created this org-owned template repo. ([0016](0016-authorize-new-template-repo.md))
-17. Authorization to open issue-tracker research epics no longer applies; superseded with [0014](0014-linear-agents-out-of-wave-0.md). ([0017](0017-linear-research-epics.md))
+17. Authorization to open issue-tracker research epics no longer applies; superseded by #6. Related: [0014](0014-linear-agents-out-of-wave-0.md). ([0017](0017-linear-research-epics.md))
 
 ## Convention
 
