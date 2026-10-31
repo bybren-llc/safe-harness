@@ -18,8 +18,7 @@ Use a **classic branch protection rule** on `main` (Settings → Branches → Br
 | Require approval of the most recent reviewable push | Off |
 | Require status checks to pass before merging | On |
 | Require branches to be up to date before merging | On |
-| Required status checks | `Structure & Docs Validation` (GitHub Actions); `Requirements Trace Validation` (warn-only, GitHub Actions); CodeRabbit (CodeRabbit GitHub App). Pin each expected source. Without a pinned source, the shared account could post a passing status itself. |
-| `API Contract Checks` | **Do not require** until #35 is closed |
+| Required status checks | `Structure & Docs Validation` (GitHub Actions); `Requirements Trace Validation` (warn-only, GitHub Actions); `API Contract Checks` (GitHub Actions). Pin each expected source. Without a pinned source, the shared account could post a passing status itself. |
 | Allow force pushes | Off (block force-pushes) |
 | Allow deletions | Off (block deletion) |
 | Do not allow bypassing the above settings (include administrators) | Off — the repo admin keeps bypass |
@@ -30,13 +29,11 @@ Leave other optional toggles off unless the HITL owner adds them later (conversa
 
 Add these three names, matching the check as it appears on pull requests:
 
-1. **Structure & Docs Validation** (GitHub Actions) — job in `.github/workflows/wave0-checks.yml`
+1. **Structure & Docs Validation** (GitHub Actions) — job in `.github/workflows/wave0-checks.yml`. Includes the conflict-marker check and the template-ready check (CI scope).
 2. **Requirements Trace Validation** (warn-only, GitHub Actions) — job in `.github/workflows/trace-check.yml`. This check is **warn-only** until `spec.md` has REQ IDs **and** `trace/.blocking` exists. In warn-only mode it exits 0, so requiring it does not block merges on trace findings
-3. **CodeRabbit** (CodeRabbit GitHub App)
+3. **API Contract Checks** (GitHub Actions) — job in `.github/workflows/api-contract-checks.yml`
 
-If CodeRabbit skips or doesn't run on the head, anyone comments `@coderabbitai review`, and nobody bypasses the required check.
-
-Do **not** add **API Contract Checks** as a required status check until #35 is closed. #35 is the hardening follow-up (pin, checksum, warn-only installs). Until it closes, an install flake on that workflow could block every merge.
+**CodeRabbit** and the two warn-only checks (**Doc drift**, **Skills frontmatter & link scan**) are **not** required status checks. CodeRabbit review is process, handled by Delivery triage. The warn-only checks exit 0 and do not block merges.
 
 ## Why 0 required approvals
 
@@ -79,8 +76,8 @@ After this file is on `main`:
 12. Add required checks, using the names as they appear in the picker (a check must have run on a recent pull request to appear). Pin the expected source for each. Without a pinned source, the shared account could post a passing status itself.
    - `Structure & Docs Validation` — GitHub Actions
    - `Requirements Trace Validation` — GitHub Actions
-   - `CodeRabbit` — CodeRabbit GitHub App (commit status from that app)
-13. Do **not** add `API Contract Checks` until #35 is closed.
+   - `API Contract Checks` — GitHub Actions
+13. Do **not** add `CodeRabbit`, `Doc drift`, or `Skills frontmatter & link scan` as required checks. They are not blocking.
 14. Leave **Allow force pushes** unchecked.
 15. Leave **Allow deletions** unchecked.
 16. Leave **Do not allow bypassing the above settings** / **Include administrators** unchecked (repo admin keeps bypass).
@@ -89,8 +86,6 @@ After this file is on `main`:
 ## Verify
 
 1. **The branch shows protected.** Settings → Branches lists a protection rule on `main`. The `main` branch reports as protected (`protected: true`).
-2. **A test pull request shows the checks as required, from the pinned sources.** Open a test PR targeting `main`. The three required checks appear as required (merge waits on them). `Structure & Docs Validation` and `Requirements Trace Validation` are reported by GitHub Actions. CodeRabbit is reported by the CodeRabbit GitHub App. `API Contract Checks` is not required.
+2. **A test pull request shows the checks as required, from the pinned sources.** Open a test PR targeting `main`. The three required checks appear as required (merge waits on them). `Structure & Docs Validation`, `Requirements Trace Validation`, and `API Contract Checks` are all reported by GitHub Actions. CodeRabbit, Doc drift, and Skills frontmatter checks are not required.
 3. **Include administrators is Off.** Settings shows "Include administrators" (enforce for admins) Off, as intended.
 4. **Force-push and deletion are blocked.** Run the force-push test as a non-admin with no bypass permission. An admin push is not a valid test. The same non-admin must not be able to delete `main`.
-
-When #35 closes, a follow-up (HITL owner or named admin) may add `API Contract Checks` to the required list. That is not this rule.

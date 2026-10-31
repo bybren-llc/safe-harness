@@ -140,7 +140,7 @@ Recorded on the #22 squash [`d88c884`](https://github.com/bybren-llc/safe-harnes
 
 ### `main` branch protection
 
-Answered. Require a pull request before merging. Required status checks: `Structure & Docs Validation`, `Requirements Trace Validation` (warn-only), and CodeRabbit. Do not require `API Contract Checks` until #35 closes. Required approvals: 0 (QAS is a COMMENT review; merge authority and the review gate remain as listed in Merge authority, Who may execute a trunk merge, and Gate types above). Block force-pushes and deletion. The repo admin keeps bypass. A separate bot identity (GitHub App or bot user) for real APPROVE reviews is the planned upgrade; the HITL owner decides it. Intended settings, apply checklist, and verification: [`docs/branch-protection.md`](../docs/branch-protection.md).
+Answered. Require a pull request before merging. Required status checks: `Structure & Docs Validation`, `Requirements Trace Validation` (warn-only), and `API Contract Checks`. CodeRabbit and the two warn-only checks (Doc drift, Skills frontmatter & link scan) are not required. Required approvals: 0 (QAS is a COMMENT review; merge authority and the review gate remain as listed in Merge authority, Who may execute a trunk merge, and Gate types above). Block force-pushes and deletion. The repo admin keeps bypass. A separate bot identity (GitHub App or bot user) for real APPROVE reviews is the planned upgrade; the HITL owner decides it. Intended settings, apply checklist, and verification: [`docs/branch-protection.md`](../docs/branch-protection.md).
 
 ### the owner's earlier recorded delegation (2026-10-29 ET)
 

@@ -107,7 +107,7 @@ Do not modify these governance invariants:
 - Evidence fields in `constitution/05-evidence-and-traceability.md` (evidence_id, exact_head, actor, gate, req_ids, issue) are canonical. Do not rename or remove these fields.
 - Trace map schema (`trace/schema.md`) and validation logic (`trace/check.sh`, `trace/validate-trace.sh`) enforce traceability. Changes require human review.
 - Gate types and merge authority (`constitution/03-cd-and-hitl.md`) ensure safety. Downgrades require written rationale at QAS.
-- CODEOWNERS review gates prevent accidental merges of governance files.
+- CODEOWNERS routes review requests for governance files. Required reviews and checks come from branch protection or rulesets.
 
 You may adapt risk tiers, O2 items, and seat assignments to fit your team. The constitution documents the **what** and **why**; your instance configures the **who** and **when**.
 
