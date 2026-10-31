@@ -61,16 +61,16 @@ First message: tell it to read `.briefs/<issue>.md`, then follow `AGENTS.md` Bef
 The public CLI documents `claude -p` (also `--print`) as the non-interactive form.
 
 ```bash
-claude -p --allowedTools "Read,Edit,Bash(git *)" "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
+claude -p --allowedTools "Read,Edit,Write,Bash(git status),Bash(git diff *),Bash(yq eval *),Bash(python3 skills/check-frontmatter.py),Bash(python3 scripts/check-denylist.py),Bash(python3 scripts/test_check_denylist.py),Bash(bash trace/check.sh)" "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
 ```
 
 To capture the session id for evidence, the public docs show `--output-format json`, which includes `session_id`:
 
 ```bash
-claude -p --output-format json --allowedTools "Read,Edit,Bash(git *)" "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
+claude -p --output-format json --allowedTools "Read,Edit,Write,Bash(git status),Bash(git diff *),Bash(yq eval *),Bash(python3 skills/check-frontmatter.py),Bash(python3 scripts/check-denylist.py),Bash(python3 scripts/test_check_denylist.py),Bash(bash trace/check.sh)" "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
 ```
 
-Record `evidence_id` from that `session_id`. Set `runtime` to `claude-code`.
+Headless runs only edit files and run the local checks. The operator commits, pushes, and opens the PR from the worktree, and records `session_id` as `evidence_id`. Set `runtime` to `claude-code`.
 
 Do not pass flags that skip approvals or sandboxing. If a flag is not in the vendor's public docs, do not invent it.
 
@@ -98,7 +98,7 @@ To capture the session id for evidence, the public docs show `--json`, whose str
 codex exec --sandbox workspace-write --json "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
 ```
 
-Record `evidence_id` from that `thread_id`. Set `runtime` to `codex`.
+Headless runs only edit files and run the local checks. The operator commits, pushes, and opens the PR from the worktree, and records `thread_id` as `evidence_id`. Set `runtime` to `codex`.
 
 Do not pass flags that skip approvals or sandboxing. `--sandbox workspace-write` is the expected sandbox for a run that edits the worktree; it is a sandbox mode, not a bypass. If a flag is not in the vendor's public docs, do not invent it.
 
@@ -128,6 +128,8 @@ bash trace/check.sh
 Also run the relative-link scan and fence-parity check the same way [`AGENTS.md`](../AGENTS.md) describes.
 
 ## Commit, push, open the PR, record evidence
+
+Headless runs only edit files and run the local checks. They do not commit, push, or open the PR. The operator does those steps from the worktree and records the agent's `thread_id` or `session_id` as `evidence_id`.
 
 1. Stage only the files the brief allows.
 2. One or more ordinary commits. Trailer `Refs #N`. Do not invent REQ IDs. Do not add trailers by hand beyond what the brief requires.
@@ -192,7 +194,7 @@ Use this section when a person runs Claude Code or Codex from a desktop machine 
 
 - Claude Code reads `CLAUDE.md`, and when that file exists it skips `AGENTS.md`. This repo's `CLAUDE.md` imports `@AGENTS.md`; keep that import, or Claude Code won't load the harness.
 - Interactive: run `claude` in the worktree.
-- Headless: `claude -p "$(cat .briefs/<issue>.md)" --output-format json --allowedTools "Read,Edit,Bash(git *)"`. Record `evidence_id` from `session_id` and copy the JSON output to `prove/v1.1-<runtime>/` as [Commit, push, open the PR, record evidence](#commit-push-open-the-pr-record-evidence) already says. Continue the same session with `claude -p --resume <session_id> "<follow-up>"`.
+- Headless: `claude -p "$(cat .briefs/<issue>.md)" --output-format json --allowedTools "Read,Edit,Write,Bash(git status),Bash(git diff *),Bash(yq eval *),Bash(python3 skills/check-frontmatter.py),Bash(python3 scripts/check-denylist.py),Bash(python3 scripts/test_check_denylist.py),Bash(bash trace/check.sh)"`. Headless runs only edit files and run the local checks. The operator commits, pushes, and opens the PR from the worktree, records `session_id` as `evidence_id`, and copies the JSON output to `prove/v1.1-<runtime>/` as [Commit, push, open the PR, record evidence](#commit-push-open-the-pr-record-evidence) already says. Continue the same session with `claude -p --resume <session_id> "<follow-up>"`.
 - Don't use `--bare`. It skips the repo's `CLAUDE.md`, rules and skills, and it doesn't work with subscription sign-in.
 - Docs: [headless mode](https://code.claude.com/docs/en/headless), [worktrees](https://code.claude.com/docs/en/worktrees), [desktop](https://code.claude.com/docs/en/desktop), [Remote Control](https://code.claude.com/docs/en/remote-control).
 
@@ -200,7 +202,7 @@ Use this section when a person runs Claude Code or Codex from a desktop machine 
 
 - Codex reads `AGENTS.md` directly ([AGENTS.md guide](https://developers.openai.com/codex/guides/agents-md)). See [adapters/codex](../adapters/codex/README.md).
 - Interactive: run `codex` in the worktree.
-- Headless: `codex exec --sandbox workspace-write --json "$(cat .briefs/<issue>.md)"`. Capture stdout. Record `evidence_id` from `thread_id` and copy the JSON output to `prove/v1.1-<runtime>/` as [Commit, push, open the PR, record evidence](#commit-push-open-the-pr-record-evidence) already says. Continue with `codex exec resume <session-id> "<follow-up>"`. For scripted control, use the [Codex SDK](https://github.com/openai/codex/blob/main/sdk/typescript/README.md).
+- Headless: `codex exec --sandbox workspace-write --json "$(cat .briefs/<issue>.md)"`. Capture stdout. Headless runs only edit files and run the local checks. The operator commits, pushes, and opens the PR from the worktree, records `thread_id` as `evidence_id`, and copies the JSON output to `prove/v1.1-<runtime>/` as [Commit, push, open the PR, record evidence](#commit-push-open-the-pr-record-evidence) already says. Continue with `codex exec resume <thread_id> "<follow-up>"`. For scripted control, use the [Codex SDK](https://github.com/openai/codex/blob/main/sdk/typescript/README.md).
 - Don't use `codex mcp-server`; it has been removed. Use `codex exec` or the SDK instead.
 - Don't share one Codex sign-in file between concurrent jobs or across machines. Run Codex jobs one at a time on a host, or give each its own `CODEX_HOME`.
 - Docs: [non-interactive mode](https://learn.chatgpt.com/docs/non-interactive-mode), [git worktrees](https://learn.chatgpt.com/docs/environments/git-worktrees), [remote connections](https://learn.chatgpt.com/docs/remote-connections).
@@ -214,5 +216,5 @@ The Claude desktop app and the Codex app can open the same repo and the same wor
 - Sign in through each vendor's own flow on the unmodified app or CLI. Never copy, extract or share sign-in tokens.
 - Don't run subscription-signed-in Codex in GitHub Actions on a public repo. See [CI/CD auth](https://learn.chatgpt.com/docs/auth/ci-cd-auth). Run `codex exec` only on a trusted machine against a local clone, and only on branches your own team created; treat PR content from outsiders as untrusted input.
 - Don't script the desktop apps' GUIs. There's no supported API, and it breaks easily.
-- An agent never merges, force-pushes or edits history. It pushes its branch, opens the PR, and hands off with `git show --stat`, `git rev-parse HEAD` and the evidence paths.
+- An agent never merges, force-pushes or edits history. A headless run only edits files and runs the local checks. The operator commits, pushes, and opens the PR from the worktree, records `thread_id`/`session_id` as `evidence_id`, and hands off with `git show --stat`, `git rev-parse HEAD` and the evidence paths.
 - Usage limits are shared with the owner's own use of the same plan. Don't raise limits or add paid tiers without the owner's approval.
