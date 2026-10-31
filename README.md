@@ -132,7 +132,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | Model stack (O4 tiers) | [`roles/model-stack.md`](roles/model-stack.md) |
 | Human owner (HITL/POPM) | Role card planned |
 
-**Tiers, O2, and merge rules:** [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md). **Release · RTE:** [`roles/release-rte.md`](roles/release-rte.md). Seat map: [`constitution/01-round-table.md`](constitution/01-round-table.md). The HITL-concur label in this repo is `needs-scott-concur`.
+**Tiers, O2, and merge rules:** [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md). **Release · RTE:** [`roles/release-rte.md`](roles/release-rte.md). Seat map: [`constitution/01-round-table.md`](constitution/01-round-table.md). The HITL-concur label in this repo is `needs-owner-concur`.
 
 ---
 

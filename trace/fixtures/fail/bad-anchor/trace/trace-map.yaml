@@ -6,7 +6,7 @@ requirements:
     source: spec.md#does-not-exist
     rationale: |
       Fixture for missing anchor
-    decided_by: Kai
+    decided_by: example-owner
     decided_at: 2026-10-30
     defer_to: Wave 2
 evidence: []

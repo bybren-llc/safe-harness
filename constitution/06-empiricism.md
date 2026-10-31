@@ -20,7 +20,7 @@ Techniques that win in controlled comparison replace prior defaults. Dogma retir
 | Freeze-the-train as safety | M6 release health + incident rate under decision packs |
 | Always-on 11 bots | Idle cost vs on-demand specialist latency (M5) |
 | Claude-only evidence IDs | Portability failures across Cursor/Codex/Grok |
-| Linear Agents | Explicitly out of Wave 0; revisit only with comparison after Wave 0 prove |
+| the issue tracker Agents | Explicitly out of Wave 0; revisit only with comparison after Wave 0 prove |
 
 ## Keep / adapt / drop
 
@@ -29,5 +29,5 @@ Every empiricism pack ends with a three-column matrix. Defaults change only when
 ## Stop rules
 
 - Do not A/B production secrets or privacy-boundary crossings.
-- High-tier O2 work is not an empiricism playground without Scott's recorded concur. Two distinct humans is recommended guidance, not a gate.
+- High-tier O2 work is not an empiricism playground without the owner's recorded concur. Two distinct humans is recommended guidance, not a gate.
 - SAW `dev` remains reference until a comparison says otherwise — still no silent rewrite.
