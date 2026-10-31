@@ -44,7 +44,7 @@ No Gitflow. Trunk-based development with feature flags for incomplete work.
 
 ## O2 high-risk default (always High unless downgraded in writing at QAS)
 
-**Downgrade authority:** QAS may downgrade O2 items from High to Med/Low in writing at QAS, with rationale recorded in the decision pack or QAS verdict. Delivery may propose a downgrade rationale in the decision pack; QAS decides at QAS.
+**Downgrade authority:** the GM may downgrade O2 items from High to Med/Low in writing at QAS, with rationale recorded in the decision pack or QAS verdict. Delivery may propose a downgrade rationale in the decision pack; the GM decides at QAS.
 
 O2 items (default High):
 - Pricing

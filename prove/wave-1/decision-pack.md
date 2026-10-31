@@ -550,7 +550,7 @@ This PR touches **Deploy CI / workflows** (O2 item):
 - [x] Prod secrets — N/A
 - [x] Privacy-boundary crosses — N/A (personal-boundary rule added as safeguard)
 
-**Downgrade rationale (proposed by Delivery; QAS confirmed Medium in writing at QAS, reviews 5699823929 and 5702397094):**
+**Downgrade rationale (proposed by Delivery; the GM confirmed Medium in writing at QAS, reviews 5699823929 and 5702397094):**
 
 O2 item "Deploy CI / workflows" defaults to High tier. **Proposed downgrade to Medium** is justified by:
 
