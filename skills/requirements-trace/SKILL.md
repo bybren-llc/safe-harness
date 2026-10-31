@@ -1,6 +1,7 @@
 ---
 name: requirements-trace
 description: Add or update REQ-<CMP>-NNN rows and trace-map states (Placed, Deferred, Dropped, Missing). Use when deriving success criteria from spec or intent. Never edit human-owned intent.md or spec.md.
+license: MIT (see repository LICENSE)
 ---
 
 # Requirements trace

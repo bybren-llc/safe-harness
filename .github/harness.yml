@@ -1,0 +1,12 @@
+# safe-harness configuration
+#
+# Repository-level settings for trace validation and governance.
+# This file is committed and required by CI.
+
+# Owner identity for governance decisions
+# Used by trace-check.yml to validate decided_by fields on Dropped requirements
+# sourced from intent.md.
+#
+# Template default: "Repository Owner"
+# Set this to the decision authority's full name for this repository.
+owner_identity: "Scott Graham"

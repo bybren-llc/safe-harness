@@ -1,6 +1,7 @@
 ---
 name: git-advanced
 description: Merge main to update feature branches, bisect, cherry-pick, and conflict resolution. Use on feature branches. Trunk is main. Never force-push shared branches.
+license: MIT (see repository LICENSE)
 ---
 
 # Git advanced

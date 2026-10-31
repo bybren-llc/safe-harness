@@ -1,6 +1,7 @@
 ---
 name: qas-review
 description: "Independent QAS review at the exact head with a QAS: APPROVE or QAS: CHANGES NEEDED verdict. Use when a change is ready for the independence gate. Never review your own implementation."
+license: MIT (see repository LICENSE)
 ---
 
 # QAS review

@@ -29,6 +29,12 @@ Secrets live in vaults. The human owner (HITL/POPM) owns both the forge secrets 
 
 ---
 
+## Licensing of contributions
+
+safe-harness is MIT-licensed (see [`LICENSE`](LICENSE)). By opening a PR you agree your contribution is licensed under the same MIT License (inbound = outbound). Only contribute content you have the right to publish under MIT. Do not paste text, code, or structure from client, proprietary, or non-public sources. If you adapt a public third-party work, name it and its license in the PR and add it to [`NOTICE`](NOTICE).
+
+---
+
 ## Constitution-gated files (CODEOWNERS)
 
 Contributors request review from the CODEOWNERS owners for these paths. See [`.github/CODEOWNERS`](.github/CODEOWNERS).

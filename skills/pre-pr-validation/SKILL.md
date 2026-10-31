@@ -1,6 +1,7 @@
 ---
 name: pre-pr-validation
 description: Run the repo's documented local checks, link check, and trace check before opening a PR, and paste the literal output as evidence. Use immediately before gh pr create or equivalent.
+license: MIT (see repository LICENSE)
 ---
 
 # Pre-PR validation

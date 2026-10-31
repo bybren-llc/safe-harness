@@ -1,6 +1,14 @@
 # Constitution — safe-harness
 
+<<<<<<< HEAD
 **Status:** Wave 0 active · the GM owns · Delivery executes  
+=======
+**License:** MIT (see [../LICENSE](../LICENSE))
+**Copyright:** © 2026 ByBren, LLC
+**Attribution:** See [../NOTICE](../NOTICE)
+
+**Status:** Wave 0 active · Kai owns · Delivery executes  
+>>>>>>> origin/main
 **Org:** bybren-llc · **Slug:** `safe-harness`  
 **Reference only:** `bybren-llc/safe-agentic-workflow` @ `dev` — never silent-rewrite SAW.
 

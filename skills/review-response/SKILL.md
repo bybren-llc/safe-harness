@@ -1,6 +1,7 @@
 ---
 name: review-response
 description: Read AI-review and QAS findings yourself, disposition each item, and freeze the head after QAS APPROVE. Use when a review arrives on your PR. Do not push after APPROVE unless Delivery explicitly asks.
+license: MIT (see repository LICENSE)
 ---
 
 # Review response

@@ -1,6 +1,7 @@
 ---
 name: research-brief
 description: Write a research brief with evidence sources and UNKNOWN markers for a decision pack or Studio handoff. Use when Scout or Studio is gathering, not deciding.
+license: MIT (see repository LICENSE)
 ---
 
 # Research brief

@@ -1,6 +1,7 @@
 ---
 name: doc-drift
 description: Detect and repair drift between governance docs, README, AGENTS.md, and skills after a merge. Use after a governance or adapter change, or when a later CI drift check warns.
+license: MIT (see repository LICENSE)
 ---
 
 # Doc drift

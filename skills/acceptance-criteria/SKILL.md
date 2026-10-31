@@ -1,6 +1,7 @@
 ---
 name: acceptance-criteria
 description: Shape acceptance criteria, definition of done, and a demo script when a bolt lacks clarity. Use before construction when AC is missing or untestable. Defer O2 scope to the HITL owner.
+license: MIT (see repository LICENSE)
 ---
 
 # Acceptance criteria

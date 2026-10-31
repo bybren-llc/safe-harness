@@ -1,6 +1,7 @@
 ---
 name: lane-routing
 description: Route work by the delegation map and refuse out-of-lane work. Use when picking up an issue, escalating, or deciding which seat owns a request.
+license: MIT (see repository LICENSE)
 ---
 
 # Lane routing

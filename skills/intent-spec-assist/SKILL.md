@@ -1,6 +1,7 @@
 ---
 name: intent-spec-assist
 description: Help the human owner draft intent.md and spec.md. Propose only. Agents never write those files as done and never merge them. Use when Studio is preparing design text for the HITL owner.
+license: MIT (see repository LICENSE)
 ---
 
 # Intent and spec assist

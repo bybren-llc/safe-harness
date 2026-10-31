@@ -54,6 +54,8 @@ O2 items (default High):
 - Prod secrets
 - Privacy-boundary crosses (vault routing, PII, personal→remote attempts)
 
+**Changing `.github/harness.yml` `owner_identity`** is High/O2 (deploy-ci): it controls the `decided_by` validation for intent-sourced requirement drops, so a PR must not rewrite `owner_identity` and `decided_by` together without owner review.
+
 ## Gate types
 
 | Gate | Behavior | Blocks whole train? |

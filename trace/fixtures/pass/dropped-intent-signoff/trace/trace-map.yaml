@@ -6,6 +6,6 @@ requirements:
     source: intent.md#design-goal
     rationale: |
       Dropped with HITL sign-off. Record: https://github.com/bybren-llc/safe-harness/issues/7
-    decided_by: Scott Graham
+    decided_by: Repository Owner
     decided_at: 2026-10-30
 evidence: []

@@ -1,6 +1,7 @@
 ---
 name: orchestration-patterns
 description: Run long-running, multi-step agent work with evidence-based delivery and a choice between parallel sessions and subagents. Use when one session cannot finish the bolt.
+license: MIT (see repository LICENSE)
 ---
 
 # Orchestration patterns
