@@ -74,35 +74,34 @@ decided_at: 2026-10-29
 
 ## the issue tracker to GitHub Issue mapping
 
-**Frozen mapping table:** `trace/linear-saf-map.csv`
+**Example mapping table:** `examples/round-table/linear-saf-map.csv` (this template's instance example)
 
-The CSV file is header-only until populated before Linear cutover:
+Adopters create their own mapping table for their issue tracker. The CSV file is header-only until populated before issue tracker migration:
 ```csv
-saf_id,linear_url,github_issue,pr,title,status
+saf_id,issue_tracker_url,github_issue,pr,title,status
 ```
 
 **Columns:**
-- `saf_id`: Linear issue ID (e.g., SAF-1)
-- `linear_url`: Full Linear issue URL
-- `github_issue`: Mirror GitHub Issue number (e.g., #1; assigned at creation, may not equal SAF-n)
+- `saf_id`: Issue tracker ID (e.g., EX-1)
+- `issue_tracker_url`: Full issue tracker URL
+- `github_issue`: Mirror GitHub Issue number (e.g., #1; assigned at creation, may not equal tracker ID)
 - `pr`: Pull request that closed the issue (e.g., #3)
 - `title`: Issue title
 - `status`: Archived
 
 **Example data (placeholders only):**
 ```csv
-SAF-1,<linear-url>,#1,#2,ADR pack concur,Archived
-SAF-2,<linear-url>,#2,#2,Constitution + thin CI,Archived
-SAF-3,<linear-url>,#3,#3,D-P1 delivery bolt,Archived
+EX-1,<issue-tracker-url>,#1,#2,Example requirement,Archived
+EX-2,<issue-tracker-url>,#2,#3,Example feature,Archived
 ```
 
-Populate the actual mapping before Linear closeout (migration-plan.md Phase 2).
+Populate the actual mapping for your instance before issue tracker migration.
 
 ---
 
 ## Trace-check CI enforcement
 
-**Bootstrap rule (Wave 1):** Runs **warn-only** until the first `spec.md` with REQ IDs lands **AND** a code-owner-reviewed PR adds the marker file `trace/.blocking`. Until both conditions are met, trace-check warns but does not block merges.
+**Bootstrap rule:** Runs **warn-only** until the first `spec.md` with REQ IDs lands **AND** a code-owner-reviewed PR adds the marker file `trace/.blocking`. Until both conditions are met, trace-check warns but does not block merges.
 
 Once blocking, CI fails when:
 1. Any requirement in state **Missing**
@@ -149,7 +148,7 @@ evidence:
 - Deferred/Dropped missing required fields
 
 **Non-blocking scheduled check** (separate workflow, read-only):
-- Cross-system link validation (Linear archive, external URLs)
+- Cross-system link validation (Issue tracker archive, external URLs)
 - spec.md anchor existence validation
 - Evidence URL reachability
 
