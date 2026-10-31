@@ -19,7 +19,7 @@ Review gates (not ownership) are listed in [`.github/CODEOWNERS`](.github/CODEOW
 
 ## Skills
 
-Canonical skills live in [`skills/`](skills/) as `skills/<slug>/SKILL.md`. Adapters map that tree into the runtime. Do not fork skill bodies.
+Canonical skills live in [`skills/`](skills/) as `skills/<slug>/SKILL.md`. Catalog: [`skills/INDEX.md`](skills/INDEX.md). Adapters map that tree into the runtime. Do not fork skill bodies.
 
 ## Adapters
 
@@ -27,6 +27,7 @@ Runtime-specific notes:
 
 - [`adapters/claude-code/AGENTS.md`](adapters/claude-code/AGENTS.md)
 - [`adapters/cursor/AGENTS.md`](adapters/cursor/AGENTS.md)
+- [`adapters/codex/AGENTS.md`](adapters/codex/AGENTS.md)
 
 Other runtimes: add an adapter following this pattern. A runtime that does not auto-load `skills/` requires a manual skill import. Do not add adapter stubs here before they exist.
 
