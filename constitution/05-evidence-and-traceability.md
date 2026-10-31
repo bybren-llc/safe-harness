@@ -1,18 +1,14 @@
 # 05 — Evidence & Source of Truth
 
-**Status:** Adopted 2026-10-29 (owner concurrence)  
-**Supersedes:** Wave 0 version (Linear as SoR)  
-**Effective:** 2026-10-29
-
 ---
 
-## AMENDMENT: Repository as sole source of truth
+## Repository as sole source of truth
 
-**Decision (2026-10-29):** The GitHub repository is the **sole source of truth** for intent, spec, plan, requirements, trace map, review findings, and evidence. Work tracking moves to GitHub Issues. Linear archive remains read-only.
+**System of record:** Name your system of record (SoR) here — GitHub, Linear, or your chosen issue tracker.
 
-**Linear is optional.** The preferred path is design, specs, and PRDs in GitHub. Adopting teams may keep Linear; this template does not require it. The archive map `trace/linear-saf-map.csv` stays frozen.
+The repository is the **sole source of truth** for intent, spec, plan, requirements, trace map, review findings, and evidence. Work items are tracked in your chosen issue tracker (GitHub Issues recommended).
 
-**Evidence canonical in repo:** Evidence for safe-harness is canonical in this repository. Vaults (personal, private storage) and knowledge base cite evidence by link without duplicating it. Never copy repo evidence into private vaults.
+**Evidence canonical in repo:** Evidence is canonical in this repository. Vaults (personal, private storage) and knowledge base cite evidence by link without duplicating it. Never copy repo evidence into private vaults.
 
 ### Human vs. agent ownership split
 
@@ -149,7 +145,7 @@ The `.github/workflows/trace-check.yml` CI workflow validates:
 - Deferred/Dropped missing required fields
 
 **Non-blocking scheduled check** (separate workflow, read-only):
-- Cross-system link validation (Linear archive, external URLs)
+- Cross-system link validation (issue tracker archive, external URLs)
 - spec.md anchor existence validation
 - Evidence URL reachability
 
@@ -176,19 +172,19 @@ Use consistent labels across runtimes. Human approval is distinct from merge exe
 
 ### D1: Delegated HITL (Low tier only)
 
-At **Low tier** only, HITL may be delegated with a structured `hitl_delegate` record. the owner's #22 concur (2026-10-30, recorded on [`d88c884`](https://github.com/bybren-llc/safe-harness/commit/d88c884c14c64aa2dbc244c89290818df423924e)) keeps this Low-tier record **as written**. ADR-style accountability is required: who delegated, what was delegated, when, and a link to the record. This block is this instance's record of the owner's #22 concur. Adopters record their own `hitl_delegate` under their own owner concur; nothing here grants delegation authority in an adopter's repo.
+At **Low tier** only, HITL may be delegated with a structured `hitl_delegate` record. ADR-style accountability is required: who delegated, what was delegated, when, and a link to the record. Adopters record their own `hitl_delegate` under their own owner concur.
 
 ```yaml
 hitl_delegate:
-  delegating_actor: <owner_identity>
-  delegate_actor: the GM
-  authorization_url: <placeholder>
+  delegating_actor: <delegate seat>
+  delegate_actor: <delegated-to seat>
+  authorization_url: <link to the delegation record>
   scope: low  # Must be "low" only
-  delegated_what: Low-tier HITL merge execution (standing Wave 0 authorization)
-  delegated_at: 2026-10-28
+  delegated_what: <what is delegated>
+  delegated_at: <YYYY-MM-DD>
 ```
 
-Accountability fields (required on every new `hitl_delegate` row). The standing record keeps `delegating_actor`, `delegate_actor`, `authorization_url`, and `scope` as written, and adds `delegated_what` and `delegated_at`:
+Accountability fields (required on every `hitl_delegate` record):
 
 | Field | ADR question |
 | --- | --- |
@@ -215,21 +211,8 @@ Report cycle time per Bolt in prove/ records. Track blocking gates separately (Q
 
 ---
 
-## Linear archive (Wave 1 migration)
-
-Linear issues SAF-1 through SAF-5 remain accessible as read-only archive. **Never delete Linear history.** Every existing Linear evidence URL must remain resolvable.
-
-Migration plan (`prove/wave-1/migration-plan.md`) includes:
-- SAF-n to GitHub Issue mapping table (`trace/linear-saf-map.csv`)
-- Evidence URL preservation strategy (Linear URLs remain valid; cite them by link)
-- Archive access instructions
-- Cutover date: TBD (set after owner concurrence)
-- Scope: safe-harness only (other Linear teams like STO are untouched)
-
-**Delivery owns migration and closeout.** The GM coordinates with the owner on cutover timing.
-
 ---
 
-## Wave 1 GitHub writes
+## GitHub writes
 
-After owner concurrence on this amendment, agents may create GitHub Issues using the structured templates. Constitution changes require explicit owner concurrence before merge.
+Agents may create work items in your chosen issue tracker using the structured templates. Constitution changes require explicit owner concurrence before merge.

@@ -69,3 +69,28 @@ Model weights ≠ personal vault; still never push caches into `bybren-llc/safe-
 Mac-local cache is non-compliant with Option A.
 
 When adapters document local/Ollama/HF lanes, require `HF_HOME` (and kin) to resolve on a private storage.
+
+## Linear archive (Wave 1 migration)
+
+Linear issues SAF-1 through SAF-5 remain accessible as read-only archive. **Never delete Linear history.** Every existing Linear evidence URL must remain resolvable.
+
+Migration plan (`prove/wave-1/migration-plan.md`) includes:
+- SAF-n to GitHub Issue mapping table (`trace/linear-saf-map.csv`)
+- Evidence URL preservation strategy (Linear URLs remain valid; cite them by link)
+- Archive access instructions
+- Cutover date: TBD (set after owner concurrence)
+- Scope: safe-harness only (other Linear teams like STO are untouched)
+
+**Delivery owns migration and closeout.** The GM coordinates with the owner on cutover timing.
+
+## Empiricism dogma (instance-specific)
+
+Techniques that win in controlled comparison replace prior defaults. These are the safe-harness instance dogma items at risk:
+
+| Dogma at risk | Measure |
+| --- | --- |
+| Ultracode-as-default | Task success + time-to-exit vs O4 role→model cards |
+| tmux/Dark Factory required | M2 happy path without tmux |
+| Always-on 11 bots | Idle cost vs on-demand specialist latency (M5) |
+
+**SAW reference:** SAW `dev` remains reference until a comparison says otherwise — still no silent rewrite.
