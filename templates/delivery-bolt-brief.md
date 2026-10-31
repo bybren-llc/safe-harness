@@ -30,7 +30,7 @@
 | Requirements | `REQ-<CMP>-NNN` list (`constitution/03-cd-and-hitl.md`); `none yet (bootstrap)` while `spec.md` has no REQ IDs |
 | QAS status | pass / change-request / N/A (Low tier only; rationale required). High/O2: never N/A and cannot be waived |
 | SecEng status | pass / change-request / N/A (Low tier only; rationale required). High/O2: never N/A and cannot be waived |
-| SecEng: <review-id> PASS at <sha> | |
+| SecEng: <review-id> <PASS|PASS-with-notes> at <exact head sha> | |
 | Risk tier + O2 details | (note if the GM downgraded any O2 item) |
 | Ask | approve / change-request / escalate |
 

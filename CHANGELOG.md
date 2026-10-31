@@ -4,13 +4,13 @@ All notable changes to this project are documented in this file.
 
 Format follows Keep a Changelog conventions. Product versions use SemVer (`MAJOR.MINOR.PATCH`). Per-merge tags stay `vYYYY.MM.DD-<shortsha>` as recorded in [`roles/release-rte.md`](roles/release-rte.md).
 
-The heading stays `## [1.0.0] - TBD` until tag time.
+Release · RTE tags `v1.0.0` at the main merge SHA after this PR merges, per [`roles/release-rte.md`](roles/release-rte.md).
 
 Each merged row is `PR number — one-line summary (7-char merge SHA)`, taken from `git log --first-parent main` from the first Wave 0 commit through HEAD.
 
 ## [Unreleased]
 
-Merged v1.0 rows recorded here until Release · RTE creates tag `v1.0.0`. The product tag does not exist yet. SHAs below are on `main`.
+Merged v1.0 rows recorded here until Release · RTE tags `v1.0.0` at the main merge SHA. SHAs below are on `main`.
 
 ### Added
 
@@ -24,9 +24,9 @@ Merged v1.0 rows recorded here until Release · RTE creates tag `v1.0.0`. The pr
 - #65 — Add adaptation guide, owner placeholders and template-ready check (`ffbaf06`)
 - #79 — G-hardening: SecEng PASS at exact head as a merge condition; fail-closed conflict-marker check (`1c0f94d`)
 
-## [1.0.0] - TBD
+## [1.0.0]
 
-First product release of safe-harness. After merge, Release · RTE tags the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head. The tag is created under the recorded concur.
+First product release of safe-harness. After this PR merges, Release · RTE tags `v1.0.0` at the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head, per [`roles/release-rte.md`](roles/release-rte.md).
 
 ### Added
 
