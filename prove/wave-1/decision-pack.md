@@ -298,7 +298,7 @@ hitl_delegate:
 - the GM approved the Wave 1 seed at QAS (review 5702397094; O2 Medium confirmed)
 - Extensible (add components as needed)
 
-**Status:** GM QAS approved the Wave 1 seed. The HITL's standing concur satisfies the High/O2 HITL requirement only for safe-harness v1.0 PRs merged before the v1.0.0 tag; each still needs exact-head GM the GM, SecEng, and RTE PASS. See [`docs/decisions/log.md`](../../docs/decisions/log.md#standing-concur-for-safe-harness-v10-prs-2026-10-30).
+**Status:** GM QAS approved the Wave 1 seed. The HITL's standing concur satisfies the High/O2 HITL requirement only for safe-harness v1.0 PRs merged before the v1.0.0 tag; each still needs exact-head GM QAS, SecEng, and RTE PASS. See [`docs/decisions/log.md`](../../docs/decisions/log.md#standing-concur-for-safe-harness-v10-prs-2026-10-30).
 
 ---
 

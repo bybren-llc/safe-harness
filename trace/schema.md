@@ -47,7 +47,7 @@ title: Brief requirement title
 source: spec.md#anchor-name
 rationale: |
   Why deferred and conditions for revisiting
-decided_by: QAS  # or owner_identity from .github/harness.yml (exactly, for intent-sourced drops)
+decided_by: the GM  # or owner_identity from .github/harness.yml (exactly, for intent-sourced drops)
 decided_at: 2026-10-29  # ISO 8601 date
 defer_to: 2026-11-15  # Target date or milestone reference
 ```
@@ -64,7 +64,7 @@ title: Brief requirement title
 source: spec.md#anchor-name
 rationale: |
   Why permanently removed
-decided_by: QAS
+decided_by: the GM
 decided_at: 2026-10-29
 ```
 

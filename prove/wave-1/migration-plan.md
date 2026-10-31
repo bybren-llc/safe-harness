@@ -2,7 +2,7 @@
 
 **Status:** Proposed (pending owner concurrence)  
 **Scope:** safe-harness repository only (other the issue tracker teams untouched)  
-**Owner:** Delivery (QAS coordinates cutover timing with HITL)
+**Owner:** Delivery (the GM coordinates cutover timing with HITL)
 
 ---
 
@@ -70,7 +70,7 @@ SAF-N,<linear-url>,#<issue>,#<pr>,<title>,<status>
 
 ### Phase 3: Cutover
 
-**Cutover date:** TBD (QAS sets after owner concurrence)
+**Cutover date:** TBD (the GM sets after owner concurrence)
 
 **Cutover actions:**
 1. Freeze the issue tracker writes (team stops creating/updating the issue tracker items for safe-harness; other teams untouched)

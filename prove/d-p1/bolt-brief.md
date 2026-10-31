@@ -46,7 +46,7 @@
 | UoW-1 "Fill bolt brief" | Delivery (CloudAgent) | this file at exact head, state Ready for QAS |
 | UoW-2 "Update D-P1 checklist" | Delivery (CloudAgent) | README diff, state Ready for QAS |
 | UoW-3 "Independent QAS" | QAS | re-QAS verdict on exact head |
-| UoW-4 "HITL decision pack + merge" | owner (HITL/POPM), with QAS merging under owner's standing auth | MERGED |
+| UoW-4 "HITL decision pack + merge" | owner (HITL/POPM), with the GM merging under owner's standing auth | MERGED |
 
 ## Gates
 
@@ -56,8 +56,8 @@
 - [x] QAS independence
 - [ ] SecEng (if required) — N/A (Low; rationale above)
 - [x] RTE or collapsed-RTE annotated (collapsed into implementer per RTE collapse=Allowed)
-- [x] HITL decision pack (exact-head) — HITL delegated: owner standing Wave 0 merge authorization (2026-10-28), exercised by QAS at Low tier — [record](../wave-0-retro.md#7-decision-pack-d1-for-owner-hitl)
-- [x] MERGED — HITL delegated: owner standing Wave 0 merge authorization (2026-10-28), exercised by QAS at Low tier — [record](../wave-0-retro.md#7-decision-pack-d1-for-owner-hitl)
+- [x] HITL decision pack (exact-head) — HITL delegated: owner standing Wave 0 merge authorization (2026-10-28), exercised by the GM at Low tier — [record](../wave-0-retro.md#7-decision-pack-d1-for-owner-hitl)
+- [x] MERGED — HITL delegated: owner standing Wave 0 merge authorization (2026-10-28), exercised by the GM at Low tier — [record](../wave-0-retro.md#7-decision-pack-d1-for-owner-hitl)
 
 ## Model plan (O4)
 
@@ -79,7 +79,7 @@ Ultracode: **not default**.
 | bc-2002b87a-8540-5b26-adcd-81a17f554bdb | cursor | 41b969f4ff5bc41f6ebc79ec6492cf1855be67de | SAF-3 | Delivery · Lead (Grok Bot) via Cursor CloudAgent | Implement → Ready for QAS |
 | https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5696808123 | grok-bot | 0952071dda964b25e1a080bc1940705f0ff719af | SAF-3 | QAS | QAS independence (CHANGES NEEDED) |
 | https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5697239991 | grok-bot | 41b969f4ff5bc41f6ebc79ec6492cf1855be67de | SAF-3 | QAS | QAS independence (APPROVE) |
-| https://github.com/bybren-llc/safe-harness/commit/acd9f389bc1f54ab79dbfa1e9732a80c957a10d0 | grok-bot | 41b969f4ff5bc41f6ebc79ec6492cf1855be67de | SAF-3 | QAS | MERGED |
+| https://github.com/bybren-llc/safe-harness/commit/acd9f389bc1f54ab79dbfa1e9732a80c957a10d0 | grok-bot | 41b969f4ff5bc41f6ebc79ec6492cf1855be67de | SAF-3 | the GM | MERGED |
 
 ## Measure
 

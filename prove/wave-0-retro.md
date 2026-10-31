@@ -1,6 +1,6 @@
 # Wave 0 Meta-Cycle Retrospective
 
-**Epic:** <linear-ref> · **Delivery:** QAS & Delivery · Lead · **Date:** 2026-10-29 · **Time zone:** America/New_York (EDT)
+**Epic:** <linear-ref> · **Delivery:** the GM & Delivery · Lead · **Date:** 2026-10-29 · **Time zone:** America/New_York (EDT)
 
 ## 1. Summary
 
@@ -111,7 +111,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 | **M1** (Multi-runtime template ships) | Unexercised | No template shipped; Wave 0 delivered constitution docs and prove baseline only. Pass signal: one template path works for Claude Code, Codex, Cursor, local, Grok Bot |
 | **M2** (tmux not required) | Unexercised | Not tested in Wave 0; no tmux ceremony documented but happy-path team run without Dark Factory/tmux not explicitly proven. Pass signal: happy-path team run without Dark Factory/tmux; tmux optional accelerator |
 | **M3** (SAFe + AI-DLC spine retained) | Met | [D-P1 bolt brief](d-p1/bolt-brief.md) names and teaches: Bolts (SAF-3), Units of Work (4 UoWs), business-context HITL gate (named at Low tier, N/A per Low-tier exception); exercised across PRs #2–#4. Pass signal: Bolts / Units of Work / Mob Elaboration / human business-context gate named and taught |
-| **M4** (Round Table seats map) | Met | Explicit map documented in [bolt brief](d-p1/bolt-brief.md#header) and exercised: owner=HITL/POPM, QAS=GM/QAS/merge, Delivery·Lead=implement/PR owner; matches Round Table ↔ harness seats. Pass signal: explicit map owner / QAS / Ops / Delivery / Studio / Librarian / Scout + SAW roles ↔ harness seats |
+| **M4** (Round Table seats map) | Met | Explicit map documented in [bolt brief](d-p1/bolt-brief.md#header) and exercised: owner=HITL/POPM, the GM=GM/QAS/merge, Delivery·Lead=implement/PR owner; matches Round Table ↔ harness seats. Pass signal: explicit map owner / the GM / Ops / Delivery / Studio / Librarian / Scout + SAW roles ↔ harness seats |
 | **M5** (Time-to-first owned ticket) | Partially exercised | SAF-3 and SAF-4 picked up and owned end-to-end by Delivery·Lead (CloudAgent delegate) under exit states; no target SLA defined or measured for "time-to-first". Pass signal: new seat picks up and owns a ticket end-to-end under exit states within target SLA |
 | **M6** (Deploy/release flow health) | Met | Spine A: evidence → independence ([the GM] QAS ≠ implementer) → HITL decision pack → CD green (Structure & Docs Validation) without freezing train. PR #3 cycle 71 min, PR #4 cycle 58 min; all [PRs #2](https://github.com/bybren-llc/safe-harness/pull/2)–[#4](https://github.com/bybren-llc/safe-harness/pull/4) merged continuously. Pass signal: Spine (A): evidence → independence → HITL decision pack → CD green without freezing the train |
 
@@ -138,7 +138,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 **Question:** Should `constitution/05` receive a governed amendment that codifies delegated-HITL merge at Low tier?
 
 **Context:**
-- **Current practice:** Owner issued standing Wave 0 merge authorization (2026-10-28) allowing QAS to merge Low-tier PRs after CodeRabbit complete + independent QAS APPROVE + green checks. HITL remains required for Deploy and High/O2 work.
+- **Current practice:** Owner issued standing Wave 0 merge authorization (2026-10-28) allowing the GM to merge Low-tier PRs after CodeRabbit complete + independent QAS APPROVE + green checks. HITL remains required for Deploy and High/O2 work.
 - **Evidence location:** Delegation recorded in archived comment, referenced from [prove/d-p1/bolt-brief.md](d-p1/bolt-brief.md) HITL gates and merge evidence rows.
 - **Exit-state label:** Stays verbatim `MERGED (HITL only)` per constitution/05; prove docs cannot redefine canonical labels.
 
@@ -147,7 +147,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 **A. Amend constitution/05 with structured `hitl_delegate` field**
 - Add `hitl_delegate` (structured object, optional) to portable evidence schema with fields:
   - `delegating_actor` (string): the HITL actor who granted delegation (e.g. "owner")
-  - `delegate_actor` (string): the actor authorized to merge (e.g. "QAS")
+  - `delegate_actor` (string): the actor authorized to merge (e.g. "the GM")
   - `authorization_url` (string): durable link to the authorization record
   - `scope` (string): delegation scope (e.g. "low" for Low-tier only)
 - Exit state gains governed label: `MERGED (HITL-delegated)` when `hitl_delegate` is present; `MERGED (HITL only)` remains unchanged for direct HITL merge
@@ -181,7 +181,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 **What would change if approved:**
 - `constitution/05-evidence-and-traceability.md`: Add structured `hitl_delegate` field (delegating_actor, delegate_actor, authorization_url, scope) to evidence schema (§ Evidence Format), document scope/constraints (Low tier only), add governed exit state `MERGED (HITL-delegated)` with delegation semantics; keep `MERGED (HITL only)` unchanged for direct HITL merge
 - `templates/delivery-bolt-brief.md`: Add `hitl_delegate` field to Evidence table, update HITL gate wording to permit delegation at Low tier with authorization annotation
-- `prove/d-p1/bolt-brief.md` (as example): Retroactively document `hitl_delegate` field in evidence rows where QAS merged under owner's standing auth
+- `prove/d-p1/bolt-brief.md` (as example): Retroactively document `hitl_delegate` field in evidence rows where the GM merged under owner's standing auth
 - `.github/workflows/`: Optionally add CI check to enforce delegation rules (e.g. reject PR merge if `hitl_delegate` field present but no authorization link, or if tier > Low)
 
 **Status:** **Awaiting owner concur.** Constitution remains untouched pending decision. If approved, Delivery will prepare the amendment PR ([#6](https://github.com/bybren-llc/safe-harness/pull/6)). If declined, current evidence-only practice (option B) continues with documented ambiguity accepted.

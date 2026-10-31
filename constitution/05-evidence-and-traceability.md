@@ -1,6 +1,6 @@
 # 05 — Evidence & Source of Truth
 
-**Status:** Adopted 2026-10-29 (the owner concur)  
+**Status:** Adopted 2026-10-29 (owner concurrence)  
 **Supersedes:** Wave 0 version (Linear as SoR)  
 **Effective:** 2026-10-29
 
@@ -40,7 +40,7 @@ Agents may open PRs touching these files but must not merge them, except the GM 
 
 ### Studio's write path
 
-Studio drafts `intent.md` and `spec.md` and hands them to Delivery. Delivery commits them in a PR. the owner approves via CODEOWNERS before merge.
+Studio drafts `intent.md` and `spec.md` and hands them to Delivery. Delivery commits them in a PR. The owner approves via CODEOWNERS before merge.
 
 ### GitHub Issues for work tracking
 
@@ -79,7 +79,7 @@ See `requirements/README.md` for trace states (Placed / Deferred / Dropped / Mis
 
 **Deferred** requirements must include:
 - `rationale`: Why deferred and conditions for revisiting
-- `decided_by`: Decision owner (QAS, owner_identity from .github/harness.yml, or "owner_identity + QAS")
+- `decided_by`: Decision owner (the GM, owner_identity from .github/harness.yml, or "owner_identity + the GM")
 - `decided_at`: ISO 8601 date (YYYY-MM-DD)
 - `defer_to`: Target date or milestone reference (e.g., "2026-11-15" or "Wave 2")
 
@@ -223,13 +223,13 @@ Migration plan (`prove/wave-1/migration-plan.md`) includes:
 - SAF-n to GitHub Issue mapping table (`trace/linear-saf-map.csv`)
 - Evidence URL preservation strategy (Linear URLs remain valid; cite them by link)
 - Archive access instructions
-- Cutover date: TBD (set after the owner concurrence)
+- Cutover date: TBD (set after owner concurrence)
 - Scope: safe-harness only (other Linear teams like STO are untouched)
 
-**Delivery owns migration and closeout.** the GM coordinates with the owner on cutover timing.
+**Delivery owns migration and closeout.** The GM coordinates with the owner on cutover timing.
 
 ---
 
 ## Wave 1 GitHub writes
 
-After the owner concurrence on this amendment, agents may create GitHub Issues using the structured templates. Constitution changes require explicit the owner concur before merge.
+After owner concurrence on this amendment, agents may create GitHub Issues using the structured templates. Constitution changes require explicit owner concurrence before merge.
