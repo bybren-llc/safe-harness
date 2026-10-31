@@ -5,6 +5,10 @@
 
 This guide helps you adapt the safe-harness template for your team.
 
+## Two layers
+
+The harness layer (role cards, skills, in-session build-and-verify loops, evidence schema) ships in this repository. Runtime adapters that wire the harness into specific coding tools arrive in v1.1. The orchestration layer (always-on managers, briefing, gate routing, merge authority) is a runtime-neutral contract, not part of the core harness. Agent auto-approve and auto-merge stay off; CI checks and independent review are the real gates.
+
 ## Fork vs 'Use this template'
 
 Use GitHub's **'Use this template'** button to create a new repository. This gives you a clean history without the template's commit history. If you need to track upstream changes, fork instead, but most teams prefer a clean start.
