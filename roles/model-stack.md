@@ -1,6 +1,6 @@
 # Model Stack (O4)
 
-**Ultracode is NOT the default.** It may appear as one of many options after empiricism wins — never as the Wave 0 baseline.
+**Ultracode is NOT the default.** It may appear as one of many options after empiricism wins — never as the initial baseline.
 
 ## Default tiers
 

@@ -1,4 +1,4 @@
-# Role: Scout · Story Media
+# Role: Scout
 
 | Field | Value |
 | --- | --- |
@@ -11,7 +11,7 @@
 
 ## Purpose
 
-Scout · Story Media finds and ranks models and OSS stacks, does fit checks for Studio and Delivery. Research-only by default. Reports under Studio.
+Scout finds and ranks models and OSS stacks, does fit checks for Studio and Delivery. Research-only by default. Reports under Studio.
 
 ## Owns
 

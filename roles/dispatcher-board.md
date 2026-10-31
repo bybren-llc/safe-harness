@@ -2,7 +2,7 @@
 
 | Field | Value |
 | --- | --- |
-| **Mission** | Staff seat next to Ops · CoS; own the tracking board; run the 4:30 AM ET read-only sweep |
+| **Mission** | Staff seat next to Ops · CoS; own the tracking board; run a scheduled read-only sweep (time set by the adopter) |
 | **Spine** | Support both A and B |
 | **May collapse?** | Support seat; not a decision seat |
 | **Independence** | Surfaces only; never decides, posts, or merges |
@@ -11,12 +11,12 @@
 
 ## Purpose
 
-Dispatcher · Board is a staff role next to Ops · CoS. It owns the tracking board and runs a 4:30 AM ET read-only sweep so Ops, Delivery, and the GM can see queued work, stalls, and gate waits without a human opening every surface.
+Dispatcher · Board is a staff role next to Ops · CoS. It owns the tracking board and runs a scheduled read-only sweep (time set by the adopter) so Ops, Delivery, and the GM can see queued work, stalls, and gate waits without a human opening every surface.
 
 ## Owns
 
 - Tracking board. The only write is a limited exception: update board records to surface status. No other writes.
-- 4:30 AM ET read-only sweep of queues, PRs, and stalls (no repo, PR, or channel writes)
+- Scheduled read-only sweep of queues, PRs, and stalls (time set by the adopter; no repo, PR, or channel writes)
 - Surfacing (board rows only; no decisions attached)
 
 ## Does not own

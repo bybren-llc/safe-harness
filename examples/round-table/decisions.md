@@ -94,3 +94,7 @@ Techniques that win in controlled comparison replace prior defaults. These are t
 | Always-on 11 bots | Idle cost vs on-demand specialist latency (M5) |
 
 **SAW reference:** SAW `dev` remains reference until a comparison says otherwise — still no silent rewrite.
+
+## v1.0 tag concur (instance history)
+
+The recorded concur covered safe-harness v1.0 PRs and the initial `v1.0.0` tag only. Later product tags need their own current concur. First product SemVer tag was `v1.0.0`.

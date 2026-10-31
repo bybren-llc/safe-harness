@@ -11,7 +11,7 @@ license: MIT (see repository LICENSE)
 
 ## Authority
 
-- [`roles/release-rte.md`](../../roles/release-rte.md) — who drafts notes; per-merge `vYYYY.MM.DD-<shortsha>` and product SemVer (`vMAJOR.MINOR.PATCH`, first `v1.0.0`); after merge, Release · RTE tags the main merge SHA under the recorded concur, with a GitHub Release whose notes match the CHANGELOG entry
+- [`roles/release-rte.md`](../../roles/release-rte.md) — who drafts notes and tags; per-merge `vYYYY.MM.DD-<shortsha>` and product SemVer (`vMAJOR.MINOR.PATCH`); after merge, Release · RTE tags the main merge SHA under the HITL's release concur, with a GitHub Release whose notes match the CHANGELOG entry
 - [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — O2 (deploy CI / workflows); who may execute a release step
 
 See the cited section; this skill grants no authority.
@@ -33,7 +33,7 @@ Do not invent links. Mark missing sources `UNKNOWN`.
 
 ## Tag format
 
-Per-merge tag format is `vYYYY.MM.DD-<shortsha>` (date in America/New_York, 7-char merge SHA). Product releases use SemVer tags (`vMAJOR.MINOR.PATCH`, first `v1.0.0`): after merge, Release · RTE tags the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head. The recorded concur covers safe-harness v1.0 PRs and the initial `v1.0.0` tag only; later product tags need their own current concur. The GitHub Release notes match the CHANGELOG entry. Per-merge date-sha tags stay as documented. See [`roles/release-rte.md`](../../roles/release-rte.md).
+Per-merge tag format is `vYYYY.MM.DD-<shortsha>` (date in America/New_York, 7-char merge SHA). Product releases use SemVer tags (`vMAJOR.MINOR.PATCH`): after merge, Release · RTE tags the main merge SHA under the HITL's release concur, and re-PASSes that SHA first if it differs from the PASSed PR head. The GitHub Release notes match the CHANGELOG entry. Per-merge date-sha tags stay as documented. See [`roles/release-rte.md`](../../roles/release-rte.md).
 
 ## Steps
 

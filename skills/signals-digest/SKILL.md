@@ -7,7 +7,7 @@ license: MIT (see repository LICENSE)
 # Signals digest
 
 **Source:** generalize
-**Used by:** Librarian · Signals
+**Used by:** Librarian
 
 ## Authority
 

@@ -17,9 +17,9 @@ Authoring follows the public skill and rules conventions:
 - [AGENTS.md](https://agents.md/)
 - [The AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook)
 
-## Standing practice (v1.0)
+## Standing practice
 
-**Working practice, not yet constitutional.** These two lines are not in `constitution/` yet. They apply to every authoring seat until they are written there:
+**Practice guidance (not a constitutional rule).** These two lines apply to every authoring seat:
 
 1. After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks.
 2. A consequential action needs the human's own words verified. An agent relaying approval is never approval.
@@ -77,7 +77,7 @@ From the repo root:
 python3 skills/check-frontmatter.py
 ```
 
-This check requires every `skills/<slug>/SKILL.md` to start with YAML frontmatter (`---` / `name: <slug>` / `description: <when to use it>` / `---`) that parses cleanly, and `name` to match the folder slug. It does not replace the Wave 0 structure and link checks.
+This check requires every `skills/<slug>/SKILL.md` to start with YAML frontmatter (`---` / `name: <slug>` / `description: <when to use it>` / `---`) that parses cleanly, and `name` to match the folder slug. It does not replace the structure and link checks.
 
 ## Index (38 skills)
 
@@ -102,14 +102,14 @@ This check requires every `skills/<slug>/SKILL.md` to start with YAML frontmatte
 | 17 | [studio-handoff](studio-handoff/SKILL.md) | port | templates/studio-to-delivery-handoff.md, roles/studio-lead.md | Studio · Lead, Delivery |
 | 18 | [acceptance-criteria](acceptance-criteria/SKILL.md) | generalize | [SAW spec-creation](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/skills/spec-creation/SKILL.md), [bsa agent](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/agents/bsa.md), roles/bsa-like.md | BSA-like, Studio |
 | 19 | [intent-spec-assist](intent-spec-assist/SKILL.md) | new | Anthropic playbook, intent.md/spec.md ownership | Studio · Lead |
-| 20 | [cve-watch](cve-watch/SKILL.md) | new | roles/librarian-signals.md, constitution/07, [SAW audit-deps command](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/commands/audit-deps.md) | Librarian · Signals, SecEng |
-| 21 | [link-health](link-health/SKILL.md) | generalize | trace/link-health.md, roles/librarian-signals.md | Librarian · Signals |
-| 22 | [stack-and-model-check](stack-and-model-check/SKILL.md) | generalize | roles/scout-story-media.md, roles/model-stack.md | Scout · Story Media |
+| 20 | [cve-watch](cve-watch/SKILL.md) | new | roles/librarian-signals.md, constitution/07, [SAW audit-deps command](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/commands/audit-deps.md) | Librarian, SecEng |
+| 21 | [link-health](link-health/SKILL.md) | generalize | trace/link-health.md, roles/librarian-signals.md | Librarian |
+| 22 | [stack-and-model-check](stack-and-model-check/SKILL.md) | generalize | roles/scout-story-media.md, roles/model-stack.md | Scout |
 | 23 | [role-model-card](role-model-card/SKILL.md) | generalize | roles/model-stack.md | GM, adapter maintainers |
 | 24 | [board-sweep](board-sweep/SKILL.md) | new | roles/dispatcher-board.md, constitution/07 | Dispatcher · Board |
 | 25 | [ops-rollup](ops-rollup/SKILL.md) | new | roles/ops-cos.md | Ops · CoS |
 | 26 | [concur-queue](concur-queue/SKILL.md) | new | roles/ops-cos.md, constitution/03 | Ops · CoS |
-| 27 | [signals-digest](signals-digest/SKILL.md) | generalize | roles/librarian-signals.md | Librarian · Signals |
+| 27 | [signals-digest](signals-digest/SKILL.md) | generalize | roles/librarian-signals.md | Librarian |
 | 28 | [research-brief](research-brief/SKILL.md) | new | roles/scout-story-media.md | Scout, Studio |
 | 29 | [start-end-work](start-end-work/SKILL.md) | generalize | [SAW start-work](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/commands/start-work.md), [end-work](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/commands/end-work.md), [check-workflow](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/commands/check-workflow.md) | Delivery, Implementer |
 | 30 | [retro](retro/SKILL.md) | generalize | [SAW retro command](https://github.com/bybren-llc/safe-agentic-workflow/blob/26ca58b/.claude/commands/retro.md), prove/wave-0-retro.md, constitution/06 | Delivery, GM, Ops |

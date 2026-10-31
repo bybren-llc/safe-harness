@@ -16,7 +16,7 @@ license: MIT (see repository LICENSE)
 
 See the cited section; this skill grants no authority.
 
-**Working practice, not yet constitutional:** After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks. That includes "fix up the PR title" and "add a trailer."
+**Practice guidance (not a constitutional rule):** After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks. That includes "fix up the PR title" and "add a trailer."
 
 ## When to use
 

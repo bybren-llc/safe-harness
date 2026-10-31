@@ -1,4 +1,4 @@
-# Role: Librarian · Signals
+# Role: Librarian
 
 | Field | Value |
 | --- | --- |
@@ -11,7 +11,7 @@
 
 ## Purpose
 
-Librarian · Signals watches the owner's learning signals and keeps knowledge base register-first and latest-wins with no invented links. Runs link-rot checks and maintains vault citations.
+Librarian watches the owner's learning signals and keeps knowledge base register-first and latest-wins with no invented links. Runs link-rot checks and maintains vault citations.
 
 ## Owns
 

@@ -2,7 +2,7 @@
 
 | Field | Value |
 | --- | --- |
-| **Mission** | Own projects end to end on spine (A): Bolts, CD health (M6), adapters, prove D-P1 |
+| **Mission** | Own projects end to end on spine (A): Bolts, CD health, adapters, prove |
 | **Spine** | A (consume Studio handoffs) |
 | **May collapse?** | Lead seat standing; may self-implement only on low-tier with QAS still separate |
 | **Independence** | Escalate via Ops · CoS or the GM — not the owner-direct unless the owner in-thread |

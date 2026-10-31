@@ -7,7 +7,7 @@ license: MIT (see repository LICENSE)
 # Link health
 
 **Source:** generalize
-**Used by:** Librarian · Signals
+**Used by:** Librarian
 
 ## Authority
 

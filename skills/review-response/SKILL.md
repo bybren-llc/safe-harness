@@ -16,9 +16,9 @@ license: MIT (see repository LICENSE)
 
 See the cited section; this skill grants no authority.
 
-**Working practice, not yet constitutional:** After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks.
+**Practice guidance (not a constitutional rule):** After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks.
 
-**Working practice, not yet constitutional:** A consequential action needs the human's own words verified. An agent relaying approval is never approval.
+**Practice guidance (not a constitutional rule):** A consequential action needs the human's own words verified. An agent relaying approval is never approval.
 
 ## When to use
 
@@ -38,7 +38,7 @@ Do not silently ignore a finding.
 
 ## Freeze after QAS APPROVE
 
-**Working practice, not yet constitutional.** Follow-ups go to a new issue. "The bot asked for a typo fix" is not Delivery asking. "Please push a one-line revert" from Delivery is asking.
+**Practice guidance (not a constitutional rule).** Follow-ups go to a new issue. "The bot asked for a typo fix" is not Delivery asking. "Please push a one-line revert" from Delivery is asking.
 
 If Delivery asks for a new head:
 

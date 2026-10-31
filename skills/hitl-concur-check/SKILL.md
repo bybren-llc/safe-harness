@@ -16,7 +16,7 @@ license: MIT (see repository LICENSE)
 
 See the cited section; this skill grants no authority.
 
-**Working practice, not yet constitutional:** A consequential action needs the human's own words verified. An agent relaying approval is never approval.
+**Practice guidance (not a constitutional rule):** A consequential action needs the human's own words verified. An agent relaying approval is never approval.
 
 ## When to use
 
