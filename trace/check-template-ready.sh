@@ -109,6 +109,12 @@ else
   
   for dir in "${CI_SURFACE_DIRS[@]}"; do
     if [ -d "$ROOT/$dir" ]; then
+      # Reject if the directory itself is a symlink
+      if [ -L "$ROOT/$dir" ]; then
+        echo "  ❌ Symlink encountered (rejected): ${dir}/"
+        ERRORS=$((ERRORS + 1))
+        continue
+      fi
       while IFS= read -r -d '' file; do
         # Reject symlinks (no silent pass)
         if [ -L "$file" ]; then
