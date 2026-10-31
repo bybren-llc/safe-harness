@@ -69,7 +69,7 @@ body:
     attributes:
       label: Rationale
       description: Why this state change? (Required for Deferred/Dropped)
-      placeholder: "Deferring to Wave 2 after M6 CD path proves out"
+      placeholder: "Deferring to a later milestone after the CD path proves out"
     validations:
       required: false
 
@@ -86,8 +86,8 @@ body:
     id: metric
     attributes:
       label: Metric Tie
-      description: M1–M6 or custom metric name
-      placeholder: "M6"
+      description: a success metric defined in constitution/00
+      placeholder: "<metric>"
     validations:
       required: false
 

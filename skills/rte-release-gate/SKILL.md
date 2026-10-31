@@ -17,7 +17,7 @@ license: MIT (see repository LICENSE)
 
 See the cited section; this skill grants no authority.
 
-**Working practice, not yet constitutional:** After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks. A new push is a new head; re-run the cited checklist there.
+**Practice guidance (not a constitutional rule):** After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks. A new push is a new head; re-run the cited checklist there.
 
 ## When to use
 

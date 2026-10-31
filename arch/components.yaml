@@ -1,9 +1,7 @@
-# Component Registry — safe-harness
-#
-# **Status:** Pending the GM approval (Wave 1 seed)
+# Component Registry
 #
 # Each component receives an ARC-<CMP> identifier for requirements tracing.
-# Components represent the logical architecture of the safe-harness system.
+# Components represent the logical architecture of the system.
 #
 # Format:
 #   - id: ARC-<CMP>         # Three-letter component code (uppercase)
@@ -21,7 +19,7 @@ components:
 
   - id: ARC-ADP
     name: Adapters
-    description: Runtime-specific adapters (Claude Code, Cursor, Codex, local)
+    description: Runtime-specific adapters (Claude Code, Cursor)
     paths:
       - adapters/
 

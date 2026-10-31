@@ -18,7 +18,7 @@ license: MIT (see repository LICENSE)
 
 See the cited section; this skill grants no authority.
 
-**Working practice, not yet constitutional:** A consequential action needs the human's own words verified. An agent relaying approval is never approval.
+**Practice guidance (not a constitutional rule):** A consequential action needs the human's own words verified. An agent relaying approval is never approval.
 
 ## When to use
 
@@ -32,8 +32,8 @@ Before you start work that might belong to another seat. The tables below are a 
 | Studio · Lead | Spine B stories and handoffs |
 | Ops · CoS | Digests, rolls, concur queue |
 | Dispatcher · Board | Tracking board; scheduled read-only sweep |
-| Librarian · Signals | Signals, read-only external research, CVE scans, link health |
-| Scout · Story Media | Tool, model, and price research |
+| Librarian | Signals, read-only external research, CVE scans, link health |
+| Scout | Tool, model, and price research |
 | Release · RTE | Final release gate |
 | GM / lead architect | High-tier or cross-lane work only. Not a day-to-day single-lane owner. |
 | HITL owner (POPM) | Human gate: prod-risk, constitution / High / O2 concur, secrets, public posts |

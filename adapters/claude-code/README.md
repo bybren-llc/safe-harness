@@ -1,10 +1,10 @@
-# Adapter — Claude Code (Wave 0 first)
+# Adapter — Claude Code
 
 **License:** MIT (see [../../LICENSE](../../LICENSE))
 **Copyright:** © 2026 ByBren, LLC
 **Attribution:** See [../../NOTICE](../../NOTICE)
 
-Maps constitution → Claude Code teams / workflows / hooks. Thin stub — no ultracode-as-default.
+Maps constitution → Claude Code teams / workflows / hooks. Thin stub — no single-maximum default.
 
 ## Mapping
 
@@ -15,12 +15,12 @@ Maps constitution → Claude Code teams / workflows / hooks. Thin stub — no ul
 | CD + HITL risk tiers | Hooks advisory→blocking on O2 paths when supported; else checklist in decision pack |
 | Privacy / vaults | Deny tools/paths that touch personal vault; knowledge base via forge; Story via private storage pins only |
 | Evidence + the issue tracker | Portable `evidence_id` + session id; human assignee / agent delegate fields in issue body |
-| Empiricism | No default model override to ultracode |
-| Model stack (O4) | Role→model in agent frontmatter: orchestrator Fable 5.1+; heavy Opus/Sonnet 5.5; light Haiku 5.5 |
+| Empiricism | No default model override to a single maximum-capability model |
+| Model stack | Role→model in agent frontmatter, one model per tier (Orchestrator / Heavy / Light) per `roles/model-stack.md` |
 
 ## Role def placeholders
 
-Place under future repo `.claude/agents/` (names only — bodies land at create time):
+Place under the runtime `.claude/agents/` (names only — bodies land at create time):
 
 ```
 gm-architect.md
@@ -39,20 +39,19 @@ Each file must include: mission, spine, may-collapse, independence, model tier, 
 
 | Hook intent | Behavior |
 | --- | --- |
-| Pre-construct | Require business-context HITL note on Med/High / O2 — **Wave 0 intentionally broader than strict Low-only; ensures HITL cannot be skipped** |
+| Pre-construct | Require business-context HITL note on Med/High / O2 — intentionally broader than strict Low-only; ensures HITL cannot be skipped |
 | Pre-PR | Exact-head + evidence_id + the issue tracker key present |
 | Merge attempt by agent | Deny Delivery and cloud agents; allow authorized the GM / Release · RTE trunk merges that meet constitution/03 |
 | Personal-vault path | Deny |
 
-Wave 0: document intents here; implement when `safe-harness` exists.
+Document hook intents here; implement them in your runtime.
 
 ## Explicit non-defaults
 
-- Ultracode **not** team default model.
-- Dark Factory / tmux **not** required for happy path.
-- the issue tracker Agents **not** wired.
+- A single maximum-capability model is **not** the team default.
+- Issue-tracker agents **not** wired.
 
-## Skills library (v1.0)
+## Skills library
 
 Canonical skills live in [`../../skills/`](../../skills/README.md) as `skills/<slug>/SKILL.md`.
 
@@ -60,8 +59,8 @@ This adapter maps each slug into the Claude Code skills directory (typically `.c
 
 Runtime-specific role→model examples stay in this adapter. Skills themselves use tier names only.
 
-Trigger tests (does a prompt load the right skill) are **UNKNOWN** to automate in v1.0. Generic hooks are **UNKNOWN** and not shipped.
+Trigger tests (does a prompt load the right skill) are **UNKNOWN** to automate. Generic hooks are **UNKNOWN** and not shipped.
 
-## Local / HF cache (Option A)
+## Local / HF cache
 
-private storage option A (the owner 2026-10-28): Docker `hf` → a private storage inference volume. Adapters that touch local inference must set `HF_HOME` (and related hub caches) to private-storage-backed paths — never Mac Desktop. Exact pins from Studio/Ops; do not invent paths. Weights never enter the GitHub template.
+Document your model-cache and machine roles here. Adapters that touch local inference must set `HF_HOME` (and related hub caches) to private-storage-backed paths. Exact pins from Studio/Ops; do not invent paths. Weights never enter the GitHub template.

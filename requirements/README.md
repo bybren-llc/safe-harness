@@ -11,7 +11,7 @@ Requirements are the **definition of success**. Each requirement receives a uniq
 | **Placed** | Active requirement; evidence required | source, exit_criterion, metric |
 | **Deferred** | Intentionally postponed | rationale (why deferred + when to revisit) |
 | **Dropped** | Permanently removed from scope | rationale (why no longer needed) |
-| **Missing** | Referenced but not yet defined | (CI fails on Missing state) |
+| **Missing** | Referenced without a definition | (CI fails on Missing state) |
 
 ## Format
 
@@ -24,7 +24,7 @@ Required fields for **Placed** requirements:
 - `title`: Brief description
 - `source`: spec.md#anchor (or intent.md#anchor)
 - `exit_criterion`: Concrete pass/fail condition
-- `metric`: M1–M6 tie (from constitution/00) or named metric
+- `metric`: a success metric defined in constitution/00
 - `description`: Full requirement text
 
 Optional fields:

@@ -1,6 +1,6 @@
 # Skills CI checks (warn-only)
 
-The Wave 0 structure workflow (`.github/workflows/wave0-checks.yml`) has a `skills-checks` job that:
+The structure workflow (`.github/workflows/wave0-checks.yml`) has a `skills-checks` job that:
 
 1. Installs pinned PyYAML (`6.0.3`), then runs `python3 skills/check-frontmatter.py`.
 2. Runs the same relative-link scan as the structure job, over `skills/`.

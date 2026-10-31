@@ -1,12 +1,10 @@
-# Doc-drift checks (v1 proposed)
+# Doc-drift checks
 
-**Status:** v1 proposed. Warn-only. the GM to confirm the rule set before any flip to blocking.
+Warn-only CI for documentation drift. Flip to blocking after confirming the rule set.
 
 The workflow is `.github/workflows/doc-drift.yml`. It runs on `pull_request` only. Permissions are `contents: read`. No secrets. No `pull_request_target`. Checkout is pinned the same way as the other repo workflows (`actions/checkout@v4`). The job never fails the build: findings print as `WARN` and the step exits 0.
 
-v1 is warn-only (the GM). A later PR may flip it to blocking after the rule set is confirmed.
-
-## Rule set (v1 proposed)
+## Rule set
 
 ### 1. Companion-doc rule
 
@@ -26,9 +24,9 @@ For each git rename (`R` status) in that same diff, the check searches tracked `
 
 Generic basenames are skipped for the basename search: `README.md`, `AGENTS.md`, `SKILL.md`, `index.md`, `LICENSE`, and any basename shorter than 8 characters. The old full path is still searched.
 
-Hits under `prove/` are skipped. That tree is historical evidence (decision packs and Wave 0 records). An old filename cited there, including the Decision 18 history row in `prove/wave-1/decision-pack.md`, is a citation, not drift.
+Hits under `prove/` are skipped. That tree is historical evidence (decision packs and historical records). An old filename cited there, including the Decision 18 history row in `prove/wave-1/decision-pack.md`, is a citation, not drift.
 
-## Flip to blocking (not in v1)
+## Flip to blocking
 
 1. Confirm this rule set in writing (the GM).
 2. In `.github/workflows/doc-drift.yml`, drop `continue-on-error` and make the check step exit non-zero when `WARNINGS` is greater than 0.

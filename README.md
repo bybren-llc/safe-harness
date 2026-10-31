@@ -1,7 +1,7 @@
 # safe-harness
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-v1.0.0-blue?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/version-v1.0.1-blue?style=flat-square" alt="Version">
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="License">
   </a>
@@ -34,17 +34,17 @@
   </a>
 </p>
 
-A template for everyday, safe AI-assisted development.
+A template for everyday, safe AI-assisted work: code on one spine, and stories and research on the other.
 
-**Status:** Wave 1 adopted. This README is the adopter-facing index. It is **not** a policy source. Binding rules live in [`constitution/`](constitution/). See [Adapting this template](docs/adapting.md).
+This README is the index for adopters. It is **not** a policy source. Binding rules live in [`constitution/`](constitution/). See [Adapting this template](docs/adapting.md).
 
 ---
 
 ## What safe-harness is and who it's for
 
-**Safe-harness** is an AI-native software development lifecycle (SDLC) framework. Humans set direction and keep the safety gates. Agents execute the work and produce evidence.
+**Safe-harness** is an AI-native work harness with two peer spines: **Delivery** (code: execute/deploy) and **Studio** (think/plan: stories and research). Humans set direction and keep the safety gates. Agents execute the work and produce evidence.
 
-**Who it's for:** Small engineering teams (about 1–10 people) working with AI coding agents who need structured governance, clear ownership, and evidence-based decisions.
+**Who it's for:** Small teams (about 1–10 people) working with AI agents who need structured governance, clear ownership, and evidence-based decisions. That includes engineering teams shipping code and teams producing non-code work such as stories and research.
 
 **What problem it solves:** Agents can write code faster than humans can review it. Without a thin harness, requirements drift, decisions go unrecorded, ownership blurs, and merges become unsafe. Safe-harness is the minimum viable governance that keeps AI-assisted development **safe, traceable, and human-controlled**.
 
@@ -62,6 +62,27 @@ Useful terms (definitions only; gates and merge authority are **not** restated h
 | **Bolt** | A small, bounded work package: brief, implementation, tests, evidence, gates. |
 | **Spine A / Spine B** | Dual workflows. A = Delivery (CD execute/deploy). B = Studio (think/plan). |
 | **AI-DLC** | Agent-first counterpart to a traditional SDLC: humans own intent and design; agents own plan-to-evidence execution. |
+
+---
+
+## Two spines: code and story/research
+
+Safe-harness runs on two peer spines with a shared shape. Per [`constitution/00-north-star.md`](constitution/00-north-star.md), the spines "share Round Table principles, exit states, and ownership language. They differ in gates and storage." This section is an index. The binding rules live in the linked files.
+
+| Spine element | Spine A — Delivery (code) | Spine B — Studio (stories and research) |
+| --- | --- | --- |
+| Owning seat | [Delivery · Lead](roles/delivery-lead.md) | [Studio · Lead](roles/studio-lead.md) (stories), with [Scout](roles/scout.md) (story media, research) and [Librarian](roles/librarian.md) (signals) |
+| Work unit / brief | [`templates/delivery-bolt-brief.md`](templates/delivery-bolt-brief.md) | [`research-brief`](skills/research-brief/SKILL.md) skill (sources plus `UNKNOWN` markers). When knowledge becomes build: [`templates/studio-to-delivery-handoff.md`](templates/studio-to-delivery-handoff.md) |
+| Flow | Issue → branch → implement + evidence → PR → CI + review → QAS (and SecEng when required) → Release · RTE → merge | Brief → Evidence (sources cited, no invented links) → Gate (privacy/PII/IP class) → Concur (the owner) → Ship/verify/log ([ADR 0005](docs/decisions/0005-studio-delivery-handoff-before-spine-a-build.md)) |
+| Gates | CI, independent QAS, SecEng, Release · RTE ([`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md)) | Non-code gates: sources cited, plus privacy class via [`privacy-boundary`](skills/privacy-boundary/SKILL.md) ([`constitution/04-privacy-and-vaults.md`](constitution/04-privacy-and-vaults.md)) |
+| Evidence | Portable evidence rows ([`portable-evidence`](skills/portable-evidence/SKILL.md)) at the exact head | The same portable evidence rows, plus cited sources in the brief |
+| Storage | The forge (this repo) | Knowledge-base concepts and private-storage pins. Story IP is never committed to the repo ([`constitution/04-privacy-and-vaults.md`](constitution/04-privacy-and-vaults.md)) |
+| Human in the loop | Decision pack + the owner's concur where [`constitution/03`](constitution/03-cd-and-hitl.md) requires it | The owner's concur before ship ([ADR 0005](docs/decisions/0005-studio-delivery-handoff-before-spine-a-build.md)) |
+| Exit | Canonical exit states in [`constitution/05-evidence-and-traceability.md`](constitution/05-evidence-and-traceability.md) | Ship/verify/log, or a handoff that Delivery accepts with the checklist in [`studio-handoff`](skills/studio-handoff/SKILL.md) |
+
+**Where they meet.** When Studio work becomes something to build, Studio emits the handoff and Delivery accepts it before a bolt starts ([ADR 0005](docs/decisions/0005-studio-delivery-handoff-before-spine-a-build.md), [`studio-handoff`](skills/studio-handoff/SKILL.md)). The [BSA-like](roles/bsa-like.md) seat shapes acceptance criteria across that bridge.
+
+**Adapting to your kind of work.** Keep the seats, gates, and evidence. Rename what flows through them. See [Adapting this template](docs/adapting.md).
 
 ---
 
@@ -97,11 +118,13 @@ Other issue forms: [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) (`requir
 
 Studio → Delivery handoffs use [`templates/studio-to-delivery-handoff.md`](templates/studio-to-delivery-handoff.md).
 
+Non-code work (stories and research) starts on spine B with Studio · Lead. See [Two spines: code and story/research](#two-spines-code-and-storyresearch).
+
 ---
 
 ## Setting up an agent team with it
 
-Safe-harness is **runtime-neutral**. Cursor, Claude Code, Grok Bot, and local agents are all valid runtimes. Adapters in [`adapters/`](adapters/) map the same constitution into a runtime. Grok Bot is one runtime: it does not auto-load `skills/`; import each skill as its own skill on the bot (see [`skills/README.md`](skills/README.md)).
+Safe-harness is **runtime-neutral**. Cursor, Claude Code, and other agents are valid runtimes. Adapters in [`adapters/`](adapters/) map the same constitution into a runtime. A runtime that does not auto-load `skills/` must import each skill as its own skill (see [`skills/README.md`](skills/README.md)).
 
 ### Seats
 
@@ -163,8 +186,8 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | Implementer | [`roles/implementer.md`](roles/implementer.md) |
 | BSA-like | [`roles/bsa-like.md`](roles/bsa-like.md) |
 | Release · RTE | [`roles/release-rte.md`](roles/release-rte.md) |
-| Model stack (O4 tiers) | [`roles/model-stack.md`](roles/model-stack.md) |
-| Human owner (HITL/POPM) | Role card planned |
+| Model stack (tiers) | [`roles/model-stack.md`](roles/model-stack.md) |
+| Human owner (HITL/POPM) | Defined in `constitution/01-round-table.md` |
 
 **Tiers, O2, and merge rules:** [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md). **Release · RTE:** [`roles/release-rte.md`](roles/release-rte.md). Seat map: [`constitution/01-round-table.md`](constitution/01-round-table.md). The HITL-concur label in this repo is `needs-owner-concur`.
 
@@ -174,7 +197,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 
 | Path | Purpose |
 | --- | --- |
-| [`skills/`](skills/README.md) | v1.0 skills library (index of 38 skills). Canonical path `skills/<slug>/SKILL.md`. |
+| [`skills/`](skills/README.md) | Skills library (index of 38 skills). Canonical path `skills/<slug>/SKILL.md`. |
 | [`adapters/claude-code/`](adapters/claude-code/README.md) | Claude Code adapter (docs stub). |
 | [`adapters/claude-code/AGENTS.md`](adapters/claude-code/AGENTS.md) | Claude Code agent entry point. |
 | [`adapters/cursor/`](adapters/cursor/README.md) | Cursor adapter (docs stub). |
@@ -190,7 +213,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | [`prove/`](prove/) | Evidence and bolt records. |
 | [`arch/`](arch/) | Component registry. |
 | [`requirements/`](requirements/) | REQ registry (agent-authored; human review). |
-| [`trace/`](trace/) | Trace map. Frozen archive map: `trace/linear-saf-map.csv` (do not edit). |
+| [`trace/`](trace/) | Trace map and schema. |
 | [`intent.md`](intent.md) / `intent/` / [`spec.md`](spec.md) | Human-owned design. |
 | [`.github/CODEOWNERS`](.github/CODEOWNERS) | Review gates (`intent.md`, `intent/`, `spec.md`, `constitution/`, `requirements/`, `trace/`, `arch/`, `AGENTS.md`, `adapters/**/AGENTS.md`, `skills/`, workflows). |
 | [`.github/workflows/`](.github/workflows/) | CI (see below). |
@@ -201,15 +224,15 @@ CODEOWNERS coverage (review gate, not ownership): `intent.md`, `intent/`, `spec.
 
 | Workflow | Job | Blocks merge? |
 | --- | --- | --- |
-| [`wave0-checks.yml`](.github/workflows/wave0-checks.yml) | Structure & Docs Validation (required Wave 0 paths, relative links including `trace/`, fence parity) | **Yes** |
+| [`wave0-checks.yml`](.github/workflows/wave0-checks.yml) | Structure & Docs Validation (required paths, relative links including `trace/`, fence parity) | **Yes** |
 | [`wave0-checks.yml`](.github/workflows/wave0-checks.yml) | Skills frontmatter & link scan | **Warn-only** |
 | [`trace-check.yml`](.github/workflows/trace-check.yml) | Requirements Trace Validation | **Warn-only** for validation findings until `spec.md` has REQ IDs **and** `trace/.blocking` exists. The yq preflight step still fails the required check if yq is missing. |
 | [`api-contract.yml`](.github/workflows/api-contract.yml) | API Contract Checks (oasdiff + optional Schemathesis) | **Warn-only** (skips when no OpenAPI spec) |
 | [`doc-drift.yml`](.github/workflows/doc-drift.yml) | Doc drift | **Warn-only** |
 
-Local checks before a PR: relative-link scan over markdown, Wave 0 required paths, `python3 skills/check-frontmatter.py`, `python3 scripts/check-denylist.py`. Flip notes: [`docs/ci/skills-checks.md`](docs/ci/skills-checks.md), [`docs/ci/api-contract.md`](docs/ci/api-contract.md), [`docs/ci/doc-drift.md`](docs/ci/doc-drift.md). Branch-protection intent: [`docs/branch-protection.md`](docs/branch-protection.md).
+Local checks before a PR: relative-link scan over markdown, required paths, `python3 skills/check-frontmatter.py`, `python3 scripts/check-denylist.py`. Flip notes: [`docs/ci/skills-checks.md`](docs/ci/skills-checks.md), [`docs/ci/api-contract.md`](docs/ci/api-contract.md), [`docs/ci/doc-drift.md`](docs/ci/doc-drift.md). Branch-protection intent: [`docs/branch-protection.md`](docs/branch-protection.md).
 
-CodeRabbit is a required review input on this repo's trunk protection. It is not a substitute for QAS, SecEng, or human approval.
+CodeRabbit is an optional review input. When it runs, its findings are triaged. It is not a required check.
 
 ---
 
@@ -241,4 +264,4 @@ If you build on this harness, please keep [NOTICE](NOTICE) and credit "Built wit
 - Release notes: [`CHANGELOG.md`](CHANGELOG.md).
 - Tag format and RTE ownership of notes: [`roles/release-rte.md`](roles/release-rte.md), [`release/flow.md`](release/flow.md).
 
-Metrics M1–M6: [`constitution/00-north-star.md`](constitution/00-north-star.md). Wave evidence: [`prove/README.md`](prove/README.md), [`prove/wave-1/decision-pack.md`](prove/wave-1/decision-pack.md).
+Success metrics: [`constitution/00-north-star.md`](constitution/00-north-star.md). Evidence and bolt records: [`prove/README.md`](prove/README.md).

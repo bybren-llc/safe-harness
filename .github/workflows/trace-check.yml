@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: 2026 ByBren, LLC
-name: Trace Check (Bootstrap)
+name: Trace Check
 
 on:
   pull_request:

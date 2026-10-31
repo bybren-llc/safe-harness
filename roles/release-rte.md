@@ -6,7 +6,7 @@
 | **Spine** | A |
 | **May collapse?** | No at Med+. At Low, an annotated, non-blocking async RTE checklist is allowed, with no per-PR verdict required. At Med, High and O2, RTE PASS or HOLD is mandatory. RTE stays non-collapsible at Med+. |
 | **Independence** | Not a substitute for QAS or SecEng; runs after both clear |
-| **Default model tier** | Medium (sonnet) for release decisions; Light (Haiku) for release notes prep |
+| **Default model tier** | Heavy for release decisions; Light for release notes prep |
 | **Stop rules** | Never merges own authored change; never merges constitution/, High, and O2 without the owner's recorded concur; never authors code changes; never treats its own merge as human approval |
 
 ## Gate mechanics
@@ -25,11 +25,11 @@ At Low, an annotated, non-blocking async RTE checklist is allowed, with no per-P
 
 ## Release notes
 
-RTE owns release notes now. It drafts them from the decision pack, requirements, and evidence. Per-merge tag format is `vYYYY.MM.DD-<shortsha>` (date in America/New_York, 7-char merge SHA). Product releases use SemVer tags (`vMAJOR.MINOR.PATCH`, first `v1.0.0`): after merge, Release · RTE tags the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head. The recorded concur covers safe-harness v1.0 PRs and the initial `v1.0.0` tag only; later product tags need their own current concur. The GitHub Release notes match the CHANGELOG entry.
+RTE owns release notes and tagging. A release that contains prod-risk tier changes (migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2)) is tagged only after the HITL's concur on that release; all other releases are tagged once RTE PASS is recorded. It drafts notes from the decision pack, requirements, and evidence. Per-merge tag format is `vYYYY.MM.DD-<shortsha>` (date in America/New_York, 7-char merge SHA). Product releases use SemVer tags (`vMAJOR.MINOR.PATCH`): after merge, Release · RTE tags the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head. The GitHub Release notes match the CHANGELOG entry.
 
 ## Merge authority
 
-On **trunk** (safe-harness is trunk-only), **Release · RTE MAY merge** once all of the following conditions are met:
+On **trunk** (this harness is trunk-only), **Release · RTE MAY merge** once all of the following conditions are met:
 1. Required checks are green on the exact head
 2. the GM's independent QAS APPROVE is present at exact head
 3. SecEng PASS (or PASS-with-notes) is present at exact head (Med, High, O2; Low may mark N/A with rationale)
@@ -43,7 +43,7 @@ On **trunk** (safe-harness is trunk-only), **Release · RTE MAY merge** once all
 
 An RTE merge always needs its own RTE PASS on the exact head at every tier including Low, plus the required concur. A HOLD override lets the GM or the owner merge, never RTE. A GM merge at Med/High/O2 needs RTE PASS on the exact head, or a HOLD override from the GM or the owner recorded on the PR with its reason. An RTE merge never counts as human approval. Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md).
 
-Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. Safe-harness is trunk-only; trunk concur is `constitution/`, High, and O2.
+Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. This harness is trunk-only; trunk concur is `constitution/`, High, and O2.
 
 **Release · RTE MAY BLOCK** any change for insufficient evidence, missing concur, or release readiness concerns.
 

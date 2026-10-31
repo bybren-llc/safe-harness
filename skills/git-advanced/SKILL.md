@@ -15,7 +15,7 @@ license: MIT (see repository LICENSE)
 
 See the cited section; this skill grants no authority.
 
-**Working practice, not yet constitutional:** After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks.
+**Practice guidance (not a constitutional rule):** After `QAS: APPROVE` the implementer head is frozen: no commits, no pushes, and no title or body edits unless Delivery explicitly asks.
 
 ## When to use
 
@@ -37,7 +37,7 @@ Updating a feature branch from trunk, finding a regression with bisect, cherry-p
 
 ## Update a feature branch from trunk
 
-**Constitutional rule:** Update feature branches by merging main. No rebase. No force-push on shared branches.
+**Practice guidance (not a constitutional rule):** Update feature branches by merging main. No rebase. No force-push on shared branches.
 
 ```text
 git fetch origin

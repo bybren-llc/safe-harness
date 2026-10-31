@@ -28,7 +28,7 @@ Runtime-specific notes:
 - [`adapters/claude-code/AGENTS.md`](adapters/claude-code/AGENTS.md)
 - [`adapters/cursor/AGENTS.md`](adapters/cursor/AGENTS.md)
 
-Codex, local, and Grok Bot adapters are **Later**. Do not add stubs for them here.
+Other runtimes: add an adapter following this pattern. A runtime that does not auto-load `skills/` requires a manual skill import. Do not add adapter stubs here before they exist.
 
 ## Local checks
 

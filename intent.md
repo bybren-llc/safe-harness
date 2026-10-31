@@ -1,8 +1,7 @@
-# Intent — safe-harness
+# Intent
 
 **Ownership:** HUMAN-OWNED (the owner only)  
-**Status:** Draft  
-**Last updated:** 2026-10-29
+**Kind:** Adopter template
 
 ---
 
@@ -18,7 +17,7 @@ Prohibited: personal vault paths/excerpts, story IP (character names, plot detai
 
 ## Purpose
 
-*(Human-authored intent and goals for safe-harness. Agents do not modify this file.)*
+*(Human-authored intent and goals for your project. Agents do not modify this file.)*
 
 ## Scope
 
@@ -26,7 +25,7 @@ Prohibited: personal vault paths/excerpts, story IP (character names, plot detai
 
 ## Success criteria
 
-*(Top-level outcomes defining project success. Tie to M1–M6 from constitution/00.)*
+*(Top-level outcomes defining project success. Define your own success metrics.)*
 
 ---
 
@@ -36,27 +35,27 @@ Use this section to record research findings supporting intent decisions. Mark `
 
 ### Fit band
 
-*(Target use cases, team size, complexity range — what safe-harness optimizes for.)*
+*(Target use cases, team size, complexity range — what your project optimizes for.)*
 
-**Status:** UNKNOWN
+**UNKNOWN**
 
 ### License
 
 *(Open source license choice and rationale.)*
 
-**Status:** UNKNOWN
+**UNKNOWN**
 
 ### Footprint
 
 *(Resource requirements: compute, storage, network, cost envelope.)*
 
-**Status:** UNKNOWN
+**UNKNOWN**
 
 ### Sources
 
 *(External references: papers, comparable systems, standards.)*
 
-**Status:** UNKNOWN
+**UNKNOWN**
 
 ---
 

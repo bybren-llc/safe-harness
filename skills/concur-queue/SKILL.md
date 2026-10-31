@@ -16,7 +16,7 @@ license: MIT (see repository LICENSE)
 
 See the cited section; this skill grants no authority.
 
-**Working practice, not yet constitutional:** A consequential action needs the human's own words verified. An agent relaying approval is never approval.
+**Practice guidance (not a constitutional rule):** A consequential action needs the human's own words verified. An agent relaying approval is never approval.
 
 ## When to use
 
@@ -30,8 +30,8 @@ When an item is waiting on HITL concur as the cited sections require it. Ops mai
 | Exact head | SHA the cited sections require the concur to name |
 | Tier + O2 | Why this is in the queue (from the cited sections) |
 | Why | One sentence |
-| QAS | Verdict at that head, or "not yet" |
-| RTE | Status at that head, or "not yet" |
+| QAS | Verdict at that head, or absent |
+| RTE | Status at that head, or absent |
 | Ready? | Yes only when the gates the cited sections require before a HITL ping are already on that head |
 
 ## Ping rule

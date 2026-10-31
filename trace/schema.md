@@ -14,7 +14,7 @@ The trace-check CI parses these exact state values:
 | **Placed** | Active requirement; evidence required | source, exit_criterion, metric, req_ids linkage |
 | **Deferred** | Intentionally postponed | rationale, decided_by, decided_at, defer_to |
 | **Dropped** | Permanently removed from scope | rationale, decided_by, decided_at |
-| **Missing** | Referenced but not yet defined | (CI fails when blocking) |
+| **Missing** | Referenced without a definition | (CI fails when blocking) |
 
 ---
 
@@ -30,7 +30,7 @@ title: Brief requirement title
 source: spec.md#anchor-name  # or intent.md#anchor-name
 exit_criterion: |
   Concrete pass/fail condition
-metric: M6  # M1–M6 from constitution/00, or custom metric name
+metric: <metric>  # a success metric defined in constitution/00
 description: |
   Full requirement text
 ```
@@ -48,7 +48,7 @@ source: spec.md#anchor-name
 rationale: |
   Why deferred and conditions for revisiting
 decided_by: the GM  # or owner_identity from .github/harness.yml (exactly, for intent-sourced drops)
-decided_at: 2026-10-29  # ISO 8601 date
+decided_at: YYYY-MM-DD  # ISO 8601 date
 defer_to: 2026-11-15  # Target date or milestone reference
 ```
 
@@ -65,7 +65,7 @@ source: spec.md#anchor-name
 rationale: |
   Why permanently removed
 decided_by: the GM
-decided_at: 2026-10-29
+decided_at: YYYY-MM-DD
 ```
 
 **Special rule:** Dropping a REQ whose `source` is `intent.md#*` requires owner sign-off. Record as `decided_by: <owner_identity>` (exactly matching `.github/harness.yml`) plus link in `rationale`.
@@ -74,47 +74,46 @@ decided_at: 2026-10-29
 
 ## the issue tracker to GitHub Issue mapping
 
-**Frozen mapping table:** `trace/linear-saf-map.csv`
+**Example mapping table:** `examples/round-table/linear-saf-map.csv` (this template's instance example)
 
-The CSV file is header-only until populated before Linear cutover:
+Adopters create their own mapping table for their issue tracker. The CSV file is header-only until populated before issue tracker migration:
 ```csv
-saf_id,linear_url,github_issue,pr,title,status
+saf_id,issue_tracker_url,github_issue,pr,title,status
 ```
 
 **Columns:**
-- `saf_id`: Linear issue ID (e.g., SAF-1)
-- `linear_url`: Full Linear issue URL
-- `github_issue`: Mirror GitHub Issue number (e.g., #1; assigned at creation, may not equal SAF-n)
+- `saf_id`: Issue tracker ID (e.g., EX-1)
+- `issue_tracker_url`: Full issue tracker URL
+- `github_issue`: Mirror GitHub Issue number (e.g., #1; assigned at creation, may not equal tracker ID)
 - `pr`: Pull request that closed the issue (e.g., #3)
 - `title`: Issue title
 - `status`: Archived
 
 **Example data (placeholders only):**
 ```csv
-SAF-1,<linear-url>,#1,#2,ADR pack concur,Archived
-SAF-2,<linear-url>,#2,#2,Constitution + thin CI,Archived
-SAF-3,<linear-url>,#3,#3,D-P1 delivery bolt,Archived
+EX-1,<issue-tracker-url>,#1,#2,Example requirement,Archived
+EX-2,<issue-tracker-url>,#2,#3,Example feature,Archived
 ```
 
-Populate the actual mapping before Linear closeout (migration-plan.md Phase 2).
+Populate the actual mapping for your instance before issue tracker migration.
 
 ---
 
 ## Trace-check CI enforcement
 
-**Bootstrap rule (Wave 1):** Runs **warn-only** until the first `spec.md` with REQ IDs lands **AND** a code-owner-reviewed PR adds the marker file `trace/.blocking`. Until both conditions are met, trace-check warns but does not block merges.
+**Bootstrap rule:** Runs **warn-only** until the first `spec.md` with REQ IDs lands **AND** a code-owner-reviewed PR adds the marker file `trace/.blocking`. Until both conditions are met, trace-check warns but does not block merges.
 
 Once blocking, CI fails when:
 1. Any requirement in state **Missing**
 2. Any **Placed** requirement has no evidence row with its ID in `req_ids`
 3. Any **Deferred** or **Dropped** requirement missing: `rationale`, `decided_by`, or `decided_at`
 4. Any **Deferred** requirement missing: `defer_to`
-5. *(Required before blocking activation; follow-up issue TBD)* Spec REQ ↔ trace-map reconciliation
-6. *(Required before blocking activation; follow-up issue TBD)* Empty trace map in blocking mode
-7. *(Required before blocking activation; follow-up issue TBD)* `requirements/*.yaml` registry validation
-8. *(Required before blocking activation; follow-up issue TBD)* Issue + PR `Requirements:` linkage enforcement
-9. *(Required before blocking activation; follow-up issue TBD)* Evidence rows from bolt briefs/decision packs
-10. *(Required before blocking activation; follow-up issue TBD)* Source-anchor validation (intent.md or spec.md anchors exist)
+5. Spec REQ ↔ trace-map reconciliation
+6. Empty trace map in blocking mode
+7. `requirements/*.yaml` registry validation
+8. Issue + PR `Requirements:` linkage enforcement
+9. Evidence rows from bolt briefs/decision packs
+10. Source-anchor validation (intent.md or spec.md anchors exist)
 
 ---
 
@@ -148,15 +147,10 @@ evidence:
 - Missing or unevidenced REQs
 - Deferred/Dropped missing required fields
 
-**Non-blocking scheduled check** (separate workflow, read-only):
-- Cross-system link validation (Linear archive, external URLs)
-- spec.md anchor existence validation
-- Evidence URL reachability
-
-External link checks remain non-blocking to avoid failing builds on transient network issues.
+External link checks (issue-tracker archive, external URLs, evidence URL reachability) are not a shipped workflow. Keep them out of the blocking trace-check so transient network issues do not fail merges. spec.md anchor existence is validated by `trace/check.sh` when blocking.
 
 ---
 
 ## Metrics pointer
 
-M1–M6 definitions: `constitution/00-north-star.md`
+Success metrics: `constitution/00-north-star.md` (example set: `examples/round-table/metrics.md`)

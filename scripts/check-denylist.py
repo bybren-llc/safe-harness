@@ -13,7 +13,7 @@ A directory, broken symlink, or anything that is not a readable regular file
 is a config error (exit 2). Zero active terms, unknown category, unreadable
 or undecodable input, and a failed tracked-file listing are also exit 2.
 
-Not wired into CI. A CI version using a repo secret is planned for v1.1.
+Not wired into CI.
 
     python3 scripts/check-denylist.py
 """

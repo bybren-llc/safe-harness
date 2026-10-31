@@ -23,7 +23,7 @@ Prohibited content:
 
 When referencing a personal store, private store, or private context, **describe the pattern** without exposing the instance.
 
-**Local denylist:** copy `scripts/denylist.example` to `.denylist.local` at the repo root (gitignored), replace the fake terms, then run `python3 scripts/check-denylist.py` before opening a PR. It compares tracked files case-insensitively against the local plain terms and prints `file:line` plus a generic category only. If `.denylist.local` is missing, the script exits 0 (`no local denylist, skipped`). This is not yet wired into CI. A CI version using a repo secret is planned for v1.1. See [`scripts/README.md`](scripts/README.md).
+**Local denylist:** copy `scripts/denylist.example` to `.denylist.local` at the repo root (gitignored), replace the fake terms, then run `python3 scripts/check-denylist.py` before opening a PR. It compares tracked files case-insensitively against the local plain terms and prints `file:line` plus a generic category only. If `.denylist.local` is missing, the script exits 0 (`no local denylist, skipped`). CI does not run this local denylist. See [`scripts/README.md`](scripts/README.md).
 
 **Genericize allowlist (personal names):** The repository is genericized for template use. The only approved exceptions where the original copyright holder's personal name appears are:
 
@@ -92,7 +92,7 @@ See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for Low /
 Portable evidence ([`constitution/05-evidence-and-traceability.md`](constitution/05-evidence-and-traceability.md)) must include:
 
 - `evidence_id` (runtime-native unique ID)
-- `runtime` (cursor / claude-code / grok-bot / local / etc.)
+- `runtime` (cursor / claude-code / local / etc.)
 - `exact_head` (commit SHA or PR head)
 - `issue` (GitHub Issue `#N`)
 - `actor` (agent or human handle)

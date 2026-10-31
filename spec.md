@@ -1,8 +1,7 @@
-# Specification — safe-harness
+# Specification
 
 **Ownership:** HUMAN-OWNED (the owner only)  
-**Status:** Draft  
-**Last updated:** 2026-10-29
+**Kind:** Adopter template
 
 ---
 
@@ -36,15 +35,7 @@ See `trace/trace-map.yaml` for requirement states and evidence linkage.
 
 ## Metrics
 
-Success metrics M1–M6 are defined in `constitution/00-north-star.md`:
-- **M1**: Multi-runtime template ships
-- **M2**: tmux not required
-- **M3**: SAFe + AI-DLC spine retained
-- **M4**: Round Table seats map
-- **M5**: Time-to-first owned ticket
-- **M6**: Deploy/release flow health
-
-Each requirement must tie to a metric (M1–M6 or custom named metric).
+*(Define your success metrics here. Each requirement should tie to a metric.)*
 
 ---
 

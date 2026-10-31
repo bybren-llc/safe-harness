@@ -7,7 +7,7 @@ license: MIT (see repository LICENSE)
 # Stack and model check
 
 **Source:** generalize
-**Used by:** Scout · Story Media
+**Used by:** Scout
 
 ## Authority
 

@@ -11,7 +11,7 @@
 
 ## Purpose
 
-Ops · CoS handles operational flow and staff support for the C-suite (the owner and the GM). Runs digests and rolls, concur queues, weekly trace/gap reviews, and gate visibility. Dispatcher · Board owns the tracking board and the 4:30 AM ET sweep; Ops does not.
+Ops · CoS handles operational flow and staff support for the C-suite (the owner and the GM). Runs digests and rolls, concur queues, weekly trace/gap reviews, and gate visibility. Dispatcher · Board owns the tracking board and the scheduled sweep; Ops does not.
 
 ## Owns
 

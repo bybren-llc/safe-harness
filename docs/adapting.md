@@ -7,7 +7,7 @@ This guide helps you adapt the safe-harness template for your team.
 
 ## Two layers
 
-The harness layer (role cards, skills, in-session build-and-verify loops, evidence schema) ships in this repository. Runtime adapters that wire the harness into specific coding tools arrive in v1.1. The orchestration layer (always-on managers, briefing, gate routing, merge authority) is a runtime-neutral contract, not part of the core harness. Agent auto-approve and auto-merge stay off; CI checks and independent review are the real gates.
+The harness layer (role cards, skills, in-session build-and-verify loops, evidence schema) ships in this repository. Runtime adapters for Claude Code and Cursor live in `adapters/`. The orchestration layer (always-on managers, briefing, gate routing, merge authority) is a runtime-neutral contract, not part of the core harness. Agent auto-approve and auto-merge stay off; CI checks and independent review are the real gates.
 
 ## Fork vs 'Use this template'
 
@@ -45,7 +45,7 @@ The template uses GitHub Issues by default. Issue templates live in `.github/ISS
 
 Labels are defined in `.github/labels.yml`. Customize work types, risk tiers, and O2 items to fit your process.
 
-If you keep Linear, see `constitution/05-evidence-and-traceability.md` for the dual-tracker approach. The template's Linear archive map (`trace/linear-saf-map.csv`) is frozen and should not be edited.
+If you keep Linear or another tracker, see `constitution/05-evidence-and-traceability.md`. Map tracker IDs to GitHub Issues using the format in `trace/schema.md` (example: `examples/round-table/linear-saf-map.csv`).
 
 ### 4. Agent runtimes
 
@@ -57,7 +57,7 @@ Root agent entry point: `AGENTS.md`
 
 Skills live in `skills/` as `skills/<slug>/SKILL.md`. Each runtime's adapter maps the canonical skill tree. See `skills/README.md`.
 
-Grok Bot and local agents are supported but require manual skill import per bot. Do not add Codex or local adapter stubs here.
+Other runtimes: add an adapter following this pattern. A runtime that does not auto-load `skills/` requires a manual skill import. Do not add adapter stubs here before they exist.
 
 ### 5. Branch protection
 

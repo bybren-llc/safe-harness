@@ -1,20 +1,20 @@
 # Link Health & Rot Detection — safe-harness
 
 **Status:** PROPOSED (Librarian · Signals draft, pending QAS by the GM and the code owner review)  
-**Owner seat:** Librarian · Signals ([`../roles/librarian.md`](../roles/librarian.md))  
+**Owner seat:** Librarian · Signals ([`../roles/librarian.md`](../../roles/librarian.md))  
 **Component:** ARC-TRC (trace), with proposed CI extensions under ARC-WFL  
-**Authority:** constitution/05 "CI scope" and Decision 12 in [`../prove/wave-1/decision-pack.md`](../prove/wave-1/decision-pack.md) (Librarian concur conditions 1–4)  
+**Authority:** constitution/05 "CI scope" and Decision 12 in [`../prove/wave-1/decision-pack.md`](../../prove/wave-1/decision-pack.md) (Librarian concur conditions 1–4)  
 **Last updated:** 2026-10-30
 
 ---
 
 ## 1. Purpose
 
-Keep every link between safe-harness artifacts, GitHub issues and PRs, the knowledge base, external sources, and the retired the issue tracker archive resolvable, and catch link rot before a reader does. The repo is the sole source of truth ([`../constitution/05-evidence-and-traceability.md`](../constitution/05-evidence-and-traceability.md)); this spec makes that claim checkable.
+Keep every link between safe-harness artifacts, GitHub issues and PRs, the knowledge base, external sources, and the retired the issue tracker archive resolvable, and catch link rot before a reader does. The repo is the sole source of truth ([`../constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md)); this spec makes that claim checkable.
 
 Principles (from the Librarian concur, Wave 1):
 
-1. **One trace map is the truth.** [`trace-map.yaml`](trace-map.yaml) is canonical for REQ/ARC. Other places cite it; they do not restate REQ text.
+1. **One trace map is the truth.** [`trace-map.yaml`](../../trace/trace-map.yaml) is canonical for REQ/ARC. Other places cite it; they do not restate REQ text.
 2. **Blocking stays in-repo.** Only checks that need nothing but the checked-out tree may block a merge.
 3. **Cross-system and external checks are scheduled and non-blocking**, so a flaky outside site can never block a merge.
 4. **Read-only by default.** Rot is reported as GitHub issues labelled `link-rot`. Every fix is a PR that a human or the GM merges. The Librarian never merges, including its own PRs.
@@ -25,7 +25,7 @@ Principles (from the Librarian concur, Wave 1):
 
 | # | Link class | Examples | Checked by |
 | --- | --- | --- | --- |
-| L1 | Relative file links in markdown | `[x](../roles/qas.md)`, reference-style `[x]: path.md` | Blocking (in-repo) |
+| L1 | Relative file links in markdown | `[x](../../roles/qas.md)`, reference-style `[x]: path.md` | Blocking (in-repo) |
 | L2 | Anchors / fragments | `constitution/05-evidence-and-traceability.md#ci-scope`, `spec.md#anchor` in REQ `source` | Blocking (in-repo) |
 | L3 | REQ / ARC references | `REQ-<CMP>-NNN` in trace map, docs, PR bodies; `component: ARC-<CMP>` | Blocking (in-repo) for the tree; PR-body linkage per trace-check follow-up |
 | L4 | Issue / PR references from the repo | `#N`, `Refs #N`, `github.com/bybren-llc/safe-harness/issues/N`, `/pull/N` | Weekly scan (needs the GitHub API) |
@@ -34,7 +34,7 @@ Principles (from the Librarian concur, Wave 1):
 | L7 | External URLs | vendor docs, papers, `https://` anything not covered above | Weekly scan (HTTP) |
 | L8 | the issue tracker references | `<WRK>-n`, `[<WRK>-n]`, `<tracker-url>/<workspace>/issue/<WRK>-n/...` | Weekly scan, resolved through the active map (§5.2) |
 
-Out of scope: personal vault and private-store targets. They must never appear in this repo ([`../constitution/04-privacy-and-vaults.md`](../constitution/04-privacy-and-vaults.md), [`../CONTRIBUTING.md`](../CONTRIBUTING.md)). If the scan ever finds one, it is reported as a **privacy finding** to QAS and the owner directly, not as a public `link-rot` issue, and the issue body never quotes the target.
+Out of scope: personal vault and private-store targets. They must never appear in this repo ([`../constitution/04-privacy-and-vaults.md`](../../constitution/04-privacy-and-vaults.md), [`../CONTRIBUTING.md`](../../CONTRIBUTING.md)). If the scan ever finds one, it is reported as a **privacy finding** to QAS and the owner directly, not as a public `link-rot` issue, and the issue body never quotes the target.
 
 Files scanned: every tracked `*.md`, `*.yaml`, `*.yml`, and `*.csv` at `main` HEAD, plus open PR bodies and issue bodies for L3/L4/L8 references. Fenced code blocks are scanned for L4–L8 only (they often hold example URLs); examples marked as placeholders (`example`, `<...>`, RFC 5737 / RFC 2606 hosts) are skipped.
 
@@ -44,9 +44,9 @@ Files scanned: every tracked `*.md`, `*.yaml`, `*.yml`, and `*.csv` at `main` HE
 
 These need only the checkout, so they can block without flake risk.
 
-**Already live** in [`../.github/workflows/wave0-checks.yml`](../.github/workflows/wave0-checks.yml) ("Check markdown relative links"): L1 for root `*.md` and `constitution/ roles/ adapters/ templates/ prove/ trace/`.
+**Already live** in [`../.github/workflows/wave0-checks.yml`](../../.github/workflows/wave0-checks.yml) ("Check markdown relative links"): L1 for root `*.md` and `constitution/ roles/ adapters/ templates/ prove/ trace/`.
 
-**Already live** in [`../.github/workflows/trace-check.yml`](../.github/workflows/trace-check.yml) (warn-only until `trace/.blocking`): REQ → ARC component exists in `arch/components.yaml`.
+**Already live** in [`../.github/workflows/trace-check.yml`](../../.github/workflows/trace-check.yml) (warn-only until `trace/.blocking`): REQ → ARC component exists in `arch/components.yaml`.
 
 #### Coverage (B1)
 
@@ -141,16 +141,16 @@ Resolved through the GitHub API (connector), never by unauthenticated HTTP, beca
 
 ### 5.1 Current state (2026-10-29)
 
-[`linear-saf-map.csv`](linear-saf-map.csv) is **header-only** (`saf_id,linear_url,github_issue,pr,title,status`). Population is Delivery's job in migration Phase 2 and the final commit is a Phase 3 cutover action ([`../prove/wave-1/migration-plan.md`](../prove/wave-1/migration-plan.md)). Until then the map is not frozen and SAF findings are recorded as `pending-map`, never as `link-rot`.
+[`linear-saf-map.csv`](linear-saf-map.csv) is **header-only** (`saf_id,linear_url,github_issue,pr,title,status`). Population is Delivery's job in migration Phase 2 and the final commit is a Phase 3 cutover action ([`../prove/wave-1/migration-plan.md`](../../prove/wave-1/migration-plan.md)). Until then the map is not frozen and SAF findings are recorded as `pending-map`, never as `link-rot`.
 
 ### 5.2 Freeze and archive (after Phase 3)
 
-**Depends on migration Phase 2 cutover.** The step that freezes and checksums the SAF map (this section, then B5) cannot run until Phase 2 has populated `trace/linear-saf-map.csv` and the Phase 3 cutover commit has landed the complete map ([`../prove/wave-1/migration-plan.md`](../prove/wave-1/migration-plan.md)).
+**Depends on migration Phase 2 cutover.** The step that freezes and checksums the SAF map (this section, then B5) cannot run until Phase 2 has populated `trace/linear-saf-map.csv` and the Phase 3 cutover commit has landed the complete map ([`../prove/wave-1/migration-plan.md`](../../prove/wave-1/migration-plan.md)).
 
 When Delivery's cutover commit lands the complete map, the Librarian opens one PR (CODEOWNED under `trace/`) that:
 
 1. Records `sha256` of the CSV exactly as committed, with the commit SHA it was taken at, in `trace/linear-saf-map.sha256` (format: `<sha256>  trace/linear-saf-map.csv` on line 1, `# frozen-at: <commit-sha> <ISO date>` on line 2).
-2. Adds a "Frozen" note to [`schema.md`](schema.md) under "the issue tracker to GitHub Issue mapping": read-only, no edits after freeze; corrections are a new superseding file reviewed by the owner, never an in-place edit.
+2. Adds a "Frozen" note to [`schema.md`](../../trace/schema.md) under "the issue tracker to GitHub Issue mapping": read-only, no edits after freeze; corrections are a new superseding file reviewed by the owner, never an in-place edit.
 3. Validates every row before freezing: `saf_id` unique and `SAF-[0-9]+`; `linear_url` resolves (Linear connector); `github_issue` and `pr` exist via the API; `status` = `Archived`. Failures block the freeze PR itself, not other merges.
 
 After freeze, `trace/linear-saf-map.csv` is immutable. In-place edits are not permitted. Corrections are a new superseding file `trace/linear-saf-map.vN.csv` (N = 1, 2, 3, …) with a matching `trace/linear-saf-map.vN.sha256`, CODEOWNED and reviewed by the owner.
@@ -188,7 +188,7 @@ Each scan finds `SAF-[0-9]+` (bare, bracketed, or in an issue tracker URL) in th
 - **Body (private GitHub, knowledge base, or vault citation):** fingerprint, target class, verdict, first-seen and last-seen dates (ET), and the source repo name only. Omit the raw target, private URLs, API details, and private citation locators; send those to Librarian · Signals' chat. Personal-vault paths never appear in an issue.
 - **Dedupe:** before opening, search open issues for the fingerprint. If found, append new source locations or a verdict change as one comment (public targets) or a redacted class/date update (private targets); never open a second issue. If a closed issue matches and the target is failing again, reopen-by-reference: open a new issue that links the old one.
 - **Recovery:** when a reported target passes two consecutive scans, comment "recovered" with evidence. Closing is done by the fix PR (`Fixes #N`) or a human; the Librarian does not close issues it cannot tie to a merged fix.
-- **Label:** `link-rot`. It is documented in [`../.github/labels.yml`](../.github/labels.yml) but is not created through the API during Wave 1. Until a human creates it, the title prefix `[link-rot]` is the dedupe and search key.
+- **Label:** `link-rot`. It is documented in [`../.github/labels.yml`](../../.github/labels.yml) but is not created through the API during Wave 1. Until a human creates it, the title prefix `[link-rot]` is the dedupe and search key.
 - **Volume cap:** at most 10 new issues per scan; the rest go in the weekly summary as "queued", oldest-failing first.
 
 ### 6.2 Fix PRs

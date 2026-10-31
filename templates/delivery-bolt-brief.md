@@ -1,6 +1,6 @@
 # Delivery Bolt Brief
 
-**Spine:** A · **Owner:** Delivery · Lead · **Repo:** `bybren-llc/safe-harness`
+**Spine:** A · **Owner:** Delivery · Lead · **Repo:** `<owner>/<repo>`
 
 ## Header
 
@@ -8,7 +8,7 @@
 | --- | --- |
 | Bolt ID | |
 | Date (America/New_York) | |
-| Goal (ties to M1–M6) | |
+| Goal (ties to your defined metrics) | |
 | Studio handoff ID | (if any) |
 | Human assignee | **(required)** the project's named HITL / POPM human (Round Table: the owner). Agent ≠ human. Do not invent a second human. |
 | Agent delegate | (optional; humans remain assignees — `constitution/01-round-table.md`) |
@@ -56,16 +56,14 @@
 - [ ] HITL decision pack (exact-head)
 - [ ] MERGED (HITL only) / MERGED (HITL-delegated) / MERGED (delegated the GM/RTE) — exit states in `constitution/05-evidence-and-traceability.md`
 
-## Model plan (O4)
+## Model plan
 
 | Seat | Tier | Model |
 | --- | --- | --- |
-| Orchestration | Orchestrator | Fable 5.1+ |
-| Implement | Heavy | Sonnet 5.5 / Opus 5.5 |
-| QAS | Light/Heavy | Haiku 5.5 / … |
-| SecEng | Heavy | Opus 5.5 preferred on O2 |
-
-Ultracode: **not default**.
+| Orchestration | Orchestrator | `<model>` |
+| Implement | Heavy | `<model>` |
+| QAS | Light/Heavy | `<model>` |
+| SecEng | Heavy | `<model>` preferred on O2 |
 
 ## Estimate
 
@@ -76,8 +74,8 @@ Ultracode: **not default**.
 | Review/approval wait (hours) | | |
 | Confidence (L/M/H) | | |
 
-Capture actuals at close; compare actuals with estimates each sprint and report under M5 / M6.
+Capture actuals at close; compare actuals with estimates each sprint and report under your defined metrics.
 
 ## Measure
 
-Report outcomes vs M1–M6 at Bolt exit.
+Report outcomes vs your defined metrics at Bolt exit.
