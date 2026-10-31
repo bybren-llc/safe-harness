@@ -13,5 +13,6 @@
 /AGENTS.md              @cheddarfox
 /adapters/**/AGENTS.md  @cheddarfox
 /skills/                @cheddarfox
+/.github/harness.yml    @cheddarfox
 /.github/CODEOWNERS     @cheddarfox
 /.github/workflows/     @cheddarfox

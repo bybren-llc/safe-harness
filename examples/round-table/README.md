@@ -29,6 +29,7 @@ The `owner_identity` is the GitHub login and is used to validate `decided_by` fi
 /AGENTS.md              @cheddarfox
 /adapters/**/AGENTS.md  @cheddarfox
 /skills/                @cheddarfox
+/.github/harness.yml    @cheddarfox
 /.github/CODEOWNERS     @cheddarfox
 /.github/workflows/     @cheddarfox
 ```

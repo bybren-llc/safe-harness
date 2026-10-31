@@ -13,7 +13,7 @@
 
 Before handing off to QAS, run this self-check loop and paste the full output into the handoff:
 
-1. **Name, email, and trailer scan** — Run the project's denylist check (fails if unconfigured), scan for email addresses in added lines, and check for `Co-authored-by` trailers.
+1. **Name, email, and trailer scan** — Run the project's denylist check, scan for email addresses in added lines, and check for `Co-authored-by` trailers. The denylist check requires `.denylist.local` at repository root; when that file is absent, the check exits successfully (exit 0) with "no local denylist, skipped" and does not scan.
 
    ```bash
    python3 scripts/check-denylist.py
