@@ -10,10 +10,10 @@ This directory shows how the safe-harness team (ByBren, LLC) configured their ow
 ### harness.yml
 
 ```yaml
-owner_identity: "Scott Graham"
+owner_identity: "cheddarfox"
 ```
 
-The `owner_identity` matches the decision authority's full name and is used to validate `decided_by` fields when dropping requirements sourced from `intent.md`.
+The `owner_identity` is the GitHub login and is used to validate `decided_by` fields when dropping requirements sourced from `intent.md`.
 
 ### CODEOWNERS
 
