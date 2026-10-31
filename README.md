@@ -36,7 +36,7 @@
 
 A template for everyday, safe AI-assisted work: code on one spine, and stories and research on the other.
 
-**Status:** Wave 1 adopted. This README is the adopter-facing index. It is **not** a policy source. Binding rules live in [`constitution/`](constitution/). See [Adapting this template](docs/adapting.md).
+This README is the index for adopters. It is **not** a policy source. Binding rules live in [`constitution/`](constitution/). See [Adapting this template](docs/adapting.md).
 
 ---
 
