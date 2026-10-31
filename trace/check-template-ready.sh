@@ -46,9 +46,11 @@ echo ""
 ERRORS=0
 
 # Example values that should not appear in template surface
+# Note: "bybren-llc" org name in attribution/LICENSE is legitimate; 
+# we're checking for placeholder/example values like the cheddarfox GitHub login
 EXAMPLE_VALUES=(
   "cheddarfox"
-  "github.com/bybren-llc"
+  "@cheddarfox"
 )
 
 # Directories to scan based on mode
