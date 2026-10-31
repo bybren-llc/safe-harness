@@ -92,7 +92,7 @@ See [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) for Low /
 Portable evidence ([`constitution/05-evidence-and-traceability.md`](constitution/05-evidence-and-traceability.md)) must include:
 
 - `evidence_id` (runtime-native unique ID)
-- `runtime` (cursor / claude-code / grok-bot / local / etc.)
+- `runtime` (cursor / claude-code / local / etc.)
 - `exact_head` (commit SHA or PR head)
 - `issue` (GitHub Issue `#N`)
 - `actor` (agent or human handle)

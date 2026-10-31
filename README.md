@@ -213,7 +213,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | [`prove/`](prove/) | Evidence and bolt records. |
 | [`arch/`](arch/) | Component registry. |
 | [`requirements/`](requirements/) | REQ registry (agent-authored; human review). |
-| [`trace/`](trace/) | Trace map. Frozen archive map: `trace/linear-saf-map.csv` (do not edit). |
+| [`trace/`](trace/) | Trace map and schema. |
 | [`intent.md`](intent.md) / `intent/` / [`spec.md`](spec.md) | Human-owned design. |
 | [`.github/CODEOWNERS`](.github/CODEOWNERS) | Review gates (`intent.md`, `intent/`, `spec.md`, `constitution/`, `requirements/`, `trace/`, `arch/`, `AGENTS.md`, `adapters/**/AGENTS.md`, `skills/`, workflows). |
 | [`.github/workflows/`](.github/workflows/) | CI (see below). |

@@ -1,6 +1,6 @@
 # Branch protection for `main`
 
-Who may merge remains [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md): only the owner, the GM, or Release · RTE. Delivery and cloud agents never merge. The GitHub ruleset below does not encode that seat list. This file describes the applied ruleset. A repository administrator applied it. Adopters configure their own rulesets using this structure.
+Who may merge remains [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md): only the owner, the GM, or Release · RTE. Delivery and cloud agents never merge. The GitHub ruleset below does not encode that seat list. This file describes the recommended ruleset. A repository administrator applies it.
 
 ## Recommended ruleset on `main`
 
@@ -50,9 +50,9 @@ RTE PASS is not a GitHub required status check. Do not add it to the required-ch
 
 The ruleset bypass list is empty by default. The owner may add themselves for emergencies. Delivery and cloud agents are never on the bypass list.
 
-### Planned upgrade: separate bot identity
+### Optional: separate bot identity
 
-A separate bot identity (GitHub App or bot user) that can post real APPROVE reviews is the planned upgrade. That would let required approvals be raised above 0 without deadlocking the authoring account. The HITL owner decides whether and when to add that identity. Do not raise required approvals in the ruleset until that decision is recorded.
+A separate bot identity (GitHub App or bot user) that can post real APPROVE reviews is optional. That would let required approvals be raised above 0 without deadlocking the authoring account. The HITL owner decides whether and when to add that identity. Do not raise required approvals in the ruleset until that decision is recorded.
 
 ## Apply checklist (repo admin)
 

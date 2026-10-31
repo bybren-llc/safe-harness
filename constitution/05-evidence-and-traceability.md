@@ -92,7 +92,7 @@ See `requirements/README.md` for trace states (Placed / Deferred / Dropped / Mis
 
 ## Evidence before HITL
 
-Evidence lands before Ready for Review / HITL decision pack. Preserve SAW spirit:
+Evidence lands before Ready for Review / HITL decision pack. Principles:
 - Evidence over assertion
 - Bolt exits on evidence, not a date
 - Four always-on evidence types + conditional (UI / RLS / perf / `#EXPORT_CRITICAL`) — map per Bolt
@@ -104,9 +104,9 @@ Do not rely on Claude-only session IDs. Each runtime posts a portable ID:
 | Field | Rule |
 | --- | --- |
 | `evidence_id` | Runtime-native unique ID (session, run, cloud agent id, local run uuid) |
-| `runtime` | `claude-code` \| `cursor` \| `codex` \| `local` \| `grok-bot` \| … |
+| `runtime` | `claude-code` \| `cursor` \| `codex` \| `local` \| … |
 | `exact_head` | Commit SHA or PR head |
-| `issue` | GitHub Issue reference `#N` (replaces `linear_issue`) |
+| `issue` | GitHub Issue reference `#N` |
 | `actor` | Agent id or human handle |
 | `gate` | Which gate this evidence satisfies |
 | `req_ids` | List of REQ-<CMP>-NNN IDs this evidence addresses |
@@ -125,9 +125,9 @@ The `.github/workflows/trace-check.yml` CI workflow validates:
 5. Requirements with `source: intent.md#*` that are Dropped must have `decided_by` matching `.github/harness.yml` `owner_identity` (exactly)
 6. Evidence rows must have required fields: `evidence_id`, `exact_head`, `actor`, `gate`
 
-**Blocking activation gate:** Trace-check becomes blocking only after the first `spec.md` with REQ IDs lands **AND** a code-owner-reviewed PR adds the marker file `trace/.blocking`. The follow-up validations PR (first GitHub Issue in migration Phase 1) adds the marker after implementing the additional validations below. Until both conditions are met, trace-check remains warn-only.
+**Blocking activation gate:** Trace-check becomes blocking only after the first `spec.md` with REQ IDs lands **AND** a code-owner-reviewed PR adds the marker file `trace/.blocking`. Add the marker only when the additional validations below are in place. Until both conditions are met, trace-check remains warn-only.
 
-**Additional validations (required before blocking activation; see migration Phase 1):**
+**Additional validations (required before blocking activation):**
 - Spec REQ ↔ trace-map reconciliation
 - Empty trace map in blocking mode enforcement
 - `requirements/*.yaml` registry validation

@@ -14,13 +14,13 @@ This file is the lane-ownership map. Seats and exit states stay in `01-round-tab
 | **Librarian** | Knowledge | Knowledge signals, research, and CVE scans |
 | **Scout** | Story and research | Tool, model, and price calls |
 | **Studio · Lead** | Spine B | Stories |
-| **Release · RTE** | Release gate | Final release gate (cite #22; do not restate) |
+| **Release · RTE** | Release gate | Final release gate (rules in the files below; do not restate) |
 | **Dispatcher · Board** | Staff (next to Ops) | Tracking board; Scheduled sweep (time set by adopter) |
 | **the owner** (HITL / POPM) | Human gate | Prod-risk items; constitution / High / O2 concur; X writes; secrets |
 
 ## Release · RTE (cite, do not restate)
 
-Release · RTE is the final release gate. The merged #22 text is the rule:
+Release · RTE is the final release gate. Its rules live in:
 
 - [`constitution/03-cd-and-hitl.md`](03-cd-and-hitl.md) — Merge authority, Who may execute a trunk merge, RTE placement, HOLD override
 - [`roles/release-rte.md`](../roles/release-rte.md)
@@ -30,7 +30,7 @@ It merges only with the GM's QAS APPROVE plus its own RTE PASS on the exact head
 
 ## Dispatcher · Board
 
-New staff role next to Ops. Card: [`roles/dispatcher-board.md`](../roles/dispatcher-board.md).
+Staff role next to Ops. Card: [`roles/dispatcher-board.md`](../roles/dispatcher-board.md).
 
 - Owns the tracking board. The only write is a limited exception: update board records to surface status.
 - Runs a scheduled sweep (no repo, PR, or channel writes)

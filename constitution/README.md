@@ -6,11 +6,9 @@
 
 **Owner:** the GM · **Executes:** Delivery
 
-SAW = **Safe Agentic Workflow** (everyday safe). Not SAFe the trademark. SAFe + AI-DLC are the ownership/cadence spine.
-
 ## How to use this template
 
-1. Read `00-north-star.md` — dual spine, M1–M6, empiricism, non-goals.
+1. Read `00-north-star.md` — dual spine, success metrics, empiricism, non-goals.
 2. Map seats in `01-round-table.md` before assigning work.
 3. Run cadence via `02-safe-ai-dlc.md` (Bolts, Units of Work, independence).
 4. Gate CD with `03-cd-and-hitl.md` (risk tiers + O2 high-risk list).

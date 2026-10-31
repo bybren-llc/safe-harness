@@ -125,7 +125,7 @@ At High/O2, the owner's recorded own-words concur is **a** required human approv
 2. **Secrets** — secrets live in vaults. the owner owns both the GitHub secrets and the vault side. See `04-privacy-and-vaults.md`. This does not expand Release · RTE rights over deploy CI/workflows.
 3. **Environments** — this repo is a template. Adopting teams configure dev, staging, and prod for their own environments.
 4. **Issue tracker** — optional. Preferred path is design, specs, and PRDs in GitHub. See `05-evidence-and-traceability.md`. Your tracker map (if you have one) is documented in your repo.
-5. **D1 `hitl_delegate`** — stays as written. ADR-style accountability is in `05-evidence-and-traceability.md`.
+5. **D1 `hitl_delegate`** — a standing `hitl_delegate` record covers Low-tier merge execution only; it never covers `constitution/`, High, or O2. Record it with the ADR-style accountability fields in `05-evidence-and-traceability.md`.
 
 ### `main` branch protection
 

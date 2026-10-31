@@ -25,7 +25,7 @@ Every gate that asks for proof gets a portable row. Do not rely on one runtime's
 | Field | Rule |
 | --- | --- |
 | `evidence_id` | Runtime-native unique ID (session, run, cloud-agent id, local uuid). Examples only; do not copy real IDs from another team's run. |
-| `runtime` | `cursor` / `claude-code` / `grok-bot` / `codex` / `local` / other |
+| `runtime` | `cursor` / `claude-code` / `codex` / `local` / other |
 | `exact_head` | Commit SHA or PR head under review |
 | `issue` | GitHub Issue `#N` |
 | `actor` | Seat or human handle |
