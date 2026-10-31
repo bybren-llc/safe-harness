@@ -82,7 +82,7 @@ jobs:
           # skills/ blocking, add `skills` to this find list and remove
           # continue-on-error from the skills-checks link step.
           md_files=$(find . -maxdepth 1 -name "*.md" 2>/dev/null)
-          md_files+=" "$(find constitution roles adapters templates prove trace -type f -name "*.md" 2>/dev/null)
+          md_files+=" "$(find constitution roles adapters templates prove trace docs examples -type f -name "*.md" 2>/dev/null)
           
           for md_file in $md_files; do
             echo "Checking: $md_file"

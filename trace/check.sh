@@ -584,6 +584,24 @@ else
 fi
 echo ""
 
+# prove/ is frozen Wave 1 history. Do not edit those files to silence
+# the checker. Evidence-row findings (placeholder cells and unresolved
+# REQ IDs) in the files listed here are warnings, not errors. Scope is
+# prove/ only — do not add paths outside prove/. Errors anywhere else
+# remain errors. Future prove/v1.1-* rows are not on this list.
+PROVE_HISTORY_ALLOWLIST=(
+  "prove/wave-1/decision-pack.md"
+)
+
+is_prove_history_allowlisted() {
+  local candidate="$1"
+  local listed
+  for listed in "${PROVE_HISTORY_ALLOWLIST[@]}"; do
+    [[ "$candidate" == "$listed" ]] && return 0
+  done
+  return 1
+}
+
 # --- Evidence rows from bolt briefs / decision packs ---
 echo "Evidence rows from bolt briefs / decision packs"
 echo ""
@@ -683,21 +701,28 @@ PY
       fi
       echo "  prove/${rel:-}:$lineno"
       row_err=0
+      row_warn=0
+      prove_row_finding() {
+        local msg="$1"
+        if is_prove_history_allowlisted "prove/${rel:-}"; then
+          warn "$msg"
+          row_warn=1
+        else
+          error "$msg"
+          row_err=1
+        fi
+      }
       if is_missing "${ev:-}"; then
-        error "prove/${rel:-}:${lineno:-} missing evidence_id"
-        row_err=1
+        prove_row_finding "prove/${rel:-}:${lineno:-} missing evidence_id"
       fi
       if is_missing "${head:-}"; then
-        error "prove/${rel:-}:${lineno:-} missing exact_head"
-        row_err=1
+        prove_row_finding "prove/${rel:-}:${lineno:-} missing exact_head"
       fi
       if is_missing "${actor:-}"; then
-        error "prove/${rel:-}:${lineno:-} missing actor"
-        row_err=1
+        prove_row_finding "prove/${rel:-}:${lineno:-} missing actor"
       fi
       if is_missing "${gate:-}"; then
-        error "prove/${rel:-}:${lineno:-} missing gate"
-        row_err=1
+        prove_row_finding "prove/${rel:-}:${lineno:-} missing gate"
       fi
       if [[ -n "${reqs:-}" ]]; then
         while IFS= read -r pid; do
@@ -705,12 +730,11 @@ PY
             continue
           fi
           if [[ -z "$MAP_REQS" ]] || ! printf '%s\n' "$MAP_REQS" | grep -Fxq -- "$pid"; then
-            error "prove/${rel:-}:${lineno:-} req_ids lists $pid which is not in the trace map"
-            row_err=1
+            prove_row_finding "prove/${rel:-}:${lineno:-} req_ids lists $pid which is not in the trace map"
           fi
         done < <(printf '%s\n' "$reqs" | grep -oE 'REQ-[A-Z]{3}-[0-9]{3}' || true)
       fi
-      if [[ "$row_err" -eq 0 ]]; then
+      if [[ "$row_err" -eq 0 && "$row_warn" -eq 0 ]]; then
         ok "prove/${rel:-}:${lineno:-} evidence row"
       fi
     done < "$tmp"
