@@ -1,6 +1,6 @@
 ---
 name: git-advanced
-description: Bisect, cherry-pick, and conflict resolution with safety rules. Update branches by merging main. Trunk is main.
+description: Bisect, cherry-pick, and conflict resolution with safety rules. Use on feature branches. Trunk is main. Update branches by merging main.
 license: MIT (see repository LICENSE)
 ---
 
@@ -35,7 +35,7 @@ Finding a regression with bisect, cherry-picking, or resolving conflicts. Trunk 
 
 ## Update branch from trunk (before a PR, or when Delivery asked for a new head)
 
-Update by merging `main`, never by rebase, amend, or force-push. See `roles/implementer.md` § Branch updates.
+Update by merging `main`, never by rebase, amend, or force-push. See `roles/implementer.md`.
 
 ```text
 git fetch origin
