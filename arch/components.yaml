@@ -19,7 +19,7 @@ components:
 
   - id: ARC-ADP
     name: Adapters
-    description: Runtime-specific adapters (Claude Code, Cursor)
+    description: Runtime-specific adapters (Claude Code, Cursor, Codex)
     paths:
       - adapters/
 

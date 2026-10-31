@@ -10,6 +10,10 @@ Each merged row is `PR number — one-line summary (7-char merge SHA)`, taken fr
 
 ## [Unreleased]
 
+### Added
+
+- Pointer files so Claude Code, Cursor, and Codex reach root `AGENTS.md` and `skills/INDEX.md` without symlinks (`CLAUDE.md`, `.cursor/rules/safe-harness.mdc`, `adapters/codex/`).
+
 ## [1.0.1]
 
 ### Docs
