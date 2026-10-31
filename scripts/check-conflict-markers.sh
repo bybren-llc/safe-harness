@@ -19,6 +19,11 @@ tracked_files=$(cd "$REPO_ROOT" && git ls-files)
 for file in $tracked_files; do
   filepath="$REPO_ROOT/$file"
   
+  # Skip test fixtures
+  if [[ "$file" == trace/fixtures/conflict-markers-*.md ]]; then
+    continue
+  fi
+  
   # Skip if file doesn't exist (shouldn't happen with git ls-files, but safe)
   if [[ ! -f "$filepath" ]]; then
     continue
