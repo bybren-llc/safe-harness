@@ -31,7 +31,7 @@ Copy the field list from the cited "Decision pack minimum" section. Typical cont
 - Evidence IDs ([`portable-evidence`](../portable-evidence/SKILL.md))
 - Requirements (`REQ-<CMP>-NNN` list, or an explicit "none in spec yet" line)
 - QAS + SecEng status as the cited section allows
-- SecEng: <review-id> <PASS|PASS-with-notes> at <exact head sha>
+- SecEng: <review-id> PASS or PASS-with-notes at <exact head sha>
 - Risk tier + O2 checklist
 - Ask: approve / change-request / escalate
 
