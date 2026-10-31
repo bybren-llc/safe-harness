@@ -34,7 +34,7 @@ On **trunk** (safe-harness is trunk-only), **Release · RTE MAY merge** once all
 2. Kai's independent QAS APPROVE is present at exact head
 3. SecEng PASS (or PASS-with-notes) is present at exact head (Med, High, O2; Low may mark N/A with rationale)
 4. RTE's own RTE PASS is present at exact head
-5. Scott's recorded own-words concur is present for `constitution/`, High, and O2 changes
+5. Owner's (HITL/POPM) recorded own-words concur is present for `constitution/`, High, and O2 changes
 
 **Release · RTE NEVER merges:**
 - Its own authored change (RTE does not author changes)

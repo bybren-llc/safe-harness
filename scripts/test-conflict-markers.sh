@@ -74,19 +74,26 @@ echo -n "  conflict-markers-hidden.md ... "
 TEMP_DIR=$(mktemp -d /tmp/conflict-test-hidden-XXXXXX)
 cd "$TEMP_DIR"
 git init -q
-cat > conflict-markers-hidden.md << 'MARKER_EOF'
+
+# Generate conflict markers at runtime to avoid literal markers in this script
+MARKER_START=$(printf '%s' "<<<<<<< HEAD")
+MARKER_SEP=$(printf '%s' "=======")
+MARKER_END=$(printf '%s' ">>>>>>> branch-name")
+
+cat > conflict-markers-hidden.md << MARKER_EOF
 # Hidden file test
 
 This file has conflict markers and should fail.
 
-<<<<<<< HEAD
+${MARKER_START}
 Content from HEAD
-=======
+${MARKER_SEP}
 Content from branch
->>>>>>> branch-name
+${MARKER_END}
 
 This should be detected.
 MARKER_EOF
+
 git add conflict-markers-hidden.md
 git config user.email "test@example.com"
 git config user.name "Test User"
