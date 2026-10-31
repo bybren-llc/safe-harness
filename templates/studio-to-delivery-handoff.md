@@ -12,7 +12,7 @@
 | Outcome / value link | (M1–M6 and/or Bolt goal) |
 | Summary (≤5 lines) | |
 | Acceptance criteria / DoD | (or BSA follow-on: issue/person) |
-| Source pins | Atlas concept IDs and/or **NAS paths** — **never personal vault** |
+| Source pins | Knowledge-base references and/or private-storage paths — **never personal vault** |
 | Non-code gates passed | (list) |
 | Suggested owner seat | |
 | RTE collapse allowed? | Yes / No |
@@ -24,13 +24,13 @@
 
 - Personal vault citations
 - Mass-imported chat dumps as “concepts”
-- Invented NAS paths
+- Invented private storage paths
 - “Just start coding” without AC or BSA follow-on
 
 ## Delivery accept checklist
 
-- [ ] Pins resolve (Atlas and/or NAS)
+- [ ] Pins resolve (knowledge-base references and/or private-storage paths)
 - [ ] AC testable or BSA named
 - [ ] Risk tier + O2 scanned
-- [ ] Linear human assignee identified (agent delegate optional)
+- [ ] Human assignee identified (agent delegate optional)
 - [ ] Bolt brief opened from `delivery-bolt-brief.md`

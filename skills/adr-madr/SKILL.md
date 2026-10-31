@@ -1,6 +1,7 @@
 ---
 name: adr-madr
 description: Write one Architecture Decision Record per decision in MADR 4.0 with a Confirmation section, and update the decision log. Use when locking a structural, options, or execute decision.
+license: MIT (see repository LICENSE)
 ---
 
 # ADR (MADR 4.0)

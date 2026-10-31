@@ -1,0 +1,5 @@
+# Fixture: requirements key present but value is null
+# Expected: FAIL (validate-trace.sh should reject null, not treat it as absent)
+
+requirements: null
+evidence: []

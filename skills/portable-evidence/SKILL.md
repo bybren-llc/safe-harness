@@ -1,6 +1,7 @@
 ---
 name: portable-evidence
 description: Record a portable evidence row (evidence_id, runtime, exact_head, issue, actor, gate, req_ids) that any runtime can read. Use whenever a gate needs proof.
+license: MIT (see repository LICENSE)
 ---
 
 # Portable evidence

@@ -1,6 +1,7 @@
 ---
 name: bolt-lifecycle
 description: Run one bolt from brief through implement, evidence, QAS, RTE, and merge request. Use for a bounded unit of work on Low, Med, or High paths. Not for open-ended research or constitution edits without a brief.
+license: MIT (see repository LICENSE)
 ---
 
 # Bolt lifecycle

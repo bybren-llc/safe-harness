@@ -1,8 +1,8 @@
 ---
 status: accepted
 date: 2026-10-28
-decision-makers: Scott (HITL/POPM)
-consulted: Kai (GM & lead ARCHitect), Studio · Lead
+decision-makers: owner (HITL/POPM)
+consulted: the GM (GM & lead ARCHitect), Studio · Lead
 informed: Round Table seats
 ---
 
@@ -21,7 +21,7 @@ Confirm the dual spine?
 
 ## Decision Outcome
 
-Chosen option: "Yes", because Scott concurred the filled pack as written.
+Chosen option: "Yes", because owner concurred the filled pack as written.
 
 Decision text: (A) CD execute/deploy: evidence → risk-tier gates → merge queue → flags/rollback. (B) Think/plan: multi-vault knowledge + non-code gates → handoff when knowledge becomes build. Peer spines with shared Round Table language. Product CD is Delivery-owned. Studio ships vault concepts, digests and rankings. Don't overfit to forge/CI only.
 
@@ -32,7 +32,7 @@ Decision text: (A) CD execute/deploy: evidence → risk-tier gates → merge que
 
 ### Confirmation
 
-Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
+owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
 
@@ -42,6 +42,6 @@ Constitution and README describe both spines; role cards name a spine; the bolt 
 
 ## More Information
 
-Owner: Kai (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 Cross-ref: W0-02 Dual spine (active). Public framing that may be cited: the Anthropic [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook). Record format: [MADR 4.0](https://adr.github.io/madr/).

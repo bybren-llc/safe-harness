@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 ByBren, LLC
 """Fail if local denylist terms appear in tracked files.
 
 Reads plain terms from repo-root `.denylist.local` (gitignored). One term per

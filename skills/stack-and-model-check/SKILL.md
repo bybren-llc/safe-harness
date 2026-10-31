@@ -1,6 +1,7 @@
 ---
 name: stack-and-model-check
 description: Research-only tool, model, and price fit check with a ranked recommendation and sources. Use when Scout is asked what to use. No vendor model versions in the output body.
+license: MIT (see repository LICENSE)
 ---
 
 # Stack and model check

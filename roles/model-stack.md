@@ -18,7 +18,7 @@ Every adapter must publish a role→model card. No harness may silently override
 
 | Role / seat | Default tier |
 | --- | --- |
-| Kai / ARCHitect | Orchestrator (+ Heavy for deep design) |
+| the GM / ARCHitect | Orchestrator (+ Heavy for deep design) |
 | Delivery · Lead | Orchestrator |
 | Studio · Lead | Orchestrator |
 | Ops · CoS | Orchestrator |

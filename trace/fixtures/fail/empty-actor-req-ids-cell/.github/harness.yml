@@ -1,0 +1,3 @@
+# safe-harness configuration
+# Repository-level settings for trace validation and governance.
+owner_identity: "example-owner"

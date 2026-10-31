@@ -1,6 +1,7 @@
 ---
 name: env-promotion
 description: Apply the template default for environments — trunk merge rules, staging auto-promote, prod human gate for prod-risk, deploy freeze during demos. Use when promoting a change across environments.
+license: MIT (see repository LICENSE)
 ---
 
 # Environment promotion

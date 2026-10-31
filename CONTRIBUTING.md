@@ -25,7 +25,21 @@ When referencing a personal store, private store, or private context, **describe
 
 **Local denylist:** copy `scripts/denylist.example` to `.denylist.local` at the repo root (gitignored), replace the fake terms, then run `python3 scripts/check-denylist.py` before opening a PR. It compares tracked files case-insensitively against the local plain terms and prints `file:line` plus a generic category only. If `.denylist.local` is missing, the script exits 0 (`no local denylist, skipped`). This is not yet wired into CI. A CI version using a repo secret is planned for v1.1. See [`scripts/README.md`](scripts/README.md).
 
+**Genericize allowlist (personal names):** The repository is genericized for template use. The only approved exceptions where the original copyright holder's personal name appears are:
+
+- `LICENSE:3` — Copyright holder line (required by MIT License)
+- `NOTICE` — Project copyright line (line 2) and SAW-derived verbatim MIT copyright line (line 18)
+- `CITATION.cff` — Authors entry (lines 4-6, required for academic citation)
+
+These exceptions are legally required for proper attribution and cannot be genericized. Template users must retain the existing copyright and license notices (MIT License requirement) and may add their own.
+
 Secrets live in vaults. The human owner (HITL/POPM) owns both the forge secrets and the vault side. Never include a secret value in this repository.
+
+---
+
+## Licensing of contributions
+
+safe-harness is MIT-licensed (see [`LICENSE`](LICENSE)). By opening a PR you agree your contribution is licensed under the same MIT License (inbound = outbound). Only contribute content you have the right to publish under MIT. Do not paste text, code, or structure from client, proprietary, or non-public sources. If you adapt a public third-party work, name it and its license in the PR and add it to [`NOTICE`](NOTICE).
 
 ---
 

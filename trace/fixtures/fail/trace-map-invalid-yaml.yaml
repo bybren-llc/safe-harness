@@ -1,0 +1,7 @@
+# Fixture: invalid YAML syntax
+# Expected: FAIL (check.sh should hard-fail even in warn-only mode)
+
+requirements: [
+  - id: REQ-BROKEN
+    # Missing closing bracket
+evidence: []

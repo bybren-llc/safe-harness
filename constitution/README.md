@@ -1,6 +1,10 @@
 # Constitution — safe-harness
 
-**Status:** Wave 0 active · Kai owns · Delivery executes  
+**License:** MIT (see [../LICENSE](../LICENSE))
+**Copyright:** © 2026 ByBren, LLC
+**Attribution:** See [../NOTICE](../NOTICE)
+
+**Status:** Wave 0 active · the GM owns · Delivery executes  
 **Org:** bybren-llc · **Slug:** `safe-harness`  
 **Reference only:** `bybren-llc/safe-agentic-workflow` @ `dev` — never silent-rewrite SAW.
 
@@ -12,8 +16,8 @@ SAW = **Safe Agentic Workflow** (everyday safe). Not SAFe the trademark. SAFe + 
 2. Map seats in `01-round-table.md` before assigning work.
 3. Run cadence via `02-safe-ai-dlc.md` (Bolts, Units of Work, independence).
 4. Gate CD with `03-cd-and-hitl.md` (risk tiers + O2 high-risk list).
-5. Route knowledge with `04-privacy-and-vaults.md` (NAS SoT; personal vault never remote; Scott owns secrets).
-6. Track evidence in GitHub per `05-evidence-and-traceability.md`. Linear is optional; the preferred path is design, specs, and PRDs in GitHub. No Linear Agents.
+5. Route knowledge with `04-privacy-and-vaults.md` (private storage SoT; personal vault never remote; the owner owns secrets).
+6. Track evidence in GitHub per `05-evidence-and-traceability.md`. the issue tracker is optional; the preferred path is design, specs, and PRDs in GitHub. No the issue tracker Agents.
 7. Retire dogma via `06-empiricism.md`.
 8. Apply the lane map in `07-roles-and-lanes.md` (delegation map; Dispatcher · Board; scanner-not-fixer).
 

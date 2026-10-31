@@ -1,6 +1,7 @@
 ---
 name: decision-pack
 description: Assemble the constitution/03 decision-pack minimum for a Med or High change. Use when a bolt needs human approve / change-request / escalate at an exact head.
+license: MIT (see repository LICENSE)
 ---
 
 # Decision pack

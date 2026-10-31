@@ -66,6 +66,7 @@ Useful terms (definitions only; gates and merge authority are **not** restated h
 2. Configure **dev, staging, and prod** for *your* environments. This repo itself is trunk-only (`main`). How those environments are gated is in [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) — see that file; this README grants no authority.
 3. Map seats (next section). Fill [`intent.md`](intent.md) and [`spec.md`](spec.md) as the human owner when you are ready. They stay human-owned placeholders until then.
 4. Keep CODEOWNERS pointed at the human owner (or the owner's review account).
+5. Keep `LICENSE` and `NOTICE`. MIT requires the original copyright and permission notice to stay with copies. Add your own copyright line under ours for your changes; do not replace ours.
 
 ### 2. File a first issue
 
@@ -158,7 +159,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | Model stack (O4 tiers) | [`roles/model-stack.md`](roles/model-stack.md) |
 | Human owner (HITL/POPM) | Role card planned |
 
-**Tiers, O2, and merge rules:** [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md). **Release · RTE:** [`roles/release-rte.md`](roles/release-rte.md). Seat map: [`constitution/01-round-table.md`](constitution/01-round-table.md). The HITL-concur label in this repo is `needs-scott-concur`.
+**Tiers, O2, and merge rules:** [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md). **Release · RTE:** [`roles/release-rte.md`](roles/release-rte.md). Seat map: [`constitution/01-round-table.md`](constitution/01-round-table.md). The HITL-concur label in this repo is `needs-owner-concur`.
 
 ---
 
@@ -211,6 +212,18 @@ CodeRabbit is a required review input on this repo's trunk protection. It is not
 ## Provenance
 
 Recorded architecture decisions: [`docs/decisions/`](docs/decisions/). Latest-wins index: [`docs/decisions/log.md`](docs/decisions/log.md).
+
+---
+
+## License
+
+MIT License. See [LICENSE](LICENSE) for details.
+
+## Attribution
+
+safe-harness is maintained by [ByBren, LLC](https://github.com/bybren-llc). It succeeds [SAW (SAFe Agentic Workflow)](https://github.com/bybren-llc/safe-agentic-workflow).
+
+If you build on this harness, please keep [NOTICE](NOTICE) and credit "Built with safe-harness by ByBren, LLC". Third-party notices (AI-DLC, MADR, CI tools, SAFe® trademark) are in [NOTICE](NOTICE).
 
 ---
 

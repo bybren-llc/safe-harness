@@ -1,0 +1,15 @@
+# Template-ready denylist example
+#
+# In a working instance, .template-ready-denylist.local (untracked) is generated
+# from owner_identity in .github/harness.yml plus the optional repo secret
+# TEMPLATE_READY_DENYLIST_EXTRA.
+#
+# For local development, copy this file to .template-ready-denylist.local and
+# replace placeholders with your actual denied terms.
+#
+# One term per line; # starts a comment; blank lines are skipped.
+
+<owner_identity>
+@<owner_identity>
+<owner-email>
+<owner-full-name>

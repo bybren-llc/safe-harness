@@ -1,6 +1,7 @@
 ---
 name: github-conventions
 description: Apply trunk GitHub conventions — branch names, plain commit subjects, Refs/Req trailers, and the PR Requirements line. Use when starting a branch, committing, or opening a PR.
+license: MIT (see repository LICENSE)
 ---
 
 # GitHub conventions

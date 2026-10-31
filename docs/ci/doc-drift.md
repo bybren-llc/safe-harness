@@ -1,10 +1,10 @@
 # Doc-drift checks (v1 proposed)
 
-**Status:** v1 proposed. Warn-only. Kai to confirm the rule set before any flip to blocking.
+**Status:** v1 proposed. Warn-only. the GM to confirm the rule set before any flip to blocking.
 
 The workflow is `.github/workflows/doc-drift.yml`. It runs on `pull_request` only. Permissions are `contents: read`. No secrets. No `pull_request_target`. Checkout is pinned the same way as the other repo workflows (`actions/checkout@v4`). The job never fails the build: findings print as `WARN` and the step exits 0.
 
-v1 is warn-only (Kai). A later PR may flip it to blocking after the rule set is confirmed.
+v1 is warn-only (the GM). A later PR may flip it to blocking after the rule set is confirmed.
 
 ## Rule set (v1 proposed)
 
@@ -30,6 +30,6 @@ Hits under `prove/` are skipped. That tree is historical evidence (decision pack
 
 ## Flip to blocking (not in v1)
 
-1. Confirm this rule set in writing (Kai).
+1. Confirm this rule set in writing (the GM).
 2. In `.github/workflows/doc-drift.yml`, drop `continue-on-error` and make the check step exit non-zero when `WARNINGS` is greater than 0.
 3. Keep `permissions: contents: read`. Do not add secrets or `pull_request_target`.

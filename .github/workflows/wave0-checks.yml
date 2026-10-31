@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 ByBren, LLC
 name: Wave 0 Sanity Checks
 
 on:
@@ -34,6 +36,7 @@ jobs:
             "adapters/claude-code/README.md"
             "adapters/cursor/README.md"
             "prove/README.md"
+            ".github/harness.yml"
           )
           
           missing=()
@@ -54,6 +57,19 @@ jobs:
           
           echo ""
           echo "✅ All required paths present"
+      
+      - name: Validate harness config
+        run: |
+          echo "Checking .github/harness.yml config..."
+          
+          # Call the same validation script used by trace-check
+          if bash trace/validate-trace.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/.github/harness.yml" > /dev/null 2>&1; then
+            echo "✅ Config valid: owner_identity is set and valid"
+          else
+            echo "❌ Config validation failed (see trace/validate-trace.sh for details)"
+            bash trace/validate-trace.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/.github/harness.yml"
+            exit 1
+          fi
       
       - name: Check markdown relative links
         run: |
@@ -154,6 +170,43 @@ jobs:
           fi
           
           echo "✅ Basic markdown syntax valid"
+      
+      - name: Check for merge conflict markers
+        run: |
+          bash scripts/check-conflict-markers.sh
+      
+      - name: Test conflict marker checker
+        run: |
+          bash scripts/test-conflict-markers.sh
+      
+      - name: Generate template-ready denylist
+        env:
+          EXTRA_DENYLIST: ${{ secrets.TEMPLATE_READY_DENYLIST_EXTRA }}
+        run: |
+          echo "Generating .template-ready-denylist.local from harness.yml..."
+          
+          OWNER=$(yq eval '.owner_identity' .github/harness.yml)
+          
+          if [ -n "$OWNER" ] && [ "$OWNER" != "null" ]; then
+            echo "$OWNER" > .template-ready-denylist.local
+            echo "@$OWNER" >> .template-ready-denylist.local
+          fi
+          
+          if [ -n "$EXTRA_DENYLIST" ]; then
+            echo "$EXTRA_DENYLIST" >> .template-ready-denylist.local
+          fi
+          
+          if [ ! -s .template-ready-denylist.local ]; then
+            echo "ERROR: Generated denylist is empty"
+            exit 1
+          fi
+          
+          echo "✅ Generated .template-ready-denylist.local"
+      
+      - name: Template-ready check (CI scope)
+        run: |
+          echo "Checking template surface for example values..."
+          bash trace/check-template-ready.sh .
       
       - name: Summary
         if: success()

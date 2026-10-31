@@ -1,6 +1,6 @@
 # Specification — safe-harness
 
-**Ownership:** HUMAN-OWNED (Scott only)  
+**Ownership:** HUMAN-OWNED (the owner only)  
 **Status:** Draft  
 **Last updated:** 2026-10-29
 
@@ -8,9 +8,9 @@
 
 ## Personal boundary rule
 
-**NEVER include personal-vault content, story IP, or NAS-private facts in this file or the repository.**
+**NEVER include personal-vault content, story IP, or private-storage facts in this file or the repository.**
 
-Prohibited: personal vault paths/excerpts, story IP (character names, plot details), NAS-private facts (LAN IPs, tokens, `/home` paths).
+Prohibited: personal vault paths/excerpts, story IP (character names, plot details), private-storage facts (LAN IPs, tokens, `/home` paths).
 
 **How to reference:** Cite by concept name only. Never paste actual IPs, tokens, paths, or personal details.
 

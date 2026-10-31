@@ -1,6 +1,7 @@
 ---
 name: ops-rollup
 description: Produce status digests and rolls — queued work, gate waits, weekly trace and gap review. Use for Ops cadence. Output stays internal unless the HITL owner OKs a post.
+license: MIT (see repository LICENSE)
 ---
 
 # Ops roll-up

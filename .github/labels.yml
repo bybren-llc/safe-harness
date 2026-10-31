@@ -1,7 +1,9 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 ByBren, LLC
 # GitHub Labels — safe-harness
 #
 # Documentation-only. Do not create these labels via API during Wave 1.
-# Manual creation or automation comes after Scott concurrence.
+# Manual creation or automation comes after owner concurrence.
 #
 # Milestones: One milestone per wave (e.g., "Wave 1", "Wave 2").
 # Document milestones; create them manually or via approved automation.
@@ -14,7 +16,7 @@
 #   requirement      - Requirement definition or state change
 #   decision         - Decision requiring decision concurrence (not design ownership)
 #   needs-concur     - Awaiting decision concurrence (not design ownership)
-#   needs-scott-concur - Awaiting Scott concurrence (intent/spec/constitution PRs)
+#   needs-owner-concur - Awaiting owner concurrence (intent/spec/constitution PRs) (renamed from earlier owner-named label)
 #   gate:rnd         - Gate: Research & Discover
 #   gate:plan        - Gate: Plan
 #   gate:concur      - Gate: Concurrence
@@ -40,11 +42,11 @@ labels:
   
   - name: needs-concur
     color: "fbca04"
-    description: "Awaiting decision concurrence (Scott or Kai); not design ownership"
+    description: "Awaiting decision concurrence (the owner or the GM); not design ownership"
 
-  - name: needs-scott-concur
+  - name: needs-owner-concur
     color: "d93f0b"
-    description: "Awaiting Scott concurrence (required for intent/spec/constitution PRs)"
+    description: "Awaiting owner concurrence (required for intent/spec/constitution PRs)"
 
   # Risk tiers
   - name: "tier:low"
@@ -99,7 +101,7 @@ labels:
   
   - name: "exit:merged"
     color: "0e8a16"
-    description: "Exit state: MERGED (HITL only) — Scott executed. Repo label sync is a post-merge step."
+    description: "Exit state: MERGED (HITL only) — Owner executed. Repo label sync is a post-merge step."
   
   - name: "exit:merged-delegated"
     color: "0e8a16"
@@ -107,7 +109,7 @@ labels:
 
   - name: "exit:merged-rte"
     color: "0e8a16"
-    description: "Exit state: MERGED (delegated Kai/RTE) — Kai or Release · RTE executed under constitution/03"
+    description: "Exit state: MERGED (delegated GM/RTE) — GM or Release · RTE executed under constitution/03"
 
   # Gate labels (wave workflow stages)
   - name: "gate:rnd"

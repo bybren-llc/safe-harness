@@ -1,8 +1,8 @@
 ---
 status: accepted
 date: 2026-10-28
-decision-makers: Scott (HITL/POPM)
-consulted: Kai (GM & lead ARCHitect), Studio · Lead
+decision-makers: the owner (HITL/POPM)
+consulted: the GM (GM & lead ARCHitect), Studio · Lead
 informed: Round Table seats
 ---
 
@@ -21,9 +21,9 @@ This is an execute authorization, not an architecture choice: authorize the new 
 
 ## Decision Outcome
 
-Chosen option: "Yes", because Scott authorized an org-owned, SAW-branded name per [0009](0009-template-home-and-name.md) (O1).
+Chosen option: "Yes", because the owner authorized an org-owned, SAW-branded name per [0009](0009-template-home-and-name.md) (O1).
 
-Historical, executed. The non-goal was not to create a new repo until authorized; Scott created `bybren-llc/safe-harness`, so the template now has its own org-owned home.
+Historical, executed. The non-goal was not to create a new repo until authorized; the owner created `bybren-llc/safe-harness`, so the template now has its own org-owned home.
 
 ### Consequences
 
@@ -32,7 +32,7 @@ Historical, executed. The non-goal was not to create a new repo until authorized
 
 ### Confirmation
 
-Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
+the owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
 
@@ -42,6 +42,6 @@ Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 ## More Information
 
-Owner: Kai (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 Cross-ref: W0-10 Non-goals / execute (active, historical; also [0007](0007-new-template-not-silent-saw-rewrite.md), [0015](0015-concur-the-filled-pack.md)). Record format: [MADR 4.0](https://adr.github.io/madr/).

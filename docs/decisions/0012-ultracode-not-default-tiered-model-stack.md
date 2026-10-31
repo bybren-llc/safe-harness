@@ -1,8 +1,8 @@
 ---
 status: accepted
 date: 2026-10-28
-decision-makers: Scott (HITL/POPM)
-consulted: Kai (GM & lead ARCHitect), Studio · Lead
+decision-makers: the owner (HITL/POPM)
+consulted: the GM (GM & lead ARCHitect), Studio · Lead
 informed: Round Table seats
 ---
 
@@ -21,7 +21,7 @@ Default orchestration mode and model selection.
 
 ## Decision Outcome
 
-Chosen option: "Ultracode is one of several options, not the default", because Scott concurred the filled pack as written.
+Chosen option: "Ultracode is one of several options, not the default", because the owner concurred the filled pack as written.
 
 The real default is a tiered model stack: the most capable orchestrator-class model (newest when released) orchestrates; frontier heavy-lift models do implementation by complexity; small fast models do research, confirmations, QAS and info jobs. Role→model cards are mirrored in every vendor harness, using the models that vendor offers.
 
@@ -32,7 +32,7 @@ The real default is a tiered model stack: the most capable orchestrator-class mo
 
 ### Confirmation
 
-Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
+the owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
 
@@ -42,6 +42,6 @@ A role→model card (e.g. `roles/model-stack.md`) exists and each adapter refere
 
 ## More Information
 
-Owner: Kai (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
-Scott's O1–O6 answers were typed at 2026-10-28, 11:09 AM ET in a longer message that names private storage and hardware. That message is not quoted here. Record format: [MADR 4.0](https://adr.github.io/madr/).
+the owner's O1–O6 answers were typed at 2026-10-28, 11:09 AM ET in a longer message that names private storage and hardware. That message is not quoted here. Record format: [MADR 4.0](https://adr.github.io/madr/).

@@ -1,6 +1,7 @@
 ---
 name: rte-release-gate
 description: Run the per-PR RTE PASS/HOLD checklist at the exact head. Use when Delivery sends a ready-for-release packet. Verifies evidence; does not re-review code.
+license: MIT (see repository LICENSE)
 ---
 
 # RTE release gate

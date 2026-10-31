@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 ByBren, LLC
 name: Trace Check (Bootstrap)
 
 on:
@@ -34,6 +36,16 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
           PR_BODY: ${{ github.event.pull_request.body }}
         run: bash trace/check.sh
+
+      - name: Run trace/fixtures/run.sh
+        run: |
+          echo "Running fixture tests from trace/fixtures/run.sh..."
+          bash trace/fixtures/run.sh
+
+      - name: Run trace/test-fixtures.sh
+        run: |
+          echo "Running owner-identity fixture tests..."
+          bash trace/test-fixtures.sh
 
       - name: Summary
         if: success()

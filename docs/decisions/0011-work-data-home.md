@@ -1,8 +1,8 @@
 ---
 status: accepted
 date: 2026-10-28
-decision-makers: Scott (HITL/POPM)
-consulted: Kai (GM & lead ARCHitect), Studio · Lead
+decision-makers: the owner (HITL/POPM)
+consulted: the GM (GM & lead ARCHitect), Studio · Lead
 informed: Round Table seats
 ---
 
@@ -22,18 +22,18 @@ Where work data and vaults live.
 
 ## Decision Outcome
 
-Chosen option: "A private NAS (redundant storage) is the source of truth for work data", because Scott concurred the filled pack as written.
+Chosen option: "Private network-attached storage (redundant) is the source of truth for work data", because owner concurred the filled pack as written.
 
-Workstations mount it, with local working copies only when the network is down. The personal vault, the internal business-knowledge repo's working data, and story IP live on private storage paths, not desktop copies. Desktop-held personal data migrates to the private storage.
+Workstations mount it, with local working copies only when the network is down. A personal vault, the internal business-knowledge repo's working data, and story IP live on private storage paths, not desktop copies. Desktop-held personal data migrates to the private storage.
 
 ### Consequences
 
 * Good, because work data has a private-storage source of truth and desktop copies are not the home.
-* Good, because the personal vault, business-knowledge working data, and story IP stay on private storage paths.
+* Good, because a personal vault, business-knowledge working data, and story IP stay on private storage paths.
 
 ### Confirmation
 
-Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
+the owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
 
@@ -43,6 +43,6 @@ The repo contains no private storage paths; Studio briefs cite storage paths onl
 
 ## More Information
 
-Owner: Kai (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
-Scott's O1–O6 answers were typed at 2026-10-28, 11:09 AM ET in a longer message that names private storage and hardware. That message is not quoted here. Record format: [MADR 4.0](https://adr.github.io/madr/).
+Owner responses recorded at 2026-10-28, 11:09 AM ET in a longer message. That message is not quoted here. Record format: [MADR 4.0](https://adr.github.io/madr/).

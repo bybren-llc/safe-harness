@@ -1,8 +1,8 @@
 ---
 status: accepted
 date: 2026-10-28
-decision-makers: Scott (HITL/POPM)
-consulted: Kai (GM & lead ARCHitect), Studio · Lead
+decision-makers: the owner (HITL/POPM)
+consulted: the GM (GM & lead ARCHitect), Studio · Lead
 informed: Round Table seats
 ---
 
@@ -22,7 +22,7 @@ This is an execute authorization, not an architecture choice: concur the filled 
 
 ## Decision Outcome
 
-Chosen option: "Yes (as written)", because Scott typed the 2026-10-28, 11:10 AM ET concur below.
+Chosen option: "Yes (as written)", because the owner typed the 2026-10-28, 11:10 AM ET concur below.
 
 Historical, executed.
 
@@ -32,7 +32,7 @@ Historical, executed.
 
 ### Confirmation
 
-Scott (HITL/POPM), one-pass concur of the Wave 0 pack:
+the owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
 
@@ -42,6 +42,6 @@ The quote is recorded in this ADR; Wave 0 execute followed (PR `740eb2a` [SAF-2]
 
 ## More Information
 
-Owner: Kai (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 Cross-ref: W0-10 Non-goals / execute (active, historical; also [0007](0007-new-template-not-silent-saw-rewrite.md), [0016](0016-authorize-new-template-repo.md)). Record format: [MADR 4.0](https://adr.github.io/madr/).
