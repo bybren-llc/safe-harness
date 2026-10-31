@@ -88,7 +88,7 @@ Report outcomes vs M1–M6 at Bolt exit.
 - **M1**: not exercised in D-P1
 - **M2**: not exercised in D-P1
 - **M3**: the bolt, its UoWs and the business-context gate are named
-- **M4**: seats exercised: Delivery implemented and owned the PR via CloudAgent; QAS did independent review and merged; owner was HITL/POPM by standing auth
+- **M4**: seats exercised: Delivery implemented and owned the PR via CloudAgent; QAS did the independent review and the GM merged; owner was HITL/POPM by standing auth
 - **M5**: not exercised in D-P1
 - **M6**: 2 QAS rounds, opened 2026-10-29T10:43:56Z (06:43:56 EDT) and merged 2026-10-29T11:54:42Z (07:54:42 EDT) — about 70 minutes opened to merged (source: GitHub API `gh pr view 3 --json createdAt,mergedAt`); thin CI green on both heads (Structure & Docs Validation, CodeRabbit); the train never froze
 
