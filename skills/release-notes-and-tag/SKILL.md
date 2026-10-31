@@ -11,7 +11,7 @@ license: MIT (see repository LICENSE)
 
 ## Authority
 
-- [`roles/release-rte.md`](../../roles/release-rte.md) — RTE owns release notes and tagging. A release that contains prod-risk tier changes (migrations, money, permissions, deploy) is tagged only after the HITL's concur on that release; all other releases are tagged once RTE PASS is recorded. Per-merge `vYYYY.MM.DD-<shortsha>` and product SemVer (`vMAJOR.MINOR.PATCH`); GitHub Release notes match the CHANGELOG entry.
+- [`roles/release-rte.md`](../../roles/release-rte.md) — RTE owns release notes and tagging. A release that contains prod-risk tier changes (migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2)) is tagged only after the HITL's concur on that release; all other releases are tagged once RTE PASS is recorded. Per-merge `vYYYY.MM.DD-<shortsha>` and product SemVer (`vMAJOR.MINOR.PATCH`); GitHub Release notes match the CHANGELOG entry.
 - [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) — O2 (deploy CI / workflows); who may execute a release step
 
 See the cited section; this skill grants no authority.
@@ -33,7 +33,7 @@ Do not invent links. Mark missing sources `UNKNOWN`.
 
 ## Tag format
 
-RTE owns release notes and tagging. A release that contains prod-risk tier changes (migrations, money, permissions, deploy) is tagged only after the HITL's concur on that release; all other releases are tagged once RTE PASS is recorded. Per-merge tag format is `vYYYY.MM.DD-<shortsha>` (date in America/New_York, 7-char merge SHA). Product releases use SemVer tags (`vMAJOR.MINOR.PATCH`): after merge, Release · RTE tags the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head. The GitHub Release notes match the CHANGELOG entry. Per-merge date-sha tags stay as documented. See [`roles/release-rte.md`](../../roles/release-rte.md).
+RTE owns release notes and tagging. A release that contains prod-risk tier changes (migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2)) is tagged only after the HITL's concur on that release; all other releases are tagged once RTE PASS is recorded. Per-merge tag format is `vYYYY.MM.DD-<shortsha>` (date in America/New_York, 7-char merge SHA). Product releases use SemVer tags (`vMAJOR.MINOR.PATCH`): after merge, Release · RTE tags the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head. The GitHub Release notes match the CHANGELOG entry. Per-merge date-sha tags stay as documented. See [`roles/release-rte.md`](../../roles/release-rte.md).
 
 ## Steps
 

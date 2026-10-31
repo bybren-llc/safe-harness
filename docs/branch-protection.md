@@ -19,7 +19,7 @@ Adopters configure a GitHub ruleset on `main` using this structure. The ruleset 
 | Required status checks | `Structure & Docs Validation` (GitHub Actions); `Requirements Trace Validation` (GitHub Actions); `API Contract Checks` (GitHub Actions). Each check is pinned to GitHub Actions as the expected source. |
 | Block force pushes | On |
 | Block deletions | On |
-| Bypass list | Configured. Adopters choose their own bypass list. |
+| Bypass list | Empty by default. The owner may add themselves for emergencies. |
 
 ### Required status checks
 
@@ -48,7 +48,7 @@ RTE PASS is not a GitHub required status check. Do not add it to the required-ch
 
 ### Bypass list
 
-The ruleset bypass list is configured on the ruleset. Adopters choose their own bypass list members. The bypass is for administrators and designated accounts, not for Delivery or cloud agents.
+The ruleset bypass list is empty by default. The owner may add themselves for emergencies. Delivery and cloud agents are never on the bypass list.
 
 ### Planned upgrade: separate bot identity
 
@@ -74,7 +74,7 @@ After this file is on `main`, a repository administrator applies the ruleset:
 11. Do **not** add `CodeRabbit`, `Doc drift`, or `Skills frontmatter & link scan` as required checks. They are not blocking.
 12. Enable **Block force pushes**.
 13. Enable **Block deletions**.
-14. Configure the **Bypass list**. Adopters choose their own bypass list members.
+14. Configure the **Bypass list**. Empty by default. The owner may add themselves for emergencies.
 15. Save the ruleset.
 
 Alternatively, use the GitHub CLI or API:

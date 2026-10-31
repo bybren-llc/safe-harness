@@ -26,7 +26,7 @@ Release · RTE is the final release gate. The merged #22 text is the rule:
 - [`roles/release-rte.md`](../roles/release-rte.md)
 - [`release/flow.md`](../release/flow.md)
 
-It merges only with the GM's QAS APPROVE plus its own RTE PASS on the exact head. Overriding an RTE HOLD lets only the GM or the owner merge. See those files. Record: [PR #22](https://github.com/bybren-llc/safe-harness/pull/22) at [`d88c884`](https://github.com/bybren-llc/safe-harness/commit/d88c884c14c64aa2dbc244c89290818df423924e).
+It merges only with the GM's QAS APPROVE plus its own RTE PASS on the exact head. Overriding an RTE HOLD lets only the GM or the owner merge. See those files.
 
 ## Dispatcher · Board
 

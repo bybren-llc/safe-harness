@@ -25,7 +25,7 @@ At Low, an annotated, non-blocking async RTE checklist is allowed, with no per-P
 
 ## Release notes
 
-RTE owns release notes and tagging. A release that contains prod-risk tier changes (migrations, money, permissions, deploy) is tagged only after the HITL's concur on that release; all other releases are tagged once RTE PASS is recorded. It drafts notes from the decision pack, requirements, and evidence. Per-merge tag format is `vYYYY.MM.DD-<shortsha>` (date in America/New_York, 7-char merge SHA). Product releases use SemVer tags (`vMAJOR.MINOR.PATCH`): after merge, Release · RTE tags the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head. The GitHub Release notes match the CHANGELOG entry.
+RTE owns release notes and tagging. A release that contains prod-risk tier changes (migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2)) is tagged only after the HITL's concur on that release; all other releases are tagged once RTE PASS is recorded. It drafts notes from the decision pack, requirements, and evidence. Per-merge tag format is `vYYYY.MM.DD-<shortsha>` (date in America/New_York, 7-char merge SHA). Product releases use SemVer tags (`vMAJOR.MINOR.PATCH`): after merge, Release · RTE tags the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head. The GitHub Release notes match the CHANGELOG entry.
 
 ## Merge authority
 
