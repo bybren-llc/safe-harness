@@ -69,7 +69,7 @@ If the head SHA moves after the packet is sent, the packet and any RTE PASS are 
 ```
 Implement → Ready for QAS
           → QAS APPROVE (Kai's independent COMMENT review, on exact head)
-          → SecEng PASS (or PASS-with-notes, on exact head; Med, High, O2; Low may mark N/A)
+          → SecEng PASS (or PASS-with-notes, on exact head; Med, High, O2; Low may mark N/A with rationale)
           → Approved for RTE ── Delivery sends ready packet ── RTE check fires immediately
           → ┌ RTE PASS (release check)                 ┐  in parallel
             └ Scott concur (HITL decision pack), where required ┘
@@ -105,7 +105,7 @@ RTE checks each row against the **exact head SHA** in the packet. Any unchecked 
 | G8 | **Docs match structure** | `README.md` and repo structure match what docs describe (no stale paths, required paths present, relative links resolve) | Partly automated [main] by `wave0-checks.yml` (required paths + relative links); human check [PENDING-CODIFY] |
 | G9 | **Exit state + evidence** | GitHub Issue/PR shows "Approved for RTE"; portable evidence rows present (`evidence_id`, `runtime`, `exact_head`, `issue`, `actor`, `gate`, `req_ids`) | [main] `constitution/05-evidence-and-traceability.md` |
 
-RTE verdict is posted as a single PR comment: `RTE PASS @ <sha>` or `RTE HOLD @ <sha> — G<n>: <reason>`. **Decided — Kai 2026-10-29** (format).
+RTE verdict is posted as a single PR comment: `RTE PASS @ <sha>` or `RTE HOLD @ <sha> — G<n>: <reason>`. **Decided — Kai 2026-10-29** (format). For a missing or stale SecEng verdict, use `RTE HOLD @ <sha> — G2: SecEng verdict missing or stale`.
 
 ## 5. Tier handling
 

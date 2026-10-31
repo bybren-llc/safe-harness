@@ -110,6 +110,50 @@ fi
 cd - > /dev/null
 rm -rf "$TEMP_DIR"
 
+# Test 4: Tracked filename with a space (should FAIL)
+echo ""
+echo "Test 4: Tracked filename with a space (should FAIL)"
+echo -n "  notes with space.md ... "
+
+TEMP_DIR=$(mktemp -d /tmp/conflict-test-space-XXXXXX)
+cd "$TEMP_DIR"
+git init -q
+
+# Generate conflict markers at runtime
+MARKER_START=$(printf '%s' "<<<<<<< HEAD")
+MARKER_SEP=$(printf '%s' "=======")
+MARKER_END=$(printf '%s' ">>>>>>> branch-name")
+
+cat > "notes with space.md" << MARKER_EOF
+# File with space in name
+
+This file has conflict markers and should fail.
+
+${MARKER_START}
+Content from HEAD
+${MARKER_SEP}
+Content from branch
+${MARKER_END}
+
+This should be detected.
+MARKER_EOF
+
+git add -- "notes with space.md"
+git config user.email "test@example.com"
+git config user.name "Test User"
+git commit -q -m "Add file with space in name"
+
+if ! bash "$CHECK_SCRIPT" "$TEMP_DIR" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+cd - > /dev/null
+rm -rf "$TEMP_DIR"
+
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "Test Summary"

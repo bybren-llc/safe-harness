@@ -13,10 +13,12 @@ echo ""
 # Track whether we found markers in context (between <<<<<<< and >>>>>>>)
 found_conflict_markers=0
 
-# Get all tracked files
-tracked_files=$(cd "$REPO_ROOT" && git ls-files)
+# Get all tracked files (NUL-delimited; a git failure exits non-zero under set -e)
+list_file=$(mktemp)
+trap 'rm -f "$list_file"' EXIT
+git -C "$REPO_ROOT" ls-files -z > "$list_file"
 
-for file in $tracked_files; do
+while IFS= read -r -d '' file; do
   filepath="$REPO_ROOT/$file"
   
   # Skip only the exact test fixture file
@@ -50,7 +52,7 @@ for file in $tracked_files; do
     echo "❌ Found conflict separator marker in: $file"
     found_conflict_markers=1
   fi
-done
+done < "$list_file"
 
 if [[ $found_conflict_markers -gt 0 ]]; then
   echo ""
