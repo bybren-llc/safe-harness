@@ -49,11 +49,12 @@ If you keep Linear or another tracker, see `constitution/05-evidence-and-traceab
 
 ### 4. Agent runtimes
 
-The template supports Cursor, Claude Code, and other runtimes. Adapter entry points:
+The template supports Cursor, Claude Code, Codex, and other runtimes. Adapter entry points:
 - `adapters/cursor/AGENTS.md` — Cursor agent entry point
 - `adapters/claude-code/AGENTS.md` — Claude Code agent entry point
+- `adapters/codex/AGENTS.md` — Codex agent entry point
 
-Root agent entry point: `AGENTS.md`
+Root agent entry point: `AGENTS.md`. Codex reads that file natively. How to launch each runtime from this repo: `docs/runtimes.md`.
 
 Skills live in `skills/` as `skills/<slug>/SKILL.md`. Each runtime's adapter maps the canonical skill tree. See `skills/README.md`.
 
@@ -113,4 +114,4 @@ You may adapt risk tiers, O2 items, and seat assignments to fit your team. The c
 
 ## Worked example
 
-See `examples/round-table/` for this template's own configuration with real seat assignments and tool choices.
+See `examples/round-table/` for operating notes and config for one instance.

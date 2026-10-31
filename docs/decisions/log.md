@@ -4,6 +4,30 @@ Latest-wins index of recorded decisions. The later row wins when a later decisio
 
 Format: [MADR 4.0](https://adr.github.io/madr/). Files live in this directory as `NNNN-<slug>.md`.
 
+## Current shape
+
+Short statements of the design as the accepted ADRs record it. Each line restates existing decision text. This section does not add decisions.
+
+A PR that changes a decision updates Current shape and the index in the same PR.
+
+1. Value metrics M1–M6 are locked: multi-runtime template ships; tmux is not required; the SAFe + AI-DLC spine is retained; Round Table seats map; time-to-first owned ticket; deploy/release flow health. ([0001](0001-lock-m1-m6-as-value-metrics.md))
+2. Two peer spines: (A) CD execute/deploy and (B) think/plan, with shared Round Table language. Product CD is Delivery-owned. ([0002](0002-dual-spine-cd-execute-and-think-plan.md))
+3. Continuous deployment with risk-tier HITL: verify before PR; exact-head gates; freeze-the-train is an org-wide exception only. The who-approves-per-tier mapping is superseded as recorded on the ADR. ([0003](0003-sdlc-continuous-deployment-risk-tier-hitl.md))
+4. The personal vault is never remote and never on this forge. Story IP lives on private storage. Business knowledge lives in an internal, forge-backed store. ([0004](0004-privacy-and-vault-boundaries.md))
+5. When work becomes build, Studio hands Delivery a brief (value link, acceptance criteria, source pins, already-passed non-code gates) before spine A starts. ([0005](0005-studio-delivery-handoff-before-spine-a-build.md))
+6. QAS and SecEng never collapse. Lanes collapse until a lane overloads. The GM leads. The RTE-may-collapse clause is superseded: Release · RTE is an independent, non-collapsible final release gate. ([0006](0006-role-collapsing.md))
+7. This repo is a new template. The predecessor stays a frozen reference. One core plus thin adapters. Do not fork the methodology silently. ([0007](0007-new-template-not-silent-saw-rewrite.md))
+8. One constitution; each runtime is a thin adapter. Claude Code and Cursor first; Codex, local models, and Grok Bot next. ([0008](0008-adapter-order-claude-code-cursor-first.md))
+9. The template home is this org-owned repo, named safe-harness. ([0009](0009-template-home-and-name.md))
+10. High-risk HITL paths: pricing, refunds, auth/permissions, CI/workflows that deploy, production secrets, privacy-boundary crossings. The owner can extend the list. ([0010](0010-high-risk-hitl-paths.md))
+11. Private redundant network-attached storage is the source of truth for work data. Desktop copies are not the home. ([0011](0011-work-data-home.md))
+12. Ultracode is one option, not the default. The default is a tiered model stack: orchestrator, heavy-lift, and small fast models. ([0012](0012-ultracode-not-default-tiered-model-stack.md))
+13. An ongoing environment on private on-prem compute plus cloud is enough. Dark Factory is optional, not required ceremony. ([0013](0013-always-on-dark-factory-environment.md))
+14. Issue-tracker agents were out of Wave 0. That question is superseded: this GitHub repo is the sole system of record. ([0014](0014-linear-agents-out-of-wave-0.md))
+15. The Wave 0 pack was one-pass concurred as written. ([0015](0015-concur-the-filled-pack.md))
+16. The owner authorized and created this org-owned template repo. ([0016](0016-authorize-new-template-repo.md))
+17. Authorization to open issue-tracker research epics no longer applies; superseded with [0014](0014-linear-agents-out-of-wave-0.md). ([0017](0017-linear-research-epics.md))
+
 ## Convention
 
 Every new decision gets:

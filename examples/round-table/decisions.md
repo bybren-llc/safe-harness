@@ -2,6 +2,17 @@
 
 Instance-specific decisions for the bybren-llc/safe-harness repository. Adopters record their own decisions in `docs/decisions/`.
 
+## Current shape (example)
+
+Example of the Current shape section on [`../../docs/decisions/log.md`](../../docs/decisions/log.md). Canonical statements live there. This block adds only the W0 loader choice already on `main`, as an instance snapshot.
+
+A PR that changes a decision updates Current shape and the index in the same PR.
+
+1. Standing design is the numbered list in [`../../docs/decisions/log.md`](../../docs/decisions/log.md) (ADRs 0001–0017).
+2. Runtimes load through pointer files, not symlinks (`CLAUDE.md`, `.cursor/rules/safe-harness.mdc`, `adapters/codex/`). Example write-up: [`adr-example.md`](adr-example.md). Record: #86 on `main`.
+
+No other decisions are added here.
+
 ## Model path (O4)
 
 Ultracode is **not** the default model path. The default model stack is defined in `roles/model-stack.md`.

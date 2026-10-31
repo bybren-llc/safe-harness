@@ -1,8 +1,10 @@
-# Specification — safe-harness
+# Specification — safe-harness (example)
 
-**Ownership:** HUMAN-OWNED (the owner only)  
-**Status:** Draft  
-**Last updated:** 2026-10-29
+Example drafted by Delivery for owner review; spec is owner-owned.
+
+This file is an instance example. Root [`../../spec.md`](../../spec.md) stays the canonical adopter template.
+
+IDs written as `EX-<CMP>-NNN` below are **illustrative and not registered**. They are not `REQ-<CMP>-NNN` IDs. `trace/check.sh` must not treat them as live.
 
 ---
 
@@ -18,34 +20,63 @@ Prohibited: personal vault paths/excerpts, story IP (character names, plot detai
 
 ## Overview
 
-*(Human-authored specification. Agents do not modify this file.)*
+safe-harness is a multi-runtime template. One intent, one spec, one constitution, and one decision log are shared by humans and by agents on Cursor, Claude Code, Codex, and other always-on assistant agents. Work moves through the same gates. The first slice to prove is the v1.1 cross-runtime path on #85: brief, loaders, one worktree per agent, gate chain, evidence.
+
+This example is a reusable starting point for that shared-docs shape. It is not a spec for a later orchestration app.
 
 ## Requirements
 
-Requirements are derived from this spec and tracked as REQ-<CMP>-NNN IDs in `requirements/`. Each requirement references a spec anchor as its `source`.
+Illustrative only. Not registered in `requirements/`. Not present in root `spec.md`.
 
-See `trace/trace-map.yaml` for requirement states and evidence linkage.
+| Example ID | Text | Metric |
+| --- | --- | --- |
+| EX-CON-001 | Humans own intent and spec. Agents execute plan, issues, code, tests, PRs, and evidence. | M3 |
+| EX-ADP-001 | Claude Code, Cursor, and Codex each reach root `AGENTS.md` and `skills/INDEX.md` through pointer files, not forked skill bodies. | M1 |
+| EX-ADP-002 | One worktree and one branch per agent. Launch from the repo root as [`../../docs/runtimes.md`](../../docs/runtimes.md) describes. | M1 |
+| EX-TRC-001 | Evidence rows carry `evidence_id`, `runtime`, `exact_head`, `issue`, `actor`, `gate`, and `req_ids`. | M6 |
+| EX-WFL-001 | Delivery and cloud agents never merge, never approve, never push to `main`. | M6 |
+
+### Proof pass criteria (R1–R3)
+
+Drawn from #85 and the W0.5 runbook. These are example success statements for the first slice, not registered REQs.
+
+- Each run loads `AGENTS.md` and follows the Before you start order.
+- Each run goes through SecEng, QAS, and RTE PASS at its exact head.
+- Evidence is recorded with `runtime` and `evidence_id`.
+- At least one handoff crosses runtimes (for example, R2 picks up work or a review from R1).
 
 ## Architecture
 
-*(High-level architecture and component relationships. Component registry: `arch/components.yaml`)*
+Components already in [`../../arch/components.yaml`](../../arch/components.yaml):
+
+| ID | Name | Paths |
+| --- | --- | --- |
+| ARC-CON | Constitution | `constitution/` |
+| ARC-ADP | Adapters | `adapters/` |
+| ARC-ROL | Roles | `roles/` |
+| ARC-TPL | Templates | `templates/` |
+| ARC-PRV | Prove | `prove/` |
+| ARC-TRC | Trace | `requirements/`, `arch/`, `trace/` |
+| ARC-WFL | Workflows | `.github/workflows/` |
+
+Loaders (W0, #86): `CLAUDE.md` points at root `AGENTS.md`; `.cursor/rules/safe-harness.mdc` is always-on; `adapters/codex/` documents native `AGENTS.md` load. No symlinks. See [`design-runtime-loaders.md`](design-runtime-loaders.md).
+
+No further architecture is defined for a later app.
 
 ## Interfaces
 
-*(Key interfaces, APIs, and contracts.)*
+What exists today:
+
+- Root `AGENTS.md` (agent entry; Before you start load order).
+- `CLAUDE.md`, `.cursor/rules/safe-harness.mdc`, `adapters/*/AGENTS.md`.
+- Bolt brief: `templates/delivery-bolt-brief.md`. Working copy for a run: `.briefs/<issue>.md` ([`../../docs/runtimes.md`](../../docs/runtimes.md)).
+- Portable evidence table (`constitution/05`).
+- Issue and PR templates under `.github/`.
 
 ## Metrics
 
-Success metrics M1–M6 are defined in `constitution/00-north-star.md`:
-- **M1**: Multi-runtime template ships
-- **M2**: tmux not required
-- **M3**: SAFe + AI-DLC spine retained
-- **M4**: Round Table seats map
-- **M5**: Time-to-first owned ticket
-- **M6**: Deploy/release flow health
-
-Each requirement must tie to a metric (M1–M6 or custom named metric).
+M1–M6 as already listed in [`metrics.md`](metrics.md) and locked by ADR 0001. This example invents none.
 
 ---
 
-**Note:** This file is human-owned under constitution/05. Agents own plan, issues, code, tests, PRs, and evidence. Design (intent.md + spec.md) remains human responsibility. See CODEOWNERS for review requirements.
+**Note:** Example only. Root `spec.md` is human-owned under constitution/05.

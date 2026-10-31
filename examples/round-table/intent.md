@@ -1,8 +1,8 @@
-# Intent — safe-harness
+# Intent — safe-harness (example)
 
-**Ownership:** HUMAN-OWNED (the owner only)  
-**Status:** Draft  
-**Last updated:** 2026-10-29
+Example drafted by Delivery for owner review; intent is owner-owned.
+
+This file is an instance example. Root [`../../intent.md`](../../intent.md) stays the canonical adopter template.
 
 ---
 
@@ -12,52 +12,67 @@
 
 Prohibited: personal vault paths/excerpts, story IP (character names, plot details), private-storage facts (LAN IPs, tokens, `/home` paths).
 
-**How to reference:** Cite by concept name only. Example: "See personal vault entry for authentication flow design." Never paste actual IPs, tokens, paths, or personal details.
+**How to reference:** Cite by concept name only. Never paste actual IPs, tokens, paths, or personal details.
 
 ---
 
 ## Purpose
 
-*(Human-authored intent and goals for safe-harness. Agents do not modify this file.)*
+Teammates on different AI systems (Cursor, Claude Code, Codex, and other always-on assistant agents) and humans share one set of intent and design docs. They hand work to each other through the same gates, and they work on one or several projects at once toward a larger vision.
+
+safe-harness is the template that holds those shared docs, seats, and gates. Humans set direction and keep the safety gates. Agents execute and produce evidence.
 
 ## Scope
 
-*(High-level scope boundaries.)*
+**In (what exists now):**
+
+- One constitution, one role set, one skills library.
+- Thin adapters for Cursor, Claude Code, and Codex. Pointer files (`CLAUDE.md`, `.cursor/rules/safe-harness.mdc`, `adapters/codex/`) load the same root `AGENTS.md`.
+- Dual spines: Delivery (code) and Studio (stories and research).
+- Evidence rows with `evidence_id` and `runtime`. Exact-head gates. Agents never merge or approve.
+
+**First concrete slice (v1.1, #85):** prove that an implementer in each of Cursor cloud, Claude Code, and Codex can run a real Low-tier change through the same brief, loaders, worktree-per-agent, gate chain, and evidence path. Sequence already on the issue: W0 loaders (merged), W0.5 design surface, then R1 Cursor cloud, R2 Claude Code, R3 Codex, then R4 (#52) only after the owner gives the go.
+
+**Out:**
+
+- Personal vault never enters this repo or a remote forge.
+- Delivery and cloud agents never merge, never approve, never push to `main`.
+- No silent rewrite of the predecessor template.
+- No new spend or seats without the owner (#85).
+- Scope of any later orchestration app is not defined here.
 
 ## Success criteria
 
-*(Top-level outcomes defining project success. Tie to M1–M6 from constitution/00.)*
+Standing metrics remain M1–M6 as locked in [`../../docs/decisions/0001-lock-m1-m6-as-value-metrics.md`](../../docs/decisions/0001-lock-m1-m6-as-value-metrics.md) and listed in [`metrics.md`](metrics.md). This example does not add metrics.
 
----
+v1.1 proof success is the R1–R3 pass list in [`prd-v1.1-cross-runtime.md`](prd-v1.1-cross-runtime.md) and [`../../docs/runtimes.md`](../../docs/runtimes.md). No extra numbers.
+
+## Where this grows
+
+The same structure — shared intent and design, one brief, loaders, one worktree per agent, the gate chain, and evidence — is intended to seed an orchestration app's intent and PRD later. The scope of that app is not yet defined. Do not treat this file as that app's spec.
 
 ## Research appendix (optional)
 
-Use this section to record research findings supporting intent decisions. Mark `UNKNOWN` wherever something isn't verified.
-
 ### Fit band
 
-*(Target use cases, team size, complexity range — what safe-harness optimizes for.)*
-
-**Status:** UNKNOWN
+Small teams (about 1–10 people) working with AI agents who need structured governance, clear ownership, and evidence-based decisions. Source: root `README.md`.
 
 ### License
 
-*(Open source license choice and rationale.)*
-
-**Status:** UNKNOWN
+MIT. Source: `LICENSE`.
 
 ### Footprint
 
-*(Resource requirements: compute, storage, network, cost envelope.)*
-
-**Status:** UNKNOWN
+No new spend or infra without the owner. Cloud-agent runs use included usage. If a runtime needs a paid seat or a new key, the run stops and goes to the owner. Source: #85. Compute and storage envelope beyond that is **UNKNOWN**.
 
 ### Sources
 
-*(External references: papers, comparable systems, standards.)*
+- Root `README.md`, `AGENTS.md`, `constitution/`, `docs/decisions/`
+- #85 (v1.1 plan and W0.5 comments)
+- This directory's operating notes
 
-**Status:** UNKNOWN
+No other sources are claimed.
 
 ---
 
-**Note:** This file is human-owned under constitution/05. Agents own plan, issues, code, tests, PRs, and evidence. Design (intent.md + spec.md) remains human responsibility. See CODEOWNERS for review requirements.
+**Note:** Example only. Root `intent.md` is human-owned under constitution/05. Only the owner writes intent.
