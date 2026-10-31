@@ -28,7 +28,7 @@
 
 **CODEOWNERS review gates** (not ownership):
 
-`.github/CODEOWNERS` requires @cheddarfox review for:
+`.github/CODEOWNERS` requires <owner_identity> review for:
 - `intent.md`, `intent/`, `spec.md` (human-owned design)
 - `requirements/` (agent-authored, any REQ-ID add/change/removal needs human review)
 - `constitution/` (agent-authored constitution changes need human review)

@@ -174,7 +174,7 @@ CODEOWNERS coverage (review gate, not ownership): `intent.md`, `intent/`, `spec.
 
 Local checks before a PR: relative-link scan over markdown, Wave 0 required paths, `python3 skills/check-frontmatter.py`, `python3 scripts/check-denylist.py`. Flip notes: [`docs/ci/skills-checks.md`](docs/ci/skills-checks.md), [`docs/ci/api-contract.md`](docs/ci/api-contract.md), [`docs/ci/doc-drift.md`](docs/ci/doc-drift.md). Branch-protection intent: [`docs/branch-protection.md`](docs/branch-protection.md).
 
-CodeRabbit is a required review input on this repo's trunk protection. It is not a substitute for the GM, SecEng, or human approval.
+CodeRabbit is a required review input on this repo's trunk protection. It is not a substitute for QAS, SecEng, or human approval.
 
 ---
 
