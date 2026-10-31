@@ -176,7 +176,7 @@ Use consistent labels across runtimes. Human approval is distinct from merge exe
 
 ### D1: Delegated HITL (Low tier only)
 
-At **Low tier** only, HITL may be delegated with a structured `hitl_delegate` record. the owner's #22 concur (2026-10-30, recorded on [`d88c884`](https://github.com/bybren-llc/safe-harness/commit/d88c884c14c64aa2dbc244c89290818df423924e)) keeps this Low-tier record **as written**. ADR-style accountability is required: who delegated, what was delegated, when, and a link to the record.
+At **Low tier** only, HITL may be delegated with a structured `hitl_delegate` record. the owner's #22 concur (2026-10-30, recorded on [`d88c884`](https://github.com/bybren-llc/safe-harness/commit/d88c884c14c64aa2dbc244c89290818df423924e)) keeps this Low-tier record **as written**. ADR-style accountability is required: who delegated, what was delegated, when, and a link to the record. This block is this instance's record of the owner's #22 concur. Adopters record their own `hitl_delegate` under their own owner concur; nothing here grants delegation authority in an adopter's repo.
 
 ```yaml
 hitl_delegate:

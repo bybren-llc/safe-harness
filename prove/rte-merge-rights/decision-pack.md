@@ -61,7 +61,7 @@ Authority for the environment-promotion widening is the owner's verbatim 1:54 an
 
 ## Tier ruling
 
-**High (O2 auth).** Merge authority is a permissions change. the GM confirmed in writing at QAS review 5702808926: "Risk tier: High (O2 auth; merge authority is a permissions change), confirmed in writing. No downgrade." Constitution amendment, so no merge without the owner's own-words concur at the exact head. Release · RTE does not merge this PR (it is the subject of the change).
+**High (O2 auth).** Merge authority is a permissions change. The GM confirmed in writing at QAS review 5702808926: "Risk tier: High (O2 auth; merge authority is a permissions change), confirmed in writing. No downgrade." Constitution amendment, so no merge without the owner's own-words concur at the exact head. Release · RTE does not merge this PR (it is the subject of the change).
 
 O2 checklist:
 
