@@ -11,9 +11,12 @@
 # Default (CI) scope: templates/, skills/, docs/, README.md
 # Full scope: entire repo except .git/
 #
-# Fails if example values (cheddarfox, @cheddarfox) appear in the scanned files.
-# In full mode, the login is allowed only in .github/harness.yml, .github/CODEOWNERS,
-# examples/round-table/, LICENSE, NOTICE, and CITATION.cff.
+# Denylist config: .template-ready-denylist.local (gitignored)
+# One term per line; # starts a comment; blank lines skipped.
+# Fails if config file is missing or has no active terms.
+#
+# In full mode, denied terms are allowed only in .github/harness.yml,
+# .github/CODEOWNERS, examples/round-table/, LICENSE, NOTICE, and CITATION.cff.
 
 set -euo pipefail
 
@@ -54,14 +57,38 @@ echo ""
 
 ERRORS=0
 
-# Example values that should not appear in template surface
-# The cheddarfox GitHub login is the working example; template surfaces must use placeholders
-EXAMPLE_VALUES=(
-  "cheddarfox"
-  "@cheddarfox"
-)
+# Load denylist from config file (required)
+DENYLIST_FILE="$ROOT/.template-ready-denylist.local"
+EXAMPLE_VALUES=()
 
-# Paths where the login is allowed in full mode
+if [ ! -f "$DENYLIST_FILE" ]; then
+  echo "❌ Denylist config missing: .template-ready-denylist.local"
+  echo "   Create this file with one denied term per line."
+  echo "   Example terms: example-login, @example-login"
+  exit 1
+fi
+
+# Read denylist terms (skip comments and blank lines)
+while IFS= read -r line || [ -n "$line" ]; do
+  # Skip comments and blank lines
+  [[ "$line" =~ ^[[:space:]]*# ]] && continue
+  [[ "$line" =~ ^[[:space:]]*$ ]] && continue
+  
+  # Trim whitespace and add to array
+  term=$(echo "$line" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+  [ -n "$term" ] && EXAMPLE_VALUES+=("$term")
+done < "$DENYLIST_FILE"
+
+if [ ${#EXAMPLE_VALUES[@]} -eq 0 ]; then
+  echo "❌ Denylist config has no active terms: .template-ready-denylist.local"
+  echo "   Add at least one term (one per line, # for comments)."
+  exit 1
+fi
+
+echo "Loaded ${#EXAMPLE_VALUES[@]} denied term(s) from config"
+echo ""
+
+# Paths where the terms are allowed in full mode
 ALLOWED_IN_FULL=(
   ".github/harness.yml"
   ".github/CODEOWNERS"
@@ -87,6 +114,7 @@ if [ "$FULL_MODE" = true ]; then
   done < <(find "$ROOT" -type f \
     ! -path "$ROOT/.git/*" \
     ! -name "check-template-ready.sh" \
+    ! -name ".template-ready-denylist.local" \
     -print0)
 else
   # CI scope: templates/, skills/, docs/, README.md
@@ -149,7 +177,7 @@ fi
 echo "Scanning ${#SCAN_PATHS[@]} file(s)..."
 echo ""
 
-# Scan each file for example values (case-insensitive, fixed-string)
+# Scan each file for denied terms (case-insensitive, fixed-string)
 for file in "${SCAN_PATHS[@]}"; do
   # Skip binary files
   if file "$file" 2>/dev/null | grep -q "text"; then
@@ -188,8 +216,8 @@ echo ""
 if [ "$ERRORS" -gt 0 ]; then
   echo "❌ Template-ready check failed"
   echo ""
-  echo "Template files must not contain example values like 'cheddarfox'."
-  echo "Replace example values with placeholders (e.g., '<your-github-login>')."
+  echo "Template files must not contain denied terms."
+  echo "See .template-ready-denylist.local for the list of denied terms."
   echo ""
   exit 1
 fi

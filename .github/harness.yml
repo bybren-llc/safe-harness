@@ -8,5 +8,5 @@
 # sourced from intent.md.
 #
 # Template default: "Repository Owner"
-# Set this to the decision authority's full name for this repository.
-owner_identity: "Scott Graham"
+# Set this to the decision authority's full name or GitHub login for this repository.
+owner_identity: "cheddarfox"

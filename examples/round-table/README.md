@@ -88,7 +88,7 @@ Required checks:
 
 Merge authority per `constitution/03-cd-and-hitl.md`:
 - Low tier: RTE executes after QAS APPROVE and checks green
-- Med/High tier: RTE executes after QAS APPROVE, checks green, and Scott concur (recorded own-words at exact head)
+- Med/High tier: RTE executes after QAS APPROVE, checks green, and owner (HITL/POPM) concur (recorded own-words at exact head)
 
 Delivery and cloud agents never merge. Nobody merges their own authored change.
 
