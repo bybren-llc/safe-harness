@@ -96,7 +96,7 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 **Impact:** QAS reviews were posted from the PR-authoring GitHub account, which GitHub blocks from using REQUEST_CHANGES or APPROVE review states, forcing COMMENTED reviews with verdict in body text.  
 **Workaround:** Each QAS review explicitly stated "treat as CHANGES NEEDED" or "treat as APPROVE."  
 **Visibility:** All QAS verdicts were clear and auditable; no ambiguity in merge decisions.  
-**Evidence:** PR review records show explicit CHANGES/APPROVE verdicts.
+**Evidence:** [PR #3 QAS CHANGES @ `0952071`](https://github.com/bybren-llc/safe-harness/pull/3#pullrequestreview-5696808123), [PR #4 QAS CHANGES @ `2c3a821`](https://github.com/bybren-llc/safe-harness/pull/4#pullrequestreview-5697573204)
 
 ### Brief wording vs constitution/05 exit states (PR #4)
 **Issue:** Work item acceptance criteria asked to relabel the exit state from `MERGED (HITL only)` to an alternate phrasing. QAS rejected this in PR #4: prove docs cannot redefine constitution/05 labels.  
