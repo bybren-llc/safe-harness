@@ -63,7 +63,7 @@ Required paths (must exist; source of truth is the `required_paths` list in `wav
 - `prove/README.md`
 - `.github/harness.yml`
 
-Relative-link scan: every markdown file at repo root and under `constitution/`, `roles/`, `adapters/`, `templates/`, and `prove/`. Skip `https://`, `#`, and `mailto:` destinations. Every other destination must exist.
+Relative-link scan: every markdown file at repo root and under `constitution/`, `roles/`, `adapters/`, `templates/`, `prove/`, `trace/`, `docs/`, and `examples/`. Skip `https://`, `#`, and `mailto:` destinations. Every other destination must exist.
 
 Code-fence check: even count of fenced-block markers in every `*.md` (same parity check as `wave0-checks.yml`).
 
