@@ -13,19 +13,19 @@
 
 Before handing off to QAS, run this self-check loop and paste the full output into the handoff:
 
-1. **Name and trailer scan** — Grep the PR diff and commit messages for the owner's first and last names (case-insensitive, checked separately). No `Co-authored-by` trailers, personal names, or emails in commits.
+1. **Name, email, and trailer scan** — Run the project's denylist check (fails if unconfigured), scan for email addresses in added lines, and check for `Co-authored-by` trailers.
 
    ```bash
-   git diff origin/main...HEAD | grep -i "first-name"
-   git diff origin/main...HEAD | grep -i "last-name"
+   python3 scripts/check-denylist.py
+   git diff origin/main...HEAD | grep "^+" | grep -E "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
    git log origin/main..HEAD --format="%B" | grep -i "co-authored-by"
    ```
 
-2. **Conflict markers** — Grep tracked files for unresolved conflict markers:
+2. **Conflict markers** — Check for unresolved conflict markers (use directional markers only to avoid matching Markdown underlines):
 
    ```bash
    git diff --check
-   git grep -n "<<<<<<< \|=======$\|>>>>>>> " $(git ls-files)
+   git grep -n "^<<<<<<< \|^>>>>>>> " $(git ls-files)
    ```
 
 3. **Commit diffstats** — Show `git diff --stat` for each commit (empty commits fail):
@@ -36,7 +36,7 @@ Before handing off to QAS, run this self-check loop and paste the full output in
    git diff --stat <parent-sha>..<commit-sha>
    ```
 
-4. **Test suites** — Run all checks with verbatim output:
+4. **Test suites** — Run all checks with verbatim output. Link and code-fence checks run only in CI; include CI result at pushed head.
 
    ```bash
    bash trace/check.sh
@@ -47,7 +47,7 @@ Before handing off to QAS, run this self-check loop and paste the full output in
    python3 scripts/test_check_denylist.py
    ```
 
-5. **Branch updates** — Merge `main` into feature branches, never rebase, amend, or force-push (except `--force-with-lease` after integrating remote commits not authored by this run on a PR branch owned by this run).
+5. **Branch updates** — Merge `main` into feature branches, never rebase, amend, or force-push.
 
 6. **Head freeze** — After QAS APPROVE, the head is frozen. No commits, pushes, or PR title/body edits unless explicitly requested.
 
