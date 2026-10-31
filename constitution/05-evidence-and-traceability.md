@@ -79,7 +79,7 @@ See `requirements/README.md` for trace states (Placed / Deferred / Dropped / Mis
 
 **Deferred** requirements must include:
 - `rationale`: Why deferred and conditions for revisiting
-- `decided_by`: Decision owner (Scott, Kai, or "Scott + Kai")
+- `decided_by`: Decision owner (QAS, owner_identity from .github/harness.yml, or "owner_identity + QAS")
 - `decided_at`: ISO 8601 date (YYYY-MM-DD)
 - `defer_to`: Target date or milestone reference (e.g., "2026-11-15" or "Wave 2")
 
@@ -180,7 +180,7 @@ At **Low tier** only, HITL may be delegated with a structured `hitl_delegate` re
 
 ```yaml
 hitl_delegate:
-  delegating_actor: Scott Graham
+  delegating_actor: cheddarfox
   delegate_actor: Kai
   authorization_url: https://linear.app/cheddarfox/issue/SAF-1#comment-54d37e98
   scope: low  # Must be "low" only

@@ -7,6 +7,6 @@
 # Used by trace-check.yml to validate decided_by fields on Dropped requirements
 # sourced from intent.md.
 #
-# Template default: "Repository Owner"
-# Set this to the decision authority's full name for this repository.
-owner_identity: "Scott Graham"
+# Template users: set this to your own GitHub login (the handle you use for
+# CODEOWNERS and GitHub authentication).
+owner_identity: "cheddarfox"
