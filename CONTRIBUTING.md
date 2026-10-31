@@ -138,7 +138,7 @@ python3 scripts/test_check_denylist.py
 
 ## Release
 
-See **Releases**. `CHANGELOG.md` is not on main yet (separate PR). RTE notes and tag format: [`roles/release-rte.md`](roles/release-rte.md), [`release/flow.md`](release/flow.md).
+See **Releases**. Release notes: [`CHANGELOG.md`](CHANGELOG.md). RTE notes and tag format: [`roles/release-rte.md`](roles/release-rte.md), [`release/flow.md`](release/flow.md).
 
 ---
 

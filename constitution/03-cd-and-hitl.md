@@ -173,5 +173,6 @@ Thin skeleton → full path is intentional scaffolding, not final state.
 - Evidence IDs (portable — see `05-evidence-and-traceability.md`)
 - Requirements addressed (REQ-<CMP>-NNN list)
 - QAS APPROVE + SecEng PASS (or PASS-with-notes), both on the exact head (Low: SecEng may mark N/A with rationale; Med/High/O2: SecEng never N/A and cannot be waived). QAS APPROVE and SecEng PASS must both be on the exact head before RTE; never in parallel. SecEng is independent and is not the author.
+- `SecEng: <review-id> PASS or PASS-with-notes at <exact head sha>`
 - Risk tier + O2 checklist (note if the GM downgraded any O2 item)
 - Ask: approve / change-request / escalate

@@ -1,8 +1,42 @@
 # safe-harness
 
+<p align="center">
+  <img src="https://img.shields.io/badge/version-v1.0.0-blue?style=flat-square" alt="Version">
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="License">
+  </a>
+  <a href="docs/adapting.md">
+    <img src="https://img.shields.io/badge/template-ready-brightgreen?style=flat-square" alt="Template Ready">
+  </a>
+  <a href="https://github.com/bybren-llc/safe-harness/actions/workflows/wave0-checks.yml">
+    <img src="https://github.com/bybren-llc/safe-harness/actions/workflows/wave0-checks.yml/badge.svg" alt="Tests">
+  </a>
+  <a href="https://deepwiki.com/bybren-llc/safe-harness">
+    <img src="https://img.shields.io/badge/DeepWiki-bybren--llc%2Fsafe--harness-blue?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTQgMTloMTYiLz48cGF0aCBkPSJNNCAxNWg4Ii8+PHBhdGggZD0iTTQgMTFoMTIiLz48cGF0aCBkPSJNNCA3aDE2Ii8+PC9zdmc+" alt="DeepWiki">
+  </a>
+</p>
+<p align="center">
+  <a href="roles/">
+    <img src="https://img.shields.io/badge/agents-12%20roles-red?style=flat-square" alt="Agents">
+  </a>
+  <a href="skills/">
+    <img src="https://img.shields.io/badge/skills-38-purple?style=flat-square" alt="Skills">
+  </a>
+</p>
+
+<p align="center">
+  <strong>Supported AI Providers</strong><br>
+  <a href="adapters/claude-code/">
+    <img src="https://img.shields.io/badge/Claude_Code-Anthropic-orange?style=flat-square&logo=anthropic" alt="Claude Code">
+  </a>
+  <a href="adapters/cursor/">
+    <img src="https://img.shields.io/badge/Cursor_IDE-Anysphere-00D084?style=flat-square" alt="Cursor IDE">
+  </a>
+</p>
+
 A template for everyday, safe AI-assisted development.
 
-**Status:** Wave 1 adopted. This README is the adopter-facing index. It is **not** a policy source. Binding rules live in [`constitution/`](constitution/).
+**Status:** Wave 1 adopted. This README is the adopter-facing index. It is **not** a policy source. Binding rules live in [`constitution/`](constitution/). See [Adapting this template](docs/adapting.md).
 
 ---
 
@@ -35,7 +69,7 @@ Useful terms (definitions only; gates and merge authority are **not** restated h
 
 ### 1. Adopt the template
 
-1. Copy or generate this repository as your template.
+1. Copy or generate this repository as your template. See [Adapting this template](docs/adapting.md).
 2. Configure **dev, staging, and prod** for *your* environments. This repo itself is trunk-only (`main`). How those environments are gated is in [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) — see that file; this README grants no authority.
 3. Map seats (next section). Fill [`intent.md`](intent.md) and [`spec.md`](spec.md) as the human owner when you are ready. They stay human-owned placeholders until then.
 4. Keep CODEOWNERS pointed at the human owner (or the owner's review account).
@@ -146,6 +180,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | [`adapters/cursor/`](adapters/cursor/README.md) | Cursor adapter (docs stub). |
 | [`adapters/cursor/AGENTS.md`](adapters/cursor/AGENTS.md) | Cursor agent entry point. |
 | [`AGENTS.md`](AGENTS.md) | Root agent entry point (rules by link; local checks). |
+| [`docs/adapting.md`](docs/adapting.md) | Adapting this template. |
 | [`docs/decisions/`](docs/decisions/) | Architecture Decision Records (canonical home; numbered ADRs and [`log.md`](docs/decisions/log.md)). |
 | [`docs/decisions/log.md`](docs/decisions/log.md) | Latest-wins decision log. |
 | [`constitution/`](constitution/) | Binding governance. |
@@ -203,7 +238,7 @@ If you build on this harness, please keep [NOTICE](NOTICE) and credit "Built wit
 ## Contributing and release
 
 - Contribute: [`CONTRIBUTING.md`](CONTRIBUTING.md).
-- Release notes: see **Releases**. `CHANGELOG.md` is not on main yet (separate PR).
+- Release notes: [`CHANGELOG.md`](CHANGELOG.md).
 - Tag format and RTE ownership of notes: [`roles/release-rte.md`](roles/release-rte.md), [`release/flow.md`](release/flow.md).
 
 Metrics M1–M6: [`constitution/00-north-star.md`](constitution/00-north-star.md). Wave evidence: [`prove/README.md`](prove/README.md), [`prove/wave-1/decision-pack.md`](prove/wave-1/decision-pack.md).

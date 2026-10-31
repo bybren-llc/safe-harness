@@ -172,7 +172,7 @@ Use consistent labels across runtimes. Human approval is distinct from merge exe
 3. Ready for HITL  
 4. **MERGED (HITL only)** — the owner executed the merge (human approval + execution)
 5. **MERGED (HITL-delegated)** — Low tier only; delegated HITL (D1)
-6. **MERGED (delegated the GM/RTE)** — the GM or Release · RTE executed a trunk merge under `constitution/03`. Record `merged_by` (the GM | Release · RTE), exact-head SHA, independent QAS APPROVE (the GM's independent QAS APPROVE when RTE executed), RTE PASS when RTE executed, and the owner's recorded concur on constitution/, High, and O2 where required. This is not a HITL merge.
+6. **MERGED (delegated the GM/RTE)** — the GM or Release · RTE executed a trunk merge under `constitution/03`. Record `merged_by` (the GM | Release · RTE), exact-head SHA, independent QAS APPROVE (the GM's independent QAS APPROVE when RTE executed), `SecEng: <review-id> PASS or PASS-with-notes at <exact head sha>`, RTE PASS when RTE executed, and the owner's recorded concur on constitution/, High, and O2 where required. This is not a HITL merge.
 
 ### D1: Delegated HITL (Low tier only)
 

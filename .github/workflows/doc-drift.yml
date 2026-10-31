@@ -199,5 +199,5 @@ jobs:
           echo ""
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo "Doc-drift is warn-only and does not block merge."
-          echo "Rule set: docs/ci/doc-drift.md (v1 proposed; Kai to confirm)"
+          echo "Rule set: docs/ci/doc-drift.md (v1 proposed; the GM to confirm)"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

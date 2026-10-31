@@ -5,8 +5,8 @@
 # Human-owned: intent.md and spec.md (owner owns and accepts design).
 # Agent-authored with owner review gate: requirements, trace, constitution,
 # arch, AGENTS.md, adapter AGENTS.md, skills, workflows, CODEOWNERS.
-# Agents may propose edits but never merge these files (constitution/05),
-# except constitution/ as allowed in constitution/03.
+# Merge rules are governed by constitution/03.
+# This file is a review gate only; it does not list merge seats.
 #
 # Any REQ-ID add, change, or removal needs a human-reviewed PR.
 

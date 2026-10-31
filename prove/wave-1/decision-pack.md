@@ -100,9 +100,9 @@ All constitution changes below were **adopted 2026-10-29** following the owner's
 - `constitution/` (agent-authored, human review required)
 - `trace/` (agent-authored, human review required)
 
-**Studio write path:** Studio drafts intent.md + spec.md → Delivery commits in PR → the owner approves via CODEOWNERS.
+**Studio write path:** Studio drafts intent.md + spec.md → Delivery commits in PR → CODEOWNERS routes the review request; the merge-seat policy in constitution/03 enforces who may merge.
 
-**Distinction:** Humans own design (accept/reject intent and spec content). Agents own execution (author requirements, trace, constitution changes, code, tests), but CODEOWNERS enforces human review gates before merge.
+**Distinction:** Humans own design (accept/reject intent and spec content). Agents own execution (author requirements, trace, constitution changes, code, tests). CODEOWNERS routes the review request; the merge-seat policy in constitution/03 enforces it.
 
 **Risks:**
 - Potential bottleneck on human reviews

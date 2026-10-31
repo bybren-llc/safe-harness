@@ -12,7 +12,7 @@ Do not restate these here. Read the linked file and follow it.
 
 - **Merge invariants** (who may merge, exact-head gates, agents-must-not-merge): [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md)
 - **Security findings** (scanner, not fixer): [`constitution/07-roles-and-lanes.md`](constitution/07-roles-and-lanes.md)
-- **External posts** (no public or external posts without the HITL owner's explicit OK): [`constitution/07-roles-and-lanes.md`](constitution/07-roles-and-lanes.md)
+- **External posts** (no public or external posts without the HITL owner's explicit OK): [`constitution/07-roles-and-lanes.md`](constitution/07-roles-and-lanes.md) (file-level; no general external-post heading) and [`#x-writes`](constitution/07-roles-and-lanes.md#x-writes) (X only)
 - **Personal-vault boundary** (personal vault never enters this repo or a remote forge): [`constitution/04-privacy-and-vaults.md`](constitution/04-privacy-and-vaults.md)
 
 Review gates (not ownership) are listed in [`.github/CODEOWNERS`](.github/CODEOWNERS).
