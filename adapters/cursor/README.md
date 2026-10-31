@@ -1,4 +1,4 @@
-# Adapter — Cursor (Wave 0 first)
+# Adapter — Cursor
 
 **License:** MIT (see [../../LICENSE](../../LICENSE))
 **Copyright:** © 2026 ByBren, LLC
@@ -22,7 +22,7 @@ Maps constitution → Cursor rules + Projects / Cloud Agents.
 
 ## Project = Delivery train
 
-- One Cursor Project for `bybren-llc/safe-harness` Delivery work.
+- One Cursor Project for `<owner>/<repo>` Delivery work.
 - Cloud Agents run as **agent delegates**; the issue tracker **human assignee** remains.
 - Studio briefs may be referenced as read-only context; Studio does not own this Project.
 
@@ -39,7 +39,7 @@ Maps constitution → Cursor rules + Projects / Cloud Agents.
 
 - Ultracode not Project default.
 - tmux/Dark Factory not required.
-- No the issue tracker Agents in Wave 0.
+- No issue-tracker agents.
 
 ## Skills library (v1.0)
 
@@ -51,6 +51,6 @@ Runtime-specific role→model examples stay in this adapter. Skills themselves u
 
 Trigger tests (does a prompt load the right skill) are **UNKNOWN** to automate in v1.0. Generic hooks are **UNKNOWN** and not shipped.
 
-## Local / HF cache (Option A)
+## Local / HF cache
 
-If a Cursor/local lane uses HF or similar caches: a private storage via Docker `hf` → the private inference volume (the owner's Option A). Do not default `HF_HOME` to machine home. See `constitution/04-privacy-and-vaults.md`.
+If a Cursor/local lane uses HF or similar caches: document your model-cache and machine roles here. Do not default `HF_HOME` to machine home. See `constitution/04-privacy-and-vaults.md`.

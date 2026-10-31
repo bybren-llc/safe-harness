@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: 2026 ByBren, LLC
-name: Wave 0 Sanity Checks
+name: Sanity Checks
 
 on:
   pull_request:
@@ -21,7 +21,7 @@ jobs:
       
       - name: Validate required structure
         run: |
-          echo "Checking required Wave 0 paths exist..."
+          echo "Checking required paths exist..."
           
           required_paths=(
             "constitution/README.md"
@@ -155,7 +155,7 @@ jobs:
           issues=0
           
           for md_file in $(find . -name "*.md" -not -path "./.git/*" 2>/dev/null); do
-            # Check for unclosed code fences (Wave 0 uses simple parity count; does not detect nested fence-like content)
+            # Check for unclosed code fences (simple parity count; does not detect nested fence-like content)
             fence_count=$(grep -c '^```' "$md_file" 2>/dev/null || printf "0")
             if [[ $((fence_count % 2)) -ne 0 ]]; then
               echo "❌ Unclosed code fence in: $md_file"
@@ -213,10 +213,10 @@ jobs:
         run: |
           echo ""
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "✅ Wave 0 sanity checks passed"
+          echo "✅ Sanity checks passed"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-  # Warn-only skills checks (#37). Findings do not fail the workflow.
+  # Warn-only skills checks. Findings do not fail the workflow.
   # Flip to blocking: see docs/ci/skills-checks.md
   skills-checks:
     name: Skills frontmatter & link scan (warn-only)

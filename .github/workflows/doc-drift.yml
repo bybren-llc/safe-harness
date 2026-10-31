@@ -26,7 +26,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "Doc drift (warn-only, v1 proposed)"
+          echo "Doc drift (warn-only)"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo ""
 
@@ -36,7 +36,7 @@ jobs:
             echo ""
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
             echo "Warnings: ${WARNINGS}"
-            echo "WARN-ONLY: exiting 0 (v1 never fails the build)"
+            echo "WARN-ONLY: exiting 0 (never fails the build)"
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
             exit 0
           }
@@ -117,7 +117,7 @@ jobs:
             esac
           done <<< "${CHANGED}"
 
-          echo "Companion-doc rule (v1 proposed):"
+          echo "Companion-doc rule:"
           if [[ "${constitution_changed}" -eq 1 && "${constitution_companion}" -eq 0 ]]; then
             echo "  WARN: constitution/ changed without a companion (constitution/README.md, README.md, AGENTS.md, or skills/*/SKILL.md)"
             WARNINGS=$((WARNINGS + 1))
@@ -146,7 +146,7 @@ jobs:
           fi
           echo ""
 
-          echo "Stale-rename rule (v1 proposed):"
+          echo "Stale-rename rule:"
           RENAME_HITS=0
           while IFS=$'\t' read -r status old_path new_path; do
             [[ -z "${status}" ]] && continue
@@ -172,7 +172,7 @@ jobs:
                 while IFS= read -r term; do
                   [[ -z "${term}" ]] && continue
                   # git grep exits 1 when there are no matches; that is not a failure.
-                  # prove/ is historical evidence (Decision packs, Wave 0 records).
+                  # prove/ is historical evidence (decision packs and historical records).
                   # A leftover old name there is a citation, not drift — skip it.
                   hits="$(git grep -nF -- "${term}" -- '*.md' '*.yml' '*.yaml' ':!prove/**' || true)"
                   if [[ -n "${hits}" ]]; then
@@ -199,5 +199,5 @@ jobs:
           echo ""
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo "Doc-drift is warn-only and does not block merge."
-          echo "Rule set: docs/ci/doc-drift.md (v1 proposed; the GM to confirm)"
+          echo "Rule set: docs/ci/doc-drift.md"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

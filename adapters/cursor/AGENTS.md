@@ -11,4 +11,4 @@ Maps the constitution into Cursor rules, Projects, and Cloud Agents. Docs stub. 
 - Skills: [`../../skills/`](../../skills/) as `skills/<slug>/SKILL.md`. Map selected skills into Cursor rules or the runtime skills directory. Prefer the canonical file over a fork.
 - Planned rules: see [`README.md`](README.md).
 
-Codex, local, and Grok Bot adapters are **Later**.
+Other runtimes: add an adapter following this pattern.

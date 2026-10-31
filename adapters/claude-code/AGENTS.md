@@ -10,4 +10,4 @@ Maps the constitution into Claude Code teams, workflows, and hooks. Docs stub. S
 - Skills: [`../../skills/`](../../skills/) as `skills/<slug>/SKILL.md`. Map each slug to `.claude/skills/<slug>/SKILL.md`. Do not rewrite skill bodies here.
 - Hooks: deny personal-vault paths; deny Delivery and cloud-agent merges. See [`README.md`](README.md).
 
-Codex, local, and Grok Bot adapters are **Later**.
+Other runtimes: add an adapter following this pattern.

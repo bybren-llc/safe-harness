@@ -1,7 +1,7 @@
 # Studio → Delivery Handoff
 
 **Spine:** B → A · **Emitter:** Studio · Lead · **Receiver:** Delivery · Lead  
-**Slug context:** `bybren-llc/safe-harness` (Wave 0)
+**Slug context:** `<owner>/<repo>`
 
 ## Minimum fields
 
@@ -9,7 +9,7 @@
 | --- | --- |
 | Handoff ID | |
 | Date (America/New_York) | |
-| Outcome / value link | (M1–M6 and/or Bolt goal) |
+| Outcome / value link | (your defined metrics and/or Bolt goal) |
 | Summary (≤5 lines) | |
 | Acceptance criteria / DoD | (or BSA follow-on: issue/person) |
 | Source pins | Knowledge-base references and/or private-storage paths — **never personal vault** |

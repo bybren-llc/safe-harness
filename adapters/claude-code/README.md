@@ -1,4 +1,4 @@
-# Adapter — Claude Code (Wave 0 first)
+# Adapter — Claude Code
 
 **License:** MIT (see [../../LICENSE](../../LICENSE))
 **Copyright:** © 2026 ByBren, LLC
@@ -20,7 +20,7 @@ Maps constitution → Claude Code teams / workflows / hooks. Thin stub — no ul
 
 ## Role def placeholders
 
-Place under future repo `.claude/agents/` (names only — bodies land at create time):
+Place under the runtime `.claude/agents/` (names only — bodies land at create time):
 
 ```
 gm-architect.md
@@ -39,12 +39,12 @@ Each file must include: mission, spine, may-collapse, independence, model tier, 
 
 | Hook intent | Behavior |
 | --- | --- |
-| Pre-construct | Require business-context HITL note on Med/High / O2 — **Wave 0 intentionally broader than strict Low-only; ensures HITL cannot be skipped** |
+| Pre-construct | Require business-context HITL note on Med/High / O2 — intentionally broader than strict Low-only; ensures HITL cannot be skipped |
 | Pre-PR | Exact-head + evidence_id + the issue tracker key present |
 | Merge attempt by agent | Deny Delivery and cloud agents; allow authorized the GM / Release · RTE trunk merges that meet constitution/03 |
 | Personal-vault path | Deny |
 
-Wave 0: document intents here; implement when `safe-harness` exists.
+Document intents here; implement when the harness exists.
 
 ## Explicit non-defaults
 
@@ -62,6 +62,6 @@ Runtime-specific role→model examples stay in this adapter. Skills themselves u
 
 Trigger tests (does a prompt load the right skill) are **UNKNOWN** to automate in v1.0. Generic hooks are **UNKNOWN** and not shipped.
 
-## Local / HF cache (Option A)
+## Local / HF cache
 
-private storage option A (the owner 2026-10-28): Docker `hf` → a private storage inference volume. Adapters that touch local inference must set `HF_HOME` (and related hub caches) to private-storage-backed paths — never Mac Desktop. Exact pins from Studio/Ops; do not invent paths. Weights never enter the GitHub template.
+Document your model-cache and machine roles here. Adapters that touch local inference must set `HF_HOME` (and related hub caches) to private-storage-backed paths. Exact pins from Studio/Ops; do not invent paths. Weights never enter the GitHub template.

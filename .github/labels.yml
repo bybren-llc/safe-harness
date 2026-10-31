@@ -1,11 +1,10 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: 2026 ByBren, LLC
-# GitHub Labels — safe-harness
+# GitHub Labels
 #
-# Documentation-only. Do not create these labels via API during Wave 1.
-# Manual creation or automation comes after owner concurrence.
+# Documentation-only. Create these labels manually or via approved automation after initial setup.
 #
-# Milestones: One milestone per wave (e.g., "Wave 1", "Wave 2").
+# Milestones: One milestone per wave or increment (name them for your process).
 # Document milestones; create them manually or via approved automation.
 #
 # Label scheme:
@@ -16,7 +15,7 @@
 #   requirement      - Requirement definition or state change
 #   decision         - Decision requiring decision concurrence (not design ownership)
 #   needs-concur     - Awaiting decision concurrence (not design ownership)
-#   needs-owner-concur - Awaiting owner concurrence (intent/spec/constitution PRs) (renamed from earlier owner-named label)
+#   needs-owner-concur - Awaiting owner concurrence (intent/spec/constitution PRs)
 #   gate:rnd         - Gate: Research & Discover
 #   gate:plan        - Gate: Plan
 #   gate:concur      - Gate: Concurrence
