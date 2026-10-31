@@ -26,9 +26,9 @@
 - **Trace map** (`trace/`) — agents author; human-reviewed PR required
 - **Constitution changes** — agents author; human-reviewed PR required
 
-**CODEOWNERS review gates** (not ownership):
+**CODEOWNERS review routing** (not ownership):
 
-`.github/CODEOWNERS` requires <owner_identity> review for:
+`.github/CODEOWNERS` requests <owner_identity> review for:
 - `intent.md`, `intent/`, `spec.md` (human-owned design)
 - `requirements/` (agent-authored, any REQ-ID add/change/removal needs human review)
 - `constitution/` (agent-authored constitution changes need human review)
@@ -36,11 +36,11 @@
 
 Agents may open PRs touching these files but must not merge them, except the GM or Release · RTE may merge `constitution/` changes only under the conditions in `constitution/03-cd-and-hitl.md`, including the owner's recorded own-words concurrence at exact head. Use the `needs-owner-concur` label on PRs awaiting the owner's review.
 
-**Distinction:** Humans own design (accept/reject intent and spec content). Agents own execution (author requirements, trace, constitution changes, code, tests), but CODEOWNERS enforces human review gates before merge.
+**Distinction:** Humans own design (accept/reject intent and spec content). Agents own execution (author requirements, trace, constitution changes, code, tests), but human review is required before merge. CODEOWNERS routes the review request; enforcement is merge policy and branch protection (see `docs/branch-protection.md`).
 
 ### Studio's write path
 
-Studio drafts `intent.md` and `spec.md` and hands them to Delivery. Delivery commits them in a PR. The owner approves via CODEOWNERS before merge.
+Studio drafts `intent.md` and `spec.md` and hands them to Delivery. Delivery commits them in a PR. The owner reviews (requested via CODEOWNERS) before merge.
 
 ### GitHub Issues for work tracking
 

@@ -18,7 +18,7 @@ Use a **classic branch protection rule** on `main` (Settings → Branches → Br
 | Require approval of the most recent reviewable push | Off |
 | Require status checks to pass before merging | On |
 | Require branches to be up to date before merging | On |
-| Required status checks | `Structure & Docs Validation` (GitHub Actions); `Requirements Trace Validation` (warn-only, GitHub Actions); `API Contract Checks` (GitHub Actions). Pin each expected source. Without a pinned source, the shared account could post a passing status itself. |
+| Required status checks | `Structure & Docs Validation` (GitHub Actions); `Requirements Trace Validation` (warn-only, GitHub Actions); `API Contract Checks` (warn-only, GitHub Actions). Pin each expected source. Without a pinned source, the shared account could post a passing status itself. |
 | Allow force pushes | Off (block force-pushes) |
 | Allow deletions | Off (block deletion) |
 | Do not allow bypassing the above settings (include administrators) | Off — the repo admin keeps bypass |
@@ -31,7 +31,7 @@ Add these three names, matching the check as it appears on pull requests:
 
 1. **Structure & Docs Validation** (GitHub Actions) — job in `.github/workflows/wave0-checks.yml`. Includes the conflict-marker check and the template-ready check (CI scope).
 2. **Requirements Trace Validation** (warn-only, GitHub Actions) — job in `.github/workflows/trace-check.yml`. This check is **warn-only** until `spec.md` has REQ IDs **and** `trace/.blocking` exists. In warn-only mode it exits 0, so requiring it does not block merges on trace findings
-3. **API Contract Checks** (GitHub Actions) — job in `.github/workflows/api-contract.yml`
+3. **API Contract Checks** (warn-only, GitHub Actions) — job in `.github/workflows/api-contract.yml`. oasdiff and Schemathesis run with `continue-on-error` and the job exits 0, so requiring it gates on the job running, not on contract findings.
 
 **CodeRabbit** and the two warn-only checks (**Doc drift**, **Skills frontmatter & link scan**) are **not** required status checks. CodeRabbit review is process, handled by Delivery triage. The warn-only checks exit 0 and do not block merges.
 
@@ -76,7 +76,7 @@ After this file is on `main`:
 12. Add required checks, using the names as they appear in the picker (a check must have run on a recent pull request to appear). Pin the expected source for each. Without a pinned source, the shared account could post a passing status itself.
    - `Structure & Docs Validation` — GitHub Actions
    - `Requirements Trace Validation` — GitHub Actions
-   - `API Contract Checks` — GitHub Actions
+   - `API Contract Checks` — GitHub Actions (warn-only)
 13. Do **not** add `CodeRabbit`, `Doc drift`, or `Skills frontmatter & link scan` as required checks. They are not blocking.
 14. Leave **Allow force pushes** unchecked.
 15. Leave **Allow deletions** unchecked.
