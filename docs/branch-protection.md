@@ -31,7 +31,7 @@ Add these three names, matching the check as it appears on pull requests:
 
 1. **Structure & Docs Validation** (GitHub Actions) — job in `.github/workflows/wave0-checks.yml`. Includes the conflict-marker check and the template-ready check (CI scope).
 2. **Requirements Trace Validation** (warn-only, GitHub Actions) — job in `.github/workflows/trace-check.yml`. This check is **warn-only** until `spec.md` has REQ IDs **and** `trace/.blocking` exists. In warn-only mode it exits 0, so requiring it does not block merges on trace findings
-3. **API Contract Checks** (GitHub Actions) — job in `.github/workflows/api-contract-checks.yml`
+3. **API Contract Checks** (GitHub Actions) — job in `.github/workflows/api-contract.yml`
 
 **CodeRabbit** and the two warn-only checks (**Doc drift**, **Skills frontmatter & link scan**) are **not** required status checks. CodeRabbit review is process, handled by Delivery triage. The warn-only checks exit 0 and do not block merges.
 

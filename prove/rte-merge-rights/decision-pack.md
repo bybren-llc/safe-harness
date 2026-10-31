@@ -160,7 +160,7 @@ Independent SecEng (cloud agent bc-ff5334e0), PASS at `d8923a0`. Findings 1-6 fr
 | 1 | Med | Dev/trunk Gate listed only checks + QAS | Closed |
 | 2 | Med | the GM trunk-merge conditions omitted RTE at Med+ | Closed |
 | 3 | Med | CODEOWNERS-gated paths other than constitution/ | Closed |
-| 4 | Med | flow.md precedence carve-out, policy claim, binding the GM calls, present-tense tag/Release, G4 standing delegation, unmarked superseded lines | Closed |
+| 4 | Med | flow.md precedence carve-out, policy claim, binding the GM calls, present-tense tag/Release, G5 standing delegation, unmarked superseded lines | Closed |
 | 5 | Low | README mermaid the GM edge | Closed |
 | 6 | Low | Bolt-brief RTE collapse / MERGED by human | Closed |
 

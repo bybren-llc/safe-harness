@@ -161,7 +161,7 @@ Later commits must be SecEng delta-confirmed as non-widening before merge; that 
 
 Findings that would change authority or gates are recorded here for the GM and the owner. Not adopted. Branch protection stays unanswered.
 
-- **G4 ordering** (review 5712012854, `release/flow.md:102`): whether the owner's recorded concur is a merge prerequisite rather than an RTE PASS prerequisite. Constitution/03 says RTE PASS runs in parallel with the owner concur. Not adopted in this commit.
+- **G5 ordering** (review 5712012854, `release/flow.md:102`): whether the owner's recorded concur is a merge prerequisite rather than an RTE PASS prerequisite. Constitution/03 says RTE PASS runs in parallel with the owner concur. Not adopted in this commit.
 - **Med RTE merge** (review 5712012854, `release/flow.md:128`): whether the owner's decision-pack concur is required for every Med RTE merge, or only for `constitution/`, High, and O2. Not adopted in this commit.
 - **Dedicated Decision issue** (review 5712012854, this pack): whether this amendment needs its own GitHub Decision issue, or #22 / originating #10 is enough. Not opened in this PR.
 

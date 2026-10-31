@@ -16,7 +16,7 @@ Docs-only operating-draft update. Rewrites `release/flow.md` §§3, 5, 7, 8 and 
 
 This file stays **PROPOSED / needs the owner concur / non-binding**. It does not amend `constitution/`.
 
-**Not changed: #28 (a) and (b).** G4 ordering and the Med-tier the owner decision-pack-concur row are left as written, with an inline note on each.
+**Not changed: #28 (a) and (b).** G5 ordering and the Med-tier the owner decision-pack-concur row are left as written, with an inline note on each.
 
 Delivery does not merge. the GM QAS APPROVE and the owner's own-words concur are required at the exact head.
 
@@ -56,7 +56,7 @@ O2 checklist:
 
 See [#28](https://github.com/bybren-llc/safe-harness/issues/28).
 
-- (a) G4 ordering: whether the owner's concur gates RTE PASS or only the merge
+- (a) G5 ordering: whether the owner's concur gates RTE PASS or only the merge
 - (b) Med-tier row requiring the owner's decision-pack concur
 
 Both lines keep their existing text plus: `Open decision, see #28; unchanged here.`
