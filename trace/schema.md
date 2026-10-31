@@ -115,7 +115,7 @@ Once blocking, CI fails when:
 9. Evidence rows from bolt briefs/decision packs
 10. Source-anchor validation (intent.md or spec.md anchors exist)
 
-Unresolved REQ references and placeholder evidence cells in `prove/` history files listed in the `trace/check.sh` prove-history allowlist are reported as warnings, not errors. The allowlist is `prove/`-only; the same findings anywhere else remain errors.
+Unresolved REQ references and placeholder evidence cells in `prove/` history files listed in the `trace/check.sh` prove-history allowlist are reported as warnings, not errors. Other `prove/` tables report these evidence-row findings as errors. Trace-map evidence rows use separate validation: rows with missing required fields produce a warning and are skipped, while requirement linkage is checked separately.
 
 ---
 
