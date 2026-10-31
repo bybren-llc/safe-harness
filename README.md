@@ -17,7 +17,7 @@
 </p>
 <p align="center">
   <a href="roles/">
-    <img src="https://img.shields.io/badge/agents-13%20roles-red?style=flat-square" alt="Agents">
+    <img src="https://img.shields.io/badge/agents-12%20roles-red?style=flat-square" alt="Agents">
   </a>
   <a href="skills/">
     <img src="https://img.shields.io/badge/skills-38-purple?style=flat-square" alt="Skills">

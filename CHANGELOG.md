@@ -4,29 +4,15 @@ All notable changes to this project are documented in this file.
 
 Format follows Keep a Changelog conventions. Product versions use SemVer (`MAJOR.MINOR.PATCH`). Per-merge tags stay `vYYYY.MM.DD-<shortsha>` as recorded in [`roles/release-rte.md`](roles/release-rte.md).
 
-Release · RTE tags `v1.0.0` at the main merge SHA after this PR merges, per [`roles/release-rte.md`](roles/release-rte.md).
+Release · RTE tags `v1.0.0` at the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head, per [`roles/release-rte.md`](roles/release-rte.md).
 
 Each merged row is `PR number — one-line summary (7-char merge SHA)`, taken from `git log --first-parent main` from the first Wave 0 commit through HEAD.
 
 ## [Unreleased]
 
-Merged v1.0 rows recorded here until Release · RTE tags `v1.0.0` at the main merge SHA. SHAs below are on `main`.
-
-### Added
-
-- #47 — AGENTS.md entry points + CODEOWNERS coverage (`202d29c`)
-- #48 — doc-drift + trace/ link coverage checks, warn-only (`606d4b6`)
-- #51 — trace-check validations, warn-only (`27fbc68`)
-- #59 — Rewrite README for v1.0 (generic, template-ready) (`7fc391d`)
-- #63 — L1: MIT license, NOTICE, SPDX headers and CITATION (`91c24b7`)
-- #62 — trace: read decided_by owner from `.github/harness.yml`, fail closed (`91a7609`)
-- #61 — Genericize template surfaces to role terms and owner placeholders (`f0ef5d7`)
-- #65 — Add adaptation guide, owner placeholders and template-ready check (`ffbaf06`)
-- #79 — G-hardening: SecEng PASS at exact head as a merge condition; fail-closed conflict-marker check (`1c0f94d`)
-
 ## [1.0.0]
 
-First product release of safe-harness. After this PR merges, Release · RTE tags `v1.0.0` at the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head, per [`roles/release-rte.md`](roles/release-rte.md).
+First product release of safe-harness. Release · RTE tags `v1.0.0` at the main merge SHA, and re-PASSes that SHA first if it differs from the PASSed PR head, per [`roles/release-rte.md`](roles/release-rte.md).
 
 ### Added
 
@@ -40,6 +26,9 @@ First product release of safe-harness. After this PR merges, Release · RTE tags
 - #23 — Link-health and rot-detection spec (`8a9ab71`)
 - #27 — Delegation map and #22 follow-ups (`132f890`)
 - #41 — Branch-protection policy and apply/verify checklist (`afbaf4f`)
+- #47 — AGENTS.md entry points + CODEOWNERS coverage (`202d29c`)
+- #63 — L1: MIT license, NOTICE, SPDX headers and CITATION (`91c24b7`)
+- #61 — Genericize template surfaces to role terms and owner placeholders (`f0ef5d7`)
 
 #### Templates
 
@@ -56,6 +45,14 @@ Warn-only jobs do not block merge.
 
 - #31 — API contract workflow (warn-only oasdiff + Schemathesis) (`79c92ed`)
 - #43 — Skills frontmatter and skills/ link scan in CI (warn-only) (`c4a59c4`)
+- #48 — doc-drift + trace/ link coverage checks, warn-only (`606d4b6`)
+- #51 — trace-check validations, warn-only (`27fbc68`)
+- #62 — trace: read decided_by owner from `.github/harness.yml`, fail closed (`91a7609`)
+
+#### Docs
+
+- #59 — Rewrite README for v1.0 (generic, template-ready) (`7fc391d`)
+- #65 — Add adaptation guide, owner placeholders and template-ready check (`ffbaf06`)
 
 #### ADRs and decision log
 
@@ -78,6 +75,7 @@ Warn-only jobs do not block merge.
 ### Security
 
 - #38 — Privacy scrub and fail-closed local denylist check (`0abdbca`)
+- #79 — G-hardening: SecEng PASS at exact head as a merge condition; fail-closed conflict-marker check (`1c0f94d`)
 
 ## Known follow-ups (v1.0.1 / v1.1)
 
