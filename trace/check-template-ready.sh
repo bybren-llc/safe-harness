@@ -11,9 +11,10 @@
 # Default (CI) scope: templates/, skills/, docs/, README.md
 # Full scope: entire repo except .git/
 #
-# Denylist config: .template-ready-denylist.local (gitignored)
+# Denylist config: .template-ready-denylist.local (untracked; generated in CI)
 # One term per line; # starts a comment; blank lines skipped.
 # Fails if config file is missing or has no active terms.
+# See .template-ready-denylist.example for the format.
 #
 # In full mode, denied terms are allowed only in .github/harness.yml,
 # .github/CODEOWNERS, examples/round-table/, LICENSE, NOTICE, and CITATION.cff.

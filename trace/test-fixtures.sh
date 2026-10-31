@@ -520,6 +520,15 @@ else
   FAIL_COUNT=$((FAIL_COUNT + 1))
 fi
 
+echo -n "  template-ready/fail-empty-config (empty denylist) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-empty-config" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
 echo -n "  template-ready/fail-configured-term (configured term caught) ... "
 if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-configured-term" > /dev/null 2>&1; then
   echo "✓ FAIL (as expected)"

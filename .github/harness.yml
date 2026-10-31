@@ -8,5 +8,5 @@
 # sourced from intent.md.
 #
 # Template default: "Repository Owner"
-# Set this to the decision authority's full name or GitHub login for this repository.
+# Set this to the decision authority's GitHub login for this repository.
 owner_identity: "cheddarfox"
