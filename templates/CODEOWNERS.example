@@ -27,5 +27,6 @@
 /AGENTS.md              @<your-github-login>
 /adapters/**/AGENTS.md  @<your-github-login>
 /skills/                @<your-github-login>
+/.github/harness.yml    @<your-github-login>
 /.github/CODEOWNERS     @<your-github-login>
 /.github/workflows/     @<your-github-login>

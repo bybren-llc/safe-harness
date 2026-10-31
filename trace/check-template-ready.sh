@@ -180,31 +180,28 @@ echo ""
 
 # Scan each file for denied terms (case-insensitive, fixed-string)
 for file in "${SCAN_PATHS[@]}"; do
-  # Skip binary files
-  if file "$file" 2>/dev/null | grep -q "text"; then
-    for value in "${EXAMPLE_VALUES[@]}"; do
-      # Use grep -Fi for case-insensitive fixed-string matching
-      if grep -qi -F "$value" "$file" 2>/dev/null; then
-        # In full mode, check if file is in allowed paths
-        if [ "$FULL_MODE" = true ]; then
-          ALLOWED=false
-          REL_PATH="${file#$ROOT/}"
-          for allowed in "${ALLOWED_IN_FULL[@]}"; do
-            if [[ "$REL_PATH" == "$allowed" ]] || [[ "$REL_PATH" == "$allowed"* ]]; then
-              ALLOWED=true
-              break
-            fi
-          done
-          if [ "$ALLOWED" = true ]; then
-            continue
+  for value in "${EXAMPLE_VALUES[@]}"; do
+    # Use grep -a for binary-safe scanning, -F -e for terms starting with -
+    if grep -a -qi -F -e "$value" "$file" 2>/dev/null; then
+      # In full mode, check if file is in allowed paths
+      if [ "$FULL_MODE" = true ]; then
+        ALLOWED=false
+        REL_PATH="${file#$ROOT/}"
+        for allowed in "${ALLOWED_IN_FULL[@]}"; do
+          if [[ "$REL_PATH" == "$allowed" ]] || [[ "$REL_PATH" == "$allowed"* ]]; then
+            ALLOWED=true
+            break
           fi
+        done
+        if [ "$ALLOWED" = true ]; then
+          continue
         fi
-        
-        echo "  ❌ Found '$value' in: ${file#$ROOT/}"
-        ERRORS=$((ERRORS + 1))
       fi
-    done
-  fi
+      
+      echo "  ❌ Found '$value' in: ${file#$ROOT/}"
+      ERRORS=$((ERRORS + 1))
+    fi
+  done
 done
 
 echo ""

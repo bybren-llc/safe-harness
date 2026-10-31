@@ -42,6 +42,7 @@ Before handing off to QAS, run this self-check loop and paste the full output in
    bash trace/check.sh
    bash trace/test-fixtures.sh
    bash trace/fixtures/run.sh
+   # Generate or copy .template-ready-denylist.local first (see .template-ready-denylist.example)
    bash trace/check-template-ready.sh .
    python3 skills/check-frontmatter.py
    python3 scripts/test_check_denylist.py
@@ -51,4 +52,4 @@ Before handing off to QAS, run this self-check loop and paste the full output in
 
 6. **Head freeze** — After QAS APPROVE, the head is frozen. No commits, pushes, or PR title/body edits unless explicitly requested.
 
-7. **Review wakes** — Never act on CodeRabbit, CI, or review notifications. Report them and push only when explicitly requested.
+7. **Review wakes** — Don't self-start on CodeRabbit, CI, or review notifications. Route them to the coordinator (Delivery), which assigns responses per `skills/review-response`. Every finding gets a response. No pushes after QAS APPROVE unless explicitly requested.

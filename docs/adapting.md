@@ -26,7 +26,7 @@ cp templates/CODEOWNERS.example .github/CODEOWNERS
 
 Edit `.github/harness.yml` and set `owner_identity` to your GitHub login. This value is used to validate `decided_by` fields when dropping requirements sourced from `intent.md`.
 
-Edit `.github/CODEOWNERS` and replace `<your-github-login>` with your actual GitHub login. CODEOWNERS enforces review gates on human-owned design files and agent-authored governance files.
+Edit `.github/CODEOWNERS` and replace `<your-github-login>` with your actual GitHub login. CODEOWNERS names who owns the files. Review gate enforcement depends on branch protection settings (see `docs/branch-protection.md`), which you configure in your GitHub repository.
 
 **Important:** `owner_identity` in `.github/harness.yml` must match the `decided_by` value when dropping intent-sourced requirements. See `constitution/05-evidence-and-traceability.md`.
 
@@ -89,7 +89,7 @@ bash trace/check-template-ready.sh .        # CI scope
 bash trace/check-template-ready.sh . --full # full repo
 ```
 
-**Template-ready denylist:** The `check-template-ready.sh` script reads denied terms from `.template-ready-denylist.local` (untracked). In CI, the `wave0-checks.yml` workflow generates this file on the fly from `owner_identity` in `.github/harness.yml`, plus the optional repo secret `TEMPLATE_READY_DENYLIST_EXTRA` (which is unset by default). If the generated denylist is empty or missing, the check fails. For local development, copy `.template-ready-denylist.example` (which contains placeholders) to `.template-ready-denylist.local` and replace the placeholders with your actual denied terms.
+**Template-ready denylist:** The `check-template-ready.sh` script reads denied terms from `.template-ready-denylist.local` (untracked and gitignored). In CI, the `wave0-checks.yml` workflow generates this file on the fly from `owner_identity` in `.github/harness.yml`, plus the optional repo secret `TEMPLATE_READY_DENYLIST_EXTRA` (which is unset by default). If the generated denylist is empty or missing, the check fails. For local development, copy `.template-ready-denylist.example` (which contains placeholders) to `.template-ready-denylist.local` and replace the placeholders with your actual denied terms.
 
 CI workflows live in `.github/workflows/`:
 - `wave0-checks.yml` — Structure, links, markdown syntax (blocking)

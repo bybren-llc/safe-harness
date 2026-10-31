@@ -547,6 +547,24 @@ else
   FAIL_COUNT=$((FAIL_COUNT + 1))
 fi
 
+echo -n "  template-ready/fail-nontext-file (non-text file with denied term) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-nontext-file" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
+echo -n "  template-ready/fail-dash-term (denylist term starting with -) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-dash-term" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
 echo -n "  template-ready --full flag as argv[1] ... "
 if bash "$REPO_ROOT/trace/check-template-ready.sh" --full "$FIXTURES_DIR/template-ready/pass" > /dev/null 2>&1; then
   echo "✓ PASS"
