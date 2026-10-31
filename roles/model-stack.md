@@ -27,7 +27,7 @@ Every adapter must publish a role→model card. No harness may silently override
 | QAS | Light routine / Heavy when independence risk high |
 | SecEng | Heavy |
 | BSA-like | Light → Orchestrator if AC shaping spans spines |
-| Release · RTE (not collapsible at Med+) | Light |
+| Release · RTE (No at Med+) | Light |
 | Librarian / Scout | Light (research); Orchestrator only when synthesizing handoff pins |
 
 ## Stop rules
