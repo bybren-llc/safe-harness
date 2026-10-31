@@ -92,7 +92,7 @@ Scott (HITL), 2026-10-29, verbatim:
 
 | Environment | Who may merge / promote | Gate |
 | --- | --- | --- |
-| **Dev or trunk** | Authorized agents (**Kai**, **Release · RTE**) | Required checks green + independent QAS APPROVE on the exact head; at Med/High/O2, RTE PASS on the exact head, or (for a merge by Kai or Scott only) a HOLD override from Kai or Scott recorded on the PR with its reason; an RTE merge always needs its own RTE PASS on the exact head at every tier including Low; Scott's recorded own-words concur for constitution/, High, and O2 |
+| **Dev or trunk** | Authorized agents (**Kai**, **Release · RTE**) | Required checks green + independent QAS APPROVE + SecEng PASS (or PASS-with-notes) on the exact head (Med, High, O2; Low may mark N/A with rationale); at Med/High/O2, RTE PASS on the exact head, or (for a merge by Kai or Scott only) a HOLD override from Kai or Scott recorded on the PR with its reason; an RTE merge always needs its own RTE PASS on the exact head at every tier including Low; Scott's recorded own-words concur for constitution/, High, and O2 |
 | **Staging** | Automatic promotion | Tests pass |
 | **Prod** | Human gate: Scott's recorded own-words concur | Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. |
 
@@ -113,8 +113,8 @@ Scott may merge any change at any tier and environment.
 ### Who may execute a trunk merge (safe-harness)
 
 1. **Scott (HITL)** — any change
-2. **Kai (GM)** — authorized trunk agent: checks green + independent QAS APPROVE on exact head; at Med/High/O2, RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason; Scott's recorded concur on `constitution/`, High, and O2
-3. **Release · RTE** — authorized trunk agent: checks green + Kai's independent QAS APPROVE + its own RTE PASS on the exact head (every tier, including Low); Scott's recorded concur on `constitution/`, High, and O2; never its own authored change; never over a standing HOLD
+2. **Kai (GM)** — authorized trunk agent: checks green + independent QAS APPROVE + SecEng PASS (or PASS-with-notes) on exact head (Med, High, O2; Low may mark N/A with rationale); at Med/High/O2, RTE PASS on the exact head, or a HOLD override from Kai or Scott recorded on the PR with its reason; Scott's recorded concur on `constitution/`, High, and O2
+3. **Release · RTE** — authorized trunk agent: checks green + Kai's independent QAS APPROVE + SecEng PASS (or PASS-with-notes) + its own RTE PASS on the exact head (every tier, including Low; SecEng Med, High, O2; Low may mark N/A with rationale); Scott's recorded concur on `constitution/`, High, and O2; never its own authored change; never over a standing HOLD
 
 ### RTE placement
 
@@ -172,6 +172,6 @@ Thin skeleton → full path is intentional scaffolding, not final state.
 - Exact-head SHA / PR
 - Evidence IDs (portable — see `05-evidence-and-traceability.md`)
 - Requirements addressed (REQ-<CMP>-NNN list)
-- QAS + SecEng status (Low: explicit N/A with rationale allowed; High/O2: never N/A and cannot be waived). SecEng is independent and is not the author.
+- QAS APPROVE + SecEng PASS (or PASS-with-notes), both on the exact head (Low: SecEng may mark N/A with rationale; Med/High/O2: SecEng never N/A and cannot be waived). QAS APPROVE and SecEng PASS must both be on the exact head before RTE; never in parallel. SecEng is independent and is not the author.
 - Risk tier + O2 checklist (note if Kai downgraded any O2 item)
 - Ask: approve / change-request / escalate
