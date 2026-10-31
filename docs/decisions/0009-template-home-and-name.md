@@ -46,6 +46,6 @@ The repo exists under the org with internal visibility; README names it and its 
 
 ## More Information
 
-Owner: the GM (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 Cross-ref: [0016](0016-authorize-new-template-repo.md) (E2 authorize the repo). Record format: [MADR 4.0](https://adr.github.io/madr/).

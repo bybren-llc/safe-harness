@@ -42,6 +42,6 @@ Constitution and README describe both spines; role cards name a spine; the bolt 
 
 ## More Information
 
-Owner: the GM (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 Cross-ref: W0-02 Dual spine (active). Public framing that may be cited: the Anthropic [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook). Record format: [MADR 4.0](https://adr.github.io/madr/).

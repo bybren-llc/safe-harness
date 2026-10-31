@@ -42,6 +42,6 @@ owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 ## More Information
 
-Owner: the GM (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 Cross-ref: W0-08 Vaults + handoff (active; also [0005](0005-studio-delivery-handoff-before-spine-a-build.md)). Record format: [MADR 4.0](https://adr.github.io/madr/).

@@ -113,7 +113,7 @@ the owner may merge any change at any tier and environment.
 ### Who may execute a trunk merge (safe-harness)
 
 1. **the owner (HITL)** — any change
-2. **the GM (GM)** — authorized trunk agent: checks green + independent QAS APPROVE + SecEng PASS (or PASS-with-notes) on exact head (Med, High, O2; Low may mark N/A with rationale); at Med/High/O2, RTE PASS on the exact head, or a HOLD override from the GM or the owner recorded on the PR with its reason; the owner's recorded concur on `constitution/`, High, and O2
+2. **the GM** — authorized trunk agent: checks green + independent QAS APPROVE + SecEng PASS (or PASS-with-notes) on exact head (Med, High, O2; Low may mark N/A with rationale); at Med/High/O2, RTE PASS on the exact head, or a HOLD override from the GM or the owner recorded on the PR with its reason; the owner's recorded concur on `constitution/`, High, and O2
 3. **Release · RTE** — authorized trunk agent: checks green + the GM's independent QAS APPROVE + SecEng PASS (or PASS-with-notes) + its own RTE PASS on the exact head (every tier, including Low; SecEng Med, High, O2; Low may mark N/A with rationale); the owner's recorded concur on `constitution/`, High, and O2; never its own authored change; never over a standing HOLD
 
 ### RTE placement

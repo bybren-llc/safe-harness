@@ -45,6 +45,6 @@ owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 ## More Information
 
-Owner: the GM (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 Cross-ref: W0-03 CD assumptions (active); W0-04 HITL without freeze (**superseded by PR #22**). Public framing that may be cited: the Anthropic [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook) (committed artifacts per stage, layered agentic review, human review kept for critical code, hooks as approval gates, agent acts up to the production gate and not past it). Record format: [MADR 4.0](https://adr.github.io/madr/).

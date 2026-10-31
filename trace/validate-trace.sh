@@ -62,7 +62,16 @@ fi
 # Check for null, empty, or whitespace-only (after trim)
 if [[ "$OWNER_IDENTITY" == "null" || -z "$OWNER_IDENTITY" ]]; then
   echo "❌ owner_identity not set or empty in $CONFIG_PATH"
-  echo "   Set owner_identity to the decision authority's full name."
+  echo "   Set owner_identity to the decision authority's full name or your GitHub login."
+  exit 1
+fi
+
+# Fail on template placeholder (case-insensitive)
+OWNER_LOWER="${OWNER_IDENTITY,,}"
+if [[ "$OWNER_LOWER" == "<your-github-login>" ]]; then
+  echo "❌ owner_identity is set to the template placeholder (or a case variant)"
+  echo "   Replace it with your actual GitHub login or decision authority's full name."
+  echo "   See docs/adapting.md for setup instructions."
   exit 1
 fi
 

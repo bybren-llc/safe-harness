@@ -44,6 +44,6 @@ Historical: `roles/` no longer carries a collapsible-RTE card as current (PR #22
 
 ## More Information
 
-Owner: the GM (GM). Executor: Delivery · Lead.
+Owner: the GM. Executor: Delivery · Lead.
 
 Cross-ref: W0-05 Ownership / collapsing (RTE part superseded by PR #22); W0-04 HITL without freeze (**superseded by PR #22**). Record format: [MADR 4.0](https://adr.github.io/madr/).
