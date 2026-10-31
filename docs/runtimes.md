@@ -61,13 +61,13 @@ First message: tell it to read `.briefs/<issue>.md`, then follow `AGENTS.md` Bef
 The public CLI documents `claude -p` (also `--print`) as the non-interactive form.
 
 ```bash
-claude -p --allowedTools "Read,Edit,Write,Bash(git status),Bash(git diff),Bash(git diff --stat),Bash(yq eval '.' trace/trace-map.yaml),Bash(python3 skills/check-frontmatter.py),Bash(python3 scripts/check-denylist.py),Bash(python3 scripts/test_check_denylist.py),Bash(bash trace/check.sh)" "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
+claude -p "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief." --allowedTools "Read,Edit,Write,Bash(git status),Bash(git diff),Bash(git diff --stat),Bash(yq eval '.' trace/trace-map.yaml),Bash(python3 skills/check-frontmatter.py),Bash(python3 scripts/check-denylist.py),Bash(python3 scripts/test_check_denylist.py),Bash(bash trace/check.sh)"
 ```
 
 To capture the session id for evidence, the public docs show `--output-format json`, which includes `session_id`:
 
 ```bash
-claude -p --output-format json --allowedTools "Read,Edit,Write,Bash(git status),Bash(git diff),Bash(git diff --stat),Bash(yq eval '.' trace/trace-map.yaml),Bash(python3 skills/check-frontmatter.py),Bash(python3 scripts/check-denylist.py),Bash(python3 scripts/test_check_denylist.py),Bash(bash trace/check.sh)" "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
+claude -p "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief." --output-format json --allowedTools "Read,Edit,Write,Bash(git status),Bash(git diff),Bash(git diff --stat),Bash(yq eval '.' trace/trace-map.yaml),Bash(python3 skills/check-frontmatter.py),Bash(python3 scripts/check-denylist.py),Bash(python3 scripts/test_check_denylist.py),Bash(bash trace/check.sh)"
 ```
 
 Headless runs only edit files and run the local checks. The operator commits, pushes, and opens the PR from the worktree, and records `session_id` as `evidence_id`. Set `runtime` to `claude-code`.
@@ -145,7 +145,7 @@ Headless runs only edit files and run the local checks. They do not commit, push
 | `issue` | `#N` |
 | `actor` | Seat name |
 | `gate` | The gate this row satisfies |
-| `req_ids` | `N/A` while `spec.md` has no REQ IDs |
+| `req_ids` | `[]` while `spec.md` has no REQ IDs |
 
 Write one row each for Implement → Ready for QAS, SecEng, QAS, and RTE. For the required cross-runtime handoff, record the source and target `evidence_id`s on those rows. Every row for that run uses the same `exact_head`.
 
