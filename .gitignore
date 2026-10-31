@@ -3,3 +3,7 @@
 
 # Template-ready denylist (untracked; generated in CI from harness.yml)
 /.template-ready-denylist.local
+
+# Python cache
+__pycache__/
+*.pyc

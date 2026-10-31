@@ -171,6 +171,30 @@ jobs:
           
           echo "✅ Basic markdown syntax valid"
       
+      - name: Generate template-ready denylist
+        env:
+          EXTRA_DENYLIST: ${{ secrets.TEMPLATE_READY_DENYLIST_EXTRA }}
+        run: |
+          echo "Generating .template-ready-denylist.local from harness.yml..."
+          
+          OWNER=$(yq eval '.owner_identity' .github/harness.yml)
+          
+          if [ -n "$OWNER" ] && [ "$OWNER" != "null" ]; then
+            echo "$OWNER" > .template-ready-denylist.local
+            echo "@$OWNER" >> .template-ready-denylist.local
+          fi
+          
+          if [ -n "$EXTRA_DENYLIST" ]; then
+            echo "$EXTRA_DENYLIST" >> .template-ready-denylist.local
+          fi
+          
+          if [ ! -s .template-ready-denylist.local ]; then
+            echo "ERROR: Generated denylist is empty"
+            exit 1
+          fi
+          
+          echo "✅ Generated .template-ready-denylist.local"
+      
       - name: Template-ready check (CI scope)
         run: |
           echo "Checking template surface for example values..."
