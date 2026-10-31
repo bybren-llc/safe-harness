@@ -124,7 +124,7 @@ Non-code work (stories and research) starts on spine B with Studio · Lead. See 
 
 ## Setting up an agent team with it
 
-Safe-harness is **runtime-neutral**. Cursor, Claude Code, and other agents are valid runtimes. Adapters in [`adapters/`](adapters/) map the same constitution into a runtime. A runtime that does not auto-load `skills/` must import each skill as its own skill (see [`skills/README.md`](skills/README.md)).
+Safe-harness is **runtime-neutral**. Cursor, Claude Code, Codex, and other agents are valid runtimes. Codex reads the root [`AGENTS.md`](AGENTS.md) natively. Adapters in [`adapters/`](adapters/) map the same constitution into a runtime. A runtime that does not auto-load `skills/` must import each skill as its own skill (see [`skills/README.md`](skills/README.md)).
 
 ### Seats
 
@@ -198,10 +198,15 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | Path | Purpose |
 | --- | --- |
 | [`skills/`](skills/README.md) | Skills library (index of 38 skills). Canonical path `skills/<slug>/SKILL.md`. |
+| [`skills/INDEX.md`](skills/INDEX.md) | Skills catalog pointer. |
 | [`adapters/claude-code/`](adapters/claude-code/README.md) | Claude Code adapter (docs stub). |
 | [`adapters/claude-code/AGENTS.md`](adapters/claude-code/AGENTS.md) | Claude Code agent entry point. |
 | [`adapters/cursor/`](adapters/cursor/README.md) | Cursor adapter (docs stub). |
 | [`adapters/cursor/AGENTS.md`](adapters/cursor/AGENTS.md) | Cursor agent entry point. |
+| [`adapters/codex/`](adapters/codex/README.md) | Codex adapter (docs stub). |
+| [`adapters/codex/AGENTS.md`](adapters/codex/AGENTS.md) | Codex agent entry point. |
+| [`CLAUDE.md`](CLAUDE.md) | Pointer to root `AGENTS.md`. |
+| [`.cursor/rules/safe-harness.mdc`](.cursor/rules/safe-harness.mdc) | Cursor pointer rule. |
 | [`AGENTS.md`](AGENTS.md) | Root agent entry point (rules by link; local checks). |
 | [`docs/adapting.md`](docs/adapting.md) | Adapting this template. |
 | [`docs/decisions/`](docs/decisions/) | Architecture Decision Records (canonical home; numbered ADRs and [`log.md`](docs/decisions/log.md)). |
