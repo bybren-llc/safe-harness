@@ -111,7 +111,7 @@ if [ "$FULL_MODE" = true ]; then
       continue
     fi
     SCAN_PATHS+=("$file")
-  done < <(find "$ROOT" -type f \
+  done < <(find -P "$ROOT" \( -type f -o -type l \) \
     ! -path "$ROOT/.git/*" \
     ! -name "check-template-ready.sh" \
     ! -name ".template-ready-denylist.local" \
@@ -154,7 +154,7 @@ else
         if [[ ! "$file" =~ /examples/round-table/ ]]; then
           SCAN_PATHS+=("$file")
         fi
-      done < <(find "$ROOT/$dir" -type f -print0)
+      done < <(find -P "$ROOT/$dir" \( -type f -o -type l \) -print0)
     fi
   done
   
