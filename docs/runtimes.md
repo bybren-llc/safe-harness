@@ -61,13 +61,13 @@ First message: tell it to read `.briefs/<issue>.md`, then follow `AGENTS.md` Bef
 The public CLI documents `claude -p` (also `--print`) as the non-interactive form.
 
 ```bash
-claude -p --allowedTools "Read,Edit,Write,Bash(git status),Bash(git diff *),Bash(yq eval *),Bash(python3 skills/check-frontmatter.py),Bash(python3 scripts/check-denylist.py),Bash(python3 scripts/test_check_denylist.py),Bash(bash trace/check.sh)" "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
+claude -p --allowedTools "Read,Edit,Write,Bash(git status),Bash(git diff),Bash(git diff --stat),Bash(yq eval '.' trace/trace-map.yaml),Bash(python3 skills/check-frontmatter.py),Bash(python3 scripts/check-denylist.py),Bash(python3 scripts/test_check_denylist.py),Bash(bash trace/check.sh)" "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
 ```
 
 To capture the session id for evidence, the public docs show `--output-format json`, which includes `session_id`:
 
 ```bash
-claude -p --output-format json --allowedTools "Read,Edit,Write,Bash(git status),Bash(git diff *),Bash(yq eval *),Bash(python3 skills/check-frontmatter.py),Bash(python3 scripts/check-denylist.py),Bash(python3 scripts/test_check_denylist.py),Bash(bash trace/check.sh)" "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
+claude -p --output-format json --allowedTools "Read,Edit,Write,Bash(git status),Bash(git diff),Bash(git diff --stat),Bash(yq eval '.' trace/trace-map.yaml),Bash(python3 skills/check-frontmatter.py),Bash(python3 scripts/check-denylist.py),Bash(python3 scripts/test_check_denylist.py),Bash(bash trace/check.sh)" "Read .briefs/<issue>.md. Follow AGENTS.md Before you start. Implement only that brief."
 ```
 
 Headless runs only edit files and run the local checks. The operator commits, pushes, and opens the PR from the worktree, and records `session_id` as `evidence_id`. Set `runtime` to `claude-code`.
@@ -194,7 +194,7 @@ Use this section when a person runs Claude Code or Codex from a desktop machine 
 
 - Claude Code reads `CLAUDE.md`, and when that file exists it skips `AGENTS.md`. This repo's `CLAUDE.md` imports `@AGENTS.md`; keep that import, or Claude Code won't load the harness.
 - Interactive: run `claude` in the worktree.
-- Headless: `claude -p "$(cat .briefs/<issue>.md)" --output-format json --allowedTools "Read,Edit,Write,Bash(git status),Bash(git diff *),Bash(yq eval *),Bash(python3 skills/check-frontmatter.py),Bash(python3 scripts/check-denylist.py),Bash(python3 scripts/test_check_denylist.py),Bash(bash trace/check.sh)"`. Headless runs only edit files and run the local checks. The operator commits, pushes, and opens the PR from the worktree, records `session_id` as `evidence_id`, and copies the JSON output to `prove/v1.1-<runtime>/` as [Commit, push, open the PR, record evidence](#commit-push-open-the-pr-record-evidence) already says. Continue the same session with `claude -p --resume <session_id> "<follow-up>"`.
+- Headless: `claude -p "$(cat .briefs/<issue>.md)" --output-format json --allowedTools "Read,Edit,Write,Bash(git status),Bash(git diff),Bash(git diff --stat),Bash(yq eval '.' trace/trace-map.yaml),Bash(python3 skills/check-frontmatter.py),Bash(python3 scripts/check-denylist.py),Bash(python3 scripts/test_check_denylist.py),Bash(bash trace/check.sh)"`. Headless runs only edit files and run the local checks. The operator commits, pushes, and opens the PR from the worktree, records `session_id` as `evidence_id`, and copies the JSON output to `prove/v1.1-<runtime>/` as [Commit, push, open the PR, record evidence](#commit-push-open-the-pr-record-evidence) already says. Continue the same session with `claude -p --resume <session_id> "<follow-up>"`.
 - Don't use `--bare`. It skips the repo's `CLAUDE.md`, rules and skills, and it doesn't work with subscription sign-in.
 - Docs: [headless mode](https://code.claude.com/docs/en/headless), [worktrees](https://code.claude.com/docs/en/worktrees), [desktop](https://code.claude.com/docs/en/desktop), [Remote Control](https://code.claude.com/docs/en/remote-control).
 
