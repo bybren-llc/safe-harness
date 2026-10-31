@@ -547,8 +547,8 @@ else
   FAIL_COUNT=$((FAIL_COUNT + 1))
 fi
 
-echo -n "  template-ready/fail-nontext-file (non-text file with denied term) ... "
-if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-nontext-file" > /dev/null 2>&1; then
+echo -n "  template-ready/fail-svg-denied (SVG file with denied term) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-svg-denied" > /dev/null 2>&1; then
   echo "✓ FAIL (as expected)"
   PASS_COUNT=$((PASS_COUNT + 1))
 else
