@@ -2,14 +2,14 @@
 
 Peer model. Stop-the-line is real. Ownership through named exit states.
 
-## Standing seats (Wave 0)
+## Standing seats
 
 | Seat | Role | Spine | Notes |
 | --- | --- | --- | --- |
 | **the owner** | HITL / POPM | Both | Final human merge authority (constitution/, High, and O2; prod-risk at prod); decision packs; business-context gate; X writes; secrets |
 | **the GM** | GM / lead ARCHitect | Both | Leads (not TDM). High-tier or cross-lane work only. Architect Stage 1/2; SOTA research; org locks |
 | **Ops · CoS** | Chief of Staff | Both | Digests and rolls; escalation path; coordination; not the owner-direct unless the owner in-thread |
-| **Dispatcher · Board** | Tracking board | Both | Staff seat next to Ops. Owns the board; 4:30 AM ET read-only sweep. Surfaces only: never decides, posts, or merges. See `07-roles-and-lanes.md` and `roles/dispatcher-board.md` |
+| **Dispatcher · Board** | Tracking board | Both | Staff seat next to Ops. Owns the board; runs a scheduled read-only sweep (time set by the adopter). Surfaces only: never decides, posts, or merges. See `07-roles-and-lanes.md` and `roles/dispatcher-board.md` |
 | **Delivery · Lead** | Train owner (spine A) | A | Projects end to end; Bolts, CD, adapters, prove; escalate via Ops/the GM |
 | **Studio · Lead** | Think/plan owner (spine B) | B | Stories; vaults, non-code gates, Studio→Delivery handoff |
 | **Librarian** | Knowledge routing | B→A | Signals, X research, CVE scans; pins, knowledge base register, refuse mass-import chats as concepts |
@@ -25,9 +25,9 @@ Peer model. Stop-the-line is real. Ownership through named exit states.
 | **BSA-like** | AC / DoD / acceptance shaping | On demand when handoff lacks AC |
 | **RTE** | Release gate | **Independent gate**; may merge on trunk per constitution/03 (checks green + the GM's independent QAS APPROVE + RTE PASS at exact head; the owner concur on constitution/, High, and O2) |
 
-## Drop always-on 11 bots
+## No always-on roster
 
-Wave 0 roster = standing seats above + specialists when the Bolt needs them. Do not keep idle agent seats warm “for ceremony.”
+The roster is the standing seats above plus specialists when the Bolt needs them. Do not keep idle agent seats warm “for ceremony.”
 
 ## Ownership language
 
@@ -37,4 +37,4 @@ Everyone **owns** work through exit states, e.g.:
 
 Canonical merged states live in `05-evidence-and-traceability.md`. Record who executed the merge. RTE-executed merges use **MERGED (delegated the GM/RTE)**, not HITL MERGED.
 
-Agent ≠ human. Agents may be **delegates**; humans remain **assignees on GitHub Issues** (the issue tracker archive is read-only; cite by link). See `05-evidence-and-traceability.md`. Lane owners: `07-roles-and-lanes.md`.
+Agent ≠ human. Agents may be **delegates**; humans remain **assignees on GitHub Issues**. Record decisions (ADRs) in `docs/decisions/`. If you migrate from another tracker, keep its history read-only and resolvable. See `05-evidence-and-traceability.md`. Lane owners: `07-roles-and-lanes.md`.
