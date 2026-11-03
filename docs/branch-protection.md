@@ -1,6 +1,6 @@
 # Branch protection for `main`
 
-Who may merge remains [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md): only the owner, the GM, or Release · RTE. Delivery and cloud agents never merge. The GitHub ruleset below does not encode that seat list. This file describes the recommended ruleset. A repository administrator applies it.
+Who may merge remains [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md): only the owner, the GM, or Release · RTE. Low goes to Release · RTE after RTE PASS, with the GM as backup. Med is the GM, Release · RTE, or the owner. High, O2 and constitution/ changes get RTE PASS, then the GM merges. The owner (HITL) may merge any change. Delivery and cloud agents never merge. The GitHub ruleset below does not encode that seat list. This file describes the recommended ruleset. A repository administrator applies it.
 
 ## Recommended ruleset on `main`
 

@@ -157,7 +157,7 @@ See [`constitution/05-evidence-and-traceability.md`](../constitution/05-evidence
 
 The implementer stops at Ready for QAS. Delivery and cloud agents never merge, never approve, and never post outside the assigned PR.
 
-SecEng reviews (scanner, not fixer). QAS is independent of the implementer. Release · RTE PASSes the exact head. Merge seats are the owner, the GM, or Release · RTE only.
+SecEng reviews (scanner, not fixer). QAS is independent of the implementer. Release · RTE PASSes the exact head. Merge seats are the owner, the GM, or Release · RTE only. Low goes to Release · RTE after RTE PASS, with the GM as backup. Med is the GM, Release · RTE, or the owner. High, O2 and constitution/ changes get RTE PASS, then the GM merges.
 
 For R1–R3, SecEng PASS, QAS APPROVE, and RTE PASS must land on the same exact head, in that order. A new commit voids those verdicts.
 

@@ -83,7 +83,7 @@ Merge authority is set by **risk tier and environment**, written here as a **TEM
 
 | Environment | Who may merge / promote | Gate |
 | --- | --- | --- |
-| **Dev or trunk** | Authorized agents (**the GM**, **Release · RTE**) | Required checks green + independent QAS APPROVE + SecEng PASS (or PASS-with-notes) on the exact head (Med, High, O2; Low may mark N/A with rationale); at Med/High/O2, RTE PASS on the exact head, or (for a merge by the GM or the owner only) a HOLD override from the GM or the owner recorded on the PR with its reason; an RTE merge always needs its own RTE PASS on the exact head at every tier including Low; the owner's recorded own-words concur for constitution/, High, and O2 |
+| **Dev or trunk** | Authorized agents (**the GM**, **Release · RTE**) | Required checks green + independent QAS APPROVE + SecEng PASS (or PASS-with-notes) on the exact head (Med, High, O2; Low may mark N/A with rationale); at Med/High/O2, RTE PASS on the exact head, or (for a merge by the GM or the owner only) a HOLD override from the GM or the owner recorded on the PR with its reason; Low goes to Release · RTE after RTE PASS, with the GM as backup; Med is the GM, Release · RTE, or the owner; High, O2 and constitution/ changes get RTE PASS, then the GM merges; the owner (HITL) may merge any change |
 | **Staging** | Automatic promotion | Tests pass |
 | **Prod** | Human gate: the owner's recorded own-words concur | Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. |
 
@@ -111,7 +111,7 @@ the owner may merge any change at any tier and environment.
 
 ### RTE placement
 
-Release · RTE is **required** at Med, High, and O2. At Low it is an async checklist (not blocking if the path is annotated). RTE PASS runs **in parallel** with the owner's concur where concur is required. An RTE merge needs RTE PASS plus the required concur.
+Release · RTE is **required** at Med, High, and O2. At Low it is an async checklist (not blocking if the path is annotated). RTE PASS runs **in parallel** with the owner's concur where concur is required. An RTE merge needs RTE PASS. High, O2 and constitution/ changes get RTE PASS, then the GM merges.
 
 ### HOLD override
 
@@ -119,7 +119,7 @@ Only **the GM** or **the owner** may override an RTE HOLD. The override must be 
 
 ### Human approval at High/O2
 
-At High/O2, the owner's recorded own-words concur is **a** required human approval. An agent merge (by the GM or Release · RTE) never counts as a human approval. Two distinct humans is recommended guidance, not a gate.
+At High/O2, the owner's recorded own-words concur is **a** required human approval. High, O2 and constitution/ changes get RTE PASS, then the GM merges. An agent merge never counts as a human approval. Two distinct humans is recommended guidance, not a gate.
 
 ### Clarifications
 
