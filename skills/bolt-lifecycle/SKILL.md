@@ -25,7 +25,7 @@ See the cited section; this skill grants no authority.
 
 A bolt is a time-boxed delivery unit that exits on evidence, not a date. Use this skill to run one bolt. Use [`orchestration-patterns`](../orchestration-patterns/SKILL.md) when the work spans several bolts or parallel sessions.
 
-Cadence terms (Bolt, Unit of Work, human validate) follow the [SAFe](https://scaledagileframework.com/) ownership spine and the [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook). Gates themselves are in the cited sections.
+Cadence terms (Bolt, Unit of Work, human validate) follow the [SAFe](https://framework.scaledagile.com/) ownership spine and the [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook). Gates themselves are in the cited sections.
 
 ## Paths (reading order only)
 

@@ -12,8 +12,8 @@ Each skill is institutional knowledge for one job. Adapters map this directory i
 
 Authoring follows the public skill and rules conventions:
 
-- [Claude Code skills](https://docs.claude.com/en/docs/claude-code/skills)
-- [Cursor rules](https://docs.cursor.com/context/rules)
+- [Claude Code skills](https://code.claude.com/docs/en/skills)
+- [Cursor rules](https://cursor.com/docs/rules)
 - [AGENTS.md](https://agents.md/)
 - [The AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook)
 
@@ -53,18 +53,18 @@ Every skill also states **Source** (`port` / `generalize` / `new`) and **Used by
 Allowed public URLs (where they help):
 
 - https://adr.github.io/madr/
-- https://scaledagileframework.com/
+- https://framework.scaledagile.com/
 - https://agents.md/
 - https://claude.com/resources/articles/the-ai-native-sdlc-playbook
-- https://docs.claude.com/en/docs/claude-code/skills
-- https://docs.cursor.com/context/rules
+- https://code.claude.com/docs/en/skills
+- https://cursor.com/docs/rules
 
 ## How adapters load skills
 
 | Runtime | How `skills/` is loaded |
 | --- | --- |
-| Claude Code | Map each `skills/<slug>/` to the runtime skills directory (typically `.claude/skills/<slug>/SKILL.md`). See the [Claude Code skills](https://docs.claude.com/en/docs/claude-code/skills) docs and [`adapters/claude-code/README.md`](../adapters/claude-code/README.md). |
-| Cursor | Map selected skills into Cursor rules or the runtime skills directory. See [Cursor rules](https://docs.cursor.com/context/rules) and [`adapters/cursor/README.md`](../adapters/cursor/README.md). |
+| Claude Code | Map each `skills/<slug>/` to the runtime skills directory (typically `.claude/skills/<slug>/SKILL.md`). See the [Claude Code skills](https://code.claude.com/docs/en/skills) docs and [`adapters/claude-code/README.md`](../adapters/claude-code/README.md). |
+| Cursor | Map selected skills into Cursor rules or the runtime skills directory. See [Cursor rules](https://cursor.com/docs/rules) and [`adapters/cursor/README.md`](../adapters/cursor/README.md). |
 | Runtime without auto-load | Does **not** auto-load this repo's `skills/` folder. **Setup:** import each skill as its own skill on the runtime — one folder per skill, containing a `SKILL.md` with `name` and `description` frontmatter. Copy or link each `skills/<slug>/` folder. This directory stays the source of truth. |
 
 Trigger tests per skill (does the runtime load the right skill for a prompt) are **UNKNOWN** to automate per runtime. No hook files ship.
@@ -134,7 +134,7 @@ This check requires every `skills/<slug>/SKILL.md` to start with YAML frontmatte
 | Generic hooks | Not shipped. Add a protected-path or secrets-in-diff hook in your runtime if needed. |
 | Skill trigger tests | **UNKNOWN** how to automate per runtime. |
 
-Cadence language (Bolts, Units of Work, human validate) follows the [SAFe](https://scaledagileframework.com/) ownership spine plus the [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook). SAFe trademark ceremony is not required. Skills ported or generalized from the public upstream [bybren-llc/safe-agentic-workflow](https://github.com/bybren-llc/safe-agentic-workflow) (SAW) cite that repo in the Upstream Source column.
+Cadence language (Bolts, Units of Work, human validate) follows the [SAFe](https://framework.scaledagile.com/) ownership spine plus the [AI-native SDLC playbook](https://claude.com/resources/articles/the-ai-native-sdlc-playbook). SAFe trademark ceremony is not required. Skills ported or generalized from the public upstream [bybren-llc/safe-agentic-workflow](https://github.com/bybren-llc/safe-agentic-workflow) (SAW) cite that repo in the Upstream Source column.
 
 ## Authoring a new skill
 
