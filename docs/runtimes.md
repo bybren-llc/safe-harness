@@ -202,7 +202,7 @@ Use this section when a person runs Claude Code or Codex from a desktop machine 
 
 ### 3. Codex
 
-- Codex reads `AGENTS.md` directly ([AGENTS.md guide](https://developers.openai.com/codex/guides/agents-md)). See [adapters/codex](../adapters/codex/README.md).
+- Codex reads `AGENTS.md` directly ([AGENTS.md guide](https://learn.chatgpt.com/docs/agent-configuration/agents-md)). See [adapters/codex](../adapters/codex/README.md).
 - Interactive: run `codex` in the worktree.
 - Headless: `codex exec --sandbox workspace-write --json "$(cat .briefs/<issue>.md)"`. Capture stdout. Headless runs only edit files. The operator runs the local checks, commits, pushes, and opens the PR from the worktree, records `thread_id` as `evidence_id`, and copies the JSON output to `prove/v1.1-<runtime>/` as [Commit, push, open the PR, record evidence](#commit-push-open-the-pr-record-evidence) already says. Continue with `codex exec resume <thread_id> "<follow-up>"`. For scripted control, use the [Codex SDK](https://github.com/openai/codex/blob/main/sdk/typescript/README.md).
 - Don't use `codex mcp-server`; it has been removed. Use `codex exec` or the SDK instead.

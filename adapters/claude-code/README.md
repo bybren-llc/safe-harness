@@ -55,7 +55,7 @@ Document hook intents here; implement them in your runtime.
 
 Canonical skills live in [`../../skills/`](../../skills/README.md) as `skills/<slug>/SKILL.md`.
 
-This adapter maps each slug into the Claude Code skills directory (typically `.claude/skills/<slug>/SKILL.md`) by copy or symlink at install time. Do not rewrite skill bodies in the adapter tree. See the [Claude Code skills](https://docs.claude.com/en/docs/claude-code/skills) docs.
+This adapter maps each slug into the Claude Code skills directory (typically `.claude/skills/<slug>/SKILL.md`) by copy or symlink at install time. Do not rewrite skill bodies in the adapter tree. See the [Claude Code skills](https://code.claude.com/docs/en/skills) docs.
 
 Runtime-specific role→model examples stay in this adapter. Skills themselves use tier names only.
 

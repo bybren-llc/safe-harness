@@ -44,7 +44,7 @@ Maps constitution → Cursor rules + Projects / Cloud Agents.
 
 Canonical skills live in [`../../skills/`](../../skills/README.md) as `skills/<slug>/SKILL.md`.
 
-This adapter maps selected skills into Cursor rules (`.cursor/rules`) or the runtime skills directory the project uses. Prefer pointing at the canonical file over forking the text. See [Cursor rules](https://docs.cursor.com/context/rules).
+This adapter maps selected skills into Cursor rules (`.cursor/rules`) or the runtime skills directory the project uses. Prefer pointing at the canonical file over forking the text. See [Cursor rules](https://cursor.com/docs/rules).
 
 Runtime-specific role→model examples stay in this adapter. Skills themselves use tier names only.
 
