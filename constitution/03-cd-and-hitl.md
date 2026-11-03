@@ -103,7 +103,7 @@ the owner may merge any change at any tier and environment.
 
 ### Who may execute a trunk merge
 
-**Release · RTE** executes Low-tier merges after RTE PASS, with **the GM** / lead ARCHitect as backup. Med: the GM, Release · RTE, or the owner. the owner (HITL) may merge any change. Every merge is a squash with the head SHA pinned and no trailers.
+**Release · RTE** executes Low-tier merges after RTE PASS, with **the GM** / lead ARCHitect as backup. Med: the GM, Release · RTE, or the owner. the owner (HITL) may merge any change. Every merge is a squash with the head SHA pinned and no Co-authored-by trailers.
 
 1. **the owner (HITL)** — any change
 2. **the GM** — authorized trunk agent: checks green + independent QAS APPROVE + SecEng PASS (or PASS-with-notes) on exact head (Med, High, O2; Low may mark N/A with rationale); at Med/High/O2, RTE PASS on the exact head, or a HOLD override from the GM or the owner recorded on the PR with its reason; the owner's recorded concur on `constitution/`, High, and O2
