@@ -7,7 +7,7 @@
 | **May collapse?** | No at Med+. At Low, an annotated, non-blocking async RTE checklist is allowed, with no per-PR verdict required. At Med, High and O2, RTE PASS or HOLD is mandatory. RTE stays non-collapsible at Med+. |
 | **Independence** | Not a substitute for QAS or SecEng; runs after both clear |
 | **Default model tier** | Heavy for release decisions; Light for release notes prep |
-| **Stop rules** | Never merges own authored change; High, O2 and constitution/ changes get RTE PASS, then the GM merges; never authors code changes; never treats its own merge as human approval |
+| **Stop rules** | Never merges own authored change; never merges constitution/, High, and O2 without the owner's recorded concur; never authors code changes; never treats its own merge as human approval |
 
 ## Gate mechanics
 
@@ -32,16 +32,16 @@ RTE owns release notes and tagging. A release that contains prod-risk tier chang
 On **trunk** (this harness is trunk-only), **Release · RTE MAY merge** once all of the following conditions are met:
 1. Required checks are green on the exact head
 2. the GM's independent QAS APPROVE is present at exact head
-3. SecEng PASS (or PASS-with-notes) is present at exact head (Med; Low may mark N/A with rationale)
+3. SecEng PASS (or PASS-with-notes) is present at exact head (Med, High, O2; Low may mark N/A with rationale)
 4. RTE's own RTE PASS is present at exact head
-5. High, O2 and constitution/ changes get RTE PASS, then the GM merges
+5. the owner's recorded own-words concur is present for `constitution/`, High, and O2 changes
 
 **Release · RTE NEVER merges:**
 - Its own authored change (RTE does not author changes)
-- High, O2 and constitution/ changes get RTE PASS, then the GM merges
+- `constitution/`, High, and O2 changes without the owner's recorded own-words concur at exact head
 - A change while an RTE HOLD stands (the GM or the owner override lets the GM or the owner merge, never RTE)
 
-An RTE merge always needs its own RTE PASS on the exact head (Low and Med). High, O2 and constitution/ changes get RTE PASS, then the GM merges. A HOLD override lets the GM or the owner merge, never RTE. A GM merge at Med/High/O2 needs RTE PASS on the exact head, or a HOLD override from the GM or the owner recorded on the PR with its reason. An RTE merge never counts as human approval. Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md).
+An RTE merge always needs its own RTE PASS on the exact head at every tier including Low, plus the required concur. A HOLD override lets the GM or the owner merge, never RTE. A GM merge at Med/High/O2 needs RTE PASS on the exact head, or a HOLD override from the GM or the owner recorded on the PR with its reason. An RTE merge never counts as human approval. Delivery and cloud agents never merge. See [`constitution/03-cd-and-hitl.md`](../constitution/03-cd-and-hitl.md).
 
 Prod-risk items only: migrations, money/pricing/refunds, auth/permissions, deploy CI/workflows, prod secrets, privacy-boundary (O2). Deploy freeze during demos. Prod-risk is the prod-promotion gate, not a separate trunk gate. This harness is trunk-only; trunk concur is `constitution/`, High, and O2.
 

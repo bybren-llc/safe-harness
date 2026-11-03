@@ -23,7 +23,7 @@ Peer model. Stop-the-line is real. Ownership through named exit states.
 | **QAS** | Independence gate before HITL | **Never collapse** |
 | **SecEng** | Security / privacy-boundary / secrets | **Never collapse**; negative authority (block, don’t build) |
 | **BSA-like** | AC / DoD / acceptance shaping | On demand when handoff lacks AC |
-| **RTE** | Release gate | **Independent gate**; may merge on trunk per constitution/03 (checks green + the GM's independent QAS APPROVE + RTE PASS at exact head). High, O2 and constitution/ changes get RTE PASS, then the GM merges |
+| **RTE** | Release gate | **Independent gate**; may merge on trunk per constitution/03 (checks green + the GM's independent QAS APPROVE + RTE PASS at exact head; the owner concur on constitution/, High, and O2) |
 
 ## No always-on roster
 

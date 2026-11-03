@@ -30,7 +30,7 @@ The repository is the **sole source of truth** for intent, spec, plan, requireme
 - `constitution/` (agent-authored constitution changes need human review)
 - `trace/` (agent-authored trace map needs human review)
 
-Agents may open PRs touching these files but must not merge them. High, O2 and constitution/ changes get RTE PASS, then the GM merges. the owner (HITL) may merge any change. Use the `needs-owner-concur` label on PRs awaiting the owner's review.
+Agents may open PRs touching these files but must not merge them, except the GM or Release · RTE may merge `constitution/` changes only under the conditions in `constitution/03-cd-and-hitl.md`, including the owner's recorded own-words concurrence at exact head. Use the `needs-owner-concur` label on PRs awaiting the owner's review.
 
 **Distinction:** Humans own design (accept/reject intent and spec content). Agents own execution (author requirements, trace, constitution changes, code, tests), but human review is required before merge. CODEOWNERS routes the review request. The merge-seat policy (`constitution/03-cd-and-hitl.md`) enforces the review; branch protection only requires a pull request and the named status checks, with 0 approvals (see `docs/branch-protection.md`).
 
@@ -168,7 +168,7 @@ Use consistent labels across runtimes. Human approval is distinct from merge exe
 3. Ready for HITL  
 4. **MERGED (HITL only)** — the owner executed the merge (human approval + execution)
 5. **MERGED (HITL-delegated)** — Low tier only; delegated HITL (D1)
-6. **MERGED (delegated the GM/RTE)** — the GM or Release · RTE executed a trunk merge under `constitution/03`. Record `merged_by` (the GM | Release · RTE), exact-head SHA, independent QAS APPROVE (the GM's independent QAS APPROVE when RTE executed), `SecEng: <review-id> PASS or PASS-with-notes at <exact head sha>`, RTE PASS when RTE executed. High, O2 and constitution/ changes get RTE PASS, then the GM merges. This is not a HITL merge.
+6. **MERGED (delegated the GM/RTE)** — the GM or Release · RTE executed a trunk merge under `constitution/03`. Record `merged_by` (the GM | Release · RTE), exact-head SHA, independent QAS APPROVE (the GM's independent QAS APPROVE when RTE executed), `SecEng: <review-id> PASS or PASS-with-notes at <exact head sha>`, RTE PASS when RTE executed, and the owner's recorded concur on constitution/, High, and O2 where required. This is not a HITL merge.
 
 ### D1: Delegated HITL (Low tier only)
 
