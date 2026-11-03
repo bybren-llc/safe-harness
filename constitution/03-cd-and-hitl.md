@@ -35,7 +35,7 @@ No Gitflow. Trunk-based development with feature flags for incomplete work.
 
 | Tier | Behavior | Human requirement |
 | --- | --- | --- |
-| **Low** | Auto when green (tests + evidence types met) | Agent may flow; human assignee still named |
+| **Low** | Release · RTE merges after RTE PASS; no auto-merge (tests + evidence types met) | human assignee still named |
 | **Med** | One human decision pack | Approve / change-request on that unit only |
 | **High** | Recommended: two distinct humans | Guidance, not a gate. Many projects do not need it. the owner's recorded own-words concur remains required. Agent ≠ human |
 
@@ -103,11 +103,11 @@ the owner may merge any change at any tier and environment.
 
 ### Who may execute a trunk merge
 
-**Release · RTE** executes Low-tier merges after RTE PASS, with **the GM** / lead ARCHitect as backup. High, O2 and `constitution/` stay with **the GM** after RTE PASS. Every merge is a squash with the head SHA pinned and no trailers.
+**Release · RTE** executes Low-tier merges after RTE PASS, with **the GM** / lead ARCHitect as backup. Med: the GM, Release · RTE, or the owner. High, O2 and `constitution/` stay with **the GM** after RTE PASS. the owner (HITL) may merge any change. Every merge is a squash with the head SHA pinned and no trailers.
 
 1. **the owner (HITL)** — any change
 2. **the GM** — authorized trunk agent: checks green + independent QAS APPROVE + SecEng PASS (or PASS-with-notes) on exact head (Med, High, O2; Low may mark N/A with rationale); at Med/High/O2, RTE PASS on the exact head, or a HOLD override from the GM or the owner recorded on the PR with its reason; the owner's recorded concur on `constitution/`, High, and O2
-3. **Release · RTE** — authorized trunk agent: checks green + the GM's independent QAS APPROVE + SecEng PASS (or PASS-with-notes) + its own RTE PASS on the exact head (every tier, including Low; SecEng Med, High, O2; Low may mark N/A with rationale); the owner's recorded concur on `constitution/`, High, and O2; never its own authored change; never over a standing HOLD
+3. **Release · RTE** — authorized trunk agent: checks green + the GM's independent QAS APPROVE + SecEng PASS (or PASS-with-notes) + its own RTE PASS on the exact head (Low and Med; SecEng Med, High, O2; Low may mark N/A with rationale); High, O2 and constitution/ changes get RTE PASS, then the GM merges; never its own authored change; never over a standing HOLD
 
 ### RTE placement
 

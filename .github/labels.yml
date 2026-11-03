@@ -50,7 +50,7 @@ labels:
   # Risk tiers
   - name: "tier:low"
     color: "c2e0c6"
-    description: "Risk tier: Low (auto-merge when green)"
+    description: "Low tier: Release · RTE merges after RTE PASS; no auto-merge"
   
   - name: "tier:medium"
     color: "f9d0c4"
