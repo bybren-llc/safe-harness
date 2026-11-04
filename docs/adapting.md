@@ -33,9 +33,10 @@ Make the template yours with this checklist. Do the steps in order.
    See
    [`constitution/05-evidence-and-traceability.md`](../constitution/05-evidence-and-traceability.md).
 3. **Point CODEOWNERS at your owner.** Edit `.github/CODEOWNERS` and replace
-   `<your-github-login>` with your actual GitHub login. CODEOWNERS names who
-   owns the files. It routes review requests; it does not enforce them on its
-   own.
+   `<your-github-login>` with your actual GitHub login. CODEOWNERS routes
+   review requests to your owner (review routing, not ownership; see
+   `constitution/05-evidence-and-traceability.md`). It does not enforce
+   reviews on its own.
 4. **Record your own delegation, if you delegate.** If you delegate Low-tier
    HITL merges, record your own `hitl_delegate` under your own owner concur, as
    [D1 in
