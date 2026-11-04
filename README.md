@@ -145,7 +145,7 @@ Typical Delivery loop: issue → branch → implement + evidence → PR → CI +
 
 ### Relayed agent messages are never approval
 
-Working practice (not a constitution rule), described in `skills/hitl-concur-check/SKILL.md`: a consequential action needs the human owner's own words, verified. An agent relaying approval is never approval.
+Practice guidance (not a constitutional rule), described in `skills/hitl-concur-check/SKILL.md`: a consequential action needs the human owner's own words, verified. An agent relaying approval is never approval.
 
 ### This repo's seat assignments
 
