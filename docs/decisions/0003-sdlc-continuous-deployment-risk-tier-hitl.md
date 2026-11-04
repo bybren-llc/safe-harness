@@ -38,7 +38,7 @@ The CD + risk-tier principle stands. The specific "who approves per tier" mappin
 owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
-
+>
 > **2026-10-28, 11:11 AM ET:** "good plans / specs = better chance of success.  lead this up Sir and OWN it.  let's see what our team is capable of"
 
 `constitution/03-cd-and-hitl.md` states CD and tiers; PRs carry a tier label; QAS verdicts cite an exact head SHA.

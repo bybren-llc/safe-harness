@@ -36,7 +36,7 @@ Decision text: M1 multi-runtime template ships (Wave 0: Claude Code + Cursor ada
 owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
-
+>
 > **2026-10-28, 11:11 AM ET:** "good plans / specs = better chance of success.  lead this up Sir and OWN it.  let's see what our team is capable of"
 
 Every Bolt retro and decision pack reports against M1–M6; `spec.md` keeps an M1–M6 pointer; a reviewer can find a measurement row per metric in `prove/`.
