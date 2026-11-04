@@ -38,7 +38,7 @@ the owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:11 AM ET:** "good plans / specs = better chance of success.  lead this up Sir and OWN it.  let's see what our team is capable of"
 
-The quote is recorded in this ADR; Wave 0 execute followed (PR `740eb2a` [SAF-2] landed the Wave 0 pack).
+The quote is recorded in this ADR; Wave 0 execute followed (commit `740eb2a` [SAF-2] landed the Wave 0 pack).
 
 ## More Information
 
