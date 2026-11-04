@@ -180,13 +180,12 @@ else
   fi
 
   # Add CLAUDE.md if it exists (runtime loader that imports AGENTS.md)
-  if [ -f "$ROOT/CLAUDE.md" ]; then
-    if [ -L "$ROOT/CLAUDE.md" ]; then
-      echo "  ❌ Symlink encountered (rejected): CLAUDE.md"
-      ERRORS=$((ERRORS + 1))
-    else
-      SCAN_PATHS+=("$ROOT/CLAUDE.md")
-    fi
+  # Test -L first: -f follows links, so a dangling or directory symlink would skip silently
+  if [ -L "$ROOT/CLAUDE.md" ]; then
+    echo "  ❌ Symlink encountered (rejected): CLAUDE.md"
+    ERRORS=$((ERRORS + 1))
+  elif [ -f "$ROOT/CLAUDE.md" ]; then
+    SCAN_PATHS+=("$ROOT/CLAUDE.md")
   fi
 fi
 

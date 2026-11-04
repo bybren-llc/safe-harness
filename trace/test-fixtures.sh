@@ -565,6 +565,15 @@ else
   FAIL_COUNT=$((FAIL_COUNT + 1))
 fi
 
+echo -n "  template-ready/fail-claude-md-symlink (dangling CLAUDE.md symlink) ... "
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-claude-md-symlink" > /dev/null 2>&1; then
+  echo "✓ FAIL (as expected)"
+  PASS_COUNT=$((PASS_COUNT + 1))
+else
+  echo "❌ PASS (expected to fail)"
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+fi
+
 echo -n "  template-ready/fail-dash-term (denylist term starting with -) ... "
 if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-dash-term" > /dev/null 2>&1; then
   echo "✓ FAIL (as expected)"
