@@ -47,7 +47,7 @@ Escalation path : Delivery · Lead escalates "via Ops · CoS or the GM — not t
 Posted on the PR (or linked GitHub Issue) only once QAS APPROVE and SecEng clearance (or a Low-tier N/A with rationale) are both on the exact head. **The RTE check fires immediately on packet arrival.**
 
 - PR link + **head SHA** (exact-head — "Evidence and CI must refer to the exact commit/PR head under review", `constitution/03-cd-and-hitl.md`)
-- GitHub Issue `#N` (source of truth; `constitution/05-evidence-and-traceability.md`)
+- GitHub Issue `#N` (work tracking for the item; not approval or concur evidence; `constitution/05-evidence-and-traceability.md`)
 - Risk tier (Low / Med / High) + O2 checklist
 - Gate checklist (§4) with a link per row
 - Decision pack link (`templates/delivery-bolt-brief.md` → "Decision pack (constitution/03 minimum)")
@@ -155,7 +155,7 @@ RTE placement (`constitution/03-cd-and-hitl.md`) requires the RTE check at Med, 
 
 The morning roll is Ops · CoS reading the **live queue**, not a schedule.
 
-The GitHub repository (Issues and PRs) is the source of truth (`constitution/05-evidence-and-traceability.md`). the issue tracker is optional archive; it is not the record.
+The GitHub repository (Issues and PRs) is the source of truth (`constitution/05-evidence-and-traceability.md`). Issues track work items; they are not approval or concur evidence, which stays in the recorded reviews and concur records. The issue tracker is optional archive; it is not the record.
 
 | Queue | Shows | Source of truth |
 | --- | --- | --- |
