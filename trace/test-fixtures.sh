@@ -565,8 +565,14 @@ else
   FAIL_COUNT=$((FAIL_COUNT + 1))
 fi
 
+# The dangling CLAUDE.md symlink is built at test time, never tracked:
+# tracked unreadable paths abort scripts/check-denylist.py.
 echo -n "  template-ready/fail-claude-md-symlink (dangling CLAUDE.md symlink) ... "
-if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$FIXTURES_DIR/template-ready/fail-claude-md-symlink" > /dev/null 2>&1; then
+TEMP_DIR=$(mktemp -d /tmp/trace-check-test-XXXXXX)
+TEMP_DIRS+=("$TEMP_DIR")
+cp -R "$FIXTURES_DIR/template-ready/fail-claude-md-symlink/." "$TEMP_DIR/"
+ln -s does-not-exist "$TEMP_DIR/CLAUDE.md"
+if ! bash "$REPO_ROOT/trace/check-template-ready.sh" "$TEMP_DIR" > /dev/null 2>&1; then
   echo "✓ FAIL (as expected)"
   PASS_COUNT=$((PASS_COUNT + 1))
 else
