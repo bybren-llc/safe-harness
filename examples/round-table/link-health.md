@@ -61,13 +61,15 @@ The Wave 0 L1 find list in `wave0-checks.yml` is the in-repo coverage for relati
 | `templates/` | yes |
 | `prove/` | yes |
 | `trace/` | yes (#24) |
-| `requirements/`, `arch/`, `.github/`, `docs/` | no (still proposed under B1) |
+| `docs/` | yes |
+| `examples/` | yes |
+| `requirements/`, `arch/`, `.github/` | no (still proposed under B1) |
 
 **PROPOSED extensions** (to land as their own Low/High-tier issues; workflow edits are O2 `deploy-ci` and default to High):
 
 | Check | Rule | Fails when |
 | --- | --- | --- |
-| B1 coverage | Extend the L1 scan to every tracked `*.md`. `trace/` is live in Wave 0 (#24). Remaining: `requirements/`, `arch/`, `.github/`, any new `docs/` | A relative target does not exist |
+| B1 coverage | Extend the L1 scan to every tracked `*.md`. `trace/` is live in Wave 0 (#24). `docs/` and `examples/` are live too (`wave0-checks.yml:84-85`). Remaining: `requirements/`, `arch/`, `.github/` | A relative target does not exist |
 | B2 anchors | For L2 links into in-repo markdown, the fragment must match a heading slug (GitHub slug rules) or an explicit HTML anchor in the target. Non-REQ fragment links into `spec.md` and `intent.md` stay in B2 and can block a PR. REQ `source:` anchors on those files are excluded from B2 | Fragment not found |
 | B3 REQ sources | Each REQ `source:` (`spec.md#…` / `intent.md#…`) must resolve through both checks. The B3 trace-check follow-up is authoritative for blocking; the weekly scan is advisory only. Not B2 | Anchor missing |
 | B4 REQ references | Every `REQ-[A-Z]{3}-[0-9]{3}` mentioned in tracked files exists in `trace/trace-map.yaml` or `requirements/REQ-*.yaml`, in any state | Unknown REQ ID |

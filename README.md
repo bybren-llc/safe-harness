@@ -227,6 +227,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | [`intent.md`](intent.md) / [`intent/`](intent/) / [`spec.md`](spec.md) | Human-owned design. Root `intent.md` is canonical; `intent/` is optional longer material. |
 | [`.github/CODEOWNERS`](.github/CODEOWNERS) | Review gates (`intent.md`, `intent/`, `spec.md`, `constitution/`, `requirements/`, `trace/`, `arch/`, `AGENTS.md`, `adapters/**/AGENTS.md`, `skills/`, workflows). |
 | [`.github/workflows/`](.github/workflows/) | CI (see below). |
+| [`examples/round-table/`](examples/round-table/README.md) | Instance operating notes and config for one Round Table instance (examples only; not filled templates). |
 
 CODEOWNERS coverage (review gate, not ownership): `intent.md`, `intent/`, `spec.md`, `constitution/`, `requirements/`, `trace/`, `arch/`, `AGENTS.md`, `adapters/**/AGENTS.md`, `skills/`, `.github/CODEOWNERS`, and `.github/workflows/`.
 
@@ -234,13 +235,13 @@ CODEOWNERS coverage (review gate, not ownership): `intent.md`, `intent/`, `spec.
 
 | Workflow | Job | Blocks merge? |
 | --- | --- | --- |
-| [`wave0-checks.yml`](.github/workflows/wave0-checks.yml) | Structure & Docs Validation (required paths, relative links including `trace/`, fence parity) | **Yes** |
+| [`wave0-checks.yml`](.github/workflows/wave0-checks.yml) | Structure & Docs Validation (required paths; relative links in markdown at the repo root and under `constitution/`, `roles/`, `adapters/`, `templates/`, `prove/`, `trace/`, `docs/`, and `examples/`; fence parity) | **Yes** |
 | [`wave0-checks.yml`](.github/workflows/wave0-checks.yml) | Skills frontmatter & link scan | **Warn-only** |
 | [`trace-check.yml`](.github/workflows/trace-check.yml) | Requirements Trace Validation | **Warn-only** for validation findings until `spec.md` has REQ IDs **and** `trace/.blocking` exists. The yq preflight step still fails the required check if yq is missing. |
 | [`api-contract.yml`](.github/workflows/api-contract.yml) | API Contract Checks (oasdiff + optional Schemathesis) | **Warn-only** (skips when no OpenAPI spec) |
 | [`doc-drift.yml`](.github/workflows/doc-drift.yml) | Doc drift | **Warn-only** |
 
-Local checks before a PR: relative-link scan over markdown, required paths, `python3 skills/check-frontmatter.py`, `python3 scripts/check-denylist.py`. Flip notes: [`docs/ci/skills-checks.md`](docs/ci/skills-checks.md), [`docs/ci/api-contract.md`](docs/ci/api-contract.md), [`docs/ci/doc-drift.md`](docs/ci/doc-drift.md). Branch-protection intent: [`docs/branch-protection.md`](docs/branch-protection.md).
+Local checks before a PR: run the full list in [`AGENTS.md` "Local checks"](AGENTS.md#local-checks). Flip notes: [`docs/ci/skills-checks.md`](docs/ci/skills-checks.md), [`docs/ci/api-contract.md`](docs/ci/api-contract.md), [`docs/ci/doc-drift.md`](docs/ci/doc-drift.md). Branch-protection intent: [`docs/branch-protection.md`](docs/branch-protection.md).
 
 CodeRabbit is an optional review input. When it runs, its findings are triaged. It is not a required check.
 
