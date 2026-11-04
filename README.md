@@ -112,7 +112,7 @@ Other issue forms: [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) (`requir
 2. Branch `<issue#>-slug` off `main` (example: `42-add-auth-check`).
 3. Implement, test, and record portable evidence.
 4. Commit with trailers `Refs #N` and, when REQ IDs exist, `Req: REQ-<CMP>-NNN`. While `spec.md` has no REQ IDs, do not invent them.
-5. Open a PR from [`.github/pull_request_template.md`](.github/pull_request_template.md). Include a `Requirements:` line (`REQ-<CMP>-NNN` or `N/A` during bootstrap).
+5. Open a PR from [`.github/pull_request_template.md`](.github/pull_request_template.md). Replace the template's `Requirements:` placeholder: list the `REQ-<CMP>-NNN` IDs the change addresses, or, while `spec.md` has no REQ IDs, write a bare `Requirements: N/A` with the rationale on the next line.
 6. Wait for CI, independent review (QAS, and SecEng when required), and Release · RTE as the constitution requires.
 7. Merge only under [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) and [`roles/release-rte.md`](roles/release-rte.md).
 
