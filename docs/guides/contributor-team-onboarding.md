@@ -7,7 +7,7 @@ local clone. **safe-harness itself is the product being completed.** You are
 not adapting the template for a new adopter project. You are finishing this
 repository.
 
-The writing and correctness team (Team White) owns intent, technical writing,
+The owner and GM seats own intent, technical writing,
 and correctness. Outside teams do the hands-on implementation. Do not edit
 [`intent.md`](../../intent.md) or [`spec.md`](../../spec.md). Do not invent
 REQ IDs.
@@ -204,7 +204,7 @@ Read the linked files. Do not restate them in briefs or PRs.
 | Agents never merge or approve PRs | [`constitution/03-cd-and-hitl.md`](../../constitution/03-cd-and-hitl.md) (merge authority; Delivery and cloud agents never merge) |
 | Implementers freeze the branch after QAS | [`roles/implementer.md`](../../roles/implementer.md) (head freeze); also [`CONTRIBUTING.md`](../../CONTRIBUTING.md) |
 | Agents are scanners, not fixers, for security findings | [`constitution/07-roles-and-lanes.md`](../../constitution/07-roles-and-lanes.md) (Security findings) |
-| No external posts | [`constitution/07-roles-and-lanes.md`](../../constitution/07-roles-and-lanes.md) (file-level; [`#x-writes`](../../constitution/07-roles-and-lanes.md#x-writes) is X only) |
+| No public or external posts without the HITL owner's explicit OK; never post outside the assigned PR | [`AGENTS.md`](../../AGENTS.md) [Rules agents follow](../../AGENTS.md#rules-agents-follow) (External posts) and [Stop](../../AGENTS.md#stop) |
 | No `Co-authored-by` trailers | [`skills/github-conventions/SKILL.md`](../../skills/github-conventions/SKILL.md); [`roles/implementer.md`](../../roles/implementer.md) |
 
 Related stops (link, do not restate): personal-vault boundary
@@ -239,6 +239,7 @@ being completed. Do not treat this as an adopter fork.
    adapters/claude-code/AGENTS.md and CLAUDE.md.
 4. Implement only the brief. Run the local checks AGENTS.md lists before you
    open a PR. Freeze the head after QAS APPROVE. Never merge, never approve,
+   never make public or external posts without the HITL owner's explicit OK,
    never post outside the assigned PR, never add Co-authored-by trailers,
    never force-push or rewrite history. Security findings: scanner, not fixer.
 ```
