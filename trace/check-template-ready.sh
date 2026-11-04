@@ -8,7 +8,7 @@
 #   bash trace/check-template-ready.sh --full [ROOT]
 #   bash trace/check-template-ready.sh --template-ready=full
 #
-# Default (CI) scope: templates/, skills/, docs/, constitution/, roles/, README.md, AGENTS.md
+# Default (CI) scope: templates/, skills/, docs/, constitution/, roles/, README.md, AGENTS.md, CLAUDE.md
 # Full scope: entire repo except .git/
 #
 # Denylist config: .template-ready-denylist.local (untracked; generated in CI)
@@ -53,7 +53,7 @@ echo "Template-ready validation"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 echo "Root: $ROOT"
-echo "Mode: $([ "$FULL_MODE" = true ] && echo "full repo" || echo "CI scope (templates/, skills/, docs/, constitution/, roles/, README.md, AGENTS.md)")"
+echo "Mode: $([ "$FULL_MODE" = true ] && echo "full repo" || echo "CI scope (templates/, skills/, docs/, constitution/, roles/, README.md, AGENTS.md, CLAUDE.md)")"
 echo ""
 
 ERRORS=0
@@ -118,7 +118,7 @@ if [ "$FULL_MODE" = true ]; then
     ! -name ".template-ready-denylist.local" \
     -print0)
 else
-  # CI scope: templates/, skills/, docs/, constitution/, roles/, README.md, AGENTS.md
+  # CI scope: templates/, skills/, docs/, constitution/, roles/, README.md, AGENTS.md, CLAUDE.md
   # Exclude examples/round-table/ and .github/ instance config
   
   # Check that CI scan surface exists
@@ -131,8 +131,8 @@ else
     fi
   done
   
-  if [ "$SURFACE_EXISTS" = false ] && [ ! -f "$ROOT/README.md" ] && [ ! -f "$ROOT/AGENTS.md" ]; then
-    echo "❌ CI scan surface missing or empty (templates/, skills/, docs/, constitution/, roles/, README.md, AGENTS.md)"
+  if [ "$SURFACE_EXISTS" = false ] && [ ! -f "$ROOT/README.md" ] && [ ! -f "$ROOT/AGENTS.md" ] && [ ! -f "$ROOT/CLAUDE.md" ]; then
+    echo "❌ CI scan surface missing or empty (templates/, skills/, docs/, constitution/, roles/, README.md, AGENTS.md, CLAUDE.md)"
     exit 1
   fi
   
@@ -176,6 +176,16 @@ else
       ERRORS=$((ERRORS + 1))
     else
       SCAN_PATHS+=("$ROOT/AGENTS.md")
+    fi
+  fi
+
+  # Add CLAUDE.md if it exists (runtime loader that imports AGENTS.md)
+  if [ -f "$ROOT/CLAUDE.md" ]; then
+    if [ -L "$ROOT/CLAUDE.md" ]; then
+      echo "  ❌ Symlink encountered (rejected): CLAUDE.md"
+      ERRORS=$((ERRORS + 1))
+    else
+      SCAN_PATHS+=("$ROOT/CLAUDE.md")
     fi
   fi
 fi

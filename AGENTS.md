@@ -2,6 +2,8 @@
 
 This file is the agent entry point for **safe-harness**. Convention: [AGENTS.md](https://agents.md/). Human-facing context stays in [`README.md`](README.md) and [`CONTRIBUTING.md`](CONTRIBUTING.md). The constitution is the rule. This file points at it; it does not restate it.
 
+This file is the single agent entry source. Root [`CLAUDE.md`](CLAUDE.md) imports it (`@AGENTS.md`) for runtimes that read `CLAUDE.md` instead. `CLAUDE.md` holds runtime-specific notes only and must not restate this file.
+
 ## What this repo is
 
 safe-harness is a multi-runtime template for everyday, safe AI-assisted development. Humans set direction and keep the safety gates. Agents execute. Governance lives in [`constitution/`](constitution/). Seat cards live in [`roles/`](roles/).
