@@ -108,7 +108,7 @@ labels:
 
   - name: "exit:merged-rte"
     color: "0e8a16"
-    description: "Exit state: MERGED (delegated: the GM or Release · RTE) — the GM or Release · RTE executed under constitution/03"
+    description: "Exit state: MERGED (delegated the GM/RTE) — the GM or Release · RTE merged under constitution/03"
 
   # Gate labels: one per stage of a wave (R&D, plan, concur, execute, measure)
   - name: "gate:rnd"
