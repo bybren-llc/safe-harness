@@ -210,6 +210,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | [`AGENTS.md`](AGENTS.md) | Root agent entry point (rules by link; local checks). |
 | [`docs/adapting.md`](docs/adapting.md) | Adapting this template. |
 | [`docs/runtimes.md`](docs/runtimes.md) | How to launch Claude Code, Codex, and Cursor cloud agents from this repo. |
+| [`docs/guides/`](docs/guides/contributor-team-onboarding.md) | Onboarding for outside teams completing this repo. |
 | [`docs/prd/PRD-TEMPLATE.md`](docs/prd/PRD-TEMPLATE.md) | Optional PRD template. Longer product context; `spec.md` stays canonical for REQ IDs. |
 | [`docs/design/`](docs/design/) | Design docs, one per subsystem or topic. Template: [`docs/design/DESIGN-TEMPLATE.md`](docs/design/DESIGN-TEMPLATE.md). |
 | [`docs/decisions/`](docs/decisions/) | Architecture Decision Records (canonical home; numbered ADRs and [`log.md`](docs/decisions/log.md)). |
