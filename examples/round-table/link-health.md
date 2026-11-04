@@ -44,7 +44,7 @@ Files scanned: every tracked `*.md`, `*.yaml`, `*.yml`, and `*.csv` at `main` HE
 
 These need only the checkout, so they can block without flake risk.
 
-**Already live** in [`../.github/workflows/wave0-checks.yml`](../../.github/workflows/wave0-checks.yml) ("Check markdown relative links"): L1 for root `*.md` and `constitution/ roles/ adapters/ templates/ prove/ trace/`.
+**Already live** in [`../.github/workflows/wave0-checks.yml`](../../.github/workflows/wave0-checks.yml) ("Check markdown relative links"): L1 for root `*.md` and `constitution/ roles/ adapters/ templates/ prove/ trace/ docs/ examples/`.
 
 **Already live** in [`../.github/workflows/trace-check.yml`](../../.github/workflows/trace-check.yml) (warn-only until `trace/.blocking`): REQ → ARC component exists in `arch/components.yaml`.
 
