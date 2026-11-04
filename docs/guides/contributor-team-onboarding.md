@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD013 -->
 # Contributor-team onboarding
 
 This guide is for an outside Claude Code team that will pick up
@@ -143,6 +144,9 @@ candidate) and [#83](https://github.com/bybren-llc/safe-harness/issues/83)
 (R1 / R2 wording batches plus deferred nits). W0 and W0.5 already landed on
 `main` (runtime loader pointers, link-scan coverage, design surface, runtime
 launch runbook). Comment-only follow-ups on #85 are not separate issues.
+[#89](https://github.com/bybren-llc/safe-harness/issues/89) is the Librarian
+weekly scan log. Spec:
+[`examples/round-table/link-health.md`](../../examples/round-table/link-health.md).
 
 | Issue | What it is | Tier | Status | Pickup |
 | --- | --- | --- | --- | --- |
@@ -180,10 +184,10 @@ launch runbook). Comment-only follow-ups on #85 are not separate issues.
 | [#82](https://github.com/bybren-llc/safe-harness/issues/82) | Adopter docs for `owner_identity` and CODEOWNERS | untiered (#85 treats as Low R3) | v1.1 #85 child (Codex proof candidate) | blocked (no bolt brief) |
 | [#83](https://github.com/bybren-llc/safe-harness/issues/83) | Grouped #61 follow-ups (wording / records) | untiered (#85 splits Low batches vs owner-concur) | v1.1 #85 child (R1/R2 candidates + deferred nits) | blocked (no bolt brief) |
 | [#85](https://github.com/bybren-llc/safe-harness/issues/85) | v1.1 epic: prove Claude Code, Codex, Cursor | untiered | Plan. W0/W0.5 on `main`. R1–R3 not started. Follow-ups in comments | blocked (epic; no implementer brief) |
-| [#89](https://github.com/bybren-llc/safe-harness/issues/89) | Weekly link-health summary (long-lived) | untiered | Librarian scan log; stays open. Spec: [`examples/round-table/link-health.md`](../../examples/round-table/link-health.md) | blocked (not an implementer bolt) |
+| [#89](https://github.com/bybren-llc/safe-harness/issues/89) | Weekly link-health summary (long-lived) | untiered | Librarian scan log; stays open | blocked (not an implementer bolt) |
 | [#95](https://github.com/bybren-llc/safe-harness/pull/95) | RTE executes Low merges after RTE PASS | High | Open PR. Gates recorded; waiting on owner concur at exact head | NOT FOR PICKUP |
 | [#96](https://github.com/bybren-llc/safe-harness/issues/96) | Owner self-merge vs nobody-merges-own-change | High | Triage only. GM drafts; owner concur after #95 | NOT FOR PICKUP |
-| — | Queued Low follow-up: align async-checklist Low merge path | Low (as named) | Not filed. Delivery owns; after #95 | NOT FOR PICKUP |
+| unfiled | Queued Low async-checklist merge-path follow-up | Low | Not filed. Delivery owns; after #95 | NOT FOR PICKUP |
 
 No open issue in this snapshot is **ready**. When Delivery attaches a bolt
 brief and the row is not in the NOT FOR PICKUP list, the live GitHub issue
