@@ -330,6 +330,34 @@ echo ""
 echo "Testing that owner-check hard-fails even WITHOUT FORCE_BLOCKING..."
 echo ""
 
+# Run trace/check.sh on a temp repo. Count a pass only when it exits non-zero
+# AND prints every expected diagnostic, so a different failure can't mask a
+# broken guard. On a mismatch, print check.sh's output for diagnosis.
+# Usage: expect_check_failure <dir> <expected> [<expected>...]
+expect_check_failure() {
+  local dir="$1" output missing="" expected
+  shift
+  if output=$(bash "$REPO_ROOT/trace/check.sh" "$dir" 2>&1); then
+    echo "❌ PASS (expected hard-fail)"
+    FAIL_COUNT=$((FAIL_COUNT + 1))
+    return
+  fi
+  for expected in "$@"; do
+    if ! grep -Fq -- "$expected" <<<"$output"; then
+      missing="$expected"
+      break
+    fi
+  done
+  if [[ -z "$missing" ]]; then
+    echo "✓ FAIL (as expected, hard-fail even in warn-only: $1)"
+    PASS_COUNT=$((PASS_COUNT + 1))
+  else
+    echo "❌ FAIL (wrong reason; missing: $missing)"
+    printf '%s\n' "$output" | sed 's/^/      /'
+    FAIL_COUNT=$((FAIL_COUNT + 1))
+  fi
+}
+
 # Regression test 1: missing .github/harness.yml
 echo -n "  Regression: missing harness.yml (no FORCE_BLOCKING) ... "
 TEMP_DIR=$(mktemp -d /tmp/trace-check-test-XXXXXX)
@@ -344,13 +372,8 @@ components:
   - id: ARC-CON
     name: Constitution
 REOF
-if ! bash "$REPO_ROOT/trace/check.sh" "$TEMP_DIR" > /dev/null 2>&1; then
-  echo "✓ FAIL (as expected, hard-fail even in warn-only)"
-  PASS_COUNT=$((PASS_COUNT + 1))
-else
-  echo "❌ PASS (expected hard-fail)"
-  FAIL_COUNT=$((FAIL_COUNT + 1))
-fi
+expect_check_failure "$TEMP_DIR" "Owner-identity check FAILED" \
+  "harness.yml not found"
 
 # Regression test 2: invalid owner_identity (non-string)
 echo -n "  Regression: invalid owner_identity (no FORCE_BLOCKING) ... "
@@ -369,13 +392,8 @@ components:
   - id: ARC-CON
     name: Constitution
 REOF
-if ! bash "$REPO_ROOT/trace/check.sh" "$TEMP_DIR" > /dev/null 2>&1; then
-  echo "✓ FAIL (as expected, hard-fail even in warn-only)"
-  PASS_COUNT=$((PASS_COUNT + 1))
-else
-  echo "❌ PASS (expected hard-fail)"
-  FAIL_COUNT=$((FAIL_COUNT + 1))
-fi
+expect_check_failure "$TEMP_DIR" "Owner-identity check FAILED" \
+  "owner_identity must be a string"
 
 # Regression test 3: decided_by mismatch
 echo -n "  Regression: decided_by mismatch (no FORCE_BLOCKING) ... "
@@ -406,13 +424,8 @@ components:
   - id: ARC-CON
     name: Constitution
 REOF
-if ! bash "$REPO_ROOT/trace/check.sh" "$TEMP_DIR" > /dev/null 2>&1; then
-  echo "✓ FAIL (as expected, hard-fail even in warn-only)"
-  PASS_COUNT=$((PASS_COUNT + 1))
-else
-  echo "❌ PASS (expected hard-fail)"
-  FAIL_COUNT=$((FAIL_COUNT + 1))
-fi
+expect_check_failure "$TEMP_DIR" "Owner-identity check FAILED" \
+  "decided_by must be exactly: example-owner"
 
 # Regression test 4: multi-document trace-map
 echo -n "  Regression: multi-doc trace-map (no FORCE_BLOCKING) ... "
@@ -433,13 +446,7 @@ components:
   - id: ARC-CON
     name: Constitution
 REOF
-if ! bash "$REPO_ROOT/trace/check.sh" "$TEMP_DIR" > /dev/null 2>&1; then
-  echo "✓ FAIL (as expected, hard-fail even in warn-only)"
-  PASS_COUNT=$((PASS_COUNT + 1))
-else
-  echo "❌ PASS (expected hard-fail)"
-  FAIL_COUNT=$((FAIL_COUNT + 1))
-fi
+expect_check_failure "$TEMP_DIR" "Multi-document trace-map FAILED"
 
 # Regression test 5: invalid YAML syntax
 echo -n "  Regression: invalid YAML (no FORCE_BLOCKING) ... "
@@ -459,13 +466,7 @@ components:
   - id: ARC-CON
     name: Constitution
 REOF
-if ! bash "$REPO_ROOT/trace/check.sh" "$TEMP_DIR" > /dev/null 2>&1; then
-  echo "✓ FAIL (as expected, hard-fail even in warn-only)"
-  PASS_COUNT=$((PASS_COUNT + 1))
-else
-  echo "❌ PASS (expected hard-fail)"
-  FAIL_COUNT=$((FAIL_COUNT + 1))
-fi
+expect_check_failure "$TEMP_DIR" "Invalid YAML FAILED"
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
