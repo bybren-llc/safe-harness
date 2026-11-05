@@ -17,18 +17,44 @@ Use GitHub's **'Use this template'** button to create a new repository. This giv
 
 ### 1. Owner identity and CODEOWNERS
 
-Copy the template configuration files to your instance:
+Make the template yours with this checklist. Do the steps in order.
 
-```bash
-cp templates/harness.yml .github/harness.yml
-cp templates/CODEOWNERS.example .github/CODEOWNERS
-```
+1. **Copy the configuration files** to your instance:
 
-Edit `.github/harness.yml` and set `owner_identity` to your GitHub login. This value is used to validate `decided_by` fields when dropping requirements sourced from `intent.md`.
+   ```bash
+   cp templates/harness.yml .github/harness.yml
+   cp templates/CODEOWNERS.example .github/CODEOWNERS
+   ```
 
-Edit `.github/CODEOWNERS` and replace `<your-github-login>` with your actual GitHub login. CODEOWNERS names who owns the files. Review gate enforcement depends on branch protection settings (see `docs/branch-protection.md`), which you configure in your GitHub repository.
+2. **Set your owner identity.** Edit `.github/harness.yml` and set
+   `owner_identity` to your GitHub login. This value is used to validate
+   `decided_by` fields when dropping requirements sourced from `intent.md`. It
+   must match the `decided_by` value when dropping intent-sourced requirements.
+   See
+   [`constitution/05-evidence-and-traceability.md`](../constitution/05-evidence-and-traceability.md).
+3. **Point CODEOWNERS at your owner.** Edit `.github/CODEOWNERS` and replace
+   `<your-github-login>` with your actual GitHub login. CODEOWNERS routes
+   review requests to your owner (review routing, not ownership; see
+   `constitution/05-evidence-and-traceability.md`). It does not enforce
+   reviews on its own.
+4. **Record your own delegation, if you delegate.** If you delegate Low-tier
+   HITL merges, record your own `hitl_delegate` under your own owner concur, as
+   [D1 in
+   `constitution/05-evidence-and-traceability.md`](../constitution/05-evidence-and-traceability.md#d1-delegated-hitl-low-tier-only)
+   describes. Never inherit this template's delegation records; they do not
+   apply to your repository.
+5. **Set review rules.** Configure branch protection or rulesets in your GitHub
+   repository as [`docs/branch-protection.md`](branch-protection.md) describes.
+   Keep its settings as written there, including required approvals. Change them
+   only after your owner records that decision.
+6. **Verify.** Run the trace checks after editing:
 
-**Important:** `owner_identity` in `.github/harness.yml` must match the `decided_by` value when dropping intent-sourced requirements. See `constitution/05-evidence-and-traceability.md`.
+   ```bash
+   bash trace/test-fixtures.sh
+   bash trace/check.sh
+   ```
+
+   The fixtures use the placeholder `example-owner` and need no change.
 
 ### 2. Roles roster
 

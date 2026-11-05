@@ -31,6 +31,11 @@ Wave 1 transitions safe-harness to **repository-only source of truth**. GitHub b
 
 **Note:** the owner's concurrence is separate and PENDING (see ## Ask section). the GM is coordinator, not a seat. the GM's 9:49 AM "all five concurred" messages are summaries; the seat rows below are the source. the owner's 9:48 "make the change now if we all concur" is not the owner's concur. See verbatim quoted conditions in Appendix A.
 
+> **Annotation (2026-11-04, #83 Batch C):** several sentences in the note above
+> begin in lowercase ("the GM is coordinator…", "the GM's 9:49 AM…", "the
+> owner's…"), a genericize-pass leftover. Read each as starting with a capital.
+> The note is kept as recorded.
+
 | Seat | Concur Status | Citation | Conditions Summary | Satisfied in PR |
 | --- | --- | --- | --- | --- |
 | **Studio** | CONCUR with conditions | Studio → the GM SendToAgent, 2026-10-29 09:48 ET, call id toolu_017ZNtEo19N3873edkiGrWPG | 5 conditions (see Appendix A) | (1) intent.md:3-5, CONTRIBUTING.md:15-18<br>(2) .github/CODEOWNERS:7-9<br>(3) trace/schema.md:12-16, requirements/REQ-TEMPLATE.yaml:31-34<br>(4) prove/wave-1/migration-plan.md:1-154<br>(5) arch/components.yaml:1-12 |
