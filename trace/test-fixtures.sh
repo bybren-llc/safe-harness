@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 ByBren, LLC
 # Trace fixture test runner
 # Exercises pass/ and fail/ fixtures to validate trace-check behavior
 
