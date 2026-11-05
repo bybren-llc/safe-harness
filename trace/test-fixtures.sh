@@ -30,6 +30,8 @@ HARNESS_CONFIG_BACKED_UP=0
 # Track temp directories created by mktemp
 TEMP_DIRS=()
 
+# EXIT handler. Restores the backups this run made, removes the temp config
+# and tracked temp dirs, then releases the lock. Safe to run at any point.
 cleanup() {
   # Keep going on errors so the lock is always released.
   set +e
