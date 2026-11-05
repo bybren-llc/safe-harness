@@ -19,7 +19,7 @@ Librarian watches the owner's learning signals and keeps knowledge base register
 - knowledge base maintenance (register-first, latest-wins)
 - Link-rot detection and reporting
 - the owner's learning signals monitoring
-- Vault citations and archive frozen maps
+- Cite vaults; archive frozen maps
 - Knowledge health (no invented links, register-first principle)
 
 ## Does not own

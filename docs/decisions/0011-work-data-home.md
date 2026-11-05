@@ -36,7 +36,7 @@ Workstations mount it, with local working copies only when the network is down. 
 the owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
-
+>
 > **2026-10-28, 11:11 AM ET:** "good plans / specs = better chance of success.  lead this up Sir and OWN it.  let's see what our team is capable of"
 
 The repo contains no private storage paths; Studio briefs cite storage paths only as pinned references in private channels; SecEng and link-health exclude private targets.

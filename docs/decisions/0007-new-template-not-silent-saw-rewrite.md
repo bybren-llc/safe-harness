@@ -35,7 +35,7 @@ Decision text: Build a new template harness. SAW stays reference, pattern librar
 owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
-
+>
 > **2026-10-28, 11:11 AM ET:** "good plans / specs = better chance of success.  lead this up Sir and OWN it.  let's see what our team is capable of"
 
 safe-harness exists as its own repo; README explains its relation to SAW as reference only; no PRs to SAW were made for Wave 0.

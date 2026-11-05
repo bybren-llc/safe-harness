@@ -37,7 +37,7 @@ Status: superseded (RTE clause) by #22 (`d88c884`, merged 2026-10-30). Release Â
 owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
-
+>
 > **2026-10-28, 11:11 AM ET:** "good plans / specs = better chance of success.  lead this up Sir and OWN it.  let's see what our team is capable of"
 
 Historical: `roles/` no longer carries a collapsible-RTE card as current (PR #22 removed it); `roles/release-rte.md` describes the gate.

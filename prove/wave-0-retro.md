@@ -2,6 +2,14 @@
 
 **Epic:** <linear-ref> · **Delivery:** the GM & Delivery · Lead · **Date:** 2026-10-29 · **Time zone:** America/New_York (EDT)
 
+> **Annotation (2026-11-04, #83 Batch C):** `<linear-ref>` above is a
+> placeholder left by the genericize pass; read it as "n/a (archived)". The
+> original epic lived in the earlier issue tracker. Its migration to GitHub
+> Issues is still Proposed, with cutover TBD (see
+> [`wave-1/migration-plan.md`](wave-1/migration-plan.md)), so that tracker is
+> not retired. Current work tracking: GitHub Issues. The header line is kept
+> as recorded.
+
 ## 1. Summary
 
 Wave 0 delivered the initial prove cycle end-to-end:
@@ -176,6 +184,12 @@ All PRs passed Structure & Docs Validation, underwent CodeRabbit automated revie
 **Risks:**
 - **Governance complexity:** Adding a constitution field requires owner's explicit concur and versioning discipline
 - **Abuse potential:** Delegated actor must remain independent (current: QAS as GM/the GM, not implementer); delegation scope must stay narrow (Low tier only)
+
+  > **Annotation (2026-11-04, #83 Batch C):** "QAS as GM/the GM" is a
+  > find-and-replace leftover; read it as "QAS (the GM), not implementer".
+  > Current seat rules: [`roles/qas.md`](../roles/qas.md). The line above is
+  > kept as recorded.
+
 - **Audit trail:** Requires durable authorization record (archived comment); must not expire or become unresolvable
 
 **What would change if approved:**

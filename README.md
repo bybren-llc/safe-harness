@@ -94,6 +94,8 @@ Safe-harness runs on two peer spines with a shared shape. Per [`constitution/00-
 2. Configure **dev, staging, and prod** for *your* environments. This repo itself is trunk-only (`main`). How those environments are gated is in [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) — see that file; this README grants no authority.
 3. Map seats (next section). Fill [`intent.md`](intent.md) and [`spec.md`](spec.md) as the human owner when you are ready. They stay human-owned placeholders until then.
 4. Keep CODEOWNERS pointed at the human owner (or the owner's review account).
+   Follow the owner-setup checklist in
+   [Adapting this template](docs/adapting.md#1-owner-identity-and-codeowners).
 5. Keep `LICENSE` and `NOTICE`. MIT requires the original copyright and permission notice to stay with copies. Add your own copyright line under ours for your changes; do not replace ours.
 
 ### 2. File a first issue
@@ -145,7 +147,7 @@ Typical Delivery loop: issue → branch → implement + evidence → PR → CI +
 
 ### Relayed agent messages are never approval
 
-Working practice (not a constitution rule), described in `skills/hitl-concur-check/SKILL.md`: a consequential action needs the human owner's own words, verified. An agent relaying approval is never approval.
+Practice guidance (not a constitutional rule), described in `skills/hitl-concur-check/SKILL.md`: a consequential action needs the human owner's own words, verified. An agent relaying approval is never approval.
 
 ### This repo's seat assignments
 
@@ -210,6 +212,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | [`AGENTS.md`](AGENTS.md) | Root agent entry point (rules by link; local checks). |
 | [`docs/adapting.md`](docs/adapting.md) | Adapting this template. |
 | [`docs/runtimes.md`](docs/runtimes.md) | How to launch Claude Code, Codex, and Cursor cloud agents from this repo. |
+| [`docs/guides/`](docs/guides/contributor-team-onboarding.md) | Onboarding for outside teams completing this repo. |
 | [`docs/prd/PRD-TEMPLATE.md`](docs/prd/PRD-TEMPLATE.md) | Optional PRD template. Longer product context; `spec.md` stays canonical for REQ IDs. |
 | [`docs/design/`](docs/design/) | Design docs, one per subsystem or topic. Template: [`docs/design/DESIGN-TEMPLATE.md`](docs/design/DESIGN-TEMPLATE.md). |
 | [`docs/decisions/`](docs/decisions/) | Architecture Decision Records (canonical home; numbered ADRs and [`log.md`](docs/decisions/log.md)). |
@@ -226,6 +229,7 @@ Role and seat names only. Adopters copy this table and replace the right-hand co
 | [`intent.md`](intent.md) / [`intent/`](intent/) / [`spec.md`](spec.md) | Human-owned design. Root `intent.md` is canonical; `intent/` is optional longer material. |
 | [`.github/CODEOWNERS`](.github/CODEOWNERS) | Review gates (`intent.md`, `intent/`, `spec.md`, `constitution/`, `requirements/`, `trace/`, `arch/`, `AGENTS.md`, `adapters/**/AGENTS.md`, `skills/`, workflows). |
 | [`.github/workflows/`](.github/workflows/) | CI (see below). |
+| [`examples/round-table/`](examples/round-table/README.md) | Instance operating notes and config for one Round Table instance (examples only; not filled templates). |
 
 CODEOWNERS coverage (review gate, not ownership): `intent.md`, `intent/`, `spec.md`, `constitution/`, `requirements/`, `trace/`, `arch/`, `AGENTS.md`, `adapters/**/AGENTS.md`, `skills/`, `.github/CODEOWNERS`, and `.github/workflows/`.
 
@@ -233,13 +237,13 @@ CODEOWNERS coverage (review gate, not ownership): `intent.md`, `intent/`, `spec.
 
 | Workflow | Job | Blocks merge? |
 | --- | --- | --- |
-| [`wave0-checks.yml`](.github/workflows/wave0-checks.yml) | Structure & Docs Validation (required paths, relative links including `trace/`, fence parity) | **Yes** |
+| [`wave0-checks.yml`](.github/workflows/wave0-checks.yml) | Structure & Docs Validation (required paths; relative links in markdown at the repo root and under `constitution/`, `roles/`, `adapters/`, `templates/`, `prove/`, `trace/`, `docs/`, and `examples/`; fence parity) | **Yes** |
 | [`wave0-checks.yml`](.github/workflows/wave0-checks.yml) | Skills frontmatter & link scan | **Warn-only** |
 | [`trace-check.yml`](.github/workflows/trace-check.yml) | Requirements Trace Validation | **Warn-only** for validation findings until `spec.md` has REQ IDs **and** `trace/.blocking` exists. The yq preflight step still fails the required check if yq is missing. |
 | [`api-contract.yml`](.github/workflows/api-contract.yml) | API Contract Checks (oasdiff + optional Schemathesis) | **Warn-only** (skips when no OpenAPI spec) |
 | [`doc-drift.yml`](.github/workflows/doc-drift.yml) | Doc drift | **Warn-only** |
 
-Local checks before a PR: relative-link scan over markdown, required paths, `python3 skills/check-frontmatter.py`, `python3 scripts/check-denylist.py`. Flip notes: [`docs/ci/skills-checks.md`](docs/ci/skills-checks.md), [`docs/ci/api-contract.md`](docs/ci/api-contract.md), [`docs/ci/doc-drift.md`](docs/ci/doc-drift.md). Branch-protection intent: [`docs/branch-protection.md`](docs/branch-protection.md).
+Local checks before a PR: run the full list in [`AGENTS.md` "Local checks"](AGENTS.md#local-checks). Flip notes: [`docs/ci/skills-checks.md`](docs/ci/skills-checks.md), [`docs/ci/api-contract.md`](docs/ci/api-contract.md), [`docs/ci/doc-drift.md`](docs/ci/doc-drift.md). Branch-protection intent: [`docs/branch-protection.md`](docs/branch-protection.md).
 
 CodeRabbit is an optional review input. When it runs, its findings are triaged. It is not a required check.
 

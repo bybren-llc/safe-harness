@@ -10,6 +10,13 @@
 
 This plan transitions safe-harness from the issue tracker to GitHub Issues while preserving all the issue tracker history as a read-only archive. **Never delete the issue tracker history.** Every existing the issue tracker evidence URL must remain resolvable.
 
+> **Annotation (2026-11-04, #83 Batch C, F3):** in this record, "the issue
+> tracker" is a genericize-pass replacement for a product name. Read phrases
+> such as "All the issue tracker evidence URLs" (Archive strategy) and "the
+> issue tracker comments/reviews" (Evidence links) as "all issue-tracker
+> evidence URLs" and "issue-tracker comments and reviews". The original text is
+> kept as recorded.
+
 ## Archive strategy
 
 ### the issue tracker remains accessible
@@ -86,6 +93,12 @@ SAF-N,<linear-url>,#<issue>,#<pr>,<title>,<status>
 - [ ] trace/linear-saf-map.csv committed and complete
 - [ ] Librarian's Linear-map freeze PR merged (row validation, `trace/linear-saf-map.sha256`, Frozen note in `schema.md`, and validation check passing)
 
+  > **Annotation (2026-11-04, #83 Batch C, F1):** per the #61 triage (item F1,
+  > tracked on #83), an earlier draft of this checkbox allowed "or equivalent
+  > manual verification" in place of the validation check. That fallback is not
+  > in the text as recorded, and whether it should be restored is still open on
+  > #83. The checkbox above is kept as recorded.
+
 ### Phase 4: Archive maintenance
 
 **Ongoing:**
@@ -150,6 +163,13 @@ The Phase 3 **Done when** list is authoritative. Migration is complete when thos
 - [ ] All active safe-harness work tracked in GitHub Issues
 - [ ] `trace/linear-saf-map.csv` committed with complete mappings
 - [ ] Librarian's Linear-map freeze PR merged (row validation, `trace/linear-saf-map.sha256`, Frozen note in `schema.md`, and validation check passing)
+
+  > **Annotation (2026-11-04, #83 Batch C, F1):** per the #61 triage (item F1,
+  > tracked on #83), an earlier draft of this checkbox allowed "or equivalent
+  > manual verification" in place of the validation check. That fallback is not
+  > in the text as recorded, and whether it should be restored is still open on
+  > #83. The checkbox above is kept as recorded.
+
 - [ ] Team trained and using GitHub conventions
 - [ ] Trace-check CI operational and green
 - [ ] the issue tracker archive accessible and evidence URLs resolve

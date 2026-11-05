@@ -24,7 +24,7 @@
 
 | Field | Value |
 | --- | --- |
-| GitHub Issue | `#N` (repo source of truth; `constitution/05-evidence-and-traceability.md`) |
+| GitHub Issue | `#N` (work tracking; not approval or concur evidence; `constitution/05-evidence-and-traceability.md`) |
 | Exact-head SHA or PR | |
 | Evidence IDs | |
 | Requirements | `REQ-<CMP>-NNN` list (`constitution/03-cd-and-hitl.md`); `none yet (bootstrap)` while `spec.md` has no REQ IDs |

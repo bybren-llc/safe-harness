@@ -15,6 +15,7 @@ Load in this order, then begin work:
 3. [`docs/decisions/log.md`](docs/decisions/log.md) — Current shape
 4. The issue and its bolt brief
 5. The REQ IDs the issue cites
+6. Outside teams completing this repo: [`docs/guides/contributor-team-onboarding.md`](docs/guides/contributor-team-onboarding.md)
 
 Stop and ask if the bolt brief is missing. Do not invent REQ IDs.
 
