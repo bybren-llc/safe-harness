@@ -87,7 +87,7 @@ RTE checks each row against the **exact head SHA** in the packet. Any unchecked 
 
 | # | Gate | PASS when | Source |
 | --- | --- | --- | --- |
-| G1 | **QAS verdict** | QAS independent review exists on the exact head with "APPROVE" in the body (posted as a GitHub **COMMENT** review — author-account limitation means APPROVE/REQUEST_CHANGES states are unavailable); QAS actor ≠ implementer, distinguishable in GitHub |  `roles/qas.md`; `constitution/05-evidence-and-traceability.md` "Independence detectable" |
+| G1 | **QAS verdict** | QAS independent review exists on the exact head with "APPROVE" in the body (posted as a GitHub **COMMENT** review — GitHub does not let the account that authored a PR post an APPROVE or REQUEST_CHANGES review on it, so QAS uses a COMMENT review); QAS actor ≠ implementer, distinguishable in GitHub |  `roles/qas.md`; `constitution/05-evidence-and-traceability.md` "Independence detectable" |
 | G2 | **SecEng verdict** | SecEng PASS (or PASS-with-notes) exists on the exact head (Med, High, O2; Low may mark N/A with rationale); SecEng actor ≠ implementer, independent; QAS APPROVE and SecEng PASS both on exact head before RTE, never in parallel |  `roles/seceng.md`; `constitution/03-cd-and-hitl.md` "Decision pack minimum"; `roles/release-rte.md` |
 | G3 | **CodeRabbit** | Review complete on the exact head; every actionable finding triaged **Fix / Accept / Waive** with a one-line reason; Fix items verified fixed on head | Fix/Accept/Waive taxonomy |
 | G4 | **CI green** | All three required checks (`Structure & Docs Validation`, `Requirements Trace Validation`, `API Contract Checks`; see `docs/branch-protection.md`) green on exact head |  `.github/workflows/wave0-checks.yml`; `constitution/03-cd-and-hitl.md` "CI/CD path" |
