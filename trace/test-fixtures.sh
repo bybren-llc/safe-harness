@@ -15,47 +15,37 @@ echo "Trace Fixture Test Runner"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 
-# Lock directory to prevent concurrent runs
+# Paths and state that cleanup() reads. Defined before the lock is taken so
+# cleanup() is safe to run at any point.
 LOCK_DIR="/tmp/trace-test-fixtures-lock"
-if ! mkdir "$LOCK_DIR" 2>/dev/null; then
-  echo "❌ Another test-fixtures.sh is running (lock exists: $LOCK_DIR)"
-  exit 1
-fi
-
-# Verify yq is available
-if ! command -v yq &> /dev/null; then
-  echo "❌ yq not found"
-  rmdir "$LOCK_DIR"
-  exit 1
-fi
-
-# Save original files
 ORIGINAL_TRACE_MAP="$REPO_ROOT/trace/trace-map.yaml"
 ORIGINAL_HARNESS_CONFIG="$REPO_ROOT/.github/harness.yml"
 BACKUP_TRACE_MAP="$REPO_ROOT/trace/trace-map.yaml.backup"
 BACKUP_HARNESS_CONFIG="$REPO_ROOT/.github/harness.yml.backup"
-
-cp "$ORIGINAL_TRACE_MAP" "$BACKUP_TRACE_MAP"
-cp "$ORIGINAL_HARNESS_CONFIG" "$BACKUP_HARNESS_CONFIG"
-
-# Create temporary config with role-term placeholder
 TEMP_CONFIG="$REPO_ROOT/.github/harness.yml.temp"
-cat > "$TEMP_CONFIG" << 'EOF'
-# safe-harness configuration (test fixture temporary)
-owner_identity: "example-owner"
-EOF
-
+# Set to 1 only after this run made the backup, so a stale *.backup from
+# another run is never moved over an original.
+TRACE_MAP_BACKED_UP=0
+HARNESS_CONFIG_BACKED_UP=0
 # Track temp directories created by mktemp
 TEMP_DIRS=()
 
 cleanup() {
+  # Keep going on errors so the lock is always released.
+  set +e
   echo ""
   echo "Restoring original files..."
-  mv "$BACKUP_TRACE_MAP" "$ORIGINAL_TRACE_MAP"
-  mv "$BACKUP_HARNESS_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
-  rm -f "$TEMP_CONFIG"
+  if [[ "$TRACE_MAP_BACKED_UP" -eq 1 && -f "$BACKUP_TRACE_MAP" ]]; then
+    mv "$BACKUP_TRACE_MAP" "$ORIGINAL_TRACE_MAP"
+  fi
+  if [[ "$HARNESS_CONFIG_BACKED_UP" -eq 1 && -f "$BACKUP_HARNESS_CONFIG" ]]; then
+    mv "$BACKUP_HARNESS_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
+  fi
+  if [[ -e "$TEMP_CONFIG" ]]; then
+    rm -f "$TEMP_CONFIG"
+  fi
   # Clean up tracked temp dirs from check.sh regression tests
-  for temp_dir in "${TEMP_DIRS[@]}"; do
+  for temp_dir in "${TEMP_DIRS[@]+"${TEMP_DIRS[@]}"}"; do
     if [[ -d "$temp_dir" ]]; then
       rm -rf "$temp_dir"
     fi
@@ -64,7 +54,31 @@ cleanup() {
   rmdir "$LOCK_DIR" 2>/dev/null || true
 }
 
+# Lock directory to prevent concurrent runs
+if ! mkdir "$LOCK_DIR" 2>/dev/null; then
+  echo "❌ Another test-fixtures.sh is running (lock exists: $LOCK_DIR)"
+  exit 1
+fi
+# This run owns the lock from here on; cleanup() releases it on any exit.
 trap cleanup EXIT
+
+# Verify yq is available
+if ! command -v yq &> /dev/null; then
+  echo "❌ yq not found"
+  exit 1
+fi
+
+# Save original files
+cp "$ORIGINAL_TRACE_MAP" "$BACKUP_TRACE_MAP"
+TRACE_MAP_BACKED_UP=1
+cp "$ORIGINAL_HARNESS_CONFIG" "$BACKUP_HARNESS_CONFIG"
+HARNESS_CONFIG_BACKED_UP=1
+
+# Create temporary config with role-term placeholder
+cat > "$TEMP_CONFIG" << 'EOF'
+# safe-harness configuration (test fixture temporary)
+owner_identity: "example-owner"
+EOF
 
 PASS_COUNT=0
 FAIL_COUNT=0
