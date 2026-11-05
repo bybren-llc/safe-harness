@@ -4,9 +4,11 @@
 
 > **Annotation (2026-11-04, #83 Batch C):** `<linear-ref>` above is a
 > placeholder left by the genericize pass; read it as "n/a (archived)". The
-> original epic lived in the retired issue tracker (see
-> [`wave-1/migration-plan.md`](wave-1/migration-plan.md)). Current work
-> tracking: GitHub Issues. The header line is kept as recorded.
+> original epic lived in the earlier issue tracker. Its migration to GitHub
+> Issues is still Proposed, with cutover TBD (see
+> [`wave-1/migration-plan.md`](wave-1/migration-plan.md)), so that tracker is
+> not retired. Current work tracking: GitHub Issues. The header line is kept
+> as recorded.
 
 ## 1. Summary
 
