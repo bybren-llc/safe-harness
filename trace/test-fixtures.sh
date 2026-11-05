@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 ByBren, LLC
 # Trace fixture test runner
 # Exercises pass/ and fail/ fixtures to validate trace-check behavior
 
@@ -13,47 +15,39 @@ echo "Trace Fixture Test Runner"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 
-# Lock directory to prevent concurrent runs
+# Paths and state that cleanup() reads. Defined before the lock is taken so
+# cleanup() is safe to run at any point.
 LOCK_DIR="/tmp/trace-test-fixtures-lock"
-if ! mkdir "$LOCK_DIR" 2>/dev/null; then
-  echo "❌ Another test-fixtures.sh is running (lock exists: $LOCK_DIR)"
-  exit 1
-fi
-
-# Verify yq is available
-if ! command -v yq &> /dev/null; then
-  echo "❌ yq not found"
-  rmdir "$LOCK_DIR"
-  exit 1
-fi
-
-# Save original files
 ORIGINAL_TRACE_MAP="$REPO_ROOT/trace/trace-map.yaml"
 ORIGINAL_HARNESS_CONFIG="$REPO_ROOT/.github/harness.yml"
 BACKUP_TRACE_MAP="$REPO_ROOT/trace/trace-map.yaml.backup"
 BACKUP_HARNESS_CONFIG="$REPO_ROOT/.github/harness.yml.backup"
-
-cp "$ORIGINAL_TRACE_MAP" "$BACKUP_TRACE_MAP"
-cp "$ORIGINAL_HARNESS_CONFIG" "$BACKUP_HARNESS_CONFIG"
-
-# Create temporary config with role-term placeholder
 TEMP_CONFIG="$REPO_ROOT/.github/harness.yml.temp"
-cat > "$TEMP_CONFIG" << 'EOF'
-# safe-harness configuration (test fixture temporary)
-owner_identity: "example-owner"
-EOF
-
+# Set to 1 only after this run made the backup, so a stale *.backup from
+# another run is never moved over an original.
+TRACE_MAP_BACKED_UP=0
+HARNESS_CONFIG_BACKED_UP=0
 # Track temp directories created by mktemp
 TEMP_DIRS=()
 
+# EXIT handler. Restores the backups this run made, removes the temp config
+# and tracked temp dirs, then releases the lock. Safe to run at any point.
 cleanup() {
+  # Keep going on errors so the lock is always released.
+  set +e
   echo ""
   echo "Restoring original files..."
-  mv "$BACKUP_TRACE_MAP" "$ORIGINAL_TRACE_MAP"
-  mv "$BACKUP_HARNESS_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
-  rm -f "$TEMP_CONFIG"
+  if [[ "$TRACE_MAP_BACKED_UP" -eq 1 && -f "$BACKUP_TRACE_MAP" ]]; then
+    mv "$BACKUP_TRACE_MAP" "$ORIGINAL_TRACE_MAP"
+  fi
+  if [[ "$HARNESS_CONFIG_BACKED_UP" -eq 1 && -f "$BACKUP_HARNESS_CONFIG" ]]; then
+    mv "$BACKUP_HARNESS_CONFIG" "$ORIGINAL_HARNESS_CONFIG"
+  fi
+  if [[ -e "$TEMP_CONFIG" ]]; then
+    rm -f "$TEMP_CONFIG"
+  fi
   # Clean up tracked temp dirs from check.sh regression tests
-  for temp_dir in "${TEMP_DIRS[@]}"; do
+  for temp_dir in "${TEMP_DIRS[@]+"${TEMP_DIRS[@]}"}"; do
     if [[ -d "$temp_dir" ]]; then
       rm -rf "$temp_dir"
     fi
@@ -62,7 +56,31 @@ cleanup() {
   rmdir "$LOCK_DIR" 2>/dev/null || true
 }
 
+# Lock directory to prevent concurrent runs
+if ! mkdir "$LOCK_DIR" 2>/dev/null; then
+  echo "❌ Another test-fixtures.sh is running (lock exists: $LOCK_DIR)"
+  exit 1
+fi
+# This run owns the lock from here on; cleanup() releases it on any exit.
 trap cleanup EXIT
+
+# Verify yq is available
+if ! command -v yq &> /dev/null; then
+  echo "❌ yq not found"
+  exit 1
+fi
+
+# Save original files
+cp "$ORIGINAL_TRACE_MAP" "$BACKUP_TRACE_MAP"
+TRACE_MAP_BACKED_UP=1
+cp "$ORIGINAL_HARNESS_CONFIG" "$BACKUP_HARNESS_CONFIG"
+HARNESS_CONFIG_BACKED_UP=1
+
+# Create temporary config with role-term placeholder
+cat > "$TEMP_CONFIG" << 'EOF'
+# safe-harness configuration (test fixture temporary)
+owner_identity: "example-owner"
+EOF
 
 PASS_COUNT=0
 FAIL_COUNT=0
@@ -314,6 +332,34 @@ echo ""
 echo "Testing that owner-check hard-fails even WITHOUT FORCE_BLOCKING..."
 echo ""
 
+# Run trace/check.sh on a temp repo. Count a pass only when it exits non-zero
+# AND prints every expected diagnostic, so a different failure can't mask a
+# broken guard. On a mismatch, print check.sh's output for diagnosis.
+# Usage: expect_check_failure <dir> <expected> [<expected>...]
+expect_check_failure() {
+  local dir="$1" output missing="" expected
+  shift
+  if output=$(bash "$REPO_ROOT/trace/check.sh" "$dir" 2>&1); then
+    echo "❌ PASS (expected hard-fail)"
+    FAIL_COUNT=$((FAIL_COUNT + 1))
+    return
+  fi
+  for expected in "$@"; do
+    if ! grep -Fq -- "$expected" <<<"$output"; then
+      missing="$expected"
+      break
+    fi
+  done
+  if [[ -z "$missing" ]]; then
+    echo "✓ FAIL (as expected, hard-fail even in warn-only: $1)"
+    PASS_COUNT=$((PASS_COUNT + 1))
+  else
+    echo "❌ FAIL (wrong reason; missing: $missing)"
+    printf '%s\n' "$output" | sed 's/^/      /'
+    FAIL_COUNT=$((FAIL_COUNT + 1))
+  fi
+}
+
 # Regression test 1: missing .github/harness.yml
 echo -n "  Regression: missing harness.yml (no FORCE_BLOCKING) ... "
 TEMP_DIR=$(mktemp -d /tmp/trace-check-test-XXXXXX)
@@ -328,13 +374,8 @@ components:
   - id: ARC-CON
     name: Constitution
 REOF
-if ! bash "$REPO_ROOT/trace/check.sh" "$TEMP_DIR" > /dev/null 2>&1; then
-  echo "✓ FAIL (as expected, hard-fail even in warn-only)"
-  PASS_COUNT=$((PASS_COUNT + 1))
-else
-  echo "❌ PASS (expected hard-fail)"
-  FAIL_COUNT=$((FAIL_COUNT + 1))
-fi
+expect_check_failure "$TEMP_DIR" "Owner-identity check FAILED" \
+  "harness.yml not found"
 
 # Regression test 2: invalid owner_identity (non-string)
 echo -n "  Regression: invalid owner_identity (no FORCE_BLOCKING) ... "
@@ -353,13 +394,8 @@ components:
   - id: ARC-CON
     name: Constitution
 REOF
-if ! bash "$REPO_ROOT/trace/check.sh" "$TEMP_DIR" > /dev/null 2>&1; then
-  echo "✓ FAIL (as expected, hard-fail even in warn-only)"
-  PASS_COUNT=$((PASS_COUNT + 1))
-else
-  echo "❌ PASS (expected hard-fail)"
-  FAIL_COUNT=$((FAIL_COUNT + 1))
-fi
+expect_check_failure "$TEMP_DIR" "Owner-identity check FAILED" \
+  "owner_identity must be a string"
 
 # Regression test 3: decided_by mismatch
 echo -n "  Regression: decided_by mismatch (no FORCE_BLOCKING) ... "
@@ -390,13 +426,8 @@ components:
   - id: ARC-CON
     name: Constitution
 REOF
-if ! bash "$REPO_ROOT/trace/check.sh" "$TEMP_DIR" > /dev/null 2>&1; then
-  echo "✓ FAIL (as expected, hard-fail even in warn-only)"
-  PASS_COUNT=$((PASS_COUNT + 1))
-else
-  echo "❌ PASS (expected hard-fail)"
-  FAIL_COUNT=$((FAIL_COUNT + 1))
-fi
+expect_check_failure "$TEMP_DIR" "Owner-identity check FAILED" \
+  "decided_by must be exactly: example-owner"
 
 # Regression test 4: multi-document trace-map
 echo -n "  Regression: multi-doc trace-map (no FORCE_BLOCKING) ... "
@@ -417,13 +448,7 @@ components:
   - id: ARC-CON
     name: Constitution
 REOF
-if ! bash "$REPO_ROOT/trace/check.sh" "$TEMP_DIR" > /dev/null 2>&1; then
-  echo "✓ FAIL (as expected, hard-fail even in warn-only)"
-  PASS_COUNT=$((PASS_COUNT + 1))
-else
-  echo "❌ PASS (expected hard-fail)"
-  FAIL_COUNT=$((FAIL_COUNT + 1))
-fi
+expect_check_failure "$TEMP_DIR" "Multi-document trace-map FAILED"
 
 # Regression test 5: invalid YAML syntax
 echo -n "  Regression: invalid YAML (no FORCE_BLOCKING) ... "
@@ -443,13 +468,7 @@ components:
   - id: ARC-CON
     name: Constitution
 REOF
-if ! bash "$REPO_ROOT/trace/check.sh" "$TEMP_DIR" > /dev/null 2>&1; then
-  echo "✓ FAIL (as expected, hard-fail even in warn-only)"
-  PASS_COUNT=$((PASS_COUNT + 1))
-else
-  echo "❌ PASS (expected hard-fail)"
-  FAIL_COUNT=$((FAIL_COUNT + 1))
-fi
+expect_check_failure "$TEMP_DIR" "Invalid YAML FAILED"
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
