@@ -1,8 +1,8 @@
 ## Requirements
 
-Requirements: N/A
+Requirements: REQ-CMP-NNN list, or N/A in bootstrap (replace this line)
 
-<!-- REQ-<CMP>-NNN, REQ-<CMP>-MMM — or N/A / none yet (bootstrap) while spec.md has no REQ IDs -->
+<!-- Replace the line above. While spec.md has no REQ IDs (bootstrap), write a bare `Requirements: N/A` and put the rationale on the next line. Once spec.md has REQ IDs, list them instead: `Requirements: REQ-<CMP>-NNN, REQ-<CMP>-MMM`. Never invent IDs. The unedited placeholder is not a valid value. -->
 
 ## Risk tier
 
