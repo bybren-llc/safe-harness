@@ -93,3 +93,10 @@ Report outcomes vs M1–M6 at Bolt exit.
 - **M6**: 2 QAS rounds, opened 2026-10-29T10:43:56Z (06:43:56 EDT) and merged 2026-10-29T11:54:42Z (07:54:42 EDT) — about 70 minutes opened to merged (source: GitHub API `gh pr view 3 --json createdAt,mergedAt`); thin CI green on both heads (Structure & Docs Validation, CodeRabbit); the train never froze
 
 **Exit states (constitution/05)**: Ready for QAS → Approved for RTE (collapsed-RTE annotated) → Ready for HITL → MERGED (HITL only)
+
+> **Annotation (2026-11-04, #83 Batch C):** this record shows a delegated HITL
+> merge (Gates above: "HITL delegated … exercised by the GM at Low tier"), so
+> the final exit state reads **MERGED (HITL-delegated)**, not MERGED (HITL
+> only). Current source:
+> [`constitution/05-evidence-and-traceability.md`](../../constitution/05-evidence-and-traceability.md)
+> "Exit states" (state 5). The original line above is kept as recorded.
