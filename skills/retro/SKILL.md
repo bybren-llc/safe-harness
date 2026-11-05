@@ -11,7 +11,7 @@ license: MIT (see repository LICENSE)
 
 ## Authority
 
-- [`constitution/00-north-star.md`](../../constitution/00-north-star.md) — examples/round-table/metrics.md is an example set
+- [`constitution/00-north-star.md`](../../constitution/00-north-star.md) — where your success metrics are defined (Success metrics); `examples/round-table/metrics.md` is an example set, not the template's metrics
 - [`constitution/06-empiricism.md`](../../constitution/06-empiricism.md) — keep / adapt / drop; HITL concur before defaults change
 - [`constitution/07-roles-and-lanes.md`](../../constitution/07-roles-and-lanes.md) — public posts
 

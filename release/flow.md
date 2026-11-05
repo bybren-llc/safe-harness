@@ -47,7 +47,8 @@ Escalation path : Delivery · Lead escalates "via Ops · CoS or the GM — not t
 Posted on the PR (or linked GitHub Issue) only once QAS APPROVE and SecEng clearance (or a Low-tier N/A with rationale) are both on the exact head. **The RTE check fires immediately on packet arrival.**
 
 - PR link + **head SHA** (exact-head — "Evidence and CI must refer to the exact commit/PR head under review", `constitution/03-cd-and-hitl.md`)
-- GitHub Issue `#N` (source of truth; `constitution/05-evidence-and-traceability.md`)
+- GitHub Issue `#N` (work tracking for the item; not approval or concur
+  evidence; `constitution/05-evidence-and-traceability.md`)
 - Risk tier (Low / Med / High) + O2 checklist
 - Gate checklist (§4) with a link per row
 - Decision pack link (`templates/delivery-bolt-brief.md` → "Decision pack (constitution/03 minimum)")
@@ -87,7 +88,7 @@ RTE checks each row against the **exact head SHA** in the packet. Any unchecked 
 
 | # | Gate | PASS when | Source |
 | --- | --- | --- | --- |
-| G1 | **QAS verdict** | QAS independent review exists on the exact head with "APPROVE" in the body (posted as a GitHub **COMMENT** review — author-account limitation means APPROVE/REQUEST_CHANGES states are unavailable); QAS actor ≠ implementer, distinguishable in GitHub |  `roles/qas.md`; `constitution/05-evidence-and-traceability.md` "Independence detectable" |
+| G1 | **QAS verdict** | QAS independent review exists on the exact head with "APPROVE" in the body (posted as a GitHub **COMMENT** review — GitHub does not let the account that authored a PR post an APPROVE or REQUEST_CHANGES review on it, so QAS uses a COMMENT review); QAS actor ≠ implementer, distinguishable in GitHub |  `roles/qas.md`; `constitution/05-evidence-and-traceability.md` "Independence detectable" |
 | G2 | **SecEng verdict** | SecEng PASS (or PASS-with-notes) exists on the exact head (Med, High, O2; Low may mark N/A with rationale); SecEng actor ≠ implementer, independent; QAS APPROVE and SecEng PASS both on exact head before RTE, never in parallel |  `roles/seceng.md`; `constitution/03-cd-and-hitl.md` "Decision pack minimum"; `roles/release-rte.md` |
 | G3 | **CodeRabbit** | Review complete on the exact head; every actionable finding triaged **Fix / Accept / Waive** with a one-line reason; Fix items verified fixed on head | Fix/Accept/Waive taxonomy |
 | G4 | **CI green** | All three required checks (`Structure & Docs Validation`, `Requirements Trace Validation`, `API Contract Checks`; see `docs/branch-protection.md`) green on exact head |  `.github/workflows/wave0-checks.yml`; `constitution/03-cd-and-hitl.md` "CI/CD path" |
@@ -155,7 +156,7 @@ RTE placement (`constitution/03-cd-and-hitl.md`) requires the RTE check at Med, 
 
 The morning roll is Ops · CoS reading the **live queue**, not a schedule.
 
-The GitHub repository (Issues and PRs) is the source of truth (`constitution/05-evidence-and-traceability.md`). the issue tracker is optional archive; it is not the record.
+The GitHub repository (Issues and PRs) is the source of truth (`constitution/05-evidence-and-traceability.md`). Issues track work items; they are not approval or concur evidence, which stays in the recorded reviews and concur records. The issue tracker is optional archive; it is not the record.
 
 | Queue | Shows | Source of truth |
 | --- | --- | --- |

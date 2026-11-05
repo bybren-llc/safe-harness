@@ -32,7 +32,7 @@ Claude Code, Cursor, and Codex each need the same root `AGENTS.md` and the same 
 
 Chosen option: "Pointer files only", because that is what W0 merged to `main`.
 
-`CLAUDE.md` imports `@AGENTS.md`. `.cursor/rules/safe-harness.mdc` is always-on and points at `AGENTS.md`. Codex reads root `AGENTS.md` natively; the adapter docs that fact.
+`CLAUDE.md` imports `@AGENTS.md`. `.cursor/rules/safe-harness.mdc` is always-on and points at `AGENTS.md`. Codex reads root `AGENTS.md` natively; the adapter documents that fact.
 
 ### Consequences
 
@@ -55,7 +55,7 @@ Example only. The merge record is #86 on `main`. This file does not invent a con
 
 * Good, because no symlink support is assumed.
 * Neutral, because each vendor's expansion of the pointer will be checked in `prove/` during the #85 runs; this example does not assert the result.
-* Bad, because a runtime that does not read `AGENTS.md` or the pointer still needs a first-handoff check.
+* Bad, because a runtime that does not read `AGENTS.md` or the pointer still needs a first handoff check.
 
 ### Symlinks
 

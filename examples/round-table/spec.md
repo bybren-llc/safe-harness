@@ -40,7 +40,7 @@ Illustrative only. Not registered in `requirements/`. Not present in root `spec.
 
 Drawn from #85 and the W0.5 runbook. These are example success statements for the first slice, not registered REQs.
 
-- Each run loads `AGENTS.md` and follows the Before you start order.
+- Each run loads `AGENTS.md` and follows the "Before you start" order.
 - Each run goes through SecEng PASS, QAS APPROVE, and RTE PASS at its exact head.
 - Evidence is recorded with `runtime` and `evidence_id`.
 - At least one handoff crosses runtimes (for example, R2 picks up work or a review from R1).

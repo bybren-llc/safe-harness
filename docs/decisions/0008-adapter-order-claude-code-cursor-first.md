@@ -35,7 +35,7 @@ Decision text: One constitution; each runtime is a thin adapter, not a forked me
 owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
-
+>
 > **2026-10-28, 11:11 AM ET:** "good plans / specs = better chance of success.  lead this up Sir and OWN it.  let's see what our team is capable of"
 
 `adapters/claude-code/` and `adapters/cursor/` exist and reference the same constitution; parity check in PR4 (AGENTS.md per adapter).

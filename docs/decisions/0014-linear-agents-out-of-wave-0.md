@@ -35,7 +35,7 @@ Status: superseded by #6 (`6a06388`, merged 2026-10-29). The GitHub repo is now 
 the owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
-
+>
 > **2026-10-28, 11:11 AM ET:** "good plans / specs = better chance of success.  lead this up Sir and OWN it.  let's see what our team is capable of"
 
 ## More Information
