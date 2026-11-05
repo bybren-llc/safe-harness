@@ -35,7 +35,7 @@ Decision text: The personal vault is never remote, never on GitHub, and out of t
 owner (HITL/POPM), one-pass concur of the Wave 0 pack:
 
 > **2026-10-28, 11:10 AM ET:** "yes then A - concur on all as written lets' go for it!"
-
+>
 > **2026-10-28, 11:11 AM ET:** "good plans / specs = better chance of success.  lead this up Sir and OWN it.  let's see what our team is capable of"
 
 `constitution/04-privacy-and-vaults.md` matches; CONTRIBUTING personal-boundary rule; link-health scope excludes personal/private targets; SecEng checks for private paths in diffs.
