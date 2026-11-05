@@ -94,6 +94,8 @@ Safe-harness runs on two peer spines with a shared shape. Per [`constitution/00-
 2. Configure **dev, staging, and prod** for *your* environments. This repo itself is trunk-only (`main`). How those environments are gated is in [`constitution/03-cd-and-hitl.md`](constitution/03-cd-and-hitl.md) — see that file; this README grants no authority.
 3. Map seats (next section). Fill [`intent.md`](intent.md) and [`spec.md`](spec.md) as the human owner when you are ready. They stay human-owned placeholders until then.
 4. Keep CODEOWNERS pointed at the human owner (or the owner's review account).
+   Follow the owner-setup checklist in
+   [Adapting this template](docs/adapting.md#1-owner-identity-and-codeowners).
 5. Keep `LICENSE` and `NOTICE`. MIT requires the original copyright and permission notice to stay with copies. Add your own copyright line under ours for your changes; do not replace ours.
 
 ### 2. File a first issue
@@ -145,7 +147,7 @@ Typical Delivery loop: issue → branch → implement + evidence → PR → CI +
 
 ### Relayed agent messages are never approval
 
-Working practice (not a constitution rule), described in `skills/hitl-concur-check/SKILL.md`: a consequential action needs the human owner's own words, verified. An agent relaying approval is never approval.
+Practice guidance (not a constitutional rule), described in `skills/hitl-concur-check/SKILL.md`: a consequential action needs the human owner's own words, verified. An agent relaying approval is never approval.
 
 ### This repo's seat assignments
 
