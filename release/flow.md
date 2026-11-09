@@ -92,7 +92,7 @@ RTE checks each row against the **exact head SHA** in the packet. Any unchecked 
 | G2 | **SecEng verdict** | SecEng PASS (or PASS-with-notes) exists on the exact head (Med, High, O2; Low may mark N/A with rationale); SecEng actor ≠ implementer, independent; QAS APPROVE and SecEng PASS both on exact head before RTE, never in parallel |  `roles/seceng.md`; `constitution/03-cd-and-hitl.md` "Decision pack minimum"; `roles/release-rte.md` |
 | G3 | **CodeRabbit** | Review complete on the exact head; every actionable finding triaged **Fix / Accept / Waive** with a one-line reason; Fix items verified fixed on head | Fix/Accept/Waive taxonomy |
 | G4 | **CI green** | All three required checks (`Structure & Docs Validation`, `Requirements Trace Validation`, `API Contract Checks`; see `docs/branch-protection.md`) green on exact head |  `.github/workflows/wave0-checks.yml`; `constitution/03-cd-and-hitl.md` "CI/CD path" |
-| G5 | **Decision pack + HITL record** | Decision pack has the constitution/03 minimum (GitHub Issue, exact-head SHA/PR, evidence IDs, QAS + SecEng status or Low-tier N/A with rationale, `SecEng: <review-id> PASS or PASS-with-notes at <exact head sha>`, risk tier + O2 checklist, Ask). Ordinary Low RTE-executed merges with RTE PASS on the exact head: decision pack only; no per-PR owner concur and no D1 `hitl_delegate` record. Other paths: HITL record present — the owner's recorded concur, **or** (Low/D1 only, where that standing path is used) the standing `hitl_delegate` record (`constitution/05` D1 record with ADR-style accountability). High/O2/`constitution/` need the owner's recorded own-words concur; the standing delegation does not cover them. |  `constitution/03-cd-and-hitl.md` "Decision pack minimum"; `constitution/05-evidence-and-traceability.md` D1; `templates/delivery-bolt-brief.md` |
+| G5 | **Decision pack + HITL record** | Decision pack has the constitution/03 minimum (GitHub Issue, exact-head SHA/PR, evidence IDs, QAS + SecEng status or Low-tier N/A with rationale, `SecEng: <review-id> PASS or PASS-with-notes at <exact head sha>`, risk tier + O2 checklist, Ask). Ordinary Low merges that Release · RTE will execute: decision pack only; no per-PR owner concur and no D1 `hitl_delegate` record. Other paths: HITL record present — the owner's recorded concur, **or** (Low/D1 only, where that standing path is used) the standing `hitl_delegate` record (`constitution/05` D1 record with ADR-style accountability). High/O2/`constitution/` need the owner's recorded own-words concur; the standing delegation does not cover them. |  `constitution/03-cd-and-hitl.md` "Decision pack minimum"; `constitution/05-evidence-and-traceability.md` D1; `templates/delivery-bolt-brief.md` |
 | G6 | **Trace** | PR body has a `Requirements:` line listing REQ IDs, and the GitHub Issue `#N` | `constitution/03-cd-and-hitl.md` PR body; `constitution/05-evidence-and-traceability.md`. Use `N/A` while `spec.md` has no REQ IDs |
 | G7 | **Risk tier correct** | Tier matches the O2 list (pricing, refunds, auth, deploy CI / workflows, prod secrets, privacy-boundary crosses = **High** unless the owner/the GM downgrade **in writing**); SecEng actor present if Med/High/O2 |  `constitution/03-cd-and-hitl.md` "O2 high-risk default"; `templates/delivery-bolt-brief.md` header |
 | G8 | **Docs match structure** | `README.md` and repo structure match what docs describe (no stale paths, required paths present, relative links resolve) | Partly automated  by `wave0-checks.yml` (required paths + relative links); human check |
@@ -150,7 +150,7 @@ RTE placement (`constitution/03-cd-and-hitl.md`) requires the RTE check at Med, 
   - Risk tier (+ O2 items / written downgrade link if any)
   - GitHub Issue `#N` + REQ IDs (`Requirements:` line)
   - Exit state (`MERGED (HITL only)` / `MERGED (HITL-delegated)` / `MERGED (delegated the GM/RTE)`) and `merged_by`
-  - Links: QAS APPROVE review, RTE PASS comment, HITL record (the owner concur or `constitution/05` D1 `hitl_delegate`), and any override reason
+  - Links: QAS APPROVE review, RTE PASS comment, HITL record (the owner concur or `constitution/05` D1 `hitl_delegate`) when that record is required for the path (an ordinary Low RTE-executed merge with neither record is valid), and any override reason
 
 ## 8. Morning roll and stall rule
 
@@ -183,7 +183,7 @@ Every other stall point — same 2× rule, in minutes:
 | --- | --- | --- | --- |
 | HOLD unanswered (no new head and no written response) | `RTE HOLD` comment posted | 2× tier target: Low 10 / Med 30 / High·O2 60 min | the GM (priority message); Delivery · Lead copied |
 | the owner concurrence pending (`constitution/` at any tier; High; O2) | RTE PASS posted | 2× tier target: Low 10 / Med 30 / High·O2 60 min | Ops · CoS surfaces in the owner concurrence queue (Ops escalates per §2; never the owner-direct unless the owner in-thread) |
-| "Ready for HITL" with no merge | Both RTE PASS and HITL record present | 2× tier target: Low 10 / Med 30 / High·O2 60 min | the GM (priority message) |
+| "Ready for HITL" with no merge | Applicable gates for that path are met | 2× tier target: Low 10 / Med 30 / High·O2 60 min | the GM (priority message) |
 
 Tag and GitHub Release publication is owned by Release · RTE after merge, per `roles/release-rte.md`. It is not a per-merge stall of this flow.
 
