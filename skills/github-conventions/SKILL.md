@@ -35,7 +35,7 @@ Refs #42
 Req: REQ-<CMP>-NNN
 ```
 
-**PR body:** include a `Requirements: REQ-<CMP>-NNN, …` line listing every requirement the change addresses. If the repo has no REQ IDs yet, say so explicitly rather than inventing IDs.
+**PR body:** include a `Requirements: REQ-<CMP>-NNN, …` line listing every requirement the change addresses. If `spec.md` has no REQ IDs yet (bootstrap), write a bare `Requirements: N/A` with the rationale on the next line rather than inventing IDs. Replace the PR template's placeholder line either way; it is not a valid value.
 
 **Labels:** work type (`bolt`, `decision`, `requirement`), risk tier (`tier:low`, `tier:medium`, `tier:high`), O2 items (`o2:pricing`, `o2:refunds`, `o2:auth`, `o2:deploy-ci`, `o2:secrets`, `o2:privacy`), and gate/exit labels from the adopter's label set.
 
